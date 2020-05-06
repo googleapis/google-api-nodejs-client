@@ -641,6 +641,73 @@ export namespace monitoring_v1 {
     /**
      * monitoring.projects.dashboards.create
      * @desc Creates a new custom dashboard.This method requires the monitoring.dashboards.create permission on the specified project. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.dashboards.create({
+     *     // Required. The project on which to execute the request. The format is:
+     *     // projects/[PROJECT_ID_OR_NUMBER]
+     *     // The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "columnLayout": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "gridLayout": {},
+     *       //   "name": "my_name",
+     *       //   "rowLayout": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnLayout": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "gridLayout": {},
+     *   //   "name": "my_name",
+     *   //   "rowLayout": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias monitoring.projects.dashboards.create
      * @memberOf! ()
      *
@@ -716,6 +783,53 @@ export namespace monitoring_v1 {
     /**
      * monitoring.projects.dashboards.delete
      * @desc Deletes an existing custom dashboard.This method requires the monitoring.dashboards.delete permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.dashboards.delete({
+     *     // Required. The resource name of the Dashboard. The format is:
+     *     // projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]
+     *     //
+     *     name: 'projects/my-project/dashboards/my-dashboard',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias monitoring.projects.dashboards.delete
      * @memberOf! ()
      *
@@ -785,6 +899,60 @@ export namespace monitoring_v1 {
     /**
      * monitoring.projects.dashboards.get
      * @desc Fetches a specific dashboard.This method requires the monitoring.dashboards.get permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.dashboards.get({
+     *     // Required. The resource name of the Dashboard. The format is one of:
+     *     // dashboards/[DASHBOARD_ID] (for system dashboards)
+     *     // projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]  (for custom dashboards).
+     *     name: 'projects/my-project/dashboards/my-dashboard',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnLayout": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "gridLayout": {},
+     *   //   "name": "my_name",
+     *   //   "rowLayout": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias monitoring.projects.dashboards.get
      * @memberOf! ()
      *
@@ -856,6 +1024,60 @@ export namespace monitoring_v1 {
     /**
      * monitoring.projects.dashboards.list
      * @desc Lists the existing dashboards.This method requires the monitoring.dashboards.list permission on the specified project. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.dashboards.list({
+     *     // A positive number that is the maximum number of results to return. If unspecified, a default of 1000 is used.
+     *     pageSize: 'placeholder-value',
+     *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The scope of the dashboards to list. The format is:
+     *     // projects/[PROJECT_ID_OR_NUMBER]
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dashboards": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias monitoring.projects.dashboards.list
      * @memberOf! ()
      *
@@ -934,6 +1156,71 @@ export namespace monitoring_v1 {
     /**
      * monitoring.projects.dashboards.patch
      * @desc Replaces an existing custom dashboard with a new definition.This method requires the monitoring.dashboards.update permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.dashboards.patch({
+     *     // Immutable. The resource name of the dashboard.
+     *     name: 'projects/my-project/dashboards/my-dashboard',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "columnLayout": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "gridLayout": {},
+     *       //   "name": "my_name",
+     *       //   "rowLayout": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnLayout": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "gridLayout": {},
+     *   //   "name": "my_name",
+     *   //   "rowLayout": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias monitoring.projects.dashboards.patch
      * @memberOf! ()
      *

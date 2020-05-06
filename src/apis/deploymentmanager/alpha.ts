@@ -1227,6 +1227,77 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.compositeTypes.delete
      * @desc Deletes a composite type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.compositeTypes.delete({
+     *     // The name of the type for this request.
+     *     compositeType: '[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.compositeTypes.delete
      * @memberOf! ()
      *
@@ -1302,6 +1373,65 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.compositeTypes.get
      * @desc Gets information about a specific composite type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.compositeTypes.get({
+     *     // The name of the composite type for this request.
+     *     compositeType: '[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "labels": [],
+     *   //   "name": "my_name",
+     *   //   "operation": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "templateContents": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.compositeTypes.get
      * @memberOf! ()
      *
@@ -1377,6 +1507,91 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.compositeTypes.insert
      * @desc Creates a composite type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.compositeTypes.insert({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "templateContents": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.compositeTypes.insert
      * @memberOf! ()
      *
@@ -1452,6 +1667,74 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.compositeTypes.list
      * @desc Lists all composite types for Deployment Manager.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.compositeTypes.list({
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.
+     *     //
+     *     // You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by name or creationTimestamp desc is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "compositeTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.compositeTypes.list
      * @memberOf! ()
      *
@@ -1537,6 +1820,93 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.compositeTypes.patch
      * @desc Updates a composite type. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.compositeTypes.patch({
+     *     // The name of the composite type for this request.
+     *     compositeType: '[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "templateContents": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.compositeTypes.patch
      * @memberOf! ()
      *
@@ -1613,6 +1983,93 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.compositeTypes.update
      * @desc Updates a composite type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.compositeTypes.update({
+     *     // The name of the composite type for this request.
+     *     compositeType: '[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "templateContents": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.compositeTypes.update
      * @memberOf! ()
      *
@@ -1816,6 +2273,85 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.cancelPreview
      * @desc Cancels and removes the preview currently associated with the deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.cancelPreview({
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fingerprint": "my_fingerprint"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.cancelPreview
      * @memberOf! ()
      *
@@ -1892,6 +2428,79 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.delete
      * @desc Deletes a deployment and all of the resources in the deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.delete({
+     *     // Sets the policy to use for deleting resources.
+     *     deletePolicy: 'placeholder-value',
+     *     // The name of the deployment for this request.
+     *     deployment: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.delete
      * @memberOf! ()
      *
@@ -1968,6 +2577,70 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.get
      * @desc Gets information about a specific deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.get({
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "credential": {},
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "labels": [],
+     *   //   "manifest": "my_manifest",
+     *   //   "name": "my_name",
+     *   //   "operation": {},
+     *   //   "outputs": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "target": {},
+     *   //   "update": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.get
      * @memberOf! ()
      *
@@ -2042,6 +2715,60 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.getIamPolicy
      * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.getIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "iamOwned": false,
+     *   //   "rules": [],
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.getIamPolicy
      * @memberOf! ()
      *
@@ -2115,6 +2842,100 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.insert
      * @desc Creates a deployment and all of the resources described by the deployment manifest.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.insert({
+     *     // Sets the policy to use for creating new resources.
+     *     createPolicy: 'placeholder-value',
+     *     // If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
+     *     preview: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "credential": {},
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "manifest": "my_manifest",
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "outputs": [],
+     *       //   "selfLink": "my_selfLink",
+     *       //   "target": {},
+     *       //   "update": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.insert
      * @memberOf! ()
      *
@@ -2192,6 +3013,74 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.list
      * @desc Lists all deployments for a given project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.list({
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.
+     *     //
+     *     // You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by name or creationTimestamp desc is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.list
      * @memberOf! ()
      *
@@ -2271,6 +3160,104 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.patch
      * @desc Updates a deployment and all of the resources described by the deployment manifest. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.patch({
+     *     // Sets the policy to use for creating new resources.
+     *     createPolicy: 'placeholder-value',
+     *     // Sets the policy to use for deleting resources.
+     *     deletePolicy: 'placeholder-value',
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
+     *     preview: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "credential": {},
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "manifest": "my_manifest",
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "outputs": [],
+     *       //   "selfLink": "my_selfLink",
+     *       //   "target": {},
+     *       //   "update": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.patch
      * @memberOf! ()
      *
@@ -2350,6 +3337,70 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.setIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "iamOwned": false,
+     *   //   "rules": [],
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.setIamPolicy
      * @memberOf! ()
      *
@@ -2424,6 +3475,85 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.stop
      * @desc Stops an ongoing operation. This does not roll back any work that has already been completed, but prevents any new work from being started.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.stop({
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fingerprint": "my_fingerprint"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.stop
      * @memberOf! ()
      *
@@ -2499,6 +3629,63 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.testIamPermissions
      * @memberOf! ()
      *
@@ -2579,6 +3766,104 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.deployments.update
      * @desc Updates a deployment and all of the resources described by the deployment manifest.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.deployments.update({
+     *     // Sets the policy to use for creating new resources.
+     *     createPolicy: 'placeholder-value',
+     *     // Sets the policy to use for deleting resources.
+     *     deletePolicy: 'placeholder-value',
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
+     *     preview: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "credential": {},
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "manifest": "my_manifest",
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "outputs": [],
+     *       //   "selfLink": "my_selfLink",
+     *       //   "target": {},
+     *       //   "update": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.deployments.update
      * @memberOf! ()
      *
@@ -2918,6 +4203,66 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.manifests.get
      * @desc Gets information about a specific manifest.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.manifests.get({
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // The name of the manifest for this request.
+     *     manifest: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "expandedConfig": "my_expandedConfig",
+     *   //   "id": "my_id",
+     *   //   "imports": [],
+     *   //   "insertTime": "my_insertTime",
+     *   //   "layout": "my_layout",
+     *   //   "name": "my_name",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.manifests.get
      * @memberOf! ()
      *
@@ -2991,6 +4336,76 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.manifests.list
      * @desc Lists all manifests for a given deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.manifests.list({
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.
+     *     //
+     *     // You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by name or creationTimestamp desc is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "manifests": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.manifests.list
      * @memberOf! ()
      *
@@ -3129,6 +4544,79 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.operations.get
      * @desc Gets information about a specific operation.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.operations.get({
+     *     // The name of the operation for this request.
+     *     operation: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.operations.get
      * @memberOf! ()
      *
@@ -3203,6 +4691,74 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.operations.list
      * @desc Lists all operations for a project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.operations.list({
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.
+     *     //
+     *     // You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by name or creationTimestamp desc is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.operations.list
      * @memberOf! ()
      *
@@ -3332,6 +4888,72 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.resources.get
      * @desc Gets information about a single resource.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.resources.get({
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the resource for this request.
+     *     resource: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessControl": {},
+     *   //   "finalProperties": "my_finalProperties",
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "lastUsedCredential": {},
+     *   //   "manifest": "my_manifest",
+     *   //   "name": "my_name",
+     *   //   "properties": "my_properties",
+     *   //   "runtimePolicies": [],
+     *   //   "type": "my_type",
+     *   //   "update": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "url": "my_url",
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.resources.get
      * @memberOf! ()
      *
@@ -3405,6 +5027,76 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.resources.list
      * @desc Lists all resources in a given deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.resources.list({
+     *     // The name of the deployment for this request.
+     *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.
+     *     //
+     *     // You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by name or creationTimestamp desc is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.resources.list
      * @memberOf! ()
      *
@@ -3543,6 +5235,77 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.typeProviders.delete
      * @desc Deletes a type provider.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.typeProviders.delete({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type provider for this request.
+     *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.typeProviders.delete
      * @memberOf! ()
      *
@@ -3618,6 +5381,67 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.typeProviders.get
      * @desc Gets information about a specific type provider.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.typeProviders.get({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type provider for this request.
+     *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "collectionOverrides": [],
+     *   //   "credential": {},
+     *   //   "description": "my_description",
+     *   //   "descriptorUrl": "my_descriptorUrl",
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "labels": [],
+     *   //   "name": "my_name",
+     *   //   "operation": {},
+     *   //   "options": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.typeProviders.get
      * @memberOf! ()
      *
@@ -3693,6 +5517,65 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.typeProviders.getType
      * @desc Gets a type info for a type provided by a TypeProvider.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.typeProviders.getType({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type provider type for this request.
+     *     type: 'placeholder-value',
+     *     // The name of the type provider for this request.
+     *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "documentationLink": "my_documentationLink",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.typeProviders.getType
      * @memberOf! ()
      *
@@ -3767,6 +5650,93 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.typeProviders.insert
      * @desc Creates a type provider.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.typeProviders.insert({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "collectionOverrides": [],
+     *       //   "credential": {},
+     *       //   "description": "my_description",
+     *       //   "descriptorUrl": "my_descriptorUrl",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "options": {},
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.typeProviders.insert
      * @memberOf! ()
      *
@@ -3842,6 +5812,74 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.typeProviders.list
      * @desc Lists all resource type providers for Deployment Manager.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.typeProviders.list({
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.
+     *     //
+     *     // You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by name or creationTimestamp desc is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "typeProviders": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.typeProviders.list
      * @memberOf! ()
      *
@@ -3927,6 +5965,76 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.typeProviders.listTypes
      * @desc Lists all the type info for a TypeProvider.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.typeProviders.listTypes({
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.
+     *     //
+     *     // You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by name or creationTimestamp desc is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type provider for this request.
+     *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "types": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.typeProviders.listTypes
      * @memberOf! ()
      *
@@ -4015,6 +6123,95 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.typeProviders.patch
      * @desc Updates a type provider. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.typeProviders.patch({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type provider for this request.
+     *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "collectionOverrides": [],
+     *       //   "credential": {},
+     *       //   "description": "my_description",
+     *       //   "descriptorUrl": "my_descriptorUrl",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "options": {},
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.typeProviders.patch
      * @memberOf! ()
      *
@@ -4091,6 +6288,95 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.typeProviders.update
      * @desc Updates a type provider.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.typeProviders.update({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type provider for this request.
+     *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "collectionOverrides": [],
+     *       //   "credential": {},
+     *       //   "description": "my_description",
+     *       //   "descriptorUrl": "my_descriptorUrl",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "options": {},
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.typeProviders.update
      * @memberOf! ()
      *
@@ -4346,6 +6632,77 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.types.delete
      * @desc Deletes a type and all of the resources in the type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.types.delete({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type for this request.
+     *     type: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.types.delete
      * @memberOf! ()
      *
@@ -4420,6 +6777,64 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.types.get
      * @desc Gets information about a specific type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.types.get({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type for this request.
+     *     type: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configurableService": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "labels": [],
+     *   //   "name": "my_name",
+     *   //   "operation": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.types.get
      * @memberOf! ()
      *
@@ -4492,6 +6907,90 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.types.insert
      * @desc Creates a type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.types.insert({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configurableService": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.types.insert
      * @memberOf! ()
      *
@@ -4566,6 +7065,74 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.types.list
      * @desc Lists all resource types for Deployment Manager.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *       'https://www.googleapis.com/auth/ndev.cloudman.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.types.list({
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.
+     *     //
+     *     // You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by name or creationTimestamp desc is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "types": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.types.list
      * @memberOf! ()
      *
@@ -4643,6 +7210,92 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.types.patch
      * @desc Updates a type. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.types.patch({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type for this request.
+     *     type: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configurableService": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.types.patch
      * @memberOf! ()
      *
@@ -4718,6 +7371,92 @@ export namespace deploymentmanager_alpha {
     /**
      * deploymentmanager.types.update
      * @desc Updates a type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const deploymentmanager = google.deploymentmanager('alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.cloudman',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await deploymentmanager.types.update({
+     *     // The project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the type for this request.
+     *     type: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configurableService": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "insertTime": "my_insertTime",
+     *       //   "labels": [],
+     *       //   "name": "my_name",
+     *       //   "operation": {},
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias deploymentmanager.types.update
      * @memberOf! ()
      *

@@ -1202,6 +1202,64 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.create
      * @desc Creates a new instance in the specified region. Returns a long running operation which contains an instance on completion. While the long running operation is in progress, any call to `GetInstance` returns an instance in state `CREATING`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.create({
+     *     // Resource name of the project containing the instance.
+     *     // Format: `projects/[PROJECT_ID]`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "instance": {},
+     *       //   "instanceId": "my_instanceId",
+     *       //   "parent": "my_parent"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.create
      * @memberOf! ()
      *
@@ -1285,6 +1343,54 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.delete
      * @desc Deletes the specified instance. Returns a long running operation which contains a `google.protobuf.Empty` response on completion. Deleting an instance with worker pools in it will delete these worker pools.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.delete({
+     *     // Name of the instance to delete.
+     *     // Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     *     name: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.delete
      * @memberOf! ()
      *
@@ -1364,6 +1470,53 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.get
      * @desc Returns the specified instance.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.get({
+     *     // Name of the instance to retrieve.
+     *     // Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     *     name: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "location": "my_location",
+     *   //   "loggingEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.get
      * @memberOf! ()
      *
@@ -1462,6 +1615,50 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.list
      * @desc Lists instances in a project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.list({
+     *     // Resource name of the project.
+     *     // Format: `projects/[PROJECT_ID]`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "instances": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.list
      * @memberOf! ()
      *
@@ -1624,6 +1821,64 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.workerpools.create
      * @desc Creates a new worker pool with a specified size and configuration. Returns a long running operation which contains a worker pool on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `CREATING`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.workerpools.create({
+     *     // Resource name of the instance in which to create the new worker pool.
+     *     // Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "poolId": "my_poolId",
+     *       //   "workerPool": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.workerpools.create
      * @memberOf! ()
      *
@@ -1707,6 +1962,55 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.workerpools.delete
      * @desc Deletes the specified worker pool. Returns a long running operation, which contains a `google.protobuf.Empty` response on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `DELETING`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.workerpools.delete({
+     *     // Name of the worker pool to delete.
+     *     // Format:
+     *     // `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`.
+     *     name: 'projects/my-project/instances/my-instance/workerpools/my-workerpool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.workerpools.delete
      * @memberOf! ()
      *
@@ -1786,6 +2090,55 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.workerpools.get
      * @desc Returns the specified worker pool.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.workerpools.get({
+     *     // Name of the worker pool to retrieve.
+     *     // Format:
+     *     // `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`.
+     *     name: 'projects/my-project/instances/my-instance/workerpools/my-workerpool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoscale": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "workerConfig": {},
+     *   //   "workerCount": "my_workerCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.workerpools.get
      * @memberOf! ()
      *
@@ -1884,6 +2237,76 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.workerpools.list
      * @desc Lists worker pools in an instance.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.workerpools.list({
+     *     // Optional. A filter expression that filters resources listed in
+     *     // the response. The expression must specify the field name, a comparison
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. String values are
+     *     // case-insensitive.
+     *     // The comparison operator must be either `:`, `=`, `!=`, `>`, `>=`, `<=` or
+     *     // `<`.
+     *     // The `:` operator can be used with string fields to match substrings.
+     *     // For non-string fields it is equivalent to the `=` operator.
+     *     // The `:*` comparison can be used to test  whether a key has been defined.
+     *     //
+     *     // You can also filter on nested fields.
+     *     //
+     *     // To filter on multiple expressions, you can separate expression using
+     *     // `AND` and `OR` operators, using parentheses to specify precedence. If
+     *     // neither operator is specified, `AND` is assumed.
+     *     //
+     *     // Examples:
+     *     //
+     *     // Include only pools with more than 100 reserved workers:
+     *     // `(worker_count > 100) (worker_config.reserved = true)`
+     *     //
+     *     // Include only pools with a certain label or machines of the n1-standard
+     *     // family:
+     *     // `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
+     *     filter: 'placeholder-value',
+     *     // Resource name of the instance.
+     *     // Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "workerPools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.workerpools.list
      * @memberOf! ()
      *
@@ -1986,6 +2409,65 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.instances.workerpools.patch
      * @desc Updates an existing worker pool with a specified size and/or configuration. Returns a long running operation, which contains a worker pool on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `UPDATING`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.instances.workerpools.patch({
+     *     // WorkerPool resource name formatted as:
+     *     // `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`.
+     *     // name should not be populated when creating a worker pool since it is
+     *     // provided in the `poolId` field.
+     *     name: 'projects/my-project/instances/my-instance/workerpools/my-workerpool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "updateMask": "my_updateMask",
+     *       //   "workerPool": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.instances.workerpools.patch
      * @memberOf! ()
      *
@@ -2148,6 +2630,53 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * remotebuildexecution.projects.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v1alpha');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.projects.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.projects.operations.get
      * @memberOf! ()
      *

@@ -620,52 +620,57 @@ export namespace clouddebugger_v2 {
      * clouddebugger.controller.debuggees.register
      * @desc Registers the debuggee with the controller service.  All agents attached to the same application must call this method with exactly the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method.  This protocol allows the controller service to disable debuggees, recover from data loss, or change the `debuggee_id` format. Agents must handle `debuggee_id` value changing upon re-registration.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Debugger API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var cloudDebugger = google.clouddebugger('v2');
+     * const clouddebugger = google.clouddebugger('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudDebugger.controller.debuggees.register(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_debugger',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await clouddebugger.controller.debuggees.register({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debuggee": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentId": "my_agentId",
+     *   //   "debuggee": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias clouddebugger.controller.debuggees.register
      * @memberOf! ()
      *
@@ -766,51 +771,68 @@ export namespace clouddebugger_v2 {
      * clouddebugger.controller.debuggees.breakpoints.list
      * @desc Returns the list of all active breakpoints for the debuggee.  The breakpoint specification (`location`, `condition`, and `expressions` fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics.  This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Debugger API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var cloudDebugger = google.clouddebugger('v2');
+     * const clouddebugger = google.clouddebugger('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Identifies the debuggee.
-     *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudDebugger.controller.debuggees.breakpoints.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_debugger',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await clouddebugger.controller.debuggees.breakpoints.list({
+     *     // Identifies the agent.
+     *     // This is the ID returned in the RegisterDebuggee response.
+     *     agentId: 'placeholder-value',
+     *     // Required. Identifies the debuggee.
+     *     debuggeeId: 'placeholder-value',
+     *     // If set to `true` (recommended), returns `google.rpc.Code.OK` status and
+     *     // sets the `wait_expired` response field to `true` when the server-selected
+     *     // timeout has expired.
+     *     //
+     *     // If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status
+     *     // when the server-selected timeout has expired.
+     *     successOnTimeout: 'placeholder-value',
+     *     // A token that, if specified, blocks the method call until the list
+     *     // of active breakpoints has changed, or a server-selected timeout has
+     *     // expired. The value should be set from the `next_wait_token` field in
+     *     // the last response. The initial value should be set to `"init"`.
+     *     waitToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "breakpoints": [],
+     *   //   "nextWaitToken": "my_nextWaitToken",
+     *   //   "waitExpired": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias clouddebugger.controller.debuggees.breakpoints.list
      * @memberOf! ()
      *
@@ -898,59 +920,59 @@ export namespace clouddebugger_v2 {
      * clouddebugger.controller.debuggees.breakpoints.update
      * @desc Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service.  Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expressions` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Debugger API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var cloudDebugger = google.clouddebugger('v2');
+     * const clouddebugger = google.clouddebugger('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Identifies the debuggee being debugged.
-     *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
-     *
-     *     // Breakpoint identifier, unique in the scope of the debuggee.
-     *     id: 'my-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudDebugger.controller.debuggees.breakpoints.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_debugger',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await clouddebugger.controller.debuggees.breakpoints.update({
+     *     // Required. Identifies the debuggee being debugged.
+     *     debuggeeId: 'placeholder-value',
+     *     // Breakpoint identifier, unique in the scope of the debuggee.
+     *     id: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "breakpoint": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias clouddebugger.controller.debuggees.breakpoints.update
      * @memberOf! ()
      *
@@ -1103,48 +1125,57 @@ export namespace clouddebugger_v2 {
      * clouddebugger.debugger.debuggees.list
      * @desc Lists all the debuggees that the user has access to.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Debugger API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var cloudDebugger = google.clouddebugger('v2');
+     * const clouddebugger = google.clouddebugger('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudDebugger.debugger.debuggees.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_debugger',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await clouddebugger.debugger.debuggees.list({
+     *     // Required. The client version making the call.
+     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     clientVersion: 'placeholder-value',
+     *     // When set to `true`, the result includes all debuggees. Otherwise, the
+     *     // result includes only debuggees that are active.
+     *     includeInactive: 'placeholder-value',
+     *     // Required. Project number of a Google Cloud project whose debuggees to list.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "debuggees": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias clouddebugger.debugger.debuggees.list
      * @memberOf! ()
      *
@@ -1253,51 +1284,54 @@ export namespace clouddebugger_v2 {
      * clouddebugger.debugger.debuggees.breakpoints.delete
      * @desc Deletes the breakpoint from the debuggee.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Debugger API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var cloudDebugger = google.clouddebugger('v2');
+     * const clouddebugger = google.clouddebugger('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // ID of the debuggee whose breakpoint to delete.
-     *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
-     *
-     *     // ID of the breakpoint to delete.
-     *     breakpointId: 'my-breakpoint-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudDebugger.debugger.debuggees.breakpoints.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_debugger',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await clouddebugger.debugger.debuggees.breakpoints.delete({
+     *     // Required. ID of the breakpoint to delete.
+     *     breakpointId: 'placeholder-value',
+     *     // Required. The client version making the call.
+     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     clientVersion: 'placeholder-value',
+     *     // Required. ID of the debuggee whose breakpoint to delete.
+     *     debuggeeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias clouddebugger.debugger.debuggees.breakpoints.delete
      * @memberOf! ()
      *
@@ -1374,54 +1408,56 @@ export namespace clouddebugger_v2 {
      * clouddebugger.debugger.debuggees.breakpoints.get
      * @desc Gets breakpoint information.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Debugger API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var cloudDebugger = google.clouddebugger('v2');
+     * const clouddebugger = google.clouddebugger('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // ID of the debuggee whose breakpoint to get.
-     *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
-     *
-     *     // ID of the breakpoint to get.
-     *     breakpointId: 'my-breakpoint-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudDebugger.debugger.debuggees.breakpoints.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_debugger',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await clouddebugger.debugger.debuggees.breakpoints.get({
+     *     // Required. ID of the breakpoint to get.
+     *     breakpointId: 'placeholder-value',
+     *     // Required. The client version making the call.
+     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     clientVersion: 'placeholder-value',
+     *     // Required. ID of the debuggee whose breakpoint to get.
+     *     debuggeeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "breakpoint": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias clouddebugger.debugger.debuggees.breakpoints.get
      * @memberOf! ()
      *
@@ -1502,51 +1538,72 @@ export namespace clouddebugger_v2 {
      * clouddebugger.debugger.debuggees.breakpoints.list
      * @desc Lists all breakpoints for the debuggee.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Debugger API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var cloudDebugger = google.clouddebugger('v2');
+     * const clouddebugger = google.clouddebugger('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // ID of the debuggee whose breakpoints to list.
-     *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudDebugger.debugger.debuggees.breakpoints.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_debugger',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await clouddebugger.debugger.debuggees.breakpoints.list({
+     *     // Only breakpoints with the specified action will pass the filter.
+     *     'action.value': 'placeholder-value',
+     *     // Required. The client version making the call.
+     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     clientVersion: 'placeholder-value',
+     *     // Required. ID of the debuggee whose breakpoints to list.
+     *     debuggeeId: 'placeholder-value',
+     *     // When set to `true`, the response includes the list of breakpoints set by
+     *     // any user. Otherwise, it includes only breakpoints set by the caller.
+     *     includeAllUsers: 'placeholder-value',
+     *     // When set to `true`, the response includes active and inactive
+     *     // breakpoints. Otherwise, it includes only active breakpoints.
+     *     includeInactive: 'placeholder-value',
+     *     // This field is deprecated. The following fields are always stripped out of
+     *     // the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
+     *     stripResults: 'placeholder-value',
+     *     // A wait token that, if specified, blocks the call until the breakpoints
+     *     // list has changed, or a server selected timeout has expired.  The value
+     *     // should be set from the last response. The error code
+     *     // `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which
+     *     // should be called again with the same `wait_token`.
+     *     waitToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "breakpoints": [],
+     *   //   "nextWaitToken": "my_nextWaitToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias clouddebugger.debugger.debuggees.breakpoints.list
      * @memberOf! ()
      *
@@ -1630,55 +1687,81 @@ export namespace clouddebugger_v2 {
      * clouddebugger.debugger.debuggees.breakpoints.set
      * @desc Sets the breakpoint to the debuggee.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Debugger API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var cloudDebugger = google.clouddebugger('v2');
+     * const clouddebugger = google.clouddebugger('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // ID of the debuggee where the breakpoint is to be set.
-     *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudDebugger.debugger.debuggees.breakpoints.set(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_debugger',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await clouddebugger.debugger.debuggees.breakpoints.set({
+     *     // The canary option set by the user upon setting breakpoint.
+     *     canaryOption: 'placeholder-value',
+     *     // Required. The client version making the call.
+     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     clientVersion: 'placeholder-value',
+     *     // Required. ID of the debuggee where the breakpoint is to be set.
+     *     debuggeeId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "canaryExpireTime": "my_canaryExpireTime",
+     *       //   "condition": "my_condition",
+     *       //   "createTime": "my_createTime",
+     *       //   "evaluatedExpressions": [],
+     *       //   "expressions": [],
+     *       //   "finalTime": "my_finalTime",
+     *       //   "id": "my_id",
+     *       //   "isFinalState": false,
+     *       //   "labels": {},
+     *       //   "location": {},
+     *       //   "logLevel": "my_logLevel",
+     *       //   "logMessageFormat": "my_logMessageFormat",
+     *       //   "stackFrames": [],
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "userEmail": "my_userEmail",
+     *       //   "variableTable": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "breakpoint": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias clouddebugger.debugger.debuggees.breakpoints.set
      * @memberOf! ()
      *

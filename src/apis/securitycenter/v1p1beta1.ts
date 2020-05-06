@@ -941,6 +941,52 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.getOrganizationSettings
      * @desc Gets the settings for an organization.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.getOrganizationSettings({
+     *     // Required. Name of the organization to get organization settings for. Its format is
+     *     // "organizations/[organization_id]/organizationSettings".
+     *     name: 'organizations/my-organization/organizationSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetDiscoveryConfig": {},
+     *   //   "enableAssetDiscovery": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.getOrganizationSettings
      * @memberOf! ()
      *
@@ -1017,6 +1063,68 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.updateOrganizationSettings
      * @desc  Updates an organization's settings.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.updateOrganizationSettings({
+     *     // The relative resource name of the settings. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/{organization_id}/organizationSettings".
+     *     name: 'organizations/my-organization/organizationSettings',
+     *     // The FieldMask to use when updating the settings resource.
+     *     //
+     *     //  If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetDiscoveryConfig": {},
+     *       //   "enableAssetDiscovery": false,
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetDiscoveryConfig": {},
+     *   //   "enableAssetDiscovery": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.updateOrganizationSettings
      * @memberOf! ()
      *
@@ -1136,6 +1244,66 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.assets.group
      * @desc Filters an organization's assets and  groups them by their specified properties.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.assets.group({
+     *     // Required. Name of the organization to groupBy. Its format is
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "compareDuration": "my_compareDuration",
+     *       //   "filter": "my_filter",
+     *       //   "groupBy": "my_groupBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "readTime": "my_readTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groupByResults": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "readTime": "my_readTime",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.assets.group
      * @memberOf! ()
      *
@@ -1212,6 +1380,180 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.assets.list
      * @desc Lists an organization's assets.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.assets.list({
+     *     // When compare_duration is set, the ListAssetsResult's "state_change"
+     *     // attribute is updated to indicate whether the asset was added, removed, or
+     *     // remained present during the compare_duration period of time that precedes
+     *     // the read_time. This is the time between (read_time - compare_duration) and
+     *     // read_time.
+     *     //
+     *     // The state_change value is derived based on the presence of the asset at the
+     *     // two points in time. Intermediate state changes between the two times don't
+     *     // affect the result. For example, the results aren't affected if the asset is
+     *     // removed and re-created again.
+     *     //
+     *     // Possible "state_change" values when compare_duration is specified:
+     *     //
+     *     // * "ADDED":   indicates that the asset was not present at the start of
+     *     //                compare_duration, but present at read_time.
+     *     // * "REMOVED": indicates that the asset was present at the start of
+     *     //                compare_duration, but not present at read_time.
+     *     // * "ACTIVE":  indicates that the asset was present at both the
+     *     //                start and the end of the time period defined by
+     *     //                compare_duration and read_time.
+     *     //
+     *     // If compare_duration is not specified, then the only possible state_change
+     *     // is "UNUSED",  which will be the state_change set for all assets present at
+     *     // read_time.
+     *     compareDuration: 'placeholder-value',
+     *     // Optional.
+     *     // A field mask to specify the ListAssetsResult fields to be listed in the
+     *     // response.
+     *     // An empty field mask will list all fields.
+     *     fieldMask: 'placeholder-value',
+     *     // Expression that defines the filter to apply across assets.
+     *     // The expression is a list of zero or more restrictions combined via logical
+     *     // operators `AND` and `OR`.
+     *     // Parentheses are supported, and `OR` has higher precedence than `AND`.
+     *     //
+     *     // Restrictions have the form `<field> <operator> <value>` and may have a `-`
+     *     // character in front of them to indicate negation. The fields map to those
+     *     // defined in the Asset resource. Examples include:
+     *     //
+     *     // * name
+     *     // * security_center_properties.resource_name
+     *     // * resource_properties.a_property
+     *     // * security_marks.marks.marka
+     *     //
+     *     // The supported operators are:
+     *     //
+     *     // * `=` for all value types.
+     *     // * `>`, `<`, `>=`, `<=` for integer values.
+     *     // * `:`, meaning substring matching, for strings.
+     *     //
+     *     // The supported value types are:
+     *     //
+     *     // * string literals in quotes.
+     *     // * integer literals without quotes.
+     *     // * boolean literals `true` and `false` without quotes.
+     *     //
+     *     // The following are the allowed field and operator combinations:
+     *     //
+     *     // * name: `=`
+     *     // * update_time: `=`, `>`, `<`, `>=`, `<=`
+     *     //
+     *     //   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *     //   Examples:
+     *     //     "update_time = \"2019-06-10T16:07:18-07:00\""
+     *     //     "update_time = 1560208038000"
+     *     //
+     *     // * create_time: `=`, `>`, `<`, `>=`, `<=`
+     *     //
+     *     //   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *     //   Examples:
+     *     //     "create_time = \"2019-06-10T16:07:18-07:00\""
+     *     //     "create_time = 1560208038000"
+     *     //
+     *     // * iam_policy.policy_blob: `=`, `:`
+     *     // * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *     // * security_marks.marks: `=`, `:`
+     *     // * security_center_properties.resource_name: `=`, `:`
+     *     // * security_center_properties.resource_display_name: `=`, `:`
+     *     // * security_center_properties.resource_type: `=`, `:`
+     *     // * security_center_properties.resource_parent: `=`, `:`
+     *     // * security_center_properties.resource_parent_display_name: `=`, `:`
+     *     // * security_center_properties.resource_project: `=`, `:`
+     *     // * security_center_properties.resource_project_display_name: `=`, `:`
+     *     // * security_center_properties.resource_owners: `=`, `:`
+     *     //
+     *     // For example, `resource_properties.size = 100` is a valid filter string.
+     *     //
+     *     // Use a partial match on the empty string to filter based on a property
+     *     // existing: "resource_properties.my_property : \"\""
+     *     //
+     *     // Use a negated partial match on the empty string to filter based on a
+     *     // property not existing: "-resource_properties.my_property : \"\""
+     *     filter: 'placeholder-value',
+     *     // Expression that defines what fields and order to use for sorting. The
+     *     // string value should follow SQL syntax: comma separated list of fields. For
+     *     // example: "name,resource_properties.a_property". The default sorting order
+     *     // is ascending. To specify descending order for a field, a suffix " desc"
+     *     // should be appended to the field name. For example: "name
+     *     // desc,resource_properties.a_property". Redundant space characters in the
+     *     // syntax are insignificant. "name desc,resource_properties.a_property" and "
+     *     // name     desc  ,   resource_properties.a_property  " are equivalent.
+     *     //
+     *     // The following fields are supported:
+     *     // name
+     *     // update_time
+     *     // resource_properties
+     *     // security_marks.marks
+     *     // security_center_properties.resource_name
+     *     // security_center_properties.resource_display_name
+     *     // security_center_properties.resource_parent
+     *     // security_center_properties.resource_parent_display_name
+     *     // security_center_properties.resource_project
+     *     // security_center_properties.resource_project_display_name
+     *     // security_center_properties.resource_type
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of results to return in a single response. Default is
+     *     // 10, minimum is 1, maximum is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListAssetsResponse`; indicates
+     *     // that this is a continuation of a prior `ListAssets` call, and
+     *     // that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the organization assets should belong to. Its format is
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',
+     *     // Time used as a reference point when filtering assets. The filter is limited
+     *     // to assets existing at the supplied time and their values are those at that
+     *     // specific time. Absence of this field will default to the API's version of
+     *     // NOW.
+     *     readTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "listAssetsResults": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "readTime": "my_readTime",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.assets.list
      * @memberOf! ()
      *
@@ -1294,6 +1636,60 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.assets.runDiscovery
      * @desc Runs asset discovery. The discovery is tracked with a long-running operation.   // This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.assets.runDiscovery({
+     *     // Required. Name of the organization to run asset discovery for. Its format is
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.assets.runDiscovery
      * @memberOf! ()
      *
@@ -1370,6 +1766,73 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.assets.updateSecurityMarks
      * @desc   Updates security marks.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.assets.updateSecurityMarks({
+     *     // The relative resource name of the SecurityMarks. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Examples:
+     *     // "organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     *     // "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
+     *     name: 'organizations/my-organization/assets/my-asset/securityMarks',
+     *     // The time at which the updated SecurityMarks take effect.
+     *     // If not set uses current server time.  Updates will be applied to the
+     *     // SecurityMarks that are active immediately preceding this time.
+     *     startTime: 'placeholder-value',
+     *     // The FieldMask to use when updating the security marks resource.
+     *     //
+     *     // The field mask must not contain duplicate fields.
+     *     // If empty or set to "marks", all marks will be replaced.  Individual
+     *     // marks can be updated using "marks.<mark_key>".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "marks": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "marks": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.assets.updateSecurityMarks
      * @memberOf! ()
      *
@@ -1576,6 +2039,73 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.notificationConfigs.create
      * @desc Creates a notification config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.notificationConfigs.create({
+     *     // Required.
+     *     // Unique identifier provided by the client within the parent scope.
+     *     // It must be between 1 and 128 characters, and contains alphanumeric
+     *     // characters, underscores or hyphens only.
+     *     configId: 'placeholder-value',
+     *     // Required. Resource name of the new notification config's parent. Its format is
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "eventType": "my_eventType",
+     *       //   "name": "my_name",
+     *       //   "pubsubTopic": "my_pubsubTopic",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "streamingConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "eventType": "my_eventType",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.notificationConfigs.create
      * @memberOf! ()
      *
@@ -1653,6 +2183,49 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.notificationConfigs.delete
      * @desc Deletes a notification config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.notificationConfigs.delete({
+     *     // Required. Name of the notification config to delete. Its format is
+     *     // "organizations/[organization_id]/notificationConfigs/[config_id]".
+     *     name:
+     *       'organizations/my-organization/notificationConfigs/my-notificationConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.notificationConfigs.delete
      * @memberOf! ()
      *
@@ -1723,6 +2296,56 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.notificationConfigs.get
      * @desc Gets a notification config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.notificationConfigs.get({
+     *     // Required. Name of the notification config to get. Its format is
+     *     // "organizations/[organization_id]/notificationConfigs/[config_id]".
+     *     name:
+     *       'organizations/my-organization/notificationConfigs/my-notificationConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "eventType": "my_eventType",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.notificationConfigs.get
      * @memberOf! ()
      *
@@ -1795,6 +2418,58 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.notificationConfigs.list
      * @desc Lists notification configs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.notificationConfigs.list({
+     *     // The maximum number of results to return in a single response. Default is
+     *     // 10, minimum is 1, maximum is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListNotificationConfigsResponse`; indicates
+     *     // that this is a continuation of a prior `ListNotificationConfigs` call, and
+     *     // that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the organization to list notification configs.
+     *     // Its format is "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notificationConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.notificationConfigs.list
      * @memberOf! ()
      *
@@ -1881,6 +2556,75 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.notificationConfigs.patch
      * @desc  Updates a notification config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.notificationConfigs.patch({
+     *     // The relative resource name of this notification config. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/{organization_id}/notificationConfigs/notify_public_bucket".
+     *     name:
+     *       'organizations/my-organization/notificationConfigs/my-notificationConfig',
+     *     // The FieldMask to use when updating the notification config.
+     *     //
+     *     // If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "eventType": "my_eventType",
+     *       //   "name": "my_name",
+     *       //   "pubsubTopic": "my_pubsubTopic",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "streamingConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "eventType": "my_eventType",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.notificationConfigs.patch
      * @memberOf! ()
      *
@@ -2049,6 +2793,47 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'organizations/my-organization/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.operations.cancel
      * @memberOf! ()
      *
@@ -2122,6 +2907,47 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'organizations/my-organization/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.operations.delete
      * @memberOf! ()
      *
@@ -2192,6 +3018,53 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'organizations/my-organization/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.operations.get
      * @memberOf! ()
      *
@@ -2264,6 +3137,56 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'organizations/my-organization/operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.operations.list
      * @memberOf! ()
      *
@@ -2411,6 +3334,62 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.create
      * @desc Creates a source.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.create({
+     *     // Required. Resource name of the new source's parent. Its format should be
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.create
      * @memberOf! ()
      *
@@ -2485,6 +3464,52 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.get
      * @desc Gets a source.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.get({
+     *     // Required. Relative resource name of the source. Its format is
+     *     // "organizations/[organization_id]/source/[source_id]".
+     *     name: 'organizations/my-organization/sources/my-source',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.get
      * @memberOf! ()
      *
@@ -2555,6 +3580,61 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.getIamPolicy
      * @desc Gets the access control policy on the specified Source.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'organizations/my-organization/sources/my-source',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.getIamPolicy
      * @memberOf! ()
      *
@@ -2629,6 +3709,58 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.list
      * @desc Lists all sources belonging to an organization.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.list({
+     *     // The maximum number of results to return in a single response. Default is
+     *     // 10, minimum is 1, maximum is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListSourcesResponse`; indicates
+     *     // that this is a continuation of a prior `ListSources` call, and
+     *     // that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the parent of sources to list. Its format should be
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.list
      * @memberOf! ()
      *
@@ -2706,6 +3838,68 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.patch
      * @desc  Updates a source.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.patch({
+     *     // The relative resource name of this source. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/{organization_id}/sources/{source_id}"
+     *     name: 'organizations/my-organization/sources/my-source',
+     *     // The FieldMask to use when updating the source resource.
+     *     //
+     *     // If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.patch
      * @memberOf! ()
      *
@@ -2778,6 +3972,62 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.setIamPolicy
      * @desc Sets the access control policy on the specified Source.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'organizations/my-organization/sources/my-source',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.setIamPolicy
      * @memberOf! ()
      *
@@ -2852,6 +4102,58 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.testIamPermissions
      * @desc Returns the permissions that a caller has on the specified source.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'organizations/my-organization/sources/my-source',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.testIamPermissions
      * @memberOf! ()
      *
@@ -3063,6 +4365,80 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.findings.create
      * @desc  Creates a finding. The corresponding source must exist for finding creation to succeed.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.findings.create({
+     *     // Required. Unique identifier provided by the client within the parent scope.
+     *     // It must be alphanumeric and less than or equal to 32 characters and
+     *     // greater than 0 characters in length.
+     *     findingId: 'placeholder-value',
+     *     // Required. Resource name of the new finding's parent. Its format should be
+     *     // "organizations/[organization_id]/sources/[source_id]".
+     *     parent: 'organizations/my-organization/sources/my-source',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "category": "my_category",
+     *       //   "createTime": "my_createTime",
+     *       //   "eventTime": "my_eventTime",
+     *       //   "externalUri": "my_externalUri",
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "resourceName": "my_resourceName",
+     *       //   "securityMarks": {},
+     *       //   "sourceProperties": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "category": "my_category",
+     *   //   "createTime": "my_createTime",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "externalUri": "my_externalUri",
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "securityMarks": {},
+     *   //   "sourceProperties": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.findings.create
      * @memberOf! ()
      *
@@ -3163,6 +4539,68 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.findings.group
      * @desc Filters an organization or source's findings and  groups them by their specified properties.  To group across all sources provide a `-` as the source id. Example: /v1p1beta1/organizations/{organization_id}/sources/-/findings
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.findings.group({
+     *     // Required. Name of the source to groupBy. Its format is
+     *     // "organizations/[organization_id]/sources/[source_id]". To groupBy across
+     *     // all sources provide a source_id of `-`. For example:
+     *     // organizations/{organization_id}/sources/-
+     *     parent: 'organizations/my-organization/sources/my-source',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "compareDuration": "my_compareDuration",
+     *       //   "filter": "my_filter",
+     *       //   "groupBy": "my_groupBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "readTime": "my_readTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groupByResults": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "readTime": "my_readTime",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.findings.group
      * @memberOf! ()
      *
@@ -3241,6 +4679,171 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.findings.list
      * @desc Lists an organization or source's findings.  To list across all sources provide a `-` as the source id. Example: /v1p1beta1/organizations/{organization_id}/sources/-/findings
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.findings.list({
+     *     // When compare_duration is set, the ListFindingsResult's "state_change"
+     *     // attribute is updated to indicate whether the finding had its state changed,
+     *     // the finding's state remained unchanged, or if the finding was added in any
+     *     // state during the compare_duration period of time that precedes the
+     *     // read_time. This is the time between (read_time - compare_duration) and
+     *     // read_time.
+     *     //
+     *     // The state_change value is derived based on the presence and state of the
+     *     // finding at the two points in time. Intermediate state changes between the
+     *     // two times don't affect the result. For example, the results aren't affected
+     *     // if the finding is made inactive and then active again.
+     *     //
+     *     // Possible "state_change" values when compare_duration is specified:
+     *     //
+     *     // * "CHANGED":   indicates that the finding was present and matched the given
+     *     //                  filter at the start of compare_duration, but changed its
+     *     //                  state at read_time.
+     *     // * "UNCHANGED": indicates that the finding was present and matched the given
+     *     //                  filter at the start of compare_duration and did not change
+     *     //                  state at read_time.
+     *     // * "ADDED":     indicates that the finding did not match the given filter or
+     *     //                  was not present at the start of compare_duration, but was
+     *     //                  present at read_time.
+     *     // * "REMOVED":   indicates that the finding was present and matched the
+     *     //                  filter at the start of compare_duration, but did not match
+     *     //                  the filter at read_time.
+     *     //
+     *     // If compare_duration is not specified, then the only possible state_change
+     *     // is "UNUSED", which will be the state_change set for all findings present at
+     *     // read_time.
+     *     compareDuration: 'placeholder-value',
+     *     // Optional.
+     *     // A field mask to specify the Finding fields to be listed in the response.
+     *     // An empty field mask will list all fields.
+     *     fieldMask: 'placeholder-value',
+     *     // Expression that defines the filter to apply across findings.
+     *     // The expression is a list of one or more restrictions combined via logical
+     *     // operators `AND` and `OR`.
+     *     // Parentheses are supported, and `OR` has higher precedence than `AND`.
+     *     //
+     *     // Restrictions have the form `<field> <operator> <value>` and may have a `-`
+     *     // character in front of them to indicate negation. Examples include:
+     *     //
+     *     //  * name
+     *     //  * source_properties.a_property
+     *     //  * security_marks.marks.marka
+     *     //
+     *     // The supported operators are:
+     *     //
+     *     // * `=` for all value types.
+     *     // * `>`, `<`, `>=`, `<=` for integer values.
+     *     // * `:`, meaning substring matching, for strings.
+     *     //
+     *     // The supported value types are:
+     *     //
+     *     // * string literals in quotes.
+     *     // * integer literals without quotes.
+     *     // * boolean literals `true` and `false` without quotes.
+     *     //
+     *     // The following field and operator combinations are supported:
+     *     //
+     *     // name: `=`
+     *     // parent: `=`, `:`
+     *     // resource_name: `=`, `:`
+     *     // state: `=`, `:`
+     *     // category: `=`, `:`
+     *     // external_uri: `=`, `:`
+     *     // event_time: `=`, `>`, `<`, `>=`, `<=`
+     *     //
+     *     //   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *     //   Examples:
+     *     //     "event_time = \"2019-06-10T16:07:18-07:00\""
+     *     //     "event_time = 1560208038000"
+     *     //
+     *     // security_marks.marks: `=`, `:`
+     *     // source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *     //
+     *     // For example, `source_properties.size = 100` is a valid filter string.
+     *     //
+     *     // Use a partial match on the empty string to filter based on a property
+     *     // existing: "source_properties.my_property : \"\""
+     *     //
+     *     // Use a negated partial match on the empty string to filter based on a
+     *     // property not existing: "-source_properties.my_property : \"\""
+     *     filter: 'placeholder-value',
+     *     // Expression that defines what fields and order to use for sorting. The
+     *     // string value should follow SQL syntax: comma separated list of fields. For
+     *     // example: "name,resource_properties.a_property". The default sorting order
+     *     // is ascending. To specify descending order for a field, a suffix " desc"
+     *     // should be appended to the field name. For example: "name
+     *     // desc,source_properties.a_property". Redundant space characters in the
+     *     // syntax are insignificant. "name desc,source_properties.a_property" and "
+     *     // name     desc  ,   source_properties.a_property  " are equivalent.
+     *     //
+     *     // The following fields are supported:
+     *     // name
+     *     // parent
+     *     // state
+     *     // category
+     *     // resource_name
+     *     // event_time
+     *     // source_properties
+     *     // security_marks.marks
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of results to return in a single response. Default is
+     *     // 10, minimum is 1, maximum is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListFindingsResponse`; indicates
+     *     // that this is a continuation of a prior `ListFindings` call, and
+     *     // that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the source the findings belong to. Its format is
+     *     // "organizations/[organization_id]/sources/[source_id]". To list across all
+     *     // sources provide a source_id of `-`. For example:
+     *     // organizations/{organization_id}/sources/-
+     *     parent: 'organizations/my-organization/sources/my-source',
+     *     // Time used as a reference point when filtering findings. The filter is
+     *     // limited to findings existing at the supplied time and their values are
+     *     // those at that specific time. Absence of this field will default to the
+     *     // API's version of NOW.
+     *     readTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "listFindingsResults": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "readTime": "my_readTime",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.findings.list
      * @memberOf! ()
      *
@@ -3325,6 +4928,86 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.findings.patch
      * @desc  Creates or updates a finding. The corresponding source must exist for a finding creation to succeed.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.findings.patch({
+     *     // The relative resource name of this finding. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
+     *     name: 'organizations/my-organization/sources/my-source/findings/my-finding',
+     *     // The FieldMask to use when updating the finding resource. This field should
+     *     // not be specified when creating a finding.
+     *     //
+     *     // When updating a finding, an empty mask is treated as updating all mutable
+     *     // fields and replacing source_properties.  Individual source_properties can
+     *     // be added/updated by using "source_properties.<property key>" in the field
+     *     // mask.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "category": "my_category",
+     *       //   "createTime": "my_createTime",
+     *       //   "eventTime": "my_eventTime",
+     *       //   "externalUri": "my_externalUri",
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "resourceName": "my_resourceName",
+     *       //   "securityMarks": {},
+     *       //   "sourceProperties": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "category": "my_category",
+     *   //   "createTime": "my_createTime",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "externalUri": "my_externalUri",
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "securityMarks": {},
+     *   //   "sourceProperties": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.findings.patch
      * @memberOf! ()
      *
@@ -3422,6 +5105,70 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.findings.setState
      * @desc  Updates the state of a finding.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.findings.setState({
+     *     // Required. The relative resource name of the finding. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
+     *     name: 'organizations/my-organization/sources/my-source/findings/my-finding',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "startTime": "my_startTime",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "category": "my_category",
+     *   //   "createTime": "my_createTime",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "externalUri": "my_externalUri",
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "securityMarks": {},
+     *   //   "sourceProperties": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.findings.setState
      * @memberOf! ()
      *
@@ -3521,6 +5268,76 @@ export namespace securitycenter_v1p1beta1 {
     /**
      * securitycenter.organizations.sources.findings.updateSecurityMarks
      * @desc   Updates security marks.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1p1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.findings.updateSecurityMarks(
+     *     {
+     *       // The relative resource name of the SecurityMarks. See:
+     *       // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *       // Examples:
+     *       // "organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     *       // "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
+     *       name:
+     *         'organizations/my-organization/sources/my-source/findings/my-finding/securityMarks',
+     *       // The time at which the updated SecurityMarks take effect.
+     *       // If not set uses current server time.  Updates will be applied to the
+     *       // SecurityMarks that are active immediately preceding this time.
+     *       startTime: 'placeholder-value',
+     *       // The FieldMask to use when updating the security marks resource.
+     *       //
+     *       // The field mask must not contain duplicate fields.
+     *       // If empty or set to "marks", all marks will be replaced.  Individual
+     *       // marks can be updated using "marks.<mark_key>".
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "marks": {},
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "marks": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias securitycenter.organizations.sources.findings.updateSecurityMarks
      * @memberOf! ()
      *

@@ -469,6 +469,70 @@ export namespace fcm_v1 {
     /**
      * fcm.projects.messages.send
      * @desc Send a message to specified target (a registration token, topic or condition).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const fcm = google.fcm('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await fcm.projects.messages.send({
+     *     // Required. It contains the Firebase project id (i.e. the unique identifier
+     *     // for your Firebase project), in the format of `projects/{project_id}`.
+     *     // For legacy support, the numeric project number with no padding is also
+     *     // supported in the format of `projects/{project_number}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "android": {},
+     *   //   "apns": {},
+     *   //   "condition": "my_condition",
+     *   //   "data": {},
+     *   //   "fcmOptions": {},
+     *   //   "name": "my_name",
+     *   //   "notification": {},
+     *   //   "token": "my_token",
+     *   //   "topic": "my_topic",
+     *   //   "webpush": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fcm.projects.messages.send
      * @memberOf! ()
      *

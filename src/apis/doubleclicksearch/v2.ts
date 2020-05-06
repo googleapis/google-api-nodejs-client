@@ -535,6 +535,70 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.conversion.get
      * @desc Retrieves a list of conversions from a DoubleClick Search engine account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.get({
+     *     // Numeric ID of the ad group.
+     *     adGroupId: 'placeholder-value',
+     *     // Numeric ID of the ad.
+     *     adId: 'placeholder-value',
+     *     // Numeric ID of the advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // Numeric ID of the agency.
+     *     agencyId: 'placeholder-value',
+     *     // Numeric ID of the campaign.
+     *     campaignId: 'placeholder-value',
+     *     // Numeric ID of the criterion.
+     *     criterionId: 'placeholder-value',
+     *     // Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     *     endDate: 'placeholder-value',
+     *     // Numeric ID of the engine account.
+     *     engineAccountId: 'placeholder-value',
+     *     // The number of conversions to return per call.
+     *     rowCount: 'placeholder-value',
+     *     // First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     *     startDate: 'placeholder-value',
+     *     // The 0-based starting index for retrieving conversions results.
+     *     startRow: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversion": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.conversion.get
      * @memberOf! ()
      *
@@ -626,6 +690,56 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.conversion.insert
      * @desc Inserts a batch of new conversions into DoubleClick Search.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversion": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversion": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.conversion.insert
      * @memberOf! ()
      *
@@ -700,6 +814,56 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.conversion.update
      * @desc Updates a batch of conversions in DoubleClick Search.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.update({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversion": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversion": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.conversion.update
      * @memberOf! ()
      *
@@ -774,6 +938,54 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.conversion.updateAvailability
      * @desc Updates the availabilities of a batch of floodlight activities in DoubleClick Search.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.updateAvailability({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availabilities": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availabilities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.conversion.updateAvailability
      * @memberOf! ()
      *
@@ -949,6 +1161,75 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.reports.generate
      * @desc Generates and returns a report immediately.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.generate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "columns": [],
+     *       //   "downloadFormat": "my_downloadFormat",
+     *       //   "filters": [],
+     *       //   "includeDeletedEntities": false,
+     *       //   "includeRemovedEntities": false,
+     *       //   "maxRowsPerFile": 0,
+     *       //   "orderBy": [],
+     *       //   "reportScope": {},
+     *       //   "reportType": "my_reportType",
+     *       //   "rowCount": 0,
+     *       //   "startRow": 0,
+     *       //   "statisticsCurrency": "my_statisticsCurrency",
+     *       //   "timeRange": {},
+     *       //   "verifySingleTimeZone": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "id": "my_id",
+     *   //   "isReportReady": false,
+     *   //   "kind": "my_kind",
+     *   //   "request": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": [],
+     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
+     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.reports.generate
      * @memberOf! ()
      *
@@ -1020,6 +1301,57 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.reports.get
      * @desc Polls for the status of a report request.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.get({
+     *     // ID of the report request being polled.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "id": "my_id",
+     *   //   "isReportReady": false,
+     *   //   "kind": "my_kind",
+     *   //   "request": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": [],
+     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
+     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.reports.get
      * @memberOf! ()
      *
@@ -1091,6 +1423,46 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.reports.getFile
      * @desc Downloads a report file encoded in UTF-8.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.getFile({
+     *     // The index of the report fragment to download.
+     *     reportFragment: 'placeholder-value',
+     *     // ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.reports.getFile
      * @memberOf! ()
      *
@@ -1163,6 +1535,75 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.reports.request
      * @desc Inserts a report request into the reporting system.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.request({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "columns": [],
+     *       //   "downloadFormat": "my_downloadFormat",
+     *       //   "filters": [],
+     *       //   "includeDeletedEntities": false,
+     *       //   "includeRemovedEntities": false,
+     *       //   "maxRowsPerFile": 0,
+     *       //   "orderBy": [],
+     *       //   "reportScope": {},
+     *       //   "reportType": "my_reportType",
+     *       //   "rowCount": 0,
+     *       //   "startRow": 0,
+     *       //   "statisticsCurrency": "my_statisticsCurrency",
+     *       //   "timeRange": {},
+     *       //   "verifySingleTimeZone": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "id": "my_id",
+     *   //   "isReportReady": false,
+     *   //   "kind": "my_kind",
+     *   //   "request": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": [],
+     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
+     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.reports.request
      * @memberOf! ()
      *
@@ -1290,6 +1731,52 @@ export namespace doubleclicksearch_v2 {
     /**
      * doubleclicksearch.savedColumns.list
      * @desc Retrieve the list of saved columns for a specified advertiser.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.savedColumns.list({
+     *     // DS ID of the advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // DS ID of the agency.
+     *     agencyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclicksearch.savedColumns.list
      * @memberOf! ()
      *

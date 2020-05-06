@@ -737,6 +737,83 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchDeployments.create
      * @desc Create an OS Config patch deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.create({
+     *     // Required. The project to apply this patch deployment to in the form `projects/x`.
+     *     parent: 'projects/my-project',
+     *     // Required. A name for the patch deployment in the project. When creating a name
+     *     // the following rules apply:
+     *     // * Must contain only lowercase letters, numbers, and hyphens.
+     *     // * Must start with a letter.
+     *     // * Must be between 1-63 characters.
+     *     // * Must end with a number or a letter.
+     *     // * Must be unique within the project.
+     *     patchDeploymentId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "duration": "my_duration",
+     *       //   "instanceFilter": {},
+     *       //   "lastExecuteTime": "my_lastExecuteTime",
+     *       //   "name": "my_name",
+     *       //   "oneTimeSchedule": {},
+     *       //   "patchConfig": {},
+     *       //   "recurringSchedule": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchDeployments.create
      * @memberOf! ()
      *
@@ -813,6 +890,48 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchDeployments.delete
      * @desc Delete an OS Config patch deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.delete({
+     *     // Required. The resource name of the patch deployment in the form
+     *     // `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchDeployments.delete
      * @memberOf! ()
      *
@@ -882,6 +1001,59 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchDeployments.get
      * @desc Get an OS Config patch deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.get({
+     *     // Required. The resource name of the patch deployment in the form
+     *     // `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchDeployments.get
      * @memberOf! ()
      *
@@ -953,6 +1125,55 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchDeployments.list
      * @desc Get a page of OS Config patch deployments.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.list({
+     *     // Optional. The maximum number of patch deployments to return. Default is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A pagination token returned from a previous call to ListPatchDeployments
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent in the form `projects/x`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchDeployments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchDeployments.list
      * @memberOf! ()
      *
@@ -1115,6 +1336,68 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchJobs.cancel
      * @desc Cancel a patch job. The patch job must be active. Canceled patch jobs cannot be restarted.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.cancel({
+     *     // Required. Name of the patch in the form `projects/x/patchJobs/x`
+     *     name: 'projects/my-project/patchJobs/my-patchJob',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.cancel
      * @memberOf! ()
      *
@@ -1185,6 +1468,75 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchJobs.execute
      * @desc Patch VM instances by creating and running a patch job.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.execute({
+     *     // Required. The project in which to run this patch in the form `projects/x`
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "dryRun": false,
+     *       //   "duration": "my_duration",
+     *       //   "instanceFilter": {},
+     *       //   "patchConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.execute
      * @memberOf! ()
      *
@@ -1258,6 +1610,62 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchJobs.get
      * @desc Get the patch job. This can be used to track the progress of an ongoing patch job or review the details of completed jobs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.get({
+     *     // Required. Name of the patch in the form `projects/x/patchJobs/x`
+     *     name: 'projects/my-project/patchJobs/my-patchJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.get
      * @memberOf! ()
      *
@@ -1327,6 +1735,59 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchJobs.list
      * @desc Get a list of patch jobs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.list({
+     *     // If provided, this field specifies the criteria that must be met by patch
+     *     // jobs to be included in the response.
+     *     // Currently, filtering is only available on the patch_deployment field.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of instance status to return.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. In the form of `projects/x`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchJobs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.list
      * @memberOf! ()
      *
@@ -1484,6 +1945,59 @@ export namespace osconfig_v1 {
     /**
      * osconfig.projects.patchJobs.instanceDetails.list
      * @desc Get a list of instance details for a given patch job.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.instanceDetails.list({
+     *     // A filter expression that filters results listed in the response. This
+     *     // field supports filtering results by instance zone, name, state, or
+     *     // `failure_reason`.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of instance details records to return.  Default is 100.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for the instances are in the form of `projects/x/patchJobs/x`.
+     *     parent: 'projects/my-project/patchJobs/my-patchJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchJobInstanceDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.instanceDetails.list
      * @memberOf! ()
      *

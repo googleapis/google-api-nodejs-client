@@ -290,6 +290,47 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.deleteAccessApprovalSettings
      * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.deleteAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to delete.
+     *     name: 'folders/my-folder/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.deleteAccessApprovalSettings
      * @memberOf! ()
      *
@@ -362,6 +403,52 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.getAccessApprovalSettings
      * @desc Gets the settings associated with a project, folder, or organization.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.getAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to retrieve.
+     *     name: 'folders/my-folder/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -438,6 +525,73 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.updateAccessApprovalSettings
      * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.updateAccessApprovalSettings({
+     *     // The resource name of the settings. Format is one of:
+     *     // <ol>
+     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
+     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
+     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
+     *     // <ol>
+     *     name: 'folders/my-folder/accessApprovalSettings',
+     *     // For the `FieldMask` definition, see
+     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // If this field is left unset, only the notification_emails field will be
+     *     // updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enrolledAncestor": false,
+     *       //   "enrolledServices": [],
+     *       //   "name": "my_name",
+     *       //   "notificationEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -569,6 +723,65 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.approvalRequests.approve
      * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.approve({
+     *     // Name of the approval request to approve.
+     *     name: 'folders/my-folder/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.approvalRequests.approve
      * @memberOf! ()
      *
@@ -645,6 +858,63 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.approvalRequests.dismiss
      * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.dismiss({
+     *     // Name of the ApprovalRequest to dismiss.
+     *     name: 'folders/my-folder/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -721,6 +991,57 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.approvalRequests.get
      * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.get({
+     *     // Name of the approval request to retrieve.
+     *     name: 'folders/my-folder/approvalRequests/my-approvalRequest',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.approvalRequests.get
      * @memberOf! ()
      *
@@ -793,6 +1114,65 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.approvalRequests.list
      * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.list({
+     *     // A filter on the type of approval requests to retrieve. Must be one of the
+     *     // following values:
+     *     // <ol>
+     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
+     *     //   <li>ALL: All requests.</li>
+     *     //   <li>PENDING: Only pending requests.</li>
+     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
+     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     // </ol>
+     *     filter: 'placeholder-value',
+     *     // Requested page size.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying the page of results to return.
+     *     pageToken: 'placeholder-value',
+     *     // The parent resource. This may be "projects/{project_id}",
+     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approvalRequests": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.approvalRequests.list
      * @memberOf! ()
      *
@@ -962,6 +1342,47 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.deleteAccessApprovalSettings
      * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.deleteAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to delete.
+     *     name: 'organizations/my-organization/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.deleteAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1034,6 +1455,52 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.getAccessApprovalSettings
      * @desc Gets the settings associated with a project, folder, or organization.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.getAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to retrieve.
+     *     name: 'organizations/my-organization/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1110,6 +1577,73 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.updateAccessApprovalSettings
      * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.updateAccessApprovalSettings({
+     *     // The resource name of the settings. Format is one of:
+     *     // <ol>
+     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
+     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
+     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
+     *     // <ol>
+     *     name: 'organizations/my-organization/accessApprovalSettings',
+     *     // For the `FieldMask` definition, see
+     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // If this field is left unset, only the notification_emails field will be
+     *     // updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enrolledAncestor": false,
+     *       //   "enrolledServices": [],
+     *       //   "name": "my_name",
+     *       //   "notificationEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1241,6 +1775,65 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.approvalRequests.approve
      * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.approve({
+     *     // Name of the approval request to approve.
+     *     name: 'organizations/my-organization/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.approvalRequests.approve
      * @memberOf! ()
      *
@@ -1317,6 +1910,63 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.approvalRequests.dismiss
      * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.dismiss({
+     *     // Name of the ApprovalRequest to dismiss.
+     *     name: 'organizations/my-organization/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -1393,6 +2043,57 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.approvalRequests.get
      * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.get({
+     *     // Name of the approval request to retrieve.
+     *     name: 'organizations/my-organization/approvalRequests/my-approvalRequest',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.approvalRequests.get
      * @memberOf! ()
      *
@@ -1465,6 +2166,65 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.approvalRequests.list
      * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.list({
+     *     // A filter on the type of approval requests to retrieve. Must be one of the
+     *     // following values:
+     *     // <ol>
+     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
+     *     //   <li>ALL: All requests.</li>
+     *     //   <li>PENDING: Only pending requests.</li>
+     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
+     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     // </ol>
+     *     filter: 'placeholder-value',
+     *     // Requested page size.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying the page of results to return.
+     *     pageToken: 'placeholder-value',
+     *     // The parent resource. This may be "projects/{project_id}",
+     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approvalRequests": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.approvalRequests.list
      * @memberOf! ()
      *
@@ -1634,6 +2394,47 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.deleteAccessApprovalSettings
      * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.deleteAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to delete.
+     *     name: 'projects/my-project/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.deleteAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1706,6 +2507,52 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.getAccessApprovalSettings
      * @desc Gets the settings associated with a project, folder, or organization.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.getAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to retrieve.
+     *     name: 'projects/my-project/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1782,6 +2629,73 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.updateAccessApprovalSettings
      * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.updateAccessApprovalSettings({
+     *     // The resource name of the settings. Format is one of:
+     *     // <ol>
+     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
+     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
+     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
+     *     // <ol>
+     *     name: 'projects/my-project/accessApprovalSettings',
+     *     // For the `FieldMask` definition, see
+     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // If this field is left unset, only the notification_emails field will be
+     *     // updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enrolledAncestor": false,
+     *       //   "enrolledServices": [],
+     *       //   "name": "my_name",
+     *       //   "notificationEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1913,6 +2827,65 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.approvalRequests.approve
      * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.approve({
+     *     // Name of the approval request to approve.
+     *     name: 'projects/my-project/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.approvalRequests.approve
      * @memberOf! ()
      *
@@ -1989,6 +2962,63 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.approvalRequests.dismiss
      * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.dismiss({
+     *     // Name of the ApprovalRequest to dismiss.
+     *     name: 'projects/my-project/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -2065,6 +3095,57 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.approvalRequests.get
      * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.get({
+     *     // Name of the approval request to retrieve.
+     *     name: 'projects/my-project/approvalRequests/my-approvalRequest',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.approvalRequests.get
      * @memberOf! ()
      *
@@ -2137,6 +3218,65 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.approvalRequests.list
      * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.list({
+     *     // A filter on the type of approval requests to retrieve. Must be one of the
+     *     // following values:
+     *     // <ol>
+     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
+     *     //   <li>ALL: All requests.</li>
+     *     //   <li>PENDING: Only pending requests.</li>
+     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
+     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     // </ol>
+     *     filter: 'placeholder-value',
+     *     // Requested page size.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying the page of results to return.
+     *     pageToken: 'placeholder-value',
+     *     // The parent resource. This may be "projects/{project_id}",
+     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approvalRequests": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.approvalRequests.list
      * @memberOf! ()
      *

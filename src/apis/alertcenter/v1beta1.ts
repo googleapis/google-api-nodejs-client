@@ -914,6 +914,56 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.batchDelete
      * @desc Performs batch delete operation on alerts.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.batchDelete({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertId": [],
+     *       //   "customerId": "my_customerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedAlertStatus": {},
+     *   //   "successAlertIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.batchDelete
      * @memberOf! ()
      *
@@ -995,6 +1045,56 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.batchUndelete
      * @desc Performs batch undelete operation on alerts.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.batchUndelete({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertId": [],
+     *       //   "customerId": "my_customerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedAlertStatus": {},
+     *   //   "successAlertIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.batchUndelete
      * @memberOf! ()
      *
@@ -1076,6 +1176,51 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.delete
      * @desc Marks the specified alert for deletion. An alert that has been marked for deletion is removed from Alert Center after 30 days. Marking an alert for deletion has no effect on an alert which has already been marked for deletion. Attempting to mark a nonexistent alert for deletion results in a `NOT_FOUND` error.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.delete({
+     *     // Required. The identifier of the alert to delete.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the G Suite organization account of the
+     *     // customer the alert is associated with.
+     *     // Inferred from the caller identity if not provided.
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.delete
      * @memberOf! ()
      *
@@ -1148,6 +1293,65 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.get
      * @desc Gets the specified alert. Attempting to get a nonexistent alert returns `NOT_FOUND` error.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.get({
+     *     // Required. The identifier of the alert to retrieve.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the G Suite organization account of the
+     *     // customer the alert is associated with.
+     *     // Inferred from the caller identity if not provided.
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertId": "my_alertId",
+     *   //   "createTime": "my_createTime",
+     *   //   "customerId": "my_customerId",
+     *   //   "data": {},
+     *   //   "deleted": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "etag": "my_etag",
+     *   //   "metadata": {},
+     *   //   "securityInvestigationToolLink": "my_securityInvestigationToolLink",
+     *   //   "source": "my_source",
+     *   //   "startTime": "my_startTime",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.get
      * @memberOf! ()
      *
@@ -1220,6 +1424,59 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.getMetadata
      * @desc Returns the metadata of an alert. Attempting to get metadata for a non-existent alert returns `NOT_FOUND` error.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.getMetadata({
+     *     // Required. The identifier of the alert this metadata belongs to.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the G Suite organization account of the
+     *     // customer the alert metadata is associated with.
+     *     // Inferred from the caller identity if not provided.
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertId": "my_alertId",
+     *   //   "assignee": "my_assignee",
+     *   //   "customerId": "my_customerId",
+     *   //   "etag": "my_etag",
+     *   //   "severity": "my_severity",
+     *   //   "status": "my_status",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.getMetadata
      * @memberOf! ()
      *
@@ -1295,6 +1552,73 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.list
      * @desc Lists the alerts.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.list({
+     *     // Optional. The unique identifier of the G Suite organization account of the
+     *     // customer the alerts are associated with.
+     *     // Inferred from the caller identity if not provided.
+     *     customerId: 'placeholder-value',
+     *     // Optional. A query string for filtering alert results.
+     *     // For more details, see [Query
+     *     // filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported
+     *     // query filter
+     *     // fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
+     *     filter: 'placeholder-value',
+     *     // Optional. The sort order of the list results.
+     *     // If not specified results may be returned in arbitrary order.
+     *     // You can sort the results in descending order based on the creation
+     *     // timestamp using `order_by="create_time desc"`.
+     *     // Currently, supported sorting are `create_time asc`, `create_time desc`,
+     *     // `update_time desc`
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The requested page size. Server may return fewer items than
+     *     // requested. If unspecified, server picks an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     // If empty, a new iteration is started. To continue an iteration, pass in
+     *     // the value from the previous ListAlertsResponse's
+     *     // next_page_token field.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alerts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.list
      * @memberOf! ()
      *
@@ -1369,6 +1693,69 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.undelete
      * @desc Restores, or "undeletes", an alert that was marked for deletion within the past 30 days. Attempting to undelete an alert which was marked for deletion over 30 days ago (which has been removed from the Alert Center database) or a nonexistent alert returns a `NOT_FOUND` error. Attempting to undelete an alert which has not been marked for deletion has no effect.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.undelete({
+     *     // Required. The identifier of the alert to undelete.
+     *     alertId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customerId": "my_customerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertId": "my_alertId",
+     *   //   "createTime": "my_createTime",
+     *   //   "customerId": "my_customerId",
+     *   //   "data": {},
+     *   //   "deleted": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "etag": "my_etag",
+     *   //   "metadata": {},
+     *   //   "securityInvestigationToolLink": "my_securityInvestigationToolLink",
+     *   //   "source": "my_source",
+     *   //   "startTime": "my_startTime",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.undelete
      * @memberOf! ()
      *
@@ -1562,6 +1949,71 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.feedback.create
      * @desc Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error. Attempting to create a feedback for an alert that is marked for deletion returns `FAILED_PRECONDITION' error.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.feedback.create({
+     *     // Required. The identifier of the alert this feedback belongs to.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the G Suite organization account of the
+     *     // customer the alert is associated with.
+     *     // Inferred from the caller identity if not provided.
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertId": "my_alertId",
+     *       //   "createTime": "my_createTime",
+     *       //   "customerId": "my_customerId",
+     *       //   "email": "my_email",
+     *       //   "feedbackId": "my_feedbackId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertId": "my_alertId",
+     *   //   "createTime": "my_createTime",
+     *   //   "customerId": "my_customerId",
+     *   //   "email": "my_email",
+     *   //   "feedbackId": "my_feedbackId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.feedback.create
      * @memberOf! ()
      *
@@ -1638,6 +2090,60 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.alerts.feedback.list
      * @desc Lists all the feedback for an alert. Attempting to list feedbacks for a non-existent alert returns `NOT_FOUND` error.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.feedback.list({
+     *     // Required. The alert identifier.
+     *     // The "-" wildcard could be used to represent all alerts.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the G Suite organization account of the
+     *     // customer the alert feedback are associated with.
+     *     // Inferred from the caller identity if not provided.
+     *     customerId: 'placeholder-value',
+     *     // Optional. A query string for filtering alert feedback results.
+     *     // For more details, see [Query
+     *     // filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported
+     *     // query filter
+     *     // fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
+     *     filter: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "feedback": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.alerts.feedback.list
      * @memberOf! ()
      *
@@ -1770,6 +2276,51 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.getSettings
      * @desc Returns customer-level settings.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.getSettings({
+     *     // Optional. The unique identifier of the G Suite organization account of the
+     *     // customer the alert settings are associated with.
+     *     // Inferred from the caller identity if not provided.
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notifications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.getSettings
      * @memberOf! ()
      *
@@ -1839,6 +2390,59 @@ export namespace alertcenter_v1beta1 {
     /**
      * alertcenter.updateSettings
      * @desc Updates the customer-level settings.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.updateSettings({
+     *     // Optional. The unique identifier of the G Suite organization account of the
+     *     // customer the alert settings are associated with.
+     *     // Inferred from the caller identity if not provided.
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "notifications": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notifications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias alertcenter.updateSettings
      * @memberOf! ()
      *

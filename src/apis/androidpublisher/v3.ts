@@ -1056,6 +1056,52 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.commit
      * @desc Commits/applies the changes made in this edit back to the app.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.commit({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiryTimeSeconds": "my_expiryTimeSeconds",
+     *   //   "id": "my_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.commit
      * @memberOf! ()
      *
@@ -1128,6 +1174,46 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.delete
      * @desc Deletes an edit for an app. Creating a new edit will automatically delete any of your previous edits so this method need only be called if you want to preemptively abandon an edit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.delete({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.delete
      * @memberOf! ()
      *
@@ -1200,6 +1286,52 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.get
      * @desc Returns information about the edit specified. Calls will fail if the edit is no long active (e.g. has been deleted, superseded or expired).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.get({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiryTimeSeconds": "my_expiryTimeSeconds",
+     *   //   "id": "my_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.get
      * @memberOf! ()
      *
@@ -1272,6 +1404,59 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.insert
      * @desc Creates a new edit for an app, populated with the app's current state.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.insert({
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expiryTimeSeconds": "my_expiryTimeSeconds",
+     *       //   "id": "my_id"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiryTimeSeconds": "my_expiryTimeSeconds",
+     *   //   "id": "my_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.insert
      * @memberOf! ()
      *
@@ -1343,6 +1528,52 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.validate
      * @desc Checks that the edit can be successfully committed. The edit's changes are not applied to the live app.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.validate({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiryTimeSeconds": "my_expiryTimeSeconds",
+     *   //   "id": "my_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.validate
      * @memberOf! ()
      *
@@ -1499,6 +1730,59 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.apks.addexternallyhosted
      * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to enterprises using Google Play for Work whose application is configured to restrict distribution to the enterprise domain.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.apks.addexternallyhosted({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "externallyHostedApk": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "externallyHostedApk": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.apks.addexternallyhosted
      * @memberOf! ()
      *
@@ -1583,6 +1867,52 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.apks.list
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.apks.list({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apks": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.apks.list
      * @memberOf! ()
      *
@@ -1656,6 +1986,61 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.apks.upload
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.apks.upload({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "binary": {},
+     *   //   "testBinary": {},
+     *   //   "versionCode": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.apks.upload
      * @memberOf! ()
      *
@@ -1815,6 +2200,52 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.bundles.list
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.bundles.list({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bundles": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.bundles.list
      * @memberOf! ()
      *
@@ -1890,6 +2321,63 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.bundles.upload
      * @desc Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.bundles.upload({
+     *     // Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
+     *     ackBundleInstallationWarning: 'placeholder-value',
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sha1": "my_sha1",
+     *   //   "sha256": "my_sha256",
+     *   //   "versionCode": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.bundles.upload
      * @memberOf! ()
      *
@@ -2035,6 +2523,63 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.deobfuscationfiles.upload
      * @desc Uploads the deobfuscation file of the specified APK. If a deobfuscation or symbolication file already exists, it will be replaced. See https://developer.android.com/studio/build/shrink-code to learn more about deobfuscation files.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.deobfuscationfiles.upload({
+     *     // The version code of the APK whose deobfuscation file is being uploaded.
+     *     apkVersionCode: 'placeholder-value',
+     *
+     *     deobfuscationFileType: 'placeholder-value',
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier of the Android app for which the deobfuscation files are being uploaded; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deobfuscationFile": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.deobfuscationfiles.upload
      * @memberOf! ()
      *
@@ -2190,6 +2735,54 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.details.get
      * @desc Fetches app details for this edit. This includes the default language and developer support contact information.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.details.get({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contactEmail": "my_contactEmail",
+     *   //   "contactPhone": "my_contactPhone",
+     *   //   "contactWebsite": "my_contactWebsite",
+     *   //   "defaultLanguage": "my_defaultLanguage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.details.get
      * @memberOf! ()
      *
@@ -2265,6 +2858,65 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.details.patch
      * @desc Updates app details for this edit. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.details.patch({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contactEmail": "my_contactEmail",
+     *       //   "contactPhone": "my_contactPhone",
+     *       //   "contactWebsite": "my_contactWebsite",
+     *       //   "defaultLanguage": "my_defaultLanguage"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contactEmail": "my_contactEmail",
+     *   //   "contactPhone": "my_contactPhone",
+     *   //   "contactWebsite": "my_contactWebsite",
+     *   //   "defaultLanguage": "my_defaultLanguage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.details.patch
      * @memberOf! ()
      *
@@ -2341,6 +2993,65 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.details.update
      * @desc Updates app details for this edit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.details.update({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contactEmail": "my_contactEmail",
+     *       //   "contactPhone": "my_contactPhone",
+     *       //   "contactWebsite": "my_contactWebsite",
+     *       //   "defaultLanguage": "my_defaultLanguage"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contactEmail": "my_contactEmail",
+     *   //   "contactPhone": "my_contactPhone",
+     *   //   "contactWebsite": "my_contactWebsite",
+     *   //   "defaultLanguage": "my_defaultLanguage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.details.update
      * @memberOf! ()
      *
@@ -2483,6 +3194,56 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.expansionfiles.get
      * @desc Fetches the Expansion File configuration for the APK specified.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.expansionfiles.get({
+     *     // The version code of the APK whose Expansion File configuration is being read or modified.
+     *     apkVersionCode: 'placeholder-value',
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *
+     *     expansionFileType: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileSize": "my_fileSize",
+     *   //   "referencesVersion": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.expansionfiles.get
      * @memberOf! ()
      *
@@ -2570,6 +3331,65 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.expansionfiles.patch
      * @desc Updates the APK's Expansion File configuration to reference another APK's Expansion Files. To add a new Expansion File use the Upload method. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.expansionfiles.patch({
+     *     // The version code of the APK whose Expansion File configuration is being read or modified.
+     *     apkVersionCode: 'placeholder-value',
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *
+     *     expansionFileType: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fileSize": "my_fileSize",
+     *       //   "referencesVersion": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileSize": "my_fileSize",
+     *   //   "referencesVersion": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.expansionfiles.patch
      * @memberOf! ()
      *
@@ -2658,6 +3478,65 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.expansionfiles.update
      * @desc Updates the APK's Expansion File configuration to reference another APK's Expansion Files. To add a new Expansion File use the Upload method.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.expansionfiles.update({
+     *     // The version code of the APK whose Expansion File configuration is being read or modified.
+     *     apkVersionCode: 'placeholder-value',
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *
+     *     expansionFileType: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fileSize": "my_fileSize",
+     *       //   "referencesVersion": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileSize": "my_fileSize",
+     *   //   "referencesVersion": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.expansionfiles.update
      * @memberOf! ()
      *
@@ -2746,6 +3625,63 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.expansionfiles.upload
      * @desc Uploads and attaches a new Expansion File to the APK specified.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.expansionfiles.upload({
+     *     // The version code of the APK whose Expansion File configuration is being read or modified.
+     *     apkVersionCode: 'placeholder-value',
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *
+     *     expansionFileType: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expansionFile": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.expansionfiles.upload
      * @memberOf! ()
      *
@@ -2983,6 +3919,52 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.images.delete
      * @desc Deletes the image (specified by id) from the edit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.images.delete({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier an image within the set of images attached to this edit.
+     *     imageId: 'placeholder-value',
+     *
+     *     imageType: 'placeholder-value',
+     *     // The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     *     language: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.images.delete
      * @memberOf! ()
      *
@@ -3071,6 +4053,55 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.images.deleteall
      * @desc Deletes all images for the specified language and image type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.images.deleteall({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *
+     *     imageType: 'placeholder-value',
+     *     // The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     *     language: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.images.deleteall
      * @memberOf! ()
      *
@@ -3152,6 +4183,55 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.images.list
      * @desc Lists all images for the specified language and image type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.images.list({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *
+     *     imageType: 'placeholder-value',
+     *     // The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     *     language: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "images": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.images.list
      * @memberOf! ()
      *
@@ -3229,6 +4309,63 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.images.upload
      * @desc Uploads a new image and adds it to the list of images for the specified language and image type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.images.upload({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *
+     *     imageType: 'placeholder-value',
+     *     // The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     *     language: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "image": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.images.upload
      * @memberOf! ()
      *
@@ -3443,6 +4580,48 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.listings.delete
      * @desc Deletes the specified localized store listing from an edit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.listings.delete({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     *     language: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.listings.delete
      * @memberOf! ()
      *
@@ -3517,6 +4696,46 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.listings.deleteall
      * @desc Deletes all localized listings from an edit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.listings.deleteall({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.listings.deleteall
      * @memberOf! ()
      *
@@ -3590,6 +4809,57 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.listings.get
      * @desc Fetches information about a localized store listing.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.listings.get({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     *     language: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fullDescription": "my_fullDescription",
+     *   //   "language": "my_language",
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "title": "my_title",
+     *   //   "video": "my_video"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.listings.get
      * @memberOf! ()
      *
@@ -3664,6 +4934,52 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.listings.list
      * @desc Returns all of the localized store listings attached to this edit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.listings.list({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "listings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.listings.list
      * @memberOf! ()
      *
@@ -3741,6 +5057,69 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.listings.patch
      * @desc Creates or updates a localized store listing. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.listings.patch({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     *     language: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullDescription": "my_fullDescription",
+     *       //   "language": "my_language",
+     *       //   "shortDescription": "my_shortDescription",
+     *       //   "title": "my_title",
+     *       //   "video": "my_video"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fullDescription": "my_fullDescription",
+     *   //   "language": "my_language",
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "title": "my_title",
+     *   //   "video": "my_video"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.listings.patch
      * @memberOf! ()
      *
@@ -3816,6 +5195,69 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.listings.update
      * @desc Creates or updates a localized store listing.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.listings.update({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     *     language: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullDescription": "my_fullDescription",
+     *       //   "language": "my_language",
+     *       //   "shortDescription": "my_shortDescription",
+     *       //   "title": "my_title",
+     *       //   "video": "my_video"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fullDescription": "my_fullDescription",
+     *   //   "language": "my_language",
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "title": "my_title",
+     *   //   "video": "my_video"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.listings.update
      * @memberOf! ()
      *
@@ -4020,6 +5462,56 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.testers.get
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.testers.get({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // The track to read or modify.
+     *     track: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoEnrolledAndroidGroups": [],
+     *   //   "autoEnrolledGoogleGroups": [],
+     *   //   "excludedGoogleGroups": [],
+     *   //   "googleGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.testers.get
      * @memberOf! ()
      *
@@ -4093,6 +5585,67 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.testers.patch
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.testers.patch({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // The track to read or modify.
+     *     track: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoEnrolledAndroidGroups": [],
+     *       //   "autoEnrolledGoogleGroups": [],
+     *       //   "excludedGoogleGroups": [],
+     *       //   "googleGroups": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoEnrolledAndroidGroups": [],
+     *   //   "autoEnrolledGoogleGroups": [],
+     *   //   "excludedGoogleGroups": [],
+     *   //   "googleGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.testers.patch
      * @memberOf! ()
      *
@@ -4167,6 +5720,67 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.testers.update
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.testers.update({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // The track to read or modify.
+     *     track: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoEnrolledAndroidGroups": [],
+     *       //   "autoEnrolledGoogleGroups": [],
+     *       //   "excludedGoogleGroups": [],
+     *       //   "googleGroups": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoEnrolledAndroidGroups": [],
+     *   //   "autoEnrolledGoogleGroups": [],
+     *   //   "excludedGoogleGroups": [],
+     *   //   "googleGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.testers.update
      * @memberOf! ()
      *
@@ -4320,6 +5934,54 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.tracks.get
      * @desc Fetches the track configuration for the specified track type. Includes the APK version codes that are in this track.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.tracks.get({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // The track to read or modify.
+     *     track: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "releases": [],
+     *   //   "track": "my_track"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.tracks.get
      * @memberOf! ()
      *
@@ -4393,6 +6055,52 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.tracks.list
      * @desc Lists all the track configurations for this edit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.tracks.list({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "tracks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.tracks.list
      * @memberOf! ()
      *
@@ -4468,6 +6176,63 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.tracks.patch
      * @desc Updates the track configuration for the specified track type. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.tracks.patch({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // The track to read or modify.
+     *     track: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "releases": [],
+     *       //   "track": "my_track"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "releases": [],
+     *   //   "track": "my_track"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.tracks.patch
      * @memberOf! ()
      *
@@ -4543,6 +6308,63 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.tracks.update
      * @desc Updates the track configuration for the specified track type.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.tracks.update({
+     *     // Unique identifier for this edit.
+     *     editId: 'placeholder-value',
+     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // The track to read or modify.
+     *     track: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "releases": [],
+     *       //   "track": "my_track"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "releases": [],
+     *   //   "track": "my_track"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.edits.tracks.update
      * @memberOf! ()
      *
@@ -4711,6 +6533,46 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.inappproducts.delete
      * @desc Delete an in-app product for an app.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.inappproducts.delete({
+     *     // Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // Unique identifier for the in-app product.
+     *     sku: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.inappproducts.delete
      * @memberOf! ()
      *
@@ -4784,6 +6646,60 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.inappproducts.get
      * @desc Returns information about the in-app product specified.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.inappproducts.get({
+     *     packageName: 'placeholder-value',
+     *     // Unique identifier for the in-app product.
+     *     sku: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultLanguage": "my_defaultLanguage",
+     *   //   "defaultPrice": {},
+     *   //   "gracePeriod": "my_gracePeriod",
+     *   //   "listings": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "prices": {},
+     *   //   "purchaseType": "my_purchaseType",
+     *   //   "sku": "my_sku",
+     *   //   "status": "my_status",
+     *   //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *   //   "trialPeriod": "my_trialPeriod"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.inappproducts.get
      * @memberOf! ()
      *
@@ -4859,6 +6775,79 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.inappproducts.insert
      * @desc Creates a new in-app product for an app.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.inappproducts.insert({
+     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     *     autoConvertMissingPrices: 'placeholder-value',
+     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultLanguage": "my_defaultLanguage",
+     *       //   "defaultPrice": {},
+     *       //   "gracePeriod": "my_gracePeriod",
+     *       //   "listings": {},
+     *       //   "packageName": "my_packageName",
+     *       //   "prices": {},
+     *       //   "purchaseType": "my_purchaseType",
+     *       //   "sku": "my_sku",
+     *       //   "status": "my_status",
+     *       //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *       //   "trialPeriod": "my_trialPeriod"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultLanguage": "my_defaultLanguage",
+     *   //   "defaultPrice": {},
+     *   //   "gracePeriod": "my_gracePeriod",
+     *   //   "listings": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "prices": {},
+     *   //   "purchaseType": "my_purchaseType",
+     *   //   "sku": "my_sku",
+     *   //   "status": "my_status",
+     *   //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *   //   "trialPeriod": "my_trialPeriod"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.inappproducts.insert
      * @memberOf! ()
      *
@@ -4935,6 +6924,57 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.inappproducts.list
      * @desc List all the in-app products for an Android app, both subscriptions and managed in-app products..
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.inappproducts.list({
+     *     maxResults: 'placeholder-value',
+     *     // Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     startIndex: 'placeholder-value',
+     *
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "inappproduct": [],
+     *   //   "kind": "my_kind",
+     *   //   "pageInfo": {},
+     *   //   "tokenPagination": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.inappproducts.list
      * @memberOf! ()
      *
@@ -5019,6 +7059,81 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.inappproducts.patch
      * @desc Updates the details of an in-app product. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.inappproducts.patch({
+     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     *     autoConvertMissingPrices: 'placeholder-value',
+     *     // Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // Unique identifier for the in-app product.
+     *     sku: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultLanguage": "my_defaultLanguage",
+     *       //   "defaultPrice": {},
+     *       //   "gracePeriod": "my_gracePeriod",
+     *       //   "listings": {},
+     *       //   "packageName": "my_packageName",
+     *       //   "prices": {},
+     *       //   "purchaseType": "my_purchaseType",
+     *       //   "sku": "my_sku",
+     *       //   "status": "my_status",
+     *       //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *       //   "trialPeriod": "my_trialPeriod"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultLanguage": "my_defaultLanguage",
+     *   //   "defaultPrice": {},
+     *   //   "gracePeriod": "my_gracePeriod",
+     *   //   "listings": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "prices": {},
+     *   //   "purchaseType": "my_purchaseType",
+     *   //   "sku": "my_sku",
+     *   //   "status": "my_status",
+     *   //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *   //   "trialPeriod": "my_trialPeriod"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.inappproducts.patch
      * @memberOf! ()
      *
@@ -5096,6 +7211,81 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.inappproducts.update
      * @desc Updates the details of an in-app product.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.inappproducts.update({
+     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     *     autoConvertMissingPrices: 'placeholder-value',
+     *     // Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // Unique identifier for the in-app product.
+     *     sku: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultLanguage": "my_defaultLanguage",
+     *       //   "defaultPrice": {},
+     *       //   "gracePeriod": "my_gracePeriod",
+     *       //   "listings": {},
+     *       //   "packageName": "my_packageName",
+     *       //   "prices": {},
+     *       //   "purchaseType": "my_purchaseType",
+     *       //   "sku": "my_sku",
+     *       //   "status": "my_status",
+     *       //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *       //   "trialPeriod": "my_trialPeriod"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultLanguage": "my_defaultLanguage",
+     *   //   "defaultPrice": {},
+     *   //   "gracePeriod": "my_gracePeriod",
+     *   //   "listings": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "prices": {},
+     *   //   "purchaseType": "my_purchaseType",
+     *   //   "sku": "my_sku",
+     *   //   "status": "my_status",
+     *   //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *   //   "trialPeriod": "my_trialPeriod"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.inappproducts.update
      * @memberOf! ()
      *
@@ -5308,6 +7498,59 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.internalappsharingartifacts.uploadapk
      * @desc Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.internalappsharingartifacts.uploadapk({
+     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateFingerprint": "my_certificateFingerprint",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "sha256": "my_sha256"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.internalappsharingartifacts.uploadapk
      * @memberOf! ()
      *
@@ -5396,6 +7639,59 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.internalappsharingartifacts.uploadbundle
      * @desc Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.internalappsharingartifacts.uploadbundle({
+     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateFingerprint": "my_certificateFingerprint",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "sha256": "my_sha256"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.internalappsharingartifacts.uploadbundle
      * @memberOf! ()
      *
@@ -5556,6 +7852,48 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.orders.refund
      * @desc Refund a user's subscription or in-app purchase order.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.orders.refund({
+     *     // The order ID provided to the user when the subscription or in-app order was purchased.
+     *     orderId: 'placeholder-value',
+     *     // The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional)
+     *     revoke: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.orders.refund
      * @memberOf! ()
      *
@@ -5671,6 +8009,56 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.products.acknowledge
      * @desc Acknowledges a purchase of an inapp item.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.products.acknowledge({
+     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
+     *     productId: 'placeholder-value',
+     *     // The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "developerPayload": "my_developerPayload"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.products.acknowledge
      * @memberOf! ()
      *
@@ -5746,6 +8134,63 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.products.get
      * @desc Checks the purchase and consumption status of an inapp item.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.products.get({
+     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
+     *     productId: 'placeholder-value',
+     *     // The token provided to the user's device when the inapp product was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acknowledgementState": 0,
+     *   //   "consumptionState": 0,
+     *   //   "developerPayload": "my_developerPayload",
+     *   //   "kind": "my_kind",
+     *   //   "orderId": "my_orderId",
+     *   //   "productId": "my_productId",
+     *   //   "purchaseState": 0,
+     *   //   "purchaseTimeMillis": "my_purchaseTimeMillis",
+     *   //   "purchaseToken": "my_purchaseToken",
+     *   //   "purchaseType": 0,
+     *   //   "quantity": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.products.get
      * @memberOf! ()
      *
@@ -5875,6 +8320,56 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.subscriptions.acknowledge
      * @desc Acknowledges a subscription purchase.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptions.acknowledge({
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The purchased subscription ID (for example, 'monthly001').
+     *     subscriptionId: 'placeholder-value',
+     *     // The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "developerPayload": "my_developerPayload"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.subscriptions.acknowledge
      * @memberOf! ()
      *
@@ -5950,6 +8445,48 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.subscriptions.cancel
      * @desc Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptions.cancel({
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The purchased subscription ID (for example, 'monthly001').
+     *     subscriptionId: 'placeholder-value',
+     *     // The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.subscriptions.cancel
      * @memberOf! ()
      *
@@ -6024,6 +8561,61 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.subscriptions.defer
      * @desc Defers a user's subscription purchase until a specified future expiration time.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptions.defer({
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The purchased subscription ID (for example, 'monthly001').
+     *     subscriptionId: 'placeholder-value',
+     *     // The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deferralInfo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "newExpiryTimeMillis": "my_newExpiryTimeMillis"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.subscriptions.defer
      * @memberOf! ()
      *
@@ -6110,6 +8702,79 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.subscriptions.get
      * @desc Checks whether a user's subscription purchase is valid and returns its expiry time.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptions.get({
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The purchased subscription ID (for example, 'monthly001').
+     *     subscriptionId: 'placeholder-value',
+     *     // The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acknowledgementState": 0,
+     *   //   "autoRenewing": false,
+     *   //   "autoResumeTimeMillis": "my_autoResumeTimeMillis",
+     *   //   "cancelReason": 0,
+     *   //   "cancelSurveyResult": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "developerPayload": "my_developerPayload",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "expiryTimeMillis": "my_expiryTimeMillis",
+     *   //   "externalAccountId": "my_externalAccountId",
+     *   //   "familyName": "my_familyName",
+     *   //   "givenName": "my_givenName",
+     *   //   "introductoryPriceInfo": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
+     *   //   "orderId": "my_orderId",
+     *   //   "paymentState": 0,
+     *   //   "priceAmountMicros": "my_priceAmountMicros",
+     *   //   "priceChange": {},
+     *   //   "priceCurrencyCode": "my_priceCurrencyCode",
+     *   //   "profileId": "my_profileId",
+     *   //   "profileName": "my_profileName",
+     *   //   "promotionCode": "my_promotionCode",
+     *   //   "promotionType": 0,
+     *   //   "purchaseType": 0,
+     *   //   "startTimeMillis": "my_startTimeMillis",
+     *   //   "userCancellationTimeMillis": "my_userCancellationTimeMillis"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.subscriptions.get
      * @memberOf! ()
      *
@@ -6188,6 +8853,48 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.subscriptions.refund
      * @desc Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptions.refund({
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The purchased subscription ID (for example, 'monthly001').
+     *     subscriptionId: 'placeholder-value',
+     *     // The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.subscriptions.refund
      * @memberOf! ()
      *
@@ -6262,6 +8969,48 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.subscriptions.revoke
      * @desc Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptions.revoke({
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The purchased subscription ID (for example, 'monthly001').
+     *     subscriptionId: 'placeholder-value',
+     *     // The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.subscriptions.revoke
      * @memberOf! ()
      *
@@ -6474,6 +9223,65 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.purchases.voidedpurchases.list
      * @desc Lists the purchases that were canceled, refunded or charged-back.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.voidedpurchases.list({
+     *     // The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     *     endTime: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *     // The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *
+     *     startIndex: 'placeholder-value',
+     *     // The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     *     startTime: 'placeholder-value',
+     *
+     *     token: 'placeholder-value',
+     *     // The type of voided purchases that you want to see in the response. Possible values are:
+     *     // - 0: Only voided in-app product purchases will be returned in the response. This is the default value.
+     *     // - 1: Both voided in-app purchases and voided subscription purchases will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pageInfo": {},
+     *   //   "tokenPagination": {},
+     *   //   "voidedPurchases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.purchases.voidedpurchases.list
      * @memberOf! ()
      *
@@ -6605,6 +9413,55 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.reviews.get
      * @desc Returns a single review.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.reviews.get({
+     *     // Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     reviewId: 'placeholder-value',
+     *
+     *     translationLanguage: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorName": "my_authorName",
+     *   //   "comments": [],
+     *   //   "reviewId": "my_reviewId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.reviews.get
      * @memberOf! ()
      *
@@ -6678,6 +9535,58 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.reviews.list
      * @desc Returns a list of reviews. Only reviews from last week will be returned.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.reviews.list({
+     *     maxResults: 'placeholder-value',
+     *     // Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     startIndex: 'placeholder-value',
+     *
+     *     token: 'placeholder-value',
+     *
+     *     translationLanguage: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pageInfo": {},
+     *   //   "reviews": [],
+     *   //   "tokenPagination": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.reviews.list
      * @memberOf! ()
      *
@@ -6755,6 +9664,59 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.reviews.reply
      * @desc Reply to a single review, or update an existing reply.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.reviews.reply({
+     *     // Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     reviewId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "replyText": "my_replyText"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "result": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.reviews.reply
      * @memberOf! ()
      *
@@ -6915,6 +9877,60 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.systemapks.variants.create
      * @desc Creates a new variant of APK which is suitable for inclusion in a system image.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.systemapks.variants.create({
+     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // The version code of the App Bundle.
+     *     versionCode: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deviceSpec": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceSpec": {},
+     *   //   "variantId": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.systemapks.variants.create
      * @memberOf! ()
      *
@@ -6989,6 +10005,48 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.systemapks.variants.download
      * @desc Download a previously created APK which is suitable for inclusion in a system image.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.systemapks.variants.download({
+     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *
+     *     variantId: 'placeholder-value',
+     *     // The version code of the App Bundle.
+     *     versionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.systemapks.variants.download
      * @memberOf! ()
      *
@@ -7063,6 +10121,54 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.systemapks.variants.get
      * @desc Returns a previously created system APK variant.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.systemapks.variants.get({
+     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // Unique identifier for this variant.
+     *     variantId: 'placeholder-value',
+     *     // The version code of the App Bundle.
+     *     versionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceSpec": {},
+     *   //   "variantId": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.systemapks.variants.get
      * @memberOf! ()
      *
@@ -7137,6 +10243,51 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.systemapks.variants.list
      * @desc Returns the list of previously created system APK variants.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.systemapks.variants.list({
+     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     packageName: 'placeholder-value',
+     *     // The version code of the App Bundle.
+     *     versionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "variants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.systemapks.variants.list
      * @memberOf! ()
      *

@@ -417,6 +417,80 @@ export namespace discovery_v1 {
     /**
      * discovery.apis.getRest
      * @desc Retrieve the description of a particular version of an api.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const discovery = google.discovery('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await discovery.apis.getRest({
+     *     // The name of the API.
+     *     api: 'placeholder-value',
+     *     // The version of the API.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auth": {},
+     *   //   "basePath": "my_basePath",
+     *   //   "baseUrl": "my_baseUrl",
+     *   //   "batchPath": "my_batchPath",
+     *   //   "canonicalName": "my_canonicalName",
+     *   //   "description": "my_description",
+     *   //   "discoveryVersion": "my_discoveryVersion",
+     *   //   "documentationLink": "my_documentationLink",
+     *   //   "etag": "my_etag",
+     *   //   "exponentialBackoffDefault": false,
+     *   //   "features": [],
+     *   //   "icons": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "methods": {},
+     *   //   "name": "my_name",
+     *   //   "ownerDomain": "my_ownerDomain",
+     *   //   "ownerName": "my_ownerName",
+     *   //   "packagePath": "my_packagePath",
+     *   //   "parameters": {},
+     *   //   "protocol": "my_protocol",
+     *   //   "resources": {},
+     *   //   "revision": "my_revision",
+     *   //   "rootUrl": "my_rootUrl",
+     *   //   "schemas": {},
+     *   //   "servicePath": "my_servicePath",
+     *   //   "title": "my_title",
+     *   //   "version": "my_version",
+     *   //   "version_module": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias discovery.apis.getRest
      * @memberOf! ()
      *
@@ -491,6 +565,53 @@ export namespace discovery_v1 {
     /**
      * discovery.apis.list
      * @desc Retrieve the list of APIs supported at this endpoint.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const discovery = google.discovery('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await discovery.apis.list({
+     *     // Only include APIs with the given name.
+     *     name: 'placeholder-value',
+     *     // Return only the preferred version of an API.
+     *     preferred: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "discoveryVersion": "my_discoveryVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias discovery.apis.list
      * @memberOf! ()
      *

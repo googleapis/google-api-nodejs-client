@@ -682,6 +682,60 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * firebasedynamiclinks.managedShortLinks.create
      * @desc Creates a managed short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire.  This differs from CreateShortDynamicLink in the following ways:   - The request will also contain a name for the link (non unique name     for the front end).   - The response must be authenticated with an auth token (generated with     the admin service account).   - The link will appear in the FDL list of links in the console front end.  The Dynamic Link domain in the request must be owned by requester's Firebase project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.managedShortLinks.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dynamicLinkInfo": {},
+     *       //   "longDynamicLink": "my_longDynamicLink",
+     *       //   "name": "my_name",
+     *       //   "sdkVersion": "my_sdkVersion",
+     *       //   "suffix": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "managedShortLink": {},
+     *   //   "previewLink": "my_previewLink",
+     *   //   "warning": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasedynamiclinks.managedShortLinks.create
      * @memberOf! ()
      *
@@ -786,6 +840,59 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * firebasedynamiclinks.shortLinks.create
      * @desc Creates a short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire.  Repeated calls with the same long Dynamic Link or Dynamic Link information will produce the same short Dynamic Link.  The Dynamic Link domain in the request must be owned by requester's Firebase project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.shortLinks.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dynamicLinkInfo": {},
+     *       //   "longDynamicLink": "my_longDynamicLink",
+     *       //   "sdkVersion": "my_sdkVersion",
+     *       //   "suffix": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "previewLink": "my_previewLink",
+     *   //   "shortLink": "my_shortLink",
+     *   //   "warning": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasedynamiclinks.shortLinks.create
      * @memberOf! ()
      *
@@ -887,6 +994,53 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * firebasedynamiclinks.getLinkStats
      * @desc Fetches analytics stats of a short Dynamic Link for a given duration. Metrics include number of clicks, redirects, installs, app first opens, and app reopens.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.getLinkStats({
+     *     // The span of time requested in days.
+     *     durationDays: 'placeholder-value',
+     *     // Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
+     *     dynamicLink: 'placeholder-value',
+     *     // Google SDK version. Version takes the form "$major.$minor.$patch"
+     *     sdkVersion: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "linkEventStats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasedynamiclinks.getLinkStats
      * @memberOf! ()
      *
@@ -963,6 +1117,76 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * firebasedynamiclinks.installAttribution
      * @desc Get iOS strong/weak-match info for post-install attribution.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.installAttribution({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appInstallationTime": "my_appInstallationTime",
+     *       //   "bundleId": "my_bundleId",
+     *       //   "device": {},
+     *       //   "iosVersion": "my_iosVersion",
+     *       //   "retrievalMethod": "my_retrievalMethod",
+     *       //   "sdkVersion": "my_sdkVersion",
+     *       //   "uniqueMatchLinkToCheck": "my_uniqueMatchLinkToCheck",
+     *       //   "visualStyle": "my_visualStyle"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appMinimumVersion": "my_appMinimumVersion",
+     *   //   "attributionConfidence": "my_attributionConfidence",
+     *   //   "deepLink": "my_deepLink",
+     *   //   "externalBrowserDestinationLink": "my_externalBrowserDestinationLink",
+     *   //   "fallbackLink": "my_fallbackLink",
+     *   //   "invitationId": "my_invitationId",
+     *   //   "isStrongMatchExecutable": false,
+     *   //   "matchMessage": "my_matchMessage",
+     *   //   "requestIpVersion": "my_requestIpVersion",
+     *   //   "requestedLink": "my_requestedLink",
+     *   //   "resolvedLink": "my_resolvedLink",
+     *   //   "utmCampaign": "my_utmCampaign",
+     *   //   "utmContent": "my_utmContent",
+     *   //   "utmMedium": "my_utmMedium",
+     *   //   "utmSource": "my_utmSource",
+     *   //   "utmTerm": "my_utmTerm"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasedynamiclinks.installAttribution
      * @memberOf! ()
      *
@@ -1055,6 +1279,64 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * firebasedynamiclinks.reopenAttribution
      * @desc Get iOS reopen attribution for app universal link open deeplinking.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.reopenAttribution({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bundleId": "my_bundleId",
+     *       //   "requestedLink": "my_requestedLink",
+     *       //   "sdkVersion": "my_sdkVersion"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deepLink": "my_deepLink",
+     *   //   "invitationId": "my_invitationId",
+     *   //   "iosMinAppVersion": "my_iosMinAppVersion",
+     *   //   "resolvedLink": "my_resolvedLink",
+     *   //   "utmCampaign": "my_utmCampaign",
+     *   //   "utmContent": "my_utmContent",
+     *   //   "utmMedium": "my_utmMedium",
+     *   //   "utmSource": "my_utmSource",
+     *   //   "utmTerm": "my_utmTerm"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasedynamiclinks.reopenAttribution
      * @memberOf! ()
      *

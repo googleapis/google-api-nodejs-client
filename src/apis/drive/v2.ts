@@ -1680,6 +1680,88 @@ export namespace drive_v2 {
     /**
      * drive.about.get
      * @desc Gets the information about the current user along with Drive API settings
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.about.get({
+     *     // Whether to count changes outside the My Drive hierarchy. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the maxChangeIdCount.
+     *     includeSubscribed: 'placeholder-value',
+     *     // Maximum number of remaining change IDs to count
+     *     maxChangeIdCount: 'placeholder-value',
+     *     // Change ID to start counting from when calculating number of remaining change IDs
+     *     startChangeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalRoleInfo": [],
+     *   //   "canCreateDrives": false,
+     *   //   "canCreateTeamDrives": false,
+     *   //   "domainSharingPolicy": "my_domainSharingPolicy",
+     *   //   "driveThemes": [],
+     *   //   "etag": "my_etag",
+     *   //   "exportFormats": [],
+     *   //   "features": [],
+     *   //   "folderColorPalette": [],
+     *   //   "importFormats": [],
+     *   //   "isCurrentAppInstalled": false,
+     *   //   "kind": "my_kind",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "largestChangeId": "my_largestChangeId",
+     *   //   "maxUploadSizes": [],
+     *   //   "name": "my_name",
+     *   //   "permissionId": "my_permissionId",
+     *   //   "quotaBytesByService": [],
+     *   //   "quotaBytesTotal": "my_quotaBytesTotal",
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "quotaBytesUsedAggregate": "my_quotaBytesUsedAggregate",
+     *   //   "quotaBytesUsedInTrash": "my_quotaBytesUsedInTrash",
+     *   //   "quotaType": "my_quotaType",
+     *   //   "remainingChangeIds": "my_remainingChangeIds",
+     *   //   "rootFolderId": "my_rootFolderId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "teamDriveThemes": [],
+     *   //   "user": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.about.get
      * @memberOf! ()
      *
@@ -1777,6 +1859,80 @@ export namespace drive_v2 {
     /**
      * drive.apps.get
      * @desc Gets a specific app.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.apps.get({
+     *     // The ID of the app.
+     *     appId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorized": false,
+     *   //   "createInFolderTemplate": "my_createInFolderTemplate",
+     *   //   "createUrl": "my_createUrl",
+     *   //   "hasDriveWideScope": false,
+     *   //   "icons": [],
+     *   //   "id": "my_id",
+     *   //   "installed": false,
+     *   //   "kind": "my_kind",
+     *   //   "longDescription": "my_longDescription",
+     *   //   "name": "my_name",
+     *   //   "objectType": "my_objectType",
+     *   //   "openUrlTemplate": "my_openUrlTemplate",
+     *   //   "primaryFileExtensions": [],
+     *   //   "primaryMimeTypes": [],
+     *   //   "productId": "my_productId",
+     *   //   "productUrl": "my_productUrl",
+     *   //   "secondaryFileExtensions": [],
+     *   //   "secondaryMimeTypes": [],
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "supportsCreate": false,
+     *   //   "supportsImport": false,
+     *   //   "supportsMultiOpen": false,
+     *   //   "supportsOfflineCreate": false,
+     *   //   "useByDefault": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.apps.get
      * @memberOf! ()
      *
@@ -1848,6 +2004,57 @@ export namespace drive_v2 {
     /**
      * drive.apps.list
      * @desc Lists a user's installed apps.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive.apps.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.apps.list({
+     *     // A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
+     *     appFilterExtensions: 'placeholder-value',
+     *     // A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
+     *     appFilterMimeTypes: 'placeholder-value',
+     *     // A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
+     *     languageCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultAppIds": [],
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.apps.list
      * @memberOf! ()
      *
@@ -1956,6 +2163,78 @@ export namespace drive_v2 {
     /**
      * drive.changes.get
      * @desc Deprecated - Use changes.getStartPageToken and changes.list to retrieve recent changes.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.get({
+     *     // The ID of the change.
+     *     changeId: 'placeholder-value',
+     *     // The shared drive from which the change is returned.
+     *     driveId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeType": "my_changeType",
+     *   //   "deleted": false,
+     *   //   "drive": {},
+     *   //   "driveId": "my_driveId",
+     *   //   "file": {},
+     *   //   "fileId": "my_fileId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modificationDate": "my_modificationDate",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "teamDrive": {},
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.changes.get
      * @memberOf! ()
      *
@@ -2031,6 +2310,65 @@ export namespace drive_v2 {
     /**
      * drive.changes.getStartPageToken
      * @desc Gets the starting pageToken for listing future changes.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.getStartPageToken({
+     *     // The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
+     *     driveId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "startPageToken": "my_startPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.changes.getStartPageToken
      * @memberOf! ()
      *
@@ -2110,6 +2448,89 @@ export namespace drive_v2 {
     /**
      * drive.changes.list
      * @desc Lists the changes for a user or shared drive.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.list({
+     *     // The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     *     driveId: 'placeholder-value',
+     *     // Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     *     includeCorpusRemovals: 'placeholder-value',
+     *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
+     *     includeDeleted: 'placeholder-value',
+     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
+     *     includeSubscribed: 'placeholder-value',
+     *     // Deprecated use includeItemsFromAllDrives instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // Maximum number of changes to return.
+     *     maxResults: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+     *     pageToken: 'placeholder-value',
+     *     // A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     spaces: 'placeholder-value',
+     *     // Deprecated - use pageToken instead.
+     *     startChangeId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "largestChangeId": "my_largestChangeId",
+     *   //   "newStartPageToken": "my_newStartPageToken",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.changes.list
      * @memberOf! ()
      *
@@ -2192,6 +2613,108 @@ export namespace drive_v2 {
     /**
      * drive.changes.watch
      * @desc Subscribe to changes for a user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.watch({
+     *     // The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     *     driveId: 'placeholder-value',
+     *     // Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     *     includeCorpusRemovals: 'placeholder-value',
+     *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
+     *     includeDeleted: 'placeholder-value',
+     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
+     *     includeSubscribed: 'placeholder-value',
+     *     // Deprecated use includeItemsFromAllDrives instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // Maximum number of changes to return.
+     *     maxResults: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+     *     pageToken: 'placeholder-value',
+     *     // A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     spaces: 'placeholder-value',
+     *     // Deprecated - use pageToken instead.
+     *     startChangeId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.changes.watch
      * @memberOf! ()
      *
@@ -2458,6 +2981,67 @@ export namespace drive_v2 {
     /**
      * drive.channels.stop
      * @desc Stop watching resources through this channel
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.channels.stop
      * @memberOf! ()
      *
@@ -2548,6 +3132,51 @@ export namespace drive_v2 {
     /**
      * drive.children.delete
      * @desc Removes a child from a folder.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.children.delete({
+     *     // The ID of the child.
+     *     childId: 'placeholder-value',
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's last parent is removed, the item is placed under its owner's root.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the folder.
+     *     folderId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.children.delete
      * @memberOf! ()
      *
@@ -2620,6 +3249,62 @@ export namespace drive_v2 {
     /**
      * drive.children.get
      * @desc Gets a specific child reference.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.children.get({
+     *     // The ID of the child.
+     *     childId: 'placeholder-value',
+     *     // The ID of the folder.
+     *     folderId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "childLink": "my_childLink",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.children.get
      * @memberOf! ()
      *
@@ -2693,6 +3378,73 @@ export namespace drive_v2 {
     /**
      * drive.children.insert
      * @desc Inserts a file into a folder.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.children.insert({
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the child's owner makes the request, the child is removed from all current folders and placed in the requested folder. Any other requests that increase the number of the child's parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the folder.
+     *     folderId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "childLink": "my_childLink",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "childLink": "my_childLink",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.children.insert
      * @memberOf! ()
      *
@@ -2770,6 +3522,70 @@ export namespace drive_v2 {
     /**
      * drive.children.list
      * @desc Lists a folder's children.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.children.list({
+     *     // The ID of the folder.
+     *     folderId: 'placeholder-value',
+     *     // Maximum number of children to return.
+     *     maxResults: 'placeholder-value',
+     *     // A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     *     orderBy: 'placeholder-value',
+     *     // Page token for children.
+     *     pageToken: 'placeholder-value',
+     *     // Query string for searching children.
+     *     q: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.children.list
      * @memberOf! ()
      *
@@ -2944,6 +3760,49 @@ export namespace drive_v2 {
     /**
      * drive.comments.delete
      * @desc Deletes a comment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.delete({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.delete
      * @memberOf! ()
      *
@@ -3015,6 +3874,71 @@ export namespace drive_v2 {
     /**
      * drive.comments.get
      * @desc Gets a comment by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.get({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
+     *     includeDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "commentId": "my_commentId",
+     *   //   "content": "my_content",
+     *   //   "context": {},
+     *   //   "createdDate": "my_createdDate",
+     *   //   "deleted": false,
+     *   //   "fileId": "my_fileId",
+     *   //   "fileTitle": "my_fileTitle",
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "replies": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.get
      * @memberOf! ()
      *
@@ -3087,6 +4011,88 @@ export namespace drive_v2 {
     /**
      * drive.comments.insert
      * @desc Creates a new comment on the given file.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.insert({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anchor": "my_anchor",
+     *       //   "author": {},
+     *       //   "commentId": "my_commentId",
+     *       //   "content": "my_content",
+     *       //   "context": {},
+     *       //   "createdDate": "my_createdDate",
+     *       //   "deleted": false,
+     *       //   "fileId": "my_fileId",
+     *       //   "fileTitle": "my_fileTitle",
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "replies": [],
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "commentId": "my_commentId",
+     *   //   "content": "my_content",
+     *   //   "context": {},
+     *   //   "createdDate": "my_createdDate",
+     *   //   "deleted": false,
+     *   //   "fileId": "my_fileId",
+     *   //   "fileTitle": "my_fileTitle",
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "replies": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.insert
      * @memberOf! ()
      *
@@ -3159,6 +4165,65 @@ export namespace drive_v2 {
     /**
      * drive.comments.list
      * @desc Lists a file's comments.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.list({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
+     *     includeDeleted: 'placeholder-value',
+     *     // The maximum number of discussions to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
+     *     updatedMin: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.list
      * @memberOf! ()
      *
@@ -3236,6 +4301,90 @@ export namespace drive_v2 {
     /**
      * drive.comments.patch
      * @desc Updates an existing comment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.patch({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anchor": "my_anchor",
+     *       //   "author": {},
+     *       //   "commentId": "my_commentId",
+     *       //   "content": "my_content",
+     *       //   "context": {},
+     *       //   "createdDate": "my_createdDate",
+     *       //   "deleted": false,
+     *       //   "fileId": "my_fileId",
+     *       //   "fileTitle": "my_fileTitle",
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "replies": [],
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "commentId": "my_commentId",
+     *   //   "content": "my_content",
+     *   //   "context": {},
+     *   //   "createdDate": "my_createdDate",
+     *   //   "deleted": false,
+     *   //   "fileId": "my_fileId",
+     *   //   "fileTitle": "my_fileTitle",
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "replies": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.patch
      * @memberOf! ()
      *
@@ -3308,6 +4457,90 @@ export namespace drive_v2 {
     /**
      * drive.comments.update
      * @desc Updates an existing comment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.update({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anchor": "my_anchor",
+     *       //   "author": {},
+     *       //   "commentId": "my_commentId",
+     *       //   "content": "my_content",
+     *       //   "context": {},
+     *       //   "createdDate": "my_createdDate",
+     *       //   "deleted": false,
+     *       //   "fileId": "my_fileId",
+     *       //   "fileTitle": "my_fileTitle",
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "replies": [],
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "commentId": "my_commentId",
+     *   //   "content": "my_content",
+     *   //   "context": {},
+     *   //   "createdDate": "my_createdDate",
+     *   //   "deleted": false,
+     *   //   "fileId": "my_fileId",
+     *   //   "fileTitle": "my_fileTitle",
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "replies": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.update
      * @memberOf! ()
      *
@@ -3505,6 +4738,44 @@ export namespace drive_v2 {
     /**
      * drive.drives.delete
      * @desc Permanently deletes a shared drive for which the user is an organizer. The shared drive cannot contain any untrashed items.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.delete({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.delete
      * @memberOf! ()
      *
@@ -3576,6 +4847,64 @@ export namespace drive_v2 {
     /**
      * drive.drives.get
      * @desc Gets a shared drive's metadata by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.get({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.get
      * @memberOf! ()
      *
@@ -3648,6 +4977,59 @@ export namespace drive_v2 {
     /**
      * drive.drives.hide
      * @desc Hides a shared drive from the default view.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.hide({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.hide
      * @memberOf! ()
      *
@@ -3719,6 +5101,77 @@ export namespace drive_v2 {
     /**
      * drive.drives.insert
      * @desc Creates a new shared drive.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.insert({
+     *     // An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdDate": "my_createdDate",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.insert
      * @memberOf! ()
      *
@@ -3788,6 +5241,60 @@ export namespace drive_v2 {
     /**
      * drive.drives.list
      * @desc Lists the user's shared drives.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.list({
+     *     // Maximum number of shared drives to return.
+     *     maxResults: 'placeholder-value',
+     *     // Page token for shared drives.
+     *     pageToken: 'placeholder-value',
+     *     // Query string for searching shared drives.
+     *     q: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then all shared drives of the domain in which the requester is an administrator are returned.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.list
      * @memberOf! ()
      *
@@ -3861,6 +5368,59 @@ export namespace drive_v2 {
     /**
      * drive.drives.unhide
      * @desc Restores a shared drive to the default view.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.unhide({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.unhide
      * @memberOf! ()
      *
@@ -3932,6 +5492,79 @@ export namespace drive_v2 {
     /**
      * drive.drives.update
      * @desc Updates the metadata for a shared drive.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.update({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdDate": "my_createdDate",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.update
      * @memberOf! ()
      *
@@ -4120,6 +5753,219 @@ export namespace drive_v2 {
     /**
      * drive.files.copy
      * @desc Creates a copy of the specified file.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.copy({
+     *     // Whether to convert this file to the corresponding Google Docs format.
+     *     convert: 'placeholder-value',
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file to copy.
+     *     fileId: 'placeholder-value',
+     *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     *     ocr: 'placeholder-value',
+     *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     *     ocrLanguage: 'placeholder-value',
+     *     // Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
+     *     pinned: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // The language of the timed text.
+     *     timedTextLanguage: 'placeholder-value',
+     *     // The timed text track name.
+     *     timedTextTrackName: 'placeholder-value',
+     *     // The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
+     *     visibility: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateLink": "my_alternateLink",
+     *       //   "appDataContents": false,
+     *       //   "canComment": false,
+     *       //   "canReadRevisions": false,
+     *       //   "capabilities": {},
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "copyable": false,
+     *       //   "createdDate": "my_createdDate",
+     *       //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *       //   "description": "my_description",
+     *       //   "downloadUrl": "my_downloadUrl",
+     *       //   "driveId": "my_driveId",
+     *       //   "editable": false,
+     *       //   "embedLink": "my_embedLink",
+     *       //   "etag": "my_etag",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "fileSize": "my_fileSize",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "indexableText": {},
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifyingUser": {},
+     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *       //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *       //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "openWithLinks": {},
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "ownerNames": [],
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": [],
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "shareable": false,
+     *       //   "shared": false,
+     *       //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "spaces": [],
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnail": {},
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "title": "my_title",
+     *       //   "trashedDate": "my_trashedDate",
+     *       //   "trashingUser": {},
+     *       //   "userPermission": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "appDataContents": false,
+     *   //   "canComment": false,
+     *   //   "canReadRevisions": false,
+     *   //   "capabilities": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "copyable": false,
+     *   //   "createdDate": "my_createdDate",
+     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *   //   "description": "my_description",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "driveId": "my_driveId",
+     *   //   "editable": false,
+     *   //   "embedLink": "my_embedLink",
+     *   //   "etag": "my_etag",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "fileSize": "my_fileSize",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "indexableText": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "openWithLinks": {},
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "ownerNames": [],
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": [],
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "shareable": false,
+     *   //   "shared": false,
+     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "spaces": [],
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnail": {},
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "title": "my_title",
+     *   //   "trashedDate": "my_trashedDate",
+     *   //   "trashingUser": {},
+     *   //   "userPermission": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.copy
      * @memberOf! ()
      *
@@ -4202,6 +6048,52 @@ export namespace drive_v2 {
     /**
      * drive.files.delete
      * @desc Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file or be an organizer on the parent for shared drive files.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.delete({
+     *     // The ID of the file to delete.
+     *     fileId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.delete
      * @memberOf! ()
      *
@@ -4275,6 +6167,41 @@ export namespace drive_v2 {
     /**
      * drive.files.emptyTrash
      * @desc Permanently deletes all of the user's trashed files.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.emptyTrash({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.emptyTrash
      * @memberOf! ()
      *
@@ -4345,6 +6272,50 @@ export namespace drive_v2 {
     /**
      * drive.files.export
      * @desc Exports a Google Doc to the requested MIME type and returns the exported content. Please note that the exported content is limited to 10MB.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.export({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The MIME type of the format requested for this export.
+     *     mimeType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.export
      * @memberOf! ()
      *
@@ -4417,6 +6388,57 @@ export namespace drive_v2 {
     /**
      * drive.files.generateIds
      * @desc Generates a set of file IDs which can be provided in insert or copy requests.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.generateIds({
+     *     // Maximum number of IDs to return.
+     *     maxResults: 'placeholder-value',
+     *     // The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     *     space: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ids": [],
+     *   //   "kind": "my_kind",
+     *   //   "space": "my_space"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.generateIds
      * @memberOf! ()
      *
@@ -4492,6 +6514,137 @@ export namespace drive_v2 {
     /**
      * drive.files.get
      * @desc Gets a file's metadata by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.get({
+     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files.
+     *     acknowledgeAbuse: 'placeholder-value',
+     *     // The ID for the file in question.
+     *     fileId: 'placeholder-value',
+     *     // This parameter is deprecated and has no function.
+     *     projection: 'placeholder-value',
+     *     // Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
+     *     revisionId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
+     *     updateViewedDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "appDataContents": false,
+     *   //   "canComment": false,
+     *   //   "canReadRevisions": false,
+     *   //   "capabilities": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "copyable": false,
+     *   //   "createdDate": "my_createdDate",
+     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *   //   "description": "my_description",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "driveId": "my_driveId",
+     *   //   "editable": false,
+     *   //   "embedLink": "my_embedLink",
+     *   //   "etag": "my_etag",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "fileSize": "my_fileSize",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "indexableText": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "openWithLinks": {},
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "ownerNames": [],
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": [],
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "shareable": false,
+     *   //   "shared": false,
+     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "spaces": [],
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnail": {},
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "title": "my_title",
+     *   //   "trashedDate": "my_trashedDate",
+     *   //   "trashingUser": {},
+     *   //   "userPermission": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.get
      * @memberOf! ()
      *
@@ -4569,6 +6722,222 @@ export namespace drive_v2 {
     /**
      * drive.files.insert
      * @desc Insert a new file.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.insert({
+     *     // Whether to convert this file to the corresponding Google Docs format.
+     *     convert: 'placeholder-value',
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     *     ocr: 'placeholder-value',
+     *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     *     ocrLanguage: 'placeholder-value',
+     *     // Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
+     *     pinned: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // The language of the timed text.
+     *     timedTextLanguage: 'placeholder-value',
+     *     // The timed text track name.
+     *     timedTextTrackName: 'placeholder-value',
+     *     // Whether to use the content as indexable text.
+     *     useContentAsIndexableText: 'placeholder-value',
+     *     // The visibility of the new file. This parameter is only relevant when convert=false.
+     *     visibility: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateLink": "my_alternateLink",
+     *       //   "appDataContents": false,
+     *       //   "canComment": false,
+     *       //   "canReadRevisions": false,
+     *       //   "capabilities": {},
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "copyable": false,
+     *       //   "createdDate": "my_createdDate",
+     *       //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *       //   "description": "my_description",
+     *       //   "downloadUrl": "my_downloadUrl",
+     *       //   "driveId": "my_driveId",
+     *       //   "editable": false,
+     *       //   "embedLink": "my_embedLink",
+     *       //   "etag": "my_etag",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "fileSize": "my_fileSize",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "indexableText": {},
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifyingUser": {},
+     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *       //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *       //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "openWithLinks": {},
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "ownerNames": [],
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": [],
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "shareable": false,
+     *       //   "shared": false,
+     *       //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "spaces": [],
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnail": {},
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "title": "my_title",
+     *       //   "trashedDate": "my_trashedDate",
+     *       //   "trashingUser": {},
+     *       //   "userPermission": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "appDataContents": false,
+     *   //   "canComment": false,
+     *   //   "canReadRevisions": false,
+     *   //   "capabilities": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "copyable": false,
+     *   //   "createdDate": "my_createdDate",
+     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *   //   "description": "my_description",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "driveId": "my_driveId",
+     *   //   "editable": false,
+     *   //   "embedLink": "my_embedLink",
+     *   //   "etag": "my_etag",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "fileSize": "my_fileSize",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "indexableText": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "openWithLinks": {},
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "ownerNames": [],
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": [],
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "shareable": false,
+     *   //   "shared": false,
+     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "spaces": [],
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnail": {},
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "title": "my_title",
+     *   //   "trashedDate": "my_trashedDate",
+     *   //   "trashingUser": {},
+     *   //   "userPermission": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.insert
      * @memberOf! ()
      *
@@ -4655,6 +7024,90 @@ export namespace drive_v2 {
     /**
      * drive.files.list
      * @desc Lists the user's files.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.list({
+     *     // Bodies of items (files/documents) to which the query applies. Supported bodies are 'default', 'domain', 'drive' and 'allDrives'. Prefer 'default' or 'drive' to 'allDrives' for efficiency.
+     *     corpora: 'placeholder-value',
+     *     // The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
+     *     corpus: 'placeholder-value',
+     *     // ID of the shared drive to search.
+     *     driveId: 'placeholder-value',
+     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Deprecated use includeItemsFromAllDrives instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
+     *     maxResults: 'placeholder-value',
+     *     // A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     *     orderBy: 'placeholder-value',
+     *     // Page token for files.
+     *     pageToken: 'placeholder-value',
+     *     // This parameter is deprecated and has no function.
+     *     projection: 'placeholder-value',
+     *     // Query string for searching files.
+     *     q: 'placeholder-value',
+     *     // A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     spaces: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "incompleteSearch": false,
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.list
      * @memberOf! ()
      *
@@ -4736,6 +7189,232 @@ export namespace drive_v2 {
     /**
      * drive.files.patch
      * @desc Updates file metadata and/or content. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.scripts',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.patch({
+     *     // Comma-separated list of parent IDs to add.
+     *     addParents: 'placeholder-value',
+     *     // This parameter is deprecated and has no function.
+     *     convert: 'placeholder-value',
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file to update.
+     *     fileId: 'placeholder-value',
+     *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
+     *     modifiedDateBehavior: 'placeholder-value',
+     *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     *     newRevision: 'placeholder-value',
+     *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     *     ocr: 'placeholder-value',
+     *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     *     ocrLanguage: 'placeholder-value',
+     *     // Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     *     pinned: 'placeholder-value',
+     *     // Comma-separated list of parent IDs to remove.
+     *     removeParents: 'placeholder-value',
+     *     // Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
+     *     setModifiedDate: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // The language of the timed text.
+     *     timedTextLanguage: 'placeholder-value',
+     *     // The timed text track name.
+     *     timedTextTrackName: 'placeholder-value',
+     *     // Whether to update the view date after successfully updating the file.
+     *     updateViewedDate: 'placeholder-value',
+     *     // Whether to use the content as indexable text.
+     *     useContentAsIndexableText: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateLink": "my_alternateLink",
+     *       //   "appDataContents": false,
+     *       //   "canComment": false,
+     *       //   "canReadRevisions": false,
+     *       //   "capabilities": {},
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "copyable": false,
+     *       //   "createdDate": "my_createdDate",
+     *       //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *       //   "description": "my_description",
+     *       //   "downloadUrl": "my_downloadUrl",
+     *       //   "driveId": "my_driveId",
+     *       //   "editable": false,
+     *       //   "embedLink": "my_embedLink",
+     *       //   "etag": "my_etag",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "fileSize": "my_fileSize",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "indexableText": {},
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifyingUser": {},
+     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *       //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *       //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "openWithLinks": {},
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "ownerNames": [],
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": [],
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "shareable": false,
+     *       //   "shared": false,
+     *       //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "spaces": [],
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnail": {},
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "title": "my_title",
+     *       //   "trashedDate": "my_trashedDate",
+     *       //   "trashingUser": {},
+     *       //   "userPermission": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "appDataContents": false,
+     *   //   "canComment": false,
+     *   //   "canReadRevisions": false,
+     *   //   "capabilities": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "copyable": false,
+     *   //   "createdDate": "my_createdDate",
+     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *   //   "description": "my_description",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "driveId": "my_driveId",
+     *   //   "editable": false,
+     *   //   "embedLink": "my_embedLink",
+     *   //   "etag": "my_etag",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "fileSize": "my_fileSize",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "indexableText": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "openWithLinks": {},
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "ownerNames": [],
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": [],
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "shareable": false,
+     *   //   "shared": false,
+     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "spaces": [],
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnail": {},
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "title": "my_title",
+     *   //   "trashedDate": "my_trashedDate",
+     *   //   "trashingUser": {},
+     *   //   "userPermission": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.patch
      * @memberOf! ()
      *
@@ -4824,6 +7503,127 @@ export namespace drive_v2 {
     /**
      * drive.files.touch
      * @desc Set the file's updated time to the current server time.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.touch({
+     *     // The ID of the file to update.
+     *     fileId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "appDataContents": false,
+     *   //   "canComment": false,
+     *   //   "canReadRevisions": false,
+     *   //   "capabilities": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "copyable": false,
+     *   //   "createdDate": "my_createdDate",
+     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *   //   "description": "my_description",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "driveId": "my_driveId",
+     *   //   "editable": false,
+     *   //   "embedLink": "my_embedLink",
+     *   //   "etag": "my_etag",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "fileSize": "my_fileSize",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "indexableText": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "openWithLinks": {},
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "ownerNames": [],
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": [],
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "shareable": false,
+     *   //   "shared": false,
+     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "spaces": [],
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnail": {},
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "title": "my_title",
+     *   //   "trashedDate": "my_trashedDate",
+     *   //   "trashingUser": {},
+     *   //   "userPermission": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.touch
      * @memberOf! ()
      *
@@ -4897,6 +7697,126 @@ export namespace drive_v2 {
     /**
      * drive.files.trash
      * @desc Moves a file to the trash. The currently authenticated user must own the file or be at least a fileOrganizer on the parent for shared drive files.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.trash({
+     *     // The ID of the file to trash.
+     *     fileId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "appDataContents": false,
+     *   //   "canComment": false,
+     *   //   "canReadRevisions": false,
+     *   //   "capabilities": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "copyable": false,
+     *   //   "createdDate": "my_createdDate",
+     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *   //   "description": "my_description",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "driveId": "my_driveId",
+     *   //   "editable": false,
+     *   //   "embedLink": "my_embedLink",
+     *   //   "etag": "my_etag",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "fileSize": "my_fileSize",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "indexableText": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "openWithLinks": {},
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "ownerNames": [],
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": [],
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "shareable": false,
+     *   //   "shared": false,
+     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "spaces": [],
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnail": {},
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "title": "my_title",
+     *   //   "trashedDate": "my_trashedDate",
+     *   //   "trashingUser": {},
+     *   //   "userPermission": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.trash
      * @memberOf! ()
      *
@@ -4970,6 +7890,126 @@ export namespace drive_v2 {
     /**
      * drive.files.untrash
      * @desc Restores a file from the trash.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.untrash({
+     *     // The ID of the file to untrash.
+     *     fileId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "appDataContents": false,
+     *   //   "canComment": false,
+     *   //   "canReadRevisions": false,
+     *   //   "capabilities": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "copyable": false,
+     *   //   "createdDate": "my_createdDate",
+     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *   //   "description": "my_description",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "driveId": "my_driveId",
+     *   //   "editable": false,
+     *   //   "embedLink": "my_embedLink",
+     *   //   "etag": "my_etag",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "fileSize": "my_fileSize",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "indexableText": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "openWithLinks": {},
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "ownerNames": [],
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": [],
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "shareable": false,
+     *   //   "shared": false,
+     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "spaces": [],
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnail": {},
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "title": "my_title",
+     *   //   "trashedDate": "my_trashedDate",
+     *   //   "trashingUser": {},
+     *   //   "userPermission": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.untrash
      * @memberOf! ()
      *
@@ -5043,6 +8083,236 @@ export namespace drive_v2 {
     /**
      * drive.files.update
      * @desc Updates file metadata and/or content.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.scripts',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.update({
+     *     // Comma-separated list of parent IDs to add.
+     *     addParents: 'placeholder-value',
+     *     // This parameter is deprecated and has no function.
+     *     convert: 'placeholder-value',
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file to update.
+     *     fileId: 'placeholder-value',
+     *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
+     *     modifiedDateBehavior: 'placeholder-value',
+     *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     *     newRevision: 'placeholder-value',
+     *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     *     ocr: 'placeholder-value',
+     *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     *     ocrLanguage: 'placeholder-value',
+     *     // Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     *     pinned: 'placeholder-value',
+     *     // Comma-separated list of parent IDs to remove.
+     *     removeParents: 'placeholder-value',
+     *     // Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
+     *     setModifiedDate: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // The language of the timed text.
+     *     timedTextLanguage: 'placeholder-value',
+     *     // The timed text track name.
+     *     timedTextTrackName: 'placeholder-value',
+     *     // Whether to update the view date after successfully updating the file.
+     *     updateViewedDate: 'placeholder-value',
+     *     // Whether to use the content as indexable text.
+     *     useContentAsIndexableText: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateLink": "my_alternateLink",
+     *       //   "appDataContents": false,
+     *       //   "canComment": false,
+     *       //   "canReadRevisions": false,
+     *       //   "capabilities": {},
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "copyable": false,
+     *       //   "createdDate": "my_createdDate",
+     *       //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *       //   "description": "my_description",
+     *       //   "downloadUrl": "my_downloadUrl",
+     *       //   "driveId": "my_driveId",
+     *       //   "editable": false,
+     *       //   "embedLink": "my_embedLink",
+     *       //   "etag": "my_etag",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "fileSize": "my_fileSize",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "indexableText": {},
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifyingUser": {},
+     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *       //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *       //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "openWithLinks": {},
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "ownerNames": [],
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": [],
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "shareable": false,
+     *       //   "shared": false,
+     *       //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "spaces": [],
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnail": {},
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "title": "my_title",
+     *       //   "trashedDate": "my_trashedDate",
+     *       //   "trashingUser": {},
+     *       //   "userPermission": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "appDataContents": false,
+     *   //   "canComment": false,
+     *   //   "canReadRevisions": false,
+     *   //   "capabilities": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "copyable": false,
+     *   //   "createdDate": "my_createdDate",
+     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
+     *   //   "description": "my_description",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "driveId": "my_driveId",
+     *   //   "editable": false,
+     *   //   "embedLink": "my_embedLink",
+     *   //   "etag": "my_etag",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "fileSize": "my_fileSize",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "indexableText": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
+     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "openWithLinks": {},
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "ownerNames": [],
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": [],
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "shareable": false,
+     *   //   "shared": false,
+     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "spaces": [],
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnail": {},
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "title": "my_title",
+     *   //   "trashedDate": "my_trashedDate",
+     *   //   "trashingUser": {},
+     *   //   "userPermission": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.update
      * @memberOf! ()
      *
@@ -5138,6 +8408,95 @@ export namespace drive_v2 {
     /**
      * drive.files.watch
      * @desc Subscribe to changes on a file
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.files.watch({
+     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files.
+     *     acknowledgeAbuse: 'placeholder-value',
+     *     // The ID for the file in question.
+     *     fileId: 'placeholder-value',
+     *     // This parameter is deprecated and has no function.
+     *     projection: 'placeholder-value',
+     *     // Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
+     *     revisionId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
+     *     updateViewedDate: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.watch
      * @memberOf! ()
      *
@@ -5777,6 +9136,51 @@ export namespace drive_v2 {
     /**
      * drive.parents.delete
      * @desc Removes a parent from a file.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.parents.delete({
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's last parent is removed, the item is placed under its owner's root.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the parent.
+     *     parentId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.parents.delete
      * @memberOf! ()
      *
@@ -5849,6 +9253,63 @@ export namespace drive_v2 {
     /**
      * drive.parents.get
      * @desc Gets a specific parent reference.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.parents.get({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the parent.
+     *     parentId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "isRoot": false,
+     *   //   "kind": "my_kind",
+     *   //   "parentLink": "my_parentLink",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.parents.get
      * @memberOf! ()
      *
@@ -5922,6 +9383,75 @@ export namespace drive_v2 {
     /**
      * drive.parents.insert
      * @desc Adds a parent folder for a file.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.parents.insert({
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the child's owner makes the request, the child is removed from all current folders and placed in the requested folder. Any other requests that increase the number of the child's parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "isRoot": false,
+     *       //   "kind": "my_kind",
+     *       //   "parentLink": "my_parentLink",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "isRoot": false,
+     *   //   "kind": "my_kind",
+     *   //   "parentLink": "my_parentLink",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.parents.insert
      * @memberOf! ()
      *
@@ -5999,6 +9529,60 @@ export namespace drive_v2 {
     /**
      * drive.parents.list
      * @desc Lists a file's parents.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.parents.list({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.parents.list
      * @memberOf! ()
      *
@@ -6153,6 +9737,55 @@ export namespace drive_v2 {
     /**
      * drive.permissions.delete
      * @desc Deletes a permission from a file or shared drive.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.delete({
+     *     // The ID for the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The ID for the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.delete
      * @memberOf! ()
      *
@@ -6228,6 +9861,81 @@ export namespace drive_v2 {
     /**
      * drive.permissions.get
      * @desc Gets a permission by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.get({
+     *     // The ID for the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The ID for the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalRoles": [],
+     *   //   "authKey": "my_authKey",
+     *   //   "deleted": false,
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "etag": "my_etag",
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type",
+     *   //   "value": "my_value",
+     *   //   "withLink": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.get
      * @memberOf! ()
      *
@@ -6304,6 +10012,59 @@ export namespace drive_v2 {
     /**
      * drive.permissions.getIdForEmail
      * @desc Returns the permission ID for an email address.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.getIdForEmail({
+     *     // The email address for which to return a permission ID
+     *     email: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.getIdForEmail
      * @memberOf! ()
      *
@@ -6378,6 +10139,108 @@ export namespace drive_v2 {
     /**
      * drive.permissions.insert
      * @desc Inserts a permission for a file or shared drive.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.insert({
+     *     // A plain text custom message to include in notification emails.
+     *     emailMessage: 'placeholder-value',
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. See moveToNewOwnersRoot for details.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID for the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.
+     *     moveToNewOwnersRoot: 'placeholder-value',
+     *     // Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
+     *     sendNotificationEmails: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalRoles": [],
+     *       //   "authKey": "my_authKey",
+     *       //   "deleted": false,
+     *       //   "domain": "my_domain",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "etag": "my_etag",
+     *       //   "expirationDate": "my_expirationDate",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "permissionDetails": [],
+     *       //   "photoLink": "my_photoLink",
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "teamDrivePermissionDetails": [],
+     *       //   "type": "my_type",
+     *       //   "value": "my_value",
+     *       //   "withLink": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalRoles": [],
+     *   //   "authKey": "my_authKey",
+     *   //   "deleted": false,
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "etag": "my_etag",
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type",
+     *   //   "value": "my_value",
+     *   //   "withLink": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.insert
      * @memberOf! ()
      *
@@ -6460,6 +10323,70 @@ export namespace drive_v2 {
     /**
      * drive.permissions.list
      * @desc Lists a file's or shared drive's permissions.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.list({
+     *     // The ID for the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
+     *     maxResults: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.list
      * @memberOf! ()
      *
@@ -6538,6 +10465,106 @@ export namespace drive_v2 {
     /**
      * drive.permissions.patch
      * @desc Updates a permission using patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.patch({
+     *     // The ID for the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The ID for the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Whether to remove the expiration date.
+     *     removeExpiration: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
+     *     transferOwnership: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalRoles": [],
+     *       //   "authKey": "my_authKey",
+     *       //   "deleted": false,
+     *       //   "domain": "my_domain",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "etag": "my_etag",
+     *       //   "expirationDate": "my_expirationDate",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "permissionDetails": [],
+     *       //   "photoLink": "my_photoLink",
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "teamDrivePermissionDetails": [],
+     *       //   "type": "my_type",
+     *       //   "value": "my_value",
+     *       //   "withLink": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalRoles": [],
+     *   //   "authKey": "my_authKey",
+     *   //   "deleted": false,
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "etag": "my_etag",
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type",
+     *   //   "value": "my_value",
+     *   //   "withLink": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.patch
      * @memberOf! ()
      *
@@ -6618,6 +10645,106 @@ export namespace drive_v2 {
     /**
      * drive.permissions.update
      * @desc Updates a permission.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.update({
+     *     // The ID for the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The ID for the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Whether to remove the expiration date.
+     *     removeExpiration: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
+     *     transferOwnership: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalRoles": [],
+     *       //   "authKey": "my_authKey",
+     *       //   "deleted": false,
+     *       //   "domain": "my_domain",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "etag": "my_etag",
+     *       //   "expirationDate": "my_expirationDate",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "permissionDetails": [],
+     *       //   "photoLink": "my_photoLink",
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "teamDrivePermissionDetails": [],
+     *       //   "type": "my_type",
+     *       //   "value": "my_value",
+     *       //   "withLink": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalRoles": [],
+     *   //   "authKey": "my_authKey",
+     *   //   "deleted": false,
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "etag": "my_etag",
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type",
+     *   //   "value": "my_value",
+     *   //   "withLink": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.update
      * @memberOf! ()
      *
@@ -6931,6 +11058,53 @@ export namespace drive_v2 {
     /**
      * drive.properties.delete
      * @desc Deletes a property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.properties.delete({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The key of the property.
+     *     propertyKey: 'placeholder-value',
+     *     // The visibility of the property.
+     *     visibility: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.properties.delete
      * @memberOf! ()
      *
@@ -7004,6 +11178,66 @@ export namespace drive_v2 {
     /**
      * drive.properties.get
      * @desc Gets a property by its key.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.properties.get({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The key of the property.
+     *     propertyKey: 'placeholder-value',
+     *     // The visibility of the property.
+     *     visibility: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "key": "my_key",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "value": "my_value",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.properties.get
      * @memberOf! ()
      *
@@ -7076,6 +11310,72 @@ export namespace drive_v2 {
     /**
      * drive.properties.insert
      * @desc Adds a property to a file, or updates it if it already exists.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.properties.insert({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "key": "my_key",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "value": "my_value",
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "key": "my_key",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "value": "my_value",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.properties.insert
      * @memberOf! ()
      *
@@ -7149,6 +11449,60 @@ export namespace drive_v2 {
     /**
      * drive.properties.list
      * @desc Lists a file's properties.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.properties.list({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.properties.list
      * @memberOf! ()
      *
@@ -7222,6 +11576,76 @@ export namespace drive_v2 {
     /**
      * drive.properties.patch
      * @desc Updates a property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.properties.patch({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The key of the property.
+     *     propertyKey: 'placeholder-value',
+     *     // The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
+     *     visibility: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "key": "my_key",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "value": "my_value",
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "key": "my_key",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "value": "my_value",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.properties.patch
      * @memberOf! ()
      *
@@ -7295,6 +11719,76 @@ export namespace drive_v2 {
     /**
      * drive.properties.update
      * @desc Updates a property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.properties.update({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The key of the property.
+     *     propertyKey: 'placeholder-value',
+     *     // The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
+     *     visibility: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "key": "my_key",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "value": "my_value",
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "key": "my_key",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "value": "my_value",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.properties.update
      * @memberOf! ()
      *
@@ -7493,6 +11987,51 @@ export namespace drive_v2 {
     /**
      * drive.replies.delete
      * @desc Deletes a reply.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.delete({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.delete
      * @memberOf! ()
      *
@@ -7566,6 +12105,67 @@ export namespace drive_v2 {
     /**
      * drive.replies.get
      * @desc Gets a reply.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.get({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // If set, this will succeed when retrieving a deleted reply.
+     *     includeDeleted: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "replyId": "my_replyId",
+     *   //   "verb": "my_verb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.get
      * @memberOf! ()
      *
@@ -7642,6 +12242,78 @@ export namespace drive_v2 {
     /**
      * drive.replies.insert
      * @desc Creates a new reply to the given comment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.insert({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdDate": "my_createdDate",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "replyId": "my_replyId",
+     *       //   "verb": "my_verb"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "replyId": "my_replyId",
+     *   //   "verb": "my_verb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.insert
      * @memberOf! ()
      *
@@ -7716,6 +12388,65 @@ export namespace drive_v2 {
     /**
      * drive.replies.list
      * @desc Lists all of the replies to a comment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.list({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // If set, all replies, including deleted replies (with content stripped) will be returned.
+     *     includeDeleted: 'placeholder-value',
+     *     // The maximum number of replies to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.list
      * @memberOf! ()
      *
@@ -7792,6 +12523,80 @@ export namespace drive_v2 {
     /**
      * drive.replies.patch
      * @desc Updates an existing reply.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.patch({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdDate": "my_createdDate",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "replyId": "my_replyId",
+     *       //   "verb": "my_verb"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "replyId": "my_replyId",
+     *   //   "verb": "my_verb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.patch
      * @memberOf! ()
      *
@@ -7868,6 +12673,80 @@ export namespace drive_v2 {
     /**
      * drive.replies.update
      * @desc Updates an existing reply.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.update({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdDate": "my_createdDate",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "replyId": "my_replyId",
+     *       //   "verb": "my_verb"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "replyId": "my_replyId",
+     *   //   "verb": "my_verb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.update
      * @memberOf! ()
      *
@@ -8089,6 +12968,50 @@ export namespace drive_v2 {
     /**
      * drive.revisions.delete
      * @desc Permanently deletes a file version. You can only delete revisions for files with binary content, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.delete({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the revision.
+     *     revisionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.delete
      * @memberOf! ()
      *
@@ -8160,6 +13083,76 @@ export namespace drive_v2 {
     /**
      * drive.revisions.get
      * @desc Gets a specific revision.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.get({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the revision.
+     *     revisionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "etag": "my_etag",
+     *   //   "exportLinks": {},
+     *   //   "fileSize": "my_fileSize",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "pinned": false,
+     *   //   "publishAuto": false,
+     *   //   "published": false,
+     *   //   "publishedLink": "my_publishedLink",
+     *   //   "publishedOutsideDomain": false,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.get
      * @memberOf! ()
      *
@@ -8231,6 +13224,65 @@ export namespace drive_v2 {
     /**
      * drive.revisions.list
      * @desc Lists a file's revisions.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.list({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Maximum number of revisions to return.
+     *     maxResults: 'placeholder-value',
+     *     // Page token for revisions. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.list
      * @memberOf! ()
      *
@@ -8306,6 +13358,97 @@ export namespace drive_v2 {
     /**
      * drive.revisions.patch
      * @desc Updates a revision.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.patch({
+     *     // The ID for the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID for the revision.
+     *     revisionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "downloadUrl": "my_downloadUrl",
+     *       //   "etag": "my_etag",
+     *       //   "exportLinks": {},
+     *       //   "fileSize": "my_fileSize",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifyingUser": {},
+     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "pinned": false,
+     *       //   "publishAuto": false,
+     *       //   "published": false,
+     *       //   "publishedLink": "my_publishedLink",
+     *       //   "publishedOutsideDomain": false,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "etag": "my_etag",
+     *   //   "exportLinks": {},
+     *   //   "fileSize": "my_fileSize",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "pinned": false,
+     *   //   "publishAuto": false,
+     *   //   "published": false,
+     *   //   "publishedLink": "my_publishedLink",
+     *   //   "publishedOutsideDomain": false,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.patch
      * @memberOf! ()
      *
@@ -8378,6 +13521,97 @@ export namespace drive_v2 {
     /**
      * drive.revisions.update
      * @desc Updates a revision.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.update({
+     *     // The ID for the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID for the revision.
+     *     revisionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "downloadUrl": "my_downloadUrl",
+     *       //   "etag": "my_etag",
+     *       //   "exportLinks": {},
+     *       //   "fileSize": "my_fileSize",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifyingUser": {},
+     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedDate": "my_modifiedDate",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "pinned": false,
+     *       //   "publishAuto": false,
+     *       //   "published": false,
+     *       //   "publishedLink": "my_publishedLink",
+     *       //   "publishedOutsideDomain": false,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "etag": "my_etag",
+     *   //   "exportLinks": {},
+     *   //   "fileSize": "my_fileSize",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedDate": "my_modifiedDate",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "pinned": false,
+     *   //   "publishAuto": false,
+     *   //   "published": false,
+     *   //   "publishedLink": "my_publishedLink",
+     *   //   "publishedOutsideDomain": false,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.update
      * @memberOf! ()
      *
@@ -8547,6 +13781,44 @@ export namespace drive_v2 {
     /**
      * drive.teamdrives.delete
      * @desc Deprecated use drives.delete instead.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.delete({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.delete
      * @memberOf! ()
      *
@@ -8619,6 +13891,63 @@ export namespace drive_v2 {
     /**
      * drive.teamdrives.get
      * @desc Deprecated use drives.get instead.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.get({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.get
      * @memberOf! ()
      *
@@ -8693,6 +14022,75 @@ export namespace drive_v2 {
     /**
      * drive.teamdrives.insert
      * @desc Deprecated use drives.insert instead.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.insert({
+     *     // An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdDate": "my_createdDate",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.insert
      * @memberOf! ()
      *
@@ -8768,6 +14166,60 @@ export namespace drive_v2 {
     /**
      * drive.teamdrives.list
      * @desc Deprecated use drives.list instead.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.list({
+     *     // Maximum number of Team Drives to return.
+     *     maxResults: 'placeholder-value',
+     *     // Page token for Team Drives.
+     *     pageToken: 'placeholder-value',
+     *     // Query string for searching Team Drives.
+     *     q: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.list
      * @memberOf! ()
      *
@@ -8844,6 +14296,77 @@ export namespace drive_v2 {
     /**
      * drive.teamdrives.update
      * @desc Deprecated use drives.update instead.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.update({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdDate": "my_createdDate",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdDate": "my_createdDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.update
      * @memberOf! ()
      *

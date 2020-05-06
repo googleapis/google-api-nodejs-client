@@ -2108,65 +2108,63 @@ export namespace container_v1 {
      * container.projects.aggregated.usableSubnetworks.list
      * @desc Lists subnetworks that are usable for creating clusters in a project.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.aggregated.usableSubnetworks.list({
+     *     // Filtering currently only supports equality on the networkProjectId and must
+     *     // be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId`
+     *     // is the project which owns the listed subnetworks. This defaults to the
+     *     // parent project ID.
+     *     filter: 'placeholder-value',
+     *     // The max number of results per page that should be returned. If the number
+     *     // of available results is larger than `page_size`, a `next_page_token` is
+     *     // returned which can be used to get the next page of results in subsequent
+     *     // requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     pageSize: 'placeholder-value',
+     *     // Specifies a page token to use. Set this to the nextPageToken returned by
+     *     // previous list requests to get the next page of results.
+     *     pageToken: 'placeholder-value',
      *     // The parent project where subnetworks are usable.
-     *     // Specified in the format 'projects/<'.
-     *     parent: 'projects/my-project',  // TODO: Update placeholder value.
+     *     // Specified in the format 'projects/x'.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subnetworks": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var subnetworksPage = response['subnetworks'];
-     *     if (!subnetworksPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < subnetworksPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `subnetworksPage`:
-     *       console.log(JSON.stringify(subnetworksPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       container.projects.aggregated.usableSubnetworks.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   container.projects.aggregated.usableSubnetworks.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.aggregated.usableSubnetworks.list
      * @memberOf! ()
      *
@@ -2291,52 +2289,62 @@ export namespace container_v1 {
      * container.projects.locations.getServerConfig
      * @desc Returns configuration info about the Google Kubernetes Engine service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project and location) of the server config to get,
-     *     // specified in the format 'projects/</locations/<'.
-     *     name: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.getServerConfig(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.getServerConfig({
+     *     // The name (project and location) of the server config to get,
+     *     // specified in the format 'projects/x/locations/x'.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://support.google.com/cloud/answer/6158840).
+     *     // This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     *     // operations for. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultClusterVersion": "my_defaultClusterVersion",
+     *   //   "defaultImageType": "my_defaultImageType",
+     *   //   "validImageTypes": [],
+     *   //   "validMasterVersions": [],
+     *   //   "validNodeVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.getServerConfig
      * @memberOf! ()
      *
@@ -2450,56 +2458,73 @@ export namespace container_v1 {
      * container.projects.locations.clusters.completeIpRotation
      * @desc Completes master IP rotation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster id) of the cluster to complete IP
-     *     // rotation. Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.completeIpRotation(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.completeIpRotation({
+     *     // The name (project, location, cluster id) of the cluster to complete IP
+     *     // rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.completeIpRotation
      * @memberOf! ()
      *
@@ -2576,56 +2601,73 @@ export namespace container_v1 {
      * container.projects.locations.clusters.create
      * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances.  By default, the cluster is created in the project's [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).  One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster.  Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The parent (project and location) where the cluster will be created.
-     *     // Specified in the format 'projects/</locations/<'.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.create({
+     *     // The parent (project and location) where the cluster will be created.
+     *     // Specified in the format 'projects/x/locations/x'.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cluster": {},
+     *       //   "parent": "my_parent",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.create
      * @memberOf! ()
      *
@@ -2702,52 +2744,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.delete
      * @desc Deletes the cluster, including the Kubernetes endpoint and all worker nodes.  Firewalls and routes that were configured during cluster creation are also deleted.  Other Google Compute Engine resources that might be in use by the cluster, such as load balancer resources, are not deleted if they weren't present when the cluster was initially created.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to delete.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.delete({
+     *     // Deprecated. The name of the cluster to delete.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster) of the cluster to delete.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://support.google.com/cloud/answer/6158840).
+     *     // This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.delete
      * @memberOf! ()
      *
@@ -2823,52 +2887,110 @@ export namespace container_v1 {
      * container.projects.locations.clusters.get
      * @desc Gets the details of a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to retrieve.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.get({
+     *     // Deprecated. The name of the cluster to retrieve.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster) of the cluster to retrieve.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://support.google.com/cloud/answer/6158840).
+     *     // This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addonsConfig": {},
+     *   //   "authenticatorGroupsConfig": {},
+     *   //   "autoscaling": {},
+     *   //   "binaryAuthorization": {},
+     *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
+     *   //   "conditions": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "currentMasterVersion": "my_currentMasterVersion",
+     *   //   "currentNodeCount": 0,
+     *   //   "currentNodeVersion": "my_currentNodeVersion",
+     *   //   "databaseEncryption": {},
+     *   //   "defaultMaxPodsConstraint": {},
+     *   //   "description": "my_description",
+     *   //   "enableKubernetesAlpha": false,
+     *   //   "enableTpu": false,
+     *   //   "endpoint": "my_endpoint",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "initialClusterVersion": "my_initialClusterVersion",
+     *   //   "initialNodeCount": 0,
+     *   //   "instanceGroupUrls": [],
+     *   //   "ipAllocationPolicy": {},
+     *   //   "labelFingerprint": "my_labelFingerprint",
+     *   //   "legacyAbac": {},
+     *   //   "location": "my_location",
+     *   //   "locations": [],
+     *   //   "loggingService": "my_loggingService",
+     *   //   "maintenancePolicy": {},
+     *   //   "masterAuth": {},
+     *   //   "masterAuthorizedNetworksConfig": {},
+     *   //   "monitoringService": "my_monitoringService",
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "networkConfig": {},
+     *   //   "networkPolicy": {},
+     *   //   "nodeConfig": {},
+     *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePools": [],
+     *   //   "privateClusterConfig": {},
+     *   //   "resourceLabels": {},
+     *   //   "resourceUsageExportConfig": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servicesIpv4Cidr": "my_servicesIpv4Cidr",
+     *   //   "shieldedNodes": {},
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "subnetwork": "my_subnetwork",
+     *   //   "tpuIpv4CidrBlock": "my_tpuIpv4CidrBlock",
+     *   //   "verticalPodAutoscaling": {},
+     *   //   "workloadIdentityConfig": {},
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.get
      * @memberOf! ()
      *
@@ -2942,52 +3064,50 @@ export namespace container_v1 {
      * container.projects.locations.clusters.getJwks
      * @desc Gets the public component of the cluster signing keys in JSON Web Key format. This API is not yet intended for general use, and is not available for all clusters.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The cluster (project, location, cluster id) to get keys for. Specified in
-     *     // the format 'projects/</locations/</clusters/<'.
-     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.getJwks(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.getJwks({
+     *     // The cluster (project, location, cluster id) to get keys for. Specified in
+     *     // the format 'projects/x/locations/x/clusters/x'.
+     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheHeader": {},
+     *   //   "keys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.getJwks
      * @memberOf! ()
      *
@@ -3064,53 +3184,60 @@ export namespace container_v1 {
      * container.projects.locations.clusters.list
      * @desc Lists all clusters owned by a project in either the specified zone or all zones.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The parent (project and location) where the clusters will be listed.
-     *     // Specified in the format 'projects/</locations/<'.
-     *     // Location "-" matches all zones and all regions.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.list({
+     *     // The parent (project and location) where the clusters will be listed.
+     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Location "-" matches all zones and all regions.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://support.google.com/cloud/answer/6158840).
+     *     // This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides, or "-" for all zones. This field has been deprecated and
+     *     // replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusters": [],
+     *   //   "missingZones": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.list
      * @memberOf! ()
      *
@@ -3190,56 +3317,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setAddons
      * @desc Sets the addons for a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to set addons.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setAddons(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setAddons({
+     *     // The name (project, location, cluster) of the cluster to set addons.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addonsConfig": {},
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setAddons
      * @memberOf! ()
      *
@@ -3316,56 +3461,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setLegacyAbac
      * @desc Enables or disables the ABAC authorization mechanism on a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster id) of the cluster to set legacy abac.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setLegacyAbac(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setLegacyAbac({
+     *     // The name (project, location, cluster id) of the cluster to set legacy abac.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "enabled": false,
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setLegacyAbac
      * @memberOf! ()
      *
@@ -3442,56 +3605,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setLocations
      * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update) instead.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to set locations.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setLocations(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setLocations({
+     *     // The name (project, location, cluster) of the cluster to set locations.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "locations": [],
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setLocations
      * @memberOf! ()
      *
@@ -3568,56 +3749,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setLogging
      * @desc Sets the logging service for a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to set logging.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setLogging(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setLogging({
+     *     // The name (project, location, cluster) of the cluster to set logging.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "loggingService": "my_loggingService",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setLogging
      * @memberOf! ()
      *
@@ -3694,57 +3893,75 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setMaintenancePolicy
      * @desc Sets the maintenance policy for a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setMaintenancePolicy({
      *     // The name (project, location, cluster id) of the cluster to set maintenance
      *     // policy.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "maintenancePolicy": {},
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setMaintenancePolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setMaintenancePolicy
      * @memberOf! ()
      *
@@ -3823,56 +4040,75 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setMasterAuth
      * @desc Sets master auth materials. Currently supports changing the admin password or a specific cluster, either via password generation or explicitly setting the password.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to set auth.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setMasterAuth(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setMasterAuth({
+     *     // The name (project, location, cluster) of the cluster to set auth.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "update": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setMasterAuth
      * @memberOf! ()
      *
@@ -3949,56 +4185,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setMonitoring
      * @desc Sets the monitoring service for a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to set monitoring.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setMonitoring(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setMonitoring({
+     *     // The name (project, location, cluster) of the cluster to set monitoring.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "monitoringService": "my_monitoringService",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setMonitoring
      * @memberOf! ()
      *
@@ -4075,56 +4329,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setNetworkPolicy
      * @desc Enables or disables Network Policy for a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster id) of the cluster to set networking
-     *     // policy. Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setNetworkPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setNetworkPolicy({
+     *     // The name (project, location, cluster id) of the cluster to set networking
+     *     // policy. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "networkPolicy": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setNetworkPolicy
      * @memberOf! ()
      *
@@ -4201,56 +4473,75 @@ export namespace container_v1 {
      * container.projects.locations.clusters.setResourceLabels
      * @desc Sets labels on a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster id) of the cluster to set labels.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.setResourceLabels(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setResourceLabels({
+     *     // The name (project, location, cluster id) of the cluster to set labels.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "labelFingerprint": "my_labelFingerprint",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "resourceLabels": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.setResourceLabels
      * @memberOf! ()
      *
@@ -4327,56 +4618,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.startIpRotation
      * @desc Starts master IP rotation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster id) of the cluster to start IP
-     *     // rotation. Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.startIpRotation(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.startIpRotation({
+     *     // The name (project, location, cluster id) of the cluster to start IP
+     *     // rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "rotateCredentials": false,
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.startIpRotation
      * @memberOf! ()
      *
@@ -4453,57 +4762,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.update
      * @desc Updates the settings of a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to update.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.update({
+     *     // The name (project, location, cluster) of the cluster to update.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "update": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.update
      * @memberOf! ()
      *
@@ -4577,56 +4903,74 @@ export namespace container_v1 {
      * container.projects.locations.clusters.updateMaster
      * @desc Updates the master for a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster) of the cluster to update.
-     *     // Specified in the format 'projects/</locations/</clusters/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.updateMaster(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.updateMaster({
+     *     // The name (project, location, cluster) of the cluster to update.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "masterVersion": "my_masterVersion",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.updateMaster
      * @memberOf! ()
      *
@@ -5029,57 +5373,75 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.create
      * @desc Creates a node pool for a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.create({
      *     // The parent (project, location, cluster id) where the node pool will be
      *     // created. Specified in the format
-     *     // 'projects/</locations/</clusters/<'.
-     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
+     *     // 'projects/x/locations/x/clusters/x'.
+     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "nodePool": {},
+     *       //   "parent": "my_parent",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.create
      * @memberOf! ()
      *
@@ -5156,53 +5518,79 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.delete
      * @desc Deletes a node pool from a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.delete({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster, node pool id) of the node pool to
      *     // delete. Specified in the format
-     *     // 'projects/</locations/</clusters/</nodePools/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-node-pool',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     name:
+     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     // Deprecated. The name of the node pool to delete.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://developers.google.com/console/help/new/#projectnumber).
+     *     // This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.delete
      * @memberOf! ()
      *
@@ -5279,53 +5667,80 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.get
      * @desc Retrieves the requested node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.get({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster, node pool id) of the node pool to
      *     // get. Specified in the format
-     *     // 'projects/</locations/</clusters/</nodePools/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-node-pool',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     name:
+     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     // Deprecated. The name of the node pool.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://developers.google.com/console/help/new/#projectnumber).
+     *     // This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoscaling": {},
+     *   //   "conditions": [],
+     *   //   "config": {},
+     *   //   "initialNodeCount": 0,
+     *   //   "instanceGroupUrls": [],
+     *   //   "locations": [],
+     *   //   "management": {},
+     *   //   "maxPodsConstraint": {},
+     *   //   "name": "my_name",
+     *   //   "podIpv4CidrSize": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "upgradeSettings": {},
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.get
      * @memberOf! ()
      *
@@ -5400,52 +5815,61 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.list
      * @desc Lists the node pools for a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The parent (project, location, cluster id) where the node pools will be
-     *     // listed. Specified in the format 'projects/</locations/</clusters/<'.
-     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.list({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the parent field.
+     *     clusterId: 'placeholder-value',
+     *     // The parent (project, location, cluster id) where the node pools will be
+     *     // listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://developers.google.com/console/help/new/#projectnumber).
+     *     // This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the parent
+     *     // field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nodePools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.list
      * @memberOf! ()
      *
@@ -5526,57 +5950,76 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.rollback
      * @desc Rolls back a previously Aborted or Failed NodePool upgrade. This makes no changes if the last upgrade successfully completed.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.rollback({
      *     // The name (project, location, cluster, node pool id) of the node poll to
      *     // rollback upgrade.
-     *     // Specified in the format 'projects/</locations/</clusters/</nodePools/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-node-pool',  // TODO: Update placeholder value.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     name:
+     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.rollback(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.rollback
      * @memberOf! ()
      *
@@ -5653,57 +6096,79 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.setAutoscaling
      * @desc Sets the autoscaling settings for the specified node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster, node pool) of the node pool to set
-     *     // autoscaler settings. Specified in the format
-     *     // 'projects/</locations/</clusters/</nodePools/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-node-pool',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.setAutoscaling(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.setAutoscaling(
+     *     {
+     *       // The name (project, location, cluster, node pool) of the node pool to set
+     *       // autoscaler settings. Specified in the format
+     *       // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *       name:
+     *         'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "autoscaling": {},
+     *         //   "clusterId": "my_clusterId",
+     *         //   "name": "my_name",
+     *         //   "nodePoolId": "my_nodePoolId",
+     *         //   "projectId": "my_projectId",
+     *         //   "zone": "my_zone"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.setAutoscaling
      * @memberOf! ()
      *
@@ -5780,57 +6245,79 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.setManagement
      * @desc Sets the NodeManagement options for a node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, cluster, node pool id) of the node pool to set
-     *     // management properties. Specified in the format
-     *     // 'projects/</locations/</clusters/</nodePools/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-node-pool',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.setManagement(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.setManagement(
+     *     {
+     *       // The name (project, location, cluster, node pool id) of the node pool to set
+     *       // management properties. Specified in the format
+     *       // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *       name:
+     *         'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "clusterId": "my_clusterId",
+     *         //   "management": {},
+     *         //   "name": "my_name",
+     *         //   "nodePoolId": "my_nodePoolId",
+     *         //   "projectId": "my_projectId",
+     *         //   "zone": "my_zone"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.setManagement
      * @memberOf! ()
      *
@@ -5907,57 +6394,77 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.setSize
      * @desc Sets the size for a specific node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.setSize({
      *     // The name (project, location, cluster, node pool id) of the node pool to set
      *     // size.
-     *     // Specified in the format 'projects/</locations/</clusters/</nodePools/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-node-pool',  // TODO: Update placeholder value.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     name:
+     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodeCount": 0,
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.setSize(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.setSize
      * @memberOf! ()
      *
@@ -6034,58 +6541,81 @@ export namespace container_v1 {
      * container.projects.locations.clusters.nodePools.update
      * @desc Updates the version and/or image type for the specified node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.update({
      *     // The name (project, location, cluster, node pool) of the node pool to
      *     // update. Specified in the format
-     *     // 'projects/</locations/</clusters/</nodePools/<'.
-     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-node-pool',  // TODO: Update placeholder value.
+     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     name:
+     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "imageType": "my_imageType",
+     *       //   "locations": [],
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "nodeVersion": "my_nodeVersion",
+     *       //   "projectId": "my_projectId",
+     *       //   "upgradeSettings": {},
+     *       //   "workloadMetadataConfig": {},
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.nodePools.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.nodePools.update
      * @memberOf! ()
      *
@@ -6349,52 +6879,59 @@ export namespace container_v1 {
      * container.projects.locations.clusters.well-known.getOpenid-configuration
      * @desc Gets the OIDC discovery document for the cluster. See the [OpenID Connect Discovery 1.0 specification](https://openid.net/specs/openid-connect-discovery-1_0.html) for details. This API is not yet intended for general use, and is not available for all clusters.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The cluster (project, location, cluster id) to get the discovery document
-     *     // for. Specified in the format 'projects/</locations/</clusters/<'.
-     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.clusters.wellKnown.getOpenid-configuration(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res =
+     *     (await container.projects.locations.clusters.well) -
+     *     known.getOpenid -
+     *     configuration({
+     *       // The cluster (project, location, cluster id) to get the discovery document
+     *       // for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *       parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheHeader": {},
+     *   //   "claims_supported": [],
+     *   //   "grant_types": [],
+     *   //   "id_token_signing_alg_values_supported": [],
+     *   //   "issuer": "my_issuer",
+     *   //   "jwks_uri": "my_jwks_uri",
+     *   //   "response_types_supported": [],
+     *   //   "subject_types_supported": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.clusters.well-known.getOpenid-configuration
      * @memberOf! ()
      *
@@ -6493,53 +7030,58 @@ export namespace container_v1 {
      * container.projects.locations.operations.cancel
      * @desc Cancels the specified operation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, operation id) of the operation to cancel.
-     *     // Specified in the format 'projects/</locations/</operations/<'.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.operations.cancel(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.operations.cancel({
+     *     // The name (project, location, operation id) of the operation to cancel.
+     *     // Specified in the format 'projects/x/locations/x/operations/x'.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "operationId": "my_operationId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.operations.cancel
      * @memberOf! ()
      *
@@ -6611,52 +7153,74 @@ export namespace container_v1 {
      * container.projects.locations.operations.get
      * @desc Gets the specified operation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name (project, location, operation id) of the operation to get.
-     *     // Specified in the format 'projects/</locations/</operations/<'.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.operations.get({
+     *     // The name (project, location, operation id) of the operation to get.
+     *     // Specified in the format 'projects/x/locations/x/operations/x'.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *     // Deprecated. The server-assigned `name` of the operation.
+     *     // This field has been deprecated and replaced by the name field.
+     *     operationId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://support.google.com/cloud/answer/6158840).
+     *     // This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -6732,53 +7296,60 @@ export namespace container_v1 {
      * container.projects.locations.operations.list
      * @desc Lists all operations in a project in a specific zone or all zones.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The parent (project and location) where the operations will be listed.
-     *     // Specified in the format 'projects/</locations/<'.
-     *     // Location "-" matches all zones and all regions.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.locations.operations.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.operations.list({
+     *     // The parent (project and location) where the operations will be listed.
+     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Location "-" matches all zones and all regions.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Deprecated. The Google Developers Console [project ID or project
+     *     // number](https://support.google.com/cloud/answer/6158840).
+     *     // This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     *     // operations for, or `-` for all zones. This field has been deprecated and
+     *     // replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "missingZones": [],
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.locations.operations.list
      * @memberOf! ()
      *
@@ -6931,58 +7502,62 @@ export namespace container_v1 {
      * container.projects.zones.getServerconfig
      * @desc Returns configuration info about the Google Kubernetes Engine service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.getServerconfig({
+     *     // The name (project and location) of the server config to get,
+     *     // specified in the format 'projects/x/locations/x'.
+     *     name: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) to return operations for.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.getServerconfig(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     *     // operations for. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultClusterVersion": "my_defaultClusterVersion",
+     *   //   "defaultImageType": "my_defaultImageType",
+     *   //   "validImageTypes": [],
+     *   //   "validMasterVersions": [],
+     *   //   "validNodeVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.getServerconfig
      * @memberOf! ()
      *
@@ -7091,67 +7666,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.addons
      * @desc Sets the addons for a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.addons({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addonsConfig": {},
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.addons(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.addons
      * @memberOf! ()
      *
@@ -7230,67 +7821,82 @@ export namespace container_v1 {
      * container.projects.zones.clusters.completeIpRotation
      * @desc Completes master IP rotation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.completeIpRotation({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.completeIpRotation(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.completeIpRotation
      * @memberOf! ()
      *
@@ -7369,63 +7975,79 @@ export namespace container_v1 {
      * container.projects.zones.clusters.create
      * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances.  By default, the cluster is created in the project's [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).  One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster.  Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.create({
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the parent field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the parent field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the parent
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cluster": {},
+     *       //   "parent": "my_parent",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.create
      * @memberOf! ()
      *
@@ -7502,63 +8124,74 @@ export namespace container_v1 {
      * container.projects.zones.clusters.delete
      * @desc Deletes the cluster, including the Kubernetes endpoint and all worker nodes.  Firewalls and routes that were configured during cluster creation are also deleted.  Other Google Compute Engine resources that might be in use by the cluster, such as load balancer resources, are not deleted if they weren't present when the cluster was initially created.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.delete({
+     *     // Deprecated. The name of the cluster to delete.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster) of the cluster to delete.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the cluster to delete.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.delete
      * @memberOf! ()
      *
@@ -7637,63 +8270,110 @@ export namespace container_v1 {
      * container.projects.zones.clusters.get
      * @desc Gets the details of a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.get({
+     *     // Deprecated. The name of the cluster to retrieve.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster) of the cluster to retrieve.
+     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     name: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the cluster to retrieve.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addonsConfig": {},
+     *   //   "authenticatorGroupsConfig": {},
+     *   //   "autoscaling": {},
+     *   //   "binaryAuthorization": {},
+     *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
+     *   //   "conditions": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "currentMasterVersion": "my_currentMasterVersion",
+     *   //   "currentNodeCount": 0,
+     *   //   "currentNodeVersion": "my_currentNodeVersion",
+     *   //   "databaseEncryption": {},
+     *   //   "defaultMaxPodsConstraint": {},
+     *   //   "description": "my_description",
+     *   //   "enableKubernetesAlpha": false,
+     *   //   "enableTpu": false,
+     *   //   "endpoint": "my_endpoint",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "initialClusterVersion": "my_initialClusterVersion",
+     *   //   "initialNodeCount": 0,
+     *   //   "instanceGroupUrls": [],
+     *   //   "ipAllocationPolicy": {},
+     *   //   "labelFingerprint": "my_labelFingerprint",
+     *   //   "legacyAbac": {},
+     *   //   "location": "my_location",
+     *   //   "locations": [],
+     *   //   "loggingService": "my_loggingService",
+     *   //   "maintenancePolicy": {},
+     *   //   "masterAuth": {},
+     *   //   "masterAuthorizedNetworksConfig": {},
+     *   //   "monitoringService": "my_monitoringService",
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "networkConfig": {},
+     *   //   "networkPolicy": {},
+     *   //   "nodeConfig": {},
+     *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePools": [],
+     *   //   "privateClusterConfig": {},
+     *   //   "resourceLabels": {},
+     *   //   "resourceUsageExportConfig": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servicesIpv4Cidr": "my_servicesIpv4Cidr",
+     *   //   "shieldedNodes": {},
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "subnetwork": "my_subnetwork",
+     *   //   "tpuIpv4CidrBlock": "my_tpuIpv4CidrBlock",
+     *   //   "verticalPodAutoscaling": {},
+     *   //   "workloadIdentityConfig": {},
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.get
      * @memberOf! ()
      *
@@ -7770,67 +8450,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.legacyAbac
      * @desc Enables or disables the ABAC authorization mechanism on a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.legacyAbac({
+     *     // Deprecated. The name of the cluster to update.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to update.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "enabled": false,
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.legacyAbac(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.legacyAbac
      * @memberOf! ()
      *
@@ -7909,59 +8605,60 @@ export namespace container_v1 {
      * container.projects.zones.clusters.list
      * @desc Lists all clusters owned by a project in either the specified zone or all zones.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.list({
+     *     // The parent (project and location) where the clusters will be listed.
+     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Location "-" matches all zones and all regions.
+     *     parent: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the parent field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides, or "-" for all zones.
-     *     // This field has been deprecated and replaced by the parent field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides, or "-" for all zones. This field has been deprecated and
+     *     // replaced by the parent field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusters": [],
+     *   //   "missingZones": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.list
      * @memberOf! ()
      *
@@ -8040,67 +8737,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.locations
      * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update) instead.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.locations({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "locations": [],
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.locations(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.locations
      * @memberOf! ()
      *
@@ -8179,67 +8892,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.logging
      * @desc Sets the logging service for a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.logging({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "loggingService": "my_loggingService",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.logging(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.logging
      * @memberOf! ()
      *
@@ -8318,67 +9047,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.master
      * @desc Updates the master for a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.master({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "masterVersion": "my_masterVersion",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.master(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.master
      * @memberOf! ()
      *
@@ -8457,67 +9202,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.monitoring
      * @desc Sets the monitoring service for a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.monitoring({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "monitoringService": "my_monitoringService",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.monitoring(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.monitoring
      * @memberOf! ()
      *
@@ -8596,67 +9357,84 @@ export namespace container_v1 {
      * container.projects.zones.clusters.resourceLabels
      * @desc Sets labels on a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.resourceLabels({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "labelFingerprint": "my_labelFingerprint",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "resourceLabels": {},
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.resourceLabels(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.resourceLabels
      * @memberOf! ()
      *
@@ -8735,64 +9513,80 @@ export namespace container_v1 {
      * container.projects.zones.clusters.setMaintenancePolicy
      * @desc Sets the maintenance policy for a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The Google Developers Console [project ID or project
-     *     // number](https://support.google.com/cloud/answer/6158840).
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     // The name of the cluster to update.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.setMaintenancePolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.setMaintenancePolicy({
+     *     // Required. The name of the cluster to update.
+     *     clusterId: 'placeholder-value',
+     *     // Required. The Google Developers Console [project ID or project
+     *     // number](https://support.google.com/cloud/answer/6158840).
+     *     projectId: 'placeholder-value',
+     *     // Required. The name of the Google Compute Engine
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "maintenancePolicy": {},
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.setMaintenancePolicy
      * @memberOf! ()
      *
@@ -8873,67 +9667,84 @@ export namespace container_v1 {
      * container.projects.zones.clusters.setMasterAuth
      * @desc Sets master auth materials. Currently supports changing the admin password or a specific cluster, either via password generation or explicitly setting the password.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.setMasterAuth({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "update": {},
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.setMasterAuth(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.setMasterAuth
      * @memberOf! ()
      *
@@ -9012,67 +9823,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.setNetworkPolicy
      * @desc Enables or disables Network Policy for a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.setNetworkPolicy({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "networkPolicy": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.setNetworkPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.setNetworkPolicy
      * @memberOf! ()
      *
@@ -9151,67 +9978,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.startIpRotation
      * @desc Starts master IP rotation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.startIpRotation({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "rotateCredentials": false,
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.startIpRotation(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.startIpRotation
      * @memberOf! ()
      *
@@ -9290,68 +10133,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.update
      * @desc Updates the settings of a specific cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.update({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "update": {},
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.update
      * @memberOf! ()
      *
@@ -9852,71 +10710,87 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.autoscaling
      * @desc Sets the autoscaling settings for the specified node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.autoscaling({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the node pool to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     nodePoolId: 'my-node-pool-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoscaling": {},
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.autoscaling(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.autoscaling
      * @memberOf! ()
      *
@@ -9996,67 +10870,83 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.create
      * @desc Creates a node pool for a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.create({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the parent field.
+     *     clusterId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
      *     // This field has been deprecated and replaced by the parent field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the parent field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the parent
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster.
-     *     // This field has been deprecated and replaced by the parent field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "nodePool": {},
+     *       //   "parent": "my_parent",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.create
      * @memberOf! ()
      *
@@ -10135,67 +11025,78 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.delete
      * @desc Deletes a node pool from a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.delete({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster, node pool id) of the node pool to
+     *     // delete. Specified in the format
+     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to delete.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the cluster.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the node pool to delete.
-     *     // This field has been deprecated and replaced by the name field.
-     *     nodePoolId: 'my-node-pool-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.delete
      * @memberOf! ()
      *
@@ -10275,67 +11176,79 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.get
      * @desc Retrieves the requested node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.get({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster, node pool id) of the node pool to
+     *     // get. Specified in the format
+     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The name of the node pool.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the cluster.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the node pool.
-     *     // This field has been deprecated and replaced by the name field.
-     *     nodePoolId: 'my-node-pool-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoscaling": {},
+     *   //   "conditions": [],
+     *   //   "config": {},
+     *   //   "initialNodeCount": 0,
+     *   //   "instanceGroupUrls": [],
+     *   //   "locations": [],
+     *   //   "management": {},
+     *   //   "maxPodsConstraint": {},
+     *   //   "name": "my_name",
+     *   //   "podIpv4CidrSize": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "upgradeSettings": {},
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.get
      * @memberOf! ()
      *
@@ -10413,63 +11326,61 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.list
      * @desc Lists the node pools for a cluster.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.list({
+     *     // Deprecated. The name of the cluster.
+     *     // This field has been deprecated and replaced by the parent field.
+     *     clusterId: 'placeholder-value',
+     *     // The parent (project, location, cluster id) where the node pools will be
+     *     // listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     parent: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
      *     // This field has been deprecated and replaced by the parent field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the parent field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the cluster.
-     *     // This field has been deprecated and replaced by the parent field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the parent
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nodePools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.list
      * @memberOf! ()
      *
@@ -10550,71 +11461,86 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.rollback
      * @desc Rolls back a previously Aborted or Failed NodePool upgrade. This makes no changes if the last upgrade successfully completed.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.rollback({
+     *     // Deprecated. The name of the cluster to rollback.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to rollback.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to rollback.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the node pool to rollback.
-     *     // This field has been deprecated and replaced by the name field.
-     *     nodePoolId: 'my-node-pool-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.rollback(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.rollback
      * @memberOf! ()
      *
@@ -10694,71 +11620,87 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.setManagement
      * @desc Sets the NodeManagement options for a node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.setManagement({
+     *     // Deprecated. The name of the cluster to update.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to update.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to update.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the node pool to update.
-     *     // This field has been deprecated and replaced by the name field.
-     *     nodePoolId: 'my-node-pool-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "management": {},
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.setManagement(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.setManagement
      * @memberOf! ()
      *
@@ -10838,71 +11780,87 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.setSize
      * @desc Sets the size for a specific node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.setSize({
+     *     // Deprecated. The name of the cluster to update.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to update.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to update.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the node pool to update.
-     *     // This field has been deprecated and replaced by the name field.
-     *     nodePoolId: 'my-node-pool-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodeCount": 0,
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.setSize(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.setSize
      * @memberOf! ()
      *
@@ -10982,71 +11940,91 @@ export namespace container_v1 {
      * container.projects.zones.clusters.nodePools.update
      * @desc Updates the version and/or image type for the specified node pool.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.update({
+     *     // Deprecated. The name of the cluster to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to upgrade.
+     *     // This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The name of the cluster to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The name of the node pool to upgrade.
-     *     // This field has been deprecated and replaced by the name field.
-     *     nodePoolId: 'my-node-pool-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "imageType": "my_imageType",
+     *       //   "locations": [],
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "nodeVersion": "my_nodeVersion",
+     *       //   "projectId": "my_projectId",
+     *       //   "upgradeSettings": {},
+     *       //   "workloadMetadataConfig": {},
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.clusters.nodePools.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.clusters.nodePools.update
      * @memberOf! ()
      *
@@ -11384,63 +12362,67 @@ export namespace container_v1 {
      * container.projects.zones.operations.cancel
      * @desc Cancels the specified operation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.operations.cancel({
+     *     // Deprecated. The server-assigned `name` of the operation.
+     *     // This field has been deprecated and replaced by the name field.
+     *     operationId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the operation resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // operation resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *
-     *     // Deprecated. The server-assigned `name` of the operation.
-     *     // This field has been deprecated and replaced by the name field.
-     *     operationId: 'my-operation-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "operationId": "my_operationId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.operations.cancel(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.operations.cancel
      * @memberOf! ()
      *
@@ -11517,63 +12499,74 @@ export namespace container_v1 {
      * container.projects.zones.operations.get
      * @desc Gets the specified operation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.operations.get({
+     *     // The name (project, location, operation id) of the operation to get.
+     *     // Specified in the format 'projects/x/locations/x/operations/x'.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The server-assigned `name` of the operation.
+     *     // This field has been deprecated and replaced by the name field.
+     *     operationId: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the name field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) in which the cluster
-     *     // resides.
-     *     // This field has been deprecated and replaced by the name field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     // Deprecated. The server-assigned `name` of the operation.
-     *     // This field has been deprecated and replaced by the name field.
-     *     operationId: 'my-operation-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *     // cluster resides. This field has been deprecated and replaced by the name
+     *     // field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.operations.get
      * @memberOf! ()
      *
@@ -11652,58 +12645,60 @@ export namespace container_v1 {
      * container.projects.zones.operations.list
      * @desc Lists all operations in a project in a specific zone or all zones.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Kubernetes Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/container
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var container = google.container('v1');
+     * const container = google.container('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.operations.list({
+     *     // The parent (project and location) where the operations will be listed.
+     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Location "-" matches all zones and all regions.
+     *     parent: 'placeholder-value',
      *     // Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
      *     // This field has been deprecated and replaced by the parent field.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
+     *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine
-     *     // [zone](/compute/docs/zones#available) to return operations for, or `-` for
-     *     // all zones. This field has been deprecated and replaced by the parent field.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   container.projects.zones.operations.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     // [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     *     // operations for, or `-` for all zones. This field has been deprecated and
+     *     // replaced by the parent field.
+     *     zone: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "missingZones": [],
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias container.projects.zones.operations.list
      * @memberOf! ()
      *

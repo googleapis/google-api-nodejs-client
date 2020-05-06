@@ -595,6 +595,71 @@ export namespace plus_v1 {
     /**
      * plus.activities.get
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.activities.get({
+     *     // The ID of the activity to get.
+     *     activityId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": {},
+     *   //   "actor": {},
+     *   //   "address": "my_address",
+     *   //   "annotation": "my_annotation",
+     *   //   "crosspostSource": "my_crosspostSource",
+     *   //   "etag": "my_etag",
+     *   //   "geocode": "my_geocode",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": {},
+     *   //   "object": {},
+     *   //   "placeId": "my_placeId",
+     *   //   "placeName": "my_placeName",
+     *   //   "provider": {},
+     *   //   "published": "my_published",
+     *   //   "radius": "my_radius",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url",
+     *   //   "verb": "my_verb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.activities.get
      * @memberOf! ()
      *
@@ -666,6 +731,66 @@ export namespace plus_v1 {
     /**
      * plus.activities.list
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.activities.list({
+     *     // The collection of activities to list.
+     *     collection: 'placeholder-value',
+     *     // The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.activities.list
      * @memberOf! ()
      *
@@ -741,6 +866,68 @@ export namespace plus_v1 {
     /**
      * plus.activities.search
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.activities.search({
+     *     // Specify the preferred language to search with. See search language codes for available values.
+     *     language: 'placeholder-value',
+     *     // The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // Specifies how to order search results.
+     *     orderBy: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+     *     pageToken: 'placeholder-value',
+     *     // Full-text search query string.
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.activities.search
      * @memberOf! ()
      *
@@ -889,6 +1076,62 @@ export namespace plus_v1 {
     /**
      * plus.comments.get
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.comments.get({
+     *     // The ID of the comment to get.
+     *     commentId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actor": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": [],
+     *   //   "kind": "my_kind",
+     *   //   "object": {},
+     *   //   "plusoners": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "verb": "my_verb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.comments.get
      * @memberOf! ()
      *
@@ -960,6 +1203,65 @@ export namespace plus_v1 {
     /**
      * plus.comments.list
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.comments.list({
+     *     // The ID of the activity to get comments for.
+     *     activityId: 'placeholder-value',
+     *     // The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The order in which to sort the list of comments.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.comments.list
      * @memberOf! ()
      *
@@ -1077,6 +1379,83 @@ export namespace plus_v1 {
     /**
      * plus.people.get
      * @desc Get a person's profile. If your app uses scope https://www.googleapis.com/auth/plus.login, this method is guaranteed to return ageRange and language.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *       'https://www.googleapis.com/auth/userinfo.profile',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.people.get({
+     *     // The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aboutMe": "my_aboutMe",
+     *   //   "ageRange": {},
+     *   //   "birthday": "my_birthday",
+     *   //   "braggingRights": "my_braggingRights",
+     *   //   "circledByCount": 0,
+     *   //   "cover": {},
+     *   //   "currentLocation": "my_currentLocation",
+     *   //   "displayName": "my_displayName",
+     *   //   "domain": "my_domain",
+     *   //   "emails": [],
+     *   //   "etag": "my_etag",
+     *   //   "gender": "my_gender",
+     *   //   "id": "my_id",
+     *   //   "image": {},
+     *   //   "isPlusUser": false,
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "name": {},
+     *   //   "nickname": "my_nickname",
+     *   //   "objectType": "my_objectType",
+     *   //   "occupation": "my_occupation",
+     *   //   "organizations": [],
+     *   //   "placesLived": [],
+     *   //   "plusOneCount": 0,
+     *   //   "relationshipStatus": "my_relationshipStatus",
+     *   //   "skills": "my_skills",
+     *   //   "tagline": "my_tagline",
+     *   //   "url": "my_url",
+     *   //   "urls": [],
+     *   //   "verified": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.people.get
      * @memberOf! ()
      *
@@ -1148,6 +1527,66 @@ export namespace plus_v1 {
     /**
      * plus.people.list
      * @desc List all of the people in the specified collection.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.people.list({
+     *     // The collection of people to list.
+     *     collection: 'placeholder-value',
+     *     // The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The order to return people in.
+     *     orderBy: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.people.list
      * @memberOf! ()
      *
@@ -1224,6 +1663,64 @@ export namespace plus_v1 {
     /**
      * plus.people.listByActivity
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.people.listByActivity({
+     *     // The ID of the activity to get the list of people for.
+     *     activityId: 'placeholder-value',
+     *     // The collection of people to list.
+     *     collection: 'placeholder-value',
+     *     // The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.people.listByActivity
      * @memberOf! ()
      *
@@ -1300,6 +1797,64 @@ export namespace plus_v1 {
     /**
      * plus.people.search
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await plus.people.search({
+     *     // Specify the preferred language to search with. See search language codes for available values.
+     *     language: 'placeholder-value',
+     *     // The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+     *     pageToken: 'placeholder-value',
+     *     // Specify a query string for full text search of public text in all profiles.
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.people.search
      * @memberOf! ()
      *

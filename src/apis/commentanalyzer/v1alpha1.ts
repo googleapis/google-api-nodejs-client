@@ -327,6 +327,65 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * commentanalyzer.comments.analyze
      * @desc Analyzes the provided text and returns scores for requested attributes.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const commentanalyzer = google.commentanalyzer('v1alpha1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await commentanalyzer.comments.analyze({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientToken": "my_clientToken",
+     *       //   "comment": {},
+     *       //   "communityId": "my_communityId",
+     *       //   "context": {},
+     *       //   "doNotStore": false,
+     *       //   "languages": [],
+     *       //   "requestedAttributes": {},
+     *       //   "sessionId": "my_sessionId",
+     *       //   "spanAnnotations": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeScores": {},
+     *   //   "clientToken": "my_clientToken",
+     *   //   "detectedLanguages": [],
+     *   //   "languages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias commentanalyzer.comments.analyze
      * @memberOf! ()
      *
@@ -405,6 +464,62 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * commentanalyzer.comments.suggestscore
      * @desc Suggest comment scores as training data.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const commentanalyzer = google.commentanalyzer('v1alpha1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await commentanalyzer.comments.suggestscore({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeScores": {},
+     *       //   "clientToken": "my_clientToken",
+     *       //   "comment": {},
+     *       //   "communityId": "my_communityId",
+     *       //   "context": {},
+     *       //   "languages": [],
+     *       //   "sessionId": "my_sessionId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientToken": "my_clientToken",
+     *   //   "detectedLanguages": [],
+     *   //   "requestedLanguages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias commentanalyzer.comments.suggestscore
      * @memberOf! ()
      *

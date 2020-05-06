@@ -1247,6 +1247,55 @@ export namespace people_v1 {
     /**
      * people.contactGroups.batchGet
      * @desc Get a list of contact groups owned by the authenticated user by specifying a list of contact group resource names.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/contacts',
+     *       'https://www.googleapis.com/auth/contacts.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.contactGroups.batchGet({
+     *     // Optional. Specifies the maximum number of members to return for each group. Defaults
+     *     // to 0 if not set, which will return zero members.
+     *     maxMembers: 'placeholder-value',
+     *     // Required. The resource names of the contact groups to get.
+     *     resourceNames: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.contactGroups.batchGet
      * @memberOf! ()
      *
@@ -1331,6 +1380,61 @@ export namespace people_v1 {
     /**
      * people.contactGroups.create
      * @desc Create a new contact group owned by the authenticated user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.contactGroups.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contactGroup": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "formattedName": "my_formattedName",
+     *   //   "groupType": "my_groupType",
+     *   //   "memberCount": 0,
+     *   //   "memberResourceNames": [],
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.contactGroups.create
      * @memberOf! ()
      *
@@ -1402,6 +1506,49 @@ export namespace people_v1 {
     /**
      * people.contactGroups.delete
      * @desc Delete an existing contact group owned by the authenticated user by specifying a contact group resource name.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.contactGroups.delete({
+     *     // Optional. Set to true to also delete the contacts in the specified group.
+     *     deleteContacts: 'placeholder-value',
+     *     // Required. The resource name of the contact group to delete.
+     *     resourceName: 'contactGroups/my-contactGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.contactGroups.delete
      * @memberOf! ()
      *
@@ -1475,6 +1622,62 @@ export namespace people_v1 {
     /**
      * people.contactGroups.get
      * @desc Get a specific contact group owned by the authenticated user by specifying a contact group resource name.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/contacts',
+     *       'https://www.googleapis.com/auth/contacts.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.contactGroups.get({
+     *     // Optional. Specifies the maximum number of members to return. Defaults to 0 if not
+     *     // set, which will return zero members.
+     *     maxMembers: 'placeholder-value',
+     *     // Required. The resource name of the contact group to get.
+     *     resourceName: 'contactGroups/my-contactGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "formattedName": "my_formattedName",
+     *   //   "groupType": "my_groupType",
+     *   //   "memberCount": 0,
+     *   //   "memberResourceNames": [],
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.contactGroups.get
      * @memberOf! ()
      *
@@ -1550,6 +1753,63 @@ export namespace people_v1 {
     /**
      * people.contactGroups.list
      * @desc List all contact groups owned by the authenticated user. Members of the contact groups are not populated.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/contacts',
+     *       'https://www.googleapis.com/auth/contacts.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.contactGroups.list({
+     *     // Optional. The maximum number of resources to return. Valid values are between 1 and
+     *     // 1000, inclusive. Defaults to 30 if not set or set to 0.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous call to
+     *     // [ListContactGroups](/people/api/rest/v1/contactgroups/list).
+     *     // Requests the next page of resources.
+     *     pageToken: 'placeholder-value',
+     *     // Optional. A sync token, returned by a previous call to `contactgroups.list`.
+     *     // Only resources changed since the sync token was created will be returned.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contactGroups": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.contactGroups.list
      * @memberOf! ()
      *
@@ -1630,6 +1890,65 @@ export namespace people_v1 {
     /**
      * people.contactGroups.update
      * @desc Update the name of an existing contact group owned by the authenticated user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.contactGroups.update({
+     *     // The resource name for the contact group, assigned by the server. An ASCII
+     *     // string, in the form of `contactGroups/{contact_group_id}`.
+     *     resourceName: 'contactGroups/my-contactGroup',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contactGroup": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "formattedName": "my_formattedName",
+     *   //   "groupType": "my_groupType",
+     *   //   "memberCount": 0,
+     *   //   "memberResourceNames": [],
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.contactGroups.update
      * @memberOf! ()
      *
@@ -1810,6 +2129,59 @@ export namespace people_v1 {
     /**
      * people.contactGroups.members.modify
      * @desc Modify the members of a contact group owned by the authenticated user.  The only system contact groups that can have members added are `contactGroups/myContacts` and `contactGroups/starred`. Other system contact groups are deprecated and can only have contacts removed.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.contactGroups.members.modify({
+     *     // Required. The resource name of the contact group to modify.
+     *     resourceName: 'contactGroups/my-contactGroup',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resourceNamesToAdd": [],
+     *       //   "resourceNamesToRemove": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "canNotRemoveLastContactGroupResourceNames": [],
+     *   //   "notFoundResourceNames": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.contactGroups.members.modify
      * @memberOf! ()
      *
@@ -1921,6 +2293,116 @@ export namespace people_v1 {
     /**
      * people.people.createContact
      * @desc Create a new contact and return the person resource for that contact.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.people.createContact({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addresses": [],
+     *       //   "ageRange": "my_ageRange",
+     *       //   "ageRanges": [],
+     *       //   "biographies": [],
+     *       //   "birthdays": [],
+     *       //   "braggingRights": [],
+     *       //   "coverPhotos": [],
+     *       //   "emailAddresses": [],
+     *       //   "etag": "my_etag",
+     *       //   "events": [],
+     *       //   "genders": [],
+     *       //   "imClients": [],
+     *       //   "interests": [],
+     *       //   "locales": [],
+     *       //   "memberships": [],
+     *       //   "metadata": {},
+     *       //   "names": [],
+     *       //   "nicknames": [],
+     *       //   "occupations": [],
+     *       //   "organizations": [],
+     *       //   "phoneNumbers": [],
+     *       //   "photos": [],
+     *       //   "relations": [],
+     *       //   "relationshipInterests": [],
+     *       //   "relationshipStatuses": [],
+     *       //   "residences": [],
+     *       //   "resourceName": "my_resourceName",
+     *       //   "sipAddresses": [],
+     *       //   "skills": [],
+     *       //   "taglines": [],
+     *       //   "urls": [],
+     *       //   "userDefined": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": [],
+     *   //   "ageRange": "my_ageRange",
+     *   //   "ageRanges": [],
+     *   //   "biographies": [],
+     *   //   "birthdays": [],
+     *   //   "braggingRights": [],
+     *   //   "coverPhotos": [],
+     *   //   "emailAddresses": [],
+     *   //   "etag": "my_etag",
+     *   //   "events": [],
+     *   //   "genders": [],
+     *   //   "imClients": [],
+     *   //   "interests": [],
+     *   //   "locales": [],
+     *   //   "memberships": [],
+     *   //   "metadata": {},
+     *   //   "names": [],
+     *   //   "nicknames": [],
+     *   //   "occupations": [],
+     *   //   "organizations": [],
+     *   //   "phoneNumbers": [],
+     *   //   "photos": [],
+     *   //   "relations": [],
+     *   //   "relationshipInterests": [],
+     *   //   "relationshipStatuses": [],
+     *   //   "residences": [],
+     *   //   "resourceName": "my_resourceName",
+     *   //   "sipAddresses": [],
+     *   //   "skills": [],
+     *   //   "taglines": [],
+     *   //   "urls": [],
+     *   //   "userDefined": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.people.createContact
      * @memberOf! ()
      *
@@ -1993,6 +2475,47 @@ export namespace people_v1 {
     /**
      * people.people.deleteContact
      * @desc Delete a contact person. Any non-contact data will not be deleted.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.people.deleteContact({
+     *     // Required. The resource name of the contact to delete.
+     *     resourceName: 'people/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.people.deleteContact
      * @memberOf! ()
      *
@@ -2065,6 +2588,79 @@ export namespace people_v1 {
     /**
      * people.people.deleteContactPhoto
      * @desc Delete a contact's photo.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.people.deleteContactPhoto({
+     *     // Optional. A field mask to restrict which fields on the person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Defaults to empty
+     *     // if not set, which will skip the post mutate get. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * ageRanges
+     *     // * biographies
+     *     // * birthdays
+     *     // * coverPhotos
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * metadata
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * photos
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * skills
+     *     // * urls
+     *     // * userDefined
+     *     personFields: 'placeholder-value',
+     *     // Required. The resource name of the contact whose photo will be deleted.
+     *     resourceName: 'people/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "person": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.people.deleteContactPhoto
      * @memberOf! ()
      *
@@ -2147,6 +2743,132 @@ export namespace people_v1 {
     /**
      * people.people.get
      * @desc Provides information about a person by specifying a resource name. Use `people/me` to indicate the authenticated user.  The request throws a 400 error if 'personFields' is not specified.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/contacts',
+     *       'https://www.googleapis.com/auth/contacts.readonly',
+     *       'https://www.googleapis.com/auth/directory.readonly',
+     *       'https://www.googleapis.com/auth/user.addresses.read',
+     *       'https://www.googleapis.com/auth/user.birthday.read',
+     *       'https://www.googleapis.com/auth/user.emails.read',
+     *       'https://www.googleapis.com/auth/user.gender.read',
+     *       'https://www.googleapis.com/auth/user.organization.read',
+     *       'https://www.googleapis.com/auth/user.phonenumbers.read',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *       'https://www.googleapis.com/auth/userinfo.profile',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.people.get({
+     *     // Required. A field mask to restrict which fields on the person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * ageRanges
+     *     // * biographies
+     *     // * birthdays
+     *     // * coverPhotos
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * metadata
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * photos
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * skills
+     *     // * urls
+     *     // * userDefined
+     *     personFields: 'placeholder-value',
+     *     // Required. Comma-separated list of person fields to be included in the response. Each
+     *     // path should start with `person.`: for example, `person.names` or
+     *     // `person.photos`.
+     *     'requestMask.includeField': 'placeholder-value',
+     *     // Required. The resource name of the person to provide information about.
+     *     //
+     *     // - To get information about the authenticated user, specify `people/me`.
+     *     // - To get information about a google account, specify
+     *     //  `people/{account_id}`.
+     *     // - To get information about a contact, specify the resource name that
+     *     //   identifies the contact as returned by
+     *     // [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     *     resourceName: 'people/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": [],
+     *   //   "ageRange": "my_ageRange",
+     *   //   "ageRanges": [],
+     *   //   "biographies": [],
+     *   //   "birthdays": [],
+     *   //   "braggingRights": [],
+     *   //   "coverPhotos": [],
+     *   //   "emailAddresses": [],
+     *   //   "etag": "my_etag",
+     *   //   "events": [],
+     *   //   "genders": [],
+     *   //   "imClients": [],
+     *   //   "interests": [],
+     *   //   "locales": [],
+     *   //   "memberships": [],
+     *   //   "metadata": {},
+     *   //   "names": [],
+     *   //   "nicknames": [],
+     *   //   "occupations": [],
+     *   //   "organizations": [],
+     *   //   "phoneNumbers": [],
+     *   //   "photos": [],
+     *   //   "relations": [],
+     *   //   "relationshipInterests": [],
+     *   //   "relationshipStatuses": [],
+     *   //   "residences": [],
+     *   //   "resourceName": "my_resourceName",
+     *   //   "sipAddresses": [],
+     *   //   "skills": [],
+     *   //   "taglines": [],
+     *   //   "urls": [],
+     *   //   "userDefined": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.people.get
      * @memberOf! ()
      *
@@ -2220,6 +2942,103 @@ export namespace people_v1 {
     /**
      * people.people.getBatchGet
      * @desc Provides information about a list of specific people by specifying a list of requested resource names. Use `people/me` to indicate the authenticated user.  The request throws a 400 error if 'personFields' is not specified.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/contacts',
+     *       'https://www.googleapis.com/auth/contacts.readonly',
+     *       'https://www.googleapis.com/auth/directory.readonly',
+     *       'https://www.googleapis.com/auth/user.addresses.read',
+     *       'https://www.googleapis.com/auth/user.birthday.read',
+     *       'https://www.googleapis.com/auth/user.emails.read',
+     *       'https://www.googleapis.com/auth/user.gender.read',
+     *       'https://www.googleapis.com/auth/user.organization.read',
+     *       'https://www.googleapis.com/auth/user.phonenumbers.read',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *       'https://www.googleapis.com/auth/userinfo.profile',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.people.getBatchGet({
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * ageRanges
+     *     // * biographies
+     *     // * birthdays
+     *     // * coverPhotos
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * metadata
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * photos
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * skills
+     *     // * urls
+     *     // * userDefined
+     *     personFields: 'placeholder-value',
+     *     // Required. Comma-separated list of person fields to be included in the response. Each
+     *     // path should start with `person.`: for example, `person.names` or
+     *     // `person.photos`.
+     *     'requestMask.includeField': 'placeholder-value',
+     *     // Required. The resource names of the people to provide information about.
+     *     //
+     *     // - To get information about the authenticated user, specify `people/me`.
+     *     // - To get information about a google account, specify
+     *     //   `people/{account_id}`.
+     *     // - To get information about a contact, specify the resource name that
+     *     //   identifies the contact as returned by
+     *     // [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     *     //
+     *     // You can include up to 50 resource names in one request.
+     *     resourceNames: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.people.getBatchGet
      * @memberOf! ()
      *
@@ -2296,6 +3115,146 @@ export namespace people_v1 {
     /**
      * people.people.updateContact
      * @desc Update contact data for an existing contact person. Any non-contact data will not be modified.  The request throws a 400 error if `updatePersonFields` is not specified.  The request throws a 400 error if `person.metadata.sources` is not specified for the contact to be updated.  The request throws a 400 error with an error with reason `"failedPrecondition"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and re-apply their updates to the latest person.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.people.updateContact({
+     *     // The resource name for the person, assigned by the server. An ASCII string
+     *     // with a max length of 27 characters, in the form of
+     *     // `people/{person_id}`.
+     *     resourceName: 'people/[^/]+',
+     *     // Required. A field mask to restrict which fields on the person are updated. Multiple
+     *     // fields can be specified by separating them with commas.
+     *     // All updated fields will be replaced. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * biographies
+     *     // * birthdays
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * urls
+     *     // * userDefined
+     *     updatePersonFields: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addresses": [],
+     *       //   "ageRange": "my_ageRange",
+     *       //   "ageRanges": [],
+     *       //   "biographies": [],
+     *       //   "birthdays": [],
+     *       //   "braggingRights": [],
+     *       //   "coverPhotos": [],
+     *       //   "emailAddresses": [],
+     *       //   "etag": "my_etag",
+     *       //   "events": [],
+     *       //   "genders": [],
+     *       //   "imClients": [],
+     *       //   "interests": [],
+     *       //   "locales": [],
+     *       //   "memberships": [],
+     *       //   "metadata": {},
+     *       //   "names": [],
+     *       //   "nicknames": [],
+     *       //   "occupations": [],
+     *       //   "organizations": [],
+     *       //   "phoneNumbers": [],
+     *       //   "photos": [],
+     *       //   "relations": [],
+     *       //   "relationshipInterests": [],
+     *       //   "relationshipStatuses": [],
+     *       //   "residences": [],
+     *       //   "resourceName": "my_resourceName",
+     *       //   "sipAddresses": [],
+     *       //   "skills": [],
+     *       //   "taglines": [],
+     *       //   "urls": [],
+     *       //   "userDefined": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": [],
+     *   //   "ageRange": "my_ageRange",
+     *   //   "ageRanges": [],
+     *   //   "biographies": [],
+     *   //   "birthdays": [],
+     *   //   "braggingRights": [],
+     *   //   "coverPhotos": [],
+     *   //   "emailAddresses": [],
+     *   //   "etag": "my_etag",
+     *   //   "events": [],
+     *   //   "genders": [],
+     *   //   "imClients": [],
+     *   //   "interests": [],
+     *   //   "locales": [],
+     *   //   "memberships": [],
+     *   //   "metadata": {},
+     *   //   "names": [],
+     *   //   "nicknames": [],
+     *   //   "occupations": [],
+     *   //   "organizations": [],
+     *   //   "phoneNumbers": [],
+     *   //   "photos": [],
+     *   //   "relations": [],
+     *   //   "relationshipInterests": [],
+     *   //   "relationshipStatuses": [],
+     *   //   "residences": [],
+     *   //   "resourceName": "my_resourceName",
+     *   //   "sipAddresses": [],
+     *   //   "skills": [],
+     *   //   "taglines": [],
+     *   //   "urls": [],
+     *   //   "userDefined": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.people.updateContact
      * @memberOf! ()
      *
@@ -2370,6 +3329,58 @@ export namespace people_v1 {
     /**
      * people.people.updateContactPhoto
      * @desc Update a contact's photo.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.people.updateContactPhoto({
+     *     // Required. Person resource name
+     *     resourceName: 'people/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "personFields": "my_personFields",
+     *       //   "photoBytes": "my_photoBytes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "person": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.people.updateContactPhoto
      * @memberOf! ()
      *
@@ -2577,6 +3588,113 @@ export namespace people_v1 {
     /**
      * people.people.connections.list
      * @desc Provides a list of the authenticated user's contacts merged with any connected profiles.  The request throws a 400 error if 'personFields' is not specified.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/contacts',
+     *       'https://www.googleapis.com/auth/contacts.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.people.connections.list({
+     *     // Optional. The number of connections to include in the response. Valid values are
+     *     // between 1 and 2000, inclusive. Defaults to 100 if not set or set to 0.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListConnections` call.
+     *     // Provide this to retrieve the subsequent page.
+     *     //
+     *     // When paginating, all other parameters provided to `ListConnections`
+     *     // must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * ageRanges
+     *     // * biographies
+     *     // * birthdays
+     *     // * coverPhotos
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * metadata
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * photos
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * skills
+     *     // * urls
+     *     // * userDefined
+     *     personFields: 'placeholder-value',
+     *     // Required. Comma-separated list of person fields to be included in the response. Each
+     *     // path should start with `person.`: for example, `person.names` or
+     *     // `person.photos`.
+     *     'requestMask.includeField': 'placeholder-value',
+     *     // Optional. Whether the response should include `next_sync_token`, which can be used to
+     *     // get all changes since the last request. For subsequent sync requests use
+     *     // the `sync_token` param instead. Initial sync requests that specify
+     *     // `request_sync_token` have an additional rate limit.
+     *     requestSyncToken: 'placeholder-value',
+     *     // Required. The resource name to return connections for. Only `people/me` is valid.
+     *     resourceName: 'people/[^/]+',
+     *     // Optional. The order in which the connections should be sorted. Defaults to
+     *     // `LAST_MODIFIED_ASCENDING`.
+     *     sortOrder: 'placeholder-value',
+     *     // Optional. A sync token, received from a previous `ListConnections` call.
+     *     // Provide this to retrieve only the resources changed since the last request.
+     *     // Sync requests that specify `sync_token` have an additional rate limit.
+     *     //
+     *     // When syncing, all other parameters provided to `ListConnections`
+     *     // must match the call that provided the sync token.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connections": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "totalItems": 0,
+     *   //   "totalPeople": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias people.people.connections.list
      * @memberOf! ()
      *

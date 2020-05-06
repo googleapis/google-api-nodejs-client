@@ -3151,6 +3151,64 @@ export namespace docs_v1 {
     /**
      * docs.documents.batchUpdate
      * @desc Applies one or more updates to the document.  Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests.  For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies, the reply to the third request, and another empty reply, in that order.  Because other users may be editing the document, the document might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the document should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.batchUpdate({
+     *     // The ID of the document to update.
+     *     documentId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": [],
+     *       //   "writeControl": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentId": "my_documentId",
+     *   //   "replies": [],
+     *   //   "writeControl": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias docs.documents.batchUpdate
      * @memberOf! ()
      *
@@ -3233,6 +3291,88 @@ export namespace docs_v1 {
     /**
      * docs.documents.create
      * @desc Creates a blank document using the title given in the request. Other fields in the request, including any provided content, are ignored.  Returns the created document.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "body": {},
+     *       //   "documentId": "my_documentId",
+     *       //   "documentStyle": {},
+     *       //   "footers": {},
+     *       //   "footnotes": {},
+     *       //   "headers": {},
+     *       //   "inlineObjects": {},
+     *       //   "lists": {},
+     *       //   "namedRanges": {},
+     *       //   "namedStyles": {},
+     *       //   "positionedObjects": {},
+     *       //   "revisionId": "my_revisionId",
+     *       //   "suggestedDocumentStyleChanges": {},
+     *       //   "suggestedNamedStylesChanges": {},
+     *       //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": {},
+     *   //   "documentId": "my_documentId",
+     *   //   "documentStyle": {},
+     *   //   "footers": {},
+     *   //   "footnotes": {},
+     *   //   "headers": {},
+     *   //   "inlineObjects": {},
+     *   //   "lists": {},
+     *   //   "namedRanges": {},
+     *   //   "namedStyles": {},
+     *   //   "positionedObjects": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "suggestedDocumentStyleChanges": {},
+     *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias docs.documents.create
      * @memberOf! ()
      *
@@ -3301,6 +3441,75 @@ export namespace docs_v1 {
     /**
      * docs.documents.get
      * @desc Gets the latest version of the specified document.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/documents.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.get({
+     *     // The ID of the document to retrieve.
+     *     documentId: 'placeholder-value',
+     *     // The suggestions view mode to apply to the document. This allows viewing the
+     *     // document with all suggestions inline, accepted or rejected. If one is not
+     *     // specified, DEFAULT_FOR_CURRENT_ACCESS is
+     *     // used.
+     *     suggestionsViewMode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": {},
+     *   //   "documentId": "my_documentId",
+     *   //   "documentStyle": {},
+     *   //   "footers": {},
+     *   //   "footnotes": {},
+     *   //   "headers": {},
+     *   //   "inlineObjects": {},
+     *   //   "lists": {},
+     *   //   "namedRanges": {},
+     *   //   "namedStyles": {},
+     *   //   "positionedObjects": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "suggestedDocumentStyleChanges": {},
+     *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias docs.documents.get
      * @memberOf! ()
      *

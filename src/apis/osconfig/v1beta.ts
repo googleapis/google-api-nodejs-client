@@ -1261,6 +1261,83 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.guestPolicies.create
      * @desc Create an OS Config guest policy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.create({
+     *     // Required. The logical name of the guest policy in the project
+     *     // with the following restrictions:
+     *     //
+     *     // * Must contain only lowercase letters, numbers, and hyphens.
+     *     // * Must start with a letter.
+     *     // * Must be between 1-63 characters.
+     *     // * Must end with a number or a letter.
+     *     // * Must be unique within the project.
+     *     guestPolicyId: 'placeholder-value',
+     *     // Required. The resource name of the parent using one of the following forms:
+     *     // `projects/{project_number}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignment": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "packageRepositories": [],
+     *       //   "packages": [],
+     *       //   "recipes": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignment": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "packageRepositories": [],
+     *   //   "packages": [],
+     *   //   "recipes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.guestPolicies.create
      * @memberOf! ()
      *
@@ -1337,6 +1414,48 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.guestPolicies.delete
      * @desc Delete an OS Config guest policy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.delete({
+     *     // Required. The resource name of the guest policy  using one of the following forms:
+     *     // `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.guestPolicies.delete
      * @memberOf! ()
      *
@@ -1406,6 +1525,58 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.guestPolicies.get
      * @desc Get an OS Config guest policy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.get({
+     *     // Required. The resource name of the guest policy using one of the following forms:
+     *     // `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignment": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "packageRepositories": [],
+     *   //   "packages": [],
+     *   //   "recipes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.guestPolicies.get
      * @memberOf! ()
      *
@@ -1477,6 +1648,56 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.guestPolicies.list
      * @desc Get a page of OS Config guest policies.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.list({
+     *     // The maximum number of guest policies to return.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to `ListGuestPolicies`
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent using one of the following forms:
+     *     // `projects/{project_number}`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "guestPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.guestPolicies.list
      * @memberOf! ()
      *
@@ -1560,6 +1781,78 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.guestPolicies.patch
      * @desc Update an OS Config guest policy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.patch({
+     *     // Required. Unique name of the resource in this project using one of the following
+     *     // forms:
+     *     // `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
+     *     // Field mask that controls which fields of the guest policy should be
+     *     // updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignment": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "packageRepositories": [],
+     *       //   "packages": [],
+     *       //   "recipes": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignment": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "packageRepositories": [],
+     *   //   "packages": [],
+     *   //   "recipes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.guestPolicies.patch
      * @memberOf! ()
      *
@@ -1727,6 +2020,83 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchDeployments.create
      * @desc Create an OS Config patch deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.create({
+     *     // Required. The project to apply this patch deployment to in the form `projects/x`.
+     *     parent: 'projects/my-project',
+     *     // Required. A name for the patch deployment in the project. When creating a name
+     *     // the following rules apply:
+     *     // * Must contain only lowercase letters, numbers, and hyphens.
+     *     // * Must start with a letter.
+     *     // * Must be between 1-63 characters.
+     *     // * Must end with a number or a letter.
+     *     // * Must be unique within the project.
+     *     patchDeploymentId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "duration": "my_duration",
+     *       //   "instanceFilter": {},
+     *       //   "lastExecuteTime": "my_lastExecuteTime",
+     *       //   "name": "my_name",
+     *       //   "oneTimeSchedule": {},
+     *       //   "patchConfig": {},
+     *       //   "recurringSchedule": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchDeployments.create
      * @memberOf! ()
      *
@@ -1803,6 +2173,48 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchDeployments.delete
      * @desc Delete an OS Config patch deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.delete({
+     *     // Required. The resource name of the patch deployment in the form
+     *     // `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchDeployments.delete
      * @memberOf! ()
      *
@@ -1872,6 +2284,59 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchDeployments.get
      * @desc Get an OS Config patch deployment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.get({
+     *     // Required. The resource name of the patch deployment in the form
+     *     // `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchDeployments.get
      * @memberOf! ()
      *
@@ -1943,6 +2408,55 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchDeployments.list
      * @desc Get a page of OS Config patch deployments.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.list({
+     *     // Optional. The maximum number of patch deployments to return. Default is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A pagination token returned from a previous call to ListPatchDeployments
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent in the form `projects/x`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchDeployments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchDeployments.list
      * @memberOf! ()
      *
@@ -2105,6 +2619,68 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchJobs.cancel
      * @desc Cancel a patch job. The patch job must be active. Canceled patch jobs cannot be restarted.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.cancel({
+     *     // Required. Name of the patch in the form `projects/x/patchJobs/x`
+     *     name: 'projects/my-project/patchJobs/my-patchJob',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.cancel
      * @memberOf! ()
      *
@@ -2178,6 +2754,75 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchJobs.execute
      * @desc Patch VM instances by creating and running a patch job.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.execute({
+     *     // Required. The project in which to run this patch in the form `projects/x`
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "dryRun": false,
+     *       //   "duration": "my_duration",
+     *       //   "instanceFilter": {},
+     *       //   "patchConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.execute
      * @memberOf! ()
      *
@@ -2251,6 +2896,62 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchJobs.get
      * @desc Get the patch job. This can be used to track the progress of an ongoing patch job or review the details of completed jobs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.get({
+     *     // Required. Name of the patch in the form `projects/x/patchJobs/x`
+     *     name: 'projects/my-project/patchJobs/my-patchJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.get
      * @memberOf! ()
      *
@@ -2320,6 +3021,59 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchJobs.list
      * @desc Get a list of patch jobs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.list({
+     *     // If provided, this field specifies the criteria that must be met by patch
+     *     // jobs to be included in the response.
+     *     // Currently, filtering is only available on the patch_deployment field.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of instance status to return.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. In the form of `projects/x`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchJobs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.list
      * @memberOf! ()
      *
@@ -2477,6 +3231,59 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.patchJobs.instanceDetails.list
      * @desc Get a list of instance details for a given patch job.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.instanceDetails.list({
+     *     // A filter expression that filters results listed in the response. This
+     *     // field supports filtering results by instance zone, name, state, or
+     *     // `failure_reason`.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of instance details records to return.  Default is 100.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for the instances are in the form of `projects/x/patchJobs/x`.
+     *     parent: 'projects/my-project/patchJobs/my-patchJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchJobInstanceDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.patchJobs.instanceDetails.list
      * @memberOf! ()
      *
@@ -2606,6 +3413,63 @@ export namespace osconfig_v1beta {
     /**
      * osconfig.projects.zones.instances.lookupEffectiveGuestPolicy
      * @desc Lookup the effective guest policy that applies to a VM instance. This lookup merges all policies that are assigned to the instance ancestry.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.zones.instances.lookupEffectiveGuestPolicy(
+     *     {
+     *       // Required. The VM instance whose policies are being looked up.
+     *       instance: 'projects/my-project/zones/my-zone/instances/my-instance',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "osArchitecture": "my_osArchitecture",
+     *         //   "osShortName": "my_osShortName",
+     *         //   "osVersion": "my_osVersion"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "packageRepositories": [],
+     *   //   "packages": [],
+     *   //   "softwareRecipes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias osconfig.projects.zones.instances.lookupEffectiveGuestPolicy
      * @memberOf! ()
      *

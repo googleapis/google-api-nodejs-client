@@ -1532,6 +1532,77 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.createAuthUri
      * @desc Creates the URI used by the IdP to authenticate the user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.createAuthUri({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "authFlowType": "my_authFlowType",
+     *       //   "clientId": "my_clientId",
+     *       //   "context": "my_context",
+     *       //   "continueUri": "my_continueUri",
+     *       //   "customParameter": {},
+     *       //   "hostedDomain": "my_hostedDomain",
+     *       //   "identifier": "my_identifier",
+     *       //   "oauthConsumerKey": "my_oauthConsumerKey",
+     *       //   "oauthScope": "my_oauthScope",
+     *       //   "openidRealm": "my_openidRealm",
+     *       //   "otaApp": "my_otaApp",
+     *       //   "providerId": "my_providerId",
+     *       //   "sessionId": "my_sessionId",
+     *       //   "tenantId": "my_tenantId",
+     *       //   "tenantProjectNumber": "my_tenantProjectNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allProviders": [],
+     *   //   "authUri": "my_authUri",
+     *   //   "captchaRequired": false,
+     *   //   "forExistingProvider": false,
+     *   //   "kind": "my_kind",
+     *   //   "providerId": "my_providerId",
+     *   //   "registered": false,
+     *   //   "sessionId": "my_sessionId",
+     *   //   "signinMethods": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.createAuthUri
      * @memberOf! ()
      *
@@ -1609,6 +1680,56 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.deleteAccount
      * @desc Delete user account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.deleteAccount({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "idToken": "my_idToken",
+     *       //   "localId": "my_localId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.deleteAccount
      * @memberOf! ()
      *
@@ -1686,6 +1807,62 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.downloadAccount
      * @desc Batch download user accounts.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.downloadAccount({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "maxResults": 0,
+     *       //   "nextPageToken": "my_nextPageToken",
+     *       //   "targetProjectId": "my_targetProjectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.downloadAccount
      * @memberOf! ()
      *
@@ -1763,6 +1940,62 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.emailLinkSignin
      * @desc Reset password for a user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.emailLinkSignin({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "idToken": "my_idToken",
+     *       //   "oobCode": "my_oobCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "isNewUser": false,
+     *   //   "kind": "my_kind",
+     *   //   "localId": "my_localId",
+     *   //   "refreshToken": "my_refreshToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.emailLinkSignin
      * @memberOf! ()
      *
@@ -1840,6 +2073,59 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getAccountInfo
      * @desc Returns the account info.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getAccountInfo({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "email": [],
+     *       //   "idToken": "my_idToken",
+     *       //   "localId": [],
+     *       //   "phoneNumber": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getAccountInfo
      * @memberOf! ()
      *
@@ -1917,6 +2203,70 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getOobConfirmationCode
      * @desc Get a code for user action confirmation.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getOobConfirmationCode({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "androidInstallApp": false,
+     *       //   "androidMinimumVersion": "my_androidMinimumVersion",
+     *       //   "androidPackageName": "my_androidPackageName",
+     *       //   "canHandleCodeInApp": false,
+     *       //   "captchaResp": "my_captchaResp",
+     *       //   "challenge": "my_challenge",
+     *       //   "continueUrl": "my_continueUrl",
+     *       //   "email": "my_email",
+     *       //   "iOSAppStoreId": "my_iOSAppStoreId",
+     *       //   "iOSBundleId": "my_iOSBundleId",
+     *       //   "idToken": "my_idToken",
+     *       //   "kind": "my_kind",
+     *       //   "newEmail": "my_newEmail",
+     *       //   "requestType": "my_requestType",
+     *       //   "userIp": "my_userIp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "kind": "my_kind",
+     *   //   "oobCode": "my_oobCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getOobConfirmationCode
      * @memberOf! ()
      *
@@ -2000,6 +2350,62 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getProjectConfig
      * @desc Get project configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getProjectConfig({
+     *     // Delegated GCP project number of the request.
+     *     delegatedProjectNumber: 'placeholder-value',
+     *     // GCP project number of the request.
+     *     projectNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowPasswordUser": false,
+     *   //   "apiKey": "my_apiKey",
+     *   //   "authorizedDomains": [],
+     *   //   "changeEmailTemplate": {},
+     *   //   "dynamicLinksDomain": "my_dynamicLinksDomain",
+     *   //   "enableAnonymousUser": false,
+     *   //   "idpConfig": [],
+     *   //   "legacyResetPasswordTemplate": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "resetPasswordTemplate": {},
+     *   //   "useEmailSending": false,
+     *   //   "verifyEmailTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getProjectConfig
      * @memberOf! ()
      *
@@ -2100,6 +2506,44 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getPublicKeys
      * @desc Get token signing public key.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getPublicKeys({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getPublicKeys
      * @memberOf! ()
      *
@@ -2196,6 +2640,48 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getRecaptchaParam
      * @desc Get recaptcha secure param.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getRecaptchaParam({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "recaptchaSiteKey": "my_recaptchaSiteKey",
+     *   //   "recaptchaStoken": "my_recaptchaStoken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getRecaptchaParam
      * @memberOf! ()
      *
@@ -2275,6 +2761,60 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.resetPassword
      * @desc Reset password for a user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.resetPassword({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "newPassword": "my_newPassword",
+     *       //   "oldPassword": "my_oldPassword",
+     *       //   "oobCode": "my_oobCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "kind": "my_kind",
+     *   //   "newEmail": "my_newEmail",
+     *   //   "requestType": "my_requestType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.resetPassword
      * @memberOf! ()
      *
@@ -2352,6 +2892,57 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.sendVerificationCode
      * @desc Send SMS verification code.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.sendVerificationCode({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "iosReceipt": "my_iosReceipt",
+     *       //   "iosSecret": "my_iosSecret",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "recaptchaToken": "my_recaptchaToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sessionInfo": "my_sessionInfo"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.sendVerificationCode
      * @memberOf! ()
      *
@@ -2451,6 +3042,87 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.setAccountInfo
      * @desc Set account info for a user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.setAccountInfo({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captchaChallenge": "my_captchaChallenge",
+     *       //   "captchaResponse": "my_captchaResponse",
+     *       //   "createdAt": "my_createdAt",
+     *       //   "customAttributes": "my_customAttributes",
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "deleteAttribute": [],
+     *       //   "deleteProvider": [],
+     *       //   "disableUser": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "emailVerified": false,
+     *       //   "idToken": "my_idToken",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "lastLoginAt": "my_lastLoginAt",
+     *       //   "localId": "my_localId",
+     *       //   "oobCode": "my_oobCode",
+     *       //   "password": "my_password",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "photoUrl": "my_photoUrl",
+     *       //   "provider": [],
+     *       //   "returnSecureToken": false,
+     *       //   "upgradeToFederatedLogin": false,
+     *       //   "validSince": "my_validSince"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "emailVerified": false,
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "kind": "my_kind",
+     *   //   "localId": "my_localId",
+     *   //   "newEmail": "my_newEmail",
+     *   //   "passwordHash": "my_passwordHash",
+     *   //   "photoUrl": "my_photoUrl",
+     *   //   "providerUserInfo": [],
+     *   //   "refreshToken": "my_refreshToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.setAccountInfo
      * @memberOf! ()
      *
@@ -2528,6 +3200,64 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.setProjectConfig
      * @desc Set project configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.setProjectConfig({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowPasswordUser": false,
+     *       //   "apiKey": "my_apiKey",
+     *       //   "authorizedDomains": [],
+     *       //   "changeEmailTemplate": {},
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "enableAnonymousUser": false,
+     *       //   "idpConfig": [],
+     *       //   "legacyResetPasswordTemplate": {},
+     *       //   "resetPasswordTemplate": {},
+     *       //   "useEmailSending": false,
+     *       //   "verifyEmailTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.setProjectConfig
      * @memberOf! ()
      *
@@ -2627,6 +3357,55 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.signOutUser
      * @desc Sign out user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.signOutUser({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "instanceId": "my_instanceId",
+     *       //   "localId": "my_localId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "localId": "my_localId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.signOutUser
      * @memberOf! ()
      *
@@ -2725,6 +3504,73 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.signupNewUser
      * @desc Signup new user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.signupNewUser({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captchaChallenge": "my_captchaChallenge",
+     *       //   "captchaResponse": "my_captchaResponse",
+     *       //   "disabled": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "emailVerified": false,
+     *       //   "idToken": "my_idToken",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "localId": "my_localId",
+     *       //   "password": "my_password",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "photoUrl": "my_photoUrl",
+     *       //   "tenantId": "my_tenantId",
+     *       //   "tenantProjectNumber": "my_tenantProjectNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "kind": "my_kind",
+     *   //   "localId": "my_localId",
+     *   //   "refreshToken": "my_refreshToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.signupNewUser
      * @memberOf! ()
      *
@@ -2802,6 +3648,71 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.uploadAccount
      * @desc Batch upload existing user accounts.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.uploadAccount({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowOverwrite": false,
+     *       //   "blockSize": 0,
+     *       //   "cpuMemCost": 0,
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "dkLen": 0,
+     *       //   "hashAlgorithm": "my_hashAlgorithm",
+     *       //   "memoryCost": 0,
+     *       //   "parallelization": 0,
+     *       //   "rounds": 0,
+     *       //   "saltSeparator": "my_saltSeparator",
+     *       //   "sanityCheck": false,
+     *       //   "signerKey": "my_signerKey",
+     *       //   "targetProjectId": "my_targetProjectId",
+     *       //   "users": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "error": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.uploadAccount
      * @memberOf! ()
      *
@@ -2879,6 +3790,104 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.verifyAssertion
      * @desc Verifies the assertion returned by the IdP.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.verifyAssertion({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoCreate": false,
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "idToken": "my_idToken",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "pendingIdToken": "my_pendingIdToken",
+     *       //   "postBody": "my_postBody",
+     *       //   "requestUri": "my_requestUri",
+     *       //   "returnIdpCredential": false,
+     *       //   "returnRefreshToken": false,
+     *       //   "returnSecureToken": false,
+     *       //   "sessionId": "my_sessionId",
+     *       //   "tenantId": "my_tenantId",
+     *       //   "tenantProjectNumber": "my_tenantProjectNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "appInstallationUrl": "my_appInstallationUrl",
+     *   //   "appScheme": "my_appScheme",
+     *   //   "context": "my_context",
+     *   //   "dateOfBirth": "my_dateOfBirth",
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "emailRecycled": false,
+     *   //   "emailVerified": false,
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "federatedId": "my_federatedId",
+     *   //   "firstName": "my_firstName",
+     *   //   "fullName": "my_fullName",
+     *   //   "idToken": "my_idToken",
+     *   //   "inputEmail": "my_inputEmail",
+     *   //   "isNewUser": false,
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "lastName": "my_lastName",
+     *   //   "localId": "my_localId",
+     *   //   "needConfirmation": false,
+     *   //   "needEmail": false,
+     *   //   "nickName": "my_nickName",
+     *   //   "oauthAccessToken": "my_oauthAccessToken",
+     *   //   "oauthAuthorizationCode": "my_oauthAuthorizationCode",
+     *   //   "oauthExpireIn": 0,
+     *   //   "oauthIdToken": "my_oauthIdToken",
+     *   //   "oauthRequestToken": "my_oauthRequestToken",
+     *   //   "oauthScope": "my_oauthScope",
+     *   //   "oauthTokenSecret": "my_oauthTokenSecret",
+     *   //   "originalEmail": "my_originalEmail",
+     *   //   "photoUrl": "my_photoUrl",
+     *   //   "providerId": "my_providerId",
+     *   //   "rawUserInfo": "my_rawUserInfo",
+     *   //   "refreshToken": "my_refreshToken",
+     *   //   "screenName": "my_screenName",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "verifiedProvider": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.verifyAssertion
      * @memberOf! ()
      *
@@ -2956,6 +3965,61 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.verifyCustomToken
      * @desc Verifies the developer asserted ID token.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.verifyCustomToken({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "returnSecureToken": false,
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "isNewUser": false,
+     *   //   "kind": "my_kind",
+     *   //   "refreshToken": "my_refreshToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.verifyCustomToken
      * @memberOf! ()
      *
@@ -3036,6 +4100,75 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.verifyPassword
      * @desc Verifies the user entered password.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.verifyPassword({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captchaChallenge": "my_captchaChallenge",
+     *       //   "captchaResponse": "my_captchaResponse",
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "email": "my_email",
+     *       //   "idToken": "my_idToken",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "password": "my_password",
+     *       //   "pendingIdToken": "my_pendingIdToken",
+     *       //   "returnSecureToken": false,
+     *       //   "tenantId": "my_tenantId",
+     *       //   "tenantProjectNumber": "my_tenantProjectNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "kind": "my_kind",
+     *   //   "localId": "my_localId",
+     *   //   "oauthAccessToken": "my_oauthAccessToken",
+     *   //   "oauthAuthorizationCode": "my_oauthAuthorizationCode",
+     *   //   "oauthExpireIn": 0,
+     *   //   "photoUrl": "my_photoUrl",
+     *   //   "refreshToken": "my_refreshToken",
+     *   //   "registered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.verifyPassword
      * @memberOf! ()
      *
@@ -3113,6 +4246,69 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.verifyPhoneNumber
      * @desc Verifies ownership of a phone number and creates/updates the user account accordingly.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.verifyPhoneNumber({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "code": "my_code",
+     *       //   "idToken": "my_idToken",
+     *       //   "operation": "my_operation",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "sessionInfo": "my_sessionInfo",
+     *       //   "temporaryProof": "my_temporaryProof",
+     *       //   "verificationProof": "my_verificationProof"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "isNewUser": false,
+     *   //   "localId": "my_localId",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "refreshToken": "my_refreshToken",
+     *   //   "temporaryProof": "my_temporaryProof",
+     *   //   "temporaryProofExpiresIn": "my_temporaryProofExpiresIn",
+     *   //   "verificationProof": "my_verificationProof",
+     *   //   "verificationProofExpiresIn": "my_verificationProofExpiresIn"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.verifyPhoneNumber
      * @memberOf! ()
      *

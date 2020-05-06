@@ -955,6 +955,46 @@ export namespace calendar_v3 {
     /**
      * calendar.acl.delete
      * @desc Deletes an access control rule.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.delete({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // ACL rule identifier.
+     *     ruleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.acl.delete
      * @memberOf! ()
      *
@@ -1026,6 +1066,58 @@ export namespace calendar_v3 {
     /**
      * calendar.acl.get
      * @desc Returns an access control rule.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.get({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // ACL rule identifier.
+     *     ruleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "scope": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.acl.get
      * @memberOf! ()
      *
@@ -1097,6 +1189,67 @@ export namespace calendar_v3 {
     /**
      * calendar.acl.insert
      * @desc Creates an access control rule.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.insert({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Whether to send notifications about the calendar sharing change. Optional. The default is True.
+     *     sendNotifications: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "scope": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "scope": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.acl.insert
      * @memberOf! ()
      *
@@ -1170,6 +1323,64 @@ export namespace calendar_v3 {
     /**
      * calendar.acl.list
      * @desc Returns the rules in the access control list for the calendar.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.list({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.acl.list
      * @memberOf! ()
      *
@@ -1245,6 +1456,69 @@ export namespace calendar_v3 {
     /**
      * calendar.acl.patch
      * @desc Updates an access control rule. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.patch({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // ACL rule identifier.
+     *     ruleId: 'placeholder-value',
+     *     // Whether to send notifications about the calendar sharing change. Note that there are no notifications on access removal. Optional. The default is True.
+     *     sendNotifications: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "scope": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "scope": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.acl.patch
      * @memberOf! ()
      *
@@ -1318,6 +1592,69 @@ export namespace calendar_v3 {
     /**
      * calendar.acl.update
      * @desc Updates an access control rule.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.update({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // ACL rule identifier.
+     *     ruleId: 'placeholder-value',
+     *     // Whether to send notifications about the calendar sharing change. Note that there are no notifications on access removal. Optional. The default is True.
+     *     sendNotifications: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "scope": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "scope": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.acl.update
      * @memberOf! ()
      *
@@ -1391,6 +1728,86 @@ export namespace calendar_v3 {
     /**
      * calendar.acl.watch
      * @desc Watch for changes to ACL resources.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.watch({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.acl.watch
      * @memberOf! ()
      *
@@ -1631,6 +2048,44 @@ export namespace calendar_v3 {
     /**
      * calendar.calendarList.delete
      * @desc Removes a calendar from the user's calendar list.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.delete({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendarList.delete
      * @memberOf! ()
      *
@@ -1702,6 +2157,70 @@ export namespace calendar_v3 {
     /**
      * calendar.calendarList.get
      * @desc Returns a calendar from the user's calendar list.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.get({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceProperties": {},
+     *   //   "defaultReminders": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "foregroundColor": "my_foregroundColor",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "notificationSettings": {},
+     *   //   "primary": false,
+     *   //   "selected": false,
+     *   //   "summary": "my_summary",
+     *   //   "summaryOverride": "my_summaryOverride",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendarList.get
      * @memberOf! ()
      *
@@ -1774,6 +2293,93 @@ export namespace calendar_v3 {
     /**
      * calendar.calendarList.insert
      * @desc Inserts an existing calendar into the user's calendar list.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.insert({
+     *     // Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     *     colorRgbFormat: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessRole": "my_accessRole",
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceProperties": {},
+     *       //   "defaultReminders": [],
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "foregroundColor": "my_foregroundColor",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "notificationSettings": {},
+     *       //   "primary": false,
+     *       //   "selected": false,
+     *       //   "summary": "my_summary",
+     *       //   "summaryOverride": "my_summaryOverride",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceProperties": {},
+     *   //   "defaultReminders": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "foregroundColor": "my_foregroundColor",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "notificationSettings": {},
+     *   //   "primary": false,
+     *   //   "selected": false,
+     *   //   "summary": "my_summary",
+     *   //   "summaryOverride": "my_summaryOverride",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendarList.insert
      * @memberOf! ()
      *
@@ -1849,6 +2455,70 @@ export namespace calendar_v3 {
     /**
      * calendar.calendarList.list
      * @desc Returns the calendars on the user's calendar list.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.list({
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+     *     minAccessRole: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted calendar list entries in the result. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to show hidden entries. Optional. The default is False.
+     *     showHidden: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
+     *     // To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendarList.list
      * @memberOf! ()
      *
@@ -1928,6 +2598,95 @@ export namespace calendar_v3 {
     /**
      * calendar.calendarList.patch
      * @desc Updates an existing calendar on the user's calendar list. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.patch({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     *     colorRgbFormat: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessRole": "my_accessRole",
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceProperties": {},
+     *       //   "defaultReminders": [],
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "foregroundColor": "my_foregroundColor",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "notificationSettings": {},
+     *       //   "primary": false,
+     *       //   "selected": false,
+     *       //   "summary": "my_summary",
+     *       //   "summaryOverride": "my_summaryOverride",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceProperties": {},
+     *   //   "defaultReminders": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "foregroundColor": "my_foregroundColor",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "notificationSettings": {},
+     *   //   "primary": false,
+     *   //   "selected": false,
+     *   //   "summary": "my_summary",
+     *   //   "summaryOverride": "my_summaryOverride",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendarList.patch
      * @memberOf! ()
      *
@@ -2003,6 +2762,95 @@ export namespace calendar_v3 {
     /**
      * calendar.calendarList.update
      * @desc Updates an existing calendar on the user's calendar list.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.update({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     *     colorRgbFormat: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessRole": "my_accessRole",
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceProperties": {},
+     *       //   "defaultReminders": [],
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "foregroundColor": "my_foregroundColor",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "notificationSettings": {},
+     *       //   "primary": false,
+     *       //   "selected": false,
+     *       //   "summary": "my_summary",
+     *       //   "summaryOverride": "my_summaryOverride",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceProperties": {},
+     *   //   "defaultReminders": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "foregroundColor": "my_foregroundColor",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "notificationSettings": {},
+     *   //   "primary": false,
+     *   //   "selected": false,
+     *   //   "summary": "my_summary",
+     *   //   "summaryOverride": "my_summaryOverride",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendarList.update
      * @memberOf! ()
      *
@@ -2078,6 +2926,92 @@ export namespace calendar_v3 {
     /**
      * calendar.calendarList.watch
      * @desc Watch for changes to CalendarList resources.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.watch({
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+     *     minAccessRole: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted calendar list entries in the result. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to show hidden entries. Optional. The default is False.
+     *     showHidden: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
+     *     // To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendarList.watch
      * @memberOf! ()
      *
@@ -2315,6 +3249,44 @@ export namespace calendar_v3 {
     /**
      * calendar.calendars.clear
      * @desc Clears a primary calendar. This operation deletes all events associated with the primary calendar of an account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.clear({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendars.clear
      * @memberOf! ()
      *
@@ -2385,6 +3357,44 @@ export namespace calendar_v3 {
     /**
      * calendar.calendars.delete
      * @desc Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.delete({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendars.delete
      * @memberOf! ()
      *
@@ -2456,6 +3466,59 @@ export namespace calendar_v3 {
     /**
      * calendar.calendars.get
      * @desc Returns metadata for a calendar.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.get({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conferenceProperties": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendars.get
      * @memberOf! ()
      *
@@ -2527,6 +3590,68 @@ export namespace calendar_v3 {
     /**
      * calendar.calendars.insert
      * @desc Creates a secondary calendar.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conferenceProperties": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "summary": "my_summary",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conferenceProperties": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendars.insert
      * @memberOf! ()
      *
@@ -2598,6 +3723,71 @@ export namespace calendar_v3 {
     /**
      * calendar.calendars.patch
      * @desc Updates metadata for a calendar. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.patch({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conferenceProperties": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "summary": "my_summary",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conferenceProperties": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendars.patch
      * @memberOf! ()
      *
@@ -2670,6 +3860,71 @@ export namespace calendar_v3 {
     /**
      * calendar.calendars.update
      * @desc Updates metadata for a calendar.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.update({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conferenceProperties": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "summary": "my_summary",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conferenceProperties": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.calendars.update
      * @memberOf! ()
      *
@@ -2826,6 +4081,64 @@ export namespace calendar_v3 {
     /**
      * calendar.channels.stop
      * @desc Stop watching resources through this channel
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.channels.stop
      * @memberOf! ()
      *
@@ -2916,6 +4229,52 @@ export namespace calendar_v3 {
     /**
      * calendar.colors.get
      * @desc Returns the color definitions for calendars and events.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.colors.get({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "calendar": {},
+     *   //   "event": {},
+     *   //   "kind": "my_kind",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.colors.get
      * @memberOf! ()
      *
@@ -3000,6 +4359,55 @@ export namespace calendar_v3 {
     /**
      * calendar.events.delete
      * @desc Deletes an event.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.delete({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the deletion of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the deletion of the event.
+     *     sendUpdates: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.delete
      * @memberOf! ()
      *
@@ -3073,6 +4481,99 @@ export namespace calendar_v3 {
     /**
      * calendar.events.get
      * @desc Returns an event.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.get({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Time zone used in the response. Optional. The default is the time zone of the calendar.
+     *     timeZone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "extendedProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.get
      * @memberOf! ()
      *
@@ -3147,6 +4648,138 @@ export namespace calendar_v3 {
     /**
      * calendar.events.import
      * @desc Imports an event. This operation is used to add a private copy of an existing event to a calendar.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.import({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     *     conferenceDataVersion: 'placeholder-value',
+     *     // Whether API client performing operation supports event attachments. Optional. The default is False.
+     *     supportsAttachments: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anyoneCanAddSelf": false,
+     *       //   "attachments": [],
+     *       //   "attendees": [],
+     *       //   "attendeesOmitted": false,
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceData": {},
+     *       //   "created": "my_created",
+     *       //   "creator": {},
+     *       //   "description": "my_description",
+     *       //   "end": {},
+     *       //   "endTimeUnspecified": false,
+     *       //   "etag": "my_etag",
+     *       //   "extendedProperties": {},
+     *       //   "gadget": {},
+     *       //   "guestsCanInviteOthers": false,
+     *       //   "guestsCanModify": false,
+     *       //   "guestsCanSeeOtherGuests": false,
+     *       //   "hangoutLink": "my_hangoutLink",
+     *       //   "htmlLink": "my_htmlLink",
+     *       //   "iCalUID": "my_iCalUID",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "locked": false,
+     *       //   "organizer": {},
+     *       //   "originalStartTime": {},
+     *       //   "privateCopy": false,
+     *       //   "recurrence": [],
+     *       //   "recurringEventId": "my_recurringEventId",
+     *       //   "reminders": {},
+     *       //   "sequence": 0,
+     *       //   "source": {},
+     *       //   "start": {},
+     *       //   "status": "my_status",
+     *       //   "summary": "my_summary",
+     *       //   "transparency": "my_transparency",
+     *       //   "updated": "my_updated",
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "extendedProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.import
      * @memberOf! ()
      *
@@ -3220,6 +4853,146 @@ export namespace calendar_v3 {
     /**
      * calendar.events.insert
      * @desc Creates an event.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.insert({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     *     conferenceDataVersion: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false.
+     *     sendUpdates: 'placeholder-value',
+     *     // Whether API client performing operation supports event attachments. Optional. The default is False.
+     *     supportsAttachments: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anyoneCanAddSelf": false,
+     *       //   "attachments": [],
+     *       //   "attendees": [],
+     *       //   "attendeesOmitted": false,
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceData": {},
+     *       //   "created": "my_created",
+     *       //   "creator": {},
+     *       //   "description": "my_description",
+     *       //   "end": {},
+     *       //   "endTimeUnspecified": false,
+     *       //   "etag": "my_etag",
+     *       //   "extendedProperties": {},
+     *       //   "gadget": {},
+     *       //   "guestsCanInviteOthers": false,
+     *       //   "guestsCanModify": false,
+     *       //   "guestsCanSeeOtherGuests": false,
+     *       //   "hangoutLink": "my_hangoutLink",
+     *       //   "htmlLink": "my_htmlLink",
+     *       //   "iCalUID": "my_iCalUID",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "locked": false,
+     *       //   "organizer": {},
+     *       //   "originalStartTime": {},
+     *       //   "privateCopy": false,
+     *       //   "recurrence": [],
+     *       //   "recurringEventId": "my_recurringEventId",
+     *       //   "reminders": {},
+     *       //   "sequence": 0,
+     *       //   "source": {},
+     *       //   "start": {},
+     *       //   "status": "my_status",
+     *       //   "summary": "my_summary",
+     *       //   "transparency": "my_transparency",
+     *       //   "updated": "my_updated",
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "extendedProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.insert
      * @memberOf! ()
      *
@@ -3296,6 +5069,84 @@ export namespace calendar_v3 {
     /**
      * calendar.events.instances
      * @desc Returns instances of the specified recurring event.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.instances({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Recurring event identifier.
+     *     eventId: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The original start time of the instance in the result. Optional.
+     *     originalStart: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
+     *     timeMax: 'placeholder-value',
+     *     // Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
+     *     timeMin: 'placeholder-value',
+     *     // Time zone used in the response. Optional. The default is the time zone of the calendar.
+     *     timeZone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "defaultReminders": [],
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.instances
      * @memberOf! ()
      *
@@ -3377,6 +5228,111 @@ export namespace calendar_v3 {
     /**
      * calendar.events.list
      * @desc Returns events on the specified calendar.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.list({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Specifies event ID in the iCalendar format to be included in the response. Optional.
+     *     iCalUID: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+     *     orderBy: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     *     privateExtendedProperty: 'placeholder-value',
+     *     // Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     *     q: 'placeholder-value',
+     *     // Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     *     sharedExtendedProperty: 'placeholder-value',
+     *     // Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to include hidden invitations in the result. Optional. The default is False.
+     *     showHiddenInvitations: 'placeholder-value',
+     *     // Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+     *     singleEvents: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     *     // There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.
+     *     //
+     *     // These are:
+     *     // - iCalUID
+     *     // - orderBy
+     *     // - privateExtendedProperty
+     *     // - q
+     *     // - sharedExtendedProperty
+     *     // - timeMin
+     *     // - timeMax
+     *     // - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *     // Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMin is set, timeMax must be greater than timeMin.
+     *     timeMax: 'placeholder-value',
+     *     // Lower bound (exclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMax is set, timeMin must be smaller than timeMax.
+     *     timeMin: 'placeholder-value',
+     *     // Time zone used in the response. Optional. The default is the time zone of the calendar.
+     *     timeZone: 'placeholder-value',
+     *     // Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     *     updatedMin: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "defaultReminders": [],
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.list
      * @memberOf! ()
      *
@@ -3464,6 +5420,99 @@ export namespace calendar_v3 {
     /**
      * calendar.events.move
      * @desc Moves an event to another calendar, i.e. changes an event's organizer.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.move({
+     *     // Calendar identifier of the source calendar where the event currently is on.
+     *     calendarId: 'placeholder-value',
+     *     // Calendar identifier of the target calendar where the event is to be moved to.
+     *     destination: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the change of the event's organizer.
+     *     sendUpdates: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "extendedProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.move
      * @memberOf! ()
      *
@@ -3539,6 +5588,150 @@ export namespace calendar_v3 {
     /**
      * calendar.events.patch
      * @desc Updates an event. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.patch({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     *     conferenceDataVersion: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the event update (for example, title changes, etc.).
+     *     sendUpdates: 'placeholder-value',
+     *     // Whether API client performing operation supports event attachments. Optional. The default is False.
+     *     supportsAttachments: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anyoneCanAddSelf": false,
+     *       //   "attachments": [],
+     *       //   "attendees": [],
+     *       //   "attendeesOmitted": false,
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceData": {},
+     *       //   "created": "my_created",
+     *       //   "creator": {},
+     *       //   "description": "my_description",
+     *       //   "end": {},
+     *       //   "endTimeUnspecified": false,
+     *       //   "etag": "my_etag",
+     *       //   "extendedProperties": {},
+     *       //   "gadget": {},
+     *       //   "guestsCanInviteOthers": false,
+     *       //   "guestsCanModify": false,
+     *       //   "guestsCanSeeOtherGuests": false,
+     *       //   "hangoutLink": "my_hangoutLink",
+     *       //   "htmlLink": "my_htmlLink",
+     *       //   "iCalUID": "my_iCalUID",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "locked": false,
+     *       //   "organizer": {},
+     *       //   "originalStartTime": {},
+     *       //   "privateCopy": false,
+     *       //   "recurrence": [],
+     *       //   "recurringEventId": "my_recurringEventId",
+     *       //   "reminders": {},
+     *       //   "sequence": 0,
+     *       //   "source": {},
+     *       //   "start": {},
+     *       //   "status": "my_status",
+     *       //   "summary": "my_summary",
+     *       //   "transparency": "my_transparency",
+     *       //   "updated": "my_updated",
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "extendedProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.patch
      * @memberOf! ()
      *
@@ -3617,6 +5810,97 @@ export namespace calendar_v3 {
     /**
      * calendar.events.quickAdd
      * @desc Creates an event based on a simple text string.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.quickAdd({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the creation of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the creation of the new event.
+     *     sendUpdates: 'placeholder-value',
+     *     // The text describing the event to be created.
+     *     text: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "extendedProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.quickAdd
      * @memberOf! ()
      *
@@ -3690,6 +5974,150 @@ export namespace calendar_v3 {
     /**
      * calendar.events.update
      * @desc Updates an event.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.update({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     *     conferenceDataVersion: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the event update (for example, title changes, etc.).
+     *     sendUpdates: 'placeholder-value',
+     *     // Whether API client performing operation supports event attachments. Optional. The default is False.
+     *     supportsAttachments: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anyoneCanAddSelf": false,
+     *       //   "attachments": [],
+     *       //   "attendees": [],
+     *       //   "attendeesOmitted": false,
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceData": {},
+     *       //   "created": "my_created",
+     *       //   "creator": {},
+     *       //   "description": "my_description",
+     *       //   "end": {},
+     *       //   "endTimeUnspecified": false,
+     *       //   "etag": "my_etag",
+     *       //   "extendedProperties": {},
+     *       //   "gadget": {},
+     *       //   "guestsCanInviteOthers": false,
+     *       //   "guestsCanModify": false,
+     *       //   "guestsCanSeeOtherGuests": false,
+     *       //   "hangoutLink": "my_hangoutLink",
+     *       //   "htmlLink": "my_htmlLink",
+     *       //   "iCalUID": "my_iCalUID",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "locked": false,
+     *       //   "organizer": {},
+     *       //   "originalStartTime": {},
+     *       //   "privateCopy": false,
+     *       //   "recurrence": [],
+     *       //   "recurringEventId": "my_recurringEventId",
+     *       //   "reminders": {},
+     *       //   "sequence": 0,
+     *       //   "source": {},
+     *       //   "start": {},
+     *       //   "status": "my_status",
+     *       //   "summary": "my_summary",
+     *       //   "transparency": "my_transparency",
+     *       //   "updated": "my_updated",
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "extendedProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.update
      * @memberOf! ()
      *
@@ -3768,6 +6196,127 @@ export namespace calendar_v3 {
     /**
      * calendar.events.watch
      * @desc Watch for changes to Events resources.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.watch({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Specifies event ID in the iCalendar format to be included in the response. Optional.
+     *     iCalUID: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+     *     orderBy: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     *     privateExtendedProperty: 'placeholder-value',
+     *     // Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     *     q: 'placeholder-value',
+     *     // Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     *     sharedExtendedProperty: 'placeholder-value',
+     *     // Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to include hidden invitations in the result. Optional. The default is False.
+     *     showHiddenInvitations: 'placeholder-value',
+     *     // Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+     *     singleEvents: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     *     // There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.
+     *     //
+     *     // These are:
+     *     // - iCalUID
+     *     // - orderBy
+     *     // - privateExtendedProperty
+     *     // - q
+     *     // - sharedExtendedProperty
+     *     // - timeMin
+     *     // - timeMax
+     *     // - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *     // Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMin is set, timeMax must be greater than timeMin.
+     *     timeMax: 'placeholder-value',
+     *     // Lower bound (exclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMax is set, timeMin must be smaller than timeMax.
+     *     timeMin: 'placeholder-value',
+     *     // Time zone used in the response. Optional. The default is the time zone of the calendar.
+     *     timeZone: 'placeholder-value',
+     *     // Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     *     updatedMin: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.events.watch
      * @memberOf! ()
      *
@@ -4326,6 +6875,66 @@ export namespace calendar_v3 {
     /**
      * calendar.freebusy.query
      * @desc Returns free/busy information for a set of calendars.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.freebusy.query({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "calendarExpansionMax": 0,
+     *       //   "groupExpansionMax": 0,
+     *       //   "items": [],
+     *       //   "timeMax": "my_timeMax",
+     *       //   "timeMin": "my_timeMin",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "calendars": {},
+     *   //   "groups": {},
+     *   //   "kind": "my_kind",
+     *   //   "timeMax": "my_timeMax",
+     *   //   "timeMin": "my_timeMin"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.freebusy.query
      * @memberOf! ()
      *
@@ -4418,6 +7027,56 @@ export namespace calendar_v3 {
     /**
      * calendar.settings.get
      * @desc Returns a single user setting.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.settings.get({
+     *     // The id of the user setting.
+     *     setting: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.settings.get
      * @memberOf! ()
      *
@@ -4489,6 +7148,64 @@ export namespace calendar_v3 {
     /**
      * calendar.settings.list
      * @desc Returns all user settings for the authenticated user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.settings.list({
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.settings.list
      * @memberOf! ()
      *
@@ -4562,6 +7279,86 @@ export namespace calendar_v3 {
     /**
      * calendar.settings.watch
      * @desc Watch for changes to Settings resources.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await calendar.settings.watch({
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias calendar.settings.watch
      * @memberOf! ()
      *

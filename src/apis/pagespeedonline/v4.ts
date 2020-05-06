@@ -270,6 +270,77 @@ export namespace pagespeedonline_v4 {
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
      * @desc Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const pagespeedonline = google.pagespeedonline('v4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await pagespeedonline.pagespeedapi.runpagespeed({
+     *     // Indicates if third party resources should be filtered out before PageSpeed analysis.
+     *     filter_third_party_resources: 'placeholder-value',
+     *     // The locale used to localize formatted results
+     *     locale: '[a-zA-Z]+(_[a-zA-Z]+)?',
+     *     // A PageSpeed rule to run; if none are given, all rules are run
+     *     rule: '[a-zA-Z]+',
+     *     // Indicates if binary data containing a screenshot should be included
+     *     screenshot: 'placeholder-value',
+     *     // Indicates if binary data containing snapshot images should be included
+     *     snapshots: 'placeholder-value',
+     *     // The analysis strategy (desktop or mobile) to use, and desktop is the default
+     *     strategy: 'placeholder-value',
+     *     // The URL to fetch and analyze
+     *     url: '(?i)(site:|origin:)?http(s)?://.*',
+     *     // Campaign name for analytics.
+     *     utm_campaign: 'placeholder-value',
+     *     // Campaign source for analytics.
+     *     utm_source: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "captchaResult": "my_captchaResult",
+     *   //   "formattedResults": {},
+     *   //   "id": "my_id",
+     *   //   "invalidRules": [],
+     *   //   "kind": "my_kind",
+     *   //   "loadingExperience": {},
+     *   //   "pageStats": {},
+     *   //   "responseCode": 0,
+     *   //   "ruleGroups": {},
+     *   //   "screenshot": {},
+     *   //   "snapshots": [],
+     *   //   "title": "my_title",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! ()
      *

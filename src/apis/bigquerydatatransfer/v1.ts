@@ -642,6 +642,62 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.dataSources.checkValidCreds
      * @desc Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.dataSources.checkValidCreds({
+     *     // Required. The data source in the form:
+     *     // `projects/{project_id}/dataSources/{data_source_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     *     name: 'projects/my-project/dataSources/my-dataSource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasValidCreds": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.dataSources.checkValidCreds
      * @memberOf! ()
      *
@@ -722,6 +778,73 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.dataSources.get
      * @desc Retrieves a supported data source and returns its settings, which can be used for UI rendering.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.dataSources.get({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/dataSources/{data_source_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *     name: 'projects/my-project/dataSources/my-dataSource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorizationType": "my_authorizationType",
+     *   //   "clientId": "my_clientId",
+     *   //   "dataRefreshType": "my_dataRefreshType",
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "defaultDataRefreshWindowDays": 0,
+     *   //   "defaultSchedule": "my_defaultSchedule",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "helpUrl": "my_helpUrl",
+     *   //   "manualRunsDisabled": false,
+     *   //   "minimumScheduleInterval": "my_minimumScheduleInterval",
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "scopes": [],
+     *   //   "supportsCustomSchedule": false,
+     *   //   "supportsMultipleTransfers": false,
+     *   //   "transferType": "my_transferType",
+     *   //   "updateDeadlineSeconds": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.dataSources.get
      * @memberOf! ()
      *
@@ -794,6 +917,65 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.dataSources.list
      * @desc Lists supported data sources and returns their settings, which can be used for UI rendering.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.dataSources.list({
+     *     // Page size. The default page size is the maximum value of 1000 results.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token, which can be used to request a specific page
+     *     // of `ListDataSourcesRequest` list results. For multiple-page
+     *     // results, `ListDataSourcesResponse` outputs
+     *     // a `next_page` token, which can be used as the
+     *     // `page_token` value to request the next page of list results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The BigQuery project id for which data sources should be returned.
+     *     // Must be in the form: `projects/{project_id}` or
+     *     // `projects/{project_id}/locations/{location_id}
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.dataSources.list
      * @memberOf! ()
      *
@@ -938,6 +1120,58 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.get
      * @memberOf! ()
      *
@@ -1008,6 +1242,61 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.list
      * @memberOf! ()
      *
@@ -1132,6 +1421,65 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
      * @desc Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.dataSources.checkValidCreds(
+     *     {
+     *       // Required. The data source in the form:
+     *       // `projects/{project_id}/dataSources/{data_source_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/dataSources/my-dataSource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasValidCreds": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
      * @memberOf! ()
      *
@@ -1212,6 +1560,73 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.dataSources.get
      * @desc Retrieves a supported data source and returns its settings, which can be used for UI rendering.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.dataSources.get({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/dataSources/{data_source_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *     name: 'projects/my-project/locations/my-location/dataSources/my-dataSource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorizationType": "my_authorizationType",
+     *   //   "clientId": "my_clientId",
+     *   //   "dataRefreshType": "my_dataRefreshType",
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "defaultDataRefreshWindowDays": 0,
+     *   //   "defaultSchedule": "my_defaultSchedule",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "helpUrl": "my_helpUrl",
+     *   //   "manualRunsDisabled": false,
+     *   //   "minimumScheduleInterval": "my_minimumScheduleInterval",
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "scopes": [],
+     *   //   "supportsCustomSchedule": false,
+     *   //   "supportsMultipleTransfers": false,
+     *   //   "transferType": "my_transferType",
+     *   //   "updateDeadlineSeconds": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.dataSources.get
      * @memberOf! ()
      *
@@ -1284,6 +1699,65 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.dataSources.list
      * @desc Lists supported data sources and returns their settings, which can be used for UI rendering.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.dataSources.list({
+     *     // Page size. The default page size is the maximum value of 1000 results.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token, which can be used to request a specific page
+     *     // of `ListDataSourcesRequest` list results. For multiple-page
+     *     // results, `ListDataSourcesResponse` outputs
+     *     // a `next_page` token, which can be used as the
+     *     // `page_token` value to request the next page of list results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The BigQuery project id for which data sources should be returned.
+     *     // Must be in the form: `projects/{project_id}` or
+     *     // `projects/{project_id}/locations/{location_id}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.dataSources.list
      * @memberOf! ()
      *
@@ -1424,6 +1898,121 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.create
      * @desc Creates a new data transfer configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.create(
+     *     {
+     *       // Optional OAuth2 authorization code to use with this transfer configuration.
+     *       // This is required if new credentials are needed, as indicated by
+     *       // `CheckValidCreds`.
+     *       // In order to obtain authorization_code, please make a
+     *       // request to
+     *       // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *       //
+     *       // * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *       //   data source returned by ListDataSources method.
+     *       // * data_source_scopes are the scopes returned by ListDataSources method.
+     *       // * redirect_uri is an optional parameter. If not specified, then
+     *       //   authorization code is posted to the opener of authorization flow window.
+     *       //   Otherwise it will be sent to the redirect uri. A special value of
+     *       //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *       //   returned in the title bar of the browser, with the page text prompting
+     *       //   the user to copy the code and paste it in the application.
+     *       authorizationCode: 'placeholder-value',
+     *       // Required. The BigQuery project id where the transfer configuration should be created.
+     *       // Must be in the format projects/{project_id}/locations/{location_id} or
+     *       // projects/{project_id}. If specified location and location of the
+     *       // destination bigquery dataset do not match - the request will fail.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional service account name. If this field is set, transfer config will
+     *       // be created with this service account credentials. It requires that
+     *       // requesting user calling this API has permissions to act as this service
+     *       // account.
+     *       serviceAccountName: 'placeholder-value',
+     *       // Optional version info. If users want to find a very recent access token,
+     *       // that is, immediately after approving access, users have to set the
+     *       // version_info claim in the token request. To obtain the version_info, users
+     *       // must use the "none+gsession" response type. which be return a
+     *       // version_info back in the authorization response which be be put in a JWT
+     *       // claim in the token request.
+     *       versionInfo: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dataRefreshWindowDays": 0,
+     *         //   "dataSourceId": "my_dataSourceId",
+     *         //   "datasetRegion": "my_datasetRegion",
+     *         //   "destinationDatasetId": "my_destinationDatasetId",
+     *         //   "disabled": false,
+     *         //   "displayName": "my_displayName",
+     *         //   "emailPreferences": {},
+     *         //   "name": "my_name",
+     *         //   "nextRunTime": "my_nextRunTime",
+     *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *         //   "params": {},
+     *         //   "schedule": "my_schedule",
+     *         //   "scheduleOptions": {},
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.create
      * @memberOf! ()
      *
@@ -1503,6 +2092,55 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.delete
      * @desc Deletes a data transfer configuration, including any associated transfer runs and logs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.delete(
+     *     {
+     *       // Required. The field will contain name of the resource requested, for example:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.delete
      * @memberOf! ()
      *
@@ -1573,6 +2211,74 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.get
      * @desc Returns information about a data transfer config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.get(
+     *     {
+     *       // Required. The field will contain name of the resource requested, for example:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.get
      * @memberOf! ()
      *
@@ -1645,6 +2351,69 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.list
      * @desc Returns information about all data transfers in the project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.list(
+     *     {
+     *       // When specified, only configurations of requested data sources are returned.
+     *       dataSourceIds: 'placeholder-value',
+     *       // Page size. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Pagination token, which can be used to request a specific page
+     *       // of `ListTransfersRequest` list results. For multiple-page
+     *       // results, `ListTransfersResponse` outputs
+     *       // a `next_page` token, which can be used as the
+     *       // `page_token` value to request the next page of list results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The BigQuery project id for which data sources
+     *       // should be returned: `projects/{project_id}` or
+     *       // `projects/{project_id}/locations/{location_id}`
+     *       parent: 'projects/my-project/locations/my-location',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.list
      * @memberOf! ()
      *
@@ -1730,6 +2499,128 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.patch
      * @desc Updates a data transfer configuration. All fields must be set, even if they are not updated.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.patch(
+     *     {
+     *       // Optional OAuth2 authorization code to use with this transfer configuration.
+     *       // If it is provided, the transfer configuration will be associated with the
+     *       // authorizing user.
+     *       // In order to obtain authorization_code, please make a
+     *       // request to
+     *       // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *       //
+     *       // * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *       //   data source returned by ListDataSources method.
+     *       // * data_source_scopes are the scopes returned by ListDataSources method.
+     *       // * redirect_uri is an optional parameter. If not specified, then
+     *       //   authorization code is posted to the opener of authorization flow window.
+     *       //   Otherwise it will be sent to the redirect uri. A special value of
+     *       //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *       //   returned in the title bar of the browser, with the page text prompting
+     *       //   the user to copy the code and paste it in the application.
+     *       authorizationCode: 'placeholder-value',
+     *       // The resource name of the transfer config.
+     *       // Transfer config names have the form of
+     *       // `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
+     *       // The name is automatically generated based on the config_id specified in
+     *       // CreateTransferConfigRequest along with project_id and region. If config_id
+     *       // is not provided, usually a uuid, even though it is not guaranteed or
+     *       // required, will be generated for config_id.
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *       // Optional service account name. If this field is set and
+     *       // "service_account_name" is set in update_mask, transfer config will be
+     *       // updated to use this service account credentials. It requires that
+     *       // requesting user calling this API has permissions to act as this service
+     *       // account.
+     *       serviceAccountName: 'placeholder-value',
+     *       // Required. Required list of fields to be updated in this request.
+     *       updateMask: 'placeholder-value',
+     *       // Optional version info. If users want to find a very recent access token,
+     *       // that is, immediately after approving access, users have to set the
+     *       // version_info claim in the token request. To obtain the version_info, users
+     *       // must use the "none+gsession" response type. which be return a
+     *       // version_info back in the authorization response which be be put in a JWT
+     *       // claim in the token request.
+     *       versionInfo: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dataRefreshWindowDays": 0,
+     *         //   "dataSourceId": "my_dataSourceId",
+     *         //   "datasetRegion": "my_datasetRegion",
+     *         //   "destinationDatasetId": "my_destinationDatasetId",
+     *         //   "disabled": false,
+     *         //   "displayName": "my_displayName",
+     *         //   "emailPreferences": {},
+     *         //   "name": "my_name",
+     *         //   "nextRunTime": "my_nextRunTime",
+     *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *         //   "params": {},
+     *         //   "schedule": "my_schedule",
+     *         //   "scheduleOptions": {},
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.patch
      * @memberOf! ()
      *
@@ -1807,6 +2698,66 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
      * @desc Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns(
+     *     {
+     *       // Required. Transfer configuration name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "endTime": "my_endTime",
+     *         //   "startTime": "my_startTime"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
      * @memberOf! ()
      *
@@ -1892,6 +2843,66 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
      * @desc Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns(
+     *     {
+     *       // Transfer configuration name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requestedRunTime": "my_requestedRunTime",
+     *         //   "requestedTimeRange": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
      * @memberOf! ()
      *
@@ -2133,6 +3144,55 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.delete
      * @desc Deletes the specified transfer run.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.delete(
+     *     {
+     *       // Required. The field will contain name of the resource requested, for example:
+     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.delete
      * @memberOf! ()
      *
@@ -2203,6 +3263,73 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.get
      * @desc Returns information about the particular transfer run.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.get(
+     *     {
+     *       // Required. The field will contain name of the resource requested, for example:
+     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "emailPreferences": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "errorStatus": {},
+     *   //   "name": "my_name",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "runTime": "my_runTime",
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.get
      * @memberOf! ()
      *
@@ -2275,6 +3402,73 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.list
      * @desc Returns information about running and completed jobs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.list(
+     *     {
+     *       // Page size. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Pagination token, which can be used to request a specific page
+     *       // of `ListTransferRunsRequest` list results. For multiple-page
+     *       // results, `ListTransferRunsResponse` outputs
+     *       // a `next_page` token, which can be used as the
+     *       // `page_token` value to request the next page of list results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of transfer configuration for which transfer runs should be retrieved.
+     *       // Format of transfer configuration resource name is:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *       // Indicates how run attempts are to be pulled.
+     *       runAttempt: 'placeholder-value',
+     *       // When specified, only transfer runs with requested states are returned.
+     *       states: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferRuns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.list
      * @memberOf! ()
      *
@@ -2413,6 +3607,71 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list
      * @desc Returns user facing log messages for the data transfer run.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list(
+     *     {
+     *       // Message types to return. If not populated - INFO, WARNING and ERROR
+     *       // messages are returned.
+     *       messageTypes: 'placeholder-value',
+     *       // Page size. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Pagination token, which can be used to request a specific page
+     *       // of `ListTransferLogsRequest` list results. For multiple-page
+     *       // results, `ListTransferLogsResponse` outputs
+     *       // a `next_page` token, which can be used as the
+     *       // `page_token` value to request the next page of list results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Transfer run name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferMessages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list
      * @memberOf! ()
      *
@@ -2527,6 +3786,119 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.create
      * @desc Creates a new data transfer configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.create({
+     *     // Optional OAuth2 authorization code to use with this transfer configuration.
+     *     // This is required if new credentials are needed, as indicated by
+     *     // `CheckValidCreds`.
+     *     // In order to obtain authorization_code, please make a
+     *     // request to
+     *     // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *     //
+     *     // * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *     //   data source returned by ListDataSources method.
+     *     // * data_source_scopes are the scopes returned by ListDataSources method.
+     *     // * redirect_uri is an optional parameter. If not specified, then
+     *     //   authorization code is posted to the opener of authorization flow window.
+     *     //   Otherwise it will be sent to the redirect uri. A special value of
+     *     //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *     //   returned in the title bar of the browser, with the page text prompting
+     *     //   the user to copy the code and paste it in the application.
+     *     authorizationCode: 'placeholder-value',
+     *     // Required. The BigQuery project id where the transfer configuration should be created.
+     *     // Must be in the format projects/{project_id}/locations/{location_id} or
+     *     // projects/{project_id}. If specified location and location of the
+     *     // destination bigquery dataset do not match - the request will fail.
+     *     parent: 'projects/my-project',
+     *     // Optional service account name. If this field is set, transfer config will
+     *     // be created with this service account credentials. It requires that
+     *     // requesting user calling this API has permissions to act as this service
+     *     // account.
+     *     serviceAccountName: 'placeholder-value',
+     *     // Optional version info. If users want to find a very recent access token,
+     *     // that is, immediately after approving access, users have to set the
+     *     // version_info claim in the token request. To obtain the version_info, users
+     *     // must use the "none+gsession" response type. which be return a
+     *     // version_info back in the authorization response which be be put in a JWT
+     *     // claim in the token request.
+     *     versionInfo: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataRefreshWindowDays": 0,
+     *       //   "dataSourceId": "my_dataSourceId",
+     *       //   "datasetRegion": "my_datasetRegion",
+     *       //   "destinationDatasetId": "my_destinationDatasetId",
+     *       //   "disabled": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "emailPreferences": {},
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *       //   "params": {},
+     *       //   "schedule": "my_schedule",
+     *       //   "scheduleOptions": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.create
      * @memberOf! ()
      *
@@ -2606,6 +3978,52 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.delete
      * @desc Deletes a data transfer configuration, including any associated transfer runs and logs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.delete({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/transferConfigs/{config_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.delete
      * @memberOf! ()
      *
@@ -2676,6 +4094,71 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.get
      * @desc Returns information about a data transfer config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.get({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/transferConfigs/{config_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.get
      * @memberOf! ()
      *
@@ -2748,6 +4231,67 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.list
      * @desc Returns information about all data transfers in the project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.list({
+     *     // When specified, only configurations of requested data sources are returned.
+     *     dataSourceIds: 'placeholder-value',
+     *     // Page size. The default page size is the maximum value of 1000 results.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token, which can be used to request a specific page
+     *     // of `ListTransfersRequest` list results. For multiple-page
+     *     // results, `ListTransfersResponse` outputs
+     *     // a `next_page` token, which can be used as the
+     *     // `page_token` value to request the next page of list results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The BigQuery project id for which data sources
+     *     // should be returned: `projects/{project_id}` or
+     *     // `projects/{project_id}/locations/{location_id}`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.list
      * @memberOf! ()
      *
@@ -2833,6 +4377,125 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.patch
      * @desc Updates a data transfer configuration. All fields must be set, even if they are not updated.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.patch({
+     *     // Optional OAuth2 authorization code to use with this transfer configuration.
+     *     // If it is provided, the transfer configuration will be associated with the
+     *     // authorizing user.
+     *     // In order to obtain authorization_code, please make a
+     *     // request to
+     *     // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *     //
+     *     // * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *     //   data source returned by ListDataSources method.
+     *     // * data_source_scopes are the scopes returned by ListDataSources method.
+     *     // * redirect_uri is an optional parameter. If not specified, then
+     *     //   authorization code is posted to the opener of authorization flow window.
+     *     //   Otherwise it will be sent to the redirect uri. A special value of
+     *     //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *     //   returned in the title bar of the browser, with the page text prompting
+     *     //   the user to copy the code and paste it in the application.
+     *     authorizationCode: 'placeholder-value',
+     *     // The resource name of the transfer config.
+     *     // Transfer config names have the form of
+     *     // `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
+     *     // The name is automatically generated based on the config_id specified in
+     *     // CreateTransferConfigRequest along with project_id and region. If config_id
+     *     // is not provided, usually a uuid, even though it is not guaranteed or
+     *     // required, will be generated for config_id.
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig',
+     *     // Optional service account name. If this field is set and
+     *     // "service_account_name" is set in update_mask, transfer config will be
+     *     // updated to use this service account credentials. It requires that
+     *     // requesting user calling this API has permissions to act as this service
+     *     // account.
+     *     serviceAccountName: 'placeholder-value',
+     *     // Required. Required list of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *     // Optional version info. If users want to find a very recent access token,
+     *     // that is, immediately after approving access, users have to set the
+     *     // version_info claim in the token request. To obtain the version_info, users
+     *     // must use the "none+gsession" response type. which be return a
+     *     // version_info back in the authorization response which be be put in a JWT
+     *     // claim in the token request.
+     *     versionInfo: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataRefreshWindowDays": 0,
+     *       //   "dataSourceId": "my_dataSourceId",
+     *       //   "datasetRegion": "my_datasetRegion",
+     *       //   "destinationDatasetId": "my_destinationDatasetId",
+     *       //   "disabled": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "emailPreferences": {},
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *       //   "params": {},
+     *       //   "schedule": "my_schedule",
+     *       //   "scheduleOptions": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.patch
      * @memberOf! ()
      *
@@ -2910,6 +4573,63 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.scheduleRuns
      * @desc Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.scheduleRuns({
+     *     // Required. Transfer configuration name in the form:
+     *     // `projects/{project_id}/transferConfigs/{config_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     parent: 'projects/my-project/transferConfigs/my-transferConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "endTime": "my_endTime",
+     *       //   "startTime": "my_startTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.scheduleRuns
      * @memberOf! ()
      *
@@ -2995,6 +4715,65 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.startManualRuns
      * @desc Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.startManualRuns(
+     *     {
+     *       // Transfer configuration name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       parent: 'projects/my-project/transferConfigs/my-transferConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requestedRunTime": "my_requestedRunTime",
+     *         //   "requestedTimeRange": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.startManualRuns
      * @memberOf! ()
      *
@@ -3236,6 +5015,52 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.delete
      * @desc Deletes the specified transfer run.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.delete({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.runs.delete
      * @memberOf! ()
      *
@@ -3306,6 +5131,70 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.get
      * @desc Returns information about the particular transfer run.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.get({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "emailPreferences": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "errorStatus": {},
+     *   //   "name": "my_name",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "runTime": "my_runTime",
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.runs.get
      * @memberOf! ()
      *
@@ -3378,6 +5267,70 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.list
      * @desc Returns information about running and completed jobs.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.list({
+     *     // Page size. The default page size is the maximum value of 1000 results.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token, which can be used to request a specific page
+     *     // of `ListTransferRunsRequest` list results. For multiple-page
+     *     // results, `ListTransferRunsResponse` outputs
+     *     // a `next_page` token, which can be used as the
+     *     // `page_token` value to request the next page of list results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of transfer configuration for which transfer runs should be retrieved.
+     *     // Format of transfer configuration resource name is:
+     *     // `projects/{project_id}/transferConfigs/{config_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     parent: 'projects/my-project/transferConfigs/my-transferConfig',
+     *     // Indicates how run attempts are to be pulled.
+     *     runAttempt: 'placeholder-value',
+     *     // When specified, only transfer runs with requested states are returned.
+     *     states: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferRuns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.runs.list
      * @memberOf! ()
      *
@@ -3516,6 +5469,71 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list
      * @desc Returns user facing log messages for the data transfer run.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list(
+     *     {
+     *       // Message types to return. If not populated - INFO, WARNING and ERROR
+     *       // messages are returned.
+     *       messageTypes: 'placeholder-value',
+     *       // Page size. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Pagination token, which can be used to request a specific page
+     *       // of `ListTransferLogsRequest` list results. For multiple-page
+     *       // results, `ListTransferLogsResponse` outputs
+     *       // a `next_page` token, which can be used as the
+     *       // `page_token` value to request the next page of list results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Transfer run name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       parent:
+     *         'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferMessages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list
      * @memberOf! ()
      *

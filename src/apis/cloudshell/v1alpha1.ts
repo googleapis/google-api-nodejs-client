@@ -309,6 +309,59 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.authorize
      * @desc Sends OAuth credentials to a running environment on behalf of a user. When this completes, the environment will be authorized to run various Google Cloud command line tools without requiring the user to manually authenticate.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.authorize({
+     *     // Name of the resource that should receive the credentials, for example
+     *     // `users/me/environments/default` or
+     *     // `users/someone@example.com/environments/default`.
+     *     name: 'users/my-user/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessToken": "my_accessToken",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "idToken": "my_idToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.authorize
      * @memberOf! ()
      *
@@ -382,6 +435,61 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.get
      * @desc Gets an environment. Returns NOT_FOUND if the environment does not exist.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.get({
+     *     // Name of the requested resource, for example `users/me/environments/default`
+     *     // or `users/someone@example.com/environments/default`.
+     *     name: 'users/my-user/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dockerImage": "my_dockerImage",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "publicKeys": [],
+     *   //   "size": "my_size",
+     *   //   "sshHost": "my_sshHost",
+     *   //   "sshPort": 0,
+     *   //   "sshUsername": "my_sshUsername",
+     *   //   "state": "my_state",
+     *   //   "vmSizeExpireTime": "my_vmSizeExpireTime",
+     *   //   "webHost": "my_webHost",
+     *   //   "webPorts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.get
      * @memberOf! ()
      *
@@ -453,6 +561,83 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.patch
      * @desc Updates an existing environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.patch({
+     *     // Name of the resource to be updated, for example
+     *     // `users/me/environments/default` or
+     *     // `users/someone@example.com/environments/default`.
+     *     name: 'users/my-user/environments/my-environment',
+     *     // Mask specifying which fields in the environment should be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dockerImage": "my_dockerImage",
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "publicKeys": [],
+     *       //   "size": "my_size",
+     *       //   "sshHost": "my_sshHost",
+     *       //   "sshPort": 0,
+     *       //   "sshUsername": "my_sshUsername",
+     *       //   "state": "my_state",
+     *       //   "vmSizeExpireTime": "my_vmSizeExpireTime",
+     *       //   "webHost": "my_webHost",
+     *       //   "webPorts": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dockerImage": "my_dockerImage",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "publicKeys": [],
+     *   //   "size": "my_size",
+     *   //   "sshHost": "my_sshHost",
+     *   //   "sshPort": 0,
+     *   //   "sshUsername": "my_sshUsername",
+     *   //   "state": "my_state",
+     *   //   "vmSizeExpireTime": "my_vmSizeExpireTime",
+     *   //   "webHost": "my_webHost",
+     *   //   "webPorts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.patch
      * @memberOf! ()
      *
@@ -526,6 +711,64 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.start
      * @desc Starts an existing environment, allowing clients to connect to it. The returned operation will contain an instance of StartEnvironmentMetadata in its metadata field. Users can wait for the environment to start by polling this operation via GetOperation. Once the environment has finished starting and is ready to accept connections, the operation will contain a StartEnvironmentResponse in its response field.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.start({
+     *     // Name of the resource that should be started, for example
+     *     // `users/me/environments/default` or
+     *     // `users/someone@example.com/environments/default`.
+     *     name: 'users/my-user/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessToken": "my_accessToken",
+     *       //   "publicKeys": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.start
      * @memberOf! ()
      *
@@ -676,6 +919,59 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.publicKeys.create
      * @desc Adds a public SSH key to an environment, allowing clients with the corresponding private key to connect to that environment via SSH. If a key with the same format and content already exists, this will return the existing key.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.publicKeys.create({
+     *     // Parent resource name, e.g. `users/me/environments/default`.
+     *     parent: 'users/my-user/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "key": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "format": "my_format",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.publicKeys.create
      * @memberOf! ()
      *
@@ -751,6 +1047,48 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.publicKeys.delete
      * @desc Removes a public SSH key from an environment. Clients will no longer be able to connect to the environment using the corresponding private key.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.publicKeys.delete({
+     *     // Name of the resource to be deleted, e.g.
+     *     // `users/me/environments/default/publicKeys/my-key`.
+     *     name: 'users/my-user/environments/my-environment/publicKeys/my-publicKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.publicKeys.delete
      * @memberOf! ()
      *

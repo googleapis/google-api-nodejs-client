@@ -612,6 +612,58 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.operations.get
      * @memberOf! ()
      *
@@ -712,6 +764,56 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.getConfig
      * @desc Gets the Hosting metadata for a specific site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.getConfig({
+     *     // Required. The site for which to get the SiteConfig, in the format:
+     *     // <code>sites/<var>site-name</var>/config</code>
+     *     name: 'projects/my-project/sites/my-site/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudLoggingEnabled": false,
+     *   //   "maxVersions": "my_maxVersions"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.getConfig
      * @memberOf! ()
      *
@@ -784,6 +886,69 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.updateConfig
      * @desc Sets the Hosting metadata for a specific site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.updateConfig({
+     *     // Required. The site for which to update the SiteConfig, in the format:
+     *     // <code>sites/<var>site-name</var>/config</code>
+     *     name: 'projects/my-project/sites/my-site/config',
+     *     // A set of field names from your [site configuration](../sites.SiteConfig)
+     *     // that you want to update.
+     *     // <br>A field will be overwritten if, and only if, it's in the mask.
+     *     // <br>If a mask is not provided then a default mask of only
+     *     // [`max_versions`](../sites.SiteConfig.max_versions) will be used.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudLoggingEnabled": false,
+     *       //   "maxVersions": "my_maxVersions"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudLoggingEnabled": false,
+     *   //   "maxVersions": "my_maxVersions"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.updateConfig
      * @memberOf! ()
      *
@@ -910,6 +1075,79 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.channels.releases.create
      * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.channels.releases.create({
+     *     // Required. The site that the release belongs to, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'projects/my-project/sites/my-site/channels/my-channel',
+     *     // The unique identifier for a version, in the format:
+     *     // <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     // The <var>site-name</var> in this version identifier must match the
+     *     // <var>site-name</var> in the `parent` parameter.
+     *     // <br>
+     *     // <br>This query parameter must be empty if the `type` field in the
+     *     // request body is `SITE_DISABLE`.
+     *     versionName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": "my_message",
+     *       //   "name": "my_name",
+     *       //   "releaseTime": "my_releaseTime",
+     *       //   "releaseUser": {},
+     *       //   "type": "my_type",
+     *       //   "version": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "releaseTime": "my_releaseTime",
+     *   //   "releaseUser": {},
+     *   //   "type": "my_type",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.channels.releases.create
      * @memberOf! ()
      *
@@ -985,6 +1223,60 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.channels.releases.list
      * @desc Lists the releases that have been created on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.channels.releases.list({
+     *     // The page size to return. Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list files, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'projects/my-project/sites/my-site/channels/my-channel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "releases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.channels.releases.list
      * @memberOf! ()
      *
@@ -1113,6 +1405,71 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.domains.create
      * @desc Creates a domain mapping on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.domains.create({
+     *     // Required. The parent to create the domain association for, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'projects/my-project/sites/my-site',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "domainName": "my_domainName",
+     *       //   "domainRedirect": {},
+     *       //   "provisioning": {},
+     *       //   "site": "my_site",
+     *       //   "status": "my_status",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainName": "my_domainName",
+     *   //   "domainRedirect": {},
+     *   //   "provisioning": {},
+     *   //   "site": "my_site",
+     *   //   "status": "my_status",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.domains.create
      * @memberOf! ()
      *
@@ -1187,6 +1544,50 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.domains.delete
      * @desc Deletes the existing domain mapping on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.domains.delete({
+     *     // Required. The name of the domain association to delete.
+     *     name: 'projects/my-project/sites/my-site/domains/my-domain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.domains.delete
      * @memberOf! ()
      *
@@ -1257,6 +1658,59 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.domains.get
      * @desc Gets a domain mapping on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.domains.get({
+     *     // Required. The name of the domain configuration to get.
+     *     name: 'projects/my-project/sites/my-site/domains/my-domain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainName": "my_domainName",
+     *   //   "domainRedirect": {},
+     *   //   "provisioning": {},
+     *   //   "site": "my_site",
+     *   //   "status": "my_status",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.domains.get
      * @memberOf! ()
      *
@@ -1327,6 +1781,60 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.domains.list
      * @desc Lists the domains for the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.domains.list({
+     *     // The page size to return. Defaults to 50.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list domains, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'projects/my-project/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.domains.list
      * @memberOf! ()
      *
@@ -1404,6 +1912,71 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.domains.update
      * @desc Updates the specified domain mapping, creating the mapping as if it does not exist.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.domains.update({
+     *     // Required. The name of the domain association to update or create, if an
+     *     // association doesn't already exist.
+     *     name: 'projects/my-project/sites/my-site/domains/my-domain',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "domainName": "my_domainName",
+     *       //   "domainRedirect": {},
+     *       //   "provisioning": {},
+     *       //   "site": "my_site",
+     *       //   "status": "my_status",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainName": "my_domainName",
+     *   //   "domainRedirect": {},
+     *   //   "provisioning": {},
+     *   //   "site": "my_site",
+     *   //   "status": "my_status",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.domains.update
      * @memberOf! ()
      *
@@ -1561,6 +2134,79 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.releases.create
      * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.releases.create({
+     *     // Required. The site that the release belongs to, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'projects/my-project/sites/my-site',
+     *     // The unique identifier for a version, in the format:
+     *     // <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     // The <var>site-name</var> in this version identifier must match the
+     *     // <var>site-name</var> in the `parent` parameter.
+     *     // <br>
+     *     // <br>This query parameter must be empty if the `type` field in the
+     *     // request body is `SITE_DISABLE`.
+     *     versionName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": "my_message",
+     *       //   "name": "my_name",
+     *       //   "releaseTime": "my_releaseTime",
+     *       //   "releaseUser": {},
+     *       //   "type": "my_type",
+     *       //   "version": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "releaseTime": "my_releaseTime",
+     *   //   "releaseUser": {},
+     *   //   "type": "my_type",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.releases.create
      * @memberOf! ()
      *
@@ -1636,6 +2282,60 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.releases.list
      * @desc Lists the releases that have been created on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.releases.list({
+     *     // The page size to return. Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list files, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'projects/my-project/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "releases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.releases.list
      * @memberOf! ()
      *
@@ -1766,6 +2466,91 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.versions.create
      * @desc Creates a new version for a site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.versions.create({
+     *     // Required. The parent to create the version for, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'projects/my-project/sites/my-site',
+     *     // The self-reported size of the version. This value is used for a pre-emptive
+     *     // quota check for legacy version uploads.
+     *     sizeBytes: 'placeholder-value',
+     *     // A unique id for the new version. This is only specified for legacy version
+     *     // creations.
+     *     versionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "createUser": {},
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "deleteUser": {},
+     *       //   "fileCount": "my_fileCount",
+     *       //   "finalizeTime": "my_finalizeTime",
+     *       //   "finalizeUser": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "preview": {},
+     *       //   "status": "my_status",
+     *       //   "versionBytes": "my_versionBytes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "createUser": {},
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "deleteUser": {},
+     *   //   "fileCount": "my_fileCount",
+     *   //   "finalizeTime": "my_finalizeTime",
+     *   //   "finalizeUser": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "preview": {},
+     *   //   "status": "my_status",
+     *   //   "versionBytes": "my_versionBytes"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.versions.create
      * @memberOf! ()
      *
@@ -1842,6 +2627,51 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.versions.delete
      * @desc Deletes the specified version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.versions.delete({
+     *     // Required. The name of the version to be deleted, in the format:
+     *     // <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     name: 'projects/my-project/sites/my-site/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.versions.delete
      * @memberOf! ()
      *
@@ -1912,6 +2742,68 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.versions.list
      * @desc Lists the versions that have been created on the specified site. Will include filtering in the future.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.versions.list({
+     *     // The filter string used to return a subset of versions in the response.
+     *     // Currently supported fields for filtering are: name, status,
+     *     // and create_time. Filter processing will be implemented in accordance
+     *     // with go/filtering.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of versions to return. The service may return fewer than
+     *     // this value.
+     *     // If unspecified, at most 25 versions will be returned.
+     *     // The maximum value is 100; values above 100 will be coerced to 100
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list files, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'projects/my-project/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.versions.list
      * @memberOf! ()
      *
@@ -1992,6 +2884,93 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.versions.patch
      * @desc Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.versions.patch({
+     *     // The unique identifier for a version, in the format:
+     *     // <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     // This name is provided in the response body when you call the
+     *     // [`CreateVersion`](../sites.versions/create) endpoint.
+     *     name: 'projects/my-project/sites/my-site/versions/my-version',
+     *     // A set of field names from your [version](../sites.versions) that you want
+     *     // to update.
+     *     // <br>A field will be overwritten if, and only if, it's in the mask.
+     *     // <br>If a mask is not provided then a default mask of only
+     *     // [`status`](../sites.versions#Version.FIELDS.status) will be used.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "createUser": {},
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "deleteUser": {},
+     *       //   "fileCount": "my_fileCount",
+     *       //   "finalizeTime": "my_finalizeTime",
+     *       //   "finalizeUser": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "preview": {},
+     *       //   "status": "my_status",
+     *       //   "versionBytes": "my_versionBytes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "createUser": {},
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "deleteUser": {},
+     *   //   "fileCount": "my_fileCount",
+     *   //   "finalizeTime": "my_finalizeTime",
+     *   //   "finalizeUser": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "preview": {},
+     *   //   "status": "my_status",
+     *   //   "versionBytes": "my_versionBytes"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.versions.patch
      * @memberOf! ()
      *
@@ -2064,6 +3043,62 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.versions.populateFiles
      * @desc Adds content files to a version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.versions.populateFiles({
+     *     // Required. The version to add files to, in the format:
+     *     // <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     parent: 'projects/my-project/sites/my-site/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "files": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "uploadRequiredHashes": [],
+     *   //   "uploadUrl": "my_uploadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.versions.populateFiles
      * @memberOf! ()
      *
@@ -2256,6 +3291,63 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.projects.sites.versions.files.list
      * @desc Lists the remaining files to be uploaded for the specified version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.versions.files.list({
+     *     // The page size to return. Defaults to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided. This will be the
+     *     // encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent to list files for, in the format:
+     *     // <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     parent: 'projects/my-project/sites/my-site/versions/my-version',
+     *     // The type of files in the version that should be listed.
+     *     status: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.projects.sites.versions.files.list
      * @memberOf! ()
      *
@@ -2376,6 +3468,56 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.getConfig
      * @desc Gets the Hosting metadata for a specific site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.getConfig({
+     *     // Required. The site for which to get the SiteConfig, in the format:
+     *     // <code>sites/<var>site-name</var>/config</code>
+     *     name: 'sites/my-site/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudLoggingEnabled": false,
+     *   //   "maxVersions": "my_maxVersions"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.getConfig
      * @memberOf! ()
      *
@@ -2447,6 +3589,69 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.updateConfig
      * @desc Sets the Hosting metadata for a specific site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.updateConfig({
+     *     // Required. The site for which to update the SiteConfig, in the format:
+     *     // <code>sites/<var>site-name</var>/config</code>
+     *     name: 'sites/my-site/config',
+     *     // A set of field names from your [site configuration](../sites.SiteConfig)
+     *     // that you want to update.
+     *     // <br>A field will be overwritten if, and only if, it's in the mask.
+     *     // <br>If a mask is not provided then a default mask of only
+     *     // [`max_versions`](../sites.SiteConfig.max_versions) will be used.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudLoggingEnabled": false,
+     *       //   "maxVersions": "my_maxVersions"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudLoggingEnabled": false,
+     *   //   "maxVersions": "my_maxVersions"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.updateConfig
      * @memberOf! ()
      *
@@ -2570,6 +3775,79 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.channels.releases.create
      * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.channels.releases.create({
+     *     // Required. The site that the release belongs to, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'sites/my-site/channels/my-channel',
+     *     // The unique identifier for a version, in the format:
+     *     // <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     // The <var>site-name</var> in this version identifier must match the
+     *     // <var>site-name</var> in the `parent` parameter.
+     *     // <br>
+     *     // <br>This query parameter must be empty if the `type` field in the
+     *     // request body is `SITE_DISABLE`.
+     *     versionName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": "my_message",
+     *       //   "name": "my_name",
+     *       //   "releaseTime": "my_releaseTime",
+     *       //   "releaseUser": {},
+     *       //   "type": "my_type",
+     *       //   "version": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "releaseTime": "my_releaseTime",
+     *   //   "releaseUser": {},
+     *   //   "type": "my_type",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.channels.releases.create
      * @memberOf! ()
      *
@@ -2645,6 +3923,60 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.channels.releases.list
      * @desc Lists the releases that have been created on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.channels.releases.list({
+     *     // The page size to return. Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list files, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'sites/my-site/channels/my-channel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "releases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.channels.releases.list
      * @memberOf! ()
      *
@@ -2773,6 +4105,71 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.domains.create
      * @desc Creates a domain mapping on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.domains.create({
+     *     // Required. The parent to create the domain association for, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'sites/my-site',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "domainName": "my_domainName",
+     *       //   "domainRedirect": {},
+     *       //   "provisioning": {},
+     *       //   "site": "my_site",
+     *       //   "status": "my_status",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainName": "my_domainName",
+     *   //   "domainRedirect": {},
+     *   //   "provisioning": {},
+     *   //   "site": "my_site",
+     *   //   "status": "my_status",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.domains.create
      * @memberOf! ()
      *
@@ -2847,6 +4244,50 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.domains.delete
      * @desc Deletes the existing domain mapping on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.domains.delete({
+     *     // Required. The name of the domain association to delete.
+     *     name: 'sites/my-site/domains/my-domain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.domains.delete
      * @memberOf! ()
      *
@@ -2917,6 +4358,59 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.domains.get
      * @desc Gets a domain mapping on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.domains.get({
+     *     // Required. The name of the domain configuration to get.
+     *     name: 'sites/my-site/domains/my-domain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainName": "my_domainName",
+     *   //   "domainRedirect": {},
+     *   //   "provisioning": {},
+     *   //   "site": "my_site",
+     *   //   "status": "my_status",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.domains.get
      * @memberOf! ()
      *
@@ -2987,6 +4481,60 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.domains.list
      * @desc Lists the domains for the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.domains.list({
+     *     // The page size to return. Defaults to 50.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list domains, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.domains.list
      * @memberOf! ()
      *
@@ -3064,6 +4612,71 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.domains.update
      * @desc Updates the specified domain mapping, creating the mapping as if it does not exist.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.domains.update({
+     *     // Required. The name of the domain association to update or create, if an
+     *     // association doesn't already exist.
+     *     name: 'sites/my-site/domains/my-domain',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "domainName": "my_domainName",
+     *       //   "domainRedirect": {},
+     *       //   "provisioning": {},
+     *       //   "site": "my_site",
+     *       //   "status": "my_status",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainName": "my_domainName",
+     *   //   "domainRedirect": {},
+     *   //   "provisioning": {},
+     *   //   "site": "my_site",
+     *   //   "status": "my_status",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.domains.update
      * @memberOf! ()
      *
@@ -3221,6 +4834,79 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.releases.create
      * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.releases.create({
+     *     // Required. The site that the release belongs to, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'sites/my-site',
+     *     // The unique identifier for a version, in the format:
+     *     // <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     // The <var>site-name</var> in this version identifier must match the
+     *     // <var>site-name</var> in the `parent` parameter.
+     *     // <br>
+     *     // <br>This query parameter must be empty if the `type` field in the
+     *     // request body is `SITE_DISABLE`.
+     *     versionName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": "my_message",
+     *       //   "name": "my_name",
+     *       //   "releaseTime": "my_releaseTime",
+     *       //   "releaseUser": {},
+     *       //   "type": "my_type",
+     *       //   "version": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "releaseTime": "my_releaseTime",
+     *   //   "releaseUser": {},
+     *   //   "type": "my_type",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.releases.create
      * @memberOf! ()
      *
@@ -3296,6 +4982,60 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.releases.list
      * @desc Lists the releases that have been created on the specified site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.releases.list({
+     *     // The page size to return. Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list files, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "releases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.releases.list
      * @memberOf! ()
      *
@@ -3426,6 +5166,91 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.versions.create
      * @desc Creates a new version for a site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.versions.create({
+     *     // Required. The parent to create the version for, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'sites/my-site',
+     *     // The self-reported size of the version. This value is used for a pre-emptive
+     *     // quota check for legacy version uploads.
+     *     sizeBytes: 'placeholder-value',
+     *     // A unique id for the new version. This is only specified for legacy version
+     *     // creations.
+     *     versionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "createUser": {},
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "deleteUser": {},
+     *       //   "fileCount": "my_fileCount",
+     *       //   "finalizeTime": "my_finalizeTime",
+     *       //   "finalizeUser": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "preview": {},
+     *       //   "status": "my_status",
+     *       //   "versionBytes": "my_versionBytes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "createUser": {},
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "deleteUser": {},
+     *   //   "fileCount": "my_fileCount",
+     *   //   "finalizeTime": "my_finalizeTime",
+     *   //   "finalizeUser": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "preview": {},
+     *   //   "status": "my_status",
+     *   //   "versionBytes": "my_versionBytes"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.versions.create
      * @memberOf! ()
      *
@@ -3502,6 +5327,51 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.versions.delete
      * @desc Deletes the specified version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.versions.delete({
+     *     // Required. The name of the version to be deleted, in the format:
+     *     // <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     name: 'sites/my-site/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.versions.delete
      * @memberOf! ()
      *
@@ -3572,6 +5442,68 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.versions.list
      * @desc Lists the versions that have been created on the specified site. Will include filtering in the future.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.versions.list({
+     *     // The filter string used to return a subset of versions in the response.
+     *     // Currently supported fields for filtering are: name, status,
+     *     // and create_time. Filter processing will be implemented in accordance
+     *     // with go/filtering.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of versions to return. The service may return fewer than
+     *     // this value.
+     *     // If unspecified, at most 25 versions will be returned.
+     *     // The maximum value is 100; values above 100 will be coerced to 100
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list files, in the format:
+     *     // <code>sites/<var>site-name</var></code>
+     *     parent: 'sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.versions.list
      * @memberOf! ()
      *
@@ -3652,6 +5584,93 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.versions.patch
      * @desc Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.versions.patch({
+     *     // The unique identifier for a version, in the format:
+     *     // <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     // This name is provided in the response body when you call the
+     *     // [`CreateVersion`](../sites.versions/create) endpoint.
+     *     name: 'sites/my-site/versions/my-version',
+     *     // A set of field names from your [version](../sites.versions) that you want
+     *     // to update.
+     *     // <br>A field will be overwritten if, and only if, it's in the mask.
+     *     // <br>If a mask is not provided then a default mask of only
+     *     // [`status`](../sites.versions#Version.FIELDS.status) will be used.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "createUser": {},
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "deleteUser": {},
+     *       //   "fileCount": "my_fileCount",
+     *       //   "finalizeTime": "my_finalizeTime",
+     *       //   "finalizeUser": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "preview": {},
+     *       //   "status": "my_status",
+     *       //   "versionBytes": "my_versionBytes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "createUser": {},
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "deleteUser": {},
+     *   //   "fileCount": "my_fileCount",
+     *   //   "finalizeTime": "my_finalizeTime",
+     *   //   "finalizeUser": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "preview": {},
+     *   //   "status": "my_status",
+     *   //   "versionBytes": "my_versionBytes"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.versions.patch
      * @memberOf! ()
      *
@@ -3724,6 +5743,62 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.versions.populateFiles
      * @desc Adds content files to a version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.versions.populateFiles({
+     *     // Required. The version to add files to, in the format:
+     *     // <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     parent: 'sites/my-site/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "files": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "uploadRequiredHashes": [],
+     *   //   "uploadUrl": "my_uploadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.versions.populateFiles
      * @memberOf! ()
      *
@@ -3916,6 +5991,63 @@ export namespace firebasehosting_v1beta1 {
     /**
      * firebasehosting.sites.versions.files.list
      * @desc Lists the remaining files to be uploaded for the specified version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.versions.files.list({
+     *     // The page size to return. Defaults to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided. This will be the
+     *     // encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent to list files for, in the format:
+     *     // <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     *     parent: 'sites/my-site/versions/my-version',
+     *     // The type of files in the version that should be listed.
+     *     status: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebasehosting.sites.versions.files.list
      * @memberOf! ()
      *

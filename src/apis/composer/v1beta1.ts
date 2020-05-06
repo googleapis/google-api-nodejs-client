@@ -507,6 +507,68 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.environments.create
      * @desc Create a new environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.create({
+     *     // The parent must be of the form
+     *     // "projects/{projectId}/locations/{locationId}".
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "uuid": "my_uuid"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.environments.create
      * @memberOf! ()
      *
@@ -582,6 +644,55 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.environments.delete
      * @desc Delete an environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.delete({
+     *     // The environment to delete, in the form:
+     *     // "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     *     name:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.environments.delete
      * @memberOf! ()
      *
@@ -653,6 +764,57 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.environments.get
      * @desc Get an existing environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.get({
+     *     // The resource name of the environment to get, in the form:
+     *     // "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     *     name:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "uuid": "my_uuid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.environments.get
      * @memberOf! ()
      *
@@ -724,6 +886,55 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.environments.list
      * @desc List environments.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.list({
+     *     // The maximum number of environments to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // List environments in the given project and location, in the form:
+     *     // "projects/{projectId}/locations/{locationId}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "environments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.environments.list
      * @memberOf! ()
      *
@@ -802,6 +1013,213 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.environments.patch
      * @desc Update an environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.patch({
+     *     // The relative resource name of the environment to update, in the form:
+     *     // "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     *     name:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *     // Required. A comma-separated list of paths, relative to `Environment`, of
+     *     // fields to update.
+     *     // For example, to set the version of scikit-learn to install in the
+     *     // environment to 0.19.0 and to remove an existing installation of
+     *     // argparse, the `updateMask` parameter would include the following two
+     *     // `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and
+     *     // "config.softwareConfig.pypiPackages.argparse". The included patch
+     *     // environment would specify the scikit-learn version as follows:
+     *     //
+     *     //     {
+     *     //       "config":{
+     *     //         "softwareConfig":{
+     *     //           "pypiPackages":{
+     *     //             "scikit-learn":"==0.19.0"
+     *     //           }
+     *     //         }
+     *     //       }
+     *     //     }
+     *     //
+     *     // Note that in the above example, any existing PyPI packages
+     *     // other than scikit-learn and argparse will be unaffected.
+     *     //
+     *     // Only one update type may be included in a single request's `updateMask`.
+     *     // For example, one cannot update both the PyPI packages and
+     *     // labels in the same request. However, it is possible to update multiple
+     *     // members of a map field simultaneously in the same request. For example,
+     *     // to set the labels "label1" and "label2" while clearing "label3" (assuming
+     *     // it already exists), one can
+     *     // provide the paths "labels.label1", "labels.label2", and "labels.label3"
+     *     // and populate the patch environment as follows:
+     *     //
+     *     //     {
+     *     //       "labels":{
+     *     //         "label1":"new-label1-value"
+     *     //         "label2":"new-label2-value"
+     *     //       }
+     *     //     }
+     *     //
+     *     // Note that in the above example, any existing labels that are not
+     *     // included in the `updateMask` will be unaffected.
+     *     //
+     *     // It is also possible to replace an entire map field by providing the
+     *     // map field's path in the `updateMask`. The new value of the field will
+     *     // be that which is provided in the patch environment. For example, to
+     *     // delete all pre-existing user-specified PyPI packages and
+     *     // install botocore at version 1.7.14, the `updateMask` would contain
+     *     // the path "config.softwareConfig.pypiPackages", and
+     *     // the patch environment would be the following:
+     *     //
+     *     //     {
+     *     //       "config":{
+     *     //         "softwareConfig":{
+     *     //           "pypiPackages":{
+     *     //             "botocore":"==1.7.14"
+     *     //           }
+     *     //         }
+     *     //       }
+     *     //     }
+     *     //
+     *     // <strong>Note:</strong> Only the following fields can be updated:
+     *     //
+     *     //  <table>
+     *     //  <tbody>
+     *     //  <tr>
+     *     //  <td><strong>Mask</strong></td>
+     *     //  <td><strong>Purpose</strong></td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>config.softwareConfig.pypiPackages
+     *     //  </td>
+     *     //  <td>Replace all custom custom PyPI packages. If a replacement
+     *     //  package map is not included in `environment`, all custom
+     *     //  PyPI packages are cleared. It is an error to provide both this mask and a
+     *     //  mask specifying an individual package.</td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>config.softwareConfig.pypiPackages.<var>packagename</var></td>
+     *     //  <td>Update the custom PyPI package <var>packagename</var>,
+     *     //  preserving other packages. To delete the package, include it in
+     *     //  `updateMask`, and omit the mapping for it in
+     *     //  `environment.config.softwareConfig.pypiPackages`. It is an error
+     *     //  to provide both a mask of this form and the
+     *     //  "config.softwareConfig.pypiPackages" mask.</td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>labels</td>
+     *     //  <td>Replace all environment labels. If a replacement labels map is not
+     *     //  included in `environment`, all labels are cleared. It is an error to
+     *     //  provide both this mask and a mask specifying one or more individual
+     *     //  labels.</td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>labels.<var>labelName</var></td>
+     *     //  <td>Set the label named <var>labelName</var>, while preserving other
+     *     //  labels. To delete the label, include it in `updateMask` and omit its
+     *     //  mapping in `environment.labels`. It is an error to provide both a
+     *     //  mask of this form and the "labels" mask.</td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>config.nodeCount</td>
+     *     //  <td>Horizontally scale the number of nodes in the environment. An integer
+     *     //  greater than or equal to 3 must be provided in the `config.nodeCount`
+     *     //  field.
+     *     //  </td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>config.softwareConfig.airflowConfigOverrides</td>
+     *     //  <td>Replace all Apache Airflow config overrides. If a replacement config
+     *     //  overrides map is not included in `environment`, all config overrides
+     *     //  are cleared.
+     *     //  It is an error to provide both this mask and a mask specifying one or
+     *     //  more individual config overrides.</td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>config.softwareConfig.airflowConfigOverrides.<var>section</var>-<var>name
+     *     //  </var></td>
+     *     //  <td>Override the Apache Airflow config property <var>name</var> in the
+     *     //  section named <var>section</var>, preserving other properties. To delete
+     *     //  the property override, include it in `updateMask` and omit its mapping
+     *     //  in `environment.config.softwareConfig.airflowConfigOverrides`.
+     *     //  It is an error to provide both a mask of this form and the
+     *     //  "config.softwareConfig.airflowConfigOverrides" mask.</td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>config.softwareConfig.envVariables</td>
+     *     //  <td>Replace all environment variables. If a replacement environment
+     *     //  variable map is not included in `environment`, all custom environment
+     *     //  variables  are cleared.
+     *     //  It is an error to provide both this mask and a mask specifying one or
+     *     //  more individual environment variables.</td>
+     *     //  </tr>
+     *     //  <tr>
+     *     //  <td>config.softwareConfig.imageVersion</td>
+     *     //  <td>Upgrade the version of the environment in-place. Refer to
+     *     //  `SoftwareConfig.image_version` for information on how to format the new
+     *     //  image version. Additionally, the new image version cannot effect a version
+     *     //  downgrade and must match the current image version's Composer major
+     *     //  version and Airflow major and minor versions. Consult the
+     *     //  <a href="/composer/docs/concepts/versioning/composer-versions">Cloud
+     *     //  Composer Version List</a> for valid values.</td>
+     *     //  </tr>
+     *     //  </tbody>
+     *     //  </table>
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "uuid": "my_uuid"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.environments.patch
      * @memberOf! ()
      *
@@ -965,6 +1383,55 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.imageVersions.list
      * @desc List ImageVersions for provided location.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.imageVersions.list({
+     *     // The maximum number of image_versions to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // List ImageVersions in the given project and location, in the form:
+     *     // "projects/{projectId}/locations/{locationId}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "imageVersions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.imageVersions.list
      * @memberOf! ()
      *
@@ -1076,6 +1543,47 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.operations.delete
      * @memberOf! ()
      *
@@ -1145,6 +1653,53 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -1216,6 +1771,56 @@ export namespace composer_v1beta1 {
     /**
      * composer.projects.locations.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias composer.projects.locations.operations.list
      * @memberOf! ()
      *

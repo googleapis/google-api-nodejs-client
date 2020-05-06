@@ -666,6 +666,60 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.bindDeviceToGateway
      * @desc Associates the device with the gateway.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.bindDeviceToGateway({
+     *     // Required. The name of the registry. For example,
+     *     // `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     parent: 'projects/my-project/locations/my-location/registries/my-registrie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deviceId": "my_deviceId",
+     *       //   "gatewayId": "my_gatewayId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.bindDeviceToGateway
      * @memberOf! ()
      *
@@ -748,6 +802,75 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.create
      * @desc Creates a device registry that contains devices.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.create({
+     *     // Required. The project and cloud region where this device registry must be created.
+     *     // For example, `projects/example-project/locations/us-central1`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "credentials": [],
+     *       //   "eventNotificationConfigs": [],
+     *       //   "httpConfig": {},
+     *       //   "id": "my_id",
+     *       //   "logLevel": "my_logLevel",
+     *       //   "mqttConfig": {},
+     *       //   "name": "my_name",
+     *       //   "stateNotificationConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "credentials": [],
+     *   //   "eventNotificationConfigs": [],
+     *   //   "httpConfig": {},
+     *   //   "id": "my_id",
+     *   //   "logLevel": "my_logLevel",
+     *   //   "mqttConfig": {},
+     *   //   "name": "my_name",
+     *   //   "stateNotificationConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.create
      * @memberOf! ()
      *
@@ -823,6 +946,51 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.delete
      * @desc Deletes a device registry configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.delete({
+     *     // Required. The name of the device registry. For example,
+     *     // `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     name: 'projects/my-project/locations/my-location/registries/my-registrie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.delete
      * @memberOf! ()
      *
@@ -892,6 +1060,60 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.get
      * @desc Gets a device registry configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.get({
+     *     // Required. The name of the device registry. For example,
+     *     // `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     name: 'projects/my-project/locations/my-location/registries/my-registrie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "credentials": [],
+     *   //   "eventNotificationConfigs": [],
+     *   //   "httpConfig": {},
+     *   //   "id": "my_id",
+     *   //   "logLevel": "my_logLevel",
+     *   //   "mqttConfig": {},
+     *   //   "name": "my_name",
+     *   //   "stateNotificationConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.get
      * @memberOf! ()
      *
@@ -963,6 +1185,64 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/registries/my-registrie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.getIamPolicy
      * @memberOf! ()
      *
@@ -1036,6 +1316,63 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.list
      * @desc Lists device registries.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.list({
+     *     // The maximum number of registries to return in the response. If this value
+     *     // is zero, the service will select a default size. A call may return fewer
+     *     // objects than requested. A non-empty `next_page_token` in the response
+     *     // indicates that more data is available.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListDeviceRegistriesResponse`; indicates
+     *     // that this is a continuation of a prior `ListDeviceRegistries` call and
+     *     // the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and cloud region path. For example,
+     *     // `projects/example-project/locations/us-central1`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceRegistries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.list
      * @memberOf! ()
      *
@@ -1121,6 +1458,81 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.patch
      * @desc Updates a device registry configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.patch({
+     *     // The resource path name. For example,
+     *     // `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     name: 'projects/my-project/locations/my-location/registries/my-registrie',
+     *     // Required. Only updates the `device_registry` fields indicated by this mask.
+     *     // The field mask must not be empty, and it must not contain fields that
+     *     // are immutable or only set by the server.
+     *     // Mutable top-level fields: `event_notification_config`, `http_config`,
+     *     // `mqtt_config`, and `state_notification_config`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "credentials": [],
+     *       //   "eventNotificationConfigs": [],
+     *       //   "httpConfig": {},
+     *       //   "id": "my_id",
+     *       //   "logLevel": "my_logLevel",
+     *       //   "mqttConfig": {},
+     *       //   "name": "my_name",
+     *       //   "stateNotificationConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "credentials": [],
+     *   //   "eventNotificationConfigs": [],
+     *   //   "httpConfig": {},
+     *   //   "id": "my_id",
+     *   //   "logLevel": "my_logLevel",
+     *   //   "mqttConfig": {},
+     *   //   "name": "my_name",
+     *   //   "stateNotificationConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.patch
      * @memberOf! ()
      *
@@ -1194,6 +1606,64 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/registries/my-registrie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.setIamPolicy
      * @memberOf! ()
      *
@@ -1267,6 +1737,62 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/registries/my-registrie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.testIamPermissions
      * @memberOf! ()
      *
@@ -1349,6 +1875,63 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.unbindDeviceFromGateway
      * @desc Deletes the association between the device and the gateway.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.unbindDeviceFromGateway(
+     *     {
+     *       // Required. The name of the registry. For example,
+     *       // `projects/example-project/locations/us-central1/registries/my-registry`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/registries/my-registrie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "deviceId": "my_deviceId",
+     *         //   "gatewayId": "my_gatewayId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.unbindDeviceFromGateway
      * @memberOf! ()
      *
@@ -1616,6 +2199,94 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.create
      * @desc Creates a device in a device registry.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.create({
+     *     // Required. The name of the device registry where this device should be created.
+     *     // For example,
+     *     // `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     parent: 'projects/my-project/locations/my-location/registries/my-registrie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blocked": false,
+     *       //   "config": {},
+     *       //   "credentials": [],
+     *       //   "gatewayConfig": {},
+     *       //   "id": "my_id",
+     *       //   "lastConfigAckTime": "my_lastConfigAckTime",
+     *       //   "lastConfigSendTime": "my_lastConfigSendTime",
+     *       //   "lastErrorStatus": {},
+     *       //   "lastErrorTime": "my_lastErrorTime",
+     *       //   "lastEventTime": "my_lastEventTime",
+     *       //   "lastHeartbeatTime": "my_lastHeartbeatTime",
+     *       //   "lastStateTime": "my_lastStateTime",
+     *       //   "logLevel": "my_logLevel",
+     *       //   "metadata": {},
+     *       //   "name": "my_name",
+     *       //   "numId": "my_numId",
+     *       //   "state": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blocked": false,
+     *   //   "config": {},
+     *   //   "credentials": [],
+     *   //   "gatewayConfig": {},
+     *   //   "id": "my_id",
+     *   //   "lastConfigAckTime": "my_lastConfigAckTime",
+     *   //   "lastConfigSendTime": "my_lastConfigSendTime",
+     *   //   "lastErrorStatus": {},
+     *   //   "lastErrorTime": "my_lastErrorTime",
+     *   //   "lastEventTime": "my_lastEventTime",
+     *   //   "lastHeartbeatTime": "my_lastHeartbeatTime",
+     *   //   "lastStateTime": "my_lastStateTime",
+     *   //   "logLevel": "my_logLevel",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "numId": "my_numId",
+     *   //   "state": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.create
      * @memberOf! ()
      *
@@ -1689,6 +2360,53 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.delete
      * @desc Deletes a device.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.delete({
+     *     // Required. The name of the device. For example,
+     *     // `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *     // `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     name:
+     *       'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.delete
      * @memberOf! ()
      *
@@ -1758,6 +2476,74 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.get
      * @desc Gets details about a device.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.get({
+     *     // The fields of the `Device` resource to be returned in the response. If the
+     *     // field mask is unset or empty, all fields are returned.
+     *     fieldMask: 'placeholder-value',
+     *     // Required. The name of the device. For example,
+     *     // `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *     // `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     name:
+     *       'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blocked": false,
+     *   //   "config": {},
+     *   //   "credentials": [],
+     *   //   "gatewayConfig": {},
+     *   //   "id": "my_id",
+     *   //   "lastConfigAckTime": "my_lastConfigAckTime",
+     *   //   "lastConfigSendTime": "my_lastConfigSendTime",
+     *   //   "lastErrorStatus": {},
+     *   //   "lastErrorTime": "my_lastErrorTime",
+     *   //   "lastEventTime": "my_lastEventTime",
+     *   //   "lastHeartbeatTime": "my_lastHeartbeatTime",
+     *   //   "lastStateTime": "my_lastStateTime",
+     *   //   "logLevel": "my_logLevel",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "numId": "my_numId",
+     *   //   "state": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.get
      * @memberOf! ()
      *
@@ -1828,6 +2614,87 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.list
      * @desc List devices in a device registry.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.list({
+     *     // A list of device string IDs. For example, `['device0', 'device12']`.
+     *     // If empty, this field is ignored. Maximum IDs: 10,000
+     *     deviceIds: 'placeholder-value',
+     *     // A list of device numeric IDs. If empty, this field is ignored. Maximum
+     *     // IDs: 10,000.
+     *     deviceNumIds: 'placeholder-value',
+     *     // The fields of the `Device` resource to be returned in the response. The
+     *     // fields `id` and `num_id` are always returned, along with any
+     *     // other fields specified.
+     *     fieldMask: 'placeholder-value',
+     *     // If set, returns only the gateways with which the specified device is
+     *     // associated. The device ID can be numeric (`num_id`) or the user-defined
+     *     // string (`id`). For example, if `456` is specified, returns only the
+     *     // gateways to which the device with `num_id` 456 is bound.
+     *     'gatewayListOptions.associationsDeviceId': 'placeholder-value',
+     *     // If set, only devices associated with the specified gateway are returned.
+     *     // The gateway ID can be numeric (`num_id`) or the user-defined string
+     *     // (`id`). For example, if `123` is specified, only devices bound to the
+     *     // gateway with `num_id` 123 are returned.
+     *     'gatewayListOptions.associationsGatewayId': 'placeholder-value',
+     *     // If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
+     *     // is specified, only non-gateway devices are returned. If
+     *     // `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
+     *     'gatewayListOptions.gatewayType': 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If this value
+     *     // is zero, the service will select a default size. A call may return fewer
+     *     // objects than requested. A non-empty `next_page_token` in the response
+     *     // indicates that more data is available.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListDevicesResponse`; indicates
+     *     // that this is a continuation of a prior `ListDevices` call and
+     *     // the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The device registry path. Required. For example,
+     *     // `projects/my-project/locations/us-central1/registries/my-registry`.
+     *     parent: 'projects/my-project/locations/my-location/registries/my-registrie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.list
      * @memberOf! ()
      *
@@ -1910,6 +2777,69 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
      * @desc Modifies the configuration for the device, which is eventually sent from the Cloud IoT Core servers. Returns the modified configuration version and its metadata.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig(
+     *     {
+     *       // Required. The name of the device. For example,
+     *       // `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *       // `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "binaryData": "my_binaryData",
+     *         //   "versionToUpdate": "my_versionToUpdate"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "binaryData": "my_binaryData",
+     *   //   "cloudUpdateTime": "my_cloudUpdateTime",
+     *   //   "deviceAckTime": "my_deviceAckTime",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
      * @memberOf! ()
      *
@@ -1987,6 +2917,102 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.patch
      * @desc Updates a device.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.patch({
+     *     // The resource path name. For example,
+     *     // `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
+     *     // `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     // When `name` is populated as a response from the service, it always ends
+     *     // in the device numeric ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *     // Required. Only updates the `device` fields indicated by this mask.
+     *     // The field mask must not be empty, and it must not contain fields that
+     *     // are immutable or only set by the server.
+     *     // Mutable top-level fields: `credentials`, `blocked`, and `metadata`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blocked": false,
+     *       //   "config": {},
+     *       //   "credentials": [],
+     *       //   "gatewayConfig": {},
+     *       //   "id": "my_id",
+     *       //   "lastConfigAckTime": "my_lastConfigAckTime",
+     *       //   "lastConfigSendTime": "my_lastConfigSendTime",
+     *       //   "lastErrorStatus": {},
+     *       //   "lastErrorTime": "my_lastErrorTime",
+     *       //   "lastEventTime": "my_lastEventTime",
+     *       //   "lastHeartbeatTime": "my_lastHeartbeatTime",
+     *       //   "lastStateTime": "my_lastStateTime",
+     *       //   "logLevel": "my_logLevel",
+     *       //   "metadata": {},
+     *       //   "name": "my_name",
+     *       //   "numId": "my_numId",
+     *       //   "state": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blocked": false,
+     *   //   "config": {},
+     *   //   "credentials": [],
+     *   //   "gatewayConfig": {},
+     *   //   "id": "my_id",
+     *   //   "lastConfigAckTime": "my_lastConfigAckTime",
+     *   //   "lastConfigSendTime": "my_lastConfigSendTime",
+     *   //   "lastErrorStatus": {},
+     *   //   "lastErrorTime": "my_lastErrorTime",
+     *   //   "lastEventTime": "my_lastEventTime",
+     *   //   "lastHeartbeatTime": "my_lastHeartbeatTime",
+     *   //   "lastStateTime": "my_lastStateTime",
+     *   //   "logLevel": "my_logLevel",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "numId": "my_numId",
+     *   //   "state": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.patch
      * @memberOf! ()
      *
@@ -2058,6 +3084,64 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.sendCommandToDevice
      * @desc Sends a command to the specified device. In order for a device to be able to receive commands, it must: 1) be connected to Cloud IoT Core using the MQTT protocol, and 2) be subscribed to the group of MQTT topics specified by    /devices/{device-id}/commands/#. This subscription will receive commands    at the top-level topic /devices/{device-id}/commands as well as commands    for subfolders, like /devices/{device-id}/commands/subfolder.    Note that subscribing to specific subfolders is not supported. If the command could not be delivered to the device, this method will return an error; in particular, if the device is not subscribed, this method will return FAILED_PRECONDITION. Otherwise, this method will return OK. If the subscription is QoS 1, at least once delivery will be guaranteed; for QoS 0, no acknowledgment will be expected from the device.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.sendCommandToDevice(
+     *     {
+     *       // Required. The name of the device. For example,
+     *       // `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *       // `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "binaryData": "my_binaryData",
+     *         //   "subfolder": "my_subfolder"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.sendCommandToDevice
      * @memberOf! ()
      *
@@ -2292,6 +3376,61 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.configVersions.list
      * @desc Lists the last few versions of the device configuration in descending order (i.e.: newest first).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.configVersions.list(
+     *     {
+     *       // Required. The name of the device. For example,
+     *       // `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *       // `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *       // The number of versions to list. Versions are listed in decreasing order of
+     *       // the version number. The maximum number of versions retained is 10. If this
+     *       // value is zero, it will return all the versions available.
+     *       numVersions: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.configVersions.list
      * @memberOf! ()
      *
@@ -2400,6 +3539,59 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.devices.states.list
      * @desc Lists the last few versions of the device state in descending order (i.e.: newest first).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.devices.states.list({
+     *     // Required. The name of the device. For example,
+     *     // `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *     // `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     name:
+     *       'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *     // The number of states to list. States are listed in descending order of
+     *     // update time. The maximum number of states retained is 10. If this
+     *     // value is zero, it will return all the states available.
+     *     numStates: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceStates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.devices.states.list
      * @memberOf! ()
      *
@@ -2502,6 +3694,64 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.groups.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.groups.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/registries/my-registrie/groups/my-group',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.groups.getIamPolicy
      * @memberOf! ()
      *
@@ -2575,6 +3825,64 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.groups.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.groups.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/registries/my-registrie/groups/my-group',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.groups.setIamPolicy
      * @memberOf! ()
      *
@@ -2648,6 +3956,64 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.groups.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.groups.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/registries/my-registrie/groups/my-group',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.groups.testIamPermissions
      * @memberOf! ()
      *
@@ -2789,6 +4155,88 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.groups.devices.list
      * @desc List devices in a device registry.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const cloudiot = google.cloudiot('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudiot',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudiot.projects.locations.registries.groups.devices.list({
+     *     // A list of device string IDs. For example, `['device0', 'device12']`.
+     *     // If empty, this field is ignored. Maximum IDs: 10,000
+     *     deviceIds: 'placeholder-value',
+     *     // A list of device numeric IDs. If empty, this field is ignored. Maximum
+     *     // IDs: 10,000.
+     *     deviceNumIds: 'placeholder-value',
+     *     // The fields of the `Device` resource to be returned in the response. The
+     *     // fields `id` and `num_id` are always returned, along with any
+     *     // other fields specified.
+     *     fieldMask: 'placeholder-value',
+     *     // If set, returns only the gateways with which the specified device is
+     *     // associated. The device ID can be numeric (`num_id`) or the user-defined
+     *     // string (`id`). For example, if `456` is specified, returns only the
+     *     // gateways to which the device with `num_id` 456 is bound.
+     *     'gatewayListOptions.associationsDeviceId': 'placeholder-value',
+     *     // If set, only devices associated with the specified gateway are returned.
+     *     // The gateway ID can be numeric (`num_id`) or the user-defined string
+     *     // (`id`). For example, if `123` is specified, only devices bound to the
+     *     // gateway with `num_id` 123 are returned.
+     *     'gatewayListOptions.associationsGatewayId': 'placeholder-value',
+     *     // If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
+     *     // is specified, only non-gateway devices are returned. If
+     *     // `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
+     *     'gatewayListOptions.gatewayType': 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If this value
+     *     // is zero, the service will select a default size. A call may return fewer
+     *     // objects than requested. A non-empty `next_page_token` in the response
+     *     // indicates that more data is available.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListDevicesResponse`; indicates
+     *     // that this is a continuation of a prior `ListDevices` call and
+     *     // the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The device registry path. Required. For example,
+     *     // `projects/my-project/locations/us-central1/registries/my-registry`.
+     *     parent:
+     *       'projects/my-project/locations/my-location/registries/my-registrie/groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudiot.projects.locations.registries.groups.devices.list
      * @memberOf! ()
      *

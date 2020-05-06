@@ -98,6 +98,56 @@ export namespace oauth2_v2 {
 
     /**
      * oauth2.tokeninfo
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const oauth2 = google.oauth2('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oauth2.tokeninfo({
+     *     access_token: 'placeholder-value',
+     *
+     *     id_token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audience": "my_audience",
+     *   //   "email": "my_email",
+     *   //   "expires_in": 0,
+     *   //   "issued_to": "my_issued_to",
+     *   //   "scope": "my_scope",
+     *   //   "user_id": "my_user_id",
+     *   //   "verified_email": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oauth2.tokeninfo
      * @memberOf! oauth2(v2)
      *
@@ -273,6 +323,60 @@ export namespace oauth2_v2 {
 
     /**
      * oauth2.userinfo.get
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const oauth2 = google.oauth2('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'openid',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *       'https://www.googleapis.com/auth/userinfo.profile',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oauth2.userinfo.get({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "family_name": "my_family_name",
+     *   //   "gender": "my_gender",
+     *   //   "given_name": "my_given_name",
+     *   //   "hd": "my_hd",
+     *   //   "id": "my_id",
+     *   //   "link": "my_link",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "picture": "my_picture",
+     *   //   "verified_email": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oauth2.userinfo.get
      * @memberOf! ()
      *
@@ -365,6 +469,60 @@ export namespace oauth2_v2 {
 
     /**
      * oauth2.userinfo.v2.me.get
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const oauth2 = google.oauth2('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'openid',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *       'https://www.googleapis.com/auth/userinfo.profile',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oauth2.userinfo.v2.me.get({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "family_name": "my_family_name",
+     *   //   "gender": "my_gender",
+     *   //   "given_name": "my_given_name",
+     *   //   "hd": "my_hd",
+     *   //   "id": "my_id",
+     *   //   "link": "my_link",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "picture": "my_picture",
+     *   //   "verified_email": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oauth2.userinfo.v2.me.get
      * @memberOf! ()
      *

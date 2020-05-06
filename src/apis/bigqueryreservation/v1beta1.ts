@@ -367,6 +367,55 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.getBiReservation
      * @desc Retrieves a BI reservation.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.getBiReservation({
+     *     // Required. Name of the requested reservation, for example:
+     *     // `projects/{project_id}/locations/{location_id}/bireservation`
+     *     name: 'projects/my-project/locations/my-location/biReservation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "size": "my_size",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.getBiReservation
      * @memberOf! ()
      *
@@ -441,6 +490,64 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.searchAssignments
      * @desc Looks up assignments for a specified resource for a particular region. If the request is about a project:   1) Assignments created on the project will be returned if they exist.   2) Otherwise assignments created on the closest ancestor will be   returned. 3) Assignments for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then assignments created on the organization will be returned (organization doesn't have ancestors). Comparing to ListAssignments, there are some behavior differences:   1) permission on the assignee will be verified in this API.   2) Hierarchy lookup (project->folder->organization) happens in this API.   3) Parent here is projects/x/locations/x, instead of   projects/x/locations/xreservations/x. Note "-" cannot be used for projects nor locations.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.searchAssignments({
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the admin project(containing project and location),
+     *     // e.g.:
+     *     //   "projects/myproject/locations/US".
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Please specify resource name as assignee in the query.
+     *     // e.g., "assignee=projects/myproject"
+     *     //       "assignee=folders/123"
+     *     //       "assignee=organizations/456"
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.searchAssignments
      * @memberOf! ()
      *
@@ -526,6 +633,68 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.updateBiReservation
      * @desc Updates a BI reservation. Only fields specified in the field_mask are updated. Singleton BI reservation always exists with default size 0. In order to reserve BI capacity it needs to be updated to an amount greater than 0. In order to release BI capacity reservation size must be set to 0.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.updateBiReservation({
+     *     // The resource name of the singleton BI reservation.
+     *     // Reservation names have the form
+     *     // `projects/{project_id}/locations/{location_id}/bireservation`.
+     *     name: 'projects/my-project/locations/my-location/biReservation',
+     *     // A list of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "size": "my_size",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "size": "my_size",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.updateBiReservation
      * @memberOf! ()
      *
@@ -667,6 +836,78 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.create
      * @desc Creates a new capacity commitment resource.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.create(
+     *     {
+     *       // If true, fail the request if another project in the organization has a
+     *       // capacity commitment.
+     *       enforceSingleAdminProjectPerOrg: 'placeholder-value',
+     *       // Required. Resource name of the parent reservation. E.g.,
+     *       //    projects/myproject/locations/US
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "commitmentEndTime": "my_commitmentEndTime",
+     *         //   "failureStatus": {},
+     *         //   "name": "my_name",
+     *         //   "plan": "my_plan",
+     *         //   "renewalPlan": "my_renewalPlan",
+     *         //   "slotCount": "my_slotCount",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "failureStatus": {},
+     *   //   "name": "my_name",
+     *   //   "plan": "my_plan",
+     *   //   "renewalPlan": "my_renewalPlan",
+     *   //   "slotCount": "my_slotCount",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.capacityCommitments.create
      * @memberOf! ()
      *
@@ -744,6 +985,54 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.delete
      * @desc Deletes a capacity commitment. Attempting to delete capacity commitment before its commitment_end_time will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.delete(
+     *     {
+     *       // Required. Resource name of the capacity commitment to delete. E.g.,
+     *       //    projects/myproject/locations/US/capacityCommitments/123
+     *       name:
+     *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.capacityCommitments.delete
      * @memberOf! ()
      *
@@ -814,6 +1103,62 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.get
      * @desc Returns information about the capacity commitment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.get(
+     *     {
+     *       // Required. Resource name of the capacity commitment to retrieve. E.g.,
+     *       //    projects/myproject/locations/US/capacityCommitments/123
+     *       name:
+     *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "failureStatus": {},
+     *   //   "name": "my_name",
+     *   //   "plan": "my_plan",
+     *   //   "renewalPlan": "my_renewalPlan",
+     *   //   "slotCount": "my_slotCount",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.capacityCommitments.get
      * @memberOf! ()
      *
@@ -886,6 +1231,60 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.list
      * @desc Lists all the capacity commitments for the admin project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.list(
+     *     {
+     *       // The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Resource name of the parent reservation. E.g.,
+     *       //    projects/myproject/locations/US
+     *       parent: 'projects/my-project/locations/my-location',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "capacityCommitments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.capacityCommitments.list
      * @memberOf! ()
      *
@@ -972,6 +1371,69 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.merge
      * @desc Merges capacity commitments of the same plan into one. Resulting capacity commitment has the longer commitment_end_time out of the two. Attempting to merge capacity commitments of different plan will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.merge(
+     *     {
+     *       // Parent resource that identifies admin project and location e.g.,
+     *       // projects/myproject/locations/us
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "capacityCommitmentIds": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "failureStatus": {},
+     *   //   "name": "my_name",
+     *   //   "plan": "my_plan",
+     *   //   "renewalPlan": "my_renewalPlan",
+     *   //   "slotCount": "my_slotCount",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.capacityCommitments.merge
      * @memberOf! ()
      *
@@ -1047,6 +1509,78 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.patch
      * @desc Updates an existing capacity commitment.  Only plan and renewal_plan fields can be updated. Plan can only be changed to a plan of a longer commitment period. Attempting to change to a plan with shorter commitment period will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.patch(
+     *     {
+     *       // Output only. The resource name of the capacity commitment, e.g.,
+     *       //    projects/myproject/locations/US/capacityCommitments/123
+     *       name:
+     *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
+     *       // Standard field mask for the set of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "commitmentEndTime": "my_commitmentEndTime",
+     *         //   "failureStatus": {},
+     *         //   "name": "my_name",
+     *         //   "plan": "my_plan",
+     *         //   "renewalPlan": "my_renewalPlan",
+     *         //   "slotCount": "my_slotCount",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "failureStatus": {},
+     *   //   "name": "my_name",
+     *   //   "plan": "my_plan",
+     *   //   "renewalPlan": "my_renewalPlan",
+     *   //   "slotCount": "my_slotCount",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.capacityCommitments.patch
      * @memberOf! ()
      *
@@ -1121,6 +1655,65 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.split
      * @desc Splits capacity commitment to two commitments of the same plan and commitment_end_time. A common use case to do that is to perform a downgrade e.g., in order to downgrade from 10000 slots to 8000, one might split 10000 capacity commitment to 2000 and 8000, change the plan of the first one to flex and then delete it.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.split(
+     *     {
+     *       // Required. The resource name e.g.,:
+     *       //   projects/myproject/locations/US/capacityCommitments/123
+     *       name:
+     *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "slotCount": "my_slotCount"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "first": {},
+     *   //   "second": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.capacityCommitments.split
      * @memberOf! ()
      *
@@ -1338,6 +1931,70 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.create
      * @desc Creates a new reservation resource.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.create({
+     *     // Required. Project, location. E.g.,
+     *     //    projects/myproject/locations/US
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The reservation ID. This field must only contain lower case alphanumeric
+     *     // characters or dash. Max length is 64 characters.
+     *     reservationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoscale": {},
+     *       //   "ignoreIdleSlots": false,
+     *       //   "name": "my_name",
+     *       //   "slotCapacity": "my_slotCapacity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoscale": {},
+     *   //   "ignoreIdleSlots": false,
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.create
      * @memberOf! ()
      *
@@ -1415,6 +2072,52 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.delete
      * @desc Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has assignments.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.delete({
+     *     // Required. Resource name of the reservation to retrieve. E.g.,
+     *     //    projects/myproject/locations/US/reservations/team1-prod
+     *     name:
+     *       'projects/my-project/locations/my-location/reservations/my-reservation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.delete
      * @memberOf! ()
      *
@@ -1485,6 +2188,57 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.get
      * @desc Returns information about the reservation.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.get({
+     *     // Required. Resource name of the reservation to retrieve. E.g.,
+     *     //    projects/myproject/locations/US/reservations/team1-prod
+     *     name:
+     *       'projects/my-project/locations/my-location/reservations/my-reservation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoscale": {},
+     *   //   "ignoreIdleSlots": false,
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.get
      * @memberOf! ()
      *
@@ -1557,6 +2311,64 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.list
      * @desc Lists all the reservations for the project in the specified location.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.list({
+     *     // Can be used to filter out reservations based on names, capacity, etc, e.g.:
+     *     // filter="reservation.slot_capacity > 200"
+     *     // filter="reservation.name = \"*dev/x\""
+     *     // Advanced filtering syntax can be
+     *     // [here](https://cloud.google.com/logging/docs/view/advanced-filters).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name containing project and location, e.g.:
+     *     //   "projects/myproject/locations/US"
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reservations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.list
      * @memberOf! ()
      *
@@ -1637,6 +2449,70 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.patch
      * @desc Updates an existing reservation resource.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.patch({
+     *     // The resource name of the reservation, e.g.,
+     *     // "projects/x/locations/x/reservations/team1-prod".
+     *     name:
+     *       'projects/my-project/locations/my-location/reservations/my-reservation',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoscale": {},
+     *       //   "ignoreIdleSlots": false,
+     *       //   "name": "my_name",
+     *       //   "slotCapacity": "my_slotCapacity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoscale": {},
+     *   //   "ignoreIdleSlots": false,
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.patch
      * @memberOf! ()
      *
@@ -1809,6 +2685,70 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.assignments.create
      * @desc Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment does not match location of the reservation.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.create(
+     *     {
+     *       // Required. The parent resource name of the assignment
+     *       // E.g.: projects/myproject/locations/US/reservations/team1-prod
+     *       parent:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignee": "my_assignee",
+     *         //   "jobType": "my_jobType",
+     *         //   "name": "my_name",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignee": "my_assignee",
+     *   //   "jobType": "my_jobType",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.assignments.create
      * @memberOf! ()
      *
@@ -1885,6 +2825,54 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.assignments.delete
      * @desc Deletes a assignment. No expansion will happen. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateAssignment was invoked previously and following assignments were created explicitly:   <organizationA, res1>   <project1, res1> Then deletion of <organizationA, res1> won't affect <project1, res1>. After deletion of <organizationA, res1>, queries from project1 will still use res1, while queries from project2 will use on-demand mode.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.delete(
+     *     {
+     *       // Required. Name of the resource, e.g.:
+     *       //   projects/myproject/locations/US/reservations/team1-prod/assignments/123
+     *       name:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.assignments.delete
      * @memberOf! ()
      *
@@ -1955,6 +2943,63 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.assignments.list
      * @desc Lists assignments. Only explicitly created assignments will be returned. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateAssignment was invoked previously and following assignments were created explicitly:   <organizationA, res1>   <project1, res1> Then this API will just return the above two assignments for reservation res1, and no expansion/merge will happen. Wildcard "-" can be used for reservations in the request. In that case all assignments belongs to the specified project and location will be listed. Note "-" cannot be used for projects nor locations.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.list(
+     *     {
+     *       // The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource name e.g.:
+     *       // projects/myproject/locations/US/reservations/team1-prod
+     *       // Or:
+     *       // projects/myproject/locations/US/reservations/-
+     *       parent:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.assignments.list
      * @memberOf! ()
      *
@@ -2034,6 +3079,68 @@ export namespace bigqueryreservation_v1beta1 {
     /**
      * bigqueryreservation.projects.locations.reservations.assignments.move
      * @desc Moves a assignment under a new reservation. Customers can do this by deleting the existing assignment followed by creating another assignment under the new reservation, but this method provides a transactional way to do so, to make sure the assignee always has an associated reservation. Without the method customers might see some queries run on-demand which might be unexpected.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.move(
+     *     {
+     *       // Required. The resource name of the assignment,
+     *       // e.g.:
+     *       //   projects/myproject/locations/US/reservations/team1-prod/assignments/123
+     *       name:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "destinationId": "my_destinationId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignee": "my_assignee",
+     *   //   "jobType": "my_jobType",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.assignments.move
      * @memberOf! ()
      *

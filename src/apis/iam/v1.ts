@@ -762,52 +762,54 @@ export namespace iam_v1 {
      * iam.iamPolicies.lintPolicy
      * @desc Lints a Cloud IAM policy object or its sub fields. Currently supports google.iam.v1.Binding.condition.  Each lint operation consists of multiple lint validation units. Each unit inspects the input object in regard to a particular linting aspect and issues a google.iam.admin.v1.LintResult disclosing the result.  The set of applicable validation units is determined by the Cloud IAM server and is not configurable.  Regardless of any lint issues or their severities, successful calls to `lintPolicy` return an HTTP 200 OK status code.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.iamPolicies.lintPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.iamPolicies.lintPolicy({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "condition": {},
+     *       //   "fullResourceName": "my_fullResourceName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lintResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.iamPolicies.lintPolicy
      * @memberOf! ()
      *
@@ -883,52 +885,53 @@ export namespace iam_v1 {
      * iam.iamPolicies.queryAuditableServices
      * @desc Returns a list of services that support service level audit logging configuration for the given resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.iamPolicies.queryAuditableServices(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.iamPolicies.queryAuditableServices({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullResourceName": "my_fullResourceName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "services": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.iamPolicies.queryAuditableServices
      * @memberOf! ()
      *
@@ -1054,57 +1057,82 @@ export namespace iam_v1 {
      * iam.organizations.roles.create
      * @desc Creates a new Role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the parent resource in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}`
-     *     // `projects/{PROJECT_ID}`
-     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.create({
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):
+     *     //   `projects/{PROJECT_ID}`. This method creates project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method creates organization-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles). Example request
+     *     //   URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "role": {},
+     *       //   "roleId": "my_roleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.create
      * @memberOf! ()
      *
@@ -1179,53 +1207,75 @@ export namespace iam_v1 {
      * iam.organizations.roles.delete
      * @desc Soft deletes a role. The role is suspended and cannot be used to create new IAM Policy Bindings. The Role will not be included in `ListRoles()` unless `show_deleted` is set in the `ListRolesRequest`. The Role contains the deleted boolean set. Existing Bindings remains, but are inactive. The Role can be undeleted within 7 days. After 7 days the Role is deleted and all Bindings associated with the role are removed.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'organizations/my-organization/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.delete({
+     *     // Used to perform a consistent read-modify-write.
+     *     etag: 'placeholder-value',
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.delete()`](/iam/reference/rest/v1/projects.roles/delete):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method deletes only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.delete()`](/iam/reference/rest/v1/organizations.roles/delete):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   deletes only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'organizations/my-organization/roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.delete
      * @memberOf! ()
      *
@@ -1297,54 +1347,80 @@ export namespace iam_v1 {
      * iam.organizations.roles.get
      * @desc Gets a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'organizations/my-organization/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.get({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.
+     *     //   This method returns results from all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`
+     *     //
+     *     // * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   returns only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'organizations/my-organization/roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.get
      * @memberOf! ()
      *
@@ -1415,67 +1491,86 @@ export namespace iam_v1 {
      * iam.organizations.roles.list
      * @desc Lists the Roles defined on a resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the parent resource in one of the following formats:
-     *     // `` (empty string) -- this refers to curated roles.
-     *     // `organizations/{ORGANIZATION_ID}`
-     *     // `projects/{PROJECT_ID}`
-     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
      *
-     *     auth: authClient,
-     *   };
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.list({
+     *     // Optional limit on the number of roles to include in the response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token returned in an earlier ListRolesResponse.
+     *     pageToken: 'placeholder-value',
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.
+     *     //   This method doesn't require a resource; it simply returns all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles`
+     *     //
+     *     // * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):
+     *     //   `projects/{PROJECT_ID}`. This method lists all project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method lists all
+     *     //   organization-level [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'organizations/my-organization',
+     *     // Include Roles that have been deleted.
+     *     showDeleted: 'placeholder-value',
+     *     // Optional view for the returned Role objects. When `FULL` is specified,
+     *     // the `includedPermissions` field is returned, which includes a list of all
+     *     // permissions in the role. The default value is `BASIC`, which does not
+     *     // return the `includedPermissions` field.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     var rolesPage = response['roles'];
-     *     if (!rolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rolesPage`:
-     *       console.log(JSON.stringify(rolesPage[i], null, 2));
-     *     }
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "roles": []
+     *   // }
+     * }
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       iam.organizations.roles.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.organizations.roles.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.list
      * @memberOf! ()
      *
@@ -1555,59 +1650,89 @@ export namespace iam_v1 {
      * iam.organizations.roles.patch
      * @desc Updates a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'organizations/my-organization/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.patch({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   updates only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'organizations/my-organization/roles/my-role',
+     *     // A mask describing which fields in the Role have changed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "includedPermissions": [],
+     *       //   "name": "my_name",
+     *       //   "stage": "my_stage",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.patch
      * @memberOf! ()
      *
@@ -1680,57 +1805,81 @@ export namespace iam_v1 {
      * iam.organizations.roles.undelete
      * @desc Undelete a Role, bringing it back in its previous state.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'organizations/my-organization/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.undelete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.undelete({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes
+     *     //   only [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'organizations/my-organization/roles/my-role',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.undelete
      * @memberOf! ()
      *
@@ -1924,65 +2073,56 @@ export namespace iam_v1 {
      * iam.permissions.queryTestablePermissions
      * @desc Lists the permissions testable on a resource. A permission is testable if it can be tested for an identity on a resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.permissions.queryTestablePermissions({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullResourceName": "my_fullResourceName",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken"
+     *       // }
      *     },
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "permissions": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var permissionsPage = response['permissions'];
-     *     if (!permissionsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < permissionsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `permissionsPage`:
-     *       console.log(JSON.stringify(permissionsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.resource.pageToken = response.nextPageToken;
-     *       iam.permissions.queryTestablePermissions(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.permissions.queryTestablePermissions(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.permissions.queryTestablePermissions
      * @memberOf! ()
      *
@@ -2100,57 +2240,82 @@ export namespace iam_v1 {
      * iam.projects.roles.create
      * @desc Creates a new Role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the parent resource in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}`
-     *     // `projects/{PROJECT_ID}`
-     *     parent: 'projects/my-project',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.create({
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):
+     *     //   `projects/{PROJECT_ID}`. This method creates project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method creates organization-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles). Example request
+     *     //   URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "role": {},
+     *       //   "roleId": "my_roleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.create
      * @memberOf! ()
      *
@@ -2225,53 +2390,75 @@ export namespace iam_v1 {
      * iam.projects.roles.delete
      * @desc Soft deletes a role. The role is suspended and cannot be used to create new IAM Policy Bindings. The Role will not be included in `ListRoles()` unless `show_deleted` is set in the `ListRolesRequest`. The Role contains the deleted boolean set. Existing Bindings remains, but are inactive. The Role can be undeleted within 7 days. After 7 days the Role is deleted and all Bindings associated with the role are removed.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'projects/my-project/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.delete({
+     *     // Used to perform a consistent read-modify-write.
+     *     etag: 'placeholder-value',
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.delete()`](/iam/reference/rest/v1/projects.roles/delete):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method deletes only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.delete()`](/iam/reference/rest/v1/organizations.roles/delete):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   deletes only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'projects/my-project/roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.delete
      * @memberOf! ()
      *
@@ -2343,54 +2530,80 @@ export namespace iam_v1 {
      * iam.projects.roles.get
      * @desc Gets a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'projects/my-project/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.get({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.
+     *     //   This method returns results from all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`
+     *     //
+     *     // * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   returns only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'projects/my-project/roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.get
      * @memberOf! ()
      *
@@ -2461,67 +2674,86 @@ export namespace iam_v1 {
      * iam.projects.roles.list
      * @desc Lists the Roles defined on a resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the parent resource in one of the following formats:
-     *     // `` (empty string) -- this refers to curated roles.
-     *     // `organizations/{ORGANIZATION_ID}`
-     *     // `projects/{PROJECT_ID}`
-     *     parent: 'projects/my-project',  // TODO: Update placeholder value.
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
      *
-     *     auth: authClient,
-     *   };
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Do the magic
+     *   const res = await iam.projects.roles.list({
+     *     // Optional limit on the number of roles to include in the response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token returned in an earlier ListRolesResponse.
+     *     pageToken: 'placeholder-value',
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.
+     *     //   This method doesn't require a resource; it simply returns all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles`
+     *     //
+     *     // * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):
+     *     //   `projects/{PROJECT_ID}`. This method lists all project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method lists all
+     *     //   organization-level [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'projects/my-project',
+     *     // Include Roles that have been deleted.
+     *     showDeleted: 'placeholder-value',
+     *     // Optional view for the returned Role objects. When `FULL` is specified,
+     *     // the `includedPermissions` field is returned, which includes a list of all
+     *     // permissions in the role. The default value is `BASIC`, which does not
+     *     // return the `includedPermissions` field.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     var rolesPage = response['roles'];
-     *     if (!rolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rolesPage`:
-     *       console.log(JSON.stringify(rolesPage[i], null, 2));
-     *     }
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "roles": []
+     *   // }
+     * }
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       iam.projects.roles.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.projects.roles.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.list
      * @memberOf! ()
      *
@@ -2601,59 +2833,89 @@ export namespace iam_v1 {
      * iam.projects.roles.patch
      * @desc Updates a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'projects/my-project/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.patch({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   updates only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'projects/my-project/roles/my-role',
+     *     // A mask describing which fields in the Role have changed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "includedPermissions": [],
+     *       //   "name": "my_name",
+     *       //   "stage": "my_stage",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.patch
      * @memberOf! ()
      *
@@ -2726,57 +2988,81 @@ export namespace iam_v1 {
      * iam.projects.roles.undelete
      * @desc Undelete a Role, bringing it back in its previous state.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'projects/my-project/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.undelete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.undelete({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes
+     *     //   only [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'projects/my-project/roles/my-role',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.undelete
      * @memberOf! ()
      *
@@ -2972,56 +3258,66 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.create
      * @desc Creates a ServiceAccount and returns it.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.create({
      *     // Required. The resource name of the project associated with the service
      *     // accounts, such as `projects/my-project-123`.
-     *     name: 'projects/my-project',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "serviceAccount": {}
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "oauth2ClientId": "my_oauth2ClientId",
+     *   //   "projectId": "my_projectId",
+     *   //   "uniqueId": "my_uniqueId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.create
      * @memberOf! ()
      *
@@ -3098,52 +3394,50 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.delete
      * @desc Deletes a ServiceAccount.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.delete({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.delete
      * @memberOf! ()
      *
@@ -3214,56 +3508,56 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.disable
      * @desc DisableServiceAccount is currently in the alpha launch stage.  Disables a ServiceAccount, which immediately prevents the service account from authenticating and gaining access to APIs.  Disabled service accounts can be safely restored by using EnableServiceAccount at any point. Deleted service accounts cannot be restored using this method.  Disabling a service account that is bound to VMs, Apps, Functions, or other jobs will cause those jobs to lose access to resources if they are using the disabled service account.  To improve reliability of your services and avoid unexpected outages, it is recommended to first disable a service account rather than delete it. After disabling the service account, wait at least 24 hours to verify there are no unintended consequences, and then delete the service account.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.disable({
      *     // The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.disable(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.disable
      * @memberOf! ()
      *
@@ -3338,55 +3632,56 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.enable
      * @desc EnableServiceAccount is currently in the alpha launch stage.   Restores a disabled ServiceAccount  that has been manually disabled by using DisableServiceAccount. Service  accounts that have been disabled by other means or for other reasons,  such as abuse, cannot be restored using this method.   EnableServiceAccount will have no effect on a service account that is  not disabled.  Enabling an already enabled service account will have no  effect.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
-     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'.
-     *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
-     *     // the account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.enable(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.enable({
+     *     // The resource name of the service account in the following format:
+     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
+     *     // the account. The `ACCOUNT` value can be the `email` address or the
+     *     // `unique_id` of the service account.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.enable
      * @memberOf! ()
      *
@@ -3458,55 +3753,60 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.get
      * @desc Gets a ServiceAccount.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.get({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "oauth2ClientId": "my_oauth2ClientId",
+     *   //   "projectId": "my_projectId",
+     *   //   "uniqueId": "my_uniqueId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.get
      * @memberOf! ()
      *
@@ -3579,52 +3879,61 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.getIamPolicy
      * @desc Returns the Cloud IAM access control policy for a ServiceAccount.  Note: Service accounts are both [resources and identities](/iam/docs/service-accounts#service_account_permissions). This method treats the service account as a resource. It returns the Cloud IAM policy that reflects what members have access to the service account.  This method does not return what resources the service account has access to. To see if a service account has access to a resource, call the `getIamPolicy` method on the target resource. For example, to view grants for a project, call the [projects.getIamPolicy](/resource-manager/reference/rest/v1/projects/getIamPolicy) method.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.getIamPolicy({
+     *     // Optional. The policy format version to be returned.
+     *     //
+     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *     // rejected.
+     *     //
+     *     // Requests for policies with any conditional bindings must specify version 3.
+     *     // Policies without any conditional bindings may specify any valid value or
+     *     // leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     resource: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.getIamPolicy
      * @memberOf! ()
      *
@@ -3699,65 +4008,58 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.list
      * @desc Lists ServiceAccounts for a project.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.list({
      *     // Required. The resource name of the project associated with the service
      *     // accounts, such as `projects/my-project-123`.
-     *     name: 'projects/my-project',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project',
+     *     // Optional limit on the number of service accounts to include in the
+     *     // response. Further accounts can subsequently be obtained by including the
+     *     // ListServiceAccountsResponse.next_page_token
+     *     // in a subsequent request.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token returned in an earlier
+     *     // ListServiceAccountsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var accountsPage = response['accounts'];
-     *     if (!accountsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < accountsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `accountsPage`:
-     *       console.log(JSON.stringify(accountsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       iam.projects.serviceAccounts.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.projects.serviceAccounts.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.list
      * @memberOf! ()
      *
@@ -3842,62 +4144,73 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.patch
      * @desc Patches a ServiceAccount.  Currently, only the following fields are updatable: `display_name` and `description`.  Only fields specified in the request are guaranteed to be returned in the response. Other fields in the response may be empty.  Note: The field mask is required.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.patch({
      *     // The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     //
      *     // Requests using `-` as a wildcard for the `PROJECT_ID` will infer the
      *     // project from the `account` and the `ACCOUNT` value can be the `email`
      *     // address or the `unique_id` of the service account.
+     *     //
      *     // In responses the resource name will always be in the format
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "serviceAccount": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "oauth2ClientId": "my_oauth2ClientId",
+     *   //   "projectId": "my_projectId",
+     *   //   "uniqueId": "my_uniqueId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.patch
      * @memberOf! ()
      *
@@ -3971,56 +4284,61 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.setIamPolicy
      * @desc Sets the Cloud IAM access control policy for a ServiceAccount.  Note: Service accounts are both [resources and identities](/iam/docs/service-accounts#service_account_permissions). This method treats the service account as a resource. Use it to grant members access to the service account, such as when they need to impersonate it.  This method does not grant the service account access to other resources, such as projects. To grant a service account access to resources, include the service account in the Cloud IAM policy for the desired resource, then call the appropriate `setIamPolicy` method on the target resource. For example, to grant a service account access to a project, call the [projects.setIamPolicy](/resource-manager/reference/rest/v1/projects/setIamPolicy) method.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.setIamPolicy({
      *     // REQUIRED: The resource for which the policy is being specified.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     resource: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.setIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.setIamPolicy
      * @memberOf! ()
      *
@@ -4095,59 +4413,61 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.signBlob
      * @desc **Note**: This method is in the process of being deprecated. Call the [`signBlob()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signBlob) method of the Cloud IAM Service Account Credentials API instead.  Signs a blob using a service account's system-managed private key.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.signBlob({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bytesToSign": "my_bytesToSign"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.signBlob(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyId": "my_keyId",
+     *   //   "signature": "my_signature"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.signBlob
      * @memberOf! ()
      *
@@ -4224,59 +4544,61 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.signJwt
      * @desc **Note**: This method is in the process of being deprecated. Call the [`signJwt()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signJwt) method of the Cloud IAM Service Account Credentials API instead.  Signs a JWT using a service account's system-managed private key.  If no expiry time (`exp`) is provided in the `SignJwtRequest`, IAM sets an an expiry time of one hour by default. If you request an expiry time of more than one hour, the request will fail.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.signJwt({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "payload": "my_payload"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.signJwt(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyId": "my_keyId",
+     *   //   "signedJwt": "my_signedJwt"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.signJwt
      * @memberOf! ()
      *
@@ -4353,56 +4675,57 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.testIamPermissions
      * @desc Tests the specified permissions against the IAM access control policy for a ServiceAccount.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.testIamPermissions({
      *     // REQUIRED: The resource for which the policy detail is being requested.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     resource: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.testIamPermissions(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.testIamPermissions
      * @memberOf! ()
      *
@@ -4486,58 +4809,57 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.undelete
      * @desc Restores a deleted ServiceAccount. This is to be used as an action of last resort.  A service account may not always be restorable.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.undelete({
      *     // The resource name of the service account in the following format:
-     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'.
+     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.undelete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "restoredAccount": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.undelete
      * @memberOf! ()
      *
@@ -4623,62 +4945,80 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.update
      * @desc Note: This method is in the process of being deprecated. Use PatchServiceAccount instead.  Updates a ServiceAccount.  Currently, only the following fields are updatable: `display_name` and `description`.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.update({
      *     // The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     //
      *     // Requests using `-` as a wildcard for the `PROJECT_ID` will infer the
      *     // project from the `account` and the `ACCOUNT` value can be the `email`
      *     // address or the `unique_id` of the service account.
+     *     //
      *     // In responses the resource name will always be in the format
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "oauth2ClientId": "my_oauth2ClientId",
+     *       //   "projectId": "my_projectId",
+     *       //   "uniqueId": "my_uniqueId"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "oauth2ClientId": "my_oauth2ClientId",
+     *   //   "projectId": "my_projectId",
+     *   //   "uniqueId": "my_uniqueId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.update
      * @memberOf! ()
      *
@@ -4990,59 +5330,69 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.keys.create
      * @desc Creates a ServiceAccountKey and returns it.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.create({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "keyAlgorithm": "my_keyAlgorithm",
+     *       //   "privateKeyType": "my_privateKeyType"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.keys.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyAlgorithm": "my_keyAlgorithm",
+     *   //   "keyOrigin": "my_keyOrigin",
+     *   //   "keyType": "my_keyType",
+     *   //   "name": "my_name",
+     *   //   "privateKeyData": "my_privateKeyData",
+     *   //   "privateKeyType": "my_privateKeyType",
+     *   //   "publicKeyData": "my_publicKeyData",
+     *   //   "validAfterTime": "my_validAfterTime",
+     *   //   "validBeforeTime": "my_validBeforeTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.keys.create
      * @memberOf! ()
      *
@@ -5116,52 +5466,50 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.keys.delete
      * @desc Deletes a ServiceAccountKey.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account key in the following format:
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.delete({
+     *     // Required. The resource name of the service account key in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account/keys/my-key',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.keys.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount/keys/my-key',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.keys.delete
      * @memberOf! ()
      *
@@ -5232,55 +5580,64 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.keys.get
      * @desc Gets the ServiceAccountKey by key id.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account key in the following format:
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.get({
+     *     // Required. The resource name of the service account key in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.
+     *     //
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account/keys/my-key',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.keys.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount/keys/my-key',
+     *     // The output format of the public key requested.
+     *     // X509_PEM is the default output format.
+     *     publicKeyType: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyAlgorithm": "my_keyAlgorithm",
+     *   //   "keyOrigin": "my_keyOrigin",
+     *   //   "keyType": "my_keyType",
+     *   //   "name": "my_name",
+     *   //   "privateKeyData": "my_privateKeyData",
+     *   //   "privateKeyType": "my_privateKeyType",
+     *   //   "publicKeyData": "my_publicKeyData",
+     *   //   "validAfterTime": "my_validAfterTime",
+     *   //   "validBeforeTime": "my_validBeforeTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.keys.get
      * @memberOf! ()
      *
@@ -5354,55 +5711,57 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.keys.list
      * @desc Lists ServiceAccountKeys.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.list({
+     *     // Filters the types of keys the user wants to include in the list
+     *     // response. Duplicate key types are not allowed. If no key type
+     *     // is provided, all keys are returned.
+     *     keyTypes: 'placeholder-value',
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     //
      *     // Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.keys.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.keys.list
      * @memberOf! ()
      *
@@ -5484,6 +5843,69 @@ export namespace iam_v1 {
     /**
      * iam.projects.serviceAccounts.keys.upload
      * @desc Upload public key for a given service account. This rpc will create a ServiceAccountKey that has the provided public key and returns it.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.upload({
+     *     // The resource name of the service account in the following format:
+     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
+     *     // the account. The `ACCOUNT` value can be the `email` address or the
+     *     // `unique_id` of the service account.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "publicKeyData": "my_publicKeyData"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyAlgorithm": "my_keyAlgorithm",
+     *   //   "keyOrigin": "my_keyOrigin",
+     *   //   "keyType": "my_keyType",
+     *   //   "name": "my_name",
+     *   //   "privateKeyData": "my_privateKeyData",
+     *   //   "privateKeyType": "my_privateKeyType",
+     *   //   "publicKeyData": "my_publicKeyData",
+     *   //   "validAfterTime": "my_validAfterTime",
+     *   //   "validBeforeTime": "my_validBeforeTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias iam.projects.serviceAccounts.keys.upload
      * @memberOf! ()
      *
@@ -5646,54 +6068,80 @@ export namespace iam_v1 {
      * iam.roles.get
      * @desc Gets a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.roles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.roles.get({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.
+     *     //   This method returns results from all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`
+     *     //
+     *     // * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   returns only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.roles.get
      * @memberOf! ()
      *
@@ -5763,61 +6211,86 @@ export namespace iam_v1 {
      * iam.roles.list
      * @desc Lists the Roles defined on a resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient,
-     *   };
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
-     *     var rolesPage = response['roles'];
-     *     if (!rolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rolesPage`:
-     *       console.log(JSON.stringify(rolesPage[i], null, 2));
-     *     }
+     *   // Do the magic
+     *   const res = await iam.roles.list({
+     *     // Optional limit on the number of roles to include in the response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token returned in an earlier ListRolesResponse.
+     *     pageToken: 'placeholder-value',
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.
+     *     //   This method doesn't require a resource; it simply returns all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles`
+     *     //
+     *     // * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):
+     *     //   `projects/{PROJECT_ID}`. This method lists all project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method lists all
+     *     //   organization-level [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'placeholder-value',
+     *     // Include Roles that have been deleted.
+     *     showDeleted: 'placeholder-value',
+     *     // Optional view for the returned Role objects. When `FULL` is specified,
+     *     // the `includedPermissions` field is returned, which includes a list of all
+     *     // permissions in the role. The default value is `BASIC`, which does not
+     *     // return the `includedPermissions` field.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       iam.roles.list(request, handlePage);
-     *     }
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "roles": []
+     *   // }
+     * }
      *
-     *   iam.roles.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.roles.list
      * @memberOf! ()
      *
@@ -5893,65 +6366,57 @@ export namespace iam_v1 {
      * iam.roles.queryGrantableRoles
      * @desc Queries roles that can be granted on a particular resource. A role is grantable if it can be used as the role in a binding for a policy for that resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await iam.roles.queryGrantableRoles({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullResourceName": "my_fullResourceName",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "view": "my_view"
+     *       // }
      *     },
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "roles": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var rolesPage = response['roles'];
-     *     if (!rolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rolesPage`:
-     *       console.log(JSON.stringify(rolesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.resource.pageToken = response.nextPageToken;
-     *       iam.roles.queryGrantableRoles(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.roles.queryGrantableRoles(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.roles.queryGrantableRoles
      * @memberOf! ()
      *

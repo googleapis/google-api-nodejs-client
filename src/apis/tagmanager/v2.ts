@@ -1563,6 +1563,59 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.get
      * @desc Gets a GTM Account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.manage.accounts',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.get({
+     *     // GTM Accounts's API relative path.
+     *     // Example: accounts/{account_id}
+     *     path: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "shareData": false,
+     *   //   "tagManagerUrl": "my_tagManagerUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.get
      * @memberOf! ()
      *
@@ -1634,6 +1687,54 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.list
      * @desc Lists all GTM Accounts that a user has access to.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.manage.accounts',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.list
      * @memberOf! ()
      *
@@ -1709,6 +1810,71 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.update
      * @desc Updates a GTM Account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.accounts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.update({
+     *     // When provided, this fingerprint must match the fingerprint of the account
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Accounts's API relative path.
+     *     // Example: accounts/{account_id}
+     *     path: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "shareData": false,
+     *       //   "tagManagerUrl": "my_tagManagerUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "shareData": false,
+     *   //   "tagManagerUrl": "my_tagManagerUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.update
      * @memberOf! ()
      *
@@ -1846,6 +2012,76 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.create
      * @desc Creates a Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.create({
+     *     // GTM Account's API relative path.
+     *     // Example: accounts/{account_id}.
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "domainName": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "publicId": "my_publicId",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "usageContext": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "domainName": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "publicId": "my_publicId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "usageContext": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.create
      * @memberOf! ()
      *
@@ -1921,6 +2157,45 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.delete
      * @desc Deletes a Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.delete.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.delete({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     path: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.delete
      * @memberOf! ()
      *
@@ -1993,6 +2268,62 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.get
      * @desc Gets a Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.get({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     path: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "domainName": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "publicId": "my_publicId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "usageContext": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.get
      * @memberOf! ()
      *
@@ -2067,6 +2398,56 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.list
      * @desc Lists all Containers that belongs to a GTM Account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Accounts's API relative path.
+     *     // Example: accounts/{account_id}.
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "container": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.list
      * @memberOf! ()
      *
@@ -2144,6 +2525,79 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.update
      * @desc Updates a Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.update({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // container in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     path: 'accounts/my-account/containers/my-container',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "domainName": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "publicId": "my_publicId",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "usageContext": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "domainName": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "publicId": "my_publicId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "usageContext": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.update
      * @memberOf! ()
      *
@@ -2306,6 +2760,86 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.create
      * @desc Creates a GTM Environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.create({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "authorizationCode": "my_authorizationCode",
+     *       //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *       //   "containerId": "my_containerId",
+     *       //   "containerVersionId": "my_containerVersionId",
+     *       //   "description": "my_description",
+     *       //   "enableDebug": false,
+     *       //   "environmentId": "my_environmentId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "authorizationCode": "my_authorizationCode",
+     *   //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "description": "my_description",
+     *   //   "enableDebug": false,
+     *   //   "environmentId": "my_environmentId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.create
      * @memberOf! ()
      *
@@ -2381,6 +2915,47 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.delete
      * @desc Deletes a GTM Environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.delete({
+     *     // GTM Environment's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.delete
      * @memberOf! ()
      *
@@ -2453,6 +3028,69 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.get
      * @desc Gets a GTM Environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.get({
+     *     // GTM Environment's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "authorizationCode": "my_authorizationCode",
+     *   //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "description": "my_description",
+     *   //   "enableDebug": false,
+     *   //   "environmentId": "my_environmentId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.get
      * @memberOf! ()
      *
@@ -2527,6 +3165,56 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.list
      * @desc Lists all GTM Environments of a GTM Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "environment": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.list
      * @memberOf! ()
      *
@@ -2604,6 +3292,88 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.reauthorize
      * @desc Re-generates the authorization code for a GTM Environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.publish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.reauthorize({
+     *     // GTM Environment's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "authorizationCode": "my_authorizationCode",
+     *       //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *       //   "containerId": "my_containerId",
+     *       //   "containerVersionId": "my_containerVersionId",
+     *       //   "description": "my_description",
+     *       //   "enableDebug": false,
+     *       //   "environmentId": "my_environmentId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "authorizationCode": "my_authorizationCode",
+     *   //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "description": "my_description",
+     *   //   "enableDebug": false,
+     *   //   "environmentId": "my_environmentId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.reauthorize
      * @memberOf! ()
      *
@@ -2679,6 +3449,91 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.update
      * @desc Updates a GTM Environment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.update({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // environment in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Environment's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "authorizationCode": "my_authorizationCode",
+     *       //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *       //   "containerId": "my_containerId",
+     *       //   "containerVersionId": "my_containerVersionId",
+     *       //   "description": "my_description",
+     *       //   "enableDebug": false,
+     *       //   "environmentId": "my_environmentId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "authorizationCode": "my_authorizationCode",
+     *   //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "description": "my_description",
+     *   //   "enableDebug": false,
+     *   //   "environmentId": "my_environmentId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.update
      * @memberOf! ()
      *
@@ -2858,6 +3713,48 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.delete
      * @desc Deletes a Container Version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.delete({
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.delete
      * @memberOf! ()
      *
@@ -2930,6 +3827,75 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.get
      * @desc Gets a Container Version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.get({
+     *     // The GTM ContainerVersion ID. Specify <code>published</code> to retrieve
+     *     // the currently published version.
+     *     containerVersionId: 'placeholder-value',
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.get
      * @memberOf! ()
      *
@@ -3005,6 +3971,70 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.live
      * @desc Gets the live (i.e. published) container version
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.live({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.live
      * @memberOf! ()
      *
@@ -3079,6 +4109,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.publish
      * @desc Publishes a Container Version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.publish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.publish({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // container version in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "compilerError": false,
+     *   //   "containerVersion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.publish
      * @memberOf! ()
      *
@@ -3163,6 +4242,68 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.set_latest
      * @desc Sets the latest version used for synchronization of workspaces when detecting conflicts and errors.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.set_latest({
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.set_latest
      * @memberOf! ()
      *
@@ -3237,6 +4378,70 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.undelete
      * @desc Undeletes a Container Version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.undelete({
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.undelete
      * @memberOf! ()
      *
@@ -3311,6 +4516,98 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.update
      * @desc Updates a Container Version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.update({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // container version in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "builtInVariable": [],
+     *       //   "client": [],
+     *       //   "container": {},
+     *       //   "containerId": "my_containerId",
+     *       //   "containerVersionId": "my_containerVersionId",
+     *       //   "customTemplate": [],
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "folder": [],
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tag": [],
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "trigger": [],
+     *       //   "variable": [],
+     *       //   "zone": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.update
      * @memberOf! ()
      *
@@ -3496,6 +4793,65 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.version_headers.latest
      * @desc Gets the latest container version header
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.version_headers.latest({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "deleted": false,
+     *   //   "name": "my_name",
+     *   //   "numCustomTemplates": "my_numCustomTemplates",
+     *   //   "numMacros": "my_numMacros",
+     *   //   "numRules": "my_numRules",
+     *   //   "numTags": "my_numTags",
+     *   //   "numTriggers": "my_numTriggers",
+     *   //   "numVariables": "my_numVariables",
+     *   //   "numZones": "my_numZones",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.version_headers.latest
      * @memberOf! ()
      *
@@ -3571,6 +4927,59 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.version_headers.list
      * @desc Lists all Container Versions of a GTM Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.version_headers.list({
+     *     // Also retrieve deleted (archived) versions when true.
+     *     includeDeleted: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "containerVersionHeader": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.version_headers.list
      * @memberOf! ()
      *
@@ -3724,6 +5133,72 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.create
      * @desc Creates a Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.create({
+     *     // GTM parent Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.create
      * @memberOf! ()
      *
@@ -3799,6 +5274,65 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.create_version
      * @desc Creates a Container Version from the entities present in the workspace, deletes the workspace, and sets the base container version to the newly created version.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.create_version({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "compilerError": false,
+     *   //   "containerVersion": {},
+     *   //   "newWorkspacePath": "my_newWorkspacePath",
+     *   //   "syncStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.create_version
      * @memberOf! ()
      *
@@ -3883,6 +5417,46 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.delete
      * @desc Deletes a Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.delete.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.delete({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.delete
      * @memberOf! ()
      *
@@ -3955,6 +5529,61 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.get
      * @desc Gets a Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.get({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.get
      * @memberOf! ()
      *
@@ -4029,6 +5658,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.getStatus
      * @desc Finds conflicting and modified entities in the workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.getStatus({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mergeConflict": [],
+     *   //   "workspaceChange": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.getStatus
      * @memberOf! ()
      *
@@ -4110,6 +5788,56 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.list
      * @desc Lists all Workspaces that belong to a GTM Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM parent Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workspace": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.list
      * @memberOf! ()
      *
@@ -4187,6 +5915,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.quick_preview
      * @desc Quick previews a workspace by creating a fake container version from all entities in the provided workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.quick_preview({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "compilerError": false,
+     *   //   "containerVersion": {},
+     *   //   "syncStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.quick_preview
      * @memberOf! ()
      *
@@ -4265,6 +6042,61 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.resolve_conflict
      * @desc Resolves a merge conflict for a workspace entity by updating it to the resolved entity passed in the request.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.resolve_conflict({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // entity_in_workspace in the merge conflict.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "changeStatus": "my_changeStatus",
+     *       //   "folder": {},
+     *       //   "tag": {},
+     *       //   "trigger": {},
+     *       //   "variable": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.resolve_conflict
      * @memberOf! ()
      *
@@ -4339,6 +6171,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.sync
      * @desc Syncs a workspace to the latest container version by updating all unmodified workspace entities and displaying conflicts for modified entities.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.sync({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mergeConflict": [],
+     *   //   "syncStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.sync
      * @memberOf! ()
      *
@@ -4415,6 +6293,76 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.update
      * @desc Updates a Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.update({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // workspace in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.update
      * @memberOf! ()
      *
@@ -4651,6 +6599,56 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.create
      * @desc Creates one or more GTM Built-In Variables.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.create(
+     *     {
+     *       // GTM Workspace's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *       parent:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *       // The types of built-in variables to enable.
+     *       type: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "builtInVariable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.built_in_variables.create
      * @memberOf! ()
      *
@@ -4734,6 +6732,51 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.delete
      * @desc Deletes one or more GTM Built-In Variables.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.delete(
+     *     {
+     *       // GTM BuiltInVariable's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
+     *       path:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace/built_in_variables',
+     *       // The types of built-in variables to delete.
+     *       type: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.built_in_variables.delete
      * @memberOf! ()
      *
@@ -4807,6 +6850,60 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.list
      * @desc Lists all the enabled Built-In Variables of a GTM Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.list(
+     *     {
+     *       // Continuation token for fetching the next page of results.
+     *       pageToken: 'placeholder-value',
+     *       // GTM Workspace's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *       parent:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "builtInVariable": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.built_in_variables.list
      * @memberOf! ()
      *
@@ -4892,6 +6989,56 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.revert
      * @desc Reverts changes to a GTM Built-In Variables in a GTM Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.revert(
+     *     {
+     *       // GTM BuiltInVariable's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
+     *       path:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *       // The type of built-in variable to revert.
+     *       type: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.built_in_variables.revert
      * @memberOf! ()
      *
@@ -5047,6 +7194,76 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.create
      * @desc Creates a GTM Folder.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "folderId": "my_folderId",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folderId": "my_folderId",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.create
      * @memberOf! ()
      *
@@ -5120,6 +7337,47 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.delete
      * @desc Deletes a GTM Folder.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.delete({
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.delete
      * @memberOf! ()
      *
@@ -5192,6 +7450,60 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.entities
      * @desc List all entities in a GTM Folder.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.entities({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tag": [],
+     *   //   "trigger": [],
+     *   //   "variable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.entities
      * @memberOf! ()
      *
@@ -5267,6 +7579,63 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.get
      * @desc Gets a GTM Folder.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.get({
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folderId": "my_folderId",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.get
      * @memberOf! ()
      *
@@ -5339,6 +7708,58 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.list
      * @desc Lists all GTM Folders of a Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "folder": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.list
      * @memberOf! ()
      *
@@ -5414,6 +7835,71 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
      * @desc Moves entities to a GTM Folder.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder(
+     *     {
+     *       // GTM Folder's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *       path:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *       // The tags to be moved to the folder.
+     *       tagId: 'placeholder-value',
+     *       // The triggers to be moved to the folder.
+     *       triggerId: 'placeholder-value',
+     *       // The variables to be moved to the folder.
+     *       variableId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "accountId": "my_accountId",
+     *         //   "containerId": "my_containerId",
+     *         //   "fingerprint": "my_fingerprint",
+     *         //   "folderId": "my_folderId",
+     *         //   "name": "my_name",
+     *         //   "notes": "my_notes",
+     *         //   "path": "my_path",
+     *         //   "tagManagerUrl": "my_tagManagerUrl",
+     *         //   "workspaceId": "my_workspaceId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
      * @memberOf! ()
      *
@@ -5489,6 +7975,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.revert
      * @desc Reverts changes to a GTM Folder in a GTM Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the tag
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "folder": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.revert
      * @memberOf! ()
      *
@@ -5566,6 +8101,79 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.update
      * @desc Updates a GTM Folder.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.update({
+     *     // When provided, this fingerprint must match the fingerprint of the folder in
+     *     // storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "folderId": "my_folderId",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folderId": "my_folderId",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.update
      * @memberOf! ()
      *
@@ -5787,6 +8395,110 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.create
      * @desc Creates a GTM Tag.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "blockingRuleId": [],
+     *       //   "blockingTriggerId": [],
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "firingRuleId": [],
+     *       //   "firingTriggerId": [],
+     *       //   "liveOnly": false,
+     *       //   "monitoringMetadata": {},
+     *       //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "paused": false,
+     *       //   "priority": {},
+     *       //   "scheduleEndMs": "my_scheduleEndMs",
+     *       //   "scheduleStartMs": "my_scheduleStartMs",
+     *       //   "setupTag": [],
+     *       //   "tagFiringOption": "my_tagFiringOption",
+     *       //   "tagId": "my_tagId",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "teardownTag": [],
+     *       //   "type": "my_type",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "blockingRuleId": [],
+     *   //   "blockingTriggerId": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "firingRuleId": [],
+     *   //   "firingTriggerId": [],
+     *   //   "liveOnly": false,
+     *   //   "monitoringMetadata": {},
+     *   //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "paused": false,
+     *   //   "priority": {},
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "setupTag": [],
+     *   //   "tagFiringOption": "my_tagFiringOption",
+     *   //   "tagId": "my_tagId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "teardownTag": [],
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.create
      * @memberOf! ()
      *
@@ -5860,6 +8572,47 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.delete
      * @desc Deletes a GTM Tag.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.delete({
+     *     // GTM Tag's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.delete
      * @memberOf! ()
      *
@@ -5932,6 +8685,80 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.get
      * @desc Gets a GTM Tag.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.get({
+     *     // GTM Tag's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "blockingRuleId": [],
+     *   //   "blockingTriggerId": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "firingRuleId": [],
+     *   //   "firingTriggerId": [],
+     *   //   "liveOnly": false,
+     *   //   "monitoringMetadata": {},
+     *   //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "paused": false,
+     *   //   "priority": {},
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "setupTag": [],
+     *   //   "tagFiringOption": "my_tagFiringOption",
+     *   //   "tagId": "my_tagId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "teardownTag": [],
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.get
      * @memberOf! ()
      *
@@ -6004,6 +8831,58 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.list
      * @desc Lists all GTM Tags of a Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tag": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.list
      * @memberOf! ()
      *
@@ -6079,6 +8958,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.revert
      * @desc Reverts changes to a GTM Tag in a GTM Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.revert({
+     *     // When provided, this fingerprint must match the fingerprint of thetag
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Tag's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "tag": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.revert
      * @memberOf! ()
      *
@@ -6154,6 +9082,113 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.update
      * @desc Updates a GTM Tag.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.update({
+     *     // When provided, this fingerprint must match the fingerprint of the tag in
+     *     // storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Tag's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "blockingRuleId": [],
+     *       //   "blockingTriggerId": [],
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "firingRuleId": [],
+     *       //   "firingTriggerId": [],
+     *       //   "liveOnly": false,
+     *       //   "monitoringMetadata": {},
+     *       //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "paused": false,
+     *       //   "priority": {},
+     *       //   "scheduleEndMs": "my_scheduleEndMs",
+     *       //   "scheduleStartMs": "my_scheduleStartMs",
+     *       //   "setupTag": [],
+     *       //   "tagFiringOption": "my_tagFiringOption",
+     *       //   "tagId": "my_tagId",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "teardownTag": [],
+     *       //   "type": "my_type",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "blockingRuleId": [],
+     *   //   "blockingTriggerId": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "firingRuleId": [],
+     *   //   "firingTriggerId": [],
+     *   //   "liveOnly": false,
+     *   //   "monitoringMetadata": {},
+     *   //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "paused": false,
+     *   //   "priority": {},
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "setupTag": [],
+     *   //   "tagFiringOption": "my_tagFiringOption",
+     *   //   "tagId": "my_tagId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "teardownTag": [],
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.update
      * @memberOf! ()
      *
@@ -6330,6 +9365,78 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.create
      * @desc Creates a GTM Custom Template.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "galleryReference": {},
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "templateData": "my_templateData",
+     *       //   "templateId": "my_templateId",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "galleryReference": {},
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "templateData": "my_templateData",
+     *   //   "templateId": "my_templateId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.create
      * @memberOf! ()
      *
@@ -6405,6 +9512,47 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.delete
      * @desc Deletes a GTM Template.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.delete({
+     *     // GTM Custom Template's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.delete
      * @memberOf! ()
      *
@@ -6477,6 +9625,64 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.get
      * @desc Gets a GTM Template.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.get({
+     *     // GTM Custom Template's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "galleryReference": {},
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "templateData": "my_templateData",
+     *   //   "templateId": "my_templateId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.get
      * @memberOf! ()
      *
@@ -6551,6 +9757,58 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.list
      * @desc Lists all GTM Templates of a GTM container workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "template": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.list
      * @memberOf! ()
      *
@@ -6628,6 +9886,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.revert
      * @desc Reverts changes to a GTM Template in a GTM Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the template
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Custom Template's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "template": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.revert
      * @memberOf! ()
      *
@@ -6705,6 +10012,81 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.update
      * @desc Updates a GTM Template.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.update({
+     *     // When provided, this fingerprint must match the fingerprint of the templates
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Custom Template's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "galleryReference": {},
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "templateData": "my_templateData",
+     *       //   "templateId": "my_templateId",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "galleryReference": {},
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "templateData": "my_templateData",
+     *   //   "templateId": "my_templateId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.update
      * @memberOf! ()
      *
@@ -6883,6 +10265,122 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.create
      * @desc Creates a GTM Trigger.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.create({
+     *     // GTM Workspaces's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "autoEventFilter": [],
+     *       //   "checkValidation": {},
+     *       //   "containerId": "my_containerId",
+     *       //   "continuousTimeMinMilliseconds": {},
+     *       //   "customEventFilter": [],
+     *       //   "eventName": {},
+     *       //   "filter": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "horizontalScrollPercentageList": {},
+     *       //   "interval": {},
+     *       //   "intervalSeconds": {},
+     *       //   "limit": {},
+     *       //   "maxTimerLengthSeconds": {},
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "selector": {},
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "totalTimeMinMilliseconds": {},
+     *       //   "triggerId": "my_triggerId",
+     *       //   "type": "my_type",
+     *       //   "uniqueTriggerId": {},
+     *       //   "verticalScrollPercentageList": {},
+     *       //   "visibilitySelector": {},
+     *       //   "visiblePercentageMax": {},
+     *       //   "visiblePercentageMin": {},
+     *       //   "waitForTags": {},
+     *       //   "waitForTagsTimeout": {},
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "autoEventFilter": [],
+     *   //   "checkValidation": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "continuousTimeMinMilliseconds": {},
+     *   //   "customEventFilter": [],
+     *   //   "eventName": {},
+     *   //   "filter": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "horizontalScrollPercentageList": {},
+     *   //   "interval": {},
+     *   //   "intervalSeconds": {},
+     *   //   "limit": {},
+     *   //   "maxTimerLengthSeconds": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "selector": {},
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "totalTimeMinMilliseconds": {},
+     *   //   "triggerId": "my_triggerId",
+     *   //   "type": "my_type",
+     *   //   "uniqueTriggerId": {},
+     *   //   "verticalScrollPercentageList": {},
+     *   //   "visibilitySelector": {},
+     *   //   "visiblePercentageMax": {},
+     *   //   "visiblePercentageMin": {},
+     *   //   "waitForTags": {},
+     *   //   "waitForTagsTimeout": {},
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.create
      * @memberOf! ()
      *
@@ -6956,6 +10454,47 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.delete
      * @desc Deletes a GTM Trigger.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.delete({
+     *     // GTM Trigger's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.delete
      * @memberOf! ()
      *
@@ -7028,6 +10567,86 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.get
      * @desc Gets a GTM Trigger.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.get({
+     *     // GTM Trigger's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "autoEventFilter": [],
+     *   //   "checkValidation": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "continuousTimeMinMilliseconds": {},
+     *   //   "customEventFilter": [],
+     *   //   "eventName": {},
+     *   //   "filter": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "horizontalScrollPercentageList": {},
+     *   //   "interval": {},
+     *   //   "intervalSeconds": {},
+     *   //   "limit": {},
+     *   //   "maxTimerLengthSeconds": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "selector": {},
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "totalTimeMinMilliseconds": {},
+     *   //   "triggerId": "my_triggerId",
+     *   //   "type": "my_type",
+     *   //   "uniqueTriggerId": {},
+     *   //   "verticalScrollPercentageList": {},
+     *   //   "visibilitySelector": {},
+     *   //   "visiblePercentageMax": {},
+     *   //   "visiblePercentageMin": {},
+     *   //   "waitForTags": {},
+     *   //   "waitForTagsTimeout": {},
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.get
      * @memberOf! ()
      *
@@ -7100,6 +10719,58 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.list
      * @desc Lists all GTM Triggers of a Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspaces's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "trigger": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.list
      * @memberOf! ()
      *
@@ -7177,6 +10848,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.revert
      * @desc Reverts changes to a GTM Trigger in a GTM Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the trigger
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Trigger's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "trigger": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.revert
      * @memberOf! ()
      *
@@ -7254,6 +10974,125 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.update
      * @desc Updates a GTM Trigger.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.update({
+     *     // When provided, this fingerprint must match the fingerprint of the trigger
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Trigger's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "autoEventFilter": [],
+     *       //   "checkValidation": {},
+     *       //   "containerId": "my_containerId",
+     *       //   "continuousTimeMinMilliseconds": {},
+     *       //   "customEventFilter": [],
+     *       //   "eventName": {},
+     *       //   "filter": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "horizontalScrollPercentageList": {},
+     *       //   "interval": {},
+     *       //   "intervalSeconds": {},
+     *       //   "limit": {},
+     *       //   "maxTimerLengthSeconds": {},
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "selector": {},
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "totalTimeMinMilliseconds": {},
+     *       //   "triggerId": "my_triggerId",
+     *       //   "type": "my_type",
+     *       //   "uniqueTriggerId": {},
+     *       //   "verticalScrollPercentageList": {},
+     *       //   "visibilitySelector": {},
+     *       //   "visiblePercentageMax": {},
+     *       //   "visiblePercentageMin": {},
+     *       //   "waitForTags": {},
+     *       //   "waitForTagsTimeout": {},
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "autoEventFilter": [],
+     *   //   "checkValidation": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "continuousTimeMinMilliseconds": {},
+     *   //   "customEventFilter": [],
+     *   //   "eventName": {},
+     *   //   "filter": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "horizontalScrollPercentageList": {},
+     *   //   "interval": {},
+     *   //   "intervalSeconds": {},
+     *   //   "limit": {},
+     *   //   "maxTimerLengthSeconds": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "selector": {},
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "totalTimeMinMilliseconds": {},
+     *   //   "triggerId": "my_triggerId",
+     *   //   "type": "my_type",
+     *   //   "uniqueTriggerId": {},
+     *   //   "verticalScrollPercentageList": {},
+     *   //   "visibilitySelector": {},
+     *   //   "visiblePercentageMax": {},
+     *   //   "visiblePercentageMin": {},
+     *   //   "waitForTags": {},
+     *   //   "waitForTagsTimeout": {},
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.update
      * @memberOf! ()
      *
@@ -7430,6 +11269,92 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.create
      * @desc Creates a GTM Variable.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "disablingTriggerId": [],
+     *       //   "enablingTriggerId": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "formatValue": {},
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "scheduleEndMs": "my_scheduleEndMs",
+     *       //   "scheduleStartMs": "my_scheduleStartMs",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "variableId": "my_variableId",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "disablingTriggerId": [],
+     *   //   "enablingTriggerId": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "formatValue": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "variableId": "my_variableId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.create
      * @memberOf! ()
      *
@@ -7503,6 +11428,47 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.delete
      * @desc Deletes a GTM Variable.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.delete({
+     *     // GTM Variable's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.delete
      * @memberOf! ()
      *
@@ -7575,6 +11541,71 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.get
      * @desc Gets a GTM Variable.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.get({
+     *     // GTM Variable's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "disablingTriggerId": [],
+     *   //   "enablingTriggerId": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "formatValue": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "variableId": "my_variableId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.get
      * @memberOf! ()
      *
@@ -7647,6 +11678,58 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.list
      * @desc Lists all GTM Variables of a Container.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "variable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.list
      * @memberOf! ()
      *
@@ -7724,6 +11807,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.revert
      * @desc Reverts changes to a GTM Variable in a GTM Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the variable
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Variable's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "variable": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.revert
      * @memberOf! ()
      *
@@ -7801,6 +11933,95 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.update
      * @desc Updates a GTM Variable.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.update({
+     *     // When provided, this fingerprint must match the fingerprint of the variable
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Variable's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "disablingTriggerId": [],
+     *       //   "enablingTriggerId": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "formatValue": {},
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "scheduleEndMs": "my_scheduleEndMs",
+     *       //   "scheduleStartMs": "my_scheduleStartMs",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "variableId": "my_variableId",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "disablingTriggerId": [],
+     *   //   "enablingTriggerId": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "formatValue": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "variableId": "my_variableId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.update
      * @memberOf! ()
      *
@@ -7977,6 +12198,82 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.create
      * @desc Creates a GTM Zone.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "boundary": {},
+     *       //   "childContainer": [],
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "typeRestriction": {},
+     *       //   "workspaceId": "my_workspaceId",
+     *       //   "zoneId": "my_zoneId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "boundary": {},
+     *   //   "childContainer": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "typeRestriction": {},
+     *   //   "workspaceId": "my_workspaceId",
+     *   //   "zoneId": "my_zoneId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.create
      * @memberOf! ()
      *
@@ -8050,6 +12347,47 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.delete
      * @desc Deletes a GTM Zone.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.delete({
+     *     // GTM Zone's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.delete
      * @memberOf! ()
      *
@@ -8122,6 +12460,66 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.get
      * @desc Gets a GTM Zone.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.get({
+     *     // GTM Zone's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "boundary": {},
+     *   //   "childContainer": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "typeRestriction": {},
+     *   //   "workspaceId": "my_workspaceId",
+     *   //   "zoneId": "my_zoneId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.get
      * @memberOf! ()
      *
@@ -8194,6 +12592,58 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.list
      * @desc Lists all GTM Zones of a GTM container workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.list
      * @memberOf! ()
      *
@@ -8269,6 +12719,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.revert
      * @desc Reverts changes to a GTM Zone in a GTM Workspace.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the zone in
+     *     // storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Zone's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "zone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.revert
      * @memberOf! ()
      *
@@ -8344,6 +12843,85 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.update
      * @desc Updates a GTM Zone.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.update({
+     *     // When provided, this fingerprint must match the fingerprint of the zone in
+     *     // storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Zone's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "boundary": {},
+     *       //   "childContainer": [],
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "typeRestriction": {},
+     *       //   "workspaceId": "my_workspaceId",
+     *       //   "zoneId": "my_zoneId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "boundary": {},
+     *   //   "childContainer": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "typeRestriction": {},
+     *   //   "workspaceId": "my_workspaceId",
+     *   //   "zoneId": "my_zoneId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.update
      * @memberOf! ()
      *
@@ -8520,6 +13098,66 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.create
      * @desc Creates a user's Account & Container access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.create({
+     *     // GTM Account's API relative path.
+     *     // Example: accounts/{account_id}
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountAccess": {},
+     *       //   "accountId": "my_accountId",
+     *       //   "containerAccess": [],
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "path": "my_path"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAccess": {},
+     *   //   "accountId": "my_accountId",
+     *   //   "containerAccess": [],
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.create
      * @memberOf! ()
      *
@@ -8594,6 +13232,45 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.delete
      * @desc Removes a user from the account, revoking access to it and all of its containers.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.delete({
+     *     // GTM UserPermission's API relative path.
+     *     // Example: accounts/{account_id}/user_permissions/{user_permission_id}
+     *     path: 'accounts/my-account/user_permissions/my-user_permission',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.delete
      * @memberOf! ()
      *
@@ -8666,6 +13343,54 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.get
      * @desc Gets a user's Account & Container access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.get({
+     *     // GTM UserPermission's API relative path.
+     *     // Example: accounts/{account_id}/user_permissions/{user_permission_id}
+     *     path: 'accounts/my-account/user_permissions/my-user_permission',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAccess": {},
+     *   //   "accountId": "my_accountId",
+     *   //   "containerAccess": [],
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.get
      * @memberOf! ()
      *
@@ -8740,6 +13465,53 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.list
      * @desc List all users that have access to the account along with Account and Container user access granted to each of them.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Accounts's API relative path.
+     *     // Example: accounts/{account_id}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userPermission": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.list
      * @memberOf! ()
      *
@@ -8821,6 +13593,66 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.update
      * @desc Updates a user's Account & Container access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.update({
+     *     // GTM UserPermission's API relative path.
+     *     // Example: accounts/{account_id}/user_permissions/{user_permission_id}
+     *     path: 'accounts/my-account/user_permissions/my-user_permission',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountAccess": {},
+     *       //   "accountId": "my_accountId",
+     *       //   "containerAccess": [],
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "path": "my_path"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAccess": {},
+     *   //   "accountId": "my_accountId",
+     *   //   "containerAccess": [],
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.update
      * @memberOf! ()
      *

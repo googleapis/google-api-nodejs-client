@@ -881,52 +881,52 @@ export namespace storage_v1 {
      * storage.bucketAccessControls.delete
      * @desc Permanently deletes the ACL entry for the specified entity on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.bucketAccessControls.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.delete({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.bucketAccessControls.delete
      * @memberOf! ()
      *
@@ -1003,55 +1003,67 @@ export namespace storage_v1 {
      * storage.bucketAccessControls.get
      * @desc Returns the ACL entry for the specified entity on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.bucketAccessControls.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.get({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.bucketAccessControls.get
      * @memberOf! ()
      *
@@ -1130,55 +1142,83 @@ export namespace storage_v1 {
      * storage.bucketAccessControls.insert
      * @desc Creates a new ACL entry on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.bucketAccessControls.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.insert({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.bucketAccessControls.insert
      * @memberOf! ()
      *
@@ -1257,51 +1297,56 @@ export namespace storage_v1 {
      * storage.bucketAccessControls.list
      * @desc Retrieves ACL entries on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.bucketAccessControls.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.list({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.bucketAccessControls.list
      * @memberOf! ()
      *
@@ -1381,60 +1426,85 @@ export namespace storage_v1 {
      * storage.bucketAccessControls.patch
      * @desc Patches an ACL entry on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.bucketAccessControls.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.patch({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.bucketAccessControls.patch
      * @memberOf! ()
      *
@@ -1514,60 +1584,85 @@ export namespace storage_v1 {
      * storage.bucketAccessControls.update
      * @desc Updates an ACL entry on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.bucketAccessControls.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.update({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.bucketAccessControls.update
      * @memberOf! ()
      *
@@ -1806,48 +1901,55 @@ export namespace storage_v1 {
      * storage.buckets.delete
      * @desc Permanently deletes an empty bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.delete({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If set, only deletes the bucket if its metageneration matches this value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // If set, only deletes the bucket if its metageneration does not match this value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.delete
      * @memberOf! ()
      *
@@ -1924,51 +2026,91 @@ export namespace storage_v1 {
      * storage.buckets.get
      * @desc Returns metadata for the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.get({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {},
+     *   //   "zoneAffinity": [],
+     *   //   "zoneSeparation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.get
      * @memberOf! ()
      *
@@ -2046,51 +2188,61 @@ export namespace storage_v1 {
      * storage.buckets.getIamPolicy
      * @desc Returns an IAM policy for the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.getIamPolicy({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.getIamPolicy
      * @memberOf! ()
      *
@@ -2167,55 +2319,124 @@ export namespace storage_v1 {
      * storage.buckets.insert
      * @desc Creates a new bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // A valid API project identifier.
-     *     project: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.insert({
+     *     // Apply a predefined set of access controls to this bucket.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Apply a predefined set of default object access controls to this bucket.
+     *     predefinedDefaultObjectAcl: 'placeholder-value',
+     *     // A valid API project identifier.
+     *     project: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "billing": {},
+     *       //   "cors": [],
+     *       //   "defaultEventBasedHold": false,
+     *       //   "defaultObjectAcl": [],
+     *       //   "encryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "iamConfiguration": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lifecycle": {},
+     *       //   "location": "my_location",
+     *       //   "locationType": "my_locationType",
+     *       //   "logging": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "projectNumber": "my_projectNumber",
+     *       //   "retentionPolicy": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "updated": "my_updated",
+     *       //   "versioning": {},
+     *       //   "website": {},
+     *       //   "zoneAffinity": [],
+     *       //   "zoneSeparation": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {},
+     *   //   "zoneAffinity": [],
+     *   //   "zoneSeparation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.insert
      * @memberOf! ()
      *
@@ -2291,64 +2512,68 @@ export namespace storage_v1 {
      * storage.buckets.list
      * @desc Retrieves a list of buckets for a given project.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.list({
+     *     // Maximum number of buckets to return in a single response. The service will use this parameter or 1,000 items, whichever is smaller.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Filter results to buckets whose names begin with this prefix.
+     *     prefix: 'placeholder-value',
      *     // A valid API project identifier.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       storage.buckets.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   storage.buckets.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.list
      * @memberOf! ()
      *
@@ -2424,54 +2649,85 @@ export namespace storage_v1 {
      * storage.buckets.lockRetentionPolicy
      * @desc Locks retention policy on a bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Makes the operation conditional on whether bucket's current metageneration matches the given value.
-     *     ifMetagenerationMatch: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.lockRetentionPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.lockRetentionPolicy({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Makes the operation conditional on whether bucket's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {},
+     *   //   "zoneAffinity": [],
+     *   //   "zoneSeparation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.lockRetentionPolicy
      * @memberOf! ()
      *
@@ -2547,56 +2803,127 @@ export namespace storage_v1 {
      * storage.buckets.patch
      * @desc Patches a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.patch({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this bucket.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Apply a predefined set of default object access controls to this bucket.
+     *     predefinedDefaultObjectAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "billing": {},
+     *       //   "cors": [],
+     *       //   "defaultEventBasedHold": false,
+     *       //   "defaultObjectAcl": [],
+     *       //   "encryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "iamConfiguration": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lifecycle": {},
+     *       //   "location": "my_location",
+     *       //   "locationType": "my_locationType",
+     *       //   "logging": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "projectNumber": "my_projectNumber",
+     *       //   "retentionPolicy": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "updated": "my_updated",
+     *       //   "versioning": {},
+     *       //   "website": {},
+     *       //   "zoneAffinity": [],
+     *       //   "zoneSeparation": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {},
+     *   //   "zoneAffinity": [],
+     *   //   "zoneSeparation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.patch
      * @memberOf! ()
      *
@@ -2677,56 +3004,71 @@ export namespace storage_v1 {
      * storage.buckets.setIamPolicy
      * @desc Updates an IAM policy for the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.setIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.setIamPolicy({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "resourceId": "my_resourceId",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.setIamPolicy
      * @memberOf! ()
      *
@@ -2803,54 +3145,61 @@ export namespace storage_v1 {
      * storage.buckets.testIamPermissions
      * @desc Tests a set of permissions on the given bucket to see which, if any, are held by the caller.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Permissions to test.
-     *     permissions: [],  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.testIamPermissions(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.testIamPermissions({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Permissions to test.
+     *     permissions: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.testIamPermissions
      * @memberOf! ()
      *
@@ -2935,56 +3284,127 @@ export namespace storage_v1 {
      * storage.buckets.update
      * @desc Updates a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.buckets.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.update({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this bucket.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Apply a predefined set of default object access controls to this bucket.
+     *     predefinedDefaultObjectAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "billing": {},
+     *       //   "cors": [],
+     *       //   "defaultEventBasedHold": false,
+     *       //   "defaultObjectAcl": [],
+     *       //   "encryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "iamConfiguration": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lifecycle": {},
+     *       //   "location": "my_location",
+     *       //   "locationType": "my_locationType",
+     *       //   "logging": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "projectNumber": "my_projectNumber",
+     *       //   "retentionPolicy": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "updated": "my_updated",
+     *       //   "versioning": {},
+     *       //   "website": {},
+     *       //   "zoneAffinity": [],
+     *       //   "zoneSeparation": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {},
+     *   //   "zoneAffinity": [],
+     *   //   "zoneSeparation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.buckets.update
      * @memberOf! ()
      *
@@ -3387,49 +3807,63 @@ export namespace storage_v1 {
      * storage.channels.stop
      * @desc Stop watching resources through this channel
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.channels.stop(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.channels.stop
      * @memberOf! ()
      *
@@ -3521,52 +3955,52 @@ export namespace storage_v1 {
      * storage.defaultObjectAccessControls.delete
      * @desc Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.defaultObjectAccessControls.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.delete({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.defaultObjectAccessControls.delete
      * @memberOf! ()
      *
@@ -3642,55 +4076,69 @@ export namespace storage_v1 {
      * storage.defaultObjectAccessControls.get
      * @desc Returns the default object ACL entry for the specified entity on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.defaultObjectAccessControls.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.get({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.defaultObjectAccessControls.get
      * @memberOf! ()
      *
@@ -3768,55 +4216,87 @@ export namespace storage_v1 {
      * storage.defaultObjectAccessControls.insert
      * @desc Creates a new default object ACL entry on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.defaultObjectAccessControls.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.insert({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.defaultObjectAccessControls.insert
      * @memberOf! ()
      *
@@ -3895,51 +4375,60 @@ export namespace storage_v1 {
      * storage.defaultObjectAccessControls.list
      * @desc Retrieves default object ACL entries on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.defaultObjectAccessControls.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.list({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If present, only return default ACL listing if the bucket's current metageneration matches this value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.defaultObjectAccessControls.list
      * @memberOf! ()
      *
@@ -4021,60 +4510,89 @@ export namespace storage_v1 {
      * storage.defaultObjectAccessControls.patch
      * @desc Patches a default object ACL entry on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.defaultObjectAccessControls.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.patch({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.defaultObjectAccessControls.patch
      * @memberOf! ()
      *
@@ -4153,60 +4671,89 @@ export namespace storage_v1 {
      * storage.defaultObjectAccessControls.update
      * @desc Updates a default object ACL entry on the specified bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.defaultObjectAccessControls.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.update({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.defaultObjectAccessControls.update
      * @memberOf! ()
      *
@@ -4452,51 +4999,53 @@ export namespace storage_v1 {
      * storage.notifications.delete
      * @desc Permanently deletes a notification subscription.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The parent bucket of the notification.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // ID of the notification to delete.
-     *     notification: 'my-notification',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.notifications.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.notifications.delete({
+     *     // The parent bucket of the notification.
+     *     bucket: 'placeholder-value',
+     *     // ID of the notification to delete.
+     *     notification: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.notifications.delete
      * @memberOf! ()
      *
@@ -4573,54 +5122,68 @@ export namespace storage_v1 {
      * storage.notifications.get
      * @desc View a notification configuration.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The parent bucket of the notification.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Notification ID
-     *     notification: 'my-notification',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.notifications.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.notifications.get({
+     *     // The parent bucket of the notification.
+     *     bucket: 'placeholder-value',
+     *     // Notification ID
+     *     notification: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "custom_attributes": {},
+     *   //   "etag": "my_etag",
+     *   //   "event_types": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object_name_prefix": "my_object_name_prefix",
+     *   //   "payload_format": "my_payload_format",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "topic": "my_topic"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.notifications.get
      * @memberOf! ()
      *
@@ -4699,55 +5262,80 @@ export namespace storage_v1 {
      * storage.notifications.insert
      * @desc Creates a notification subscription for a given bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The parent bucket of the notification.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.notifications.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.notifications.insert({
+     *     // The parent bucket of the notification.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "custom_attributes": {},
+     *       //   "etag": "my_etag",
+     *       //   "event_types": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object_name_prefix": "my_object_name_prefix",
+     *       //   "payload_format": "my_payload_format",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "topic": "my_topic"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "custom_attributes": {},
+     *   //   "etag": "my_etag",
+     *   //   "event_types": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object_name_prefix": "my_object_name_prefix",
+     *   //   "payload_format": "my_payload_format",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "topic": "my_topic"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.notifications.insert
      * @memberOf! ()
      *
@@ -4825,51 +5413,59 @@ export namespace storage_v1 {
      * storage.notifications.list
      * @desc Retrieves a list of notification subscriptions for a given bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a Google Cloud Storage bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.notifications.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.notifications.list({
+     *     // Name of a Google Cloud Storage bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.notifications.list
      * @memberOf! ()
      *
@@ -5047,56 +5643,56 @@ export namespace storage_v1 {
      * storage.objectAccessControls.delete
      * @desc Permanently deletes the ACL entry for the specified entity on the specified object.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objectAccessControls.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.delete({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objectAccessControls.delete
      * @memberOf! ()
      *
@@ -5174,59 +5770,73 @@ export namespace storage_v1 {
      * storage.objectAccessControls.get
      * @desc Returns the ACL entry for the specified entity on the specified object.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objectAccessControls.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.get({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objectAccessControls.get
      * @memberOf! ()
      *
@@ -5306,59 +5916,91 @@ export namespace storage_v1 {
      * storage.objectAccessControls.insert
      * @desc Creates a new ACL entry on the specified object.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objectAccessControls.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.insert({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objectAccessControls.insert
      * @memberOf! ()
      *
@@ -5439,55 +6081,60 @@ export namespace storage_v1 {
      * storage.objectAccessControls.list
      * @desc Retrieves ACL entries on the specified object.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objectAccessControls.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.list({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objectAccessControls.list
      * @memberOf! ()
      *
@@ -5569,64 +6216,93 @@ export namespace storage_v1 {
      * storage.objectAccessControls.patch
      * @desc Patches an ACL entry on the specified object.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objectAccessControls.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.patch({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objectAccessControls.patch
      * @memberOf! ()
      *
@@ -5707,64 +6383,93 @@ export namespace storage_v1 {
      * storage.objectAccessControls.update
      * @desc Updates an ACL entry on the specified object.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of a bucket.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
-     *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'my-entity',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objectAccessControls.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.update({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objectAccessControls.update
      * @memberOf! ()
      *
@@ -6052,59 +6757,107 @@ export namespace storage_v1 {
      * storage.objects.compose
      * @desc Concatenates a list of existing objects into a new object in the same bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket containing the source objects. The destination object is stored in this bucket.
-     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the new object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.compose(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.compose({
+     *     // Name of the bucket containing the source objects. The destination object is stored in this bucket.
+     *     destinationBucket: 'placeholder-value',
+     *     // Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     destinationObject: 'placeholder-value',
+     *     // Apply a predefined set of access controls to the destination object.
+     *     destinationPredefinedAcl: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     kmsKeyName: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": {},
+     *       //   "kind": "my_kind",
+     *       //   "sourceObjects": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.compose
      * @memberOf! ()
      *
@@ -6185,68 +6938,156 @@ export namespace storage_v1 {
      * storage.objects.copy
      * @desc Copies a source object to a destination object. Optionally overrides metadata.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which to find the source object.
-     *     sourceBucket: 'my-source-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the source object. For information about how to URL encode object names to be path safe,
-     *     // see Encoding URI Path Parts.
-     *     sourceObject: 'my-source-object',  // TODO: Update placeholder value.
-     *
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
-     *     // bucket value, if any.For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
-     *     // object metadata's name value, if any.
-     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.copy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.copy({
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     destinationBucket: 'placeholder-value',
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     destinationKmsKeyName: 'placeholder-value',
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
+     *     destinationObject: 'placeholder-value',
+     *     // Apply a predefined set of access controls to the destination object.
+     *     destinationPredefinedAcl: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation matches the given value.
+     *     ifSourceGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation does not match the given value.
+     *     ifSourceGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration matches the given value.
+     *     ifSourceMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration does not match the given value.
+     *     ifSourceMetagenerationNotMatch: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // Name of the bucket in which to find the source object.
+     *     sourceBucket: 'placeholder-value',
+     *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
+     *     sourceGeneration: 'placeholder-value',
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     sourceObject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.copy
      * @memberOf! ()
      *
@@ -6347,52 +7188,63 @@ export namespace storage_v1 {
      * storage.objects.delete
      * @desc Deletes an object and its metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.delete({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.delete
      * @memberOf! ()
      *
@@ -6473,59 +7325,103 @@ export namespace storage_v1 {
      * storage.objects.get
      * @desc Retrieves an object or its metadata.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     // TODO: To download media content, use:
-     *     //
-     *     // alt: 'media',
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.get({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.get
      * @memberOf! ()
      *
@@ -6607,55 +7503,66 @@ export namespace storage_v1 {
      * storage.objects.getIamPolicy
      * @desc Returns an IAM policy for the specified object.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.getIamPolicy({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.getIamPolicy
      * @memberOf! ()
      *
@@ -6733,63 +7640,148 @@ export namespace storage_v1 {
      * storage.objects.insert
      * @desc Stores a new object and metadata.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
-     *     // bucket value, if any.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     media: {
-     *       // TODO: Add desired media content for upload. See
-     *       // https://github.com/google/google-api-nodejs-client#media-uploads
-     *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
-     *       body: '',
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.insert({
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     *     bucket: 'placeholder-value',
+     *     // If set, sets the contentEncoding property of the final object to this value. Setting this parameter is equivalent to setting the contentEncoding metadata property. This can be useful when uploading an object with uploadType=media to indicate the encoding of the content being uploaded.
+     *     contentEncoding: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     kmsKeyName: 'placeholder-value',
+     *     // Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     name: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this object.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.insert
      * @memberOf! ()
      *
@@ -6881,64 +7873,79 @@ export namespace storage_v1 {
      * storage.objects.list
      * @desc Retrieves a list of objects matching the criteria.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.list({
      *     // Name of the bucket in which to look for objects.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *     bucket: 'placeholder-value',
+     *     // Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     *     delimiter: 'placeholder-value',
+     *     // Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     endOffset: 'placeholder-value',
+     *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
+     *     includeTrailingDelimiter: 'placeholder-value',
+     *     // Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Filter results to objects whose names begin with this prefix.
+     *     prefix: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     startOffset: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *     // If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
+     *     versions: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prefixes": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       storage.objects.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   storage.objects.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.list
      * @memberOf! ()
      *
@@ -7022,60 +8029,141 @@ export namespace storage_v1 {
      * storage.objects.patch
      * @desc Patches an object's metadata.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.patch({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this object.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request, for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.patch
      * @memberOf! ()
      *
@@ -7159,68 +8247,134 @@ export namespace storage_v1 {
      * storage.objects.rewrite
      * @desc Rewrites a source object to a destination object. Optionally overrides metadata.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which to find the source object.
-     *     sourceBucket: 'my-source-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the source object. For information about how to URL encode object names to be path safe,
-     *     // see Encoding URI Path Parts.
-     *     sourceObject: 'my-source-object',  // TODO: Update placeholder value.
-     *
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
-     *     // bucket value, if any.
-     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
-     *     // object metadata's name value, if any. For information about how to URL encode object names to be
-     *     // path safe, see Encoding URI Path Parts.
-     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.rewrite(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.rewrite({
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     *     destinationBucket: 'placeholder-value',
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     destinationKmsKeyName: 'placeholder-value',
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     destinationObject: 'placeholder-value',
+     *     // Apply a predefined set of access controls to the destination object.
+     *     destinationPredefinedAcl: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation matches the given value.
+     *     ifSourceGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation does not match the given value.
+     *     ifSourceGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration matches the given value.
+     *     ifSourceMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration does not match the given value.
+     *     ifSourceMetagenerationNotMatch: 'placeholder-value',
+     *     // The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
+     *     maxBytesRewrittenPerCall: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
+     *     rewriteToken: 'placeholder-value',
+     *     // Name of the bucket in which to find the source object.
+     *     sourceBucket: 'placeholder-value',
+     *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
+     *     sourceGeneration: 'placeholder-value',
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     sourceObject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "kind": "my_kind",
+     *   //   "objectSize": "my_objectSize",
+     *   //   "resource": {},
+     *   //   "rewriteToken": "my_rewriteToken",
+     *   //   "totalBytesRewritten": "my_totalBytesRewritten"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.rewrite
      * @memberOf! ()
      *
@@ -7325,60 +8479,76 @@ export namespace storage_v1 {
      * storage.objects.setIamPolicy
      * @desc Updates an IAM policy for the specified object.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.setIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.setIamPolicy({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "resourceId": "my_resourceId",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.setIamPolicy
      * @memberOf! ()
      *
@@ -7457,58 +8627,65 @@ export namespace storage_v1 {
      * storage.objects.testIamPermissions
      * @desc Tests a set of permissions on the given object to see which, if any, are held by the caller.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     // Permissions to test.
-     *     permissions: [],  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.testIamPermissions(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.testIamPermissions({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // Permissions to test.
+     *     permissions: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.testIamPermissions
      * @memberOf! ()
      *
@@ -7595,60 +8772,141 @@ export namespace storage_v1 {
      * storage.objects.update
      * @desc Updates an object's metadata.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see
-     *     // Encoding URI Path Parts.
-     *     object: 'my-object',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.update({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     object: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this object.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.update
      * @memberOf! ()
      *
@@ -7732,55 +8990,102 @@ export namespace storage_v1 {
      * storage.objects.watchAll
      * @desc Watch for changes on all objects in a bucket.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the bucket in which to look for objects.
-     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.objects.watchAll(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.watchAll({
+     *     // Name of the bucket in which to look for objects.
+     *     bucket: 'placeholder-value',
+     *     // Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     *     delimiter: 'placeholder-value',
+     *     // Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     endOffset: 'placeholder-value',
+     *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
+     *     includeTrailingDelimiter: 'placeholder-value',
+     *     // Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Filter results to objects whose names begin with this prefix.
+     *     prefix: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     startOffset: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *     // If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
+     *     versions: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.objects.watchAll
      * @memberOf! ()
      *
@@ -8589,54 +9894,57 @@ export namespace storage_v1 {
      * storage.projects.hmacKeys.create
      * @desc Creates a new HMAC key for the specified service account.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID owning the service account.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Email address of the service account.
-     *     serviceAccountEmail: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.projects.hmacKeys.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.create({
+     *     // Project ID owning the service account.
+     *     projectId: 'placeholder-value',
+     *     // Email address of the service account.
+     *     serviceAccountEmail: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "secret": "my_secret"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.projects.hmacKeys.create
      * @memberOf! ()
      *
@@ -8711,51 +10019,51 @@ export namespace storage_v1 {
      * storage.projects.hmacKeys.delete
      * @desc Deletes an HMAC key.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID owning the requested key
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Name of the HMAC key to be deleted.
-     *     accessId: 'my-access-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.projects.hmacKeys.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.delete({
+     *     // Name of the HMAC key to be deleted.
+     *     accessId: 'placeholder-value',
+     *     // Project ID owning the requested key
+     *     projectId: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.projects.hmacKeys.delete
      * @memberOf! ()
      *
@@ -8830,54 +10138,66 @@ export namespace storage_v1 {
      * storage.projects.hmacKeys.get
      * @desc Retrieves an HMAC key's metadata
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID owning the service account of the requested key.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Name of the HMAC key.
-     *     accessId: 'my-access-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.projects.hmacKeys.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.get({
+     *     // Name of the HMAC key.
+     *     accessId: 'placeholder-value',
+     *     // Project ID owning the service account of the requested key.
+     *     projectId: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessId": "my_accessId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectId": "my_projectId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *   //   "state": "my_state",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.projects.hmacKeys.get
      * @memberOf! ()
      *
@@ -8954,64 +10274,65 @@ export namespace storage_v1 {
      * storage.projects.hmacKeys.list
      * @desc Retrieves a list of HMAC keys matching the criteria.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.list({
+     *     // Maximum number of items to return in a single page of responses. The service uses this parameter or 250 items, whichever is smaller. The max number of items per page will also be limited by the number of distinct service accounts in the response. If the number of service accounts in a single response is too high, the page will truncated and a next page token will be returned.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
      *     // Name of the project in which to look for HMAC keys.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *     projectId: 'placeholder-value',
+     *     // If present, only keys for the given service account are returned.
+     *     serviceAccountEmail: 'placeholder-value',
+     *     // Whether or not to show keys in the DELETED state.
+     *     showDeletedKeys: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       storage.projects.hmacKeys.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   storage.projects.hmacKeys.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.projects.hmacKeys.list
      * @memberOf! ()
      *
@@ -9091,59 +10412,81 @@ export namespace storage_v1 {
      * storage.projects.hmacKeys.update
      * @desc Updates the state of an HMAC key. See the HMAC Key resource descriptor for valid states.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID owning the service account of the updated key.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Name of the HMAC key being updated.
-     *     accessId: 'my-access-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.projects.hmacKeys.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.update({
+     *     // Name of the HMAC key being updated.
+     *     accessId: 'placeholder-value',
+     *     // Project ID owning the service account of the updated key.
+     *     projectId: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessId": "my_accessId",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "projectId": "my_projectId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *       //   "state": "my_state",
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessId": "my_accessId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectId": "my_projectId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *   //   "state": "my_state",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.projects.hmacKeys.update
      * @memberOf! ()
      *
@@ -9346,51 +10689,59 @@ export namespace storage_v1 {
      * storage.projects.serviceAccount.get
      * @desc Get the email address of this project's Google Cloud Storage service account.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Storage JSON API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
      *
      * const {google} = require('googleapis');
-     * var storage = google.storage('v1');
+     * const storage = google.storage('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storage.projects.serviceAccount.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.serviceAccount.get({
+     *     // Project ID
+     *     projectId: 'placeholder-value',
+     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
+     *     provisionalUserProject: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email_address": "my_email_address",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias storage.projects.serviceAccount.get
      * @memberOf! ()
      *

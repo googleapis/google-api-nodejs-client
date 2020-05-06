@@ -1632,6 +1632,57 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.accounts.get
      * @desc Gets one account by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.get({
+     *     // The account id
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applyPretargetingToNonGuaranteedDeals": false,
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.get
      * @memberOf! ()
      *
@@ -1703,6 +1754,47 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.accounts.list
      * @desc Retrieves the authenticated user's list of accounts.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.list
      * @memberOf! ()
      *
@@ -1775,6 +1867,75 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.accounts.patch
      * @desc Updates an existing account. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.patch({
+     *     // Confirmation for erasing bidder and cookie matching urls.
+     *     confirmUnsafeAccountChange: 'placeholder-value',
+     *     // The account id
+     *     id: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "applyPretargetingToNonGuaranteedDeals": false,
+     *       //   "bidderLocation": [],
+     *       //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *       //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *       //   "id": 0,
+     *       //   "kind": "my_kind",
+     *       //   "maximumActiveCreatives": 0,
+     *       //   "maximumTotalQps": 0,
+     *       //   "numberActiveCreatives": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applyPretargetingToNonGuaranteedDeals": false,
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.patch
      * @memberOf! ()
      *
@@ -1848,6 +2009,75 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.accounts.update
      * @desc Updates an existing account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.update({
+     *     // Confirmation for erasing bidder and cookie matching urls.
+     *     confirmUnsafeAccountChange: 'placeholder-value',
+     *     // The account id
+     *     id: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "applyPretargetingToNonGuaranteedDeals": false,
+     *       //   "bidderLocation": [],
+     *       //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *       //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *       //   "id": 0,
+     *       //   "kind": "my_kind",
+     *       //   "maximumActiveCreatives": 0,
+     *       //   "maximumTotalQps": 0,
+     *       //   "numberActiveCreatives": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applyPretargetingToNonGuaranteedDeals": false,
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.update
      * @memberOf! ()
      *
@@ -1986,6 +2216,52 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.billingInfo.get
      * @desc Returns the billing information for one account specified by account ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.billingInfo.get({
+     *     // The account id.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": 0,
+     *   //   "accountName": "my_accountName",
+     *   //   "billingId": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.billingInfo.get
      * @memberOf! ()
      *
@@ -2058,6 +2334,47 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.billingInfo.list
      * @desc Retrieves a list of billing information for all accounts of the authenticated user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.billingInfo.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.billingInfo.list
      * @memberOf! ()
      *
@@ -2155,6 +2472,56 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.budget.get
      * @desc Returns the budget information for the adgroup specified by the accountId and billingId.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.budget.get({
+     *     // The account id to get the budget information for.
+     *     accountId: 'placeholder-value',
+     *     // The billing id to get the budget information for.
+     *     billingId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "billingId": "my_billingId",
+     *   //   "budgetAmount": "my_budgetAmount",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.budget.get
      * @memberOf! ()
      *
@@ -2227,6 +2594,69 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.budget.patch
      * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.budget.patch({
+     *     // The account id associated with the budget being updated.
+     *     accountId: 'placeholder-value',
+     *     // The billing id associated with the budget being updated.
+     *     billingId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "billingId": "my_billingId",
+     *       //   "budgetAmount": "my_budgetAmount",
+     *       //   "currencyCode": "my_currencyCode",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "billingId": "my_billingId",
+     *   //   "budgetAmount": "my_budgetAmount",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.budget.patch
      * @memberOf! ()
      *
@@ -2300,6 +2730,69 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.budget.update
      * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.budget.update({
+     *     // The account id associated with the budget being updated.
+     *     accountId: 'placeholder-value',
+     *     // The billing id associated with the budget being updated.
+     *     billingId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "billingId": "my_billingId",
+     *       //   "budgetAmount": "my_budgetAmount",
+     *       //   "currencyCode": "my_currencyCode",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "billingId": "my_billingId",
+     *   //   "budgetAmount": "my_budgetAmount",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.budget.update
      * @memberOf! ()
      *
@@ -2436,6 +2929,48 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.addDeal
      * @desc Add a deal id association for the creative.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.addDeal({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *     // The id of the deal id to associate with this creative.
+     *     dealId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.addDeal
      * @memberOf! ()
      *
@@ -2510,6 +3045,81 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.get
      * @desc Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.get({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "HTMLSnippet": "my_HTMLSnippet",
+     *   //   "accountId": 0,
+     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *   //   "adTechnologyProviders": {},
+     *   //   "advertiserId": [],
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *   //   "attribute": [],
+     *   //   "buyerCreativeId": "my_buyerCreativeId",
+     *   //   "clickThroughUrl": [],
+     *   //   "corrections": [],
+     *   //   "creativeStatusIdentityType": "my_creativeStatusIdentityType",
+     *   //   "dealsStatus": "my_dealsStatus",
+     *   //   "detectedDomains": [],
+     *   //   "filteringReasons": {},
+     *   //   "height": 0,
+     *   //   "impressionTrackingUrl": [],
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "nativeAd": {},
+     *   //   "openAuctionStatus": "my_openAuctionStatus",
+     *   //   "productCategories": [],
+     *   //   "restrictedCategories": [],
+     *   //   "sensitiveCategories": [],
+     *   //   "servingRestrictions": [],
+     *   //   "vendorType": [],
+     *   //   "version": 0,
+     *   //   "videoURL": "my_videoURL",
+     *   //   "videoVastXML": "my_videoVastXML",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.get
      * @memberOf! ()
      *
@@ -2582,6 +3192,114 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.insert
      * @desc Submit a new creative.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "HTMLSnippet": "my_HTMLSnippet",
+     *       //   "accountId": 0,
+     *       //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *       //   "adTechnologyProviders": {},
+     *       //   "advertiserId": [],
+     *       //   "advertiserName": "my_advertiserName",
+     *       //   "agencyId": "my_agencyId",
+     *       //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *       //   "attribute": [],
+     *       //   "buyerCreativeId": "my_buyerCreativeId",
+     *       //   "clickThroughUrl": [],
+     *       //   "corrections": [],
+     *       //   "creativeStatusIdentityType": "my_creativeStatusIdentityType",
+     *       //   "dealsStatus": "my_dealsStatus",
+     *       //   "detectedDomains": [],
+     *       //   "filteringReasons": {},
+     *       //   "height": 0,
+     *       //   "impressionTrackingUrl": [],
+     *       //   "kind": "my_kind",
+     *       //   "languages": [],
+     *       //   "nativeAd": {},
+     *       //   "openAuctionStatus": "my_openAuctionStatus",
+     *       //   "productCategories": [],
+     *       //   "restrictedCategories": [],
+     *       //   "sensitiveCategories": [],
+     *       //   "servingRestrictions": [],
+     *       //   "vendorType": [],
+     *       //   "version": 0,
+     *       //   "videoURL": "my_videoURL",
+     *       //   "videoVastXML": "my_videoVastXML",
+     *       //   "width": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "HTMLSnippet": "my_HTMLSnippet",
+     *   //   "accountId": 0,
+     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *   //   "adTechnologyProviders": {},
+     *   //   "advertiserId": [],
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *   //   "attribute": [],
+     *   //   "buyerCreativeId": "my_buyerCreativeId",
+     *   //   "clickThroughUrl": [],
+     *   //   "corrections": [],
+     *   //   "creativeStatusIdentityType": "my_creativeStatusIdentityType",
+     *   //   "dealsStatus": "my_dealsStatus",
+     *   //   "detectedDomains": [],
+     *   //   "filteringReasons": {},
+     *   //   "height": 0,
+     *   //   "impressionTrackingUrl": [],
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "nativeAd": {},
+     *   //   "openAuctionStatus": "my_openAuctionStatus",
+     *   //   "productCategories": [],
+     *   //   "restrictedCategories": [],
+     *   //   "sensitiveCategories": [],
+     *   //   "servingRestrictions": [],
+     *   //   "vendorType": [],
+     *   //   "version": 0,
+     *   //   "videoURL": "my_videoURL",
+     *   //   "videoVastXML": "my_videoVastXML",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.insert
      * @memberOf! ()
      *
@@ -2653,6 +3371,61 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.list
      * @desc Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.list({
+     *     // When specified, only creatives for the given account ids are returned.
+     *     accountId: 'placeholder-value',
+     *     // When specified, only creatives for the given buyer creative ids are returned.
+     *     buyerCreativeId: 'placeholder-value',
+     *     // When specified, only creatives having the given deals status are returned.
+     *     dealsStatusFilter: 'placeholder-value',
+     *     // Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // When specified, only creatives having the given open auction status are returned.
+     *     openAuctionStatusFilter: 'placeholder-value',
+     *     // A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.list
      * @memberOf! ()
      *
@@ -2731,6 +3504,52 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.listDeals
      * @desc Lists the external deal ids associated with the creative.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.listDeals({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dealStatuses": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.listDeals
      * @memberOf! ()
      *
@@ -2806,6 +3625,48 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.removeDeal
      * @desc Remove a deal id associated with the creative.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.removeDeal({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *     // The id of the deal id to disassociate with this creative.
+     *     dealId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.removeDeal
      * @memberOf! ()
      *
@@ -3001,6 +3862,60 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacedeals.delete
      * @desc Delete the specified deals from the proposal
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacedeals.delete({
+     *     // The proposalId to delete deals from.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dealIds": [],
+     *       //   "proposalRevisionNumber": "my_proposalRevisionNumber",
+     *       //   "updateAction": "my_updateAction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": [],
+     *   //   "proposalRevisionNumber": "my_proposalRevisionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacedeals.delete
      * @memberOf! ()
      *
@@ -3080,6 +3995,60 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacedeals.insert
      * @desc Add new deals for the specified proposal
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacedeals.insert({
+     *     // proposalId for which deals need to be added.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deals": [],
+     *       //   "proposalRevisionNumber": "my_proposalRevisionNumber",
+     *       //   "updateAction": "my_updateAction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": [],
+     *   //   "proposalRevisionNumber": "my_proposalRevisionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacedeals.insert
      * @memberOf! ()
      *
@@ -3157,6 +4126,51 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacedeals.list
      * @desc List all the deals for a given proposal
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacedeals.list({
+     *     // Query string to retrieve specific deals.
+     *     pqlQuery: 'placeholder-value',
+     *     // The proposalId to get deals for. To search across all proposals specify order_id = '-' as part of the URL.
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacedeals.list
      * @memberOf! ()
      *
@@ -3233,6 +4247,61 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacedeals.update
      * @desc Replaces all the deals in the proposal with the passed in deals
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacedeals.update({
+     *     // The proposalId to edit deals on.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deals": [],
+     *       //   "proposal": {},
+     *       //   "proposalRevisionNumber": "my_proposalRevisionNumber",
+     *       //   "updateAction": "my_updateAction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": [],
+     *   //   "orderRevisionNumber": "my_orderRevisionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacedeals.update
      * @memberOf! ()
      *
@@ -3390,6 +4459,57 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacenotes.insert
      * @desc Add notes to the proposal
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacenotes.insert({
+     *     // The proposalId to add notes for.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "notes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacenotes.insert
      * @memberOf! ()
      *
@@ -3467,6 +4587,51 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacenotes.list
      * @desc Get all the notes associated with a proposal
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacenotes.list({
+     *     // Query string to retrieve specific notes. To search the text contents of notes, please use syntax like "WHERE note.note = "foo" or "WHERE note.note LIKE "%bar%"
+     *     pqlQuery: 'placeholder-value',
+     *     // The proposalId to get notes for. To search across all proposals specify order_id = '-' as part of the URL.
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacenotes.list
      * @memberOf! ()
      *
@@ -3584,6 +4749,55 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplaceprivateauction.updateproposal
      * @desc Update a given private auction proposal
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplaceprivateauction.updateproposal({
+     *     // The private auction id to be updated.
+     *     privateAuctionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "externalDealId": "my_externalDealId",
+     *       //   "note": {},
+     *       //   "proposalRevisionNumber": "my_proposalRevisionNumber",
+     *       //   "updateAction": "my_updateAction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplaceprivateauction.updateproposal
      * @memberOf! ()
      *
@@ -3682,6 +4896,58 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.performanceReport.list
      * @desc Retrieves the authenticated user's list of performance metrics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.performanceReport.list({
+     *     // The account id to get the reports.
+     *     accountId: 'placeholder-value',
+     *     // The end time of the report in ISO 8601 timestamp format using UTC.
+     *     endDateTime: 'placeholder-value',
+     *     // Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through performance reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // The start time of the report in ISO 8601 timestamp format using UTC.
+     *     startDateTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "performanceReport": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.performanceReport.list
      * @memberOf! ()
      *
@@ -3798,6 +5064,46 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.delete
      * @desc Deletes an existing pretargeting config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.delete({
+     *     // The account id to delete the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *     // The specific id of the configuration to delete.
+     *     configId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.delete
      * @memberOf! ()
      *
@@ -3871,6 +5177,77 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.get
      * @desc Gets a specific pretargeting configuration
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.get({
+     *     // The account id to get the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *     // The specific id of the configuration to retrieve.
+     *     configId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingId": "my_billingId",
+     *   //   "configId": "my_configId",
+     *   //   "configName": "my_configName",
+     *   //   "creativeType": [],
+     *   //   "dimensions": [],
+     *   //   "excludedContentLabels": [],
+     *   //   "excludedGeoCriteriaIds": [],
+     *   //   "excludedPlacements": [],
+     *   //   "excludedUserLists": [],
+     *   //   "excludedVerticals": [],
+     *   //   "geoCriteriaIds": [],
+     *   //   "isActive": false,
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "mobileCarriers": [],
+     *   //   "mobileDevices": [],
+     *   //   "mobileOperatingSystemVersions": [],
+     *   //   "placements": [],
+     *   //   "platforms": [],
+     *   //   "supportedCreativeAttributes": [],
+     *   //   "userIdentifierDataRequired": [],
+     *   //   "userLists": [],
+     *   //   "vendorTypes": [],
+     *   //   "verticals": [],
+     *   //   "videoPlayerSizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.get
      * @memberOf! ()
      *
@@ -3946,6 +5323,109 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.insert
      * @desc Inserts a new pretargeting configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.insert({
+     *     // The account id to insert the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingId": "my_billingId",
+     *       //   "configId": "my_configId",
+     *       //   "configName": "my_configName",
+     *       //   "creativeType": [],
+     *       //   "dimensions": [],
+     *       //   "excludedContentLabels": [],
+     *       //   "excludedGeoCriteriaIds": [],
+     *       //   "excludedPlacements": [],
+     *       //   "excludedUserLists": [],
+     *       //   "excludedVerticals": [],
+     *       //   "geoCriteriaIds": [],
+     *       //   "isActive": false,
+     *       //   "kind": "my_kind",
+     *       //   "languages": [],
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "minimumViewabilityDecile": 0,
+     *       //   "mobileCarriers": [],
+     *       //   "mobileDevices": [],
+     *       //   "mobileOperatingSystemVersions": [],
+     *       //   "placements": [],
+     *       //   "platforms": [],
+     *       //   "supportedCreativeAttributes": [],
+     *       //   "userIdentifierDataRequired": [],
+     *       //   "userLists": [],
+     *       //   "vendorTypes": [],
+     *       //   "verticals": [],
+     *       //   "videoPlayerSizes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingId": "my_billingId",
+     *   //   "configId": "my_configId",
+     *   //   "configName": "my_configName",
+     *   //   "creativeType": [],
+     *   //   "dimensions": [],
+     *   //   "excludedContentLabels": [],
+     *   //   "excludedGeoCriteriaIds": [],
+     *   //   "excludedPlacements": [],
+     *   //   "excludedUserLists": [],
+     *   //   "excludedVerticals": [],
+     *   //   "geoCriteriaIds": [],
+     *   //   "isActive": false,
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "mobileCarriers": [],
+     *   //   "mobileDevices": [],
+     *   //   "mobileOperatingSystemVersions": [],
+     *   //   "placements": [],
+     *   //   "platforms": [],
+     *   //   "supportedCreativeAttributes": [],
+     *   //   "userIdentifierDataRequired": [],
+     *   //   "userLists": [],
+     *   //   "vendorTypes": [],
+     *   //   "verticals": [],
+     *   //   "videoPlayerSizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.insert
      * @memberOf! ()
      *
@@ -4020,6 +5500,50 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.list
      * @desc Retrieves a list of the authenticated user's pretargeting configurations.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.list({
+     *     // The account id to get the pretargeting configs for.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.list
      * @memberOf! ()
      *
@@ -4095,6 +5619,111 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.patch
      * @desc Updates an existing pretargeting config. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.patch({
+     *     // The account id to update the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *     // The specific id of the configuration to update.
+     *     configId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingId": "my_billingId",
+     *       //   "configId": "my_configId",
+     *       //   "configName": "my_configName",
+     *       //   "creativeType": [],
+     *       //   "dimensions": [],
+     *       //   "excludedContentLabels": [],
+     *       //   "excludedGeoCriteriaIds": [],
+     *       //   "excludedPlacements": [],
+     *       //   "excludedUserLists": [],
+     *       //   "excludedVerticals": [],
+     *       //   "geoCriteriaIds": [],
+     *       //   "isActive": false,
+     *       //   "kind": "my_kind",
+     *       //   "languages": [],
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "minimumViewabilityDecile": 0,
+     *       //   "mobileCarriers": [],
+     *       //   "mobileDevices": [],
+     *       //   "mobileOperatingSystemVersions": [],
+     *       //   "placements": [],
+     *       //   "platforms": [],
+     *       //   "supportedCreativeAttributes": [],
+     *       //   "userIdentifierDataRequired": [],
+     *       //   "userLists": [],
+     *       //   "vendorTypes": [],
+     *       //   "verticals": [],
+     *       //   "videoPlayerSizes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingId": "my_billingId",
+     *   //   "configId": "my_configId",
+     *   //   "configName": "my_configName",
+     *   //   "creativeType": [],
+     *   //   "dimensions": [],
+     *   //   "excludedContentLabels": [],
+     *   //   "excludedGeoCriteriaIds": [],
+     *   //   "excludedPlacements": [],
+     *   //   "excludedUserLists": [],
+     *   //   "excludedVerticals": [],
+     *   //   "geoCriteriaIds": [],
+     *   //   "isActive": false,
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "mobileCarriers": [],
+     *   //   "mobileDevices": [],
+     *   //   "mobileOperatingSystemVersions": [],
+     *   //   "placements": [],
+     *   //   "platforms": [],
+     *   //   "supportedCreativeAttributes": [],
+     *   //   "userIdentifierDataRequired": [],
+     *   //   "userLists": [],
+     *   //   "vendorTypes": [],
+     *   //   "verticals": [],
+     *   //   "videoPlayerSizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.patch
      * @memberOf! ()
      *
@@ -4171,6 +5800,111 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.update
      * @desc Updates an existing pretargeting config.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.update({
+     *     // The account id to update the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *     // The specific id of the configuration to update.
+     *     configId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingId": "my_billingId",
+     *       //   "configId": "my_configId",
+     *       //   "configName": "my_configName",
+     *       //   "creativeType": [],
+     *       //   "dimensions": [],
+     *       //   "excludedContentLabels": [],
+     *       //   "excludedGeoCriteriaIds": [],
+     *       //   "excludedPlacements": [],
+     *       //   "excludedUserLists": [],
+     *       //   "excludedVerticals": [],
+     *       //   "geoCriteriaIds": [],
+     *       //   "isActive": false,
+     *       //   "kind": "my_kind",
+     *       //   "languages": [],
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "minimumViewabilityDecile": 0,
+     *       //   "mobileCarriers": [],
+     *       //   "mobileDevices": [],
+     *       //   "mobileOperatingSystemVersions": [],
+     *       //   "placements": [],
+     *       //   "platforms": [],
+     *       //   "supportedCreativeAttributes": [],
+     *       //   "userIdentifierDataRequired": [],
+     *       //   "userLists": [],
+     *       //   "vendorTypes": [],
+     *       //   "verticals": [],
+     *       //   "videoPlayerSizes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingId": "my_billingId",
+     *   //   "configId": "my_configId",
+     *   //   "configName": "my_configName",
+     *   //   "creativeType": [],
+     *   //   "dimensions": [],
+     *   //   "excludedContentLabels": [],
+     *   //   "excludedGeoCriteriaIds": [],
+     *   //   "excludedPlacements": [],
+     *   //   "excludedUserLists": [],
+     *   //   "excludedVerticals": [],
+     *   //   "geoCriteriaIds": [],
+     *   //   "isActive": false,
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "mobileCarriers": [],
+     *   //   "mobileDevices": [],
+     *   //   "mobileOperatingSystemVersions": [],
+     *   //   "placements": [],
+     *   //   "platforms": [],
+     *   //   "supportedCreativeAttributes": [],
+     *   //   "userIdentifierDataRequired": [],
+     *   //   "userLists": [],
+     *   //   "vendorTypes": [],
+     *   //   "verticals": [],
+     *   //   "videoPlayerSizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.update
      * @memberOf! ()
      *
@@ -4358,6 +6092,75 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.products.get
      * @desc Gets the requested product by id.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.products.get({
+     *     // The id for the product to get the head revision for.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "creationTimeMs": "my_creationTimeMs",
+     *   //   "creatorContacts": [],
+     *   //   "creatorRole": "my_creatorRole",
+     *   //   "deliveryControl": {},
+     *   //   "flightEndTimeMs": "my_flightEndTimeMs",
+     *   //   "flightStartTimeMs": "my_flightStartTimeMs",
+     *   //   "hasCreatorSignedOff": false,
+     *   //   "inventorySource": "my_inventorySource",
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "lastUpdateTimeMs": "my_lastUpdateTimeMs",
+     *   //   "legacyOfferId": "my_legacyOfferId",
+     *   //   "marketplacePublisherProfileId": "my_marketplacePublisherProfileId",
+     *   //   "name": "my_name",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "productId": "my_productId",
+     *   //   "publisherProfileId": "my_publisherProfileId",
+     *   //   "publisherProvidedForecast": {},
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "seller": {},
+     *   //   "sharedTargetings": [],
+     *   //   "state": "my_state",
+     *   //   "syndicationProduct": "my_syndicationProduct",
+     *   //   "terms": {},
+     *   //   "webPropertyCode": "my_webPropertyCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.products.get
      * @memberOf! ()
      *
@@ -4428,6 +6231,49 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.products.search
      * @desc Gets the requested product.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.products.search({
+     *     // The pql query used to query for products.
+     *     pqlQuery: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "products": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.products.search
      * @memberOf! ()
      *
@@ -4531,6 +6377,71 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.get
      * @desc Get a proposal given its id
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.get({
+     *     // Id of the proposal to retrieve.
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "dbmAdvertiserIds": [],
+     *   //   "hasBuyerSignedOff": false,
+     *   //   "hasSellerSignedOff": false,
+     *   //   "inventorySource": "my_inventorySource",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "negotiationId": "my_negotiationId",
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "revisionTimeMs": "my_revisionTimeMs",
+     *   //   "seller": {},
+     *   //   "sellerContacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.get
      * @memberOf! ()
      *
@@ -4601,6 +6512,55 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.insert
      * @desc Create the given list of proposals
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "proposals": [],
+     *       //   "webPropertyCode": "my_webPropertyCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "proposals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.insert
      * @memberOf! ()
      *
@@ -4676,6 +6636,105 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.patch
      * @desc Update the given proposal. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.patch({
+     *     // The proposal id to update.
+     *     proposalId: 'placeholder-value',
+     *     // The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
+     *     revisionNumber: 'placeholder-value',
+     *     // The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
+     *     updateAction: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billedBuyer": {},
+     *       //   "buyer": {},
+     *       //   "buyerContacts": [],
+     *       //   "buyerPrivateData": {},
+     *       //   "dbmAdvertiserIds": [],
+     *       //   "hasBuyerSignedOff": false,
+     *       //   "hasSellerSignedOff": false,
+     *       //   "inventorySource": "my_inventorySource",
+     *       //   "isRenegotiating": false,
+     *       //   "isSetupComplete": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *       //   "name": "my_name",
+     *       //   "negotiationId": "my_negotiationId",
+     *       //   "originatorRole": "my_originatorRole",
+     *       //   "privateAuctionId": "my_privateAuctionId",
+     *       //   "proposalId": "my_proposalId",
+     *       //   "proposalState": "my_proposalState",
+     *       //   "revisionNumber": "my_revisionNumber",
+     *       //   "revisionTimeMs": "my_revisionTimeMs",
+     *       //   "seller": {},
+     *       //   "sellerContacts": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "dbmAdvertiserIds": [],
+     *   //   "hasBuyerSignedOff": false,
+     *   //   "hasSellerSignedOff": false,
+     *   //   "inventorySource": "my_inventorySource",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "negotiationId": "my_negotiationId",
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "revisionTimeMs": "my_revisionTimeMs",
+     *   //   "seller": {},
+     *   //   "sellerContacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.patch
      * @memberOf! ()
      *
@@ -4750,6 +6809,49 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.search
      * @desc Search for proposals using pql query
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.search({
+     *     // Query string to retrieve specific proposals.
+     *     pqlQuery: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "proposals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.search
      * @memberOf! ()
      *
@@ -4823,6 +6925,44 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.setupcomplete
      * @desc Update the given proposal to indicate that setup has been completed.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.setupcomplete({
+     *     // The proposal id for which the setup is complete
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.setupcomplete
      * @memberOf! ()
      *
@@ -4895,6 +7035,105 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.update
      * @desc Update the given proposal
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.update({
+     *     // The proposal id to update.
+     *     proposalId: 'placeholder-value',
+     *     // The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
+     *     revisionNumber: 'placeholder-value',
+     *     // The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
+     *     updateAction: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billedBuyer": {},
+     *       //   "buyer": {},
+     *       //   "buyerContacts": [],
+     *       //   "buyerPrivateData": {},
+     *       //   "dbmAdvertiserIds": [],
+     *       //   "hasBuyerSignedOff": false,
+     *       //   "hasSellerSignedOff": false,
+     *       //   "inventorySource": "my_inventorySource",
+     *       //   "isRenegotiating": false,
+     *       //   "isSetupComplete": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *       //   "name": "my_name",
+     *       //   "negotiationId": "my_negotiationId",
+     *       //   "originatorRole": "my_originatorRole",
+     *       //   "privateAuctionId": "my_privateAuctionId",
+     *       //   "proposalId": "my_proposalId",
+     *       //   "proposalState": "my_proposalState",
+     *       //   "revisionNumber": "my_revisionNumber",
+     *       //   "revisionTimeMs": "my_revisionTimeMs",
+     *       //   "seller": {},
+     *       //   "sellerContacts": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "dbmAdvertiserIds": [],
+     *   //   "hasBuyerSignedOff": false,
+     *   //   "hasSellerSignedOff": false,
+     *   //   "inventorySource": "my_inventorySource",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "negotiationId": "my_negotiationId",
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "revisionTimeMs": "my_revisionTimeMs",
+     *   //   "seller": {},
+     *   //   "sellerContacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.update
      * @memberOf! ()
      *
@@ -5070,6 +7309,49 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pubprofiles.list
      * @desc Gets the requested publisher profile(s) by publisher accountId.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pubprofiles.list({
+     *     // The accountId of the publisher to get profiles for.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "profiles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pubprofiles.list
      * @memberOf! ()
      *

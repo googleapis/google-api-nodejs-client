@@ -1719,6 +1719,56 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.operations.get
      * @memberOf! ()
      *
@@ -1789,6 +1839,59 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'placeholder-value',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.operations.list
      * @memberOf! ()
      *
@@ -1913,6 +2016,70 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.batchEnable
      * @desc Enable multiple services on a project. The operation is atomic: if enabling any service fails, then the entire batch fails, and no state changes occur.  Operation<response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.batchEnable({
+     *     // Parent to enable services on.
+     *     //
+     *     // An example name would be:
+     *     // `projects/123`
+     *     // where `123` is the project number (not project ID).
+     *     //
+     *     // The `BatchEnableServices` method currently only supports projects.
+     *     parent: '[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "serviceIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.batchEnable
      * @memberOf! ()
      *
@@ -1988,6 +2155,68 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.disable
      * @desc Disable a service so that it can no longer be used with a project. This prevents unintended usage that may cause unexpected billing charges or security leaks.  It is not valid to call the disable method on a service that is not currently enabled. Callers will receive a `FAILED_PRECONDITION` status if the target service is not currently enabled.  Operation<response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.disable({
+     *     // Name of the consumer and service to disable the service on.
+     *     //
+     *     // The enable and disable methods currently only support projects.
+     *     //
+     *     // An example name would be:
+     *     // `projects/123/services/serviceusage.googleapis.com`
+     *     // where `123` is the project number (not project ID).
+     *     name: '[^/]+/[^/]+/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.disable
      * @memberOf! ()
      *
@@ -2062,6 +2291,72 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.enable
      * @desc Enable a service so that it can be used with a project.  Operation<response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.enable({
+     *     // Name of the consumer and service to enable the service on.
+     *     //
+     *     // The `EnableService` and `DisableService` methods currently only support
+     *     // projects.
+     *     //
+     *     // Enabling a service requires that the service is public or is shared with
+     *     // the user enabling the service.
+     *     //
+     *     // An example name would be:
+     *     // `projects/123/services/serviceusage.googleapis.com`
+     *     // where `123` is the project number (not project ID).
+     *     name: '[^/]+/[^/]+/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.enable
      * @memberOf! ()
      *
@@ -2136,6 +2431,59 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.get
      * @desc Returns the service configuration and enabled state for a given service.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.get({
+     *     // Name of the consumer and service to get the `ConsumerState` for.
+     *     //
+     *     // An example name would be:
+     *     // `projects/123/services/serviceusage.googleapis.com`
+     *     // where `123` is the project number (not project ID).
+     *     name: '[^/]+/[^/]+/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.get
      * @memberOf! ()
      *
@@ -2204,6 +2552,67 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.list
      * @desc List all services available to the specified project, and the current state of those services with respect to the project. The list includes all public services, all services for which the calling user has the `servicemanagement.services.bind` permission, and all services that have already been enabled on the project. The list can be filtered to only include services in a specific state, for example to only include services enabled on the project.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.list({
+     *     // Only list services that conform to the given filter.
+     *     // The allowed filter strings are `state:ENABLED` and `state:DISABLED`.
+     *     filter: 'placeholder-value',
+     *     // Requested size of the next page of data.
+     *     // Requested page size cannot exceed 200.
+     *     //  If not set, the default page size is 50.
+     *     pageSize: 'placeholder-value',
+     *     // Token identifying which result to start with, which is returned by a
+     *     // previous list call.
+     *     pageToken: 'placeholder-value',
+     *     // Parent to search for services on.
+     *     //
+     *     // An example name would be:
+     *     // `projects/123`
+     *     // where `123` is the project number (not project ID).
+     *     parent: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "services": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.list
      * @memberOf! ()
      *
@@ -2377,6 +2786,61 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.get
      * @desc Retrieves a summary of quota information for a specific quota metric
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.get({
+     *     // The resource name of the quota limit.
+     *     //
+     *     // An example name would be:
+     *     // projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests
+     *     name:
+     *       '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric',
+     *     // Specifies the level of detail for quota information in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consumerQuotaLimits": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "metric": "my_metric",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.get
      * @memberOf! ()
      *
@@ -2449,6 +2913,65 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.list
      * @desc Retrieves a summary of all quota information visible to the service consumer, organized by service metric. Each metric includes information about all of its defined limits. Each limit includes the limit configuration (quota unit, preciseness, default value), the current effective limit value, and all of the overrides applied to the limit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.list({
+     *     // Requested size of the next page of data.
+     *     pageSize: 'placeholder-value',
+     *     // Token identifying which result to start with; returned by a previous list
+     *     // call.
+     *     pageToken: 'placeholder-value',
+     *     // Parent of the quotas resource.
+     *     //
+     *     // Some example names would be:
+     *     // projects/123/services/serviceconsumermanagement.googleapis.com
+     *     // folders/345/services/serviceconsumermanagement.googleapis.com
+     *     // organizations/456/services/serviceconsumermanagement.googleapis.com
+     *     parent: '[^/]+/[^/]+/services/my-service',
+     *     // Specifies the level of detail for quota information in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metrics": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.list
      * @memberOf! ()
      *
@@ -2591,6 +3114,63 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.get
      * @desc Retrieves a summary of quota information for a specific quota limit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.get({
+     *     // The resource name of the quota limit.
+     *     //
+     *     // Use the quota limit resource name returned by previous
+     *     // ListConsumerQuotaMetrics and GetConsumerQuotaMetric API calls.
+     *     name:
+     *       '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *     // Specifies the level of detail for quota information in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowsAdminOverrides": false,
+     *   //   "isPrecise": false,
+     *   //   "metric": "my_metric",
+     *   //   "name": "my_name",
+     *   //   "quotaBuckets": [],
+     *   //   "unit": "my_unit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.get
      * @memberOf! ()
      *
@@ -2687,6 +3267,81 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.create
      * @desc Creates an admin override. An admin override is applied by an administrator of a parent folder or parent organization of the consumer receiving the override. An admin override is intended to limit the amount of quota the consumer can use out of the total quota pool allocated to all children of the folder or organization.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.create(
+     *     {
+     *       // Whether to force the creation of the quota override.
+     *       // If creating an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the parent quota limit, returned by a
+     *       // ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *       parent:
+     *         '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dimensions": {},
+     *         //   "metric": "my_metric",
+     *         //   "name": "my_name",
+     *         //   "overrideValue": "my_overrideValue",
+     *         //   "unit": "my_unit"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.create
      * @memberOf! ()
      *
@@ -2763,6 +3418,68 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.delete
      * @desc Deletes an admin override.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.delete(
+     *     {
+     *       // Whether to force the deletion of the quota override.
+     *       // If deleting an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the override to delete.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d`
+     *       name:
+     *         '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/adminOverrides/my-adminOverride',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.delete
      * @memberOf! ()
      *
@@ -2835,6 +3552,65 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.list
      * @desc Lists all admin overrides on this limit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.list(
+     *     {
+     *       // Requested size of the next page of data.
+     *       pageSize: 'placeholder-value',
+     *       // Token identifying which result to start with; returned by a previous list
+     *       // call.
+     *       pageToken: 'placeholder-value',
+     *       // The resource name of the parent quota limit, returned by a
+     *       // ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *       parent:
+     *         '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "overrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.list
      * @memberOf! ()
      *
@@ -2918,6 +3694,83 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.patch
      * @desc Updates an admin override.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.patch(
+     *     {
+     *       // Whether to force the update of the quota override.
+     *       // If updating an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the override to update.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d`
+     *       name:
+     *         '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/adminOverrides/my-adminOverride',
+     *       // Update only the specified fields of the override.
+     *       // If unset, all fields will be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dimensions": {},
+     *         //   "metric": "my_metric",
+     *         //   "name": "my_name",
+     *         //   "overrideValue": "my_overrideValue",
+     *         //   "unit": "my_unit"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.patch
      * @memberOf! ()
      *
@@ -3082,6 +3935,81 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.create
      * @desc Creates a consumer override. A consumer override is applied to the consumer on its own authority to limit its own quota usage. Consumer overrides cannot be used to grant more quota than would be allowed by admin overrides, producer overrides, or the default limit of the service.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.create(
+     *     {
+     *       // Whether to force the creation of the quota override.
+     *       // If creating an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the parent quota limit, returned by a
+     *       // ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *       parent:
+     *         '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dimensions": {},
+     *         //   "metric": "my_metric",
+     *         //   "name": "my_name",
+     *         //   "overrideValue": "my_overrideValue",
+     *         //   "unit": "my_unit"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.create
      * @memberOf! ()
      *
@@ -3158,6 +4086,68 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.delete
      * @desc Deletes a consumer override.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.delete(
+     *     {
+     *       // Whether to force the deletion of the quota override.
+     *       // If deleting an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the override to delete.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`
+     *       name:
+     *         '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/consumerOverrides/my-consumerOverride',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.delete
      * @memberOf! ()
      *
@@ -3230,6 +4220,65 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.list
      * @desc Lists all consumer overrides on this limit.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.list(
+     *     {
+     *       // Requested size of the next page of data.
+     *       pageSize: 'placeholder-value',
+     *       // Token identifying which result to start with; returned by a previous list
+     *       // call.
+     *       pageToken: 'placeholder-value',
+     *       // The resource name of the parent quota limit, returned by a
+     *       // ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *       parent:
+     *         '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "overrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.list
      * @memberOf! ()
      *
@@ -3315,6 +4364,83 @@ export namespace serviceusage_v1beta1 {
     /**
      * serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.patch
      * @desc Updates a consumer override.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.patch(
+     *     {
+     *       // Whether to force the update of the quota override.
+     *       // If updating an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the override to update.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`
+     *       name:
+     *         '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/consumerOverrides/my-consumerOverride',
+     *       // Update only the specified fields of the override.
+     *       // If unset, all fields will be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dimensions": {},
+     *         //   "metric": "my_metric",
+     *         //   "name": "my_name",
+     *         //   "overrideValue": "my_overrideValue",
+     *         //   "unit": "my_unit"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.patch
      * @memberOf! ()
      *

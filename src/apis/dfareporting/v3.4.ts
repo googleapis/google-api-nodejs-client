@@ -6763,6 +6763,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountActiveAdSummaries.get
      * @desc Gets the account's active ad summary by account ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountActiveAdSummaries.get({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Account ID.
+     *     summaryAccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeAds": "my_activeAds",
+     *   //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *   //   "availableAds": "my_availableAds",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountActiveAdSummaries.get
      * @memberOf! ()
      *
@@ -6864,6 +6913,53 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountPermissionGroups.get
      * @desc Gets one account permission group by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountPermissionGroups.get({
+     *     // Account permission group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountPermissionGroups.get
      * @memberOf! ()
      *
@@ -6941,6 +7037,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountPermissionGroups.list
      * @desc Retrieves the list of account permission groups.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountPermissionGroups.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissionGroups": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountPermissionGroups.list
      * @memberOf! ()
      *
@@ -7062,6 +7202,56 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountPermissions.get
      * @desc Gets one account permission by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountPermissions.get({
+     *     // Account permission ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountProfiles": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "permissionGroupId": "my_permissionGroupId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountPermissions.get
      * @memberOf! ()
      *
@@ -7137,6 +7327,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountPermissions.list
      * @desc Retrieves the list of account permissions.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountPermissions.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissions": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountPermissions.list
      * @memberOf! ()
      *
@@ -7256,6 +7490,69 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accounts.get
      * @desc Gets one account by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accounts.get({
+     *     // Account ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissionIds": [],
+     *   //   "accountProfile": "my_accountProfile",
+     *   //   "active": false,
+     *   //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *   //   "activeViewOptOut": false,
+     *   //   "availablePermissionIds": [],
+     *   //   "countryId": "my_countryId",
+     *   //   "currencyId": "my_currencyId",
+     *   //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "maximumImageSize": "my_maximumImageSize",
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "reportsConfiguration": {},
+     *   //   "shareReportsWithTwitter": false,
+     *   //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accounts.get
      * @memberOf! ()
      *
@@ -7328,6 +7625,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accounts.list
      * @desc Retrieves the list of accounts, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accounts.list({
+     *     // Select only active accounts. Don't set this field to select both active and non-active accounts.
+     *     active: 'placeholder-value',
+     *     // Select only accounts with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accounts.list
      * @memberOf! ()
      *
@@ -7409,6 +7765,95 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accounts.patch
      * @desc Updates an existing account. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accounts.patch({
+     *     // Account ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountPermissionIds": [],
+     *       //   "accountProfile": "my_accountProfile",
+     *       //   "active": false,
+     *       //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *       //   "activeViewOptOut": false,
+     *       //   "availablePermissionIds": [],
+     *       //   "countryId": "my_countryId",
+     *       //   "currencyId": "my_currencyId",
+     *       //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "maximumImageSize": "my_maximumImageSize",
+     *       //   "name": "my_name",
+     *       //   "nielsenOcrEnabled": false,
+     *       //   "reportsConfiguration": {},
+     *       //   "shareReportsWithTwitter": false,
+     *       //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissionIds": [],
+     *   //   "accountProfile": "my_accountProfile",
+     *   //   "active": false,
+     *   //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *   //   "activeViewOptOut": false,
+     *   //   "availablePermissionIds": [],
+     *   //   "countryId": "my_countryId",
+     *   //   "currencyId": "my_currencyId",
+     *   //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "maximumImageSize": "my_maximumImageSize",
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "reportsConfiguration": {},
+     *   //   "shareReportsWithTwitter": false,
+     *   //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accounts.patch
      * @memberOf! ()
      *
@@ -7481,6 +7926,93 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accounts.update
      * @desc Updates an existing account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accounts.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountPermissionIds": [],
+     *       //   "accountProfile": "my_accountProfile",
+     *       //   "active": false,
+     *       //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *       //   "activeViewOptOut": false,
+     *       //   "availablePermissionIds": [],
+     *       //   "countryId": "my_countryId",
+     *       //   "currencyId": "my_currencyId",
+     *       //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "maximumImageSize": "my_maximumImageSize",
+     *       //   "name": "my_name",
+     *       //   "nielsenOcrEnabled": false,
+     *       //   "reportsConfiguration": {},
+     *       //   "shareReportsWithTwitter": false,
+     *       //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissionIds": [],
+     *   //   "accountProfile": "my_accountProfile",
+     *   //   "active": false,
+     *   //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *   //   "activeViewOptOut": false,
+     *   //   "availablePermissionIds": [],
+     *   //   "countryId": "my_countryId",
+     *   //   "currencyId": "my_currencyId",
+     *   //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "maximumImageSize": "my_maximumImageSize",
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "reportsConfiguration": {},
+     *   //   "shareReportsWithTwitter": false,
+     *   //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accounts.update
      * @memberOf! ()
      *
@@ -7650,6 +8182,66 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountUserProfiles.get
      * @desc Gets one account user profile by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.get({
+     *     // User profile ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserFilter": {},
+     *   //   "campaignFilter": {},
+     *   //   "comments": "my_comments",
+     *   //   "email": "my_email",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "siteFilter": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerType": "my_traffickerType",
+     *   //   "userAccessType": "my_userAccessType",
+     *   //   "userRoleFilter": {},
+     *   //   "userRoleId": "my_userRoleId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountUserProfiles.get
      * @memberOf! ()
      *
@@ -7725,6 +8317,87 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountUserProfiles.insert
      * @desc Inserts a new account user profile.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserFilter": {},
+     *       //   "campaignFilter": {},
+     *       //   "comments": "my_comments",
+     *       //   "email": "my_email",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "name": "my_name",
+     *       //   "siteFilter": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerType": "my_traffickerType",
+     *       //   "userAccessType": "my_userAccessType",
+     *       //   "userRoleFilter": {},
+     *       //   "userRoleId": "my_userRoleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserFilter": {},
+     *   //   "campaignFilter": {},
+     *   //   "comments": "my_comments",
+     *   //   "email": "my_email",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "siteFilter": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerType": "my_traffickerType",
+     *   //   "userAccessType": "my_userAccessType",
+     *   //   "userRoleFilter": {},
+     *   //   "userRoleId": "my_userRoleId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountUserProfiles.insert
      * @memberOf! ()
      *
@@ -7800,6 +8473,69 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountUserProfiles.list
      * @desc Retrieves a list of account user profiles, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.list({
+     *     // Select only active user profiles.
+     *     active: 'placeholder-value',
+     *     // Select only user profiles with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only user profiles with the specified subaccount ID.
+     *     subaccountId: 'placeholder-value',
+     *     // Select only user profiles with the specified user role ID.
+     *     userRoleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountUserProfiles": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountUserProfiles.list
      * @memberOf! ()
      *
@@ -7892,6 +8628,89 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountUserProfiles.patch
      * @desc Updates an existing account user profile. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.patch({
+     *     // User profile ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserFilter": {},
+     *       //   "campaignFilter": {},
+     *       //   "comments": "my_comments",
+     *       //   "email": "my_email",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "name": "my_name",
+     *       //   "siteFilter": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerType": "my_traffickerType",
+     *       //   "userAccessType": "my_userAccessType",
+     *       //   "userRoleFilter": {},
+     *       //   "userRoleId": "my_userRoleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserFilter": {},
+     *   //   "campaignFilter": {},
+     *   //   "comments": "my_comments",
+     *   //   "email": "my_email",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "siteFilter": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerType": "my_traffickerType",
+     *   //   "userAccessType": "my_userAccessType",
+     *   //   "userRoleFilter": {},
+     *   //   "userRoleId": "my_userRoleId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountUserProfiles.patch
      * @memberOf! ()
      *
@@ -7968,6 +8787,87 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.accountUserProfiles.update
      * @desc Updates an existing account user profile.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserFilter": {},
+     *       //   "campaignFilter": {},
+     *       //   "comments": "my_comments",
+     *       //   "email": "my_email",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "name": "my_name",
+     *       //   "siteFilter": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerType": "my_traffickerType",
+     *       //   "userAccessType": "my_userAccessType",
+     *       //   "userRoleFilter": {},
+     *       //   "userRoleId": "my_userRoleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserFilter": {},
+     *   //   "campaignFilter": {},
+     *   //   "comments": "my_comments",
+     *   //   "email": "my_email",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "siteFilter": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerType": "my_traffickerType",
+     *   //   "userAccessType": "my_userAccessType",
+     *   //   "userRoleFilter": {},
+     *   //   "userRoleId": "my_userRoleId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.accountUserProfiles.update
      * @memberOf! ()
      *
@@ -8170,6 +9070,89 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.ads.get
      * @desc Gets one ad by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.get({
+     *     // Ad ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentId": "my_audienceSegmentId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "clickThroughUrl": {},
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comments": "my_comments",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupAssignments": [],
+     *   //   "creativeRotation": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "deliverySchedule": {},
+     *   //   "dynamicClickTracker": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "eventTagOverrides": [],
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementAssignments": [],
+     *   //   "remarketingListExpression": {},
+     *   //   "size": {},
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "startTime": "my_startTime",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetingTemplateId": "my_targetingTemplateId",
+     *   //   "technologyTargeting": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.ads.get
      * @memberOf! ()
      *
@@ -8241,6 +9224,133 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.ads.insert
      * @desc Inserts a new ad.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentId": "my_audienceSegmentId",
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "clickThroughUrl": {},
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comments": "my_comments",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupAssignments": [],
+     *       //   "creativeRotation": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "deliverySchedule": {},
+     *       //   "dynamicClickTracker": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "eventTagOverrides": [],
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementAssignments": [],
+     *       //   "remarketingListExpression": {},
+     *       //   "size": {},
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "startTime": "my_startTime",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "targetingTemplateId": "my_targetingTemplateId",
+     *       //   "technologyTargeting": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentId": "my_audienceSegmentId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "clickThroughUrl": {},
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comments": "my_comments",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupAssignments": [],
+     *   //   "creativeRotation": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "deliverySchedule": {},
+     *   //   "dynamicClickTracker": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "eventTagOverrides": [],
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementAssignments": [],
+     *   //   "remarketingListExpression": {},
+     *   //   "size": {},
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "startTime": "my_startTime",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetingTemplateId": "my_targetingTemplateId",
+     *   //   "technologyTargeting": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.ads.insert
      * @memberOf! ()
      *
@@ -8312,6 +9422,97 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.ads.list
      * @desc Retrieves a list of ads, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.list({
+     *     // Select only active ads.
+     *     active: 'placeholder-value',
+     *     // Select only ads with this advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only archived ads.
+     *     archived: 'placeholder-value',
+     *     // Select only ads with these audience segment IDs.
+     *     audienceSegmentIds: 'placeholder-value',
+     *     // Select only ads with these campaign IDs.
+     *     campaignIds: 'placeholder-value',
+     *     // Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
+     *     compatibility: 'placeholder-value',
+     *     // Select only ads with these creative IDs assigned.
+     *     creativeIds: 'placeholder-value',
+     *     // Select only ads with these creative optimization configuration IDs.
+     *     creativeOptimizationConfigurationIds: 'placeholder-value',
+     *     // Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
+     *     dynamicClickTracker: 'placeholder-value',
+     *     // Select only ads with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only ads with these landing page IDs.
+     *     landingPageIds: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only ads with this event tag override ID.
+     *     overriddenEventTagId: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // Select only ads with these placement IDs assigned.
+     *     placementIds: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Select only ads whose list targeting expression use these remarketing list IDs.
+     *     remarketingListIds: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
+     *     searchString: 'placeholder-value',
+     *     // Select only ads with these size IDs.
+     *     sizeIds: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only ads that are SSL-compliant.
+     *     sslCompliant: 'placeholder-value',
+     *     // Select only ads that require SSL.
+     *     sslRequired: 'placeholder-value',
+     *     // Select only ads with these types.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ads": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.ads.list
      * @memberOf! ()
      *
@@ -8407,6 +9608,135 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.ads.patch
      * @desc Updates an existing ad. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.patch({
+     *     // Ad ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentId": "my_audienceSegmentId",
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "clickThroughUrl": {},
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comments": "my_comments",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupAssignments": [],
+     *       //   "creativeRotation": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "deliverySchedule": {},
+     *       //   "dynamicClickTracker": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "eventTagOverrides": [],
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementAssignments": [],
+     *       //   "remarketingListExpression": {},
+     *       //   "size": {},
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "startTime": "my_startTime",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "targetingTemplateId": "my_targetingTemplateId",
+     *       //   "technologyTargeting": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentId": "my_audienceSegmentId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "clickThroughUrl": {},
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comments": "my_comments",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupAssignments": [],
+     *   //   "creativeRotation": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "deliverySchedule": {},
+     *   //   "dynamicClickTracker": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "eventTagOverrides": [],
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementAssignments": [],
+     *   //   "remarketingListExpression": {},
+     *   //   "size": {},
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "startTime": "my_startTime",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetingTemplateId": "my_targetingTemplateId",
+     *   //   "technologyTargeting": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.ads.patch
      * @memberOf! ()
      *
@@ -8479,6 +9809,133 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.ads.update
      * @desc Updates an existing ad.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentId": "my_audienceSegmentId",
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "clickThroughUrl": {},
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comments": "my_comments",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupAssignments": [],
+     *       //   "creativeRotation": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "deliverySchedule": {},
+     *       //   "dynamicClickTracker": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "eventTagOverrides": [],
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementAssignments": [],
+     *       //   "remarketingListExpression": {},
+     *       //   "size": {},
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "startTime": "my_startTime",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "targetingTemplateId": "my_targetingTemplateId",
+     *       //   "technologyTargeting": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentId": "my_audienceSegmentId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "clickThroughUrl": {},
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comments": "my_comments",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupAssignments": [],
+     *   //   "creativeRotation": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "deliverySchedule": {},
+     *   //   "dynamicClickTracker": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "eventTagOverrides": [],
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementAssignments": [],
+     *   //   "remarketingListExpression": {},
+     *   //   "size": {},
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "startTime": "my_startTime",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetingTemplateId": "my_targetingTemplateId",
+     *   //   "technologyTargeting": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.ads.update
      * @memberOf! ()
      *
@@ -8728,6 +10185,46 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserGroups.delete
      * @desc Deletes an existing advertiser group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.delete({
+     *     // Advertiser group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserGroups.delete
      * @memberOf! ()
      *
@@ -8801,6 +10298,54 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserGroups.get
      * @desc Gets one advertiser group by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.get({
+     *     // Advertiser group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserGroups.get
      * @memberOf! ()
      *
@@ -8876,6 +10421,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserGroups.insert
      * @desc Inserts a new advertiser group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserGroups.insert
      * @memberOf! ()
      *
@@ -8951,6 +10553,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserGroups.list
      * @desc Retrieves a list of advertiser groups, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.list({
+     *     // Select only advertiser groups with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserGroups": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserGroups.list
      * @memberOf! ()
      *
@@ -9040,6 +10699,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserGroups.patch
      * @desc Updates an existing advertiser group. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.patch({
+     *     // Advertiser group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserGroups.patch
      * @memberOf! ()
      *
@@ -9116,6 +10834,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserGroups.update
      * @desc Updates an existing advertiser group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserGroups.update
      * @memberOf! ()
      *
@@ -9322,6 +11097,57 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserLandingPages.get
      * @desc Gets one landing page by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.get({
+     *     // Landing page ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "archived": false,
+     *   //   "deepLinks": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserLandingPages.get
      * @memberOf! ()
      *
@@ -9397,6 +11223,69 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserLandingPages.insert
      * @desc Inserts a new landing page.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "archived": false,
+     *       //   "deepLinks": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "archived": false,
+     *   //   "deepLinks": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserLandingPages.insert
      * @memberOf! ()
      *
@@ -9472,6 +11361,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserLandingPages.list
      * @desc Retrieves a list of landing pages.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.list({
+     *     // Select only landing pages that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only archived landing pages. Don't set this field to select both archived and non-archived landing pages.
+     *     archived: 'placeholder-value',
+     *     // Select only landing pages that are associated with these campaigns.
+     *     campaignIds: 'placeholder-value',
+     *     // Select only landing pages with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only landing pages that belong to this subaccount.
+     *     subaccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "landingPages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserLandingPages.list
      * @memberOf! ()
      *
@@ -9565,6 +11519,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserLandingPages.patch
      * @desc Updates an existing landing page. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.patch({
+     *     // Landing page ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "archived": false,
+     *       //   "deepLinks": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "archived": false,
+     *   //   "deepLinks": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserLandingPages.patch
      * @memberOf! ()
      *
@@ -9641,6 +11660,69 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertiserLandingPages.update
      * @desc Updates an existing landing page.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "archived": false,
+     *       //   "deepLinks": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "archived": false,
+     *   //   "deepLinks": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertiserLandingPages.update
      * @memberOf! ()
      *
@@ -9847,6 +11929,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertisers.get
      * @desc Gets one advertiser by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.get({
+     *     // Advertiser ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "suspended": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertisers.get
      * @memberOf! ()
      *
@@ -9921,6 +12062,85 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertisers.insert
      * @desc Inserts a new advertiser.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "suspended": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "suspended": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertisers.insert
      * @memberOf! ()
      *
@@ -9996,6 +12216,75 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertisers.list
      * @desc Retrieves a list of advertisers, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.list({
+     *     // Select only advertisers with these advertiser group IDs.
+     *     advertiserGroupIds: 'placeholder-value',
+     *     // Select only advertisers with these floodlight configuration IDs.
+     *     floodlightConfigurationIds: 'placeholder-value',
+     *     // Select only advertisers with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only advertisers which do not belong to any advertiser group.
+     *     includeAdvertisersWithoutGroupsOnly: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only advertisers which use another advertiser's floodlight configuration.
+     *     onlyParent: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only advertisers with the specified status.
+     *     status: 'placeholder-value',
+     *     // Select only advertisers with these subaccount IDs.
+     *     subaccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertisers": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertisers.list
      * @memberOf! ()
      *
@@ -10083,6 +12372,87 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertisers.patch
      * @desc Updates an existing advertiser. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.patch({
+     *     // Advertiser ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "suspended": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "suspended": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertisers.patch
      * @memberOf! ()
      *
@@ -10159,6 +12529,85 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.advertisers.update
      * @desc Updates an existing advertiser.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "suspended": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "suspended": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.advertisers.update
      * @memberOf! ()
      *
@@ -10371,6 +12820,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.browsers.list
      * @desc Retrieves a list of browsers.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.browsers.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "browsers": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.browsers.list
      * @memberOf! ()
      *
@@ -10464,6 +12957,61 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.campaignCreativeAssociations.insert
      * @desc Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaignCreativeAssociations.insert({
+     *     // Campaign ID in this association.
+     *     campaignId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creativeId": "my_creativeId",
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeId": "my_creativeId",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.campaignCreativeAssociations.insert
      * @memberOf! ()
      *
@@ -10547,6 +13095,59 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.campaignCreativeAssociations.list
      * @desc Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaignCreativeAssociations.list({
+     *     // Campaign ID in this association.
+     *     campaignId: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "campaignCreativeAssociations": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.campaignCreativeAssociations.list
      * @memberOf! ()
      *
@@ -10699,6 +13300,78 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.campaigns.get
      * @desc Gets one campaign by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.get({
+     *     // Campaign ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingConfiguration": {},
+     *   //   "additionalCreativeOptimizationConfigurations": [],
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentGroups": [],
+     *   //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comment": "my_comment",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupIds": [],
+     *   //   "creativeOptimizationConfiguration": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *   //   "endDate": "my_endDate",
+     *   //   "eventTagOverrides": [],
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.campaigns.get
      * @memberOf! ()
      *
@@ -10771,6 +13444,111 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.campaigns.insert
      * @desc Inserts a new campaign.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingConfiguration": {},
+     *       //   "additionalCreativeOptimizationConfigurations": [],
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentGroups": [],
+     *       //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comment": "my_comment",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupIds": [],
+     *       //   "creativeOptimizationConfiguration": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *       //   "endDate": "my_endDate",
+     *       //   "eventTagOverrides": [],
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "nielsenOcrEnabled": false,
+     *       //   "startDate": "my_startDate",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingConfiguration": {},
+     *   //   "additionalCreativeOptimizationConfigurations": [],
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentGroups": [],
+     *   //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comment": "my_comment",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupIds": [],
+     *   //   "creativeOptimizationConfiguration": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *   //   "endDate": "my_endDate",
+     *   //   "eventTagOverrides": [],
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.campaigns.insert
      * @memberOf! ()
      *
@@ -10842,6 +13620,77 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.campaigns.list
      * @desc Retrieves a list of campaigns, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.list({
+     *     // Select only campaigns whose advertisers belong to these advertiser groups.
+     *     advertiserGroupIds: 'placeholder-value',
+     *     // Select only campaigns that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only archived campaigns. Don't set this field to select both archived and non-archived campaigns.
+     *     archived: 'placeholder-value',
+     *     // Select only campaigns that have at least one optimization activity.
+     *     atLeastOneOptimizationActivity: 'placeholder-value',
+     *     // Exclude campaigns with these IDs.
+     *     excludedIds: 'placeholder-value',
+     *     // Select only campaigns with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only campaigns that have overridden this event tag ID.
+     *     overriddenEventTagId: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only campaigns that belong to this subaccount.
+     *     subaccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "campaigns": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.campaigns.list
      * @memberOf! ()
      *
@@ -10929,6 +13778,113 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.campaigns.patch
      * @desc Updates an existing campaign. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.patch({
+     *     // Campaign ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingConfiguration": {},
+     *       //   "additionalCreativeOptimizationConfigurations": [],
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentGroups": [],
+     *       //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comment": "my_comment",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupIds": [],
+     *       //   "creativeOptimizationConfiguration": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *       //   "endDate": "my_endDate",
+     *       //   "eventTagOverrides": [],
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "nielsenOcrEnabled": false,
+     *       //   "startDate": "my_startDate",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingConfiguration": {},
+     *   //   "additionalCreativeOptimizationConfigurations": [],
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentGroups": [],
+     *   //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comment": "my_comment",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupIds": [],
+     *   //   "creativeOptimizationConfiguration": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *   //   "endDate": "my_endDate",
+     *   //   "eventTagOverrides": [],
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.campaigns.patch
      * @memberOf! ()
      *
@@ -11001,6 +13957,111 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.campaigns.update
      * @desc Updates an existing campaign.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingConfiguration": {},
+     *       //   "additionalCreativeOptimizationConfigurations": [],
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentGroups": [],
+     *       //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comment": "my_comment",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupIds": [],
+     *       //   "creativeOptimizationConfiguration": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *       //   "endDate": "my_endDate",
+     *       //   "eventTagOverrides": [],
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "nielsenOcrEnabled": false,
+     *       //   "startDate": "my_startDate",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingConfiguration": {},
+     *   //   "additionalCreativeOptimizationConfigurations": [],
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentGroups": [],
+     *   //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comment": "my_comment",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupIds": [],
+     *   //   "creativeOptimizationConfiguration": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *   //   "endDate": "my_endDate",
+     *   //   "eventTagOverrides": [],
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.campaigns.update
      * @memberOf! ()
      *
@@ -11210,6 +14271,64 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.changeLogs.get
      * @desc Gets one change log by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.changeLogs.get({
+     *     // Change log ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "action": "my_action",
+     *   //   "changeTime": "my_changeTime",
+     *   //   "fieldName": "my_fieldName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "newValue": "my_newValue",
+     *   //   "objectId": "my_objectId",
+     *   //   "objectType": "my_objectType",
+     *   //   "oldValue": "my_oldValue",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "transactionId": "my_transactionId",
+     *   //   "userProfileId": "my_userProfileId",
+     *   //   "userProfileName": "my_userProfileName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.changeLogs.get
      * @memberOf! ()
      *
@@ -11284,6 +14403,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.changeLogs.list
      * @desc Retrieves a list of change logs. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.changeLogs.list({
+     *     // Select only change logs with the specified action.
+     *     action: 'placeholder-value',
+     *     // Select only change logs with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     *     maxChangeTime: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only change logs whose change time is after the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     *     minChangeTime: 'placeholder-value',
+     *     // Select only change logs with these object IDs.
+     *     objectIds: 'placeholder-value',
+     *     // Select only change logs with the specified object type.
+     *     objectType: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Select only change logs whose object ID, user name, old or new values match the search string.
+     *     searchString: 'placeholder-value',
+     *     // Select only change logs with these user profile IDs.
+     *     userProfileIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeLogs": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.changeLogs.list
      * @memberOf! ()
      *
@@ -11442,6 +14626,58 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.cities.list
      * @desc Retrieves a list of cities, possibly filtered.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.cities.list({
+     *     // Select only cities from these countries.
+     *     countryDartIds: 'placeholder-value',
+     *     // Select only cities with these DART IDs.
+     *     dartIds: 'placeholder-value',
+     *     // Select only cities with names starting with this prefix.
+     *     namePrefix: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Select only cities from these regions.
+     *     regionDartIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cities": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.cities.list
      * @memberOf! ()
      *
@@ -11553,6 +14789,53 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.connectionTypes.get
      * @desc Gets one connection type by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.connectionTypes.get({
+     *     // Connection type ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.connectionTypes.get
      * @memberOf! ()
      *
@@ -11628,6 +14911,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.connectionTypes.list
      * @desc Retrieves a list of connection types.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.connectionTypes.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectionTypes": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.connectionTypes.list
      * @memberOf! ()
      *
@@ -11745,6 +15072,46 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.contentCategories.delete
      * @desc Deletes an existing content category.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.delete({
+     *     // Content category ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.contentCategories.delete
      * @memberOf! ()
      *
@@ -11818,6 +15185,54 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.contentCategories.get
      * @desc Gets one content category by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.get({
+     *     // Content category ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.contentCategories.get
      * @memberOf! ()
      *
@@ -11893,6 +15308,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.contentCategories.insert
      * @desc Inserts a new content category.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.contentCategories.insert
      * @memberOf! ()
      *
@@ -11968,6 +15440,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.contentCategories.list
      * @desc Retrieves a list of content categories, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.list({
+     *     // Select only content categories with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentCategories": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.contentCategories.list
      * @memberOf! ()
      *
@@ -12057,6 +15586,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.contentCategories.patch
      * @desc Updates an existing content category. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.patch({
+     *     // Content category ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.contentCategories.patch
      * @memberOf! ()
      *
@@ -12133,6 +15721,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.contentCategories.update
      * @desc Updates an existing content category.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.contentCategories.update
      * @memberOf! ()
      *
@@ -12339,6 +15984,61 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.conversions.batchinsert
      * @desc Inserts conversions.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ddmconversions'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.conversions.batchinsert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversions": [],
+     *       //   "encryptionInfo": {},
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasFailures": false,
+     *   //   "kind": "my_kind",
+     *   //   "status": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.conversions.batchinsert
      * @memberOf! ()
      *
@@ -12423,6 +16123,61 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.conversions.batchupdate
      * @desc Updates existing conversions.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ddmconversions'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.conversions.batchupdate({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversions": [],
+     *       //   "encryptionInfo": {},
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasFailures": false,
+     *   //   "kind": "my_kind",
+     *   //   "status": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.conversions.batchupdate
      * @memberOf! ()
      *
@@ -12549,6 +16304,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.countries.get
      * @desc Gets one country by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.countries.get({
+     *     // Country DART ID.
+     *     dartId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countryCode": "my_countryCode",
+     *   //   "dartId": "my_dartId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "sslEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.countries.get
      * @memberOf! ()
      *
@@ -12621,6 +16425,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.countries.list
      * @desc Retrieves a list of countries.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.countries.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.countries.list
      * @memberOf! ()
      *
@@ -12729,6 +16577,83 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeAssets.insert
      * @desc Inserts a new creative asset.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeAssets.insert({
+     *     // Advertiser ID of this creative. This is a required field.
+     *     advertiserId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetIdentifier": {},
+     *       //   "clickTags": [],
+     *       //   "counterCustomEvents": [],
+     *       //   "detectedFeatures": [],
+     *       //   "exitCustomEvents": [],
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "richMedia": false,
+     *       //   "timerCustomEvents": [],
+     *       //   "warnedValidationRules": []
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetIdentifier": {},
+     *   //   "clickTags": [],
+     *   //   "counterCustomEvents": [],
+     *   //   "detectedFeatures": [],
+     *   //   "exitCustomEvents": [],
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "richMedia": false,
+     *   //   "timerCustomEvents": [],
+     *   //   "warnedValidationRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeAssets.insert
      * @memberOf! ()
      *
@@ -12858,6 +16783,46 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFields.delete
      * @desc Deletes an existing creative field.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.delete({
+     *     // Creative Field ID
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFields.delete
      * @memberOf! ()
      *
@@ -12931,6 +16896,57 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFields.get
      * @desc Gets one creative field by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.get({
+     *     // Creative Field ID
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFields.get
      * @memberOf! ()
      *
@@ -13006,6 +17022,69 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFields.insert
      * @desc Inserts a new creative field.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFields.insert
      * @memberOf! ()
      *
@@ -13081,6 +17160,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFields.list
      * @desc Retrieves a list of creative fields, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.list({
+     *     // Select only creative fields that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only creative fields with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeFields": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFields.list
      * @memberOf! ()
      *
@@ -13169,6 +17307,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFields.patch
      * @desc Updates an existing creative field. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.patch({
+     *     // Creative Field ID
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFields.patch
      * @memberOf! ()
      *
@@ -13245,6 +17448,69 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFields.update
      * @desc Updates an existing creative field.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFields.update
      * @memberOf! ()
      *
@@ -13455,6 +17721,48 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFieldValues.delete
      * @desc Deletes an existing creative field value.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.delete({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: 'placeholder-value',
+     *     // Creative Field Value ID
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFieldValues.delete
      * @memberOf! ()
      *
@@ -13529,6 +17837,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFieldValues.get
      * @desc Gets one creative field value by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.get({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: 'placeholder-value',
+     *     // Creative Field Value ID
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFieldValues.get
      * @memberOf! ()
      *
@@ -13605,6 +17962,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFieldValues.insert
      * @desc Inserts a new creative field value.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.insert({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFieldValues.insert
      * @memberOf! ()
      *
@@ -13681,6 +18095,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFieldValues.list
      * @desc Retrieves a list of creative field values, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.list({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: 'placeholder-value',
+     *     // Select only creative field values with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeFieldValues": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFieldValues.list
      * @memberOf! ()
      *
@@ -13771,6 +18244,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFieldValues.patch
      * @desc Updates an existing creative field value. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.patch({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: 'placeholder-value',
+     *     // Creative Field Value ID
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFieldValues.patch
      * @memberOf! ()
      *
@@ -13848,6 +18380,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeFieldValues.update
      * @desc Updates an existing creative field value.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.update({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeFieldValues.update
      * @memberOf! ()
      *
@@ -14079,6 +18668,58 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeGroups.get
      * @desc Gets one creative group by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.get({
+     *     // Creative group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "groupNumber": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeGroups.get
      * @memberOf! ()
      *
@@ -14154,6 +18795,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeGroups.insert
      * @desc Inserts a new creative group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "groupNumber": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "groupNumber": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeGroups.insert
      * @memberOf! ()
      *
@@ -14229,6 +18935,67 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeGroups.list
      * @desc Retrieves a list of creative groups, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.list({
+     *     // Select only creative groups that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only creative groups that belong to this subgroup.
+     *     groupNumber: 'placeholder-value',
+     *     // Select only creative groups with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeGroups": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeGroups.list
      * @memberOf! ()
      *
@@ -14318,6 +19085,73 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeGroups.patch
      * @desc Updates an existing creative group. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.patch({
+     *     // Creative group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "groupNumber": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "groupNumber": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeGroups.patch
      * @memberOf! ()
      *
@@ -14394,6 +19228,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creativeGroups.update
      * @desc Updates an existing creative group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "groupNumber": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "groupNumber": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creativeGroups.update
      * @memberOf! ()
      *
@@ -14592,6 +19491,115 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creatives.get
      * @desc Gets one creative by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.get({
+     *     // Creative ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "adParameters": "my_adParameters",
+     *   //   "adTagKeys": [],
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "allowScriptAccess": false,
+     *   //   "archived": false,
+     *   //   "artworkType": "my_artworkType",
+     *   //   "authoringSource": "my_authoringSource",
+     *   //   "authoringTool": "my_authoringTool",
+     *   //   "autoAdvanceImages": false,
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "backupImageClickThroughUrl": {},
+     *   //   "backupImageFeatures": [],
+     *   //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *   //   "backupImageTargetWindow": {},
+     *   //   "clickTags": [],
+     *   //   "commercialId": "my_commercialId",
+     *   //   "companionCreatives": [],
+     *   //   "compatibility": [],
+     *   //   "convertFlashToHtml5": false,
+     *   //   "counterCustomEvents": [],
+     *   //   "creativeAssetSelection": {},
+     *   //   "creativeAssets": [],
+     *   //   "creativeFieldAssignments": [],
+     *   //   "customKeyValues": [],
+     *   //   "dynamicAssetSelection": false,
+     *   //   "exitCustomEvents": [],
+     *   //   "fsCommand": {},
+     *   //   "htmlCode": "my_htmlCode",
+     *   //   "htmlCodeLocked": false,
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *   //   "mediaDescription": "my_mediaDescription",
+     *   //   "mediaDuration": {},
+     *   //   "name": "my_name",
+     *   //   "obaIcon": {},
+     *   //   "overrideCss": "my_overrideCss",
+     *   //   "progressOffset": {},
+     *   //   "redirectUrl": "my_redirectUrl",
+     *   //   "renderingId": "my_renderingId",
+     *   //   "renderingIdDimensionValue": {},
+     *   //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *   //   "requiredFlashVersion": 0,
+     *   //   "size": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslOverride": false,
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCreativeId": "my_studioCreativeId",
+     *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerCustomEvents": [],
+     *   //   "totalFileSize": "my_totalFileSize",
+     *   //   "type": "my_type",
+     *   //   "universalAdId": {},
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creatives.get
      * @memberOf! ()
      *
@@ -14664,6 +19672,185 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creatives.insert
      * @desc Inserts a new creative.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "adParameters": "my_adParameters",
+     *       //   "adTagKeys": [],
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "allowScriptAccess": false,
+     *       //   "archived": false,
+     *       //   "artworkType": "my_artworkType",
+     *       //   "authoringSource": "my_authoringSource",
+     *       //   "authoringTool": "my_authoringTool",
+     *       //   "autoAdvanceImages": false,
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "backupImageClickThroughUrl": {},
+     *       //   "backupImageFeatures": [],
+     *       //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *       //   "backupImageTargetWindow": {},
+     *       //   "clickTags": [],
+     *       //   "commercialId": "my_commercialId",
+     *       //   "companionCreatives": [],
+     *       //   "compatibility": [],
+     *       //   "convertFlashToHtml5": false,
+     *       //   "counterCustomEvents": [],
+     *       //   "creativeAssetSelection": {},
+     *       //   "creativeAssets": [],
+     *       //   "creativeFieldAssignments": [],
+     *       //   "customKeyValues": [],
+     *       //   "dynamicAssetSelection": false,
+     *       //   "exitCustomEvents": [],
+     *       //   "fsCommand": {},
+     *       //   "htmlCode": "my_htmlCode",
+     *       //   "htmlCodeLocked": false,
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *       //   "mediaDescription": "my_mediaDescription",
+     *       //   "mediaDuration": {},
+     *       //   "name": "my_name",
+     *       //   "obaIcon": {},
+     *       //   "overrideCss": "my_overrideCss",
+     *       //   "progressOffset": {},
+     *       //   "redirectUrl": "my_redirectUrl",
+     *       //   "renderingId": "my_renderingId",
+     *       //   "renderingIdDimensionValue": {},
+     *       //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *       //   "requiredFlashVersion": 0,
+     *       //   "size": {},
+     *       //   "skipOffset": {},
+     *       //   "skippable": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslOverride": false,
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *       //   "studioCreativeId": "my_studioCreativeId",
+     *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *       //   "thirdPartyUrls": [],
+     *       //   "timerCustomEvents": [],
+     *       //   "totalFileSize": "my_totalFileSize",
+     *       //   "type": "my_type",
+     *       //   "universalAdId": {},
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "adParameters": "my_adParameters",
+     *   //   "adTagKeys": [],
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "allowScriptAccess": false,
+     *   //   "archived": false,
+     *   //   "artworkType": "my_artworkType",
+     *   //   "authoringSource": "my_authoringSource",
+     *   //   "authoringTool": "my_authoringTool",
+     *   //   "autoAdvanceImages": false,
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "backupImageClickThroughUrl": {},
+     *   //   "backupImageFeatures": [],
+     *   //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *   //   "backupImageTargetWindow": {},
+     *   //   "clickTags": [],
+     *   //   "commercialId": "my_commercialId",
+     *   //   "companionCreatives": [],
+     *   //   "compatibility": [],
+     *   //   "convertFlashToHtml5": false,
+     *   //   "counterCustomEvents": [],
+     *   //   "creativeAssetSelection": {},
+     *   //   "creativeAssets": [],
+     *   //   "creativeFieldAssignments": [],
+     *   //   "customKeyValues": [],
+     *   //   "dynamicAssetSelection": false,
+     *   //   "exitCustomEvents": [],
+     *   //   "fsCommand": {},
+     *   //   "htmlCode": "my_htmlCode",
+     *   //   "htmlCodeLocked": false,
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *   //   "mediaDescription": "my_mediaDescription",
+     *   //   "mediaDuration": {},
+     *   //   "name": "my_name",
+     *   //   "obaIcon": {},
+     *   //   "overrideCss": "my_overrideCss",
+     *   //   "progressOffset": {},
+     *   //   "redirectUrl": "my_redirectUrl",
+     *   //   "renderingId": "my_renderingId",
+     *   //   "renderingIdDimensionValue": {},
+     *   //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *   //   "requiredFlashVersion": 0,
+     *   //   "size": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslOverride": false,
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCreativeId": "my_studioCreativeId",
+     *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerCustomEvents": [],
+     *   //   "totalFileSize": "my_totalFileSize",
+     *   //   "type": "my_type",
+     *   //   "universalAdId": {},
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creatives.insert
      * @memberOf! ()
      *
@@ -14735,6 +19922,83 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creatives.list
      * @desc Retrieves a list of creatives, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.list({
+     *     // Select only active creatives. Leave blank to select active and inactive creatives.
+     *     active: 'placeholder-value',
+     *     // Select only creatives with this advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only archived creatives. Leave blank to select archived and unarchived creatives.
+     *     archived: 'placeholder-value',
+     *     // Select only creatives with this campaign ID.
+     *     campaignId: 'placeholder-value',
+     *     // Select only in-stream video creatives with these companion IDs.
+     *     companionCreativeIds: 'placeholder-value',
+     *     // Select only creatives with these creative field IDs.
+     *     creativeFieldIds: 'placeholder-value',
+     *     // Select only creatives with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Select only creatives with these rendering IDs.
+     *     renderingIds: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
+     *     searchString: 'placeholder-value',
+     *     // Select only creatives with these size IDs.
+     *     sizeIds: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only creatives corresponding to this Studio creative ID.
+     *     studioCreativeId: 'placeholder-value',
+     *     // Select only creatives with these creative types.
+     *     types: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creatives": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creatives.list
      * @memberOf! ()
      *
@@ -14825,6 +20089,187 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creatives.patch
      * @desc Updates an existing creative. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.patch({
+     *     // Creative ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "adParameters": "my_adParameters",
+     *       //   "adTagKeys": [],
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "allowScriptAccess": false,
+     *       //   "archived": false,
+     *       //   "artworkType": "my_artworkType",
+     *       //   "authoringSource": "my_authoringSource",
+     *       //   "authoringTool": "my_authoringTool",
+     *       //   "autoAdvanceImages": false,
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "backupImageClickThroughUrl": {},
+     *       //   "backupImageFeatures": [],
+     *       //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *       //   "backupImageTargetWindow": {},
+     *       //   "clickTags": [],
+     *       //   "commercialId": "my_commercialId",
+     *       //   "companionCreatives": [],
+     *       //   "compatibility": [],
+     *       //   "convertFlashToHtml5": false,
+     *       //   "counterCustomEvents": [],
+     *       //   "creativeAssetSelection": {},
+     *       //   "creativeAssets": [],
+     *       //   "creativeFieldAssignments": [],
+     *       //   "customKeyValues": [],
+     *       //   "dynamicAssetSelection": false,
+     *       //   "exitCustomEvents": [],
+     *       //   "fsCommand": {},
+     *       //   "htmlCode": "my_htmlCode",
+     *       //   "htmlCodeLocked": false,
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *       //   "mediaDescription": "my_mediaDescription",
+     *       //   "mediaDuration": {},
+     *       //   "name": "my_name",
+     *       //   "obaIcon": {},
+     *       //   "overrideCss": "my_overrideCss",
+     *       //   "progressOffset": {},
+     *       //   "redirectUrl": "my_redirectUrl",
+     *       //   "renderingId": "my_renderingId",
+     *       //   "renderingIdDimensionValue": {},
+     *       //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *       //   "requiredFlashVersion": 0,
+     *       //   "size": {},
+     *       //   "skipOffset": {},
+     *       //   "skippable": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslOverride": false,
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *       //   "studioCreativeId": "my_studioCreativeId",
+     *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *       //   "thirdPartyUrls": [],
+     *       //   "timerCustomEvents": [],
+     *       //   "totalFileSize": "my_totalFileSize",
+     *       //   "type": "my_type",
+     *       //   "universalAdId": {},
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "adParameters": "my_adParameters",
+     *   //   "adTagKeys": [],
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "allowScriptAccess": false,
+     *   //   "archived": false,
+     *   //   "artworkType": "my_artworkType",
+     *   //   "authoringSource": "my_authoringSource",
+     *   //   "authoringTool": "my_authoringTool",
+     *   //   "autoAdvanceImages": false,
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "backupImageClickThroughUrl": {},
+     *   //   "backupImageFeatures": [],
+     *   //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *   //   "backupImageTargetWindow": {},
+     *   //   "clickTags": [],
+     *   //   "commercialId": "my_commercialId",
+     *   //   "companionCreatives": [],
+     *   //   "compatibility": [],
+     *   //   "convertFlashToHtml5": false,
+     *   //   "counterCustomEvents": [],
+     *   //   "creativeAssetSelection": {},
+     *   //   "creativeAssets": [],
+     *   //   "creativeFieldAssignments": [],
+     *   //   "customKeyValues": [],
+     *   //   "dynamicAssetSelection": false,
+     *   //   "exitCustomEvents": [],
+     *   //   "fsCommand": {},
+     *   //   "htmlCode": "my_htmlCode",
+     *   //   "htmlCodeLocked": false,
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *   //   "mediaDescription": "my_mediaDescription",
+     *   //   "mediaDuration": {},
+     *   //   "name": "my_name",
+     *   //   "obaIcon": {},
+     *   //   "overrideCss": "my_overrideCss",
+     *   //   "progressOffset": {},
+     *   //   "redirectUrl": "my_redirectUrl",
+     *   //   "renderingId": "my_renderingId",
+     *   //   "renderingIdDimensionValue": {},
+     *   //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *   //   "requiredFlashVersion": 0,
+     *   //   "size": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslOverride": false,
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCreativeId": "my_studioCreativeId",
+     *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerCustomEvents": [],
+     *   //   "totalFileSize": "my_totalFileSize",
+     *   //   "type": "my_type",
+     *   //   "universalAdId": {},
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creatives.patch
      * @memberOf! ()
      *
@@ -14897,6 +20342,185 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.creatives.update
      * @desc Updates an existing creative.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "adParameters": "my_adParameters",
+     *       //   "adTagKeys": [],
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "allowScriptAccess": false,
+     *       //   "archived": false,
+     *       //   "artworkType": "my_artworkType",
+     *       //   "authoringSource": "my_authoringSource",
+     *       //   "authoringTool": "my_authoringTool",
+     *       //   "autoAdvanceImages": false,
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "backupImageClickThroughUrl": {},
+     *       //   "backupImageFeatures": [],
+     *       //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *       //   "backupImageTargetWindow": {},
+     *       //   "clickTags": [],
+     *       //   "commercialId": "my_commercialId",
+     *       //   "companionCreatives": [],
+     *       //   "compatibility": [],
+     *       //   "convertFlashToHtml5": false,
+     *       //   "counterCustomEvents": [],
+     *       //   "creativeAssetSelection": {},
+     *       //   "creativeAssets": [],
+     *       //   "creativeFieldAssignments": [],
+     *       //   "customKeyValues": [],
+     *       //   "dynamicAssetSelection": false,
+     *       //   "exitCustomEvents": [],
+     *       //   "fsCommand": {},
+     *       //   "htmlCode": "my_htmlCode",
+     *       //   "htmlCodeLocked": false,
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *       //   "mediaDescription": "my_mediaDescription",
+     *       //   "mediaDuration": {},
+     *       //   "name": "my_name",
+     *       //   "obaIcon": {},
+     *       //   "overrideCss": "my_overrideCss",
+     *       //   "progressOffset": {},
+     *       //   "redirectUrl": "my_redirectUrl",
+     *       //   "renderingId": "my_renderingId",
+     *       //   "renderingIdDimensionValue": {},
+     *       //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *       //   "requiredFlashVersion": 0,
+     *       //   "size": {},
+     *       //   "skipOffset": {},
+     *       //   "skippable": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslOverride": false,
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *       //   "studioCreativeId": "my_studioCreativeId",
+     *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *       //   "thirdPartyUrls": [],
+     *       //   "timerCustomEvents": [],
+     *       //   "totalFileSize": "my_totalFileSize",
+     *       //   "type": "my_type",
+     *       //   "universalAdId": {},
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "adParameters": "my_adParameters",
+     *   //   "adTagKeys": [],
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "allowScriptAccess": false,
+     *   //   "archived": false,
+     *   //   "artworkType": "my_artworkType",
+     *   //   "authoringSource": "my_authoringSource",
+     *   //   "authoringTool": "my_authoringTool",
+     *   //   "autoAdvanceImages": false,
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "backupImageClickThroughUrl": {},
+     *   //   "backupImageFeatures": [],
+     *   //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *   //   "backupImageTargetWindow": {},
+     *   //   "clickTags": [],
+     *   //   "commercialId": "my_commercialId",
+     *   //   "companionCreatives": [],
+     *   //   "compatibility": [],
+     *   //   "convertFlashToHtml5": false,
+     *   //   "counterCustomEvents": [],
+     *   //   "creativeAssetSelection": {},
+     *   //   "creativeAssets": [],
+     *   //   "creativeFieldAssignments": [],
+     *   //   "customKeyValues": [],
+     *   //   "dynamicAssetSelection": false,
+     *   //   "exitCustomEvents": [],
+     *   //   "fsCommand": {},
+     *   //   "htmlCode": "my_htmlCode",
+     *   //   "htmlCodeLocked": false,
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *   //   "mediaDescription": "my_mediaDescription",
+     *   //   "mediaDuration": {},
+     *   //   "name": "my_name",
+     *   //   "obaIcon": {},
+     *   //   "overrideCss": "my_overrideCss",
+     *   //   "progressOffset": {},
+     *   //   "redirectUrl": "my_redirectUrl",
+     *   //   "renderingId": "my_renderingId",
+     *   //   "renderingIdDimensionValue": {},
+     *   //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *   //   "requiredFlashVersion": 0,
+     *   //   "size": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslOverride": false,
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCreativeId": "my_studioCreativeId",
+     *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerCustomEvents": [],
+     *   //   "totalFileSize": "my_totalFileSize",
+     *   //   "type": "my_type",
+     *   //   "universalAdId": {},
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.creatives.update
      * @memberOf! ()
      *
@@ -15118,6 +20742,60 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.customEvents.batchinsert
      * @desc Inserts custom events.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ddmconversions'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.customEvents.batchinsert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customEvents": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasFailures": false,
+     *   //   "kind": "my_kind",
+     *   //   "status": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.customEvents.batchinsert
      * @memberOf! ()
      *
@@ -15227,6 +20905,68 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.dimensionValues.query
      * @desc Retrieves list of report dimension values for a list of filters.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dimensionValues.query({
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // The value of the nextToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dimensionName": "my_dimensionName",
+     *       //   "endDate": "my_endDate",
+     *       //   "filters": [],
+     *       //   "kind": "my_kind",
+     *       //   "startDate": "my_startDate"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.dimensionValues.query
      * @memberOf! ()
      *
@@ -15337,6 +21077,58 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.directorySites.get
      * @desc Gets one directory site by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.directorySites.get({
+     *     // Directory site ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inpageTagFormats": [],
+     *   //   "interstitialTagFormats": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "settings": {},
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.directorySites.get
      * @memberOf! ()
      *
@@ -15412,6 +21204,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.directorySites.insert
      * @desc Inserts a new directory site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.directorySites.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "inpageTagFormats": [],
+     *       //   "interstitialTagFormats": [],
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "settings": {},
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inpageTagFormats": [],
+     *   //   "interstitialTagFormats": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "settings": {},
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.directorySites.insert
      * @memberOf! ()
      *
@@ -15487,6 +21344,73 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.directorySites.list
      * @desc Retrieves a list of directory sites, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.directorySites.list({
+     *     // This search filter is no longer supported and will have no effect on the results returned.
+     *     acceptsInStreamVideoPlacements: 'placeholder-value',
+     *     // This search filter is no longer supported and will have no effect on the results returned.
+     *     acceptsInterstitialPlacements: 'placeholder-value',
+     *     // Select only directory sites that accept publisher paid placements. This field can be left blank.
+     *     acceptsPublisherPaidPlacements: 'placeholder-value',
+     *     // Select only active directory sites. Leave blank to retrieve both active and inactive directory sites.
+     *     active: 'placeholder-value',
+     *     // Select only directory sites with this Ad Manager network code.
+     *     dfpNetworkCode: 'placeholder-value',
+     *     // Select only directory sites with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "directorySites": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.directorySites.list
      * @memberOf! ()
      *
@@ -15676,6 +21600,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.dynamicTargetingKeys.delete
      * @desc Deletes an existing dynamic targeting key.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicTargetingKeys.delete({
+     *     // Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
+     *     name: 'placeholder-value',
+     *     // ID of the object of this dynamic targeting key. This is a required field.
+     *     objectId: 'placeholder-value',
+     *     // Type of the object of this dynamic targeting key. This is a required field.
+     *     objectType: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.dynamicTargetingKeys.delete
      * @memberOf! ()
      *
@@ -15751,6 +21719,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.dynamicTargetingKeys.insert
      * @desc Inserts a new dynamic targeting key. Keys must be created at the advertiser level before being assigned to the advertiser's ads, creatives, or placements. There is a maximum of 1000 keys per advertiser, out of which a maximum of 20 keys can be assigned per ad, creative, or placement.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicTargetingKeys.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "objectId": "my_objectId",
+     *       //   "objectType": "my_objectType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "objectId": "my_objectId",
+     *   //   "objectType": "my_objectType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.dynamicTargetingKeys.insert
      * @memberOf! ()
      *
@@ -15826,6 +21851,58 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.dynamicTargetingKeys.list
      * @desc Retrieves a list of dynamic targeting keys.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicTargetingKeys.list({
+     *     // Select only dynamic targeting keys whose object has this advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only dynamic targeting keys exactly matching these names.
+     *     names: 'placeholder-value',
+     *     // Select only dynamic targeting keys with this object ID.
+     *     objectId: 'placeholder-value',
+     *     // Select only dynamic targeting keys with this object type.
+     *     objectType: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dynamicTargetingKeys": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.dynamicTargetingKeys.list
      * @memberOf! ()
      *
@@ -15990,6 +22067,46 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.eventTags.delete
      * @desc Deletes an existing event tag.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.delete({
+     *     // Event tag ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.eventTags.delete
      * @memberOf! ()
      *
@@ -16062,6 +22179,68 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.eventTags.get
      * @desc Gets one event tag by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.get({
+     *     // Event tag ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "enabledByDefault": false,
+     *   //   "excludeFromAdxRequests": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteFilterType": "my_siteFilterType",
+     *   //   "siteIds": [],
+     *   //   "sslCompliant": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "urlEscapeLevels": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.eventTags.get
      * @memberOf! ()
      *
@@ -16134,6 +22313,91 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.eventTags.insert
      * @desc Inserts a new event tag.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "enabledByDefault": false,
+     *       //   "excludeFromAdxRequests": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteFilterType": "my_siteFilterType",
+     *       //   "siteIds": [],
+     *       //   "sslCompliant": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "urlEscapeLevels": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "enabledByDefault": false,
+     *   //   "excludeFromAdxRequests": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteFilterType": "my_siteFilterType",
+     *   //   "siteIds": [],
+     *   //   "sslCompliant": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "urlEscapeLevels": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.eventTags.insert
      * @memberOf! ()
      *
@@ -16205,6 +22469,70 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.eventTags.list
      * @desc Retrieves a list of event tags, possibly filtered.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.list({
+     *     // Select only event tags that belong to this ad.
+     *     adId: 'placeholder-value',
+     *     // Select only event tags that belong to this advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only event tags that belong to this campaign.
+     *     campaignId: 'placeholder-value',
+     *     // Examine only the specified campaign or advertiser's event tags for matching selector criteria. When set to false, the parent advertiser and parent campaign of the specified ad or campaign is examined as well. In addition, when set to false, the status field is examined as well, along with the enabledByDefault field. This parameter can not be set to true when adId is specified as ads do not define their own even tags.
+     *     definitionsOnly: 'placeholder-value',
+     *     // Select only enabled event tags. What is considered enabled or disabled depends on the definitionsOnly parameter. When definitionsOnly is set to true, only the specified advertiser or campaign's event tags' enabledByDefault field is examined. When definitionsOnly is set to false, the specified ad or specified campaign's parent advertiser's or parent campaign's event tags' enabledByDefault and status fields are examined as well.
+     *     enabled: 'placeholder-value',
+     *     // Select only event tags with the specified event tag types. Event tag types can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking.
+     *     eventTagTypes: 'placeholder-value',
+     *     // Select only event tags with these IDs.
+     *     ids: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventTags": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.eventTags.list
      * @memberOf! ()
      *
@@ -16289,6 +22617,93 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.eventTags.patch
      * @desc Updates an existing event tag. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.patch({
+     *     // Event tag ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "enabledByDefault": false,
+     *       //   "excludeFromAdxRequests": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteFilterType": "my_siteFilterType",
+     *       //   "siteIds": [],
+     *       //   "sslCompliant": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "urlEscapeLevels": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "enabledByDefault": false,
+     *   //   "excludeFromAdxRequests": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteFilterType": "my_siteFilterType",
+     *   //   "siteIds": [],
+     *   //   "sslCompliant": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "urlEscapeLevels": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.eventTags.patch
      * @memberOf! ()
      *
@@ -16361,6 +22776,91 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.eventTags.update
      * @desc Updates an existing event tag.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "enabledByDefault": false,
+     *       //   "excludeFromAdxRequests": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteFilterType": "my_siteFilterType",
+     *       //   "siteIds": [],
+     *       //   "sslCompliant": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "urlEscapeLevels": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "enabledByDefault": false,
+     *   //   "excludeFromAdxRequests": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteFilterType": "my_siteFilterType",
+     *   //   "siteIds": [],
+     *   //   "sslCompliant": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "urlEscapeLevels": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.eventTags.update
      * @memberOf! ()
      *
@@ -16573,6 +23073,60 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.files.get
      * @desc Retrieves a report file by its report ID and file ID. This method supports media download.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.files.get({
+     *     // The ID of the report file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dateRange": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "reportId": "my_reportId",
+     *   //   "status": "my_status",
+     *   //   "urls": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.files.get
      * @memberOf! ()
      *
@@ -16644,6 +23198,62 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.files.list
      * @desc Lists files for a user profile.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.files.list({
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // The value of the nextToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // The DFA profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The scope that defines which results are returned.
+     *     scope: 'placeholder-value',
+     *     // The field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.files.list
      * @memberOf! ()
      *
@@ -16773,6 +23383,46 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivities.delete
      * @desc Deletes an existing floodlight activity.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.delete({
+     *     // Floodlight activity ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivities.delete
      * @memberOf! ()
      *
@@ -16846,6 +23496,53 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivities.generatetag
      * @desc Generates a tag for a floodlight activity.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.generatetag({
+     *     // Floodlight activity ID for which we want to generate a tag.
+     *     floodlightActivityId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightActivityTag": "my_floodlightActivityTag",
+     *   //   "globalSiteTagGlobalSnippet": "my_globalSiteTagGlobalSnippet",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivities.generatetag
      * @memberOf! ()
      *
@@ -16938,6 +23635,78 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivities.get
      * @desc Gets one floodlight activity by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.get({
+     *     // Floodlight activity ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "countingMethod": "my_countingMethod",
+     *   //   "defaultTags": [],
+     *   //   "expectedUrl": "my_expectedUrl",
+     *   //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *   //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *   //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *   //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "floodlightTagType": "my_floodlightTagType",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "publisherTags": [],
+     *   //   "secure": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormat": "my_tagFormat",
+     *   //   "tagString": "my_tagString",
+     *   //   "userDefinedVariableTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivities.get
      * @memberOf! ()
      *
@@ -17013,6 +23782,111 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivities.insert
      * @desc Inserts a new floodlight activity.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "countingMethod": "my_countingMethod",
+     *       //   "defaultTags": [],
+     *       //   "expectedUrl": "my_expectedUrl",
+     *       //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *       //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *       //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *       //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "floodlightTagType": "my_floodlightTagType",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "publisherTags": [],
+     *       //   "secure": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormat": "my_tagFormat",
+     *       //   "tagString": "my_tagString",
+     *       //   "userDefinedVariableTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "countingMethod": "my_countingMethod",
+     *   //   "defaultTags": [],
+     *   //   "expectedUrl": "my_expectedUrl",
+     *   //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *   //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *   //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *   //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "floodlightTagType": "my_floodlightTagType",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "publisherTags": [],
+     *   //   "secure": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormat": "my_tagFormat",
+     *   //   "tagString": "my_tagString",
+     *   //   "userDefinedVariableTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivities.insert
      * @memberOf! ()
      *
@@ -17088,6 +23962,77 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivities.list
      * @desc Retrieves a list of floodlight activities, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.list({
+     *     // Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only floodlight activities with the specified floodlight activity group IDs.
+     *     floodlightActivityGroupIds: 'placeholder-value',
+     *     // Select only floodlight activities with the specified floodlight activity group name.
+     *     floodlightActivityGroupName: 'placeholder-value',
+     *     // Select only floodlight activities with the specified floodlight activity group tag string.
+     *     floodlightActivityGroupTagString: 'placeholder-value',
+     *     // Select only floodlight activities with the specified floodlight activity group type.
+     *     floodlightActivityGroupType: 'placeholder-value',
+     *     // Select only floodlight activities for the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     *     floodlightConfigurationId: 'placeholder-value',
+     *     // Select only floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only floodlight activities with the specified tag string.
+     *     tagString: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightActivities": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivities.list
      * @memberOf! ()
      *
@@ -17184,6 +24129,113 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivities.patch
      * @desc Updates an existing floodlight activity. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.patch({
+     *     // Floodlight activity ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "countingMethod": "my_countingMethod",
+     *       //   "defaultTags": [],
+     *       //   "expectedUrl": "my_expectedUrl",
+     *       //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *       //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *       //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *       //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "floodlightTagType": "my_floodlightTagType",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "publisherTags": [],
+     *       //   "secure": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormat": "my_tagFormat",
+     *       //   "tagString": "my_tagString",
+     *       //   "userDefinedVariableTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "countingMethod": "my_countingMethod",
+     *   //   "defaultTags": [],
+     *   //   "expectedUrl": "my_expectedUrl",
+     *   //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *   //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *   //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *   //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "floodlightTagType": "my_floodlightTagType",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "publisherTags": [],
+     *   //   "secure": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormat": "my_tagFormat",
+     *   //   "tagString": "my_tagString",
+     *   //   "userDefinedVariableTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivities.patch
      * @memberOf! ()
      *
@@ -17260,6 +24312,111 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivities.update
      * @desc Updates an existing floodlight activity.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "countingMethod": "my_countingMethod",
+     *       //   "defaultTags": [],
+     *       //   "expectedUrl": "my_expectedUrl",
+     *       //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *       //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *       //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *       //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "floodlightTagType": "my_floodlightTagType",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "publisherTags": [],
+     *       //   "secure": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormat": "my_tagFormat",
+     *       //   "tagString": "my_tagString",
+     *       //   "userDefinedVariableTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "countingMethod": "my_countingMethod",
+     *   //   "defaultTags": [],
+     *   //   "expectedUrl": "my_expectedUrl",
+     *   //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *   //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *   //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *   //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "floodlightTagType": "my_floodlightTagType",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "publisherTags": [],
+     *   //   "secure": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormat": "my_tagFormat",
+     *   //   "tagString": "my_tagString",
+     *   //   "userDefinedVariableTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivities.update
      * @memberOf! ()
      *
@@ -17510,6 +24667,62 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivityGroups.get
      * @desc Gets one floodlight activity group by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.get({
+     *     // Floodlight activity Group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagString": "my_tagString",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivityGroups.get
      * @memberOf! ()
      *
@@ -17587,6 +24800,79 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivityGroups.insert
      * @desc Inserts a new floodlight activity group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagString": "my_tagString",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagString": "my_tagString",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivityGroups.insert
      * @memberOf! ()
      *
@@ -17666,6 +24952,69 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivityGroups.list
      * @desc Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.list({
+     *     // Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only floodlight activity groups with the specified floodlight configuration ID. Must specify either advertiserId, or floodlightConfigurationId for a non-empty result.
+     *     floodlightConfigurationId: 'placeholder-value',
+     *     // Select only floodlight activity groups with the specified IDs. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only floodlight activity groups with the specified floodlight activity group type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightActivityGroups": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivityGroups.list
      * @memberOf! ()
      *
@@ -17766,6 +25115,81 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivityGroups.patch
      * @desc Updates an existing floodlight activity group. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.patch({
+     *     // Floodlight activity Group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagString": "my_tagString",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagString": "my_tagString",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivityGroups.patch
      * @memberOf! ()
      *
@@ -17844,6 +25268,79 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightActivityGroups.update
      * @desc Updates an existing floodlight activity group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagString": "my_tagString",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagString": "my_tagString",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightActivityGroups.update
      * @memberOf! ()
      *
@@ -18050,6 +25547,68 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightConfigurations.get
      * @desc Gets one floodlight configuration by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightConfigurations.get({
+     *     // Floodlight configuration ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "analyticsDataSharingEnabled": false,
+     *   //   "customViewabilityMetric": {},
+     *   //   "exposureToConversionEnabled": false,
+     *   //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inAppAttributionTrackingEnabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "lookbackConfiguration": {},
+     *   //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *   //   "omnitureSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagSettings": {},
+     *   //   "thirdPartyAuthenticationTokens": [],
+     *   //   "userDefinedVariableConfigurations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightConfigurations.get
      * @memberOf! ()
      *
@@ -18127,6 +25686,52 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightConfigurations.list
      * @desc Retrieves a list of floodlight configurations, possibly filtered.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightConfigurations.list({
+     *     // Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
+     *     ids: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightConfigurations": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightConfigurations.list
      * @memberOf! ()
      *
@@ -18219,6 +25824,93 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightConfigurations.patch
      * @desc Updates an existing floodlight configuration. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightConfigurations.patch({
+     *     // Floodlight configuration ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "analyticsDataSharingEnabled": false,
+     *       //   "customViewabilityMetric": {},
+     *       //   "exposureToConversionEnabled": false,
+     *       //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "inAppAttributionTrackingEnabled": false,
+     *       //   "kind": "my_kind",
+     *       //   "lookbackConfiguration": {},
+     *       //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *       //   "omnitureSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagSettings": {},
+     *       //   "thirdPartyAuthenticationTokens": [],
+     *       //   "userDefinedVariableConfigurations": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "analyticsDataSharingEnabled": false,
+     *   //   "customViewabilityMetric": {},
+     *   //   "exposureToConversionEnabled": false,
+     *   //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inAppAttributionTrackingEnabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "lookbackConfiguration": {},
+     *   //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *   //   "omnitureSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagSettings": {},
+     *   //   "thirdPartyAuthenticationTokens": [],
+     *   //   "userDefinedVariableConfigurations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightConfigurations.patch
      * @memberOf! ()
      *
@@ -18297,6 +25989,91 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.floodlightConfigurations.update
      * @desc Updates an existing floodlight configuration.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightConfigurations.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "analyticsDataSharingEnabled": false,
+     *       //   "customViewabilityMetric": {},
+     *       //   "exposureToConversionEnabled": false,
+     *       //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "inAppAttributionTrackingEnabled": false,
+     *       //   "kind": "my_kind",
+     *       //   "lookbackConfiguration": {},
+     *       //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *       //   "omnitureSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagSettings": {},
+     *       //   "thirdPartyAuthenticationTokens": [],
+     *       //   "userDefinedVariableConfigurations": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "analyticsDataSharingEnabled": false,
+     *   //   "customViewabilityMetric": {},
+     *   //   "exposureToConversionEnabled": false,
+     *   //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inAppAttributionTrackingEnabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "lookbackConfiguration": {},
+     *   //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *   //   "omnitureSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagSettings": {},
+     *   //   "thirdPartyAuthenticationTokens": [],
+     *   //   "userDefinedVariableConfigurations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.floodlightConfigurations.update
      * @memberOf! ()
      *
@@ -18454,6 +26231,72 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.inventoryItems.get
      * @desc Gets one inventory item by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.inventoryItems.get({
+     *     // Inventory item ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Project ID for order documents.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adSlots": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "estimatedClickThroughRate": "my_estimatedClickThroughRate",
+     *   //   "estimatedConversionRate": "my_estimatedConversionRate",
+     *   //   "id": "my_id",
+     *   //   "inPlan": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "negotiationChannelId": "my_negotiationChannelId",
+     *   //   "orderId": "my_orderId",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricing": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "rfpId": "my_rfpId",
+     *   //   "siteId": "my_siteId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.inventoryItems.get
      * @memberOf! ()
      *
@@ -18530,6 +26373,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.inventoryItems.list
      * @desc Retrieves a list of inventory items, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.inventoryItems.list({
+     *     // Select only inventory items with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only inventory items that are in plan.
+     *     inPlan: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only inventory items that belong to specified orders.
+     *     orderId: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Project ID for order documents.
+     *     projectId: 'placeholder-value',
+     *     // Select only inventory items that are associated with these sites.
+     *     siteId: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only inventory items with this type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "inventoryItems": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.inventoryItems.list
      * @memberOf! ()
      *
@@ -18701,6 +26609,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.languages.list
      * @desc Retrieves a list of languages.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.languages.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "languages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.languages.list
      * @memberOf! ()
      *
@@ -18794,6 +26746,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.metros.list
      * @desc Retrieves a list of metros.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.metros.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "metros": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.metros.list
      * @memberOf! ()
      *
@@ -18885,6 +26881,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.mobileApps.get
      * @desc Gets one mobile app by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.mobileApps.get({
+     *     // Mobile app ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "directory": "my_directory",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.mobileApps.get
      * @memberOf! ()
      *
@@ -18959,6 +27004,61 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.mobileApps.list
      * @desc Retrieves list of available mobile apps.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.mobileApps.list({
+     *     // Select only apps from these directories.
+     *     directories: 'placeholder-value',
+     *     // Select only apps with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "app*2015" will return objects with names like "app Jan 2018", "app Jan 2018", or simply "app 2018". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "app" will match objects with name "my app", "app 2018", or simply "app".
+     *     searchString: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "mobileApps": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.mobileApps.list
      * @memberOf! ()
      *
@@ -19092,6 +27192,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.mobileCarriers.get
      * @desc Gets one mobile carrier by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.mobileCarriers.get({
+     *     // Mobile carrier ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countryCode": "my_countryCode",
+     *   //   "countryDartId": "my_countryDartId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.mobileCarriers.get
      * @memberOf! ()
      *
@@ -19167,6 +27316,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.mobileCarriers.list
      * @desc Retrieves a list of mobile carriers.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.mobileCarriers.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "mobileCarriers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.mobileCarriers.list
      * @memberOf! ()
      *
@@ -19284,6 +27477,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.operatingSystems.get
      * @desc Gets one operating system by DART ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.operatingSystems.get({
+     *     // Operating system DART ID.
+     *     dartId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dartId": "my_dartId",
+     *   //   "desktop": false,
+     *   //   "kind": "my_kind",
+     *   //   "mobile": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.operatingSystems.get
      * @memberOf! ()
      *
@@ -19359,6 +27601,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.operatingSystems.list
      * @desc Retrieves a list of operating systems.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.operatingSystems.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "operatingSystems": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.operatingSystems.list
      * @memberOf! ()
      *
@@ -19478,6 +27764,56 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.operatingSystemVersions.get
      * @desc Gets one operating system version by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.operatingSystemVersions.get({
+     *     // Operating system version ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "majorVersion": "my_majorVersion",
+     *   //   "minorVersion": "my_minorVersion",
+     *   //   "name": "my_name",
+     *   //   "operatingSystem": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.operatingSystemVersions.get
      * @memberOf! ()
      *
@@ -19555,6 +27891,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.operatingSystemVersions.list
      * @desc Retrieves a list of operating system versions.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.operatingSystemVersions.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "operatingSystemVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.operatingSystemVersions.list
      * @memberOf! ()
      *
@@ -19676,6 +28056,69 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.orderDocuments.get
      * @desc Gets one order document by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.orderDocuments.get({
+     *     // Order document ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Project ID for order documents.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "amendedOrderDocumentId": "my_amendedOrderDocumentId",
+     *   //   "approvedByUserProfileIds": [],
+     *   //   "cancelled": false,
+     *   //   "createdInfo": {},
+     *   //   "effectiveDate": "my_effectiveDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastSentRecipients": [],
+     *   //   "lastSentTime": "my_lastSentTime",
+     *   //   "orderId": "my_orderId",
+     *   //   "projectId": "my_projectId",
+     *   //   "signed": false,
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "title": "my_title",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.orderDocuments.get
      * @memberOf! ()
      *
@@ -19752,6 +28195,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.orderDocuments.list
      * @desc Retrieves a list of order documents, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.orderDocuments.list({
+     *     // Select only order documents that have been approved by at least one user.
+     *     approved: 'placeholder-value',
+     *     // Select only order documents with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only order documents for specified orders.
+     *     orderId: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Project ID for order documents.
+     *     projectId: 'placeholder-value',
+     *     // Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
+     *     searchString: 'placeholder-value',
+     *     // Select only order documents that are associated with these sites.
+     *     siteId: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "orderDocuments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.orderDocuments.list
      * @memberOf! ()
      *
@@ -19923,6 +28431,72 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.orders.get
      * @desc Gets one order by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.orders.get({
+     *     // Order ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Project ID for orders.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "approverUserProfileIds": [],
+     *   //   "buyerInvoiceId": "my_buyerInvoiceId",
+     *   //   "buyerOrganizationName": "my_buyerOrganizationName",
+     *   //   "comments": "my_comments",
+     *   //   "contacts": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "planningTermId": "my_planningTermId",
+     *   //   "projectId": "my_projectId",
+     *   //   "sellerOrderId": "my_sellerOrderId",
+     *   //   "sellerOrganizationName": "my_sellerOrganizationName",
+     *   //   "siteId": [],
+     *   //   "siteNames": [],
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "termsAndConditions": "my_termsAndConditions"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.orders.get
      * @memberOf! ()
      *
@@ -19996,6 +28570,67 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.orders.list
      * @desc Retrieves a list of orders, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.orders.list({
+     *     // Select only orders with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Project ID for orders.
+     *     projectId: 'placeholder-value',
+     *     // Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
+     *     searchString: 'placeholder-value',
+     *     // Select only orders that are associated with these site IDs.
+     *     siteId: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "orders": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.orders.list
      * @memberOf! ()
      *
@@ -20147,6 +28782,76 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementGroups.get
      * @desc Gets one placement group by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.get({
+     *     // Placement group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "childPlacementIds": [],
+     *   //   "comment": "my_comment",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementGroupType": "my_placementGroupType",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primaryPlacementId": "my_primaryPlacementId",
+     *   //   "primaryPlacementIdDimensionValue": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementGroups.get
      * @memberOf! ()
      *
@@ -20222,6 +28927,107 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementGroups.insert
      * @desc Inserts a new placement group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "childPlacementIds": [],
+     *       //   "comment": "my_comment",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementGroupType": "my_placementGroupType",
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primaryPlacementId": "my_primaryPlacementId",
+     *       //   "primaryPlacementIdDimensionValue": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "childPlacementIds": [],
+     *   //   "comment": "my_comment",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementGroupType": "my_placementGroupType",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primaryPlacementId": "my_primaryPlacementId",
+     *   //   "primaryPlacementIdDimensionValue": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementGroups.insert
      * @memberOf! ()
      *
@@ -20297,6 +29103,89 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementGroups.list
      * @desc Retrieves a list of placement groups, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.list({
+     *     // Select only placement groups that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only archived placements. Don't set this field to select both archived and non-archived placements.
+     *     archived: 'placeholder-value',
+     *     // Select only placement groups that belong to these campaigns.
+     *     campaignIds: 'placeholder-value',
+     *     // Select only placement groups that are associated with these content categories.
+     *     contentCategoryIds: 'placeholder-value',
+     *     // Select only placement groups that are associated with these directory sites.
+     *     directorySiteIds: 'placeholder-value',
+     *     // Select only placement groups with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+     *     maxEndDate: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+     *     maxStartDate: 'placeholder-value',
+     *     // Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     *     minEndDate: 'placeholder-value',
+     *     // Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
+     *     minStartDate: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
+     *     placementGroupType: 'placeholder-value',
+     *     // Select only placement groups that are associated with these placement strategies.
+     *     placementStrategyIds: 'placeholder-value',
+     *     // Select only placement groups with these pricing types.
+     *     pricingTypes: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
+     *     searchString: 'placeholder-value',
+     *     // Select only placement groups that are associated with these sites.
+     *     siteIds: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "placementGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementGroups.list
      * @memberOf! ()
      *
@@ -20397,6 +29286,109 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementGroups.patch
      * @desc Updates an existing placement group. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.patch({
+     *     // Placement group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "childPlacementIds": [],
+     *       //   "comment": "my_comment",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementGroupType": "my_placementGroupType",
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primaryPlacementId": "my_primaryPlacementId",
+     *       //   "primaryPlacementIdDimensionValue": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "childPlacementIds": [],
+     *   //   "comment": "my_comment",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementGroupType": "my_placementGroupType",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primaryPlacementId": "my_primaryPlacementId",
+     *   //   "primaryPlacementIdDimensionValue": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementGroups.patch
      * @memberOf! ()
      *
@@ -20473,6 +29465,107 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementGroups.update
      * @desc Updates an existing placement group.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "childPlacementIds": [],
+     *       //   "comment": "my_comment",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementGroupType": "my_placementGroupType",
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primaryPlacementId": "my_primaryPlacementId",
+     *       //   "primaryPlacementIdDimensionValue": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "childPlacementIds": [],
+     *   //   "comment": "my_comment",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementGroupType": "my_placementGroupType",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primaryPlacementId": "my_primaryPlacementId",
+     *   //   "primaryPlacementIdDimensionValue": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementGroups.update
      * @memberOf! ()
      *
@@ -20715,6 +29808,58 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placements.generatetags
      * @desc Generates tags for a placement.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.generatetags({
+     *     // Generate placements belonging to this campaign. This is a required field.
+     *     campaignId: 'placeholder-value',
+     *     // Generate tags for these placements.
+     *     placementIds: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Tag formats to generate for these placements.
+     *     //
+     *     // Note: PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
+     *     tagFormats: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "placementTags": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placements.generatetags
      * @memberOf! ()
      *
@@ -20801,6 +29946,91 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placements.get
      * @desc Gets one placement by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.get({
+     *     // Placement ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingOptOut": false,
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "comment": "my_comment",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "lookbackConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "paymentApproved": false,
+     *   //   "paymentSource": "my_paymentSource",
+     *   //   "placementGroupId": "my_placementGroupId",
+     *   //   "placementGroupIdDimensionValue": {},
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primary": false,
+     *   //   "publisherUpdateInfo": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "size": {},
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormats": [],
+     *   //   "tagSetting": {},
+     *   //   "videoActiveViewOptOut": false,
+     *   //   "videoSettings": {},
+     *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placements.get
      * @memberOf! ()
      *
@@ -20875,6 +30105,137 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placements.insert
      * @desc Inserts a new placement.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingOptOut": false,
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "comment": "my_comment",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "lookbackConfiguration": {},
+     *       //   "name": "my_name",
+     *       //   "paymentApproved": false,
+     *       //   "paymentSource": "my_paymentSource",
+     *       //   "placementGroupId": "my_placementGroupId",
+     *       //   "placementGroupIdDimensionValue": {},
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primary": false,
+     *       //   "publisherUpdateInfo": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "size": {},
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormats": [],
+     *       //   "tagSetting": {},
+     *       //   "videoActiveViewOptOut": false,
+     *       //   "videoSettings": {},
+     *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingOptOut": false,
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "comment": "my_comment",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "lookbackConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "paymentApproved": false,
+     *   //   "paymentSource": "my_paymentSource",
+     *   //   "placementGroupId": "my_placementGroupId",
+     *   //   "placementGroupIdDimensionValue": {},
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primary": false,
+     *   //   "publisherUpdateInfo": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "size": {},
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormats": [],
+     *   //   "tagSetting": {},
+     *   //   "videoActiveViewOptOut": false,
+     *   //   "videoSettings": {},
+     *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placements.insert
      * @memberOf! ()
      *
@@ -20949,6 +30310,95 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placements.list
      * @desc Retrieves a list of placements, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.list({
+     *     // Select only placements that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only archived placements. Don't set this field to select both archived and non-archived placements.
+     *     archived: 'placeholder-value',
+     *     // Select only placements that belong to these campaigns.
+     *     campaignIds: 'placeholder-value',
+     *     // Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
+     *     compatibilities: 'placeholder-value',
+     *     // Select only placements that are associated with these content categories.
+     *     contentCategoryIds: 'placeholder-value',
+     *     // Select only placements that are associated with these directory sites.
+     *     directorySiteIds: 'placeholder-value',
+     *     // Select only placements that belong to these placement groups.
+     *     groupIds: 'placeholder-value',
+     *     // Select only placements with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+     *     maxEndDate: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+     *     maxStartDate: 'placeholder-value',
+     *     // Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     *     minEndDate: 'placeholder-value',
+     *     // Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
+     *     minStartDate: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // Select only placements with this payment source.
+     *     paymentSource: 'placeholder-value',
+     *     // Select only placements that are associated with these placement strategies.
+     *     placementStrategyIds: 'placeholder-value',
+     *     // Select only placements with these pricing types.
+     *     pricingTypes: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement".
+     *     searchString: 'placeholder-value',
+     *     // Select only placements that are associated with these sites.
+     *     siteIds: 'placeholder-value',
+     *     // Select only placements that are associated with these sizes.
+     *     sizeIds: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "placements": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placements.list
      * @memberOf! ()
      *
@@ -21045,6 +30495,139 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placements.patch
      * @desc Updates an existing placement. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.patch({
+     *     // Placement ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingOptOut": false,
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "comment": "my_comment",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "lookbackConfiguration": {},
+     *       //   "name": "my_name",
+     *       //   "paymentApproved": false,
+     *       //   "paymentSource": "my_paymentSource",
+     *       //   "placementGroupId": "my_placementGroupId",
+     *       //   "placementGroupIdDimensionValue": {},
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primary": false,
+     *       //   "publisherUpdateInfo": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "size": {},
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormats": [],
+     *       //   "tagSetting": {},
+     *       //   "videoActiveViewOptOut": false,
+     *       //   "videoSettings": {},
+     *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingOptOut": false,
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "comment": "my_comment",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "lookbackConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "paymentApproved": false,
+     *   //   "paymentSource": "my_paymentSource",
+     *   //   "placementGroupId": "my_placementGroupId",
+     *   //   "placementGroupIdDimensionValue": {},
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primary": false,
+     *   //   "publisherUpdateInfo": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "size": {},
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormats": [],
+     *   //   "tagSetting": {},
+     *   //   "videoActiveViewOptOut": false,
+     *   //   "videoSettings": {},
+     *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placements.patch
      * @memberOf! ()
      *
@@ -21119,6 +30702,137 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placements.update
      * @desc Updates an existing placement.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingOptOut": false,
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "comment": "my_comment",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "lookbackConfiguration": {},
+     *       //   "name": "my_name",
+     *       //   "paymentApproved": false,
+     *       //   "paymentSource": "my_paymentSource",
+     *       //   "placementGroupId": "my_placementGroupId",
+     *       //   "placementGroupIdDimensionValue": {},
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primary": false,
+     *       //   "publisherUpdateInfo": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "size": {},
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormats": [],
+     *       //   "tagSetting": {},
+     *       //   "videoActiveViewOptOut": false,
+     *       //   "videoSettings": {},
+     *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingOptOut": false,
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "comment": "my_comment",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "lookbackConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "paymentApproved": false,
+     *   //   "paymentSource": "my_paymentSource",
+     *   //   "placementGroupId": "my_placementGroupId",
+     *   //   "placementGroupIdDimensionValue": {},
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primary": false,
+     *   //   "publisherUpdateInfo": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "size": {},
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormats": [],
+     *   //   "tagSetting": {},
+     *   //   "videoActiveViewOptOut": false,
+     *   //   "videoSettings": {},
+     *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placements.update
      * @memberOf! ()
      *
@@ -21393,6 +31107,46 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementStrategies.delete
      * @desc Deletes an existing placement strategy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.delete({
+     *     // Placement strategy ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementStrategies.delete
      * @memberOf! ()
      *
@@ -21466,6 +31220,54 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementStrategies.get
      * @desc Gets one placement strategy by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.get({
+     *     // Placement strategy ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementStrategies.get
      * @memberOf! ()
      *
@@ -21541,6 +31343,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementStrategies.insert
      * @desc Inserts a new placement strategy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementStrategies.insert
      * @memberOf! ()
      *
@@ -21616,6 +31475,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementStrategies.list
      * @desc Retrieves a list of placement strategies, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.list({
+     *     // Select only placement strategies with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "placementStrategies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementStrategies.list
      * @memberOf! ()
      *
@@ -21705,6 +31621,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementStrategies.patch
      * @desc Updates an existing placement strategy. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.patch({
+     *     // Placement strategy ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementStrategies.patch
      * @memberOf! ()
      *
@@ -21781,6 +31756,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.placementStrategies.update
      * @desc Updates an existing placement strategy.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.placementStrategies.update
      * @memberOf! ()
      *
@@ -21987,6 +32019,53 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.platformTypes.get
      * @desc Gets one platform type by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.platformTypes.get({
+     *     // Platform type ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.platformTypes.get
      * @memberOf! ()
      *
@@ -22062,6 +32141,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.platformTypes.list
      * @desc Retrieves a list of platform types.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.platformTypes.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "platformTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.platformTypes.list
      * @memberOf! ()
      *
@@ -22179,6 +32302,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.postalCodes.get
      * @desc Gets one postal code by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.postalCodes.get({
+     *     // Postal code ID.
+     *     code: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "countryDartId": "my_countryDartId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.postalCodes.get
      * @memberOf! ()
      *
@@ -22253,6 +32425,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.postalCodes.list
      * @desc Retrieves a list of postal codes.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.postalCodes.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "postalCodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.postalCodes.list
      * @memberOf! ()
      *
@@ -22362,6 +32578,72 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.projects.get
      * @desc Gets one project by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.projects.get({
+     *     // Project ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "audienceAgeGroup": "my_audienceAgeGroup",
+     *   //   "audienceGender": "my_audienceGender",
+     *   //   "budget": "my_budget",
+     *   //   "clientBillingCode": "my_clientBillingCode",
+     *   //   "clientName": "my_clientName",
+     *   //   "endDate": "my_endDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "overview": "my_overview",
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetClicks": "my_targetClicks",
+     *   //   "targetConversions": "my_targetConversions",
+     *   //   "targetCpaNanos": "my_targetCpaNanos",
+     *   //   "targetCpcNanos": "my_targetCpcNanos",
+     *   //   "targetCpmActiveViewNanos": "my_targetCpmActiveViewNanos",
+     *   //   "targetCpmNanos": "my_targetCpmNanos",
+     *   //   "targetImpressions": "my_targetImpressions"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.projects.get
      * @memberOf! ()
      *
@@ -22434,6 +32716,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.projects.list
      * @desc Retrieves a list of projects, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.projects.list({
+     *     // Select only projects with these advertiser IDs.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only projects with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "projects": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.projects.list
      * @memberOf! ()
      *
@@ -22577,6 +32918,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.regions.list
      * @desc Retrieves a list of regions.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.regions.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "regions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.regions.list
      * @memberOf! ()
      *
@@ -22668,6 +33053,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.remarketingLists.get
      * @desc Gets one remarketing list by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.get({
+     *     // Remarketing list ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listPopulationRule": {},
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.remarketingLists.get
      * @memberOf! ()
      *
@@ -22743,6 +33185,81 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.remarketingLists.insert
      * @desc Inserts a new remarketing list.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lifeSpan": "my_lifeSpan",
+     *       //   "listPopulationRule": {},
+     *       //   "listSize": "my_listSize",
+     *       //   "listSource": "my_listSource",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listPopulationRule": {},
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.remarketingLists.insert
      * @memberOf! ()
      *
@@ -22818,6 +33335,67 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.remarketingLists.list
      * @desc Retrieves a list of remarketing lists, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.list({
+     *     // Select only active or only inactive remarketing lists.
+     *     active: 'placeholder-value',
+     *     // Select only remarketing lists owned by this advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only remarketing lists that have this floodlight activity ID.
+     *     floodlightActivityId: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
+     *     name: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "remarketingLists": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.remarketingLists.list
      * @memberOf! ()
      *
@@ -22909,6 +33487,83 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.remarketingLists.patch
      * @desc Updates an existing remarketing list. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.patch({
+     *     // Remarketing list ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lifeSpan": "my_lifeSpan",
+     *       //   "listPopulationRule": {},
+     *       //   "listSize": "my_listSize",
+     *       //   "listSource": "my_listSource",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listPopulationRule": {},
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.remarketingLists.patch
      * @memberOf! ()
      *
@@ -22985,6 +33640,81 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.remarketingLists.update
      * @desc Updates an existing remarketing list.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lifeSpan": "my_lifeSpan",
+     *       //   "listPopulationRule": {},
+     *       //   "listSize": "my_listSize",
+     *       //   "listSource": "my_listSource",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listPopulationRule": {},
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.remarketingLists.update
      * @memberOf! ()
      *
@@ -23183,6 +33913,54 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.remarketingListShares.get
      * @desc Gets one remarketing list share by remarketing list ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingListShares.get({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Remarketing list ID.
+     *     remarketingListId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "remarketingListId": "my_remarketingListId",
+     *   //   "sharedAccountIds": [],
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.remarketingListShares.get
      * @memberOf! ()
      *
@@ -23260,6 +34038,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.remarketingListShares.patch
      * @desc Updates an existing remarketing list share. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingListShares.patch({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Remarketing list ID.
+     *     remarketingListId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "remarketingListId": "my_remarketingListId",
+     *       //   "sharedAccountIds": [],
+     *       //   "sharedAdvertiserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "remarketingListId": "my_remarketingListId",
+     *   //   "sharedAccountIds": [],
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.remarketingListShares.patch
      * @memberOf! ()
      *
@@ -23338,6 +34175,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.remarketingListShares.update
      * @desc Updates an existing remarketing list share.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingListShares.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "remarketingListId": "my_remarketingListId",
+     *       //   "sharedAccountIds": [],
+     *       //   "sharedAdvertiserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "remarketingListId": "my_remarketingListId",
+     *   //   "sharedAccountIds": [],
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.remarketingListShares.update
      * @memberOf! ()
      *
@@ -23483,6 +34377,46 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.delete
      * @desc Deletes a report by its ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.delete({
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.delete
      * @memberOf! ()
      *
@@ -23555,6 +34489,68 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.get
      * @desc Retrieves a report by its ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.get({
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "criteria": {},
+     *   //   "crossDimensionReachCriteria": {},
+     *   //   "delivery": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "floodlightCriteria": {},
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "name": "my_name",
+     *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathToConversionCriteria": {},
+     *   //   "reachCriteria": {},
+     *   //   "schedule": {},
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.get
      * @memberOf! ()
      *
@@ -23627,6 +34623,91 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.insert
      * @desc Creates a report.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.insert({
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "criteria": {},
+     *       //   "crossDimensionReachCriteria": {},
+     *       //   "delivery": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileName": "my_fileName",
+     *       //   "floodlightCriteria": {},
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "name": "my_name",
+     *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathToConversionCriteria": {},
+     *       //   "reachCriteria": {},
+     *       //   "schedule": {},
+     *       //   "subAccountId": "my_subAccountId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "criteria": {},
+     *   //   "crossDimensionReachCriteria": {},
+     *   //   "delivery": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "floodlightCriteria": {},
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "name": "my_name",
+     *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathToConversionCriteria": {},
+     *   //   "reachCriteria": {},
+     *   //   "schedule": {},
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.insert
      * @memberOf! ()
      *
@@ -23698,6 +34779,62 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.list
      * @desc Retrieves list of reports.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.list({
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // The value of the nextToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The scope that defines which results are returned.
+     *     scope: 'placeholder-value',
+     *     // The field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.list
      * @memberOf! ()
      *
@@ -23775,6 +34912,62 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.run
      * @desc Runs a report.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.run({
+     *     // The DFA profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *     // If set and true, tries to run the report synchronously.
+     *     synchronous: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dateRange": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "reportId": "my_reportId",
+     *   //   "status": "my_status",
+     *   //   "urls": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.run
      * @memberOf! ()
      *
@@ -23848,6 +35041,93 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.update
      * @desc Updates a report.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.update({
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "criteria": {},
+     *       //   "crossDimensionReachCriteria": {},
+     *       //   "delivery": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileName": "my_fileName",
+     *       //   "floodlightCriteria": {},
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "name": "my_name",
+     *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathToConversionCriteria": {},
+     *       //   "reachCriteria": {},
+     *       //   "schedule": {},
+     *       //   "subAccountId": "my_subAccountId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "criteria": {},
+     *   //   "crossDimensionReachCriteria": {},
+     *   //   "delivery": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "floodlightCriteria": {},
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "name": "my_name",
+     *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathToConversionCriteria": {},
+     *   //   "reachCriteria": {},
+     *   //   "schedule": {},
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.update
      * @memberOf! ()
      *
@@ -24045,6 +35325,79 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.compatibleFields.query
      * @desc Returns the fields that are compatible to be selected in the respective sections of a report criteria, given the fields already selected in the input report and user permissions.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.compatibleFields.query({
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "criteria": {},
+     *       //   "crossDimensionReachCriteria": {},
+     *       //   "delivery": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileName": "my_fileName",
+     *       //   "floodlightCriteria": {},
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "name": "my_name",
+     *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathToConversionCriteria": {},
+     *       //   "reachCriteria": {},
+     *       //   "schedule": {},
+     *       //   "subAccountId": "my_subAccountId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "crossDimensionReachReportCompatibleFields": {},
+     *   //   "floodlightReportCompatibleFields": {},
+     *   //   "kind": "my_kind",
+     *   //   "pathToConversionReportCompatibleFields": {},
+     *   //   "reachReportCompatibleFields": {},
+     *   //   "reportCompatibleFields": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.compatibleFields.query
      * @memberOf! ()
      *
@@ -24145,6 +35498,62 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.files.get
      * @desc Retrieves a report file by its report ID and file ID. This method supports media download.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.files.get({
+     *     // The ID of the report file.
+     *     fileId: 'placeholder-value',
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dateRange": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "reportId": "my_reportId",
+     *   //   "status": "my_status",
+     *   //   "urls": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.files.get
      * @memberOf! ()
      *
@@ -24219,6 +35628,62 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.reports.files.list
      * @desc Lists files for a report.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.files.list({
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // The value of the nextToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *     // The field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.reports.files.list
      * @memberOf! ()
      *
@@ -24356,6 +35821,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.sites.get
      * @desc Gets one site by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.get({
+     *     // Site ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "approved": false,
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteContacts": [],
+     *   //   "siteSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "videoSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.sites.get
      * @memberOf! ()
      *
@@ -24427,6 +35949,81 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.sites.insert
      * @desc Inserts a new site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "approved": false,
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteContacts": [],
+     *       //   "siteSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "videoSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "approved": false,
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteContacts": [],
+     *   //   "siteSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "videoSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.sites.insert
      * @memberOf! ()
      *
@@ -24498,6 +36095,81 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.sites.list
      * @desc Retrieves a list of sites, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.list({
+     *     // This search filter is no longer supported and will have no effect on the results returned.
+     *     acceptsInStreamVideoPlacements: 'placeholder-value',
+     *     // This search filter is no longer supported and will have no effect on the results returned.
+     *     acceptsInterstitialPlacements: 'placeholder-value',
+     *     // Select only sites that accept publisher paid placements.
+     *     acceptsPublisherPaidPlacements: 'placeholder-value',
+     *     // Select only AdWords sites.
+     *     adWordsSite: 'placeholder-value',
+     *     // Select only approved sites.
+     *     approved: 'placeholder-value',
+     *     // Select only sites with these campaign IDs.
+     *     campaignIds: 'placeholder-value',
+     *     // Select only sites with these directory site IDs.
+     *     directorySiteIds: 'placeholder-value',
+     *     // Select only sites with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only sites with this subaccount ID.
+     *     subaccountId: 'placeholder-value',
+     *     // Select only sites that have not been mapped to a directory site.
+     *     unmappedSite: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.sites.list
      * @memberOf! ()
      *
@@ -24585,6 +36257,83 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.sites.patch
      * @desc Updates an existing site. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.patch({
+     *     // Site ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "approved": false,
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteContacts": [],
+     *       //   "siteSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "videoSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "approved": false,
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteContacts": [],
+     *   //   "siteSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "videoSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.sites.patch
      * @memberOf! ()
      *
@@ -24657,6 +36406,81 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.sites.update
      * @desc Updates an existing site.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "approved": false,
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteContacts": [],
+     *       //   "siteSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "videoSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "approved": false,
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteContacts": [],
+     *   //   "siteSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "videoSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.sites.update
      * @memberOf! ()
      *
@@ -24874,6 +36698,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.sizes.get
      * @desc Gets one size by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sizes.get({
+     *     // Size ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "height": 0,
+     *   //   "iab": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.sizes.get
      * @memberOf! ()
      *
@@ -24945,6 +36818,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.sizes.insert
      * @desc Inserts a new size.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sizes.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "height": 0,
+     *       //   "iab": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "width": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "height": 0,
+     *   //   "iab": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.sizes.insert
      * @memberOf! ()
      *
@@ -25016,6 +36948,58 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.sizes.list
      * @desc Retrieves a list of sizes, possibly filtered. Retrieved sizes are globally unique and may include values not currently in use by your account. Due to this, the list of sizes returned by this method may differ from the list seen in the Trafficking UI.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sizes.list({
+     *     // Select only sizes with this height.
+     *     height: 'placeholder-value',
+     *     // Select only IAB standard sizes.
+     *     iabStandard: 'placeholder-value',
+     *     // Select only sizes with these IDs.
+     *     ids: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Select only sizes with this width.
+     *     width: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "sizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.sizes.list
      * @memberOf! ()
      *
@@ -25158,6 +37142,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.subaccounts.get
      * @desc Gets one subaccount by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.get({
+     *     // Subaccount ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "availablePermissionIds": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.subaccounts.get
      * @memberOf! ()
      *
@@ -25232,6 +37265,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.subaccounts.insert
      * @desc Inserts a new subaccount.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "availablePermissionIds": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "availablePermissionIds": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.subaccounts.insert
      * @memberOf! ()
      *
@@ -25307,6 +37399,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.subaccounts.list
      * @desc Gets a list of subaccounts, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.list({
+     *     // Select only subaccounts with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subaccounts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.subaccounts.list
      * @memberOf! ()
      *
@@ -25388,6 +37537,67 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.subaccounts.patch
      * @desc Updates an existing subaccount. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.patch({
+     *     // Subaccount ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "availablePermissionIds": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "availablePermissionIds": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.subaccounts.patch
      * @memberOf! ()
      *
@@ -25464,6 +37674,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.subaccounts.update
      * @desc Updates an existing subaccount.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "availablePermissionIds": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "availablePermissionIds": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.subaccounts.update
      * @memberOf! ()
      *
@@ -25652,6 +37921,62 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.targetableRemarketingLists.get
      * @desc Gets one remarketing list by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetableRemarketingLists.get({
+     *     // Remarketing list ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.targetableRemarketingLists.get
      * @memberOf! ()
      *
@@ -25732,6 +38057,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.targetableRemarketingLists.list
      * @desc Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetableRemarketingLists.list({
+     *     // Select only active or only inactive targetable remarketing lists.
+     *     active: 'placeholder-value',
+     *     // Select only targetable remarketing lists targetable by these advertisers.
+     *     advertiserId: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
+     *     name: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetableRemarketingLists": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.targetableRemarketingLists.list
      * @memberOf! ()
      *
@@ -25894,6 +38278,63 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.targetingTemplates.get
      * @desc Gets one targeting template by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.get({
+     *     // Targeting template ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "listTargetingExpression": {},
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "technologyTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.targetingTemplates.get
      * @memberOf! ()
      *
@@ -25969,6 +38410,81 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.targetingTemplates.insert
      * @desc Inserts a new targeting template.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "listTargetingExpression": {},
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "technologyTargeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "listTargetingExpression": {},
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "technologyTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.targetingTemplates.insert
      * @memberOf! ()
      *
@@ -26044,6 +38560,65 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.targetingTemplates.list
      * @desc Retrieves a list of targeting templates, optionally filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.list({
+     *     // Select only targeting templates with this advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only targeting templates with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetingTemplates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.targetingTemplates.list
      * @memberOf! ()
      *
@@ -26134,6 +38709,83 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.targetingTemplates.patch
      * @desc Updates an existing targeting template. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.patch({
+     *     // Targeting template ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "listTargetingExpression": {},
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "technologyTargeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "listTargetingExpression": {},
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "technologyTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.targetingTemplates.patch
      * @memberOf! ()
      *
@@ -26210,6 +38862,81 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.targetingTemplates.update
      * @desc Updates an existing targeting template.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "listTargetingExpression": {},
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "technologyTargeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "listTargetingExpression": {},
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "technologyTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.targetingTemplates.update
      * @memberOf! ()
      *
@@ -26404,6 +39131,59 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userProfiles.get
      * @desc Gets one user profile by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/dfareporting',
+     *       'https://www.googleapis.com/auth/dfatrafficking',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userProfiles.get({
+     *     // The user profile ID.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "profileId": "my_profileId",
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "subAccountName": "my_subAccountName",
+     *   //   "userName": "my_userName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userProfiles.get
      * @memberOf! ()
      *
@@ -26476,6 +39256,51 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userProfiles.list
      * @desc Retrieves list of user profiles for a user.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/dfareporting',
+     *       'https://www.googleapis.com/auth/dfatrafficking',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userProfiles.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userProfiles.list
      * @memberOf! ()
      *
@@ -26575,6 +39400,53 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRolePermissionGroups.get
      * @desc Gets one user role permission group by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRolePermissionGroups.get({
+     *     // User role permission group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRolePermissionGroups.get
      * @memberOf! ()
      *
@@ -26652,6 +39524,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRolePermissionGroups.list
      * @desc Gets a list of all supported user role permission groups.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRolePermissionGroups.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "userRolePermissionGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRolePermissionGroups.list
      * @memberOf! ()
      *
@@ -26779,6 +39695,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRolePermissions.get
      * @desc Gets one user role permission by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRolePermissions.get({
+     *     // User role permission ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availability": "my_availability",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "permissionGroupId": "my_permissionGroupId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRolePermissions.get
      * @memberOf! ()
      *
@@ -26854,6 +39819,52 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRolePermissions.list
      * @desc Gets a list of user role permissions, possibly filtered.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRolePermissions.list({
+     *     // Select only user role permissions with these IDs.
+     *     ids: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "userRolePermissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRolePermissions.list
      * @memberOf! ()
      *
@@ -26978,6 +39989,46 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRoles.delete
      * @desc Deletes an existing user role.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.delete({
+     *     // User role ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRoles.delete
      * @memberOf! ()
      *
@@ -27050,6 +40101,58 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRoles.get
      * @desc Gets one user role by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.get({
+     *     // User role ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "defaultUserRole": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentUserRoleId": "my_parentUserRoleId",
+     *   //   "permissions": [],
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRoles.get
      * @memberOf! ()
      *
@@ -27122,6 +40225,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRoles.insert
      * @desc Inserts a new user role.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "defaultUserRole": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentUserRoleId": "my_parentUserRoleId",
+     *       //   "permissions": [],
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "defaultUserRole": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentUserRoleId": "my_parentUserRoleId",
+     *   //   "permissions": [],
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRoles.insert
      * @memberOf! ()
      *
@@ -27193,6 +40361,67 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRoles.list
      * @desc Retrieves a list of user roles, possibly filtered. This method supports paging.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.list({
+     *     // Select only account level user roles not associated with any specific subaccount.
+     *     accountUserRoleOnly: 'placeholder-value',
+     *     // Select only user roles with the specified IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only user roles that belong to this subaccount.
+     *     subaccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userRoles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRoles.list
      * @memberOf! ()
      *
@@ -27275,6 +40504,73 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRoles.patch
      * @desc Updates an existing user role. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.patch({
+     *     // User role ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "defaultUserRole": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentUserRoleId": "my_parentUserRoleId",
+     *       //   "permissions": [],
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "defaultUserRole": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentUserRoleId": "my_parentUserRoleId",
+     *   //   "permissions": [],
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRoles.patch
      * @memberOf! ()
      *
@@ -27347,6 +40643,71 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.userRoles.update
      * @desc Updates an existing user role.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "defaultUserRole": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentUserRoleId": "my_parentUserRoleId",
+     *       //   "permissions": [],
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "defaultUserRole": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentUserRoleId": "my_parentUserRoleId",
+     *   //   "permissions": [],
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.userRoles.update
      * @memberOf! ()
      *
@@ -27551,6 +40912,55 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.videoFormats.get
      * @desc Gets one video format by ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.videoFormats.get({
+     *     // Video format ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileType": "my_fileType",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "resolution": {},
+     *   //   "targetBitRate": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.videoFormats.get
      * @memberOf! ()
      *
@@ -27625,6 +41035,50 @@ export namespace dfareporting_v3_4 {
     /**
      * dfareporting.videoFormats.list
      * @desc Lists available video formats.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.videoFormats.list({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "videoFormats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dfareporting.videoFormats.list
      * @memberOf! ()
      *

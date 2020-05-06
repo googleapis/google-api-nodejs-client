@@ -1584,6 +1584,91 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.create
      * @desc Creates a new company entity.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "careerPageLink": "my_careerPageLink",
+     *       //   "companyInfoSources": [],
+     *       //   "companySize": "my_companySize",
+     *       //   "disableLocationOptimization": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *       //   "distributorCompanyId": "my_distributorCompanyId",
+     *       //   "eeoText": "my_eeoText",
+     *       //   "hiringAgency": false,
+     *       //   "hqLocation": "my_hqLocation",
+     *       //   "imageUrl": "my_imageUrl",
+     *       //   "keywordSearchableCustomAttributes": [],
+     *       //   "keywordSearchableCustomFields": [],
+     *       //   "name": "my_name",
+     *       //   "structuredCompanyHqLocation": {},
+     *       //   "suspended": false,
+     *       //   "title": "my_title",
+     *       //   "website": "my_website"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "careerPageLink": "my_careerPageLink",
+     *   //   "companyInfoSources": [],
+     *   //   "companySize": "my_companySize",
+     *   //   "disableLocationOptimization": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "eeoText": "my_eeoText",
+     *   //   "hiringAgency": false,
+     *   //   "hqLocation": "my_hqLocation",
+     *   //   "imageUrl": "my_imageUrl",
+     *   //   "keywordSearchableCustomAttributes": [],
+     *   //   "keywordSearchableCustomFields": [],
+     *   //   "name": "my_name",
+     *   //   "structuredCompanyHqLocation": {},
+     *   //   "suspended": false,
+     *   //   "title": "my_title",
+     *   //   "website": "my_website"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.create
      * @memberOf! ()
      *
@@ -1652,6 +1737,51 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.delete
      * @desc Deletes the specified company.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.delete({
+     *     // Required. The resource name of the company to be deleted,
+     *     // such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     *     name: 'companies/my-companie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.delete
      * @memberOf! ()
      *
@@ -1720,6 +1850,70 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.get
      * @desc Retrieves the specified company.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.get({
+     *     // Required. Resource name of the company to retrieve,
+     *     // such as "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     *     name: 'companies/my-companie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "careerPageLink": "my_careerPageLink",
+     *   //   "companyInfoSources": [],
+     *   //   "companySize": "my_companySize",
+     *   //   "disableLocationOptimization": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "eeoText": "my_eeoText",
+     *   //   "hiringAgency": false,
+     *   //   "hqLocation": "my_hqLocation",
+     *   //   "imageUrl": "my_imageUrl",
+     *   //   "keywordSearchableCustomAttributes": [],
+     *   //   "keywordSearchableCustomFields": [],
+     *   //   "name": "my_name",
+     *   //   "structuredCompanyHqLocation": {},
+     *   //   "suspended": false,
+     *   //   "title": "my_title",
+     *   //   "website": "my_website"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.get
      * @memberOf! ()
      *
@@ -1788,6 +1982,64 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.list
      * @desc Lists all companies associated with a Cloud Talent Solution account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.list({
+     *     // Optional. Set to true if the companies request must have open jobs.
+     *     //
+     *     // Defaults to false.
+     *     //
+     *     // If true, at most page_size of companies are fetched, among which
+     *     // only those with open jobs are returned.
+     *     mustHaveOpenJobs: 'placeholder-value',
+     *     // Optional. The maximum number of companies to be returned, at most 100.
+     *     // Default is 100 if a non-positive number is provided.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The starting indicator from which to return results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "companies": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.list
      * @memberOf! ()
      *
@@ -1862,6 +2114,120 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.patch
      * @desc Updates the specified company. Company names can't be updated. To update a company name, delete the company and all jobs associated with it, and only then re-create them.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.patch({
+     *     // Required during company update.
+     *     //
+     *     // The resource name for a company. This is generated by the service when a
+     *     // company is created, for example,
+     *     // "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     *     name: 'companies/my-companie',
+     *     // Optional but strongly recommended to be provided for the best service
+     *     // experience.
+     *     //
+     *     // If update_company_fields is provided, only the specified fields in
+     *     // company are updated. Otherwise all the fields are updated.
+     *     //
+     *     // A field mask to specify the company fields to update. Valid values are:
+     *     //
+     *     // * displayName
+     *     // * website
+     *     // * imageUrl
+     *     // * companySize
+     *     // * distributorBillingCompanyId
+     *     // * companyInfoSources
+     *     // * careerPageLink
+     *     // * hiringAgency
+     *     // * hqLocation
+     *     // * eeoText
+     *     // * keywordSearchableCustomAttributes
+     *     // * title (deprecated)
+     *     // * keywordSearchableCustomFields (deprecated)
+     *     updateCompanyFields: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "careerPageLink": "my_careerPageLink",
+     *       //   "companyInfoSources": [],
+     *       //   "companySize": "my_companySize",
+     *       //   "disableLocationOptimization": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *       //   "distributorCompanyId": "my_distributorCompanyId",
+     *       //   "eeoText": "my_eeoText",
+     *       //   "hiringAgency": false,
+     *       //   "hqLocation": "my_hqLocation",
+     *       //   "imageUrl": "my_imageUrl",
+     *       //   "keywordSearchableCustomAttributes": [],
+     *       //   "keywordSearchableCustomFields": [],
+     *       //   "name": "my_name",
+     *       //   "structuredCompanyHqLocation": {},
+     *       //   "suspended": false,
+     *       //   "title": "my_title",
+     *       //   "website": "my_website"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "careerPageLink": "my_careerPageLink",
+     *   //   "companyInfoSources": [],
+     *   //   "companySize": "my_companySize",
+     *   //   "disableLocationOptimization": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "eeoText": "my_eeoText",
+     *   //   "hiringAgency": false,
+     *   //   "hqLocation": "my_hqLocation",
+     *   //   "imageUrl": "my_imageUrl",
+     *   //   "keywordSearchableCustomAttributes": [],
+     *   //   "keywordSearchableCustomFields": [],
+     *   //   "name": "my_name",
+     *   //   "structuredCompanyHqLocation": {},
+     *   //   "suspended": false,
+     *   //   "title": "my_title",
+     *   //   "website": "my_website"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.patch
      * @memberOf! ()
      *
@@ -2012,6 +2378,86 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.jobs.list
      * @desc Deprecated. Use ListJobs instead.  Lists all jobs associated with a company.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.jobs.list({
+     *     // Required. The resource name of the company that owns the jobs to be listed,
+     *     // such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     *     companyName: 'companies/my-companie',
+     *     // Optional. If set to `true`, only job ID, job requisition ID and language code will be
+     *     // returned.
+     *     //
+     *     // A typical use is to synchronize job repositories.
+     *     //
+     *     // Defaults to false.
+     *     idsOnly: 'placeholder-value',
+     *     // Deprecated. Please DO NOT use this field except for small companies.
+     *     // Suggest counting jobs page by page instead.
+     *     //
+     *     // Optional.
+     *     //
+     *     // Set to true if the total number of open jobs is to be returned.
+     *     //
+     *     // Defaults to false.
+     *     includeJobsCount: 'placeholder-value',
+     *     // Optional. The requisition ID, also known as posting ID, assigned by the company
+     *     // to the job.
+     *     //
+     *     // The maximum number of allowable characters is 225.
+     *     jobRequisitionId: 'placeholder-value',
+     *     // Optional. The maximum number of jobs to be returned per page of results.
+     *     //
+     *     // If ids_only is set to true, the maximum allowed page size
+     *     // is 1000. Otherwise, the maximum allowed page size is 100.
+     *     //
+     *     // Default is 100 if empty or a number < 1 is specified.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The starting point of a query result.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.jobs.list
      * @memberOf! ()
      *
@@ -2133,6 +2579,55 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.batchDelete
      * @desc Deletes a list of Job postings by filter.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.batchDelete({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.batchDelete
      * @memberOf! ()
      *
@@ -2204,6 +2699,96 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.create
      * @desc Creates a new job.  Typically, the job becomes searchable within 10 seconds, but it may take up to 5 minutes.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableStreetAddressResolution": false,
+     *       //   "job": {},
+     *       //   "processingOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationEmailList": [],
+     *   //   "applicationInstruction": "my_applicationInstruction",
+     *   //   "applicationUrls": [],
+     *   //   "benefits": [],
+     *   //   "companyDisplayName": "my_companyDisplayName",
+     *   //   "companyName": "my_companyName",
+     *   //   "companyTitle": "my_companyTitle",
+     *   //   "compensationInfo": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customAttributes": {},
+     *   //   "department": "my_department",
+     *   //   "description": "my_description",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "educationLevels": [],
+     *   //   "employmentTypes": [],
+     *   //   "endDate": {},
+     *   //   "expireTime": "my_expireTime",
+     *   //   "expiryDate": {},
+     *   //   "extendedCompensationInfo": {},
+     *   //   "filterableCustomFields": {},
+     *   //   "incentives": "my_incentives",
+     *   //   "jobLocations": [],
+     *   //   "jobTitle": "my_jobTitle",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "level": "my_level",
+     *   //   "locations": [],
+     *   //   "name": "my_name",
+     *   //   "promotionValue": 0,
+     *   //   "publishDate": {},
+     *   //   "qualifications": "my_qualifications",
+     *   //   "referenceUrl": "my_referenceUrl",
+     *   //   "region": "my_region",
+     *   //   "requisitionId": "my_requisitionId",
+     *   //   "responsibilities": "my_responsibilities",
+     *   //   "startDate": {},
+     *   //   "unindexedCustomFields": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.create
      * @memberOf! ()
      *
@@ -2272,6 +2857,58 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.delete
      * @desc Deletes the specified job.  Typically, the job becomes unsearchable within 10 seconds, but it may take up to 5 minutes.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.delete({
+     *     // Deprecated. This field is not working anymore.
+     *     //
+     *     // Optional.
+     *     //
+     *     // If set to true, this call waits for all processing steps to complete
+     *     // before the job is cleaned up. Otherwise, the call returns while some
+     *     // steps are still taking place asynchronously, hence faster.
+     *     disableFastProcess: 'placeholder-value',
+     *     // Required. The resource name of the job to be deleted, such as "jobs/11111111".
+     *     name: 'jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.delete
      * @memberOf! ()
      *
@@ -2341,6 +2978,56 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.deleteByFilter
      * @desc Deprecated. Use BatchDeleteJobs instead.  Deletes the specified job by filter. You can specify whether to synchronously wait for validation, indexing, and general processing to be completed before the response is returned.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.deleteByFilter({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableFastProcess": false,
+     *       //   "filter": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.deleteByFilter
      * @memberOf! ()
      *
@@ -2413,6 +3100,89 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.get
      * @desc Retrieves the specified job, whose status is OPEN or recently EXPIRED within the last 90 days.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.get({
+     *     // Required. The resource name of the job to retrieve, such as "jobs/11111111".
+     *     name: 'jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationEmailList": [],
+     *   //   "applicationInstruction": "my_applicationInstruction",
+     *   //   "applicationUrls": [],
+     *   //   "benefits": [],
+     *   //   "companyDisplayName": "my_companyDisplayName",
+     *   //   "companyName": "my_companyName",
+     *   //   "companyTitle": "my_companyTitle",
+     *   //   "compensationInfo": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customAttributes": {},
+     *   //   "department": "my_department",
+     *   //   "description": "my_description",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "educationLevels": [],
+     *   //   "employmentTypes": [],
+     *   //   "endDate": {},
+     *   //   "expireTime": "my_expireTime",
+     *   //   "expiryDate": {},
+     *   //   "extendedCompensationInfo": {},
+     *   //   "filterableCustomFields": {},
+     *   //   "incentives": "my_incentives",
+     *   //   "jobLocations": [],
+     *   //   "jobTitle": "my_jobTitle",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "level": "my_level",
+     *   //   "locations": [],
+     *   //   "name": "my_name",
+     *   //   "promotionValue": 0,
+     *   //   "publishDate": {},
+     *   //   "qualifications": "my_qualifications",
+     *   //   "referenceUrl": "my_referenceUrl",
+     *   //   "region": "my_region",
+     *   //   "requisitionId": "my_requisitionId",
+     *   //   "responsibilities": "my_responsibilities",
+     *   //   "startDate": {},
+     *   //   "unindexedCustomFields": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.get
      * @memberOf! ()
      *
@@ -2481,6 +3251,62 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.histogram
      * @desc Deprecated. Use SearchJobsRequest.histogram_facets instead to make a single call with both search and histogram.  Retrieves a histogram for the given GetHistogramRequest. This call provides a structured count of jobs that match against the search query, grouped by specified facets.  This call constrains the visibility of jobs present in the database, and only counts jobs the caller has permission to search against.  For example, use this call to generate the number of jobs in the U.S. by state.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.histogram({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowBroadening": false,
+     *       //   "filters": {},
+     *       //   "query": {},
+     *       //   "requestMetadata": {},
+     *       //   "searchTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.histogram
      * @memberOf! ()
      *
@@ -2555,6 +3381,82 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.list
      * @desc Lists jobs by filter.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.list({
+     *     // Required. The filter string specifies the jobs to be enumerated.
+     *     //
+     *     // Supported operator: =, AND
+     *     //
+     *     // The fields eligible for filtering are:
+     *     //
+     *     // * `companyName` (Required)
+     *     // * `requisitionId` (Optional)
+     *     //
+     *     // Sample Query:
+     *     //
+     *     // * companyName = "companies/123"
+     *     // * companyName = "companies/123" AND requisitionId = "req-1"
+     *     filter: 'placeholder-value',
+     *     // Optional. If set to `true`, only Job.name, Job.requisition_id and
+     *     // Job.language_code will be returned.
+     *     //
+     *     // A typical use case is to synchronize job repositories.
+     *     //
+     *     // Defaults to false.
+     *     idsOnly: 'placeholder-value',
+     *     // Optional. The maximum number of jobs to be returned per page of results.
+     *     //
+     *     // If ids_only is set to true, the maximum allowed page size
+     *     // is 1000. Otherwise, the maximum allowed page size is 100.
+     *     //
+     *     // Default is 100 if empty or a number < 1 is specified.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The starting point of a query result.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.list
      * @memberOf! ()
      *
@@ -2628,6 +3530,104 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.patch
      * @desc Updates specified job.  Typically, updated contents become visible in search results within 10 seconds, but it may take up to 5 minutes.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.patch({
+     *     // Required during job update.
+     *     //
+     *     // Resource name assigned to a job by the API, for example, "/jobs/foo". Use
+     *     // of this field in job queries and API calls is preferred over the use of
+     *     // requisition_id since this value is unique.
+     *     name: 'jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableStreetAddressResolution": false,
+     *       //   "job": {},
+     *       //   "processingOptions": {},
+     *       //   "updateJobFields": "my_updateJobFields"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationEmailList": [],
+     *   //   "applicationInstruction": "my_applicationInstruction",
+     *   //   "applicationUrls": [],
+     *   //   "benefits": [],
+     *   //   "companyDisplayName": "my_companyDisplayName",
+     *   //   "companyName": "my_companyName",
+     *   //   "companyTitle": "my_companyTitle",
+     *   //   "compensationInfo": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customAttributes": {},
+     *   //   "department": "my_department",
+     *   //   "description": "my_description",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "educationLevels": [],
+     *   //   "employmentTypes": [],
+     *   //   "endDate": {},
+     *   //   "expireTime": "my_expireTime",
+     *   //   "expiryDate": {},
+     *   //   "extendedCompensationInfo": {},
+     *   //   "filterableCustomFields": {},
+     *   //   "incentives": "my_incentives",
+     *   //   "jobLocations": [],
+     *   //   "jobTitle": "my_jobTitle",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "level": "my_level",
+     *   //   "locations": [],
+     *   //   "name": "my_name",
+     *   //   "promotionValue": 0,
+     *   //   "publishDate": {},
+     *   //   "qualifications": "my_qualifications",
+     *   //   "referenceUrl": "my_referenceUrl",
+     *   //   "region": "my_region",
+     *   //   "requisitionId": "my_requisitionId",
+     *   //   "responsibilities": "my_responsibilities",
+     *   //   "startDate": {},
+     *   //   "unindexedCustomFields": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.patch
      * @memberOf! ()
      *
@@ -2697,6 +3697,80 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.search
      * @desc Searches for jobs using the provided SearchJobsRequest.  This call constrains the visibility of jobs present in the database, and only returns jobs that the caller has permission to search against.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.search({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableRelevanceThresholding": false,
+     *       //   "enableBroadening": false,
+     *       //   "enablePreciseResultSize": false,
+     *       //   "filters": {},
+     *       //   "histogramFacets": {},
+     *       //   "jobView": "my_jobView",
+     *       //   "mode": "my_mode",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": {},
+     *       //   "requestMetadata": {},
+     *       //   "sortBy": "my_sortBy"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCommuteFilter": {},
+     *   //   "appliedJobLocationFilters": [],
+     *   //   "estimatedTotalSize": "my_estimatedTotalSize",
+     *   //   "histogramResults": {},
+     *   //   "jobView": "my_jobView",
+     *   //   "matchingJobs": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "numJobsFromBroadenedQuery": 0,
+     *   //   "spellResult": {},
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.search
      * @memberOf! ()
      *
@@ -2767,6 +3841,80 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.searchForAlert
      * @desc Searches for jobs using the provided SearchJobsRequest.  This API call is intended for the use case of targeting passive job seekers (for example, job seekers who have signed up to receive email alerts about potential job opportunities), and has different algorithmic adjustments that are targeted to passive job seekers.  This call constrains the visibility of jobs present in the database, and only returns jobs the caller has permission to search against.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.searchForAlert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableRelevanceThresholding": false,
+     *       //   "enableBroadening": false,
+     *       //   "enablePreciseResultSize": false,
+     *       //   "filters": {},
+     *       //   "histogramFacets": {},
+     *       //   "jobView": "my_jobView",
+     *       //   "mode": "my_mode",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": {},
+     *       //   "requestMetadata": {},
+     *       //   "sortBy": "my_sortBy"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCommuteFilter": {},
+     *   //   "appliedJobLocationFilters": [],
+     *   //   "estimatedTotalSize": "my_estimatedTotalSize",
+     *   //   "histogramResults": {},
+     *   //   "jobView": "my_jobView",
+     *   //   "matchingJobs": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "numJobsFromBroadenedQuery": 0,
+     *   //   "spellResult": {},
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.searchForAlert
      * @memberOf! ()
      *
@@ -2984,6 +4132,78 @@ export namespace jobs_v2 {
     /**
      * jobs.complete
      * @desc Completes the specified prefix with job keyword suggestions. Intended for use by a job search auto-complete search box.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await jobs.complete({
+     *     // Optional. If provided, restricts completion to the specified company.
+     *     companyName: 'placeholder-value',
+     *     // Required. The language of the query. This is
+     *     // the BCP-47 language code, such as "en-US" or "sr-Latn".
+     *     // For more information, see
+     *     // [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
+     *     //
+     *     // For CompletionType.JOB_TITLE type, only open jobs with same
+     *     // language_code are returned.
+     *     //
+     *     // For CompletionType.COMPANY_NAME type,
+     *     // only companies having open jobs with same language_code are
+     *     // returned.
+     *     //
+     *     // For CompletionType.COMBINED type, only open jobs with same
+     *     // language_code or companies having open jobs with same
+     *     // language_code are returned.
+     *     languageCode: 'placeholder-value',
+     *     // Required. Completion result count.
+     *     // The maximum allowed page size is 10.
+     *     pageSize: 'placeholder-value',
+     *     // Required. The query used to generate suggestions.
+     *     query: 'placeholder-value',
+     *     // Optional. The scope of the completion. The defaults is CompletionScope.PUBLIC.
+     *     scope: 'placeholder-value',
+     *     // Optional. The completion topic. The default is CompletionType.COMBINED.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completionResults": [],
+     *   //   "metadata": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.complete
      * @memberOf! ()
      *

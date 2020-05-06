@@ -1358,6 +1358,54 @@ export namespace testing_v1 {
     /**
      * testing.applicationDetailService.getApkDetails
      * @desc Gets the details of an Android application APK.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await testing.applicationDetailService.getApkDetails({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gcsPath": "my_gcsPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apkDetail": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.applicationDetailService.getApkDetails
      * @memberOf! ()
      *
@@ -1464,6 +1512,51 @@ export namespace testing_v1 {
     /**
      * testing.projects.testMatrices.cancel
      * @desc Cancels unfinished test executions in a test matrix. This call returns immediately and cancellation proceeds asychronously. If the matrix is already final, this operation will have no effect.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await testing.projects.testMatrices.cancel({
+     *     // Cloud project that owns the test.
+     *     projectId: 'placeholder-value',
+     *     // Test matrix that will be canceled.
+     *     testMatrixId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "testState": "my_testState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.projects.testMatrices.cancel
      * @memberOf! ()
      *
@@ -1543,6 +1636,86 @@ export namespace testing_v1 {
     /**
      * testing.projects.testMatrices.create
      * @desc Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. Matrices are limited to at most 200 supported executions.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix expands                      to more than 200 supported executions
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await testing.projects.testMatrices.create({
+     *     // The GCE project under which this job will run.
+     *     projectId: 'placeholder-value',
+     *     // A string id used to detect duplicated requests.
+     *     // Ids are automatically scoped to a project, so
+     *     // users should ensure the ID is unique per-project.
+     *     // A UUID is recommended.
+     *     //
+     *     // Optional, but strongly recommended.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientInfo": {},
+     *       //   "environmentMatrix": {},
+     *       //   "flakyTestAttempts": 0,
+     *       //   "invalidMatrixDetails": "my_invalidMatrixDetails",
+     *       //   "outcomeSummary": "my_outcomeSummary",
+     *       //   "projectId": "my_projectId",
+     *       //   "resultStorage": {},
+     *       //   "state": "my_state",
+     *       //   "testExecutions": [],
+     *       //   "testMatrixId": "my_testMatrixId",
+     *       //   "testSpecification": {},
+     *       //   "timestamp": "my_timestamp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientInfo": {},
+     *   //   "environmentMatrix": {},
+     *   //   "flakyTestAttempts": 0,
+     *   //   "invalidMatrixDetails": "my_invalidMatrixDetails",
+     *   //   "outcomeSummary": "my_outcomeSummary",
+     *   //   "projectId": "my_projectId",
+     *   //   "resultStorage": {},
+     *   //   "state": "my_state",
+     *   //   "testExecutions": [],
+     *   //   "testMatrixId": "my_testMatrixId",
+     *   //   "testSpecification": {},
+     *   //   "timestamp": "my_timestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.projects.testMatrices.create
      * @memberOf! ()
      *
@@ -1619,6 +1792,65 @@ export namespace testing_v1 {
     /**
      * testing.projects.testMatrices.get
      * @desc Checks the status of a test matrix.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await testing.projects.testMatrices.get({
+     *     // Cloud project that owns the test matrix.
+     *     projectId: 'placeholder-value',
+     *     // Unique test matrix id which was assigned by the service.
+     *     testMatrixId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientInfo": {},
+     *   //   "environmentMatrix": {},
+     *   //   "flakyTestAttempts": 0,
+     *   //   "invalidMatrixDetails": "my_invalidMatrixDetails",
+     *   //   "outcomeSummary": "my_outcomeSummary",
+     *   //   "projectId": "my_projectId",
+     *   //   "resultStorage": {},
+     *   //   "state": "my_state",
+     *   //   "testExecutions": [],
+     *   //   "testMatrixId": "my_testMatrixId",
+     *   //   "testSpecification": {},
+     *   //   "timestamp": "my_timestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.projects.testMatrices.get
      * @memberOf! ()
      *
@@ -1754,6 +1986,57 @@ export namespace testing_v1 {
     /**
      * testing.testEnvironmentCatalog.get
      * @desc Gets the catalog of supported test environments.  May return any of the following canonical error codes:  - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the environment type does not exist - INTERNAL - if an internal error occurred
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await testing.testEnvironmentCatalog.get({
+     *     // Required. The type of environment that should be listed.
+     *     environmentType: 'placeholder-value',
+     *     // For authorization, the cloud project requesting the TestEnvironmentCatalog.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidDeviceCatalog": {},
+     *   //   "iosDeviceCatalog": {},
+     *   //   "networkConfigurationCatalog": {},
+     *   //   "softwareCatalog": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.testEnvironmentCatalog.get
      * @memberOf! ()
      *

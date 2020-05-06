@@ -2514,6 +2514,92 @@ export namespace analytics_v3 {
     /**
      * analytics.data.ga.get
      * @desc Returns Analytics data for a view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.ga.get({
+     *     // A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
+     *     dimensions: '(ga:.+)?',
+     *     // End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
+     *     'end-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // A comma-separated list of dimension or metric filters to be applied to Analytics data.
+     *     filters: 'ga:.+',
+     *     // Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The response will include empty rows if this parameter is set to true, the default is true
+     *     'include-empty-rows': 'placeholder-value',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified.
+     *     metrics: 'ga:.+',
+     *     // The selected format for the response. Default format is JSON.
+     *     output: 'placeholder-value',
+     *     // The desired sampling level.
+     *     samplingLevel: 'placeholder-value',
+     *     // An Analytics segment to be applied to data.
+     *     segment: 'placeholder-value',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+     *     sort: '(-)?ga:.+',
+     *     // Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'start-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "containsSampledData": false,
+     *   //   "dataLastRefreshed": "my_dataLastRefreshed",
+     *   //   "dataTable": {},
+     *   //   "id": "my_id",
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "sampleSize": "my_sampleSize",
+     *   //   "sampleSpace": "my_sampleSpace",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.data.ga.get
      * @memberOf! ()
      *
@@ -2664,6 +2750,84 @@ export namespace analytics_v3 {
     /**
      * analytics.data.mcf.get
      * @desc Returns Analytics Multi-Channel Funnels data for a view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.mcf.get({
+     *     // A comma-separated list of Multi-Channel Funnels dimensions. E.g., 'mcf:source,mcf:medium'.
+     *     dimensions: '(mcf:.+)?',
+     *     // End date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'end-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // A comma-separated list of dimension or metric filters to be applied to the Analytics data.
+     *     filters: 'mcf:.+',
+     *     // Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of Multi-Channel Funnels metrics. E.g., 'mcf:totalConversions,mcf:totalConversionValue'. At least one metric must be specified.
+     *     metrics: 'mcf:.+',
+     *     // The desired sampling level.
+     *     samplingLevel: 'placeholder-value',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for the Analytics data.
+     *     sort: '(-)?mcf:.+',
+     *     // Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'start-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "containsSampledData": false,
+     *   //   "id": "my_id",
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "sampleSize": "my_sampleSize",
+     *   //   "sampleSpace": "my_sampleSpace",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.data.mcf.get
      * @memberOf! ()
      *
@@ -2799,6 +2963,70 @@ export namespace analytics_v3 {
     /**
      * analytics.data.realtime.get
      * @desc Returns real time data for a view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.realtime.get({
+     *     // A comma-separated list of real time dimensions. E.g., 'rt:medium,rt:city'.
+     *     dimensions: '(ga:.+)|(rt:.+)',
+     *     // A comma-separated list of dimension or metric filters to be applied to real time data.
+     *     filters: '(ga:.+)|(rt:.+)',
+     *     // Unique table ID for retrieving real time data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At least one metric must be specified.
+     *     metrics: '(ga:.+)|(rt:.+)',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for real time data.
+     *     sort: '(-)?((ga:.+)|(rt:.+))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.data.realtime.get
      * @memberOf! ()
      *
@@ -2985,6 +3213,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accounts.list
      * @desc Lists all accounts to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accounts.list({
+     *     // The maximum number of accounts to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accounts.list
      * @memberOf! ()
      *
@@ -3082,6 +3366,61 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountSummaries.list
      * @desc Lists account summaries (lightweight tree comprised of accounts/properties/profiles) to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountSummaries.list({
+     *     // The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountSummaries.list
      * @memberOf! ()
      *
@@ -3180,6 +3519,46 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountUserLinks.delete
      * @desc Removes a user from the given account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountUserLinks.delete
      * @memberOf! ()
      *
@@ -3253,6 +3632,67 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountUserLinks.insert
      * @desc Adds a new user to the given account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountUserLinks.insert
      * @memberOf! ()
      *
@@ -3328,6 +3768,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountUserLinks.list
      * @desc Lists account-user links for a given account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.list({
+     *     // Account ID to retrieve the user links for.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of account-user links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountUserLinks.list
      * @memberOf! ()
      *
@@ -3404,6 +3900,69 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountUserLinks.update
      * @desc Updates permissions for an existing user on the given account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.update({
+     *     // Account ID to update the account-user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the account-user link for.
+     *     linkId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountUserLinks.update
      * @memberOf! ()
      *
@@ -3562,6 +4121,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.clientId.hashClientId
      * @desc Hashes the given Client ID.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.clientId.hashClientId({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientId": "my_clientId",
+     *       //   "kind": "my_kind",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientId": "my_clientId",
+     *   //   "hashedClientId": "my_hashedClientId",
+     *   //   "kind": "my_kind",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.clientId.hashClientId
      * @memberOf! ()
      *
@@ -3659,6 +4274,66 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDataSources.list
      * @desc List custom data sources to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDataSources.list({
+     *     // Account Id for the custom data sources to retrieve.
+     *     accountId: 'd+',
+     *     // The maximum number of custom data sources to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for the custom data sources to retrieve.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDataSources.list
      * @memberOf! ()
      *
@@ -3768,6 +4443,67 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.get
      * @desc Get a custom dimension to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.get({
+     *     // Account ID for the custom dimension to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the custom dimension to retrieve.
+     *     customDimensionId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.get
      * @memberOf! ()
      *
@@ -3844,6 +4580,81 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.insert
      * @desc Create a new custom dimension.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.insert({
+     *     // Account ID for the custom dimension to create.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to create.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.insert
      * @memberOf! ()
      *
@@ -3920,6 +4731,65 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.list
      * @desc Lists custom dimensions to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.list({
+     *     // Account ID for the custom dimensions to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of custom dimensions to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the custom dimensions to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.list
      * @memberOf! ()
      *
@@ -3997,6 +4867,85 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.patch
      * @desc Updates an existing custom dimension. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.patch({
+     *     // Account ID for the custom dimension to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom dimension ID for the custom dimension to update.
+     *     customDimensionId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom dimension to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.patch
      * @memberOf! ()
      *
@@ -4075,6 +5024,85 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.update
      * @desc Updates an existing custom dimension.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.update({
+     *     // Account ID for the custom dimension to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom dimension ID for the custom dimension to update.
+     *     customDimensionId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom dimension to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.update
      * @memberOf! ()
      *
@@ -4284,6 +5312,70 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.get
      * @desc Get a custom metric to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.get({
+     *     // Account ID for the custom metric to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the custom metric to retrieve.
+     *     customMetricId: 'placeholder-value',
+     *     // Web property ID for the custom metric to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.get
      * @memberOf! ()
      *
@@ -4360,6 +5452,87 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.insert
      * @desc Create a new custom metric.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.insert({
+     *     // Account ID for the custom metric to create.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to create.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.insert
      * @memberOf! ()
      *
@@ -4436,6 +5609,65 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.list
      * @desc Lists custom metrics to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.list({
+     *     // Account ID for the custom metrics to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of custom metrics to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the custom metrics to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.list
      * @memberOf! ()
      *
@@ -4513,6 +5745,91 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.patch
      * @desc Updates an existing custom metric. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.patch({
+     *     // Account ID for the custom metric to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom metric ID for the custom metric to update.
+     *     customMetricId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom metric to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.patch
      * @memberOf! ()
      *
@@ -4591,6 +5908,91 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.update
      * @desc Updates an existing custom metric.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.update({
+     *     // Account ID for the custom metric to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom metric ID for the custom metric to update.
+     *     customMetricId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom metric to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.update
      * @memberOf! ()
      *
@@ -4800,6 +6202,53 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.delete
      * @desc Delete an experiment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.delete({
+     *     // Account ID to which the experiment belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the experiment to delete
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID to which the experiment belongs
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the experiment belongs
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.delete
      * @memberOf! ()
      *
@@ -4880,6 +6329,86 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.get
      * @desc Returns an experiment to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.get({
+     *     // Account ID to retrieve the experiment for.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID to retrieve the experiment for.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve the experiment for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to retrieve the experiment for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.get
      * @memberOf! ()
      *
@@ -4962,6 +6491,118 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.insert
      * @desc Create a new experiment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.insert({
+     *     // Account ID to create the experiment for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the experiment for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the experiment for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.insert
      * @memberOf! ()
      *
@@ -5039,6 +6680,68 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.list
      * @desc Lists experiments to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.list({
+     *     // Account ID to retrieve experiments for.
+     *     accountId: 'd+',
+     *     // The maximum number of experiments to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve experiments for.
+     *     profileId: 'd+',
+     *     // An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve experiments for.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.list
      * @memberOf! ()
      *
@@ -5117,6 +6820,120 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.patch
      * @desc Update an existing experiment. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.patch({
+     *     // Account ID of the experiment to update.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID of the experiment to update.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID of the experiment to update.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID of the experiment to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.patch
      * @memberOf! ()
      *
@@ -5200,6 +7017,120 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.update
      * @desc Update an existing experiment.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.update({
+     *     // Account ID of the experiment to update.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID of the experiment to update.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID of the experiment to update.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID of the experiment to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.update
      * @memberOf! ()
      *
@@ -5450,6 +7381,65 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.delete
      * @desc Delete a filter.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.delete({
+     *     // Account ID to delete the filter for.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be deleted.
+     *     filterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.delete
      * @memberOf! ()
      *
@@ -5523,6 +7513,68 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.get
      * @desc Returns filters to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.get({
+     *     // Account ID to retrieve filters for.
+     *     accountId: 'placeholder-value',
+     *     // Filter ID to retrieve filters for.
+     *     filterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.get
      * @memberOf! ()
      *
@@ -5596,6 +7648,85 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.insert
      * @desc Create a new filter.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.insert({
+     *     // Account ID to create filter for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.insert
      * @memberOf! ()
      *
@@ -5668,6 +7799,63 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.list
      * @desc Lists all filters for an account
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.list({
+     *     // Account ID to retrieve filters for.
+     *     accountId: 'd+',
+     *     // The maximum number of filters to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.list
      * @memberOf! ()
      *
@@ -5741,6 +7929,87 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.patch
      * @desc Updates an existing filter. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.patch({
+     *     // Account ID to which the filter belongs.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be updated.
+     *     filterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.patch
      * @memberOf! ()
      *
@@ -5815,6 +8084,87 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.update
      * @desc Updates an existing filter.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.update({
+     *     // Account ID to which the filter belongs.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be updated.
+     *     filterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.update
      * @memberOf! ()
      *
@@ -6008,6 +8358,75 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.get
      * @desc Gets a goal to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.get({
+     *     // Account ID to retrieve the goal for.
+     *     accountId: 'placeholder-value',
+     *     // Goal ID to retrieve the goal for.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve the goal for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to retrieve the goal for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.get
      * @memberOf! ()
      *
@@ -6083,6 +8502,95 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.insert
      * @desc Create a new goal.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.insert({
+     *     // Account ID to create the goal for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the goal for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the goal for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.insert
      * @memberOf! ()
      *
@@ -6158,6 +8666,68 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.list
      * @desc Lists goals to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.list({
+     *     // Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of goals to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.list
      * @memberOf! ()
      *
@@ -6234,6 +8804,97 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.patch
      * @desc Updates an existing goal. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.patch({
+     *     // Account ID to update the goal.
+     *     accountId: 'placeholder-value',
+     *     // Index of the goal to be updated.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to update the goal.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to update the goal.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.patch
      * @memberOf! ()
      *
@@ -6310,6 +8971,97 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.update
      * @desc Updates an existing goal.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.update({
+     *     // Account ID to update the goal.
+     *     accountId: 'placeholder-value',
+     *     // Index of the goal to be updated.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to update the goal.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to update the goal.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.update
      * @memberOf! ()
      *
@@ -6529,6 +9281,50 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.delete
      * @desc Delete a profile filter link.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.delete({
+     *     // Account ID to which the profile filter link belongs.
+     *     accountId: 'd+',
+     *     // ID of the profile filter link to delete.
+     *     linkId: 'd+:d+',
+     *     // Profile ID to which the filter link belongs.
+     *     profileId: 'd+',
+     *     // Web property Id to which the profile filter link belongs.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.delete
      * @memberOf! ()
      *
@@ -6604,6 +9400,63 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.get
      * @desc Returns a single profile filter link.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.get({
+     *     // Account ID to retrieve profile filter link for.
+     *     accountId: 'd+',
+     *     // ID of the profile filter link.
+     *     linkId: 'd+:d+',
+     *     // Profile ID to retrieve filter link for.
+     *     profileId: 'd+',
+     *     // Web property Id to retrieve profile filter link for.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.get
      * @memberOf! ()
      *
@@ -6681,6 +9534,71 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.insert
      * @desc Create a new profile filter link.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.insert({
+     *     // Account ID to create profile filter link for.
+     *     accountId: 'd+',
+     *     // Profile ID to create filter link for.
+     *     profileId: 'd+',
+     *     // Web property Id to create profile filter link for.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.insert
      * @memberOf! ()
      *
@@ -6758,6 +9676,67 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.list
      * @desc Lists all profile filter links for a profile.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.list({
+     *     // Account ID to retrieve profile filter links for.
+     *     accountId: 'd+',
+     *     // The maximum number of profile filter links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.list
      * @memberOf! ()
      *
@@ -6836,6 +9815,73 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.patch
      * @desc Update an existing profile filter link. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.patch({
+     *     // Account ID to which profile filter link belongs.
+     *     accountId: 'd+',
+     *     // ID of the profile filter link to be updated.
+     *     linkId: 'd+:d+',
+     *     // Profile ID to which filter link belongs
+     *     profileId: 'd+',
+     *     // Web property Id to which profile filter link belongs
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.patch
      * @memberOf! ()
      *
@@ -6914,6 +9960,73 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.update
      * @desc Update an existing profile filter link.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.update({
+     *     // Account ID to which profile filter link belongs.
+     *     accountId: 'd+',
+     *     // ID of the profile filter link to be updated.
+     *     linkId: 'd+:d+',
+     *     // Profile ID to which filter link belongs
+     *     profileId: 'd+',
+     *     // Web property Id to which profile filter link belongs
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.update
      * @memberOf! ()
      *
@@ -7159,6 +10272,48 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.delete
      * @desc Deletes a view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.delete({
+     *     // Account ID to delete the view (profile) for.
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be deleted.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to delete the view (profile) for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.delete
      * @memberOf! ()
      *
@@ -7233,6 +10388,81 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.get
      * @desc Gets a view (profile) to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.get({
+     *     // Account ID to retrieve the view (profile) for.
+     *     accountId: '[0-9]+',
+     *     // View (Profile) ID to retrieve the view (profile) for.
+     *     profileId: '[0-9]+',
+     *     // Web property ID to retrieve the view (profile) for.
+     *     webPropertyId: 'UA-[0-9]+-[0-9]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.get
      * @memberOf! ()
      *
@@ -7307,6 +10537,109 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.insert
      * @desc Create a new view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.insert({
+     *     // Account ID to create the view (profile) for.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID to create the view (profile) for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.insert
      * @memberOf! ()
      *
@@ -7381,6 +10714,66 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.list
      * @desc Lists views (profiles) to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.list({
+     *     // Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of views (profiles) to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.list
      * @memberOf! ()
      *
@@ -7456,6 +10849,111 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.patch
      * @desc Updates an existing view (profile). This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.patch({
+     *     // Account ID to which the view (profile) belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be updated.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the view (profile) belongs
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.patch
      * @memberOf! ()
      *
@@ -7531,6 +11029,111 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.update
      * @desc Updates an existing view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.update({
+     *     // Account ID to which the view (profile) belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be updated.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the view (profile) belongs
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.update
      * @memberOf! ()
      *
@@ -7749,6 +11352,50 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileUserLinks.delete
      * @desc Removes a user from the given view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *     // View (Profile) ID to delete the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to delete the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileUserLinks.delete
      * @memberOf! ()
      *
@@ -7824,6 +11471,71 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileUserLinks.insert
      * @desc Adds a new user to the given view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to create the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileUserLinks.insert
      * @memberOf! ()
      *
@@ -7901,6 +11613,66 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileUserLinks.list
      * @desc Lists profile-user links for a given view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.list({
+     *     // Account ID which the given view (profile) belongs to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of profile-user links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileUserLinks.list
      * @memberOf! ()
      *
@@ -7979,6 +11751,73 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileUserLinks.update
      * @desc Updates permissions for an existing user on the given view (profile).
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.update({
+     *     // Account ID to update the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the user link for.
+     *     linkId: 'placeholder-value',
+     *     // View (Profile ID) to update the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to update the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileUserLinks.update
      * @memberOf! ()
      *
@@ -8171,6 +12010,48 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.delete
      * @desc Delete a remarketing audience.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.delete({
+     *     // Account ID to which the remarketing audience belongs.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to delete.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // Web property ID to which the remarketing audience belongs.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.delete
      * @memberOf! ()
      *
@@ -8245,6 +12126,69 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.get
      * @desc Gets a remarketing audience to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.get({
+     *     // The account ID of the remarketing audience to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to retrieve.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.get
      * @memberOf! ()
      *
@@ -8321,6 +12265,85 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.insert
      * @desc Creates a new remarketing audience.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.insert({
+     *     // The account ID for which to create the remarketing audience.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for which to create the remarketing audience.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.insert
      * @memberOf! ()
      *
@@ -8397,6 +12420,67 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.list
      * @desc Lists remarketing audiences to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.list({
+     *     // The account ID of the remarketing audiences to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of remarketing audiences to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *
+     *     type: 'placeholder-value',
+     *     // The web property ID of the remarketing audiences to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.list
      * @memberOf! ()
      *
@@ -8477,6 +12561,87 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.patch
      * @desc Updates an existing remarketing audience. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.patch({
+     *     // The account ID of the remarketing audience to update.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to update.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.patch
      * @memberOf! ()
      *
@@ -8554,6 +12719,87 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.update
      * @desc Updates an existing remarketing audience.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.update({
+     *     // The account ID of the remarketing audience to update.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to update.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.update
      * @memberOf! ()
      *
@@ -8778,6 +13024,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.segments.list
      * @desc Lists segments to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.segments.list({
+     *     // The maximum number of segments to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.segments.list
      * @memberOf! ()
      *
@@ -8875,6 +13177,50 @@ export namespace analytics_v3 {
     /**
      * analytics.management.unsampledReports.delete
      * @desc Deletes an unsampled report.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.delete({
+     *     // Account ID to delete the unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to delete the unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // ID of the unsampled report to be deleted.
+     *     unsampledReportId: 'placeholder-value',
+     *     // Web property ID to delete the unsampled reports for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.unsampledReports.delete
      * @memberOf! ()
      *
@@ -8960,6 +13306,77 @@ export namespace analytics_v3 {
     /**
      * analytics.management.unsampledReports.get
      * @desc Returns a single unsampled report.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.get({
+     *     // Account ID to retrieve unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // ID of the unsampled report to retrieve.
+     *     unsampledReportId: 'placeholder-value',
+     *     // Web property ID to retrieve unsampled reports for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "cloudStorageDownloadDetails": {},
+     *   //   "created": "my_created",
+     *   //   "dimensions": "my_dimensions",
+     *   //   "downloadType": "my_downloadType",
+     *   //   "driveDownloadDetails": {},
+     *   //   "end-date": "my_end-date",
+     *   //   "filters": "my_filters",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metrics": "my_metrics",
+     *   //   "profileId": "my_profileId",
+     *   //   "segment": "my_segment",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "start-date": "my_start-date",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.unsampledReports.get
      * @memberOf! ()
      *
@@ -9047,6 +13464,100 @@ export namespace analytics_v3 {
     /**
      * analytics.management.unsampledReports.insert
      * @desc Create a new unsampled report.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.insert({
+     *     // Account ID to create the unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the unsampled report for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "cloudStorageDownloadDetails": {},
+     *       //   "created": "my_created",
+     *       //   "dimensions": "my_dimensions",
+     *       //   "downloadType": "my_downloadType",
+     *       //   "driveDownloadDetails": {},
+     *       //   "end-date": "my_end-date",
+     *       //   "filters": "my_filters",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "metrics": "my_metrics",
+     *       //   "profileId": "my_profileId",
+     *       //   "segment": "my_segment",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "start-date": "my_start-date",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "cloudStorageDownloadDetails": {},
+     *   //   "created": "my_created",
+     *   //   "dimensions": "my_dimensions",
+     *   //   "downloadType": "my_downloadType",
+     *   //   "driveDownloadDetails": {},
+     *   //   "end-date": "my_end-date",
+     *   //   "filters": "my_filters",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metrics": "my_metrics",
+     *   //   "profileId": "my_profileId",
+     *   //   "segment": "my_segment",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "start-date": "my_start-date",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.unsampledReports.insert
      * @memberOf! ()
      *
@@ -9124,6 +13635,68 @@ export namespace analytics_v3 {
     /**
      * analytics.management.unsampledReports.list
      * @desc Lists unsampled reports to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.list({
+     *     // Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of unsampled reports to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.unsampledReports.list
      * @memberOf! ()
      *
@@ -9311,6 +13884,59 @@ export namespace analytics_v3 {
     /**
      * analytics.management.uploads.deleteUploadData
      * @desc Delete data associated with a previous upload.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.deleteUploadData({
+     *     // Account Id for the uploads to be deleted.
+     *     accountId: 'd+',
+     *     // Custom data source Id for the uploads to be deleted.
+     *     customDataSourceId: '.{22}',
+     *     // Web property Id for the uploads to be deleted.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customDataImportUids": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.uploads.deleteUploadData
      * @memberOf! ()
      *
@@ -9386,6 +14012,65 @@ export namespace analytics_v3 {
     /**
      * analytics.management.uploads.get
      * @desc List uploads to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.get({
+     *     // Account Id for the upload to retrieve.
+     *     accountId: 'd+',
+     *     // Custom data source Id for upload to retrieve.
+     *     customDataSourceId: '.{22}',
+     *     // Upload Id to retrieve.
+     *     uploadId: '.{22}',
+     *     // Web property Id for the upload to retrieve.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "customDataSourceId": "my_customDataSourceId",
+     *   //   "errors": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "status": "my_status",
+     *   //   "uploadTime": "my_uploadTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.uploads.get
      * @memberOf! ()
      *
@@ -9471,6 +14156,67 @@ export namespace analytics_v3 {
     /**
      * analytics.management.uploads.list
      * @desc List uploads to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.list({
+     *     // Account Id for the uploads to retrieve.
+     *     accountId: 'd+',
+     *     // Custom data source Id for uploads to retrieve.
+     *     customDataSourceId: '.{22}',
+     *     // The maximum number of uploads to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for the uploads to retrieve.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.uploads.list
      * @memberOf! ()
      *
@@ -9547,6 +14293,70 @@ export namespace analytics_v3 {
     /**
      * analytics.management.uploads.uploadData
      * @desc Upload data for a custom data source.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.uploadData({
+     *     // Account Id associated with the upload.
+     *     accountId: 'd+',
+     *     // Custom data source Id to which the data being uploaded belongs.
+     *     customDataSourceId: 'placeholder-value',
+     *     // Web property UA-string associated with the upload.
+     *     webPropertyId: 'UA-d+-d+',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "customDataSourceId": "my_customDataSourceId",
+     *   //   "errors": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "status": "my_status",
+     *   //   "uploadTime": "my_uploadTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.uploads.uploadData
      * @memberOf! ()
      *
@@ -9753,6 +14563,72 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.get
      * @desc Gets a web property to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.get({
+     *     // Account ID to retrieve the web property for.
+     *     accountId: '[0-9]+',
+     *     // ID to retrieve the web property for.
+     *     webPropertyId: 'UA-[0-9]+-[0-9]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.get
      * @memberOf! ()
      *
@@ -9828,6 +14704,93 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.insert
      * @desc Create a new property if the account has fewer than 20 properties. Web properties are visible in the Google Analytics interface only if they have at least one profile.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.insert({
+     *     // Account ID to create the web property for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.insert
      * @memberOf! ()
      *
@@ -9903,6 +14866,64 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.list
      * @desc Lists web properties to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.list({
+     *     // Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of web properties to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.list
      * @memberOf! ()
      *
@@ -9979,6 +15000,95 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.patch
      * @desc Updates an existing web property. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.patch({
+     *     // Account ID to which the web property belongs
+     *     accountId: 'placeholder-value',
+     *     // Web property ID
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.patch
      * @memberOf! ()
      *
@@ -10055,6 +15165,95 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.update
      * @desc Updates an existing web property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.update({
+     *     // Account ID to which the web property belongs
+     *     accountId: 'placeholder-value',
+     *     // Web property ID
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.update
      * @memberOf! ()
      *
@@ -10234,6 +15433,48 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.delete
      * @desc Deletes a web property-Google Ads link.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.delete({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to delete the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.delete
      * @memberOf! ()
      *
@@ -10312,6 +15553,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.get
      * @desc Returns a web property-Google Ads link to which the user has access.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.get({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.get
      * @memberOf! ()
      *
@@ -10392,6 +15689,71 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.insert
      * @desc Creates a webProperty-Google Ads link.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.insert({
+     *     // ID of the Google Analytics account to create the link for.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID to create the link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.insert
      * @memberOf! ()
      *
@@ -10468,6 +15830,64 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.list
      * @desc Lists webProperty-Google Ads links for a given web property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.list({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'd+',
+     *     // The maximum number of webProperty-Google Ads links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first webProperty-Google Ads link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads links for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.list
      * @memberOf! ()
      *
@@ -10545,6 +15965,73 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.patch
      * @desc Updates an existing webProperty-Google Ads link. This method supports patch semantics.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.patch({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.patch
      * @memberOf! ()
      *
@@ -10626,6 +16113,73 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.update
      * @desc Updates an existing webProperty-Google Ads link.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.update({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.update
      * @memberOf! ()
      *
@@ -10850,6 +16404,48 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webpropertyUserLinks.delete
      * @desc Removes a user from the given web property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *     // Web Property ID to delete the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webpropertyUserLinks.delete
      * @memberOf! ()
      *
@@ -10924,6 +16520,69 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webpropertyUserLinks.insert
      * @desc Adds a new user to the given web property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Web Property ID to create the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webpropertyUserLinks.insert
      * @memberOf! ()
      *
@@ -11000,6 +16659,64 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webpropertyUserLinks.list
      * @desc Lists webProperty-user links for a given web property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.list({
+     *     // Account ID which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of webProperty-user Links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webpropertyUserLinks.list
      * @memberOf! ()
      *
@@ -11077,6 +16794,71 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webpropertyUserLinks.update
      * @desc Updates permissions for an existing user on the given web property.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.update({
+     *     // Account ID to update the account-user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the account-user link for.
+     *     linkId: 'placeholder-value',
+     *     // Web property ID to update the account-user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webpropertyUserLinks.update
      * @memberOf! ()
      *
@@ -11261,6 +17043,57 @@ export namespace analytics_v3 {
     /**
      * analytics.metadata.columns.list
      * @desc Lists all columns for a report type
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.metadata.columns.list({
+     *     // Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
+     *     reportType: 'ga',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeNames": [],
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.metadata.columns.list
      * @memberOf! ()
      *
@@ -11352,6 +17185,64 @@ export namespace analytics_v3 {
     /**
      * analytics.provisioning.createAccountTicket
      * @desc Creates an account ticket.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.provision'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.provisioning.createAccountTicket({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "account": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profile": {},
+     *       //   "redirectUri": "my_redirectUri",
+     *       //   "webproperty": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profile": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "webproperty": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.provisioning.createAccountTicket
      * @memberOf! ()
      *
@@ -11427,6 +17318,62 @@ export namespace analytics_v3 {
     /**
      * analytics.provisioning.createAccountTree
      * @desc Provision account.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.provision'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.provisioning.createAccountTree({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountName": "my_accountName",
+     *       //   "kind": "my_kind",
+     *       //   "profileName": "my_profileName",
+     *       //   "timezone": "my_timezone",
+     *       //   "webpropertyName": "my_webpropertyName",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": {},
+     *   //   "kind": "my_kind",
+     *   //   "profile": {},
+     *   //   "webproperty": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.provisioning.createAccountTree
      * @memberOf! ()
      *
@@ -11545,6 +17492,64 @@ export namespace analytics_v3 {
     /**
      * analytics.userDeletion.userDeletionRequest.upsert
      * @desc Insert or update a user deletion requests.
+     * @example
+     * // Before running the sample, please make sure to run:
+     * //   $ npm install googleapis
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   // By default, this method will look for, in order:
+     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
+     *   //    pointing to a service account credential file.
+     *   // 2. A GCE metadata server, present in Google Cloud products like
+     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
+     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
+     *   //    `gcloud auth application-default login`. This is preferred for local
+     *   //    development.
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.user.deletion'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await analytics.userDeletion.userDeletionRequest.upsert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deletionRequestTime": "my_deletionRequestTime",
+     *       //   "firebaseProjectId": "my_firebaseProjectId",
+     *       //   "id": {},
+     *       //   "kind": "my_kind",
+     *       //   "propertyId": "my_propertyId",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletionRequestTime": "my_deletionRequestTime",
+     *   //   "firebaseProjectId": "my_firebaseProjectId",
+     *   //   "id": {},
+     *   //   "kind": "my_kind",
+     *   //   "propertyId": "my_propertyId",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.userDeletion.userDeletionRequest.upsert
      * @memberOf! ()
      *
