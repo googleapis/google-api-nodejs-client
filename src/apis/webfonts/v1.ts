@@ -154,7 +154,7 @@ export namespace webfonts_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/webfonts
+     * //   https://console.developers.google.com/apis/api/webfonts.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

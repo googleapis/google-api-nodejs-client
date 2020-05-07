@@ -1535,7 +1535,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1680,7 +1680,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1804,7 +1804,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1934,7 +1934,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2064,7 +2064,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2191,7 +2191,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2335,7 +2335,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2488,7 +2488,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2619,7 +2619,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2737,7 +2737,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2865,7 +2865,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3012,7 +3012,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3167,7 +3167,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3321,7 +3321,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3465,7 +3465,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3606,7 +3606,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3745,7 +3745,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3917,7 +3917,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4049,7 +4049,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4192,7 +4192,7 @@ export namespace identitytoolkit_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

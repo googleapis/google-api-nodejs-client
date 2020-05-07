@@ -633,7 +633,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -756,7 +756,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -914,7 +914,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1035,7 +1035,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1208,7 +1208,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1338,7 +1338,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1462,7 +1462,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1668,7 +1668,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1836,7 +1836,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1945,7 +1945,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2105,7 +2105,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2232,7 +2232,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2413,7 +2413,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2586,7 +2586,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2723,7 +2723,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2955,7 +2955,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3101,7 +3101,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3282,7 +3282,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3405,7 +3405,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3574,7 +3574,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3735,7 +3735,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3882,7 +3882,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4008,7 +4008,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4129,7 +4129,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4316,7 +4316,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4477,7 +4477,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4583,7 +4583,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4730,7 +4730,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4854,7 +4854,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5023,7 +5023,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5200,7 +5200,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5327,7 +5327,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5454,7 +5454,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5581,7 +5581,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5812,7 +5812,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5955,7 +5955,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6126,7 +6126,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6245,7 +6245,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6404,7 +6404,7 @@ export namespace adsense_v1_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adsense
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

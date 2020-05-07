@@ -510,7 +510,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -644,7 +644,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -761,7 +761,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -880,7 +880,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1004,7 +1004,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1371,7 +1371,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1528,7 +1528,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1635,7 +1635,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1750,7 +1750,7 @@ export namespace composer_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/composer
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

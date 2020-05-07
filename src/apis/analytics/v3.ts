@@ -2517,7 +2517,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2750,7 +2750,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2960,7 +2960,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3207,7 +3207,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3357,7 +3357,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3507,7 +3507,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3617,7 +3617,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3750,7 +3750,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3879,7 +3879,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4097,7 +4097,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4247,7 +4247,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4413,7 +4413,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4547,7 +4547,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4695,7 +4695,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4828,7 +4828,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4982,7 +4982,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5267,7 +5267,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5404,7 +5404,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5558,7 +5558,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5691,7 +5691,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5851,7 +5851,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6142,7 +6142,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6266,7 +6266,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6425,7 +6425,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6611,7 +6611,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6748,7 +6748,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6942,7 +6942,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7303,7 +7303,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7432,7 +7432,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7564,7 +7564,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7712,7 +7712,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7839,7 +7839,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7991,7 +7991,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8262,7 +8262,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8403,7 +8403,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8564,7 +8564,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8699,7 +8699,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8863,7 +8863,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9170,7 +9170,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9286,7 +9286,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9417,7 +9417,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9556,7 +9556,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9692,7 +9692,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9834,7 +9834,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10143,7 +10143,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10256,7 +10256,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10402,7 +10402,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10576,7 +10576,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10708,7 +10708,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10885,7 +10885,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11205,7 +11205,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11321,7 +11321,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11460,7 +11460,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11595,7 +11595,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11851,7 +11851,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11964,7 +11964,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12100,7 +12100,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12252,7 +12252,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12390,7 +12390,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12545,7 +12545,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12847,7 +12847,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12997,7 +12997,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13123,7 +13123,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13278,7 +13278,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13446,7 +13446,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13692,7 +13692,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13817,7 +13817,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13958,7 +13958,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14092,7 +14092,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14359,7 +14359,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14497,7 +14497,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14656,7 +14656,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14787,7 +14787,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14949,7 +14949,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15214,7 +15214,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15331,7 +15331,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15464,7 +15464,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15602,7 +15602,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15734,7 +15734,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15879,7 +15879,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16167,7 +16167,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16280,7 +16280,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16416,7 +16416,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16548,7 +16548,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16794,7 +16794,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16933,7 +16933,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -17063,7 +17063,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -17234,7 +17234,7 @@ export namespace analytics_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analytics
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

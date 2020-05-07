@@ -1883,7 +1883,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2031,7 +2031,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2143,7 +2143,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2270,7 +2270,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2410,7 +2410,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2658,7 +2658,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2826,7 +2826,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2960,7 +2960,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3075,7 +3075,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3194,7 +3194,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3333,7 +3333,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3577,7 +3577,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3758,7 +3758,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3907,7 +3907,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4019,7 +4019,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4147,7 +4147,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4362,7 +4362,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4492,7 +4492,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4686,7 +4686,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4818,7 +4818,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5007,7 +5007,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5149,7 +5149,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5264,7 +5264,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5388,7 +5388,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5542,7 +5542,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5684,7 +5684,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5826,7 +5826,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5948,7 +5948,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6231,7 +6231,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6356,7 +6356,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6516,7 +6516,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6750,7 +6750,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6900,7 +6900,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7012,7 +7012,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7140,7 +7140,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7277,7 +7277,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7521,7 +7521,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7663,7 +7663,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7774,7 +7774,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7895,7 +7895,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8035,7 +8035,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8267,7 +8267,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8410,7 +8410,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8523,7 +8523,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8651,7 +8651,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8794,7 +8794,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9041,7 +9041,7 @@ export namespace monitoring_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/monitoring
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

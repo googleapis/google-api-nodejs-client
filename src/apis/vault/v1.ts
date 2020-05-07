@@ -855,7 +855,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -983,7 +983,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1103,7 +1103,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1224,7 +1224,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1339,7 +1339,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1460,7 +1460,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1585,7 +1585,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1704,7 +1704,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1826,7 +1826,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1948,7 +1948,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2242,7 +2242,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2381,7 +2381,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2493,7 +2493,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2619,7 +2619,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2822,7 +2822,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2952,7 +2952,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3085,7 +3085,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3198,7 +3198,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3325,7 +3325,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3454,7 +3454,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3587,7 +3587,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3871,7 +3871,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4004,7 +4004,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4120,7 +4120,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4306,7 +4306,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4438,7 +4438,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4551,7 +4551,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4675,7 +4675,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4880,7 +4880,7 @@ export namespace vault_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/vault
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

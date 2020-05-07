@@ -1683,7 +1683,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1859,7 +1859,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2001,7 +2001,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2157,7 +2157,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2301,7 +2301,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2436,7 +2436,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2598,7 +2598,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2963,7 +2963,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3111,7 +3111,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3225,7 +3225,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3351,7 +3351,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3492,7 +3492,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3727,7 +3727,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3838,7 +3838,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3972,7 +3972,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4123,7 +4123,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4256,7 +4256,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4409,7 +4409,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4687,7 +4687,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4793,7 +4793,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4920,7 +4920,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5041,7 +5041,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5178,7 +5178,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5302,7 +5302,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5423,7 +5423,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5681,7 +5681,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5973,7 +5973,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6089,7 +6089,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6191,7 +6191,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6304,7 +6304,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6427,7 +6427,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6632,7 +6632,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6931,7 +6931,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7093,7 +7093,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7404,7 +7404,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7595,7 +7595,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7785,7 +7785,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7975,7 +7975,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8297,7 +8297,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9022,7 +9022,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9136,7 +9136,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9263,7 +9263,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9406,7 +9406,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9611,7 +9611,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9732,7 +9732,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9880,7 +9880,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10004,7 +10004,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10185,7 +10185,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10324,7 +10324,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10501,7 +10501,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10911,7 +10911,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11028,7 +11028,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11157,7 +11157,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11293,7 +11293,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11417,7 +11417,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11557,7 +11557,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11822,7 +11822,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11937,7 +11937,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12071,7 +12071,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12214,7 +12214,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12346,7 +12346,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12493,7 +12493,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12785,7 +12785,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12897,7 +12897,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13035,7 +13035,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13166,7 +13166,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13326,7 +13326,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13583,7 +13583,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13690,7 +13690,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13818,7 +13818,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13959,7 +13959,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14086,7 +14086,7 @@ export namespace drive_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

@@ -614,7 +614,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -742,7 +742,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -867,7 +867,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1063,7 +1063,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1215,7 +1215,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1341,7 +1341,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1451,7 +1451,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1582,7 +1582,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1724,7 +1724,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1862,7 +1862,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1989,7 +1989,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2304,7 +2304,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2412,7 +2412,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2542,7 +2542,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2686,7 +2686,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2817,7 +2817,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2967,7 +2967,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3090,7 +3090,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3214,7 +3214,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3543,7 +3543,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3683,7 +3683,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3791,7 +3791,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3937,7 +3937,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4077,7 +4077,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4241,7 +4241,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4388,7 +4388,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4561,7 +4561,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4694,7 +4694,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4825,7 +4825,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4951,7 +4951,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5417,7 +5417,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5543,7 +5543,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5775,7 +5775,7 @@ export namespace blogger_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/blogger
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

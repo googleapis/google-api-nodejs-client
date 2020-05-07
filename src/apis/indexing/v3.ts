@@ -169,7 +169,7 @@ export namespace indexing_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/indexing
+     * //   https://console.developers.google.com/apis/api/indexing.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -289,7 +289,7 @@ export namespace indexing_v3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/indexing
+     * //   https://console.developers.google.com/apis/api/indexing.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

@@ -6766,7 +6766,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6913,7 +6913,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7034,7 +7034,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7196,7 +7196,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7318,7 +7318,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7478,7 +7478,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7610,7 +7610,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7747,7 +7747,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7905,7 +7905,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8158,7 +8158,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8290,7 +8290,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8443,7 +8443,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8595,7 +8595,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8751,7 +8751,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9031,7 +9031,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9182,7 +9182,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9377,7 +9377,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9560,7 +9560,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9758,7 +9758,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10131,7 +10131,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10241,7 +10241,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10361,7 +10361,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10490,7 +10490,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10633,7 +10633,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -10765,7 +10765,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11025,7 +11025,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11148,7 +11148,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11283,7 +11283,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11438,7 +11438,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11576,7 +11576,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11842,7 +11842,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -11972,7 +11972,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12123,7 +12123,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12276,7 +12276,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12430,7 +12430,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12718,7 +12718,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12852,7 +12852,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -12987,7 +12987,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13189,7 +13189,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13330,7 +13330,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13503,7 +13503,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13658,7 +13658,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -13834,7 +13834,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14145,7 +14145,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14274,7 +14274,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14494,7 +14494,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14654,7 +14654,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14773,7 +14773,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -14931,7 +14931,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15041,7 +15041,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15161,7 +15161,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15290,7 +15290,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15433,7 +15433,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15565,7 +15565,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15825,7 +15825,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -15961,7 +15961,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16139,7 +16139,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16257,7 +16257,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16406,7 +16406,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16609,7 +16609,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16719,7 +16719,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16842,7 +16842,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -16977,7 +16977,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -17121,7 +17121,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -17259,7 +17259,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -17529,7 +17529,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -17642,7 +17642,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -17764,7 +17764,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -17894,7 +17894,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -18040,7 +18040,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -18173,7 +18173,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -18458,7 +18458,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -18582,7 +18582,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -18719,7 +18719,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -18866,7 +18866,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -19006,7 +19006,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -19266,7 +19266,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -19444,7 +19444,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -19691,7 +19691,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -19855,7 +19855,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -20105,7 +20105,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -20502,7 +20502,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -20662,7 +20662,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -20831,7 +20831,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -20955,7 +20955,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -21092,7 +21092,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -21345,7 +21345,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -21461,7 +21461,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -21590,7 +21590,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -21803,7 +21803,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -21912,7 +21912,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -22043,7 +22043,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -22196,7 +22196,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -22341,7 +22341,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -22497,7 +22497,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -22791,7 +22791,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -22913,7 +22913,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -23095,7 +23095,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -23205,7 +23205,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -23341,7 +23341,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -23485,7 +23485,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -23662,7 +23662,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -23826,7 +23826,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -24006,7 +24006,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -24358,7 +24358,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -24488,7 +24488,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -24637,7 +24637,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -24797,7 +24797,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -24947,7 +24947,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -25223,7 +25223,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -25359,7 +25359,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -25494,7 +25494,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -25656,7 +25656,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -25895,7 +25895,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -26034,7 +26034,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -26267,7 +26267,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -26401,7 +26401,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -26533,7 +26533,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -26653,7 +26653,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -26838,7 +26838,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -26959,7 +26959,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -27117,7 +27117,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -27238,7 +27238,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -27398,7 +27398,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -27522,7 +27522,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -27684,7 +27684,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -27820,7 +27820,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -28053,7 +28053,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -28189,7 +28189,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -28398,7 +28398,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -28540,7 +28540,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -28713,7 +28713,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -28893,7 +28893,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -29069,7 +29069,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -29409,7 +29409,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -29544,7 +29544,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -29700,7 +29700,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -29902,7 +29902,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -30084,7 +30084,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -30288,7 +30288,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -30690,7 +30690,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -30800,7 +30800,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -30920,7 +30920,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -31049,7 +31049,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -31192,7 +31192,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -31324,7 +31324,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -31584,7 +31584,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -31703,7 +31703,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -31861,7 +31861,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -31981,7 +31981,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -32131,7 +32131,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -32266,7 +32266,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -32465,7 +32465,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -32597,7 +32597,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -32726,7 +32726,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -32873,7 +32873,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -33022,7 +33022,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -33172,7 +33172,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -33442,7 +33442,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -33564,7 +33564,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -33698,7 +33698,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -33897,7 +33897,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -34006,7 +34006,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -34137,7 +34137,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -34290,7 +34290,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -34420,7 +34420,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -34546,7 +34546,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -34827,7 +34827,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -34997,7 +34997,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -35124,7 +35124,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -35314,7 +35314,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -35439,7 +35439,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -35582,7 +35582,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -35741,7 +35741,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -35887,7 +35887,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -36176,7 +36176,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -36293,7 +36293,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -36420,7 +36420,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -36611,7 +36611,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -36731,7 +36731,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -36862,7 +36862,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -36997,7 +36997,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -37131,7 +37131,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -37375,7 +37375,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -37508,7 +37508,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -37726,7 +37726,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -37855,7 +37855,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -38002,7 +38002,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -38148,7 +38148,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -38298,7 +38298,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -38564,7 +38564,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -38686,7 +38686,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -38827,7 +38827,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -38948,7 +38948,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -39116,7 +39116,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -39237,7 +39237,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -39404,7 +39404,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -39513,7 +39513,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -39634,7 +39634,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -39767,7 +39767,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -39907,7 +39907,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -40043,7 +40043,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -40309,7 +40309,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -40429,7 +40429,7 @@ export namespace dfareporting_v3_4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

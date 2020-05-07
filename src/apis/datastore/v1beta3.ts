@@ -947,7 +947,7 @@ export namespace datastore_v1beta3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datastore
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1074,7 +1074,7 @@ export namespace datastore_v1beta3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datastore
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1203,7 +1203,7 @@ export namespace datastore_v1beta3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datastore
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1331,7 +1331,7 @@ export namespace datastore_v1beta3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datastore
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1459,7 +1459,7 @@ export namespace datastore_v1beta3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datastore
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1584,7 +1584,7 @@ export namespace datastore_v1beta3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datastore
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1708,7 +1708,7 @@ export namespace datastore_v1beta3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datastore
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

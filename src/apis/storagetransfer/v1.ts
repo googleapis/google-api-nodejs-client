@@ -648,7 +648,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -786,7 +786,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -921,7 +921,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1045,7 +1045,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1176,7 +1176,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1380,7 +1380,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1488,7 +1488,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1604,7 +1604,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1732,7 +1732,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1847,7 +1847,7 @@ export namespace storagetransfer_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storagetransfer
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

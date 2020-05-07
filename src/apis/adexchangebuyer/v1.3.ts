@@ -668,7 +668,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -786,7 +786,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -896,7 +896,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1030,7 +1030,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1221,7 +1221,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1336,7 +1336,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1471,7 +1471,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1590,7 +1590,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1723,7 +1723,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1919,7 +1919,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2057,7 +2057,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2221,7 +2221,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2409,7 +2409,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2536,7 +2536,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2671,7 +2671,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2836,7 +2836,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2946,7 +2946,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3086,7 +3086,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3254,7 +3254,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3370,7 +3370,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3542,7 +3542,7 @@ export namespace adexchangebuyer_v1_3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/adexchangebuyer
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

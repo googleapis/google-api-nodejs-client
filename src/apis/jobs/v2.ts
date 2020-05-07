@@ -1587,7 +1587,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1737,7 +1737,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1847,7 +1847,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1976,7 +1976,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2105,7 +2105,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2366,7 +2366,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2564,7 +2564,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2681,7 +2681,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2836,7 +2836,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2954,7 +2954,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3073,7 +3073,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3221,7 +3221,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3348,7 +3348,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3494,7 +3494,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3658,7 +3658,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3799,7 +3799,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4087,7 +4087,7 @@ export namespace jobs_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

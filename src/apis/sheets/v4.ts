@@ -4132,7 +4132,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4272,7 +4272,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4402,7 +4402,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4533,7 +4533,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4738,7 +4738,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4863,7 +4863,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5040,7 +5040,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5207,7 +5207,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5364,7 +5364,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5495,7 +5495,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5640,7 +5640,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5785,7 +5785,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5925,7 +5925,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6067,7 +6067,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6220,7 +6220,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6348,7 +6348,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6490,7 +6490,7 @@ export namespace sheets_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sheets
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

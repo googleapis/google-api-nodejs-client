@@ -359,7 +359,7 @@ export namespace groupssettings_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/groupssettings
+     * //   https://console.developers.google.com/apis/api/groupssettings.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -530,7 +530,7 @@ export namespace groupssettings_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/groupssettings
+     * //   https://console.developers.google.com/apis/api/groupssettings.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -770,7 +770,7 @@ export namespace groupssettings_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/groupssettings
+     * //   https://console.developers.google.com/apis/api/groupssettings.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

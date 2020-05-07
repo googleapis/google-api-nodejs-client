@@ -1169,7 +1169,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1312,7 +1312,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1443,7 +1443,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1600,7 +1600,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1750,7 +1750,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1910,7 +1910,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2197,7 +2197,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2349,7 +2349,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2495,7 +2495,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2628,7 +2628,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2752,7 +2752,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2918,7 +2918,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3062,7 +3062,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3234,7 +3234,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3369,7 +3369,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3520,7 +3520,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3654,7 +3654,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4086,7 +4086,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4216,7 +4216,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4421,7 +4421,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4565,7 +4565,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4759,7 +4759,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4893,7 +4893,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5098,7 +5098,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5241,7 +5241,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5374,7 +5374,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5504,7 +5504,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5663,7 +5663,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5813,7 +5813,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5968,7 +5968,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6130,7 +6130,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6471,7 +6471,7 @@ export namespace deploymentmanager_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deploymentmanager
+     * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

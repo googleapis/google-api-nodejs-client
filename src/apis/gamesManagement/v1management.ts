@@ -377,7 +377,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -497,7 +497,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -615,7 +615,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -717,7 +717,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -824,7 +824,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -995,7 +995,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1145,7 +1145,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1250,7 +1250,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1352,7 +1352,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1454,7 +1454,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1561,7 +1561,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1729,7 +1729,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1838,7 +1838,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1985,7 +1985,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2087,7 +2087,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2210,7 +2210,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2329,7 +2329,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2446,7 +2446,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2548,7 +2548,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2655,7 +2655,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2823,7 +2823,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2925,7 +2925,7 @@ export namespace gamesManagement_v1management {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesManagement
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

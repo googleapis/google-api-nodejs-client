@@ -1139,7 +1139,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1252,7 +1252,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1434,7 +1434,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1572,7 +1572,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1692,7 +1692,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1828,7 +1828,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1949,7 +1949,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2080,7 +2080,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2211,7 +2211,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2355,7 +2355,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2500,7 +2500,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2673,7 +2673,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2804,7 +2804,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2938,7 +2938,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3313,7 +3313,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3454,7 +3454,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3574,7 +3574,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3696,7 +3696,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3924,7 +3924,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4041,7 +4041,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4148,7 +4148,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4263,7 +4263,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4466,7 +4466,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4603,7 +4603,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4719,7 +4719,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4835,7 +4835,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4970,7 +4970,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5110,7 +5110,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5387,7 +5387,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5526,7 +5526,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5645,7 +5645,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5767,7 +5767,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5912,7 +5912,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6058,7 +6058,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6213,7 +6213,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6352,7 +6352,7 @@ export namespace gameservices_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gameservices
+     * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

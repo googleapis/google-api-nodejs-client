@@ -733,7 +733,7 @@ export namespace lifesciences_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/lifesciences
+     * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -846,7 +846,7 @@ export namespace lifesciences_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/lifesciences
+     * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1016,7 +1016,7 @@ export namespace lifesciences_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/lifesciences
+     * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1133,7 +1133,7 @@ export namespace lifesciences_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/lifesciences
+     * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1248,7 +1248,7 @@ export namespace lifesciences_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/lifesciences
+     * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1446,7 +1446,7 @@ export namespace lifesciences_v2beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/lifesciences
+     * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

@@ -811,7 +811,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -959,7 +959,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1102,7 +1102,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1212,7 +1212,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1334,7 +1334,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1459,7 +1459,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1688,7 +1688,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1812,7 +1812,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1928,7 +1928,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2059,7 +2059,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2181,7 +2181,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2393,7 +2393,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2528,7 +2528,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2675,7 +2675,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2803,7 +2803,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2974,7 +2974,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3102,7 +3102,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3229,7 +3229,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3375,7 +3375,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3510,7 +3510,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3626,7 +3626,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3753,7 +3753,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3876,7 +3876,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4003,7 +4003,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4294,7 +4294,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4445,7 +4445,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

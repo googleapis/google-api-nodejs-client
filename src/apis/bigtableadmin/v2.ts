@@ -836,7 +836,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -951,7 +951,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1066,7 +1066,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1243,7 +1243,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1429,7 +1429,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1568,7 +1568,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1684,7 +1684,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1807,7 +1807,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1940,7 +1940,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2071,7 +2071,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2215,7 +2215,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2349,7 +2349,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2488,7 +2488,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2778,7 +2778,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2927,7 +2927,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3046,7 +3046,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3171,7 +3171,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3315,7 +3315,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3570,7 +3570,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3716,7 +3716,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3832,7 +3832,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3955,7 +3955,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4088,7 +4088,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4312,7 +4312,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4447,7 +4447,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4583,7 +4583,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4783,7 +4783,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4919,7 +4919,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5053,7 +5053,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5169,7 +5169,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5298,7 +5298,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5439,7 +5439,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5565,7 +5565,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5697,7 +5697,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5839,7 +5839,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5974,7 +5974,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6107,7 +6107,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6441,7 +6441,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6563,7 +6563,7 @@ export namespace bigtableadmin_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigtableadmin
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

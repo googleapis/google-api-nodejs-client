@@ -3293,7 +3293,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3420,7 +3420,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3606,7 +3606,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3746,7 +3746,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3929,7 +3929,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4080,7 +4080,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4211,7 +4211,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4352,7 +4352,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4491,7 +4491,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -4866,7 +4866,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5003,7 +5003,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5189,7 +5189,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5388,7 +5388,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5528,7 +5528,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5735,7 +5735,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -5905,7 +5905,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6089,7 +6089,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6271,7 +6271,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6422,7 +6422,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6554,7 +6554,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6694,7 +6694,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -6837,7 +6837,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7184,7 +7184,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7326,7 +7326,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7525,7 +7525,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7725,7 +7725,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -7880,7 +7880,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8025,7 +8025,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8233,7 +8233,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8358,7 +8358,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8489,7 +8489,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8684,7 +8684,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8837,7 +8837,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -8995,7 +8995,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9130,7 +9130,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9376,7 +9376,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9506,7 +9506,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9681,7 +9681,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9834,7 +9834,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -9969,7 +9969,7 @@ export namespace dataflow_v1b3 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

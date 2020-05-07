@@ -390,7 +390,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -504,7 +504,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -679,7 +679,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -815,7 +815,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -923,7 +923,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1036,7 +1036,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1164,7 +1164,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1325,7 +1325,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1452,7 +1452,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1580,7 +1580,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1872,7 +1872,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2010,7 +2010,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2121,7 +2121,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2236,7 +2236,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2364,7 +2364,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2521,7 +2521,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2651,7 +2651,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2783,7 +2783,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2911,7 +2911,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3216,7 +3216,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3356,7 +3356,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3467,7 +3467,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3583,7 +3583,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3742,7 +3742,7 @@ export namespace servicedirectory_v1beta1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicedirectory
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

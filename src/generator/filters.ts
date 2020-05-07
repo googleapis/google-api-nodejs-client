@@ -37,7 +37,7 @@ export function isSimpleType(type: string): boolean {
 }
 
 export function cleanPropertyName(prop: string) {
-  const match = prop.match(/[-@.]/g);
+  const match = prop.match(/[-@.]/);
   return match ? `'${prop}'` : prop;
 }
 

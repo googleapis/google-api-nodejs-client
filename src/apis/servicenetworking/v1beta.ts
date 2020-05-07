@@ -1448,7 +1448,7 @@ export namespace servicenetworking_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1587,7 +1587,7 @@ export namespace servicenetworking_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1732,7 +1732,7 @@ export namespace servicenetworking_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1866,7 +1866,7 @@ export namespace servicenetworking_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2078,7 +2078,7 @@ export namespace servicenetworking_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2214,7 +2214,7 @@ export namespace servicenetworking_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

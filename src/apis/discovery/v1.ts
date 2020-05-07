@@ -420,7 +420,7 @@ export namespace discovery_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/discovery
+     * //   https://console.developers.google.com/apis/api/discovery.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -565,7 +565,7 @@ export namespace discovery_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/discovery
+     * //   https://console.developers.google.com/apis/api/discovery.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

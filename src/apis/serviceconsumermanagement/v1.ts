@@ -1690,7 +1690,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1805,7 +1805,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1913,7 +1913,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2028,7 +2028,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2224,7 +2224,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2411,7 +2411,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2541,7 +2541,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2673,7 +2673,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2806,7 +2806,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2939,7 +2939,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3055,7 +3055,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3186,7 +3186,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3320,7 +3320,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3451,7 +3451,7 @@ export namespace serviceconsumermanagement_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

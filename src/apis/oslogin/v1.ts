@@ -230,7 +230,7 @@ export namespace oslogin_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oslogin
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -355,7 +355,7 @@ export namespace oslogin_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oslogin
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -543,7 +543,7 @@ export namespace oslogin_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oslogin
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -675,7 +675,7 @@ export namespace oslogin_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oslogin
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -787,7 +787,7 @@ export namespace oslogin_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oslogin
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -906,7 +906,7 @@ export namespace oslogin_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oslogin
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

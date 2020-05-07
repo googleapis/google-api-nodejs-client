@@ -189,7 +189,7 @@ export namespace runtimeconfig_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/runtimeconfig
+     * //   https://console.developers.google.com/apis/api/runtimeconfig.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -307,7 +307,7 @@ export namespace runtimeconfig_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/runtimeconfig
+     * //   https://console.developers.google.com/apis/api/runtimeconfig.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -418,7 +418,7 @@ export namespace runtimeconfig_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/runtimeconfig
+     * //   https://console.developers.google.com/apis/api/runtimeconfig.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

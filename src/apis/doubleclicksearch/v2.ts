@@ -538,7 +538,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -690,7 +690,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -811,7 +811,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -932,7 +932,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1152,7 +1152,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1289,7 +1289,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1408,7 +1408,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1517,7 +1517,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1710,7 +1710,7 @@ export namespace doubleclicksearch_v2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

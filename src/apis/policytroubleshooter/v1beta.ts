@@ -325,7 +325,7 @@ export namespace policytroubleshooter_v1beta {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policytroubleshooter
+     * //   https://console.developers.google.com/apis/api/policytroubleshooter.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

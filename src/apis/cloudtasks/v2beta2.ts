@@ -651,7 +651,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -764,7 +764,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -936,7 +936,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1074,7 +1074,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1182,7 +1182,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1302,7 +1302,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1426,7 +1426,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1574,7 +1574,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1727,7 +1727,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1853,7 +1853,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1979,7 +1979,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2105,7 +2105,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2229,7 +2229,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2560,7 +2560,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2681,7 +2681,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2811,7 +2811,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2942,7 +2942,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3051,7 +3051,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3182,7 +3182,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3309,7 +3309,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3460,7 +3460,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -3591,7 +3591,7 @@ export namespace cloudtasks_v2beta2 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

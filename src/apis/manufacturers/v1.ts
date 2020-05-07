@@ -475,7 +475,7 @@ export namespace manufacturers_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/manufacturers
+     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -600,7 +600,7 @@ export namespace manufacturers_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/manufacturers
+     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -738,7 +738,7 @@ export namespace manufacturers_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/manufacturers
+     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -869,7 +869,7 @@ export namespace manufacturers_v1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/manufacturers
+     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

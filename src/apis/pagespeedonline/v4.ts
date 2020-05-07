@@ -273,7 +273,7 @@ export namespace pagespeedonline_v4 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/pagespeedonline
+     * //   https://console.developers.google.com/apis/api/pagespeedonline.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

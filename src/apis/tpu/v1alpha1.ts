@@ -459,7 +459,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -572,7 +572,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -742,7 +742,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -855,7 +855,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1040,7 +1040,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1185,7 +1185,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1300,7 +1300,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1424,7 +1424,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1546,7 +1546,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1673,7 +1673,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1798,7 +1798,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2047,7 +2047,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2157,7 +2157,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2264,7 +2264,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2379,7 +2379,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2573,7 +2573,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -2686,7 +2686,7 @@ export namespace tpu_v1alpha1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tpu
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:

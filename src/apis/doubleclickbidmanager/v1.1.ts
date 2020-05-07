@@ -559,7 +559,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -688,7 +688,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -844,7 +844,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -979,7 +979,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1085,7 +1085,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1202,7 +1202,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1323,7 +1323,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1527,7 +1527,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
@@ -1678,7 +1678,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @example
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
