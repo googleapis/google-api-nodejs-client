@@ -491,6 +491,57 @@ export namespace recommender_v1beta1 {
     /**
      * recommender.projects.locations.insightTypes.insights.get
      * @desc Gets the requested insight. Requires the recommender.*.get IAM permission for the specified insight type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.insightTypes.insights.get({
+     *     // Required. Name of the insight.
+     *     name:
+     *       'projects/my-project/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedRecommendations": [],
+     *   //   "category": "my_category",
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "insightSubtype": "my_insightSubtype",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "stateInfo": {},
+     *   //   "targetResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias recommender.projects.locations.insightTypes.insights.get
      * @memberOf! ()
      *
@@ -579,6 +630,68 @@ export namespace recommender_v1beta1 {
     /**
      * recommender.projects.locations.insightTypes.insights.list
      * @desc Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.insightTypes.insights.list({
+     *     // Optional. Filter expression to restrict the insights returned. Supported
+     *     // filter fields: state
+     *     // Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of results to return from this request.  Non-positive
+     *     // values are ignored. If not specified, the server will determine the number
+     *     // of results to return.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieves the next batch of results from the preceding call to
+     *     // this method. `page_token` must be the value of `next_page_token` from the
+     *     // previous response. The values of other method parameters must be identical
+     *     // to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The container resource on which to execute the request.
+     *     // Acceptable formats:
+     *     //
+     *     // 1.
+     *     // "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
+     *     //
+     *     // LOCATION here refers to GCP Locations:
+     *     // https://cloud.google.com/about/locations/
+     *     parent:
+     *       'projects/my-project/locations/my-location/insightTypes/my-insightType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insights": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias recommender.projects.locations.insightTypes.insights.list
      * @memberOf! ()
      *
@@ -680,6 +793,68 @@ export namespace recommender_v1beta1 {
     /**
      * recommender.projects.locations.insightTypes.insights.markAccepted
      * @desc Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated.  MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.insightTypes.insights.markAccepted(
+     *     {
+     *       // Required. Name of the insight.
+     *       name:
+     *         'projects/my-project/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "stateMetadata": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedRecommendations": [],
+     *   //   "category": "my_category",
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "insightSubtype": "my_insightSubtype",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "stateInfo": {},
+     *   //   "targetResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias recommender.projects.locations.insightTypes.insights.markAccepted
      * @memberOf! ()
      *
@@ -844,6 +1019,58 @@ export namespace recommender_v1beta1 {
     /**
      * recommender.projects.locations.recommenders.recommendations.get
      * @desc Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.recommenders.recommendations.get(
+     *     {
+     *       // Required. Name of the recommendation.
+     *       name:
+     *         'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias recommender.projects.locations.recommenders.recommendations.get
      * @memberOf! ()
      *
@@ -940,6 +1167,70 @@ export namespace recommender_v1beta1 {
     /**
      * recommender.projects.locations.recommenders.recommendations.list
      * @desc Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.recommenders.recommendations.list(
+     *     {
+     *       // Filter expression to restrict the recommendations returned. Supported
+     *       // filter fields: state_info.state
+     *       // Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of results to return from this request.  Non-positive
+     *       // values are ignored. If not specified, the server will determine the number
+     *       // of results to return.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. If present, retrieves the next batch of results from the preceding call to
+     *       // this method. `page_token` must be the value of `next_page_token` from the
+     *       // previous response. The values of other method parameters must be identical
+     *       // to those in the previous call.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The container resource on which to execute the request.
+     *       // Acceptable formats:
+     *       //
+     *       // 1.
+     *       // "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
+     *       //
+     *       // LOCATION here refers to GCP Locations:
+     *       // https://cloud.google.com/about/locations/
+     *       parent:
+     *         'projects/my-project/locations/my-location/recommenders/my-recommender',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "recommendations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias recommender.projects.locations.recommenders.recommendations.list
      * @memberOf! ()
      *
@@ -1043,6 +1334,67 @@ export namespace recommender_v1beta1 {
     /**
      * recommender.projects.locations.recommenders.recommendations.markClaimed
      * @desc Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationClaimed can be applied to recommendations in CLAIMED or ACTIVE state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.recommenders.recommendations.markClaimed(
+     *     {
+     *       // Required. Name of the recommendation.
+     *       name:
+     *         'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "stateMetadata": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias recommender.projects.locations.recommenders.recommendations.markClaimed
      * @memberOf! ()
      *
@@ -1143,6 +1495,67 @@ export namespace recommender_v1beta1 {
     /**
      * recommender.projects.locations.recommenders.recommendations.markFailed
      * @desc Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.recommenders.recommendations.markFailed(
+     *     {
+     *       // Required. Name of the recommendation.
+     *       name:
+     *         'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "stateMetadata": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias recommender.projects.locations.recommenders.recommendations.markFailed
      * @memberOf! ()
      *
@@ -1243,6 +1656,67 @@ export namespace recommender_v1beta1 {
     /**
      * recommender.projects.locations.recommenders.recommendations.markSucceeded
      * @desc Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.recommenders.recommendations.markSucceeded(
+     *     {
+     *       // Required. Name of the recommendation.
+     *       name:
+     *         'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "stateMetadata": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias recommender.projects.locations.recommenders.recommendations.markSucceeded
      * @memberOf! ()
      *

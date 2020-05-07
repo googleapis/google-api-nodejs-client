@@ -446,6 +446,50 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.locations.get
      * @memberOf! ()
      *
@@ -516,6 +560,53 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.locations.list
      * @memberOf! ()
      *
@@ -642,6 +733,58 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.addVersion
      * @desc Creates a new SecretVersion containing secret data and attaches it to an existing Secret.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.addVersion({
+     *     // Required. The resource name of the Secret to associate with the
+     *     // SecretVersion in the format `projects/x/secrets/x`.
+     *     parent: 'projects/my-project/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "payload": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.addVersion
      * @memberOf! ()
      *
@@ -718,6 +861,67 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.create
      * @desc Creates a new Secret containing no SecretVersions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.create({
+     *     // Required. The resource name of the project to associate with the
+     *     // Secret, in the format `projects/x`.
+     *     parent: 'projects/my-project',
+     *     // Required. This must be unique within the project.
+     *     //
+     *     // A secret ID is a string with a maximum length of 255 characters and can
+     *     // contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
+     *     // underscore (`_`) characters.
+     *     secretId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "replication": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.create
      * @memberOf! ()
      *
@@ -793,6 +997,45 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.delete
      * @desc Deletes a Secret.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.delete({
+     *     // Required. The resource name of the Secret to delete in the format
+     *     // `projects/x/secrets/x`.
+     *     name: 'projects/my-project/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.delete
      * @memberOf! ()
      *
@@ -863,6 +1106,49 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.get
      * @desc Gets metadata for a given Secret.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.get({
+     *     // Required. The resource name of the Secret, in the format `projects/x/secrets/x`.
+     *     name: 'projects/my-project/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.get
      * @memberOf! ()
      *
@@ -933,6 +1219,59 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.getIamPolicy
      * @desc Gets the access control policy for a secret. Returns empty policy if the secret exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.getIamPolicy({
+     *     // Optional. The policy format version to be returned.
+     *     //
+     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *     // rejected.
+     *     //
+     *     // Requests for policies with any conditional bindings must specify version 3.
+     *     // Policies without any conditional bindings may specify any valid value or
+     *     // leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.getIamPolicy
      * @memberOf! ()
      *
@@ -1007,6 +1346,56 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.list
      * @desc Lists Secrets.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.list({
+     *     // Optional. The maximum number of results to be returned in a single page. If
+     *     // set to 0, the server decides the number of results to return. If the
+     *     // number is greater than 25000, it is capped at 25000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Pagination token, returned earlier via
+     *     // ListSecretsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the project associated with the
+     *     // Secrets, in the format `projects/x`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "secrets": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.list
      * @memberOf! ()
      *
@@ -1084,6 +1473,62 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.patch
      * @desc Updates metadata of an existing Secret.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.patch({
+     *     // Output only. The resource name of the Secret in the format `projects/x/secrets/x`.
+     *     name: 'projects/my-project/secrets/my-secret',
+     *     // Required. Specifies the fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "replication": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.patch
      * @memberOf! ()
      *
@@ -1156,6 +1601,59 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.setIamPolicy
      * @desc Sets the access control policy on the specified secret. Replaces any existing policy.  Permissions on SecretVersions are enforced according to the policy set on the associated Secret.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.setIamPolicy
      * @memberOf! ()
      *
@@ -1230,6 +1728,55 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.testIamPermissions
      * @desc Returns permissions that a caller has for the specified secret. If the secret does not exist, this call returns an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.testIamPermissions
      * @memberOf! ()
      *
@@ -1474,6 +2021,48 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.versions.access
      * @desc Accesses a SecretVersion. This call returns the secret data.  `projects/x/secrets/x/versions/latest` is an alias to the `latest` SecretVersion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.access({
+     *     // Required. The resource name of the SecretVersion in the format
+     *     // `projects/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "payload": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.versions.access
      * @memberOf! ()
      *
@@ -1556,6 +2145,56 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.versions.destroy
      * @desc Destroys a SecretVersion.  Sets the state of the SecretVersion to DESTROYED and irrevocably destroys the secret data.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.destroy({
+     *     // Required. The resource name of the SecretVersion to destroy in the format
+     *     // `projects/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.versions.destroy
      * @memberOf! ()
      *
@@ -1632,6 +2271,56 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.versions.disable
      * @desc Disables a SecretVersion.  Sets the state of the SecretVersion to DISABLED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.disable({
+     *     // Required. The resource name of the SecretVersion to disable in the format
+     *     // `projects/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.versions.disable
      * @memberOf! ()
      *
@@ -1708,6 +2397,56 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.versions.enable
      * @desc Enables a SecretVersion.  Sets the state of the SecretVersion to ENABLED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.enable({
+     *     // Required. The resource name of the SecretVersion to enable in the format
+     *     // `projects/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.versions.enable
      * @memberOf! ()
      *
@@ -1784,6 +2523,52 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.versions.get
      * @desc Gets metadata for a SecretVersion.  `projects/x/secrets/x/versions/latest` is an alias to the `latest` SecretVersion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.get({
+     *     // Required. The resource name of the SecretVersion in the format
+     *     // `projects/x/secrets/x/versions/x`.
+     *     // `projects/x/secrets/x/versions/latest` is an alias to the `latest`
+     *     // SecretVersion.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.versions.get
      * @memberOf! ()
      *
@@ -1856,6 +2641,57 @@ export namespace secretmanager_v1beta1 {
     /**
      * secretmanager.projects.secrets.versions.list
      * @desc Lists SecretVersions. This call does not return secret data.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.list({
+     *     // Optional. The maximum number of results to be returned in a single page. If
+     *     // set to 0, the server decides the number of results to return. If the
+     *     // number is greater than 25000, it is capped at 25000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Pagination token, returned earlier via
+     *     // ListSecretVersionsResponse.next_page_token][].
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the Secret associated with the
+     *     // SecretVersions to list, in the format
+     *     // `projects/x/secrets/x`.
+     *     parent: 'projects/my-project/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0,
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias secretmanager.projects.secrets.versions.list
      * @memberOf! ()
      *

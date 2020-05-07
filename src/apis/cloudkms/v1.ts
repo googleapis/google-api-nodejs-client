@@ -713,6 +713,53 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.get
      * @memberOf! ()
      *
@@ -782,6 +829,56 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.list
      * @memberOf! ()
      *
@@ -913,6 +1010,63 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.create
      * @desc Create a new KeyRing in a given Project and Location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.create({
+     *     // Required. It must be unique within a location and match the regular
+     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     keyRingId: 'placeholder-value',
+     *     // Required. The resource name of the location associated with the
+     *     // KeyRings, in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.create
      * @memberOf! ()
      *
@@ -987,6 +1141,50 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.get
      * @desc Returns metadata for a given KeyRing.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.get({
+     *     // Required. The name of the KeyRing to get.
+     *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.get
      * @memberOf! ()
      *
@@ -1056,6 +1254,62 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.getIamPolicy({
+     *     // Optional. The policy format version to be returned.
+     *     //
+     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *     // rejected.
+     *     //
+     *     // Requests for policies with any conditional bindings must specify version 3.
+     *     // Policies without any conditional bindings may specify any valid value or
+     *     // leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.getIamPolicy
      * @memberOf! ()
      *
@@ -1129,6 +1383,70 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.list
      * @desc Lists KeyRings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.list({
+     *     // Optional. Only include resources that match the filter in the response. For
+     *     // more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify how the results should be sorted. If not specified, the
+     *     // results will be sorted in the default order.  For more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Optional limit on the number of KeyRings to include in the
+     *     // response.  Further KeyRings can subsequently be obtained by
+     *     // including the ListKeyRingsResponse.next_page_token in a subsequent
+     *     // request.  If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via
+     *     // ListKeyRingsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the location associated with the
+     *     // KeyRings, in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyRings": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.list
      * @memberOf! ()
      *
@@ -1209,6 +1527,62 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.setIamPolicy
      * @memberOf! ()
      *
@@ -1282,6 +1656,58 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.testIamPermissions
      * @memberOf! ()
      *
@@ -1487,6 +1913,81 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.create
      * @desc Create a new CryptoKey within a KeyRing.  CryptoKey.purpose and CryptoKey.version_template.algorithm are required.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.create({
+     *     // Required. It must be unique within a KeyRing and match the regular
+     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     cryptoKeyId: 'placeholder-value',
+     *     // Required. The name of the KeyRing associated with the
+     *     // CryptoKeys.
+     *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *     // If set to true, the request will create a CryptoKey without any
+     *     // CryptoKeyVersions. You must manually call
+     *     // CreateCryptoKeyVersion or
+     *     // ImportCryptoKeyVersion
+     *     // before you can use this CryptoKey.
+     *     skipInitialVersionCreation: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nextRotationTime": "my_nextRotationTime",
+     *       //   "primary": {},
+     *       //   "purpose": "my_purpose",
+     *       //   "rotationPeriod": "my_rotationPeriod",
+     *       //   "versionTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nextRotationTime": "my_nextRotationTime",
+     *   //   "primary": {},
+     *   //   "purpose": "my_purpose",
+     *   //   "rotationPeriod": "my_rotationPeriod",
+     *   //   "versionTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.create
      * @memberOf! ()
      *
@@ -1564,6 +2065,60 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.decrypt
      * @desc Decrypts data that was protected by Encrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.decrypt({
+     *     // Required. The resource name of the CryptoKey to use for decryption.
+     *     // The server will choose the appropriate version.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalAuthenticatedData": "my_additionalAuthenticatedData",
+     *       //   "ciphertext": "my_ciphertext"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "plaintext": "my_plaintext"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.decrypt
      * @memberOf! ()
      *
@@ -1639,6 +2194,64 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.encrypt
      * @desc Encrypts data, so that it can only be recovered by a call to Decrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.encrypt({
+     *     // Required. The resource name of the CryptoKey or CryptoKeyVersion
+     *     // to use for encryption.
+     *     //
+     *     // If a CryptoKey is specified, the server will use its
+     *     // primary version.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalAuthenticatedData": "my_additionalAuthenticatedData",
+     *       //   "plaintext": "my_plaintext"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ciphertext": "my_ciphertext",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.encrypt
      * @memberOf! ()
      *
@@ -1714,6 +2327,57 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.get
      * @desc Returns metadata for a given CryptoKey, as well as its primary CryptoKeyVersion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.get({
+     *     // Required. The name of the CryptoKey to get.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nextRotationTime": "my_nextRotationTime",
+     *   //   "primary": {},
+     *   //   "purpose": "my_purpose",
+     *   //   "rotationPeriod": "my_rotationPeriod",
+     *   //   "versionTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.get
      * @memberOf! ()
      *
@@ -1785,6 +2449,65 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy(
+     *     {
+     *       // Optional. The policy format version to be returned.
+     *       //
+     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *       // rejected.
+     *       //
+     *       // Requests for policies with any conditional bindings must specify version 3.
+     *       // Policies without any conditional bindings may specify any valid value or
+     *       // leave the field unset.
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy
      * @memberOf! ()
      *
@@ -1858,6 +2581,72 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.list
      * @desc Lists CryptoKeys.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.list({
+     *     // Optional. Only include resources that match the filter in the response. For
+     *     // more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify how the results should be sorted. If not specified, the
+     *     // results will be sorted in the default order. For more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Optional limit on the number of CryptoKeys to include in the
+     *     // response.  Further CryptoKeys can subsequently be obtained by
+     *     // including the ListCryptoKeysResponse.next_page_token in a subsequent
+     *     // request.  If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via
+     *     // ListCryptoKeysResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the KeyRing to list, in the format
+     *     // `projects/x/locations/x/keyRings/x`.
+     *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *     // The fields of the primary version to include in the response.
+     *     versionView: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cryptoKeys": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.list
      * @memberOf! ()
      *
@@ -1939,6 +2728,75 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.patch
      * @desc Update a CryptoKey.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.patch({
+     *     // Output only. The resource name for this CryptoKey in the format
+     *     // `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *     // Required. List of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nextRotationTime": "my_nextRotationTime",
+     *       //   "primary": {},
+     *       //   "purpose": "my_purpose",
+     *       //   "rotationPeriod": "my_rotationPeriod",
+     *       //   "versionTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nextRotationTime": "my_nextRotationTime",
+     *   //   "primary": {},
+     *   //   "purpose": "my_purpose",
+     *   //   "rotationPeriod": "my_rotationPeriod",
+     *   //   "versionTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.patch
      * @memberOf! ()
      *
@@ -2012,6 +2870,65 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
      * @memberOf! ()
      *
@@ -2085,6 +3002,61 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions
      * @memberOf! ()
      *
@@ -2167,6 +3139,67 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
      * @desc Update the version of a CryptoKey that will be used in Encrypt.  Returns an error if called on an asymmetric key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion(
+     *     {
+     *       // Required. The resource name of the CryptoKey to update.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cryptoKeyVersionId": "my_cryptoKeyVersionId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nextRotationTime": "my_nextRotationTime",
+     *   //   "primary": {},
+     *   //   "purpose": "my_purpose",
+     *   //   "rotationPeriod": "my_rotationPeriod",
+     *   //   "versionTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
      * @memberOf! ()
      *
@@ -2443,6 +3476,61 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
      * @desc Decrypts data that was encrypted with a public key retrieved from GetPublicKey corresponding to a CryptoKeyVersion with CryptoKey.purpose ASYMMETRIC_DECRYPT.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt(
+     *     {
+     *       // Required. The resource name of the CryptoKeyVersion to use for
+     *       // decryption.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "ciphertext": "my_ciphertext"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "plaintext": "my_plaintext"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
      * @memberOf! ()
      *
@@ -2525,6 +3613,60 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
      * @desc Signs data using a CryptoKeyVersion with CryptoKey.purpose ASYMMETRIC_SIGN, producing a signature that can be verified with the public key retrieved from GetPublicKey.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign(
+     *     {
+     *       // Required. The resource name of the CryptoKeyVersion to use for signing.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "digest": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signature": "my_signature"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
      * @memberOf! ()
      *
@@ -2604,6 +3746,85 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
      * @desc Create a new CryptoKeyVersion in a CryptoKey.  The server will assign the next sequential id. If unset, state will be set to ENABLED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create(
+     *     {
+     *       // Required. The name of the CryptoKey associated with
+     *       // the CryptoKeyVersions.
+     *       parent:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "algorithm": "my_algorithm",
+     *         //   "attestation": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "destroyEventTime": "my_destroyEventTime",
+     *         //   "destroyTime": "my_destroyTime",
+     *         //   "externalProtectionLevelOptions": {},
+     *         //   "generateTime": "my_generateTime",
+     *         //   "importFailureReason": "my_importFailureReason",
+     *         //   "importJob": "my_importJob",
+     *         //   "importTime": "my_importTime",
+     *         //   "name": "my_name",
+     *         //   "protectionLevel": "my_protectionLevel",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
      * @memberOf! ()
      *
@@ -2679,6 +3900,70 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy
      * @desc Schedule a CryptoKeyVersion for destruction.  Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and destroy_time will be set to a time 24 hours in the future, at which point the state will be changed to DESTROYED, and the key material will be irrevocably destroyed.  Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy(
+     *     {
+     *       // Required. The resource name of the CryptoKeyVersion to destroy.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy
      * @memberOf! ()
      *
@@ -2754,6 +4039,64 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
      * @desc Returns metadata for a given CryptoKeyVersion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get(
+     *     {
+     *       // Required. The name of the CryptoKeyVersion to get.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
      * @memberOf! ()
      *
@@ -2825,6 +4168,54 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
      * @desc Returns the public key for the given CryptoKeyVersion. The CryptoKey.purpose must be ASYMMETRIC_SIGN or ASYMMETRIC_DECRYPT.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey(
+     *     {
+     *       // Required. The name of the CryptoKeyVersion public key to
+     *       // get.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "pem": "my_pem"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
      * @memberOf! ()
      *
@@ -2899,6 +4290,75 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import
      * @desc Imports a new CryptoKeyVersion into an existing CryptoKey using the wrapped key material provided in the request.  The version ID will be assigned the next sequential id within the CryptoKey.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import(
+     *     {
+     *       // Required. The name of the CryptoKey to
+     *       // be imported into.
+     *       parent:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "algorithm": "my_algorithm",
+     *         //   "importJob": "my_importJob",
+     *         //   "rsaAesWrappedKey": "my_rsaAesWrappedKey"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import
      * @memberOf! ()
      *
@@ -2974,6 +4434,76 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @desc Lists CryptoKeyVersions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list(
+     *     {
+     *       // Optional. Only include resources that match the filter in the response. For
+     *       // more information, see
+     *       // [Sorting and filtering list
+     *       // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *       filter: 'placeholder-value',
+     *       // Optional. Specify how the results should be sorted. If not specified, the
+     *       // results will be sorted in the default order. For more information, see
+     *       // [Sorting and filtering list
+     *       // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *       orderBy: 'placeholder-value',
+     *       // Optional. Optional limit on the number of CryptoKeyVersions to
+     *       // include in the response. Further CryptoKeyVersions can
+     *       // subsequently be obtained by including the
+     *       // ListCryptoKeyVersionsResponse.next_page_token in a subsequent request.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Optional pagination token, returned earlier via
+     *       // ListCryptoKeyVersionsResponse.next_page_token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the CryptoKey to list, in the format
+     *       // `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *       // The fields to include in the response.
+     *       view: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cryptoKeyVersions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @memberOf! ()
      *
@@ -3062,6 +4592,87 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
      * @desc Update a CryptoKeyVersion's metadata.  state may be changed between ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to move between other states.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch(
+     *     {
+     *       // Output only. The resource name for this CryptoKeyVersion in the format
+     *       // `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *       // Required. List of fields to be updated in this request.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "algorithm": "my_algorithm",
+     *         //   "attestation": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "destroyEventTime": "my_destroyEventTime",
+     *         //   "destroyTime": "my_destroyTime",
+     *         //   "externalProtectionLevelOptions": {},
+     *         //   "generateTime": "my_generateTime",
+     *         //   "importFailureReason": "my_importFailureReason",
+     *         //   "importJob": "my_importJob",
+     *         //   "importTime": "my_importTime",
+     *         //   "name": "my_name",
+     *         //   "protectionLevel": "my_protectionLevel",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
      * @memberOf! ()
      *
@@ -3135,6 +4746,70 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
      * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state.  Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore(
+     *     {
+     *       // Required. The resource name of the CryptoKeyVersion to restore.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
      * @memberOf! ()
      *
@@ -3397,6 +5072,79 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.create
      * @desc Create a new ImportJob within a KeyRing.  ImportJob.import_method is required.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.create({
+     *     // Required. It must be unique within a KeyRing and match the regular
+     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     importJobId: 'placeholder-value',
+     *     // Required. The name of the KeyRing associated with the
+     *     // ImportJobs.
+     *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attestation": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "expireEventTime": "my_expireEventTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "generateTime": "my_generateTime",
+     *       //   "importMethod": "my_importMethod",
+     *       //   "name": "my_name",
+     *       //   "protectionLevel": "my_protectionLevel",
+     *       //   "publicKey": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "expireEventTime": "my_expireEventTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importMethod": "my_importMethod",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "publicKey": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.create
      * @memberOf! ()
      *
@@ -3473,6 +5221,59 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.get
      * @desc Returns metadata for a given ImportJob.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.get({
+     *     // Required. The name of the ImportJob to get.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "expireEventTime": "my_expireEventTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importMethod": "my_importMethod",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "publicKey": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.get
      * @memberOf! ()
      *
@@ -3544,6 +5345,65 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.getIamPolicy(
+     *     {
+     *       // Optional. The policy format version to be returned.
+     *       //
+     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *       // rejected.
+     *       //
+     *       // Requests for policies with any conditional bindings must specify version 3.
+     *       // Policies without any conditional bindings may specify any valid value or
+     *       // leave the field unset.
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
      * @memberOf! ()
      *
@@ -3617,6 +5477,70 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.list
      * @desc Lists ImportJobs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.list({
+     *     // Optional. Only include resources that match the filter in the response. For
+     *     // more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify how the results should be sorted. If not specified, the
+     *     // results will be sorted in the default order. For more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Optional limit on the number of ImportJobs to include in the
+     *     // response. Further ImportJobs can subsequently be obtained by
+     *     // including the ListImportJobsResponse.next_page_token in a subsequent
+     *     // request. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via
+     *     // ListImportJobsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the KeyRing to list, in the format
+     *     // `projects/x/locations/x/keyRings/x`.
+     *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "importJobs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.list
      * @memberOf! ()
      *
@@ -3697,6 +5621,65 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
      * @memberOf! ()
      *
@@ -3770,6 +5753,61 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
      * @memberOf! ()
      *

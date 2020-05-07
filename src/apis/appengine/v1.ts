@@ -1600,6 +1600,67 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.create
      * @desc Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authDomain": "my_authDomain",
+     *       //   "codeBucket": "my_codeBucket",
+     *       //   "defaultBucket": "my_defaultBucket",
+     *       //   "defaultCookieExpiration": "my_defaultCookieExpiration",
+     *       //   "defaultHostname": "my_defaultHostname",
+     *       //   "dispatchRules": [],
+     *       //   "featureSettings": {},
+     *       //   "gcrDomain": "my_gcrDomain",
+     *       //   "iap": {},
+     *       //   "id": "my_id",
+     *       //   "locationId": "my_locationId",
+     *       //   "name": "my_name",
+     *       //   "servingStatus": "my_servingStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.create
      * @memberOf! ()
      *
@@ -1670,6 +1731,62 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.get
      * @desc Gets information about an application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.get({
+     *     // Part of `name`. Name of the Application resource to get. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authDomain": "my_authDomain",
+     *   //   "codeBucket": "my_codeBucket",
+     *   //   "defaultBucket": "my_defaultBucket",
+     *   //   "defaultCookieExpiration": "my_defaultCookieExpiration",
+     *   //   "defaultHostname": "my_defaultHostname",
+     *   //   "dispatchRules": [],
+     *   //   "featureSettings": {},
+     *   //   "gcrDomain": "my_gcrDomain",
+     *   //   "iap": {},
+     *   //   "id": "my_id",
+     *   //   "locationId": "my_locationId",
+     *   //   "name": "my_name",
+     *   //   "servingStatus": "my_servingStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.get
      * @memberOf! ()
      *
@@ -1740,6 +1857,72 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.patch
      * @desc Updates the specified Application resource. You can update the following fields: auth_domain - Google authentication domain for controlling user access to the application. default_cookie_expiration - Cookie expiration policy for the application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.patch({
+     *     // Part of `name`. Name of the Application resource to update. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authDomain": "my_authDomain",
+     *       //   "codeBucket": "my_codeBucket",
+     *       //   "defaultBucket": "my_defaultBucket",
+     *       //   "defaultCookieExpiration": "my_defaultCookieExpiration",
+     *       //   "defaultHostname": "my_defaultHostname",
+     *       //   "dispatchRules": [],
+     *       //   "featureSettings": {},
+     *       //   "gcrDomain": "my_gcrDomain",
+     *       //   "iap": {},
+     *       //   "id": "my_id",
+     *       //   "locationId": "my_locationId",
+     *       //   "name": "my_name",
+     *       //   "servingStatus": "my_servingStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.patch
      * @memberOf! ()
      *
@@ -1812,6 +1995,56 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.repair
      * @desc Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, Error retrieving the App Engine service account. If you have deleted your App Engine service account, this will not be able to recreate it. Instead, you should attempt to use the IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D . If the deletion was recent, the numeric ID can be found in the Cloud Console Activity Log.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.repair({
+     *     // Part of `name`. Name of the application to repair. Example: apps/myapp
+     *     appsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.repair
      * @memberOf! ()
      *
@@ -1952,6 +2185,70 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.authorizedCertificates.create
      * @desc Uploads the specified SSL certificate.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.create({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "certificateRawData": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "domainMappingsCount": 0,
+     *       //   "domainNames": [],
+     *       //   "expireTime": "my_expireTime",
+     *       //   "id": "my_id",
+     *       //   "managedCertificate": {},
+     *       //   "name": "my_name",
+     *       //   "visibleDomainMappings": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateRawData": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "domainMappingsCount": 0,
+     *   //   "domainNames": [],
+     *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
+     *   //   "managedCertificate": {},
+     *   //   "name": "my_name",
+     *   //   "visibleDomainMappings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.create
      * @memberOf! ()
      *
@@ -2029,6 +2326,46 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.authorizedCertificates.delete
      * @desc Deletes the specified SSL certificate.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.delete({
+     *     // Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     authorizedCertificatesId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.delete
      * @memberOf! ()
      *
@@ -2102,6 +2439,62 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.authorizedCertificates.get
      * @desc Gets the specified SSL certificate.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.get({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     authorizedCertificatesId: 'placeholder-value',
+     *     // Controls the set of fields returned in the GET response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateRawData": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "domainMappingsCount": 0,
+     *   //   "domainNames": [],
+     *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
+     *   //   "managedCertificate": {},
+     *   //   "name": "my_name",
+     *   //   "visibleDomainMappings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.get
      * @memberOf! ()
      *
@@ -2180,6 +2573,57 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.authorizedCertificates.list
      * @desc Lists all SSL certificates the user is authorized to administer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.list({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Controls the set of fields returned in the LIST response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificates": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.list
      * @memberOf! ()
      *
@@ -2266,6 +2710,74 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.authorizedCertificates.patch
      * @desc Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.patch({
+     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     authorizedCertificatesId: 'placeholder-value',
+     *     // Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "certificateRawData": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "domainMappingsCount": 0,
+     *       //   "domainNames": [],
+     *       //   "expireTime": "my_expireTime",
+     *       //   "id": "my_id",
+     *       //   "managedCertificate": {},
+     *       //   "name": "my_name",
+     *       //   "visibleDomainMappings": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateRawData": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "domainMappingsCount": 0,
+     *   //   "domainNames": [],
+     *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
+     *   //   "managedCertificate": {},
+     *   //   "name": "my_name",
+     *   //   "visibleDomainMappings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.patch
      * @memberOf! ()
      *
@@ -2455,6 +2967,55 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.authorizedDomains.list
      * @desc Lists all domains the user is authorized to administer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedDomains.list({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedDomains.list
      * @memberOf! ()
      *
@@ -2568,6 +3129,63 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.domainMappings.create
      * @desc Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.create({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
+     *     overrideStrategy: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "resourceRecords": [],
+     *       //   "sslSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.create
      * @memberOf! ()
      *
@@ -2644,6 +3262,52 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.domainMappings.delete
      * @desc Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.delete({
+     *     // Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     domainMappingsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.delete
      * @memberOf! ()
      *
@@ -2718,6 +3382,55 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.domainMappings.get
      * @desc Gets the specified domain mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.get({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     domainMappingsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "resourceRecords": [],
+     *   //   "sslSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.get
      * @memberOf! ()
      *
@@ -2792,6 +3505,55 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.domainMappings.list
      * @desc Lists the domain mappings on an application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.list({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainMappings": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.list
      * @memberOf! ()
      *
@@ -2875,6 +3637,65 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.domainMappings.patch
      * @desc Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.patch({
+     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     domainMappingsId: 'placeholder-value',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "resourceRecords": [],
+     *       //   "sslSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.patch
      * @memberOf! ()
      *
@@ -3066,6 +3887,54 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.firewall.ingressRules.batchUpdate
      * @desc Replaces the entire firewall ruleset in one bulk operation. This overrides and replaces the rules of an existing firewall with the new rules.If the final rule does not match traffic with the '*' wildcard IP range, then an "allow all" rule is explicitly added to the end of the list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.firewall.ingressRules.batchUpdate({
+     *     // Part of `name`. Name of the Firewall collection to set. Example: apps/myapp/firewall/ingressRules.
+     *     appsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ingressRules": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ingressRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.firewall.ingressRules.batchUpdate
      * @memberOf! ()
      *
@@ -3149,6 +4018,60 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.firewall.ingressRules.create
      * @desc Creates a firewall rule for the application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.firewall.ingressRules.create({
+     *     // Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
+     *     appsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "description": "my_description",
+     *       //   "priority": 0,
+     *       //   "sourceRange": "my_sourceRange"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "description": "my_description",
+     *   //   "priority": 0,
+     *   //   "sourceRange": "my_sourceRange"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.firewall.ingressRules.create
      * @memberOf! ()
      *
@@ -3224,6 +4147,46 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.firewall.ingressRules.delete
      * @desc Deletes the specified firewall rule.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.firewall.ingressRules.delete({
+     *     // Part of `name`. Name of the Firewall resource to delete. Example: apps/myapp/firewall/ingressRules/100.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     ingressRulesId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.firewall.ingressRules.delete
      * @memberOf! ()
      *
@@ -3297,6 +4260,55 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.firewall.ingressRules.get
      * @desc Gets the specified firewall rule.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.firewall.ingressRules.get({
+     *     // Part of `name`. Name of the Firewall resource to retrieve. Example: apps/myapp/firewall/ingressRules/100.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     ingressRulesId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "description": "my_description",
+     *   //   "priority": 0,
+     *   //   "sourceRange": "my_sourceRange"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.firewall.ingressRules.get
      * @memberOf! ()
      *
@@ -3372,6 +4384,57 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.firewall.ingressRules.list
      * @desc Lists the firewall rules of an application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.firewall.ingressRules.list({
+     *     // Part of `parent`. Name of the Firewall collection to retrieve. Example: apps/myapp/firewall/ingressRules.
+     *     appsId: 'placeholder-value',
+     *     // A valid IP Address. If set, only rules matching this address will be returned. The first returned rule will be the rule that fires on requests from this IP.
+     *     matchingAddress: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ingressRules": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.firewall.ingressRules.list
      * @memberOf! ()
      *
@@ -3451,6 +4514,64 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.firewall.ingressRules.patch
      * @desc Updates the specified firewall rule.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.firewall.ingressRules.patch({
+     *     // Part of `name`. Name of the Firewall resource to update. Example: apps/myapp/firewall/ingressRules/100.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     ingressRulesId: 'placeholder-value',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "description": "my_description",
+     *       //   "priority": 0,
+     *       //   "sourceRange": "my_sourceRange"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "description": "my_description",
+     *   //   "priority": 0,
+     *   //   "sourceRange": "my_sourceRange"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.firewall.ingressRules.patch
      * @memberOf! ()
      *
@@ -3651,6 +4772,56 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.locations.get({
+     *     // Part of `name`. Resource name for the location.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     locationsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.locations.get
      * @memberOf! ()
      *
@@ -3723,6 +4894,57 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.locations.list({
+     *     // Part of `name`. The resource that owns the locations collection, if applicable.
+     *     appsId: 'placeholder-value',
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.locations.list
      * @memberOf! ()
      *
@@ -3850,6 +5072,56 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.operations.get
      * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.operations.get({
+     *     // Part of `name`. The name of the operation resource.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     operationsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.operations.get
      * @memberOf! ()
      *
@@ -3924,6 +5196,57 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.operations.list({
+     *     // Part of `name`. The name of the operation's parent resource.
+     *     appsId: 'placeholder-value',
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.operations.list
      * @memberOf! ()
      *
@@ -4053,6 +5376,52 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.delete
      * @desc Deletes the specified service and all enclosed versions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.delete({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.delete
      * @memberOf! ()
      *
@@ -4128,6 +5497,54 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.get
      * @desc Gets the current configuration of the specified service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.get({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "split": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.get
      * @memberOf! ()
      *
@@ -4201,6 +5618,55 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.list
      * @desc Lists all the services in the application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.list({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "services": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.list
      * @memberOf! ()
      *
@@ -4279,6 +5745,66 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.patch
      * @desc Updates the configuration of the specified service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.patch({
+     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
+     *     appsId: 'placeholder-value',
+     *     // Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#InboundServiceType) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#AutomaticScaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#ShardBy) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
+     *     migrateTraffic: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "split": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.patch
      * @memberOf! ()
      *
@@ -4450,6 +5976,96 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.create
      * @desc Deploys code and resource files to a new version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.create({
+     *     // Part of `parent`. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
+     *     appsId: 'placeholder-value',
+     *     // Part of `parent`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiConfig": {},
+     *       //   "automaticScaling": {},
+     *       //   "basicScaling": {},
+     *       //   "betaSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "createdBy": "my_createdBy",
+     *       //   "defaultExpiration": "my_defaultExpiration",
+     *       //   "deployment": {},
+     *       //   "diskUsageBytes": "my_diskUsageBytes",
+     *       //   "endpointsApiService": {},
+     *       //   "entrypoint": {},
+     *       //   "env": "my_env",
+     *       //   "envVariables": {},
+     *       //   "errorHandlers": [],
+     *       //   "handlers": [],
+     *       //   "healthCheck": {},
+     *       //   "id": "my_id",
+     *       //   "inboundServices": [],
+     *       //   "instanceClass": "my_instanceClass",
+     *       //   "libraries": [],
+     *       //   "livenessCheck": {},
+     *       //   "manualScaling": {},
+     *       //   "name": "my_name",
+     *       //   "network": {},
+     *       //   "nobuildFilesRegex": "my_nobuildFilesRegex",
+     *       //   "readinessCheck": {},
+     *       //   "resources": {},
+     *       //   "runtime": "my_runtime",
+     *       //   "runtimeApiVersion": "my_runtimeApiVersion",
+     *       //   "runtimeChannel": "my_runtimeChannel",
+     *       //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
+     *       //   "servingStatus": "my_servingStatus",
+     *       //   "threadsafe": false,
+     *       //   "versionUrl": "my_versionUrl",
+     *       //   "vm": false,
+     *       //   "vpcAccessConnector": {},
+     *       //   "zones": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.create
      * @memberOf! ()
      *
@@ -4525,6 +6141,54 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.delete
      * @desc Deletes an existing Version resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.delete({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     versionsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.delete
      * @memberOf! ()
      *
@@ -4601,6 +6265,92 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.get
      * @desc Gets the specified Version resource. By default, only a BASIC_VIEW will be returned. Specify the FULL_VIEW parameter to get the full resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.get({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     versionsId: 'placeholder-value',
+     *     // Controls the set of fields returned in the Get response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiConfig": {},
+     *   //   "automaticScaling": {},
+     *   //   "basicScaling": {},
+     *   //   "betaSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "createdBy": "my_createdBy",
+     *   //   "defaultExpiration": "my_defaultExpiration",
+     *   //   "deployment": {},
+     *   //   "diskUsageBytes": "my_diskUsageBytes",
+     *   //   "endpointsApiService": {},
+     *   //   "entrypoint": {},
+     *   //   "env": "my_env",
+     *   //   "envVariables": {},
+     *   //   "errorHandlers": [],
+     *   //   "handlers": [],
+     *   //   "healthCheck": {},
+     *   //   "id": "my_id",
+     *   //   "inboundServices": [],
+     *   //   "instanceClass": "my_instanceClass",
+     *   //   "libraries": [],
+     *   //   "livenessCheck": {},
+     *   //   "manualScaling": {},
+     *   //   "name": "my_name",
+     *   //   "network": {},
+     *   //   "nobuildFilesRegex": "my_nobuildFilesRegex",
+     *   //   "readinessCheck": {},
+     *   //   "resources": {},
+     *   //   "runtime": "my_runtime",
+     *   //   "runtimeApiVersion": "my_runtimeApiVersion",
+     *   //   "runtimeChannel": "my_runtimeChannel",
+     *   //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
+     *   //   "servingStatus": "my_servingStatus",
+     *   //   "threadsafe": false,
+     *   //   "versionUrl": "my_versionUrl",
+     *   //   "vm": false,
+     *   //   "vpcAccessConnector": {},
+     *   //   "zones": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.get
      * @memberOf! ()
      *
@@ -4676,6 +6426,59 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.list
      * @desc Lists the versions of a service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.list({
+     *     // Part of `parent`. Name of the parent Service resource. Example: apps/myapp/services/default.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Part of `parent`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Controls the set of fields returned in the List response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.list
      * @memberOf! ()
      *
@@ -4755,6 +6558,100 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.patch
      * @desc Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses:Standard environment instance_class (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class)automatic scaling in the standard environment: automatic_scaling.min_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automaticScaling.standard_scheduler_settings.max_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.min_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_cpu_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_throughput_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)basic scaling or manual scaling in the standard environment: serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)Flexible environment serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)automatic scaling in the flexible environment: automatic_scaling.min_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cool_down_period_sec (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cpu_utilization.target_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.patch({
+     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     versionsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiConfig": {},
+     *       //   "automaticScaling": {},
+     *       //   "basicScaling": {},
+     *       //   "betaSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "createdBy": "my_createdBy",
+     *       //   "defaultExpiration": "my_defaultExpiration",
+     *       //   "deployment": {},
+     *       //   "diskUsageBytes": "my_diskUsageBytes",
+     *       //   "endpointsApiService": {},
+     *       //   "entrypoint": {},
+     *       //   "env": "my_env",
+     *       //   "envVariables": {},
+     *       //   "errorHandlers": [],
+     *       //   "handlers": [],
+     *       //   "healthCheck": {},
+     *       //   "id": "my_id",
+     *       //   "inboundServices": [],
+     *       //   "instanceClass": "my_instanceClass",
+     *       //   "libraries": [],
+     *       //   "livenessCheck": {},
+     *       //   "manualScaling": {},
+     *       //   "name": "my_name",
+     *       //   "network": {},
+     *       //   "nobuildFilesRegex": "my_nobuildFilesRegex",
+     *       //   "readinessCheck": {},
+     *       //   "resources": {},
+     *       //   "runtime": "my_runtime",
+     *       //   "runtimeApiVersion": "my_runtimeApiVersion",
+     *       //   "runtimeChannel": "my_runtimeChannel",
+     *       //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
+     *       //   "servingStatus": "my_servingStatus",
+     *       //   "threadsafe": false,
+     *       //   "versionUrl": "my_versionUrl",
+     *       //   "vm": false,
+     *       //   "vpcAccessConnector": {},
+     *       //   "zones": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.patch
      * @memberOf! ()
      *
@@ -4963,6 +6860,64 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.instances.debug
      * @desc Enables debugging on a VM instance. This allows you to use the SSH command to connect to the virtual machine where the instance lives. While in "debug mode", the instance continues to serve live traffic. You should delete the instance when you are done debugging and then allow the system to take over and determine if another instance should be started.Only applicable for instances in App Engine flexible environment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.instances.debug({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     instancesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     versionsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "sshKey": "my_sshKey"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.instances.debug
      * @memberOf! ()
      *
@@ -5041,6 +6996,56 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.instances.delete
      * @desc Stops a running instance.The instance might be automatically recreated based on the scaling settings of the version. For more information, see "How Instances are Managed" (standard environment (https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) | flexible environment (https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).To ensure that instances are not re-created and avoid getting billed, you can stop all instances within the target version by changing the serving status of the version to STOPPED with the apps.services.versions.patch (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch) method.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.instances.delete({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     instancesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     versionsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.instances.delete
      * @memberOf! ()
      *
@@ -5118,6 +7123,71 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.instances.get
      * @desc Gets instance information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.instances.get({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     instancesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     versionsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appEngineRelease": "my_appEngineRelease",
+     *   //   "availability": "my_availability",
+     *   //   "averageLatency": 0,
+     *   //   "errors": 0,
+     *   //   "id": "my_id",
+     *   //   "memoryUsage": "my_memoryUsage",
+     *   //   "name": "my_name",
+     *   //   "qps": {},
+     *   //   "requests": 0,
+     *   //   "startTime": "my_startTime",
+     *   //   "vmDebugEnabled": false,
+     *   //   "vmId": "my_vmId",
+     *   //   "vmIp": "my_vmIp",
+     *   //   "vmName": "my_vmName",
+     *   //   "vmStatus": "my_vmStatus",
+     *   //   "vmZoneName": "my_vmZoneName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.instances.get
      * @memberOf! ()
      *
@@ -5193,6 +7263,59 @@ export namespace appengine_v1 {
     /**
      * appengine.apps.services.versions.instances.list
      * @desc Lists the instances of a version.Tip: To aggregate details about instances over time, see the Stackdriver Monitoring API (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.instances.list({
+     *     // Part of `parent`. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Part of `parent`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Part of `parent`. See documentation of `appsId`.
+     *     versionsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "instances": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.services.versions.instances.list
      * @memberOf! ()
      *

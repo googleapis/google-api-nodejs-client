@@ -280,6 +280,53 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * adexchangebuyer.accounts.get
      * @desc Gets one account by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.get({
+     *     // The account id
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.get
      * @memberOf! ()
      *
@@ -351,6 +398,44 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * adexchangebuyer.accounts.list
      * @desc Retrieves the authenticated user's list of accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.list
      * @memberOf! ()
      *
@@ -423,6 +508,68 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * adexchangebuyer.accounts.patch
      * @desc Updates an existing account. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.patch({
+     *     // The account id
+     *     id: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bidderLocation": [],
+     *       //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *       //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *       //   "id": 0,
+     *       //   "kind": "my_kind",
+     *       //   "maximumActiveCreatives": 0,
+     *       //   "maximumTotalQps": 0,
+     *       //   "numberActiveCreatives": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.patch
      * @memberOf! ()
      *
@@ -495,6 +642,68 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * adexchangebuyer.accounts.update
      * @desc Updates an existing account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.update({
+     *     // The account id
+     *     id: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bidderLocation": [],
+     *       //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *       //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *       //   "id": 0,
+     *       //   "kind": "my_kind",
+     *       //   "maximumActiveCreatives": 0,
+     *       //   "maximumTotalQps": 0,
+     *       //   "numberActiveCreatives": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.update
      * @memberOf! ()
      *
@@ -624,6 +833,70 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * adexchangebuyer.creatives.get
      * @desc Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.get({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "HTMLSnippet": "my_HTMLSnippet",
+     *   //   "accountId": 0,
+     *   //   "advertiserId": [],
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *   //   "attribute": [],
+     *   //   "buyerCreativeId": "my_buyerCreativeId",
+     *   //   "clickThroughUrl": [],
+     *   //   "corrections": [],
+     *   //   "disapprovalReasons": [],
+     *   //   "filteringReasons": {},
+     *   //   "height": 0,
+     *   //   "impressionTrackingUrl": [],
+     *   //   "kind": "my_kind",
+     *   //   "productCategories": [],
+     *   //   "restrictedCategories": [],
+     *   //   "sensitiveCategories": [],
+     *   //   "status": "my_status",
+     *   //   "vendorType": [],
+     *   //   "version": 0,
+     *   //   "videoURL": "my_videoURL",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.get
      * @memberOf! ()
      *
@@ -696,6 +969,95 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * adexchangebuyer.creatives.insert
      * @desc Submit a new creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "HTMLSnippet": "my_HTMLSnippet",
+     *       //   "accountId": 0,
+     *       //   "advertiserId": [],
+     *       //   "advertiserName": "my_advertiserName",
+     *       //   "agencyId": "my_agencyId",
+     *       //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *       //   "attribute": [],
+     *       //   "buyerCreativeId": "my_buyerCreativeId",
+     *       //   "clickThroughUrl": [],
+     *       //   "corrections": [],
+     *       //   "disapprovalReasons": [],
+     *       //   "filteringReasons": {},
+     *       //   "height": 0,
+     *       //   "impressionTrackingUrl": [],
+     *       //   "kind": "my_kind",
+     *       //   "productCategories": [],
+     *       //   "restrictedCategories": [],
+     *       //   "sensitiveCategories": [],
+     *       //   "status": "my_status",
+     *       //   "vendorType": [],
+     *       //   "version": 0,
+     *       //   "videoURL": "my_videoURL",
+     *       //   "width": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "HTMLSnippet": "my_HTMLSnippet",
+     *   //   "accountId": 0,
+     *   //   "advertiserId": [],
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *   //   "attribute": [],
+     *   //   "buyerCreativeId": "my_buyerCreativeId",
+     *   //   "clickThroughUrl": [],
+     *   //   "corrections": [],
+     *   //   "disapprovalReasons": [],
+     *   //   "filteringReasons": {},
+     *   //   "height": 0,
+     *   //   "impressionTrackingUrl": [],
+     *   //   "kind": "my_kind",
+     *   //   "productCategories": [],
+     *   //   "restrictedCategories": [],
+     *   //   "sensitiveCategories": [],
+     *   //   "status": "my_status",
+     *   //   "vendorType": [],
+     *   //   "version": 0,
+     *   //   "videoURL": "my_videoURL",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.insert
      * @memberOf! ()
      *
@@ -767,6 +1129,52 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * adexchangebuyer.creatives.list
      * @desc Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.list({
+     *     // Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // When specified, only creatives having the given status are returned.
+     *     statusFilter: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.list
      * @memberOf! ()
      *

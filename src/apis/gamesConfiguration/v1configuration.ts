@@ -391,6 +391,41 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.achievementConfigurations.delete
      * @desc Delete the achievement configuration with the given ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.delete({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.achievementConfigurations.delete
      * @memberOf! ()
      *
@@ -462,6 +497,53 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.achievementConfigurations.get
      * @desc Retrieves the metadata of the achievement configuration with the given ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.get({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "achievementType": "my_achievementType",
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "initialState": "my_initialState",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "stepsToUnlock": 0,
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.achievementConfigurations.get
      * @memberOf! ()
      *
@@ -537,6 +619,68 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.achievementConfigurations.insert
      * @desc Insert a new achievement configuration in this application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.insert({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "achievementType": "my_achievementType",
+     *       //   "draft": {},
+     *       //   "id": "my_id",
+     *       //   "initialState": "my_initialState",
+     *       //   "kind": "my_kind",
+     *       //   "published": {},
+     *       //   "stepsToUnlock": 0,
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "achievementType": "my_achievementType",
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "initialState": "my_initialState",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "stepsToUnlock": 0,
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.achievementConfigurations.insert
      * @memberOf! ()
      *
@@ -616,6 +760,54 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.achievementConfigurations.list
      * @desc Returns a list of the achievement configurations in this application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.list({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // The maximum number of resource configurations to return in the response,
+     *     // used for paging. For any response, the actual number of resources returned
+     *     // may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.achievementConfigurations.list
      * @memberOf! ()
      *
@@ -709,6 +901,68 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.achievementConfigurations.update
      * @desc Update the metadata of the achievement configuration with the given ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.update({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "achievementType": "my_achievementType",
+     *       //   "draft": {},
+     *       //   "id": "my_id",
+     *       //   "initialState": "my_initialState",
+     *       //   "kind": "my_kind",
+     *       //   "published": {},
+     *       //   "stepsToUnlock": 0,
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "achievementType": "my_achievementType",
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "initialState": "my_initialState",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "stepsToUnlock": 0,
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.achievementConfigurations.update
      * @memberOf! ()
      *
@@ -873,6 +1127,59 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.imageConfigurations.upload
      * @desc Uploads an image for a resource with the given ID and image type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.imageConfigurations.upload({
+     *     // Selects which image in a resource for this method.
+     *     imageType: 'placeholder-value',
+     *     // The ID of the resource used by this method.
+     *     resourceId: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "imageType": "my_imageType",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.imageConfigurations.upload
      * @memberOf! ()
      *
@@ -999,6 +1306,41 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.leaderboardConfigurations.delete
      * @desc Delete the leaderboard configuration with the given ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.delete({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.leaderboardConfigurations.delete
      * @memberOf! ()
      *
@@ -1070,6 +1412,53 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.leaderboardConfigurations.get
      * @desc Retrieves the metadata of the leaderboard configuration with the given ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.get({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "scoreMax": "my_scoreMax",
+     *   //   "scoreMin": "my_scoreMin",
+     *   //   "scoreOrder": "my_scoreOrder",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.leaderboardConfigurations.get
      * @memberOf! ()
      *
@@ -1145,6 +1534,68 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.leaderboardConfigurations.insert
      * @desc Insert a new leaderboard configuration in this application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.insert({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "draft": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": {},
+     *       //   "scoreMax": "my_scoreMax",
+     *       //   "scoreMin": "my_scoreMin",
+     *       //   "scoreOrder": "my_scoreOrder",
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "scoreMax": "my_scoreMax",
+     *   //   "scoreMin": "my_scoreMin",
+     *   //   "scoreOrder": "my_scoreOrder",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.leaderboardConfigurations.insert
      * @memberOf! ()
      *
@@ -1224,6 +1675,54 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.leaderboardConfigurations.list
      * @desc Returns a list of the leaderboard configurations in this application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.list({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // The maximum number of resource configurations to return in the response,
+     *     // used for paging. For any response, the actual number of resources returned
+     *     // may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.leaderboardConfigurations.list
      * @memberOf! ()
      *
@@ -1317,6 +1816,68 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * gamesConfiguration.leaderboardConfigurations.update
      * @desc Update the metadata of the leaderboard configuration with the given ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.update({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "draft": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": {},
+     *       //   "scoreMax": "my_scoreMax",
+     *       //   "scoreMin": "my_scoreMin",
+     *       //   "scoreOrder": "my_scoreOrder",
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "scoreMax": "my_scoreMax",
+     *   //   "scoreMin": "my_scoreMin",
+     *   //   "scoreOrder": "my_scoreOrder",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesConfiguration.leaderboardConfigurations.update
      * @memberOf! ()
      *

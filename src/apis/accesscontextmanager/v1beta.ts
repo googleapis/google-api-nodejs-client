@@ -437,6 +437,57 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.create
      * @desc Create an `AccessPolicy`. Fails if this organization already has a `AccessPolicy`. The longrunning Operation will have a successful status once the `AccessPolicy` has propagated to long-lasting storage. Syntactic and basic semantic errors will be returned in `metadata` as a BadRequest proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.create
      * @memberOf! ()
      *
@@ -512,6 +563,52 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.delete
      * @desc Delete an AccessPolicy by resource name. The longrunning Operation will have a successful status once the AccessPolicy has been removed from long-lasting storage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.delete({
+     *     // Required. Resource name for the access policy to delete.
+     *     //
+     *     // Format `accessPolicies/{policy_id}`
+     *     name: 'accessPolicies/my-accessPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.delete
      * @memberOf! ()
      *
@@ -584,6 +681,50 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.get
      * @desc Get an AccessPolicy by name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.get({
+     *     // Required. Resource name for the access policy to get.
+     *     //
+     *     // Format `accessPolicies/{policy_id}`
+     *     name: 'accessPolicies/my-accessPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.get
      * @memberOf! ()
      *
@@ -656,6 +797,56 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.list
      * @desc List all AccessPolicies under a container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.list({
+     *     // Number of AccessPolicy instances to include in the list. Default 100.
+     *     pageSize: 'placeholder-value',
+     *     // Next page token for the next batch of AccessPolicy instances. Defaults to
+     *     // the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name for the container to list AccessPolicy instances
+     *     // from.
+     *     //
+     *     // Format:
+     *     // `organizations/{org_id}`
+     *     parent: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.list
      * @memberOf! ()
      *
@@ -740,6 +931,63 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.patch
      * @desc Update an AccessPolicy. The longrunning Operation from this RPC will have a successful status once the changes to the AccessPolicy have propagated to long-lasting storage. Syntactic and basic semantic errors will be returned in `metadata` as a BadRequest proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.patch({
+     *     // Output only. Resource name of the `AccessPolicy`. Format:
+     *     // `accessPolicies/{policy_id}`
+     *     name: 'accessPolicies/my-accessPolicie',
+     *     // Required. Mask to control which fields get updated. Must be non-empty.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.patch
      * @memberOf! ()
      *
@@ -899,6 +1147,65 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.create
      * @desc Create an Access Level. The longrunning operation from this RPC will have a successful status once the Access Level has propagated to long-lasting storage. Access Levels containing errors will result in an error response for the first error encountered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.create({
+     *     // Required. Resource name for the access policy which owns this Access
+     *     // Level.
+     *     //
+     *     // Format: `accessPolicies/{policy_id}`
+     *     parent: 'accessPolicies/my-accessPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "basic": {},
+     *       //   "custom": {},
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.create
      * @memberOf! ()
      *
@@ -975,6 +1282,53 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.delete
      * @desc Delete an Access Level by resource name. The longrunning operation from this RPC will have a successful status once the Access Level has been removed from long-lasting storage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.delete({
+     *     // Required. Resource name for the Access Level.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.delete
      * @memberOf! ()
      *
@@ -1047,6 +1401,61 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.get
      * @desc Get an Access Level by resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.get({
+     *     // Whether to return `BasicLevels` in the Cloud Common Expression
+     *     // Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where
+     *     // Access Levels
+     *     // are returned as `BasicLevels` or `CustomLevels` based on how they were
+     *     // created. If set to CEL, all Access Levels are returned as
+     *     // `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent
+     *     // `CustomLevels`.
+     *     accessLevelFormat: 'placeholder-value',
+     *     // Required. Resource name for the Access Level.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basic": {},
+     *   //   "custom": {},
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.get
      * @memberOf! ()
      *
@@ -1120,6 +1529,60 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.list
      * @desc List all Access Levels for an access policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.list({
+     *     // Whether to return `BasicLevels` in the Cloud Common Expression language, as
+     *     // `CustomLevels`, rather than as `BasicLevels`. Defaults to returning
+     *     // `AccessLevels` in the format they were defined.
+     *     accessLevelFormat: 'placeholder-value',
+     *     // Number of Access Levels to include in
+     *     // the list. Default 100.
+     *     pageSize: 'placeholder-value',
+     *     // Next page token for the next batch of Access Level instances.
+     *     // Defaults to the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name for the access policy to list Access Levels from.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}`
+     *     parent: 'accessPolicies/my-accessPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessLevels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.list
      * @memberOf! ()
      *
@@ -1200,6 +1663,67 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.patch
      * @desc Update an Access Level. The longrunning operation from this RPC will have a successful status once the changes to the Access Level have propagated to long-lasting storage. Access Levels containing errors will result in an error response for the first error encountered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.patch({
+     *     // Required. Resource name for the Access Level. The `short_name` component
+     *     // must begin with a letter and only include alphanumeric and '_'. Format:
+     *     // `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length
+     *     //  // of the `short_name` component is 50 characters.
+     *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
+     *     // Required. Mask to control which fields get updated. Must be non-empty.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "basic": {},
+     *       //   "custom": {},
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.patch
      * @memberOf! ()
      *
@@ -1372,6 +1896,67 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.create
      * @desc Create a Service Perimeter. The longrunning operation from this RPC will have a successful status once the Service Perimeter has propagated to long-lasting storage. Service Perimeters containing errors will result in an error response for the first error encountered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.create(
+     *     {
+     *       // Required. Resource name for the access policy which owns this Service
+     *       // Perimeter.
+     *       //
+     *       // Format: `accessPolicies/{policy_id}`
+     *       parent: 'accessPolicies/my-accessPolicie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "description": "my_description",
+     *         //   "name": "my_name",
+     *         //   "perimeterType": "my_perimeterType",
+     *         //   "status": {},
+     *         //   "title": "my_title"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.create
      * @memberOf! ()
      *
@@ -1448,6 +2033,56 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.delete
      * @desc Delete a Service Perimeter by resource name. The longrunning operation from this RPC will have a successful status once the Service Perimeter has been removed from long-lasting storage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.delete(
+     *     {
+     *       // Required. Resource name for the Service Perimeter.
+     *       //
+     *       // Format:
+     *       // `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
+     *       name:
+     *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.delete
      * @memberOf! ()
      *
@@ -1520,6 +2155,54 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.get
      * @desc Get a Service Perimeter by resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.get({
+     *     // Required. Resource name for the Service Perimeter.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
+     *     name:
+     *       'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "perimeterType": "my_perimeterType",
+     *   //   "status": {},
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.get
      * @memberOf! ()
      *
@@ -1592,6 +2275,56 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.list
      * @desc List all Service Perimeters for an access policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.list({
+     *     // Number of Service Perimeters to include
+     *     // in the list. Default 100.
+     *     pageSize: 'placeholder-value',
+     *     // Next page token for the next batch of Service Perimeter instances.
+     *     // Defaults to the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name for the access policy to list Service Perimeters from.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}`
+     *     parent: 'accessPolicies/my-accessPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "servicePerimeters": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.list
      * @memberOf! ()
      *
@@ -1678,6 +2411,69 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.patch
      * @desc Update a Service Perimeter. The longrunning operation from this RPC will have a successful status once the changes to the Service Perimeter have propagated to long-lasting storage. Service Perimeter containing errors will result in an error response for the first error encountered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.patch(
+     *     {
+     *       // Required. Resource name for the ServicePerimeter.  The `short_name`
+     *       // component must begin with a letter and only include alphanumeric and '_'.
+     *       // Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
+     *       name:
+     *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *       // Required. Mask to control which fields get updated. Must be non-empty.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "description": "my_description",
+     *         //   "name": "my_name",
+     *         //   "perimeterType": "my_perimeterType",
+     *         //   "status": {},
+     *         //   "title": "my_title"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.patch
      * @memberOf! ()
      *
@@ -1842,6 +2638,50 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.operations.get
      * @memberOf! ()
      *

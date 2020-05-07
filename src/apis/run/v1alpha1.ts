@@ -2431,6 +2431,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.authorizeddomains.list
      * @desc RPC to list authorized domains.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.authorizeddomains.list({
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the parent Application resource. Example: `apps/myapp`.
+     *     parent: 'namespaces/my-namespace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.authorizeddomains.list
      * @memberOf! ()
      *
@@ -2544,6 +2589,63 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudauditlogssources.create
      * @desc Creates a new cloudauditlogssource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudauditlogssources.create({
+     *     // The project ID or project number in which this cloudauditlogssource should
+     *     // be created.
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudauditlogssources.create
      * @memberOf! ()
      *
@@ -2621,6 +2723,55 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudauditlogssources.delete
      * @desc Rpc to delete a cloudauditlogssource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudauditlogssources.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the cloudauditlogssource being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'namespaces/my-namespace/cloudauditlogssources/my-cloudauditlogssource',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudauditlogssources.delete
      * @memberOf! ()
      *
@@ -2695,6 +2846,52 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudauditlogssources.get
      * @desc Rpc to get information about a cloudauditlogssource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudauditlogssources.get({
+     *     // The name of the cloudauditlogssource being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'namespaces/my-namespace/cloudauditlogssources/my-cloudauditlogssource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudauditlogssources.get
      * @memberOf! ()
      *
@@ -2770,6 +2967,70 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudauditlogssources.list
      * @desc Rpc to list cloudauditlogssources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudauditlogssources.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the cloudauditlogssources
+     *     // should be listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudauditlogssources.list
      * @memberOf! ()
      *
@@ -2961,6 +3222,63 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudpubsubsources.create
      * @desc Creates a new cloudpubsubsource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudpubsubsources.create({
+     *     // The project ID or project number in which this cloudpubsubsource should
+     *     // be created.
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudpubsubsources.create
      * @memberOf! ()
      *
@@ -3036,6 +3354,54 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudpubsubsources.delete
      * @desc Rpc to delete a cloudpubsubsource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudpubsubsources.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the cloudpubsubsource being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/cloudpubsubsources/my-cloudpubsubsource',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudpubsubsources.delete
      * @memberOf! ()
      *
@@ -3110,6 +3476,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudpubsubsources.get
      * @desc Rpc to get information about a cloudpubsubsource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudpubsubsources.get({
+     *     // The name of the cloudpubsubsource being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/cloudpubsubsources/my-cloudpubsubsource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudpubsubsources.get
      * @memberOf! ()
      *
@@ -3183,6 +3594,70 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudpubsubsources.list
      * @desc Rpc to list cloudpubsubsources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudpubsubsources.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the cloudpubsubsources should
+     *     // be listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudpubsubsources.list
      * @memberOf! ()
      *
@@ -3374,6 +3849,63 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudschedulersources.create
      * @desc Creates a new cloudschedulersource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudschedulersources.create({
+     *     // Required. The project ID or project number in which this cloudschedulersource should
+     *     // be created.
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudschedulersources.create
      * @memberOf! ()
      *
@@ -3451,6 +3983,55 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudschedulersources.delete
      * @desc Rpc to delete a cloudschedulersource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudschedulersources.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the cloudschedulersource being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'namespaces/my-namespace/cloudschedulersources/my-cloudschedulersource',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudschedulersources.delete
      * @memberOf! ()
      *
@@ -3525,6 +4106,52 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudschedulersources.get
      * @desc Rpc to get information about a cloudschedulersource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudschedulersources.get({
+     *     // Required. The name of the cloudschedulersource being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'namespaces/my-namespace/cloudschedulersources/my-cloudschedulersource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudschedulersources.get
      * @memberOf! ()
      *
@@ -3600,6 +4227,70 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudschedulersources.list
      * @desc Rpc to list cloudschedulersources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudschedulersources.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The project ID or project number from which the cloudschedulersources
+     *     // should be listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudschedulersources.list
      * @memberOf! ()
      *
@@ -3690,6 +4381,66 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudschedulersources.replaceCloudSchedulerSource
      * @desc Rpc to replace a cloudschedulersource.  Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'.  May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudschedulersources.replaceCloudSchedulerSource(
+     *     {
+     *       // Required. The name of the cloudschedulersource being retrieved. If needed, replace
+     *       // {namespace_id} with the project ID.
+     *       name:
+     *         'namespaces/my-namespace/cloudschedulersources/my-cloudschedulersource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "apiVersion": "my_apiVersion",
+     *         //   "kind": "my_kind",
+     *         //   "metadata": {},
+     *         //   "spec": {},
+     *         //   "status": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudschedulersources.replaceCloudSchedulerSource
      * @memberOf! ()
      *
@@ -3886,6 +4637,63 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudstoragesources.create
      * @desc Creates a new cloudstoragesource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudstoragesources.create({
+     *     // Required. The project ID or project number in which this cloudstoragesource should
+     *     // be created.
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudstoragesources.create
      * @memberOf! ()
      *
@@ -3961,6 +4769,54 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudstoragesources.delete
      * @desc Rpc to delete a cloudstoragesource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudstoragesources.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the cloudstoragesource being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/cloudstoragesources/my-cloudstoragesource',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudstoragesources.delete
      * @memberOf! ()
      *
@@ -4035,6 +4891,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudstoragesources.get
      * @desc Rpc to get information about a cloudstoragesource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudstoragesources.get({
+     *     // Required. The name of the cloudstoragesource being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/cloudstoragesources/my-cloudstoragesource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudstoragesources.get
      * @memberOf! ()
      *
@@ -4108,6 +5009,70 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudstoragesources.list
      * @desc Rpc to list cloudstoragesources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudstoragesources.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The project ID or project number from which the cloudstoragesources should
+     *     // be listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudstoragesources.list
      * @memberOf! ()
      *
@@ -4198,6 +5163,65 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.cloudstoragesources.replaceCloudStorageSource
      * @desc Rpc to replace a cloudstoragesource.  Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'.  May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.cloudstoragesources.replaceCloudStorageSource(
+     *     {
+     *       // Required. The name of the cloudstoragesource being retrieved. If needed, replace
+     *       // {namespace_id} with the project ID.
+     *       name: 'namespaces/my-namespace/cloudstoragesources/my-cloudstoragesource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "apiVersion": "my_apiVersion",
+     *         //   "kind": "my_kind",
+     *         //   "metadata": {},
+     *         //   "spec": {},
+     *         //   "status": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.cloudstoragesources.replaceCloudStorageSource
      * @memberOf! ()
      *
@@ -4392,6 +5416,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.configurations.get
      * @desc Rpc to get information about a configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.configurations.get({
+     *     // The name of the configuration being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/configurations/my-configuration',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.configurations.get
      * @memberOf! ()
      *
@@ -4465,6 +5534,70 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.configurations.list
      * @desc Rpc to list configurations.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.configurations.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the configurations should be
+     *     // listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.configurations.list
      * @memberOf! ()
      *
@@ -4613,6 +5746,63 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.domainmappings.create
      * @desc Creates a new domain mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.domainmappings.create({
+     *     // The project ID or project number in which this domain mapping should be
+     *     // created.
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.domainmappings.create
      * @memberOf! ()
      *
@@ -4688,6 +5878,60 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.domainmappings.delete
      * @desc Rpc to delete a domain mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.domainmappings.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the domain mapping being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
+     *     // Deprecated.
+     *     // Specifies the cascade behavior on delete.
+     *     // Cloud Run only supports cascading behavior, so this must be false.
+     *     // This attribute is deprecated, and is now replaced with PropagationPolicy
+     *     // See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
+     *     orphanDependents: 'placeholder-value',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.domainmappings.delete
      * @memberOf! ()
      *
@@ -4763,6 +6007,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.domainmappings.get
      * @desc Rpc to get information about a domain mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.domainmappings.get({
+     *     // The name of the domain mapping being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.domainmappings.get
      * @memberOf! ()
      *
@@ -4836,6 +6125,70 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.domainmappings.list
      * @desc Rpc to list domain mappings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.domainmappings.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the domain mappings should be
+     *     // listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.domainmappings.list
      * @memberOf! ()
      *
@@ -5029,6 +6382,60 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.revisions.delete
      * @desc Rpc to delete a revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.revisions.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the revision being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/revisions/my-revision',
+     *     // Deprecated.
+     *     // Specifies the cascade behavior on delete.
+     *     // Cloud Run only supports cascading behavior, so this must be false.
+     *     // This attribute is deprecated, and is now replaced with PropagationPolicy
+     *     // See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
+     *     orphanDependents: 'placeholder-value',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.revisions.delete
      * @memberOf! ()
      *
@@ -5104,6 +6511,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.revisions.get
      * @desc Rpc to get information about a revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.revisions.get({
+     *     // The name of the revision being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/revisions/my-revision',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.revisions.get
      * @memberOf! ()
      *
@@ -5175,6 +6627,69 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.revisions.list
      * @desc Rpc to list revisions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.revisions.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the revisions should be listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.revisions.list
      * @memberOf! ()
      *
@@ -5345,6 +6860,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.routes.get
      * @desc Rpc to get information about a route.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.routes.get({
+     *     // The name of the route being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/routes/my-route',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.routes.get
      * @memberOf! ()
      *
@@ -5416,6 +6976,69 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.routes.list
      * @desc Rpc to list routes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.routes.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the routes should be listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.routes.list
      * @memberOf! ()
      *
@@ -5556,6 +7179,62 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.services.create
      * @desc Rpc to create a service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.create({
+     *     // The project ID or project number in which this service should be created.
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.services.create
      * @memberOf! ()
      *
@@ -5628,6 +7307,60 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.services.delete
      * @desc Rpc to delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the service being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/services/my-service',
+     *     // Deprecated.
+     *     // Specifies the cascade behavior on delete.
+     *     // Cloud Run only supports cascading behavior, so this must be false.
+     *     // This attribute is deprecated, and is now replaced with PropagationPolicy
+     *     // See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
+     *     orphanDependents: 'placeholder-value',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.services.delete
      * @memberOf! ()
      *
@@ -5703,6 +7436,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.services.get
      * @desc Rpc to get information about a service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.get({
+     *     // The name of the service being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.services.get
      * @memberOf! ()
      *
@@ -5774,6 +7552,69 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.services.list
      * @desc Rpc to list services.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the services should be listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.services.list
      * @memberOf! ()
      *
@@ -5856,6 +7697,63 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.services.replaceService
      * @desc Rpc to replace a service.  Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'.  May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.replaceService({
+     *     // The name of the service being replaced. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.services.replaceService
      * @memberOf! ()
      *
@@ -6050,6 +7948,63 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.triggers.create
      * @desc Creates a new trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.triggers.create({
+     *     // The project ID or project number in which this trigger should
+     *     // be created.
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.triggers.create
      * @memberOf! ()
      *
@@ -6122,6 +8077,54 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.triggers.delete
      * @desc Rpc to delete a trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.triggers.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the trigger being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/triggers/my-trigger',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.triggers.delete
      * @memberOf! ()
      *
@@ -6196,6 +8199,51 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.triggers.get
      * @desc Rpc to get information about a trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.triggers.get({
+     *     // The name of the trigger being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'namespaces/my-namespace/triggers/my-trigger',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.triggers.get
      * @memberOf! ()
      *
@@ -6267,6 +8315,70 @@ export namespace run_v1alpha1 {
     /**
      * run.namespaces.triggers.list
      * @desc Rpc to list triggers.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.triggers.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the triggers should
+     *     // be listed.
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.triggers.list
      * @memberOf! ()
      *
@@ -6495,6 +8607,53 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.list
      * @memberOf! ()
      *
@@ -6606,6 +8765,51 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.authorizeddomains.list
      * @desc RPC to list authorized domains.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.authorizeddomains.list({
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the parent Application resource. Example: `apps/myapp`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.authorizeddomains.list
      * @memberOf! ()
      *
@@ -6719,6 +8923,63 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudauditlogssources.create
      * @desc Creates a new cloudauditlogssource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudauditlogssources.create({
+     *     // The project ID or project number in which this cloudauditlogssource should
+     *     // be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudauditlogssources.create
      * @memberOf! ()
      *
@@ -6795,6 +9056,55 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudauditlogssources.delete
      * @desc Rpc to delete a cloudauditlogssource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudauditlogssources.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the cloudauditlogssource being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/cloudauditlogssources/my-cloudauditlogssource',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudauditlogssources.delete
      * @memberOf! ()
      *
@@ -6867,6 +9177,52 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudauditlogssources.get
      * @desc Rpc to get information about a cloudauditlogssource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudauditlogssources.get({
+     *     // The name of the cloudauditlogssource being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/cloudauditlogssources/my-cloudauditlogssource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudauditlogssources.get
      * @memberOf! ()
      *
@@ -6940,6 +9296,70 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudauditlogssources.list
      * @desc Rpc to list cloudauditlogssources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudauditlogssources.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the cloudauditlogssources
+     *     // should be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudauditlogssources.list
      * @memberOf! ()
      *
@@ -7130,6 +9550,63 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudpubsubsources.create
      * @desc Creates a new cloudpubsubsource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudpubsubsources.create({
+     *     // The project ID or project number in which this cloudpubsubsource should
+     *     // be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudpubsubsources.create
      * @memberOf! ()
      *
@@ -7205,6 +9682,55 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudpubsubsources.delete
      * @desc Rpc to delete a cloudpubsubsource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudpubsubsources.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the cloudpubsubsource being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/cloudpubsubsources/my-cloudpubsubsource',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudpubsubsources.delete
      * @memberOf! ()
      *
@@ -7277,6 +9803,52 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudpubsubsources.get
      * @desc Rpc to get information about a cloudpubsubsource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudpubsubsources.get({
+     *     // The name of the cloudpubsubsource being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/cloudpubsubsources/my-cloudpubsubsource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudpubsubsources.get
      * @memberOf! ()
      *
@@ -7348,6 +9920,70 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudpubsubsources.list
      * @desc Rpc to list cloudpubsubsources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudpubsubsources.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the cloudpubsubsources should
+     *     // be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudpubsubsources.list
      * @memberOf! ()
      *
@@ -7539,6 +10175,63 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudschedulersources.create
      * @desc Creates a new cloudschedulersource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudschedulersources.create({
+     *     // Required. The project ID or project number in which this cloudschedulersource should
+     *     // be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudschedulersources.create
      * @memberOf! ()
      *
@@ -7615,6 +10308,55 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudschedulersources.delete
      * @desc Rpc to delete a cloudschedulersource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudschedulersources.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the cloudschedulersource being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/cloudschedulersources/my-cloudschedulersource',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudschedulersources.delete
      * @memberOf! ()
      *
@@ -7687,6 +10429,52 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudschedulersources.get
      * @desc Rpc to get information about a cloudschedulersource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudschedulersources.get({
+     *     // Required. The name of the cloudschedulersource being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/cloudschedulersources/my-cloudschedulersource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudschedulersources.get
      * @memberOf! ()
      *
@@ -7760,6 +10548,70 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudschedulersources.list
      * @desc Rpc to list cloudschedulersources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudschedulersources.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The project ID or project number from which the cloudschedulersources
+     *     // should be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudschedulersources.list
      * @memberOf! ()
      *
@@ -7849,6 +10701,66 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudschedulersources.replaceCloudSchedulerSource
      * @desc Rpc to replace a cloudschedulersource.  Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'.  May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudschedulersources.replaceCloudSchedulerSource(
+     *     {
+     *       // Required. The name of the cloudschedulersource being retrieved. If needed, replace
+     *       // {namespace_id} with the project ID.
+     *       name:
+     *         'projects/my-project/locations/my-location/cloudschedulersources/my-cloudschedulersource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "apiVersion": "my_apiVersion",
+     *         //   "kind": "my_kind",
+     *         //   "metadata": {},
+     *         //   "spec": {},
+     *         //   "status": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudschedulersources.replaceCloudSchedulerSource
      * @memberOf! ()
      *
@@ -8043,6 +10955,63 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudstoragesources.create
      * @desc Creates a new cloudstoragesource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudstoragesources.create({
+     *     // Required. The project ID or project number in which this cloudstoragesource should
+     *     // be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudstoragesources.create
      * @memberOf! ()
      *
@@ -8118,6 +11087,55 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudstoragesources.delete
      * @desc Rpc to delete a cloudstoragesource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudstoragesources.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the cloudstoragesource being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/cloudstoragesources/my-cloudstoragesource',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudstoragesources.delete
      * @memberOf! ()
      *
@@ -8190,6 +11208,52 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudstoragesources.get
      * @desc Rpc to get information about a cloudstoragesource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudstoragesources.get({
+     *     // Required. The name of the cloudstoragesource being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/cloudstoragesources/my-cloudstoragesource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudstoragesources.get
      * @memberOf! ()
      *
@@ -8261,6 +11325,70 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudstoragesources.list
      * @desc Rpc to list cloudstoragesources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudstoragesources.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The project ID or project number from which the cloudstoragesources should
+     *     // be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudstoragesources.list
      * @memberOf! ()
      *
@@ -8351,6 +11479,66 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.cloudstoragesources.replaceCloudStorageSource
      * @desc Rpc to replace a cloudstoragesource.  Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'.  May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.cloudstoragesources.replaceCloudStorageSource(
+     *     {
+     *       // Required. The name of the cloudstoragesource being retrieved. If needed, replace
+     *       // {namespace_id} with the project ID.
+     *       name:
+     *         'projects/my-project/locations/my-location/cloudstoragesources/my-cloudstoragesource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "apiVersion": "my_apiVersion",
+     *         //   "kind": "my_kind",
+     *         //   "metadata": {},
+     *         //   "spec": {},
+     *         //   "status": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.cloudstoragesources.replaceCloudStorageSource
      * @memberOf! ()
      *
@@ -8543,6 +11731,52 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.configurations.get
      * @desc Rpc to get information about a configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.configurations.get({
+     *     // The name of the configuration being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/configurations/my-configuration',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.configurations.get
      * @memberOf! ()
      *
@@ -8614,6 +11848,70 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.configurations.list
      * @desc Rpc to list configurations.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.configurations.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the configurations should be
+     *     // listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.configurations.list
      * @memberOf! ()
      *
@@ -8762,6 +12060,63 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.domainmappings.create
      * @desc Creates a new domain mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.domainmappings.create({
+     *     // The project ID or project number in which this domain mapping should be
+     *     // created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.domainmappings.create
      * @memberOf! ()
      *
@@ -8837,6 +12192,61 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.domainmappings.delete
      * @desc Rpc to delete a domain mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.domainmappings.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the domain mapping being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
+     *     // Deprecated.
+     *     // Specifies the cascade behavior on delete.
+     *     // Cloud Run only supports cascading behavior, so this must be false.
+     *     // This attribute is deprecated, and is now replaced with PropagationPolicy
+     *     // See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
+     *     orphanDependents: 'placeholder-value',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.domainmappings.delete
      * @memberOf! ()
      *
@@ -8910,6 +12320,52 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.domainmappings.get
      * @desc Rpc to get information about a domain mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.domainmappings.get({
+     *     // The name of the domain mapping being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.domainmappings.get
      * @memberOf! ()
      *
@@ -8981,6 +12437,70 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.domainmappings.list
      * @desc Rpc to list domain mappings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.domainmappings.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the domain mappings should be
+     *     // listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.domainmappings.list
      * @memberOf! ()
      *
@@ -9174,6 +12694,60 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.revisions.delete
      * @desc Rpc to delete a revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.revisions.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the revision being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
+     *     // Deprecated.
+     *     // Specifies the cascade behavior on delete.
+     *     // Cloud Run only supports cascading behavior, so this must be false.
+     *     // This attribute is deprecated, and is now replaced with PropagationPolicy
+     *     // See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
+     *     orphanDependents: 'placeholder-value',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.revisions.delete
      * @memberOf! ()
      *
@@ -9247,6 +12821,51 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.revisions.get
      * @desc Rpc to get information about a revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.revisions.get({
+     *     // The name of the revision being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.revisions.get
      * @memberOf! ()
      *
@@ -9316,6 +12935,69 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.revisions.list
      * @desc Rpc to list revisions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.revisions.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the revisions should be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.revisions.list
      * @memberOf! ()
      *
@@ -9487,6 +13169,51 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.routes.get
      * @desc Rpc to get information about a route.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.routes.get({
+     *     // The name of the route being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'projects/my-project/locations/my-location/routes/my-route',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.routes.get
      * @memberOf! ()
      *
@@ -9556,6 +13283,69 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.routes.list
      * @desc Rpc to list routes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.routes.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the routes should be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.routes.list
      * @memberOf! ()
      *
@@ -9697,6 +13487,62 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.services.create
      * @desc Rpc to create a service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.create({
+     *     // The project ID or project number in which this service should be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.services.create
      * @memberOf! ()
      *
@@ -9770,6 +13616,60 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.services.delete
      * @desc Rpc to delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the service being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'projects/my-project/locations/my-location/services/my-service',
+     *     // Deprecated.
+     *     // Specifies the cascade behavior on delete.
+     *     // Cloud Run only supports cascading behavior, so this must be false.
+     *     // This attribute is deprecated, and is now replaced with PropagationPolicy
+     *     // See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
+     *     orphanDependents: 'placeholder-value',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.services.delete
      * @memberOf! ()
      *
@@ -9843,6 +13743,51 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.services.get
      * @desc Rpc to get information about a service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.get({
+     *     // The name of the service being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'projects/my-project/locations/my-location/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.services.get
      * @memberOf! ()
      *
@@ -9912,6 +13857,59 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.services.getIamPolicy
      * @desc Get the IAM Access Control policy currently in effect for the given Cloud Run service. This result does not include any inherited policies.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.getIamPolicy({
+     *     // Optional. The policy format version to be returned.
+     *     //
+     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *     // rejected.
+     *     //
+     *     // Requests for policies with any conditional bindings must specify version 3.
+     *     // Policies without any conditional bindings may specify any valid value or
+     *     // leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.services.getIamPolicy
      * @memberOf! ()
      *
@@ -9985,6 +13983,69 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.services.list
      * @desc Rpc to list services.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the services should be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.services.list
      * @memberOf! ()
      *
@@ -10068,6 +14129,63 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.services.replaceService
      * @desc Rpc to replace a service.  Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'.  May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.replaceService({
+     *     // The name of the service being replaced. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.services.replaceService
      * @memberOf! ()
      *
@@ -10138,6 +14256,59 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.services.setIamPolicy
      * @desc Sets the IAM Access control policy for the specified Service. Overwrites any existing policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.services.setIamPolicy
      * @memberOf! ()
      *
@@ -10211,6 +14382,55 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.services.testIamPermissions
      * @desc Returns permissions that a caller has on the specified Project.  There are no permissions required for making this API call.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.services.testIamPermissions
      * @memberOf! ()
      *
@@ -10465,6 +14685,63 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.triggers.create
      * @desc Creates a new trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.triggers.create({
+     *     // The project ID or project number in which this trigger should
+     *     // be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.triggers.create
      * @memberOf! ()
      *
@@ -10538,6 +14815,54 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.triggers.delete
      * @desc Rpc to delete a trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.triggers.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the trigger being deleted. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores
+     *     // this setting, and deletes in the background. Please see
+     *     // kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for
+     *     // more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.triggers.delete
      * @memberOf! ()
      *
@@ -10610,6 +14935,51 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.triggers.get
      * @desc Rpc to get information about a trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.triggers.get({
+     *     // The name of the trigger being retrieved. If needed, replace
+     *     // {namespace_id} with the project ID.
+     *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.triggers.get
      * @memberOf! ()
      *
@@ -10679,6 +15049,70 @@ export namespace run_v1alpha1 {
     /**
      * run.projects.locations.triggers.list
      * @desc Rpc to list triggers.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.triggers.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the triggers should
+     *     // be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.triggers.list
      * @memberOf! ()
      *

@@ -1931,6 +1931,74 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.create
      * @desc Creates an enterprise. This is the last step in the enterprise signup flow.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.create({
+     *     // The enterprise token appended to the callback URL.
+     *     enterpriseToken: 'placeholder-value',
+     *     // The ID of the Google Cloud Platform project which will own the enterprise.
+     *     projectId: 'placeholder-value',
+     *     // The name of the SignupUrl used to sign up for the enterprise.
+     *     signupUrlName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appAutoApprovalEnabled": false,
+     *       //   "enabledNotificationTypes": [],
+     *       //   "enterpriseDisplayName": "my_enterpriseDisplayName",
+     *       //   "logo": {},
+     *       //   "name": "my_name",
+     *       //   "primaryColor": 0,
+     *       //   "pubsubTopic": "my_pubsubTopic",
+     *       //   "signinDetails": [],
+     *       //   "termsAndConditions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appAutoApprovalEnabled": false,
+     *   //   "enabledNotificationTypes": [],
+     *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
+     *   //   "logo": {},
+     *   //   "name": "my_name",
+     *   //   "primaryColor": 0,
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "signinDetails": [],
+     *   //   "termsAndConditions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.create
      * @memberOf! ()
      *
@@ -2006,6 +2074,54 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.get
      * @desc Gets an enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.get({
+     *     // The name of the enterprise in the form enterprises/{enterpriseId}.
+     *     name: 'enterprises/my-enterprise',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appAutoApprovalEnabled": false,
+     *   //   "enabledNotificationTypes": [],
+     *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
+     *   //   "logo": {},
+     *   //   "name": "my_name",
+     *   //   "primaryColor": 0,
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "signinDetails": [],
+     *   //   "termsAndConditions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.get
      * @memberOf! ()
      *
@@ -2077,6 +2193,72 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.patch
      * @desc Updates an enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.patch({
+     *     // The name of the enterprise in the form enterprises/{enterpriseId}.
+     *     name: 'enterprises/my-enterprise',
+     *     // The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appAutoApprovalEnabled": false,
+     *       //   "enabledNotificationTypes": [],
+     *       //   "enterpriseDisplayName": "my_enterpriseDisplayName",
+     *       //   "logo": {},
+     *       //   "name": "my_name",
+     *       //   "primaryColor": 0,
+     *       //   "pubsubTopic": "my_pubsubTopic",
+     *       //   "signinDetails": [],
+     *       //   "termsAndConditions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appAutoApprovalEnabled": false,
+     *   //   "enabledNotificationTypes": [],
+     *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
+     *   //   "logo": {},
+     *   //   "name": "my_name",
+     *   //   "primaryColor": 0,
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "signinDetails": [],
+     *   //   "termsAndConditions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.patch
      * @memberOf! ()
      *
@@ -2216,6 +2398,52 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.applications.get
      * @desc Gets info about an application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.applications.get({
+     *     // The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
+     *     languageCode: 'placeholder-value',
+     *     // The name of the application in the form enterprises/{enterpriseId}/applications/{package_name}.
+     *     name: 'enterprises/my-enterprise/applications/my-application',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appTracks": [],
+     *   //   "managedProperties": [],
+     *   //   "name": "my_name",
+     *   //   "permissions": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.applications.get
      * @memberOf! ()
      *
@@ -2317,6 +2545,48 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.delete
      * @desc Deletes a device. This operation wipes the device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.delete({
+     *     // The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+     *     name: 'enterprises/my-enterprise/devices/my-device',
+     *     // Optional flags that control the device wiping behavior.
+     *     wipeDataFlags: 'placeholder-value',
+     *     // Optional. A short message displayed to the user before wiping the work profile on personal devices. This has no effect on company owned devices. The maximum message length is 200 characters.
+     *     wipeReasonMessage: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.delete
      * @memberOf! ()
      *
@@ -2389,6 +2659,77 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.get
      * @desc Gets a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.get({
+     *     // The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+     *     name: 'enterprises/my-enterprise/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiLevel": 0,
+     *   //   "applicationReports": [],
+     *   //   "appliedPolicyName": "my_appliedPolicyName",
+     *   //   "appliedPolicyVersion": "my_appliedPolicyVersion",
+     *   //   "appliedState": "my_appliedState",
+     *   //   "deviceSettings": {},
+     *   //   "disabledReason": {},
+     *   //   "displays": [],
+     *   //   "enrollmentTime": "my_enrollmentTime",
+     *   //   "enrollmentTokenData": "my_enrollmentTokenData",
+     *   //   "enrollmentTokenName": "my_enrollmentTokenName",
+     *   //   "hardwareInfo": {},
+     *   //   "hardwareStatusSamples": [],
+     *   //   "lastPolicyComplianceReportTime": "my_lastPolicyComplianceReportTime",
+     *   //   "lastPolicySyncTime": "my_lastPolicySyncTime",
+     *   //   "lastStatusReportTime": "my_lastStatusReportTime",
+     *   //   "managementMode": "my_managementMode",
+     *   //   "memoryEvents": [],
+     *   //   "memoryInfo": {},
+     *   //   "name": "my_name",
+     *   //   "networkInfo": {},
+     *   //   "nonComplianceDetails": [],
+     *   //   "policyCompliant": false,
+     *   //   "policyName": "my_policyName",
+     *   //   "powerManagementEvents": [],
+     *   //   "previousDeviceNames": [],
+     *   //   "securityPosture": {},
+     *   //   "softwareInfo": {},
+     *   //   "state": "my_state",
+     *   //   "systemProperties": {},
+     *   //   "user": {},
+     *   //   "userName": "my_userName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.get
      * @memberOf! ()
      *
@@ -2459,6 +2800,64 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.issueCommand
      * @desc Issues a command to a device. The Operation resource returned contains a Command in its metadata field. Use the get operation method to get the status of the command.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.issueCommand({
+     *     // The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+     *     name: 'enterprises/my-enterprise/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "duration": "my_duration",
+     *       //   "errorCode": "my_errorCode",
+     *       //   "newPassword": "my_newPassword",
+     *       //   "resetPasswordFlags": [],
+     *       //   "type": "my_type",
+     *       //   "userName": "my_userName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.issueCommand
      * @memberOf! ()
      *
@@ -2535,6 +2934,51 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.list
      * @desc Lists devices for a given enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.list({
+     *     // The requested page size. The actual page size may be fixed to a min or max value.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results returned by the server.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the enterprise in the form enterprises/{enterpriseId}.
+     *     parent: 'enterprises/my-enterprise',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.list
      * @memberOf! ()
      *
@@ -2612,6 +3056,118 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.patch
      * @desc Updates a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.patch({
+     *     // The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+     *     name: 'enterprises/my-enterprise/devices/my-device',
+     *     // The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiLevel": 0,
+     *       //   "applicationReports": [],
+     *       //   "appliedPolicyName": "my_appliedPolicyName",
+     *       //   "appliedPolicyVersion": "my_appliedPolicyVersion",
+     *       //   "appliedState": "my_appliedState",
+     *       //   "deviceSettings": {},
+     *       //   "disabledReason": {},
+     *       //   "displays": [],
+     *       //   "enrollmentTime": "my_enrollmentTime",
+     *       //   "enrollmentTokenData": "my_enrollmentTokenData",
+     *       //   "enrollmentTokenName": "my_enrollmentTokenName",
+     *       //   "hardwareInfo": {},
+     *       //   "hardwareStatusSamples": [],
+     *       //   "lastPolicyComplianceReportTime": "my_lastPolicyComplianceReportTime",
+     *       //   "lastPolicySyncTime": "my_lastPolicySyncTime",
+     *       //   "lastStatusReportTime": "my_lastStatusReportTime",
+     *       //   "managementMode": "my_managementMode",
+     *       //   "memoryEvents": [],
+     *       //   "memoryInfo": {},
+     *       //   "name": "my_name",
+     *       //   "networkInfo": {},
+     *       //   "nonComplianceDetails": [],
+     *       //   "policyCompliant": false,
+     *       //   "policyName": "my_policyName",
+     *       //   "powerManagementEvents": [],
+     *       //   "previousDeviceNames": [],
+     *       //   "securityPosture": {},
+     *       //   "softwareInfo": {},
+     *       //   "state": "my_state",
+     *       //   "systemProperties": {},
+     *       //   "user": {},
+     *       //   "userName": "my_userName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiLevel": 0,
+     *   //   "applicationReports": [],
+     *   //   "appliedPolicyName": "my_appliedPolicyName",
+     *   //   "appliedPolicyVersion": "my_appliedPolicyVersion",
+     *   //   "appliedState": "my_appliedState",
+     *   //   "deviceSettings": {},
+     *   //   "disabledReason": {},
+     *   //   "displays": [],
+     *   //   "enrollmentTime": "my_enrollmentTime",
+     *   //   "enrollmentTokenData": "my_enrollmentTokenData",
+     *   //   "enrollmentTokenName": "my_enrollmentTokenName",
+     *   //   "hardwareInfo": {},
+     *   //   "hardwareStatusSamples": [],
+     *   //   "lastPolicyComplianceReportTime": "my_lastPolicyComplianceReportTime",
+     *   //   "lastPolicySyncTime": "my_lastPolicySyncTime",
+     *   //   "lastStatusReportTime": "my_lastStatusReportTime",
+     *   //   "managementMode": "my_managementMode",
+     *   //   "memoryEvents": [],
+     *   //   "memoryInfo": {},
+     *   //   "name": "my_name",
+     *   //   "networkInfo": {},
+     *   //   "nonComplianceDetails": [],
+     *   //   "policyCompliant": false,
+     *   //   "policyName": "my_policyName",
+     *   //   "powerManagementEvents": [],
+     *   //   "previousDeviceNames": [],
+     *   //   "securityPosture": {},
+     *   //   "softwareInfo": {},
+     *   //   "state": "my_state",
+     *   //   "systemProperties": {},
+     *   //   "user": {},
+     *   //   "userName": "my_userName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.patch
      * @memberOf! ()
      *
@@ -2782,6 +3338,44 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'enterprises/my-enterprise/devices/my-device/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.operations.cancel
      * @memberOf! ()
      *
@@ -2852,6 +3446,44 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'enterprises/my-enterprise/devices/my-device/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.operations.delete
      * @memberOf! ()
      *
@@ -2922,6 +3554,50 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.operations.get
      * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'enterprises/my-enterprise/devices/my-device/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.operations.get
      * @memberOf! ()
      *
@@ -2994,6 +3670,53 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.devices.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.devices.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'enterprises/my-enterprise/devices/my-device/operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.devices.operations.list
      * @memberOf! ()
      *
@@ -3139,6 +3862,70 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.enrollmentTokens.create
      * @desc Creates an enrollment token for a given enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.enrollmentTokens.create({
+     *     // The name of the enterprise in the form enterprises/{enterpriseId}.
+     *     parent: 'enterprises/my-enterprise',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalData": "my_additionalData",
+     *       //   "duration": "my_duration",
+     *       //   "expirationTimestamp": "my_expirationTimestamp",
+     *       //   "name": "my_name",
+     *       //   "oneTimeOnly": false,
+     *       //   "policyName": "my_policyName",
+     *       //   "qrCode": "my_qrCode",
+     *       //   "user": {},
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalData": "my_additionalData",
+     *   //   "duration": "my_duration",
+     *   //   "expirationTimestamp": "my_expirationTimestamp",
+     *   //   "name": "my_name",
+     *   //   "oneTimeOnly": false,
+     *   //   "policyName": "my_policyName",
+     *   //   "qrCode": "my_qrCode",
+     *   //   "user": {},
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.enrollmentTokens.create
      * @memberOf! ()
      *
@@ -3215,6 +4002,44 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.enrollmentTokens.delete
      * @desc Deletes an enrollment token. This operation invalidates the token, preventing its future use.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.enrollmentTokens.delete({
+     *     // The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
+     *     name: 'enterprises/my-enterprise/enrollmentTokens/my-enrollmentToken',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.enrollmentTokens.delete
      * @memberOf! ()
      *
@@ -3322,6 +4147,44 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.policies.delete
      * @desc Deletes a policy. This operation is only permitted if no devices are currently referencing the policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.policies.delete({
+     *     // The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
+     *     name: 'enterprises/my-enterprise/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.policies.delete
      * @memberOf! ()
      *
@@ -3392,6 +4255,125 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.policies.get
      * @desc Gets a policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.policies.get({
+     *     // The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
+     *     name: 'enterprises/my-enterprise/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountTypesWithManagementDisabled": [],
+     *   //   "addUserDisabled": false,
+     *   //   "adjustVolumeDisabled": false,
+     *   //   "advancedSecurityOverrides": {},
+     *   //   "alwaysOnVpnPackage": {},
+     *   //   "androidDevicePolicyTracks": [],
+     *   //   "appAutoUpdatePolicy": "my_appAutoUpdatePolicy",
+     *   //   "applications": [],
+     *   //   "autoTimeRequired": false,
+     *   //   "blockApplicationsEnabled": false,
+     *   //   "bluetoothConfigDisabled": false,
+     *   //   "bluetoothContactSharingDisabled": false,
+     *   //   "bluetoothDisabled": false,
+     *   //   "cameraDisabled": false,
+     *   //   "cellBroadcastsConfigDisabled": false,
+     *   //   "choosePrivateKeyRules": [],
+     *   //   "complianceRules": [],
+     *   //   "createWindowsDisabled": false,
+     *   //   "credentialsConfigDisabled": false,
+     *   //   "dataRoamingDisabled": false,
+     *   //   "debuggingFeaturesAllowed": false,
+     *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
+     *   //   "deviceOwnerLockScreenInfo": {},
+     *   //   "encryptionPolicy": "my_encryptionPolicy",
+     *   //   "ensureVerifyAppsEnabled": false,
+     *   //   "factoryResetDisabled": false,
+     *   //   "frpAdminEmails": [],
+     *   //   "funDisabled": false,
+     *   //   "installAppsDisabled": false,
+     *   //   "installUnknownSourcesAllowed": false,
+     *   //   "keyguardDisabled": false,
+     *   //   "keyguardDisabledFeatures": [],
+     *   //   "kioskCustomLauncherEnabled": false,
+     *   //   "kioskCustomization": {},
+     *   //   "locationMode": "my_locationMode",
+     *   //   "longSupportMessage": {},
+     *   //   "maximumTimeToLock": "my_maximumTimeToLock",
+     *   //   "minimumApiLevel": 0,
+     *   //   "mobileNetworksConfigDisabled": false,
+     *   //   "modifyAccountsDisabled": false,
+     *   //   "mountPhysicalMediaDisabled": false,
+     *   //   "name": "my_name",
+     *   //   "networkEscapeHatchEnabled": false,
+     *   //   "networkResetDisabled": false,
+     *   //   "openNetworkConfiguration": {},
+     *   //   "outgoingBeamDisabled": false,
+     *   //   "outgoingCallsDisabled": false,
+     *   //   "passwordPolicies": [],
+     *   //   "passwordRequirements": {},
+     *   //   "permissionGrants": [],
+     *   //   "permittedAccessibilityServices": {},
+     *   //   "permittedInputMethods": {},
+     *   //   "persistentPreferredActivities": [],
+     *   //   "playStoreMode": "my_playStoreMode",
+     *   //   "policyEnforcementRules": [],
+     *   //   "privateKeySelectionEnabled": false,
+     *   //   "recommendedGlobalProxy": {},
+     *   //   "removeUserDisabled": false,
+     *   //   "safeBootDisabled": false,
+     *   //   "screenCaptureDisabled": false,
+     *   //   "setUserIconDisabled": false,
+     *   //   "setWallpaperDisabled": false,
+     *   //   "setupActions": [],
+     *   //   "shareLocationDisabled": false,
+     *   //   "shortSupportMessage": {},
+     *   //   "skipFirstUseHintsEnabled": false,
+     *   //   "smsDisabled": false,
+     *   //   "statusBarDisabled": false,
+     *   //   "statusReportingSettings": {},
+     *   //   "stayOnPluggedModes": [],
+     *   //   "systemUpdate": {},
+     *   //   "tetheringConfigDisabled": false,
+     *   //   "uninstallAppsDisabled": false,
+     *   //   "unmuteMicrophoneDisabled": false,
+     *   //   "usbFileTransferDisabled": false,
+     *   //   "usbMassStorageEnabled": false,
+     *   //   "version": "my_version",
+     *   //   "vpnConfigDisabled": false,
+     *   //   "wifiConfigDisabled": false,
+     *   //   "wifiConfigsLockdownEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.policies.get
      * @memberOf! ()
      *
@@ -3462,6 +4444,51 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.policies.list
      * @desc Lists policies for a given enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.policies.list({
+     *     // The requested page size. The actual page size may be fixed to a min or max value.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results returned by the server.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the enterprise in the form enterprises/{enterpriseId}.
+     *     parent: 'enterprises/my-enterprise',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.policies.list
      * @memberOf! ()
      *
@@ -3541,6 +4568,214 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.policies.patch
      * @desc Updates or creates a policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.policies.patch({
+     *     // The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
+     *     name: 'enterprises/my-enterprise/policies/my-policie',
+     *     // The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountTypesWithManagementDisabled": [],
+     *       //   "addUserDisabled": false,
+     *       //   "adjustVolumeDisabled": false,
+     *       //   "advancedSecurityOverrides": {},
+     *       //   "alwaysOnVpnPackage": {},
+     *       //   "androidDevicePolicyTracks": [],
+     *       //   "appAutoUpdatePolicy": "my_appAutoUpdatePolicy",
+     *       //   "applications": [],
+     *       //   "autoTimeRequired": false,
+     *       //   "blockApplicationsEnabled": false,
+     *       //   "bluetoothConfigDisabled": false,
+     *       //   "bluetoothContactSharingDisabled": false,
+     *       //   "bluetoothDisabled": false,
+     *       //   "cameraDisabled": false,
+     *       //   "cellBroadcastsConfigDisabled": false,
+     *       //   "choosePrivateKeyRules": [],
+     *       //   "complianceRules": [],
+     *       //   "createWindowsDisabled": false,
+     *       //   "credentialsConfigDisabled": false,
+     *       //   "dataRoamingDisabled": false,
+     *       //   "debuggingFeaturesAllowed": false,
+     *       //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
+     *       //   "deviceOwnerLockScreenInfo": {},
+     *       //   "encryptionPolicy": "my_encryptionPolicy",
+     *       //   "ensureVerifyAppsEnabled": false,
+     *       //   "factoryResetDisabled": false,
+     *       //   "frpAdminEmails": [],
+     *       //   "funDisabled": false,
+     *       //   "installAppsDisabled": false,
+     *       //   "installUnknownSourcesAllowed": false,
+     *       //   "keyguardDisabled": false,
+     *       //   "keyguardDisabledFeatures": [],
+     *       //   "kioskCustomLauncherEnabled": false,
+     *       //   "kioskCustomization": {},
+     *       //   "locationMode": "my_locationMode",
+     *       //   "longSupportMessage": {},
+     *       //   "maximumTimeToLock": "my_maximumTimeToLock",
+     *       //   "minimumApiLevel": 0,
+     *       //   "mobileNetworksConfigDisabled": false,
+     *       //   "modifyAccountsDisabled": false,
+     *       //   "mountPhysicalMediaDisabled": false,
+     *       //   "name": "my_name",
+     *       //   "networkEscapeHatchEnabled": false,
+     *       //   "networkResetDisabled": false,
+     *       //   "openNetworkConfiguration": {},
+     *       //   "outgoingBeamDisabled": false,
+     *       //   "outgoingCallsDisabled": false,
+     *       //   "passwordPolicies": [],
+     *       //   "passwordRequirements": {},
+     *       //   "permissionGrants": [],
+     *       //   "permittedAccessibilityServices": {},
+     *       //   "permittedInputMethods": {},
+     *       //   "persistentPreferredActivities": [],
+     *       //   "playStoreMode": "my_playStoreMode",
+     *       //   "policyEnforcementRules": [],
+     *       //   "privateKeySelectionEnabled": false,
+     *       //   "recommendedGlobalProxy": {},
+     *       //   "removeUserDisabled": false,
+     *       //   "safeBootDisabled": false,
+     *       //   "screenCaptureDisabled": false,
+     *       //   "setUserIconDisabled": false,
+     *       //   "setWallpaperDisabled": false,
+     *       //   "setupActions": [],
+     *       //   "shareLocationDisabled": false,
+     *       //   "shortSupportMessage": {},
+     *       //   "skipFirstUseHintsEnabled": false,
+     *       //   "smsDisabled": false,
+     *       //   "statusBarDisabled": false,
+     *       //   "statusReportingSettings": {},
+     *       //   "stayOnPluggedModes": [],
+     *       //   "systemUpdate": {},
+     *       //   "tetheringConfigDisabled": false,
+     *       //   "uninstallAppsDisabled": false,
+     *       //   "unmuteMicrophoneDisabled": false,
+     *       //   "usbFileTransferDisabled": false,
+     *       //   "usbMassStorageEnabled": false,
+     *       //   "version": "my_version",
+     *       //   "vpnConfigDisabled": false,
+     *       //   "wifiConfigDisabled": false,
+     *       //   "wifiConfigsLockdownEnabled": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountTypesWithManagementDisabled": [],
+     *   //   "addUserDisabled": false,
+     *   //   "adjustVolumeDisabled": false,
+     *   //   "advancedSecurityOverrides": {},
+     *   //   "alwaysOnVpnPackage": {},
+     *   //   "androidDevicePolicyTracks": [],
+     *   //   "appAutoUpdatePolicy": "my_appAutoUpdatePolicy",
+     *   //   "applications": [],
+     *   //   "autoTimeRequired": false,
+     *   //   "blockApplicationsEnabled": false,
+     *   //   "bluetoothConfigDisabled": false,
+     *   //   "bluetoothContactSharingDisabled": false,
+     *   //   "bluetoothDisabled": false,
+     *   //   "cameraDisabled": false,
+     *   //   "cellBroadcastsConfigDisabled": false,
+     *   //   "choosePrivateKeyRules": [],
+     *   //   "complianceRules": [],
+     *   //   "createWindowsDisabled": false,
+     *   //   "credentialsConfigDisabled": false,
+     *   //   "dataRoamingDisabled": false,
+     *   //   "debuggingFeaturesAllowed": false,
+     *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
+     *   //   "deviceOwnerLockScreenInfo": {},
+     *   //   "encryptionPolicy": "my_encryptionPolicy",
+     *   //   "ensureVerifyAppsEnabled": false,
+     *   //   "factoryResetDisabled": false,
+     *   //   "frpAdminEmails": [],
+     *   //   "funDisabled": false,
+     *   //   "installAppsDisabled": false,
+     *   //   "installUnknownSourcesAllowed": false,
+     *   //   "keyguardDisabled": false,
+     *   //   "keyguardDisabledFeatures": [],
+     *   //   "kioskCustomLauncherEnabled": false,
+     *   //   "kioskCustomization": {},
+     *   //   "locationMode": "my_locationMode",
+     *   //   "longSupportMessage": {},
+     *   //   "maximumTimeToLock": "my_maximumTimeToLock",
+     *   //   "minimumApiLevel": 0,
+     *   //   "mobileNetworksConfigDisabled": false,
+     *   //   "modifyAccountsDisabled": false,
+     *   //   "mountPhysicalMediaDisabled": false,
+     *   //   "name": "my_name",
+     *   //   "networkEscapeHatchEnabled": false,
+     *   //   "networkResetDisabled": false,
+     *   //   "openNetworkConfiguration": {},
+     *   //   "outgoingBeamDisabled": false,
+     *   //   "outgoingCallsDisabled": false,
+     *   //   "passwordPolicies": [],
+     *   //   "passwordRequirements": {},
+     *   //   "permissionGrants": [],
+     *   //   "permittedAccessibilityServices": {},
+     *   //   "permittedInputMethods": {},
+     *   //   "persistentPreferredActivities": [],
+     *   //   "playStoreMode": "my_playStoreMode",
+     *   //   "policyEnforcementRules": [],
+     *   //   "privateKeySelectionEnabled": false,
+     *   //   "recommendedGlobalProxy": {},
+     *   //   "removeUserDisabled": false,
+     *   //   "safeBootDisabled": false,
+     *   //   "screenCaptureDisabled": false,
+     *   //   "setUserIconDisabled": false,
+     *   //   "setWallpaperDisabled": false,
+     *   //   "setupActions": [],
+     *   //   "shareLocationDisabled": false,
+     *   //   "shortSupportMessage": {},
+     *   //   "skipFirstUseHintsEnabled": false,
+     *   //   "smsDisabled": false,
+     *   //   "statusBarDisabled": false,
+     *   //   "statusReportingSettings": {},
+     *   //   "stayOnPluggedModes": [],
+     *   //   "systemUpdate": {},
+     *   //   "tetheringConfigDisabled": false,
+     *   //   "uninstallAppsDisabled": false,
+     *   //   "unmuteMicrophoneDisabled": false,
+     *   //   "usbFileTransferDisabled": false,
+     *   //   "usbMassStorageEnabled": false,
+     *   //   "version": "my_version",
+     *   //   "vpnConfigDisabled": false,
+     *   //   "wifiConfigDisabled": false,
+     *   //   "wifiConfigsLockdownEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.policies.patch
      * @memberOf! ()
      *
@@ -3686,6 +4921,64 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.webApps.create
      * @desc Creates a web app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.webApps.create({
+     *     // The name of the enterprise in the form enterprises/{enterpriseId}.
+     *     parent: 'enterprises/my-enterprise',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayMode": "my_displayMode",
+     *       //   "icons": [],
+     *       //   "name": "my_name",
+     *       //   "startUrl": "my_startUrl",
+     *       //   "title": "my_title",
+     *       //   "versionCode": "my_versionCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayMode": "my_displayMode",
+     *   //   "icons": [],
+     *   //   "name": "my_name",
+     *   //   "startUrl": "my_startUrl",
+     *   //   "title": "my_title",
+     *   //   "versionCode": "my_versionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.webApps.create
      * @memberOf! ()
      *
@@ -3760,6 +5053,44 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.webApps.delete
      * @desc Deletes a web app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.webApps.delete({
+     *     // The name of the web app in the form enterprises/{enterpriseId}/webApps/{packageName}.
+     *     name: 'enterprises/my-enterprise/webApps/my-webApp',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.webApps.delete
      * @memberOf! ()
      *
@@ -3830,6 +5161,51 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.webApps.get
      * @desc Gets a web app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.webApps.get({
+     *     // The name of the web app in the form enterprises/{enterpriseId}/webApp/{packageName}.
+     *     name: 'enterprises/my-enterprise/webApps/my-webApp',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayMode": "my_displayMode",
+     *   //   "icons": [],
+     *   //   "name": "my_name",
+     *   //   "startUrl": "my_startUrl",
+     *   //   "title": "my_title",
+     *   //   "versionCode": "my_versionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.webApps.get
      * @memberOf! ()
      *
@@ -3900,6 +5276,51 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.webApps.list
      * @desc Lists web apps for a given enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.webApps.list({
+     *     // The requested page size. The actual page size may be fixed to a min or max value.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results returned by the server.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the enterprise in the form enterprises/{enterpriseId}.
+     *     parent: 'enterprises/my-enterprise',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "webApps": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.webApps.list
      * @memberOf! ()
      *
@@ -3977,6 +5398,66 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.webApps.patch
      * @desc Updates a web app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.webApps.patch({
+     *     // The name of the web app in the form enterprises/{enterpriseId}/webApps/{packageName}.
+     *     name: 'enterprises/my-enterprise/webApps/my-webApp',
+     *     // The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayMode": "my_displayMode",
+     *       //   "icons": [],
+     *       //   "name": "my_name",
+     *       //   "startUrl": "my_startUrl",
+     *       //   "title": "my_title",
+     *       //   "versionCode": "my_versionCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayMode": "my_displayMode",
+     *   //   "icons": [],
+     *   //   "name": "my_name",
+     *   //   "startUrl": "my_startUrl",
+     *   //   "title": "my_title",
+     *   //   "versionCode": "my_versionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.webApps.patch
      * @memberOf! ()
      *
@@ -4139,6 +5620,62 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.enterprises.webTokens.create
      * @desc Creates a web token to access an embeddable managed Google Play web UI for a given enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.webTokens.create({
+     *     // The name of the enterprise in the form enterprises/{enterpriseId}.
+     *     parent: 'enterprises/my-enterprise',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enabledFeatures": [],
+     *       //   "name": "my_name",
+     *       //   "parentFrameUrl": "my_parentFrameUrl",
+     *       //   "permissions": [],
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enabledFeatures": [],
+     *   //   "name": "my_name",
+     *   //   "parentFrameUrl": "my_parentFrameUrl",
+     *   //   "permissions": [],
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.enterprises.webTokens.create
      * @memberOf! ()
      *
@@ -4238,6 +5775,49 @@ export namespace androidmanagement_v1 {
     /**
      * androidmanagement.signupUrls.create
      * @desc Creates an enterprise signup URL.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.signupUrls.create({
+     *     // The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
+     *     callbackUrl: 'placeholder-value',
+     *     // The ID of the Google Cloud Platform project which will own the enterprise.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidmanagement.signupUrls.create
      * @memberOf! ()
      *

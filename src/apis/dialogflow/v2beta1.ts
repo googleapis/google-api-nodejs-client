@@ -3227,6 +3227,48 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.deleteAgent
      * @desc Deletes the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.deleteAgent({
+     *     // Required. The project that the agent to delete is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.deleteAgent
      * @memberOf! ()
      *
@@ -3303,6 +3345,61 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.getAgent
      * @desc Retrieves the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.getAgent({
+     *     // Required. The project that the agent to fetch is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "avatarUri": "my_avatarUri",
+     *   //   "classificationThreshold": {},
+     *   //   "defaultLanguageCode": "my_defaultLanguageCode",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableLogging": false,
+     *   //   "matchMode": "my_matchMode",
+     *   //   "parent": "my_parent",
+     *   //   "supportedLanguageCodes": [],
+     *   //   "tier": "my_tier",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.getAgent
      * @memberOf! ()
      *
@@ -3386,6 +3483,82 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.setAgent
      * @desc Creates/updates the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.setAgent({
+     *     // Required. The project of this agent.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *     // Optional. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "avatarUri": "my_avatarUri",
+     *       //   "classificationThreshold": {},
+     *       //   "defaultLanguageCode": "my_defaultLanguageCode",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableLogging": false,
+     *       //   "matchMode": "my_matchMode",
+     *       //   "parent": "my_parent",
+     *       //   "supportedLanguageCodes": [],
+     *       //   "tier": "my_tier",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "avatarUri": "my_avatarUri",
+     *   //   "classificationThreshold": {},
+     *   //   "defaultLanguageCode": "my_defaultLanguageCode",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableLogging": false,
+     *   //   "matchMode": "my_matchMode",
+     *   //   "parent": "my_parent",
+     *   //   "supportedLanguageCodes": [],
+     *   //   "tier": "my_tier",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.setAgent
      * @memberOf! ()
      *
@@ -3538,6 +3711,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.export
      * @desc Exports the specified agent to a ZIP file.   Operation <response: ExportAgentResponse>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.export({
+     *     // Required. The project that the agent to export is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentUri": "my_agentUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.export
      * @memberOf! ()
      *
@@ -3620,6 +3849,54 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.getFulfillment
      * @desc Retrieves the fulfillment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.getFulfillment({
+     *     // Required. The name of the fulfillment.
+     *     // Format: `projects/<Project ID>/agent/fulfillment`.
+     *     name: 'projects/my-project/agent/fulfillment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "enabled": false,
+     *   //   "features": [],
+     *   //   "genericWebService": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.getFulfillment
      * @memberOf! ()
      *
@@ -3708,6 +3985,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.getValidationResult
      * @desc Gets agent validation result. Agent validation is performed during training time and is updated automatically when training is completed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.getValidationResult({
+     *     // Optional. The language for which you want a validation result. If not
+     *     // specified, the agent's default language is used. [Many
+     *     // languages](https://cloud.google.com/dialogflow/docs/reference/language)
+     *     // are supported. Note: languages must be enabled in the agent before they can
+     *     // be used.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The project that the agent is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "validationErrors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.getValidationResult
      * @memberOf! ()
      *
@@ -3807,6 +4134,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.import
      * @desc Imports the specified agent from a ZIP file.  Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest.   Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.import({
+     *     // Required. The project that the agent to import is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentContent": "my_agentContent",
+     *       //   "agentUri": "my_agentUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.import
      * @memberOf! ()
      *
@@ -3889,6 +4273,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.restore
      * @desc Restores the specified agent from a ZIP file.  Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.   Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.restore({
+     *     // Required. The project that the agent to restore is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentContent": "my_agentContent",
+     *       //   "agentUri": "my_agentUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.restore
      * @memberOf! ()
      *
@@ -3971,6 +4412,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.search
      * @desc Returns the list of agents.  Since there is at most one conversational agent per project, this method is useful primarily for listing all agents across projects the caller has access to. One can achieve that with a wildcard project collection id "-". Refer to [List Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.search({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project to list agents from.
+     *     // Format: `projects/<Project ID or '-'>`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.search
      * @memberOf! ()
      *
@@ -4071,6 +4562,60 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.train
      * @desc Trains the specified agent.   Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.train({
+     *     // Required. The project that the agent to train is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.train
      * @memberOf! ()
      *
@@ -4153,6 +4698,69 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.updateFulfillment
      * @desc Updates the fulfillment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.updateFulfillment({
+     *     // Required. The unique identifier of the fulfillment.
+     *     // Format: `projects/<Project ID>/agent/fulfillment`.
+     *     name: 'projects/my-project/agent/fulfillment',
+     *     // Required. The mask to control which fields get updated. If the mask is not
+     *     // present, all fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "enabled": false,
+     *       //   "features": [],
+     *       //   "genericWebService": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "enabled": false,
+     *   //   "features": [],
+     *   //   "genericWebService": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.updateFulfillment
      * @memberOf! ()
      *
@@ -4392,6 +5000,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.batchDelete
      * @desc Deletes entity types in the specified agent.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.batchDelete({
+     *     // Required. The name of the agent to delete all entities types for. Format:
+     *     // `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entityTypeNames": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.batchDelete
      * @memberOf! ()
      *
@@ -4473,6 +5137,65 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.batchUpdate
      * @desc Updates/Creates multiple entity types in the specified agent.  Operation <response: BatchUpdateEntityTypesResponse>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.batchUpdate({
+     *     // Required. The name of the agent to update or create entity types in.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entityTypeBatchInline": {},
+     *       //   "entityTypeBatchUri": "my_entityTypeBatchUri",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.batchUpdate
      * @memberOf! ()
      *
@@ -4554,6 +5277,74 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.create
      * @desc Creates an entity type in the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.create({
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The agent to create a entity type for.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoExpansionMode": "my_autoExpansionMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableFuzzyExtraction": false,
+     *       //   "entities": [],
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpansionMode": "my_autoExpansionMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableFuzzyExtraction": false,
+     *   //   "entities": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.create
      * @memberOf! ()
      *
@@ -4647,6 +5438,48 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.delete
      * @desc Deletes the specified entity type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.delete({
+     *     // Required. The name of the entity type to delete.
+     *     // Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     *     name: 'projects/my-project/agent/entityTypes/my-entityType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.delete
      * @memberOf! ()
      *
@@ -4718,6 +5551,61 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.get
      * @desc Retrieves the specified entity type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.get({
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The name of the entity type.
+     *     // Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     *     name: 'projects/my-project/agent/entityTypes/my-entityType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpansionMode": "my_autoExpansionMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableFuzzyExtraction": false,
+     *   //   "entities": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.get
      * @memberOf! ()
      *
@@ -4807,6 +5695,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.list
      * @desc Returns the list of all entity types in the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.list({
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The agent to list all entity types from.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entityTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.list
      * @memberOf! ()
      *
@@ -4910,6 +5854,78 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.patch
      * @desc Updates the specified entity type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.patch({
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // The unique identifier of the entity type.
+     *     // Required for EntityTypes.UpdateEntityType and
+     *     // EntityTypes.BatchUpdateEntityTypes methods.
+     *     // Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     name: 'projects/my-project/agent/entityTypes/my-entityType',
+     *     // Optional. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoExpansionMode": "my_autoExpansionMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableFuzzyExtraction": false,
+     *       //   "entities": [],
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpansionMode": "my_autoExpansionMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableFuzzyExtraction": false,
+     *   //   "entities": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.patch
      * @memberOf! ()
      *
@@ -5141,6 +6157,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchCreate
      * @desc Creates multiple new entities in the specified entity type.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.entities.batchCreate({
+     *     // Required. The name of the entity type to create entities in. Format:
+     *     // `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     parent: 'projects/my-project/agent/entityTypes/my-entityType',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entities": [],
+     *       //   "languageCode": "my_languageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.entities.batchCreate
      * @memberOf! ()
      *
@@ -5223,6 +6296,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchDelete
      * @desc Deletes entities in the specified entity type.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.entities.batchDelete({
+     *     // Required. The name of the entity type to delete entries for. Format:
+     *     // `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     parent: 'projects/my-project/agent/entityTypes/my-entityType',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entityValues": [],
+     *       //   "languageCode": "my_languageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.entities.batchDelete
      * @memberOf! ()
      *
@@ -5305,6 +6435,64 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchUpdate
      * @desc Updates or creates multiple entities in the specified entity type. This method does not affect entities in the entity type that aren't explicitly specified in the request.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.entityTypes.entities.batchUpdate({
+     *     // Required. The name of the entity type to update or create entities in.
+     *     // Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     parent: 'projects/my-project/agent/entityTypes/my-entityType',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entities": [],
+     *       //   "languageCode": "my_languageCode",
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.entityTypes.entities.batchUpdate
      * @memberOf! ()
      *
@@ -5448,6 +6636,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.list
      * @desc Returns the list of all non-draft environments of the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.list({
+     *     // Optional. The maximum number of items to return in a single page. By default 100 and
+     *     // at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The agent to list all environments from.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "environments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.list
      * @memberOf! ()
      *
@@ -5597,6 +6835,54 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.deleteContexts
      * @desc Deletes all active contexts in the specified session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.deleteContexts(
+     *     {
+     *       // Required. The name of the session to delete all contexts from. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *       // ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *       // ID>`. If `Environment ID` is not specified we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       parent:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.deleteContexts
      * @memberOf! ()
      *
@@ -5673,6 +6959,77 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.detectIntent
      * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.detectIntent(
+     *     {
+     *       // Required. The name of the session this query is sent to. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we are using
+     *       // "-". It's up to the API caller to choose an appropriate `Session ID` and
+     *       // `User Id`. They can be a random number or some type of user and session
+     *       // identifiers (preferably hashed). The length of the `Session ID` and
+     *       // `User ID` must not exceed 36 characters.
+     *       session:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "inputAudio": "my_inputAudio",
+     *         //   "outputAudioConfig": {},
+     *         //   "outputAudioConfigMask": "my_outputAudioConfigMask",
+     *         //   "queryInput": {},
+     *         //   "queryParams": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternativeQueryResults": [],
+     *   //   "outputAudio": "my_outputAudio",
+     *   //   "outputAudioConfig": {},
+     *   //   "queryResult": {},
+     *   //   "responseId": "my_responseId",
+     *   //   "webhookStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.detectIntent
      * @memberOf! ()
      *
@@ -5809,6 +7166,69 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.create
      * @desc Creates a context.  If the specified context already exists, overrides the context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.create(
+     *     {
+     *       // Required. The session to create a context for.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we assume
+     *       // default '-' user.
+     *       parent:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "lifespanCount": 0,
+     *         //   "name": "my_name",
+     *         //   "parameters": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.contexts.create
      * @memberOf! ()
      *
@@ -5895,6 +7315,55 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.delete
      * @desc Deletes the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.delete(
+     *     {
+     *       // Required. The name of the context to delete. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *       // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     *       // not specified, we assume default 'draft' environment. If `User ID` is not
+     *       // specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session/contexts/my-context',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.contexts.delete
      * @memberOf! ()
      *
@@ -5966,6 +7435,59 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.get
      * @desc Retrieves the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.get(
+     *     {
+     *       // Required. The name of the context. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *       // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     *       // not specified, we assume default 'draft' environment. If `User ID` is not
+     *       // specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session/contexts/my-context',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.contexts.get
      * @memberOf! ()
      *
@@ -6048,6 +7570,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.list
      * @desc Returns the list of all contexts in the specified session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.list(
+     *     {
+     *       // Optional. The maximum number of items to return in a single page. By
+     *       // default 100 and at most 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous list request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The session to list all contexts from.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we assume
+     *       // default '-' user.
+     *       parent:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contexts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.contexts.list
      * @memberOf! ()
      *
@@ -6148,6 +7727,82 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.patch
      * @desc Updates the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.patch(
+     *     {
+     *       // Required. The unique identifier of the context. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`,
+     *       // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *       //
+     *       // The `Context ID` is always converted to lowercase, may only contain
+     *       // characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+     *       //
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       //
+     *       // The following context names are reserved for internal use by Dialogflow.
+     *       // You should not use these contexts or create contexts with these names:
+     *       //
+     *       // * `__system_counters__`
+     *       // * `*_id_dialog_context`
+     *       // * `*_dialog_params_size`
+     *       name:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session/contexts/my-context',
+     *       // Optional. The mask to control which fields get updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "lifespanCount": 0,
+     *         //   "name": "my_name",
+     *         //   "parameters": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.contexts.patch
      * @memberOf! ()
      *
@@ -6322,6 +7977,69 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.create
      * @desc Creates a session entity type.  If the specified session entity type already exists, overrides the session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.create(
+     *     {
+     *       // Required. The session to create a session entity type for.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *       // sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we assume
+     *       // default '-' user.
+     *       parent:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entities": [],
+     *         //   "entityOverrideMode": "my_entityOverrideMode",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.create
      * @memberOf! ()
      *
@@ -6422,6 +8140,55 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.delete
      * @desc Deletes the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.delete(
+     *     {
+     *       // Required. The name of the entity type to delete. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *       // ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *       // Name>`. If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session/entityTypes/my-entityType',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.delete
      * @memberOf! ()
      *
@@ -6493,6 +8260,59 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.get
      * @desc Retrieves the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.get(
+     *     {
+     *       // Required. The name of the session entity type. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *       // ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *       // Name>`. If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session/entityTypes/my-entityType',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.get
      * @memberOf! ()
      *
@@ -6589,6 +8409,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.list
      * @desc Returns the list of all session entity types in the specified session.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.list(
+     *     {
+     *       // Optional. The maximum number of items to return in a single page. By
+     *       // default 100 and at most 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous list request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The session to list all session entity types from.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *       // sessions/<Session ID>`.
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       parent:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sessionEntityTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.list
      * @memberOf! ()
      *
@@ -6691,6 +8568,75 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.patch
      * @desc Updates the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.patch(
+     *     {
+     *       // Required. The unique identifier of this session entity type. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>`, or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       //
+     *       // `<Entity Type Display Name>` must be the display name of an existing entity
+     *       // type in the same agent that will be overridden or supplemented.
+     *       name:
+     *         'projects/my-project/agent/environments/my-environment/users/my-user/sessions/my-session/entityTypes/my-entityType',
+     *       // Optional. The mask to control which fields get updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entities": [],
+     *         //   "entityOverrideMode": "my_entityOverrideMode",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.patch
      * @memberOf! ()
      *
@@ -6879,6 +8825,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.intents.batchDelete
      * @desc Deletes intents in the specified agent.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.intents.batchDelete({
+     *     // Required. The name of the agent to delete all entities types for. Format:
+     *     // `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "intents": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.intents.batchDelete
      * @memberOf! ()
      *
@@ -6961,6 +8963,66 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.intents.batchUpdate
      * @desc Updates/Creates multiple intents in the specified agent.  Operation <response: BatchUpdateIntentsResponse>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.intents.batchUpdate({
+     *     // Required. The name of the agent to update or create intents in.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "intentBatchInline": {},
+     *       //   "intentBatchUri": "my_intentBatchUri",
+     *       //   "intentView": "my_intentView",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.intents.batchUpdate
      * @memberOf! ()
      *
@@ -7043,6 +9105,104 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.intents.create
      * @desc Creates an intent in the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.intents.create({
+     *     // Optional. The resource view to apply to the returned intent.
+     *     intentView: 'placeholder-value',
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The agent to create a intent for.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "defaultResponsePlatforms": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "endInteraction": false,
+     *       //   "events": [],
+     *       //   "followupIntentInfo": [],
+     *       //   "inputContextNames": [],
+     *       //   "isFallback": false,
+     *       //   "messages": [],
+     *       //   "mlDisabled": false,
+     *       //   "mlEnabled": false,
+     *       //   "name": "my_name",
+     *       //   "outputContexts": [],
+     *       //   "parameters": [],
+     *       //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *       //   "priority": 0,
+     *       //   "resetContexts": false,
+     *       //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *       //   "trainingPhrases": [],
+     *       //   "webhookState": "my_webhookState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "defaultResponsePlatforms": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "endInteraction": false,
+     *   //   "events": [],
+     *   //   "followupIntentInfo": [],
+     *   //   "inputContextNames": [],
+     *   //   "isFallback": false,
+     *   //   "messages": [],
+     *   //   "mlDisabled": false,
+     *   //   "mlEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "outputContexts": [],
+     *   //   "parameters": [],
+     *   //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *   //   "priority": 0,
+     *   //   "resetContexts": false,
+     *   //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *   //   "trainingPhrases": [],
+     *   //   "webhookState": "my_webhookState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.intents.create
      * @memberOf! ()
      *
@@ -7129,6 +9289,50 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.intents.delete
      * @desc Deletes the specified intent and its direct or indirect followup intents.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.intents.delete({
+     *     // Required. The name of the intent to delete. If this intent has direct or
+     *     // indirect followup intents, we also delete them.
+     *     //
+     *     // Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     name: 'projects/my-project/agent/intents/my-intent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.intents.delete
      * @memberOf! ()
      *
@@ -7200,6 +9404,77 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.intents.get
      * @desc Retrieves the specified intent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.intents.get({
+     *     // Optional. The resource view to apply to the returned intent.
+     *     intentView: 'placeholder-value',
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The name of the intent.
+     *     // Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     name: 'projects/my-project/agent/intents/my-intent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "defaultResponsePlatforms": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "endInteraction": false,
+     *   //   "events": [],
+     *   //   "followupIntentInfo": [],
+     *   //   "inputContextNames": [],
+     *   //   "isFallback": false,
+     *   //   "messages": [],
+     *   //   "mlDisabled": false,
+     *   //   "mlEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "outputContexts": [],
+     *   //   "parameters": [],
+     *   //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *   //   "priority": 0,
+     *   //   "resetContexts": false,
+     *   //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *   //   "trainingPhrases": [],
+     *   //   "webhookState": "my_webhookState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.intents.get
      * @memberOf! ()
      *
@@ -7282,6 +9557,64 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.intents.list
      * @desc Returns the list of all intents in the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.intents.list({
+     *     // Optional. The resource view to apply to the returned intent.
+     *     intentView: 'placeholder-value',
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The agent to list all intents from.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/agent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "intents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.intents.list
      * @memberOf! ()
      *
@@ -7384,6 +9717,108 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.intents.patch
      * @desc Updates the specified intent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.intents.patch({
+     *     // Optional. The resource view to apply to the returned intent.
+     *     intentView: 'placeholder-value',
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // The unique identifier of this intent.
+     *     // Required for Intents.UpdateIntent and Intents.BatchUpdateIntents
+     *     // methods.
+     *     // Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     name: 'projects/my-project/agent/intents/my-intent',
+     *     // Optional. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "defaultResponsePlatforms": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "endInteraction": false,
+     *       //   "events": [],
+     *       //   "followupIntentInfo": [],
+     *       //   "inputContextNames": [],
+     *       //   "isFallback": false,
+     *       //   "messages": [],
+     *       //   "mlDisabled": false,
+     *       //   "mlEnabled": false,
+     *       //   "name": "my_name",
+     *       //   "outputContexts": [],
+     *       //   "parameters": [],
+     *       //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *       //   "priority": 0,
+     *       //   "resetContexts": false,
+     *       //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *       //   "trainingPhrases": [],
+     *       //   "webhookState": "my_webhookState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "defaultResponsePlatforms": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "endInteraction": false,
+     *   //   "events": [],
+     *   //   "followupIntentInfo": [],
+     *   //   "inputContextNames": [],
+     *   //   "isFallback": false,
+     *   //   "messages": [],
+     *   //   "mlDisabled": false,
+     *   //   "mlEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "outputContexts": [],
+     *   //   "parameters": [],
+     *   //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *   //   "priority": 0,
+     *   //   "resetContexts": false,
+     *   //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *   //   "trainingPhrases": [],
+     *   //   "webhookState": "my_webhookState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.intents.patch
      * @memberOf! ()
      *
@@ -7628,6 +10063,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.create
      * @desc Creates a knowledge base.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.create({
+     *     // Required. The project to create a knowledge base for.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.create
      * @memberOf! ()
      *
@@ -7726,6 +10217,51 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.delete
      * @desc Deletes the specified knowledge base.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.delete({
+     *     // Optional. Force deletes the knowledge base. When set to true, any documents
+     *     // in the knowledge base are also deleted.
+     *     force: 'placeholder-value',
+     *     // Required. The name of the knowledge base to delete.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     name: 'projects/my-project/agent/knowledgeBases/my-knowledgeBase',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.delete
      * @memberOf! ()
      *
@@ -7798,6 +10334,52 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.get
      * @desc Retrieves the specified knowledge base.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.get({
+     *     // Required. The name of the knowledge base to retrieve.
+     *     // Format `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     name: 'projects/my-project/agent/knowledgeBases/my-knowledgeBase',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.get
      * @memberOf! ()
      *
@@ -7892,6 +10474,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.list
      * @desc Returns the list of all knowledge bases of the specified agent.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.list({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 10 and at most 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project to list of knowledge bases for.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/agent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "knowledgeBases": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.list
      * @memberOf! ()
      *
@@ -7994,6 +10626,67 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.patch
      * @desc Updates the specified knowledge base.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.patch({
+     *     // The knowledge base resource name.
+     *     // The name must be empty when creating a knowledge base.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     name: 'projects/my-project/agent/knowledgeBases/my-knowledgeBase',
+     *     // Optional. Not specified means `update all`.
+     *     // Currently, only `display_name` can be updated, an InvalidArgument will be
+     *     // returned for attempting to update other fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.patch
      * @memberOf! ()
      *
@@ -8184,6 +10877,70 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.create
      * @desc Creates a new document.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.documents.create({
+     *     // Required. The knoweldge base to create a document for.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     parent: 'projects/my-project/agent/knowledgeBases/my-knowledgeBase',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "content": "my_content",
+     *       //   "contentUri": "my_contentUri",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableAutoReload": false,
+     *       //   "knowledgeTypes": [],
+     *       //   "latestReloadStatus": {},
+     *       //   "mimeType": "my_mimeType",
+     *       //   "name": "my_name",
+     *       //   "rawContent": "my_rawContent"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.documents.create
      * @memberOf! ()
      *
@@ -8266,6 +11023,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.delete
      * @desc Deletes the specified document.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.documents.delete({
+     *     // The name of the document to delete.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     *     // ID>/documents/<Document ID>`.
+     *     name:
+     *       'projects/my-project/agent/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.documents.delete
      * @memberOf! ()
      *
@@ -8344,6 +11151,60 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.get
      * @desc Retrieves the specified document.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.documents.get({
+     *     // Required. The name of the document to retrieve.
+     *     // Format `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     *     // ID>/documents/<Document ID>`.
+     *     name:
+     *       'projects/my-project/agent/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "content": "my_content",
+     *   //   "contentUri": "my_contentUri",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutoReload": false,
+     *   //   "knowledgeTypes": [],
+     *   //   "latestReloadStatus": {},
+     *   //   "mimeType": "my_mimeType",
+     *   //   "name": "my_name",
+     *   //   "rawContent": "my_rawContent"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.documents.get
      * @memberOf! ()
      *
@@ -8432,6 +11293,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.list
      * @desc Returns the list of all documents of the knowledge base.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.documents.list({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 10 and at most 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The knowledge base to list all documents for.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     parent: 'projects/my-project/agent/knowledgeBases/my-knowledgeBase',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.documents.list
      * @memberOf! ()
      *
@@ -8532,6 +11443,77 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.patch
      * @desc Updates the specified document.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.documents.patch({
+     *     // The document resource name.
+     *     // The name must be empty when creating a document.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     *     // ID>/documents/<Document ID>`.
+     *     name:
+     *       'projects/my-project/agent/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *     // Optional. Not specified means `update all`.
+     *     // Currently, only `display_name` can be updated, an InvalidArgument will be
+     *     // returned for attempting to update other fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "content": "my_content",
+     *       //   "contentUri": "my_contentUri",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableAutoReload": false,
+     *       //   "knowledgeTypes": [],
+     *       //   "latestReloadStatus": {},
+     *       //   "mimeType": "my_mimeType",
+     *       //   "name": "my_name",
+     *       //   "rawContent": "my_rawContent"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.documents.patch
      * @memberOf! ()
      *
@@ -8612,6 +11594,64 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.reload
      * @desc Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.knowledgeBases.documents.reload({
+     *     // The name of the document to reload.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     *     // ID>/documents/<Document ID>`
+     *     name:
+     *       'projects/my-project/agent/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gcsSource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.knowledgeBases.documents.reload
      * @memberOf! ()
      *
@@ -8809,6 +11849,51 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.deleteContexts
      * @desc Deletes all active contexts in the specified session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.deleteContexts({
+     *     // Required. The name of the session to delete all contexts from. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *     // ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *     // ID>`. If `Environment ID` is not specified we assume default 'draft'
+     *     // environment. If `User ID` is not specified, we assume default '-' user.
+     *     parent: 'projects/my-project/agent/sessions/my-session',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.deleteContexts
      * @memberOf! ()
      *
@@ -8885,6 +11970,74 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.detectIntent
      * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.detectIntent({
+     *     // Required. The name of the session this query is sent to. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *     // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *     // default 'draft' environment. If `User ID` is not specified, we are using
+     *     // "-". It's up to the API caller to choose an appropriate `Session ID` and
+     *     // `User Id`. They can be a random number or some type of user and session
+     *     // identifiers (preferably hashed). The length of the `Session ID` and
+     *     // `User ID` must not exceed 36 characters.
+     *     session: 'projects/my-project/agent/sessions/my-session',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "inputAudio": "my_inputAudio",
+     *       //   "outputAudioConfig": {},
+     *       //   "outputAudioConfigMask": "my_outputAudioConfigMask",
+     *       //   "queryInput": {},
+     *       //   "queryParams": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternativeQueryResults": [],
+     *   //   "outputAudio": "my_outputAudio",
+     *   //   "outputAudioConfig": {},
+     *   //   "queryResult": {},
+     *   //   "responseId": "my_responseId",
+     *   //   "webhookStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.detectIntent
      * @memberOf! ()
      *
@@ -9021,6 +12174,66 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.contexts.create
      * @desc Creates a context.  If the specified context already exists, overrides the context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.contexts.create({
+     *     // Required. The session to create a context for.
+     *     // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *     // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *     // default 'draft' environment. If `User ID` is not specified, we assume
+     *     // default '-' user.
+     *     parent: 'projects/my-project/agent/sessions/my-session',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lifespanCount": 0,
+     *       //   "name": "my_name",
+     *       //   "parameters": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.contexts.create
      * @memberOf! ()
      *
@@ -9107,6 +12320,52 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.contexts.delete
      * @desc Deletes the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.contexts.delete({
+     *     // Required. The name of the context to delete. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *     // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     *     // not specified, we assume default 'draft' environment. If `User ID` is not
+     *     // specified, we assume default '-' user.
+     *     name: 'projects/my-project/agent/sessions/my-session/contexts/my-context',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.contexts.delete
      * @memberOf! ()
      *
@@ -9178,6 +12437,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.contexts.get
      * @desc Retrieves the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.contexts.get({
+     *     // Required. The name of the context. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *     // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     *     // not specified, we assume default 'draft' environment. If `User ID` is not
+     *     // specified, we assume default '-' user.
+     *     name: 'projects/my-project/agent/sessions/my-session/contexts/my-context',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.contexts.get
      * @memberOf! ()
      *
@@ -9260,6 +12569,60 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.contexts.list
      * @desc Returns the list of all contexts in the specified session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.contexts.list({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The session to list all contexts from.
+     *     // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *     // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *     // default 'draft' environment. If `User ID` is not specified, we assume
+     *     // default '-' user.
+     *     parent: 'projects/my-project/agent/sessions/my-session',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contexts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.contexts.list
      * @memberOf! ()
      *
@@ -9360,6 +12723,79 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.contexts.patch
      * @desc Updates the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.contexts.patch({
+     *     // Required. The unique identifier of the context. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`,
+     *     // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *     //
+     *     // The `Context ID` is always converted to lowercase, may only contain
+     *     // characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+     *     //
+     *     // If `Environment ID` is not specified, we assume default 'draft'
+     *     // environment. If `User ID` is not specified, we assume default '-' user.
+     *     //
+     *     // The following context names are reserved for internal use by Dialogflow.
+     *     // You should not use these contexts or create contexts with these names:
+     *     //
+     *     // * `__system_counters__`
+     *     // * `*_id_dialog_context`
+     *     // * `*_dialog_params_size`
+     *     name: 'projects/my-project/agent/sessions/my-session/contexts/my-context',
+     *     // Optional. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lifespanCount": 0,
+     *       //   "name": "my_name",
+     *       //   "parameters": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.contexts.patch
      * @memberOf! ()
      *
@@ -9534,6 +12970,66 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.entityTypes.create
      * @desc Creates a session entity type.  If the specified session entity type already exists, overrides the session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.entityTypes.create({
+     *     // Required. The session to create a session entity type for.
+     *     // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *     // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *     // sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *     // default 'draft' environment. If `User ID` is not specified, we assume
+     *     // default '-' user.
+     *     parent: 'projects/my-project/agent/sessions/my-session',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entities": [],
+     *       //   "entityOverrideMode": "my_entityOverrideMode",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.entityTypes.create
      * @memberOf! ()
      *
@@ -9634,6 +13130,53 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.entityTypes.delete
      * @desc Deletes the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.entityTypes.delete({
+     *     // Required. The name of the entity type to delete. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *     // Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *     // ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *     // Name>`. If `Environment ID` is not specified, we assume default 'draft'
+     *     // environment. If `User ID` is not specified, we assume default '-' user.
+     *     name:
+     *       'projects/my-project/agent/sessions/my-session/entityTypes/my-entityType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.entityTypes.delete
      * @memberOf! ()
      *
@@ -9705,6 +13248,57 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.entityTypes.get
      * @desc Retrieves the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.entityTypes.get({
+     *     // Required. The name of the session entity type. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *     // Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *     // ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *     // Name>`. If `Environment ID` is not specified, we assume default 'draft'
+     *     // environment. If `User ID` is not specified, we assume default '-' user.
+     *     name:
+     *       'projects/my-project/agent/sessions/my-session/entityTypes/my-entityType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.entityTypes.get
      * @memberOf! ()
      *
@@ -9801,6 +13395,60 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.entityTypes.list
      * @desc Returns the list of all session entity types in the specified session.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.entityTypes.list({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The session to list all session entity types from.
+     *     // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *     // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *     // sessions/<Session ID>`.
+     *     // If `Environment ID` is not specified, we assume default 'draft'
+     *     // environment. If `User ID` is not specified, we assume default '-' user.
+     *     parent: 'projects/my-project/agent/sessions/my-session',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sessionEntityTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.entityTypes.list
      * @memberOf! ()
      *
@@ -9903,6 +13551,73 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.sessions.entityTypes.patch
      * @desc Updates the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.agent.sessions.entityTypes.patch({
+     *     // Required. The unique identifier of this session entity type. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *     // Display Name>`, or
+     *     // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     *     // If `Environment ID` is not specified, we assume default 'draft'
+     *     // environment. If `User ID` is not specified, we assume default '-' user.
+     *     //
+     *     // `<Entity Type Display Name>` must be the display name of an existing entity
+     *     // type in the same agent that will be overridden or supplemented.
+     *     name:
+     *       'projects/my-project/agent/sessions/my-session/entityTypes/my-entityType',
+     *     // Optional. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entities": [],
+     *       //   "entityOverrideMode": "my_entityOverrideMode",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.agent.sessions.entityTypes.patch
      * @memberOf! ()
      *
@@ -10095,6 +13810,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.create
      * @desc Creates a knowledge base.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.create({
+     *     // Required. The project to create a knowledge base for.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.create
      * @memberOf! ()
      *
@@ -10193,6 +13964,51 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.delete
      * @desc Deletes the specified knowledge base.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.delete({
+     *     // Optional. Force deletes the knowledge base. When set to true, any documents
+     *     // in the knowledge base are also deleted.
+     *     force: 'placeholder-value',
+     *     // Required. The name of the knowledge base to delete.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     name: 'projects/my-project/knowledgeBases/my-knowledgeBase',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.delete
      * @memberOf! ()
      *
@@ -10265,6 +14081,52 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.get
      * @desc Retrieves the specified knowledge base.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.get({
+     *     // Required. The name of the knowledge base to retrieve.
+     *     // Format `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     name: 'projects/my-project/knowledgeBases/my-knowledgeBase',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.get
      * @memberOf! ()
      *
@@ -10359,6 +14221,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.list
      * @desc Returns the list of all knowledge bases of the specified agent.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.list({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 10 and at most 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project to list of knowledge bases for.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "knowledgeBases": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.list
      * @memberOf! ()
      *
@@ -10461,6 +14373,67 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.patch
      * @desc Updates the specified knowledge base.  Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.patch({
+     *     // The knowledge base resource name.
+     *     // The name must be empty when creating a knowledge base.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     name: 'projects/my-project/knowledgeBases/my-knowledgeBase',
+     *     // Optional. Not specified means `update all`.
+     *     // Currently, only `display_name` can be updated, an InvalidArgument will be
+     *     // returned for attempting to update other fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.patch
      * @memberOf! ()
      *
@@ -10651,6 +14624,70 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.documents.create
      * @desc Creates a new document.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.documents.create({
+     *     // Required. The knoweldge base to create a document for.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     parent: 'projects/my-project/knowledgeBases/my-knowledgeBase',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "content": "my_content",
+     *       //   "contentUri": "my_contentUri",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableAutoReload": false,
+     *       //   "knowledgeTypes": [],
+     *       //   "latestReloadStatus": {},
+     *       //   "mimeType": "my_mimeType",
+     *       //   "name": "my_name",
+     *       //   "rawContent": "my_rawContent"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.documents.create
      * @memberOf! ()
      *
@@ -10733,6 +14770,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.documents.delete
      * @desc Deletes the specified document.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.documents.delete({
+     *     // The name of the document to delete.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     *     // ID>/documents/<Document ID>`.
+     *     name:
+     *       'projects/my-project/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.documents.delete
      * @memberOf! ()
      *
@@ -10811,6 +14898,60 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.documents.get
      * @desc Retrieves the specified document.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.documents.get({
+     *     // Required. The name of the document to retrieve.
+     *     // Format `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     *     // ID>/documents/<Document ID>`.
+     *     name:
+     *       'projects/my-project/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "content": "my_content",
+     *   //   "contentUri": "my_contentUri",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutoReload": false,
+     *   //   "knowledgeTypes": [],
+     *   //   "latestReloadStatus": {},
+     *   //   "mimeType": "my_mimeType",
+     *   //   "name": "my_name",
+     *   //   "rawContent": "my_rawContent"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.documents.get
      * @memberOf! ()
      *
@@ -10899,6 +15040,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.documents.list
      * @desc Returns the list of all documents of the knowledge base.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.documents.list({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 10 and at most 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The knowledge base to list all documents for.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     parent: 'projects/my-project/knowledgeBases/my-knowledgeBase',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.documents.list
      * @memberOf! ()
      *
@@ -10999,6 +15190,77 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.documents.patch
      * @desc Updates the specified document.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.documents.patch({
+     *     // The document resource name.
+     *     // The name must be empty when creating a document.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     *     // ID>/documents/<Document ID>`.
+     *     name:
+     *       'projects/my-project/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *     // Optional. Not specified means `update all`.
+     *     // Currently, only `display_name` can be updated, an InvalidArgument will be
+     *     // returned for attempting to update other fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "content": "my_content",
+     *       //   "contentUri": "my_contentUri",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableAutoReload": false,
+     *       //   "knowledgeTypes": [],
+     *       //   "latestReloadStatus": {},
+     *       //   "mimeType": "my_mimeType",
+     *       //   "name": "my_name",
+     *       //   "rawContent": "my_rawContent"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.documents.patch
      * @memberOf! ()
      *
@@ -11079,6 +15341,64 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.knowledgeBases.documents.reload
      * @desc Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes.  Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.documents.reload({
+     *     // The name of the document to reload.
+     *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     *     // ID>/documents/<Document ID>`
+     *     name:
+     *       'projects/my-project/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gcsSource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.knowledgeBases.documents.reload
      * @memberOf! ()
      *
@@ -11274,6 +15594,48 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.deleteAgent
      * @desc Deletes the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.deleteAgent({
+     *     // Required. The project that the agent to delete is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.deleteAgent
      * @memberOf! ()
      *
@@ -11350,6 +15712,61 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.getAgent
      * @desc Retrieves the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.getAgent({
+     *     // Required. The project that the agent to fetch is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "avatarUri": "my_avatarUri",
+     *   //   "classificationThreshold": {},
+     *   //   "defaultLanguageCode": "my_defaultLanguageCode",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableLogging": false,
+     *   //   "matchMode": "my_matchMode",
+     *   //   "parent": "my_parent",
+     *   //   "supportedLanguageCodes": [],
+     *   //   "tier": "my_tier",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.getAgent
      * @memberOf! ()
      *
@@ -11433,6 +15850,82 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.setAgent
      * @desc Creates/updates the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.setAgent({
+     *     // Required. The project of this agent.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "avatarUri": "my_avatarUri",
+     *       //   "classificationThreshold": {},
+     *       //   "defaultLanguageCode": "my_defaultLanguageCode",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableLogging": false,
+     *       //   "matchMode": "my_matchMode",
+     *       //   "parent": "my_parent",
+     *       //   "supportedLanguageCodes": [],
+     *       //   "tier": "my_tier",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "avatarUri": "my_avatarUri",
+     *   //   "classificationThreshold": {},
+     *   //   "defaultLanguageCode": "my_defaultLanguageCode",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableLogging": false,
+     *   //   "matchMode": "my_matchMode",
+     *   //   "parent": "my_parent",
+     *   //   "supportedLanguageCodes": [],
+     *   //   "tier": "my_tier",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.setAgent
      * @memberOf! ()
      *
@@ -11587,6 +16080,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.export
      * @desc Exports the specified agent to a ZIP file.   Operation <response: ExportAgentResponse>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.export({
+     *     // Required. The project that the agent to export is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentUri": "my_agentUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.export
      * @memberOf! ()
      *
@@ -11669,6 +16218,69 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.fulfillment
      * @desc Updates the fulfillment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.fulfillment({
+     *     // Required. The unique identifier of the fulfillment.
+     *     // Format: `projects/<Project ID>/agent/fulfillment`.
+     *     name: 'projects/my-project/locations/my-location/agent/fulfillment',
+     *     // Required. The mask to control which fields get updated. If the mask is not
+     *     // present, all fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "enabled": false,
+     *       //   "features": [],
+     *       //   "genericWebService": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "enabled": false,
+     *   //   "features": [],
+     *   //   "genericWebService": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.fulfillment
      * @memberOf! ()
      *
@@ -11759,6 +16371,54 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.getFulfillment
      * @desc Retrieves the fulfillment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.getFulfillment({
+     *     // Required. The name of the fulfillment.
+     *     // Format: `projects/<Project ID>/agent/fulfillment`.
+     *     name: 'projects/my-project/locations/my-location/agent/fulfillment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "enabled": false,
+     *   //   "features": [],
+     *   //   "genericWebService": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.getFulfillment
      * @memberOf! ()
      *
@@ -11847,6 +16507,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.import
      * @desc Imports the specified agent from a ZIP file.  Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest.   Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.import({
+     *     // Required. The project that the agent to import is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentContent": "my_agentContent",
+     *       //   "agentUri": "my_agentUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.import
      * @memberOf! ()
      *
@@ -11929,6 +16646,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.restore
      * @desc Restores the specified agent from a ZIP file.  Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.   Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.restore({
+     *     // Required. The project that the agent to restore is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentContent": "my_agentContent",
+     *       //   "agentUri": "my_agentUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.restore
      * @memberOf! ()
      *
@@ -12011,6 +16785,60 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.train
      * @desc Trains the specified agent.   Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.train({
+     *     // Required. The project that the agent to train is associated with.
+     *     // Format: `projects/<Project ID>`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.train
      * @memberOf! ()
      *
@@ -12206,6 +17034,64 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.batchDelete
      * @desc Deletes entity types in the specified agent.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.batchDelete(
+     *     {
+     *       // Required. The name of the agent to delete all entities types for. Format:
+     *       // `projects/<Project ID>/agent`.
+     *       parent: 'projects/my-project/locations/my-location/agent',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entityTypeNames": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.batchDelete
      * @memberOf! ()
      *
@@ -12287,6 +17173,67 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.batchUpdate
      * @desc Updates/Creates multiple entity types in the specified agent.  Operation <response: BatchUpdateEntityTypesResponse>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.batchUpdate(
+     *     {
+     *       // Required. The name of the agent to update or create entity types in.
+     *       // Format: `projects/<Project ID>/agent`.
+     *       parent: 'projects/my-project/locations/my-location/agent',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entityTypeBatchInline": {},
+     *         //   "entityTypeBatchUri": "my_entityTypeBatchUri",
+     *         //   "languageCode": "my_languageCode",
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.batchUpdate
      * @memberOf! ()
      *
@@ -12368,6 +17315,74 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.create
      * @desc Creates an entity type in the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.create({
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The agent to create a entity type for.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/locations/my-location/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoExpansionMode": "my_autoExpansionMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableFuzzyExtraction": false,
+     *       //   "entities": [],
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpansionMode": "my_autoExpansionMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableFuzzyExtraction": false,
+     *   //   "entities": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.create
      * @memberOf! ()
      *
@@ -12461,6 +17476,49 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.delete
      * @desc Deletes the specified entity type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.delete({
+     *     // Required. The name of the entity type to delete.
+     *     // Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     *     name:
+     *       'projects/my-project/locations/my-location/agent/entityTypes/my-entityType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.delete
      * @memberOf! ()
      *
@@ -12532,6 +17590,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.get
      * @desc Retrieves the specified entity type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.get({
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The name of the entity type.
+     *     // Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     *     name:
+     *       'projects/my-project/locations/my-location/agent/entityTypes/my-entityType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpansionMode": "my_autoExpansionMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableFuzzyExtraction": false,
+     *   //   "entities": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.get
      * @memberOf! ()
      *
@@ -12621,6 +17735,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.list
      * @desc Returns the list of all entity types in the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.list({
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The agent to list all entity types from.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/locations/my-location/agent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entityTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.list
      * @memberOf! ()
      *
@@ -12724,6 +17894,79 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.patch
      * @desc Updates the specified entity type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.patch({
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // The unique identifier of the entity type.
+     *     // Required for EntityTypes.UpdateEntityType and
+     *     // EntityTypes.BatchUpdateEntityTypes methods.
+     *     // Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     name:
+     *       'projects/my-project/locations/my-location/agent/entityTypes/my-entityType',
+     *     // Optional. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoExpansionMode": "my_autoExpansionMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "enableFuzzyExtraction": false,
+     *       //   "entities": [],
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpansionMode": "my_autoExpansionMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableFuzzyExtraction": false,
+     *   //   "entities": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.patch
      * @memberOf! ()
      *
@@ -12955,6 +18198,66 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.entities.batchCreate
      * @desc Creates multiple new entities in the specified entity type.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.entities.batchCreate(
+     *     {
+     *       // Required. The name of the entity type to create entities in. Format:
+     *       // `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/entityTypes/my-entityType',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entities": [],
+     *         //   "languageCode": "my_languageCode"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.entities.batchCreate
      * @memberOf! ()
      *
@@ -13037,6 +18340,66 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.entities.batchDelete
      * @desc Deletes entities in the specified entity type.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.entities.batchDelete(
+     *     {
+     *       // Required. The name of the entity type to delete entries for. Format:
+     *       // `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/entityTypes/my-entityType',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entityValues": [],
+     *         //   "languageCode": "my_languageCode"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.entities.batchDelete
      * @memberOf! ()
      *
@@ -13119,6 +18482,67 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.entityTypes.entities.batchUpdate
      * @desc Updates or creates multiple entities in the specified entity type. This method does not affect entities in the entity type that aren't explicitly specified in the request.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.entityTypes.entities.batchUpdate(
+     *     {
+     *       // Required. The name of the entity type to update or create entities in.
+     *       // Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/entityTypes/my-entityType',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entities": [],
+     *         //   "languageCode": "my_languageCode",
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.entityTypes.entities.batchUpdate
      * @memberOf! ()
      *
@@ -13264,6 +18688,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.list
      * @desc Returns the list of all non-draft environments of the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.list({
+     *     // Optional. The maximum number of items to return in a single page. By default 100 and
+     *     // at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The agent to list all environments from.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/locations/my-location/agent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "environments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.list
      * @memberOf! ()
      *
@@ -13413,6 +18887,54 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.deleteContexts
      * @desc Deletes all active contexts in the specified session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.deleteContexts(
+     *     {
+     *       // Required. The name of the session to delete all contexts from. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *       // ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *       // ID>`. If `Environment ID` is not specified we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.deleteContexts
      * @memberOf! ()
      *
@@ -13489,6 +19011,77 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.detectIntent
      * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.detectIntent(
+     *     {
+     *       // Required. The name of the session this query is sent to. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we are using
+     *       // "-". It's up to the API caller to choose an appropriate `Session ID` and
+     *       // `User Id`. They can be a random number or some type of user and session
+     *       // identifiers (preferably hashed). The length of the `Session ID` and
+     *       // `User ID` must not exceed 36 characters.
+     *       session:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "inputAudio": "my_inputAudio",
+     *         //   "outputAudioConfig": {},
+     *         //   "outputAudioConfigMask": "my_outputAudioConfigMask",
+     *         //   "queryInput": {},
+     *         //   "queryParams": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternativeQueryResults": [],
+     *   //   "outputAudio": "my_outputAudio",
+     *   //   "outputAudioConfig": {},
+     *   //   "queryResult": {},
+     *   //   "responseId": "my_responseId",
+     *   //   "webhookStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.detectIntent
      * @memberOf! ()
      *
@@ -13625,6 +19218,69 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.contexts.create
      * @desc Creates a context.  If the specified context already exists, overrides the context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.contexts.create(
+     *     {
+     *       // Required. The session to create a context for.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we assume
+     *       // default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "lifespanCount": 0,
+     *         //   "name": "my_name",
+     *         //   "parameters": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.contexts.create
      * @memberOf! ()
      *
@@ -13711,6 +19367,55 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.contexts.delete
      * @desc Deletes the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.contexts.delete(
+     *     {
+     *       // Required. The name of the context to delete. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *       // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     *       // not specified, we assume default 'draft' environment. If `User ID` is not
+     *       // specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session/contexts/my-context',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.contexts.delete
      * @memberOf! ()
      *
@@ -13782,6 +19487,59 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.contexts.get
      * @desc Retrieves the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.contexts.get(
+     *     {
+     *       // Required. The name of the context. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *       // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     *       // not specified, we assume default 'draft' environment. If `User ID` is not
+     *       // specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session/contexts/my-context',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.contexts.get
      * @memberOf! ()
      *
@@ -13864,6 +19622,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.contexts.list
      * @desc Returns the list of all contexts in the specified session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.contexts.list(
+     *     {
+     *       // Optional. The maximum number of items to return in a single page. By
+     *       // default 100 and at most 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous list request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The session to list all contexts from.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we assume
+     *       // default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contexts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.contexts.list
      * @memberOf! ()
      *
@@ -13964,6 +19779,82 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.contexts.patch
      * @desc Updates the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.contexts.patch(
+     *     {
+     *       // Required. The unique identifier of the context. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`,
+     *       // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *       //
+     *       // The `Context ID` is always converted to lowercase, may only contain
+     *       // characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+     *       //
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       //
+     *       // The following context names are reserved for internal use by Dialogflow.
+     *       // You should not use these contexts or create contexts with these names:
+     *       //
+     *       // * `__system_counters__`
+     *       // * `*_id_dialog_context`
+     *       // * `*_dialog_params_size`
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session/contexts/my-context',
+     *       // Optional. The mask to control which fields get updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "lifespanCount": 0,
+     *         //   "name": "my_name",
+     *         //   "parameters": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.contexts.patch
      * @memberOf! ()
      *
@@ -14138,6 +20029,69 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.create
      * @desc Creates a session entity type.  If the specified session entity type already exists, overrides the session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.create(
+     *     {
+     *       // Required. The session to create a session entity type for.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *       // sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we assume
+     *       // default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entities": [],
+     *         //   "entityOverrideMode": "my_entityOverrideMode",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.create
      * @memberOf! ()
      *
@@ -14238,6 +20192,55 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.delete
      * @desc Deletes the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.delete(
+     *     {
+     *       // Required. The name of the entity type to delete. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *       // ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *       // Name>`. If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session/entityTypes/my-entityType',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.delete
      * @memberOf! ()
      *
@@ -14309,6 +20312,59 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.get
      * @desc Retrieves the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.get(
+     *     {
+     *       // Required. The name of the session entity type. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *       // ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *       // Name>`. If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session/entityTypes/my-entityType',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.get
      * @memberOf! ()
      *
@@ -14405,6 +20461,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.list
      * @desc Returns the list of all session entity types in the specified session.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.list(
+     *     {
+     *       // Optional. The maximum number of items to return in a single page. By
+     *       // default 100 and at most 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous list request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The session to list all session entity types from.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *       // sessions/<Session ID>`.
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sessionEntityTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.list
      * @memberOf! ()
      *
@@ -14507,6 +20620,75 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.patch
      * @desc Updates the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.patch(
+     *     {
+     *       // Required. The unique identifier of this session entity type. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>`, or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       //
+     *       // `<Entity Type Display Name>` must be the display name of an existing entity
+     *       // type in the same agent that will be overridden or supplemented.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/environments/my-environment/users/my-user/sessions/my-session/entityTypes/my-entityType',
+     *       // Optional. The mask to control which fields get updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entities": [],
+     *         //   "entityOverrideMode": "my_entityOverrideMode",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.environments.users.sessions.entityTypes.patch
      * @memberOf! ()
      *
@@ -14695,6 +20877,62 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.intents.batchDelete
      * @desc Deletes intents in the specified agent.  Operation <response: google.protobuf.Empty>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.intents.batchDelete({
+     *     // Required. The name of the agent to delete all entities types for. Format:
+     *     // `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/locations/my-location/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "intents": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.intents.batchDelete
      * @memberOf! ()
      *
@@ -14777,6 +21015,66 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.intents.batchUpdate
      * @desc Updates/Creates multiple intents in the specified agent.  Operation <response: BatchUpdateIntentsResponse>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.intents.batchUpdate({
+     *     // Required. The name of the agent to update or create intents in.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/locations/my-location/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "intentBatchInline": {},
+     *       //   "intentBatchUri": "my_intentBatchUri",
+     *       //   "intentView": "my_intentView",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.intents.batchUpdate
      * @memberOf! ()
      *
@@ -14859,6 +21157,104 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.intents.create
      * @desc Creates an intent in the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.intents.create({
+     *     // Optional. The resource view to apply to the returned intent.
+     *     intentView: 'placeholder-value',
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The agent to create a intent for.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/locations/my-location/agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "defaultResponsePlatforms": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "endInteraction": false,
+     *       //   "events": [],
+     *       //   "followupIntentInfo": [],
+     *       //   "inputContextNames": [],
+     *       //   "isFallback": false,
+     *       //   "messages": [],
+     *       //   "mlDisabled": false,
+     *       //   "mlEnabled": false,
+     *       //   "name": "my_name",
+     *       //   "outputContexts": [],
+     *       //   "parameters": [],
+     *       //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *       //   "priority": 0,
+     *       //   "resetContexts": false,
+     *       //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *       //   "trainingPhrases": [],
+     *       //   "webhookState": "my_webhookState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "defaultResponsePlatforms": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "endInteraction": false,
+     *   //   "events": [],
+     *   //   "followupIntentInfo": [],
+     *   //   "inputContextNames": [],
+     *   //   "isFallback": false,
+     *   //   "messages": [],
+     *   //   "mlDisabled": false,
+     *   //   "mlEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "outputContexts": [],
+     *   //   "parameters": [],
+     *   //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *   //   "priority": 0,
+     *   //   "resetContexts": false,
+     *   //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *   //   "trainingPhrases": [],
+     *   //   "webhookState": "my_webhookState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.intents.create
      * @memberOf! ()
      *
@@ -14945,6 +21341,50 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.intents.delete
      * @desc Deletes the specified intent and its direct or indirect followup intents.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.intents.delete({
+     *     // Required. The name of the intent to delete. If this intent has direct or
+     *     // indirect followup intents, we also delete them.
+     *     //
+     *     // Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     name: 'projects/my-project/locations/my-location/agent/intents/my-intent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.intents.delete
      * @memberOf! ()
      *
@@ -15016,6 +21456,77 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.intents.get
      * @desc Retrieves the specified intent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.intents.get({
+     *     // Optional. The resource view to apply to the returned intent.
+     *     intentView: 'placeholder-value',
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The name of the intent.
+     *     // Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     name: 'projects/my-project/locations/my-location/agent/intents/my-intent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "defaultResponsePlatforms": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "endInteraction": false,
+     *   //   "events": [],
+     *   //   "followupIntentInfo": [],
+     *   //   "inputContextNames": [],
+     *   //   "isFallback": false,
+     *   //   "messages": [],
+     *   //   "mlDisabled": false,
+     *   //   "mlEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "outputContexts": [],
+     *   //   "parameters": [],
+     *   //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *   //   "priority": 0,
+     *   //   "resetContexts": false,
+     *   //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *   //   "trainingPhrases": [],
+     *   //   "webhookState": "my_webhookState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.intents.get
      * @memberOf! ()
      *
@@ -15098,6 +21609,64 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.intents.list
      * @desc Returns the list of all intents in the specified agent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.intents.list({
+     *     // Optional. The resource view to apply to the returned intent.
+     *     intentView: 'placeholder-value',
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The agent to list all intents from.
+     *     // Format: `projects/<Project ID>/agent`.
+     *     parent: 'projects/my-project/locations/my-location/agent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "intents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.intents.list
      * @memberOf! ()
      *
@@ -15200,6 +21769,108 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.intents.patch
      * @desc Updates the specified intent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.intents.patch({
+     *     // Optional. The resource view to apply to the returned intent.
+     *     intentView: 'placeholder-value',
+     *     // Optional. The language used to access language-specific data.
+     *     // If not specified, the agent's default language is used.
+     *     // For more information, see
+     *     // [Multilingual intent and entity
+     *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     languageCode: 'placeholder-value',
+     *     // The unique identifier of this intent.
+     *     // Required for Intents.UpdateIntent and Intents.BatchUpdateIntents
+     *     // methods.
+     *     // Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     name: 'projects/my-project/locations/my-location/agent/intents/my-intent',
+     *     // Optional. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "defaultResponsePlatforms": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "endInteraction": false,
+     *       //   "events": [],
+     *       //   "followupIntentInfo": [],
+     *       //   "inputContextNames": [],
+     *       //   "isFallback": false,
+     *       //   "messages": [],
+     *       //   "mlDisabled": false,
+     *       //   "mlEnabled": false,
+     *       //   "name": "my_name",
+     *       //   "outputContexts": [],
+     *       //   "parameters": [],
+     *       //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *       //   "priority": 0,
+     *       //   "resetContexts": false,
+     *       //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *       //   "trainingPhrases": [],
+     *       //   "webhookState": "my_webhookState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "defaultResponsePlatforms": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "endInteraction": false,
+     *   //   "events": [],
+     *   //   "followupIntentInfo": [],
+     *   //   "inputContextNames": [],
+     *   //   "isFallback": false,
+     *   //   "messages": [],
+     *   //   "mlDisabled": false,
+     *   //   "mlEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "outputContexts": [],
+     *   //   "parameters": [],
+     *   //   "parentFollowupIntentName": "my_parentFollowupIntentName",
+     *   //   "priority": 0,
+     *   //   "resetContexts": false,
+     *   //   "rootFollowupIntentName": "my_rootFollowupIntentName",
+     *   //   "trainingPhrases": [],
+     *   //   "webhookState": "my_webhookState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.intents.patch
      * @memberOf! ()
      *
@@ -15448,6 +22119,54 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.deleteContexts
      * @desc Deletes all active contexts in the specified session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.deleteContexts(
+     *     {
+     *       // Required. The name of the session to delete all contexts from. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *       // ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *       // ID>`. If `Environment ID` is not specified we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.deleteContexts
      * @memberOf! ()
      *
@@ -15524,6 +22243,75 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.detectIntent
      * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.detectIntent({
+     *     // Required. The name of the session this query is sent to. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *     // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *     // default 'draft' environment. If `User ID` is not specified, we are using
+     *     // "-". It's up to the API caller to choose an appropriate `Session ID` and
+     *     // `User Id`. They can be a random number or some type of user and session
+     *     // identifiers (preferably hashed). The length of the `Session ID` and
+     *     // `User ID` must not exceed 36 characters.
+     *     session:
+     *       'projects/my-project/locations/my-location/agent/sessions/my-session',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "inputAudio": "my_inputAudio",
+     *       //   "outputAudioConfig": {},
+     *       //   "outputAudioConfigMask": "my_outputAudioConfigMask",
+     *       //   "queryInput": {},
+     *       //   "queryParams": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternativeQueryResults": [],
+     *   //   "outputAudio": "my_outputAudio",
+     *   //   "outputAudioConfig": {},
+     *   //   "queryResult": {},
+     *   //   "responseId": "my_responseId",
+     *   //   "webhookStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.detectIntent
      * @memberOf! ()
      *
@@ -15660,6 +22448,69 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.contexts.create
      * @desc Creates a context.  If the specified context already exists, overrides the context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.contexts.create(
+     *     {
+     *       // Required. The session to create a context for.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we assume
+     *       // default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "lifespanCount": 0,
+     *         //   "name": "my_name",
+     *         //   "parameters": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.contexts.create
      * @memberOf! ()
      *
@@ -15746,6 +22597,55 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.contexts.delete
      * @desc Deletes the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.contexts.delete(
+     *     {
+     *       // Required. The name of the context to delete. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *       // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     *       // not specified, we assume default 'draft' environment. If `User ID` is not
+     *       // specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session/contexts/my-context',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.contexts.delete
      * @memberOf! ()
      *
@@ -15817,6 +22717,57 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.contexts.get
      * @desc Retrieves the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.contexts.get({
+     *     // Required. The name of the context. Format:
+     *     // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *     // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     *     // not specified, we assume default 'draft' environment. If `User ID` is not
+     *     // specified, we assume default '-' user.
+     *     name:
+     *       'projects/my-project/locations/my-location/agent/sessions/my-session/contexts/my-context',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.contexts.get
      * @memberOf! ()
      *
@@ -15899,6 +22850,61 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.contexts.list
      * @desc Returns the list of all contexts in the specified session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.contexts.list({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The session to list all contexts from.
+     *     // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *     // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *     // ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *     // default 'draft' environment. If `User ID` is not specified, we assume
+     *     // default '-' user.
+     *     parent:
+     *       'projects/my-project/locations/my-location/agent/sessions/my-session',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contexts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.contexts.list
      * @memberOf! ()
      *
@@ -15999,6 +23005,82 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.contexts.patch
      * @desc Updates the specified context.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.contexts.patch(
+     *     {
+     *       // Required. The unique identifier of the context. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`,
+     *       // or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *       //
+     *       // The `Context ID` is always converted to lowercase, may only contain
+     *       // characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+     *       //
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       //
+     *       // The following context names are reserved for internal use by Dialogflow.
+     *       // You should not use these contexts or create contexts with these names:
+     *       //
+     *       // * `__system_counters__`
+     *       // * `*_id_dialog_context`
+     *       // * `*_dialog_params_size`
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session/contexts/my-context',
+     *       // Optional. The mask to control which fields get updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "lifespanCount": 0,
+     *         //   "name": "my_name",
+     *         //   "parameters": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lifespanCount": 0,
+     *   //   "name": "my_name",
+     *   //   "parameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.contexts.patch
      * @memberOf! ()
      *
@@ -16173,6 +23255,69 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.entityTypes.create
      * @desc Creates a session entity type.  If the specified session entity type already exists, overrides the session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.entityTypes.create(
+     *     {
+     *       // Required. The session to create a session entity type for.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *       // sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *       // default 'draft' environment. If `User ID` is not specified, we assume
+     *       // default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entities": [],
+     *         //   "entityOverrideMode": "my_entityOverrideMode",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.entityTypes.create
      * @memberOf! ()
      *
@@ -16273,6 +23418,55 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.entityTypes.delete
      * @desc Deletes the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.entityTypes.delete(
+     *     {
+     *       // Required. The name of the entity type to delete. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *       // ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *       // Name>`. If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session/entityTypes/my-entityType',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.entityTypes.delete
      * @memberOf! ()
      *
@@ -16344,6 +23538,59 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.entityTypes.get
      * @desc Retrieves the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.entityTypes.get(
+     *     {
+     *       // Required. The name of the session entity type. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *       // ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *       // Name>`. If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session/entityTypes/my-entityType',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.entityTypes.get
      * @memberOf! ()
      *
@@ -16440,6 +23687,63 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.entityTypes.list
      * @desc Returns the list of all session entity types in the specified session.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.entityTypes.list(
+     *     {
+     *       // Optional. The maximum number of items to return in a single page. By
+     *       // default 100 and at most 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous list request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The session to list all session entity types from.
+     *       // Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *       // sessions/<Session ID>`.
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sessionEntityTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.entityTypes.list
      * @memberOf! ()
      *
@@ -16542,6 +23846,75 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.agent.sessions.entityTypes.patch
      * @desc Updates the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.sessions.entityTypes.patch(
+     *     {
+     *       // Required. The unique identifier of this session entity type. Format:
+     *       // `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *       // Display Name>`, or
+     *       // `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *       // ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     *       // If `Environment ID` is not specified, we assume default 'draft'
+     *       // environment. If `User ID` is not specified, we assume default '-' user.
+     *       //
+     *       // `<Entity Type Display Name>` must be the display name of an existing entity
+     *       // type in the same agent that will be overridden or supplemented.
+     *       name:
+     *         'projects/my-project/locations/my-location/agent/sessions/my-session/entityTypes/my-entityType',
+     *       // Optional. The mask to control which fields get updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "entities": [],
+     *         //   "entityOverrideMode": "my_entityOverrideMode",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityOverrideMode": "my_entityOverrideMode",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.agent.sessions.entityTypes.patch
      * @memberOf! ()
      *
@@ -16730,6 +24103,47 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.operations.cancel
      * @memberOf! ()
      *
@@ -16804,6 +24218,53 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -16882,6 +24343,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.locations.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.locations.operations.list
      * @memberOf! ()
      *
@@ -17032,6 +24543,47 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.operations.cancel
      * @memberOf! ()
      *
@@ -17106,6 +24658,53 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.operations.get
      * @memberOf! ()
      *
@@ -17184,6 +24783,56 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dialogflow.projects.operations.list
      * @memberOf! ()
      *

@@ -375,6 +375,56 @@ export namespace reseller_v1 {
     /**
      * reseller.customers.get
      * @desc Get a customer account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apps.order',
+     *       'https://www.googleapis.com/auth/apps.order.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.customers.get({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerDomainVerified": false,
+     *   //   "customerId": "my_customerId",
+     *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.customers.get
      * @memberOf! ()
      *
@@ -446,6 +496,68 @@ export namespace reseller_v1 {
     /**
      * reseller.customers.insert
      * @desc Order a new customer's account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.customers.insert({
+     *     // The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
+     *     customerAuthToken: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateEmail": "my_alternateEmail",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "customerDomainVerified": false,
+     *       //   "customerId": "my_customerId",
+     *       //   "kind": "my_kind",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "postalAddress": {},
+     *       //   "resourceUiUrl": "my_resourceUiUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerDomainVerified": false,
+     *   //   "customerId": "my_customerId",
+     *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.customers.insert
      * @memberOf! ()
      *
@@ -518,6 +630,68 @@ export namespace reseller_v1 {
     /**
      * reseller.customers.patch
      * @desc Update a customer account's settings. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.customers.patch({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateEmail": "my_alternateEmail",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "customerDomainVerified": false,
+     *       //   "customerId": "my_customerId",
+     *       //   "kind": "my_kind",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "postalAddress": {},
+     *       //   "resourceUiUrl": "my_resourceUiUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerDomainVerified": false,
+     *   //   "customerId": "my_customerId",
+     *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.customers.patch
      * @memberOf! ()
      *
@@ -590,6 +764,68 @@ export namespace reseller_v1 {
     /**
      * reseller.customers.update
      * @desc Update a customer account's settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.customers.update({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateEmail": "my_alternateEmail",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "customerDomainVerified": false,
+     *       //   "customerId": "my_customerId",
+     *       //   "kind": "my_kind",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "postalAddress": {},
+     *       //   "resourceUiUrl": "my_resourceUiUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerDomainVerified": false,
+     *   //   "customerId": "my_customerId",
+     *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.customers.update
      * @memberOf! ()
      *
@@ -729,6 +965,47 @@ export namespace reseller_v1 {
     /**
      * reseller.resellernotify.getwatchdetails
      * @desc Returns all the details of the watch corresponding to the reseller.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apps.order',
+     *       'https://www.googleapis.com/auth/apps.order.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.resellernotify.getwatchdetails({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "serviceAccountEmailAddresses": [],
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.resellernotify.getwatchdetails
      * @memberOf! ()
      *
@@ -818,6 +1095,46 @@ export namespace reseller_v1 {
     /**
      * reseller.resellernotify.register
      * @desc Registers a Reseller for receiving notifications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.resellernotify.register({
+     *     // The service account which will own the created Cloud-PubSub topic.
+     *     serviceAccountEmailAddress: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.resellernotify.register
      * @memberOf! ()
      *
@@ -895,6 +1212,46 @@ export namespace reseller_v1 {
     /**
      * reseller.resellernotify.unregister
      * @desc Unregisters a Reseller for receiving notifications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.resellernotify.unregister({
+     *     // The service account which owns the Cloud-PubSub topic.
+     *     serviceAccountEmailAddress: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.resellernotify.unregister
      * @memberOf! ()
      *
@@ -1011,6 +1368,65 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.activate
      * @desc Activates a subscription previously suspended by the reseller
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.activate({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.activate
      * @memberOf! ()
      *
@@ -1086,6 +1502,77 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.changePlan
      * @desc Update a subscription plan. Use this method to update a plan for a 30-day trial or a flexible plan subscription to an annual commitment plan with monthly or yearly payments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.changePlan({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dealCode": "my_dealCode",
+     *       //   "kind": "my_kind",
+     *       //   "planName": "my_planName",
+     *       //   "purchaseOrderId": "my_purchaseOrderId",
+     *       //   "seats": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.changePlan
      * @memberOf! ()
      *
@@ -1162,6 +1649,74 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.changeRenewalSettings
      * @desc Update a user license's renewal settings. This is applicable for accounts with annual commitment plans only.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.changeRenewalSettings({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "renewalType": "my_renewalType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.changeRenewalSettings
      * @memberOf! ()
      *
@@ -1240,6 +1795,76 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.changeSeats
      * @desc Update a subscription's user license settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.changeSeats({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "licensedNumberOfSeats": 0,
+     *       //   "maximumNumberOfSeats": 0,
+     *       //   "numberOfSeats": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.changeSeats
      * @memberOf! ()
      *
@@ -1316,6 +1941,45 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.delete
      * @desc Cancel, suspend, or transfer a subscription to direct.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.delete({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // The deletionType query string enables the cancellation, downgrade, or suspension of a subscription.
+     *     deletionType: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.delete
      * @memberOf! ()
      *
@@ -1390,6 +2054,68 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.get
      * @desc Get a specific subscription.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apps.order',
+     *       'https://www.googleapis.com/auth/apps.order.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.get({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.get
      * @memberOf! ()
      *
@@ -1465,6 +2191,90 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.insert
      * @desc Create or transfer a subscription.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.insert({
+     *     // The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
+     *     customerAuthToken: 'placeholder-value',
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingMethod": "my_billingMethod",
+     *       //   "creationTime": "my_creationTime",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "customerId": "my_customerId",
+     *       //   "dealCode": "my_dealCode",
+     *       //   "kind": "my_kind",
+     *       //   "plan": {},
+     *       //   "purchaseOrderId": "my_purchaseOrderId",
+     *       //   "renewalSettings": {},
+     *       //   "resourceUiUrl": "my_resourceUiUrl",
+     *       //   "seats": {},
+     *       //   "skuId": "my_skuId",
+     *       //   "skuName": "my_skuName",
+     *       //   "status": "my_status",
+     *       //   "subscriptionId": "my_subscriptionId",
+     *       //   "suspensionReasons": [],
+     *       //   "transferInfo": {},
+     *       //   "trialSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.insert
      * @memberOf! ()
      *
@@ -1540,6 +2350,61 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.list
      * @desc List of subscriptions managed by the reseller. The list can be all subscriptions, all of a customer's subscriptions, or all of a customer's transferable subscriptions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apps.order',
+     *       'https://www.googleapis.com/auth/apps.order.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.list({
+     *     // The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
+     *     customerAuthToken: 'placeholder-value',
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes exam.com, example20.com and example.com:
+     *     // - exa -- Returns all customer names that start with 'exa' which could include exam.com, example20.com, and example.com. A name prefix is similar to using a regular expression's asterisk, exa*.
+     *     // - example -- Returns example20.com and example.com.
+     *     customerNamePrefix: 'placeholder-value',
+     *     // When retrieving a large list, the maxResults is the maximum number of results per page. The nextPageToken value takes you to the next page. The default is 20.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.list
      * @memberOf! ()
      *
@@ -1618,6 +2483,65 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.startPaidService
      * @desc Immediately move a 30-day free trial subscription to a paid service subscription.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.startPaidService({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.startPaidService
      * @memberOf! ()
      *
@@ -1693,6 +2617,65 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.suspend
      * @desc Suspends an active subscription.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.suspend({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.suspend
      * @memberOf! ()
      *

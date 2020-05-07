@@ -10,7 +10,7 @@
 {% endif %}
 {% if m.fragment %}
  * @example
- * {{ m.fragment|safe }}
+ * {{ m.fragment|safe|replace("\n", "\n * ") }}
 {% endif %}
  * @alias {{ m.id }}
  * @memberOf! {{ api.name }}({{ api.version }})

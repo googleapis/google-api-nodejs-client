@@ -650,6 +650,75 @@ export namespace cloudbuild_v1alpha2 {
     /**
      * cloudbuild.projects.workerPools.create
      * @desc Creates a `WorkerPool` to run the builds, and returns the new worker pool.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.workerPools.create({
+     *     // Required. The parent resource where this book will be created.
+     *     // Format: projects/{project}
+     *     parent: 'projects/my-project',
+     *     // Required. Immutable. The ID to use for the `WorkerPool`, which will become the final component
+     *     // of the resource name.
+     *     //
+     *     // This value should be 1-63 characters, and valid characters
+     *     // are /a-z-/.
+     *     workerPoolId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "region": "my_region",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "workerConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "region": "my_region",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.workerPools.create
      * @memberOf! ()
      *
@@ -726,6 +795,45 @@ export namespace cloudbuild_v1alpha2 {
     /**
      * cloudbuild.projects.workerPools.delete
      * @desc Deletes a `WorkerPool`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.workerPools.delete({
+     *     // Required. The name of the `WorkerPool` to delete.
+     *     // Format: projects/{project}/workerPools/{workerPool}
+     *     name: 'projects/my-project/workerPools/my-workerPool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.workerPools.delete
      * @memberOf! ()
      *
@@ -795,6 +903,54 @@ export namespace cloudbuild_v1alpha2 {
     /**
      * cloudbuild.projects.workerPools.get
      * @desc Returns details of a `WorkerPool`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.workerPools.get({
+     *     // Required. The name of the `WorkerPool` to retrieve.
+     *     // Format: projects/{project}/workerPools/{workerPool}
+     *     name: 'projects/my-project/workerPools/my-workerPool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "region": "my_region",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.workerPools.get
      * @memberOf! ()
      *
@@ -866,6 +1022,47 @@ export namespace cloudbuild_v1alpha2 {
     /**
      * cloudbuild.projects.workerPools.list
      * @desc Lists `WorkerPool`s by project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.workerPools.list({
+     *     // Required. The parent, which owns this collection of `WorkerPools`.
+     *     // Format: projects/{project}
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "workerPools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.workerPools.list
      * @memberOf! ()
      *
@@ -942,6 +1139,73 @@ export namespace cloudbuild_v1alpha2 {
     /**
      * cloudbuild.projects.workerPools.patch
      * @desc Updates a `WorkerPool`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.workerPools.patch({
+     *     // Output only. The resource name of the `WorkerPool`.
+     *     // Format of the name is `projects/{project_id}/workerPools/{worker_pool_id}`,
+     *     // where the value of {worker_pool_id} is provided in the CreateWorkerPool
+     *     // request.
+     *     name: 'projects/my-project/workerPools/my-workerPool',
+     *     // A mask specifying which fields in `WorkerPool` should be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "region": "my_region",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "workerConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "region": "my_region",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.workerPools.patch
      * @memberOf! ()
      *

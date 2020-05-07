@@ -586,6 +586,68 @@ export namespace youtubereporting_v1 {
     /**
      * youtubereporting.jobs.create
      * @desc Creates a job and returns it.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtubereporting = google.youtubereporting('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
+     *       'https://www.googleapis.com/auth/yt-analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtubereporting.jobs.create({
+     *     // The content owner's external ID on which behalf the user is acting on. If
+     *     // not set, the user is acting for himself (his own channel).
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "reportTypeId": "my_reportTypeId",
+     *       //   "systemManaged": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "reportTypeId": "my_reportTypeId",
+     *   //   "systemManaged": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias youtubereporting.jobs.create
      * @memberOf! ()
      *
@@ -656,6 +718,50 @@ export namespace youtubereporting_v1 {
     /**
      * youtubereporting.jobs.delete
      * @desc Deletes a job.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtubereporting = google.youtubereporting('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
+     *       'https://www.googleapis.com/auth/yt-analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtubereporting.jobs.delete({
+     *     // The ID of the job to delete.
+     *     jobId: 'placeholder-value',
+     *     // The content owner's external ID on which behalf the user is acting on. If
+     *     // not set, the user is acting for himself (his own channel).
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias youtubereporting.jobs.delete
      * @memberOf! ()
      *
@@ -726,6 +832,57 @@ export namespace youtubereporting_v1 {
     /**
      * youtubereporting.jobs.get
      * @desc Gets a job.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtubereporting = google.youtubereporting('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
+     *       'https://www.googleapis.com/auth/yt-analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtubereporting.jobs.get({
+     *     // The ID of the job to retrieve.
+     *     jobId: 'placeholder-value',
+     *     // The content owner's external ID on which behalf the user is acting on. If
+     *     // not set, the user is acting for himself (his own channel).
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "reportTypeId": "my_reportTypeId",
+     *   //   "systemManaged": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias youtubereporting.jobs.get
      * @memberOf! ()
      *
@@ -796,6 +953,63 @@ export namespace youtubereporting_v1 {
     /**
      * youtubereporting.jobs.list
      * @desc Lists jobs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtubereporting = google.youtubereporting('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
+     *       'https://www.googleapis.com/auth/yt-analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtubereporting.jobs.list({
+     *     // If set to true, also system-managed jobs will be returned; otherwise only
+     *     // user-created jobs will be returned. System-managed jobs can neither be
+     *     // modified nor deleted.
+     *     includeSystemManaged: 'placeholder-value',
+     *     // The content owner's external ID on which behalf the user is acting on. If
+     *     // not set, the user is acting for himself (his own channel).
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // Requested page size. Server may return fewer jobs than requested.
+     *     // If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically,
+     *     // this is the value of
+     *     // ListReportTypesResponse.next_page_token
+     *     // returned in response to the previous call to the `ListJobs` method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias youtubereporting.jobs.list
      * @memberOf! ()
      *
@@ -947,6 +1161,60 @@ export namespace youtubereporting_v1 {
     /**
      * youtubereporting.jobs.reports.get
      * @desc Gets the metadata of a specific report.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtubereporting = google.youtubereporting('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
+     *       'https://www.googleapis.com/auth/yt-analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtubereporting.jobs.reports.get({
+     *     // The ID of the job.
+     *     jobId: 'placeholder-value',
+     *     // The content owner's external ID on which behalf the user is acting on. If
+     *     // not set, the user is acting for himself (his own channel).
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The ID of the report to retrieve.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "endTime": "my_endTime",
+     *   //   "id": "my_id",
+     *   //   "jobExpireTime": "my_jobExpireTime",
+     *   //   "jobId": "my_jobId",
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias youtubereporting.jobs.reports.get
      * @memberOf! ()
      *
@@ -1021,6 +1289,69 @@ export namespace youtubereporting_v1 {
     /**
      * youtubereporting.jobs.reports.list
      * @desc Lists reports created by a specific job. Returns NOT_FOUND if the job does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtubereporting = google.youtubereporting('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
+     *       'https://www.googleapis.com/auth/yt-analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtubereporting.jobs.reports.list({
+     *     // If set, only reports created after the specified date/time are returned.
+     *     createdAfter: 'placeholder-value',
+     *     // The ID of the job.
+     *     jobId: 'placeholder-value',
+     *     // The content owner's external ID on which behalf the user is acting on. If
+     *     // not set, the user is acting for himself (his own channel).
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // Requested page size. Server may return fewer report types than requested.
+     *     // If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically,
+     *     // this is the value of
+     *     // ListReportsResponse.next_page_token
+     *     // returned in response to the previous call to the `ListReports` method.
+     *     pageToken: 'placeholder-value',
+     *     // If set, only reports whose start time is greater than or equal the
+     *     // specified date/time are returned.
+     *     startTimeAtOrAfter: 'placeholder-value',
+     *     // If set, only reports whose start time is smaller than the specified
+     *     // date/time are returned.
+     *     startTimeBefore: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias youtubereporting.jobs.reports.list
      * @memberOf! ()
      *
@@ -1165,6 +1496,78 @@ export namespace youtubereporting_v1 {
     /**
      * youtubereporting.media.download
      * @desc Method for media download. Download is supported on the URI `/v1/media/{+name}?alt=media`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtubereporting = google.youtubereporting('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
+     *       'https://www.googleapis.com/auth/yt-analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtubereporting.media.download({
+     *     // Name of the media that is being downloaded.
+     *     resourceName: '.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
+     *   //   "blobRef": "my_blobRef",
+     *   //   "blobstore2Info": {},
+     *   //   "compositeMedia": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "contentTypeInfo": {},
+     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
+     *   //   "crc32cHash": 0,
+     *   //   "diffChecksumsResponse": {},
+     *   //   "diffDownloadResponse": {},
+     *   //   "diffUploadRequest": {},
+     *   //   "diffUploadResponse": {},
+     *   //   "diffVersionResponse": {},
+     *   //   "downloadParameters": {},
+     *   //   "filename": "my_filename",
+     *   //   "hash": "my_hash",
+     *   //   "hashVerified": false,
+     *   //   "inline": "my_inline",
+     *   //   "isPotentialRetry": false,
+     *   //   "length": "my_length",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaId": "my_mediaId",
+     *   //   "objectId": {},
+     *   //   "path": "my_path",
+     *   //   "referenceType": "my_referenceType",
+     *   //   "sha1Hash": "my_sha1Hash",
+     *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "timestamp": "my_timestamp",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias youtubereporting.media.download
      * @memberOf! ()
      *
@@ -1258,6 +1661,63 @@ export namespace youtubereporting_v1 {
     /**
      * youtubereporting.reportTypes.list
      * @desc Lists report types.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtubereporting = google.youtubereporting('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
+     *       'https://www.googleapis.com/auth/yt-analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtubereporting.reportTypes.list({
+     *     // If set to true, also system-managed report types will be returned;
+     *     // otherwise only the report types that can be used to create new reporting
+     *     // jobs will be returned.
+     *     includeSystemManaged: 'placeholder-value',
+     *     // The content owner's external ID on which behalf the user is acting on. If
+     *     // not set, the user is acting for himself (his own channel).
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // Requested page size. Server may return fewer report types than requested.
+     *     // If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically,
+     *     // this is the value of
+     *     // ListReportTypesResponse.next_page_token
+     *     // returned in response to the previous call to the `ListReportTypes` method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reportTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias youtubereporting.reportTypes.list
      * @memberOf! ()
      *

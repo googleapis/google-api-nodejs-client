@@ -630,6 +630,57 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.get
      * @desc Get information about the selected AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.get({
+     *     // Account to get information about.
+     *     accountId: 'placeholder-value',
+     *     // Whether the tree of sub accounts should be returned.
+     *     tree: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creation_time": "my_creation_time",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "premium": false,
+     *   //   "subAccounts": [],
+     *   //   "timezone": "my_timezone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.get
      * @memberOf! ()
      *
@@ -702,6 +753,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.list
      * @desc List all accounts available to this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.list({
+     *     // The maximum number of accounts to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.list
      * @memberOf! ()
      *
@@ -812,6 +911,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adclients.getAdCode
      * @desc Get Auto ad code for a given ad client.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.getAdCode({
+     *     // Account which contains the ad client.
+     *     accountId: 'placeholder-value',
+     *     // Ad client to get the code for.
+     *     adClientId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adCode": "my_adCode",
+     *   //   "ampBody": "my_ampBody",
+     *   //   "ampHead": "my_ampHead",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adclients.getAdCode
      * @memberOf! ()
      *
@@ -885,6 +1032,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adclients.list
      * @desc List all ad clients in the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.list({
+     *     // Account for which to list ad clients.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of ad clients to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adclients.list
      * @memberOf! ()
      *
@@ -1008,6 +1205,62 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adunits.get
      * @desc Gets the specified ad unit in the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adunits.get({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client for which to get the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit to retrieve.
+     *     adUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "contentAdsSettings": {},
+     *   //   "customStyle": {},
+     *   //   "feedAdsSettings": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "mobileContentAdsSettings": {},
+     *   //   "name": "my_name",
+     *   //   "savedStyleId": "my_savedStyleId",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adunits.get
      * @memberOf! ()
      *
@@ -1082,6 +1335,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adunits.getAdCode
      * @desc Get ad code for the specified ad unit.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adunits.getAdCode({
+     *     // Account which contains the ad client.
+     *     accountId: 'placeholder-value',
+     *     // Ad client with contains the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit to get the code for.
+     *     adUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adCode": "my_adCode",
+     *   //   "ampBody": "my_ampBody",
+     *   //   "ampHead": "my_ampHead",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adunits.getAdCode
      * @memberOf! ()
      *
@@ -1156,6 +1459,60 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adunits.list
      * @desc List all ad units in the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adunits.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client for which to list ad units.
+     *     adClientId: 'placeholder-value',
+     *     // Whether to include inactive ad units. Default: true.
+     *     includeInactive: 'placeholder-value',
+     *     // The maximum number of ad units to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adunits.list
      * @memberOf! ()
      *
@@ -1308,6 +1665,60 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adunits.customchannels.list
      * @desc List all custom channels which the specified ad unit belongs to.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adunits.customchannels.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client which contains the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit for which to list custom channels.
+     *     adUnitId: 'placeholder-value',
+     *     // The maximum number of custom channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adunits.customchannels.list
      * @memberOf! ()
      *
@@ -1422,6 +1833,43 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.alerts.delete
      * @desc Dismiss (delete) the specified alert from the specified publisher AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.alerts.delete({
+     *     // Account which contains the ad unit.
+     *     accountId: 'placeholder-value',
+     *     // Alert to delete.
+     *     alertId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.alerts.delete
      * @memberOf! ()
      *
@@ -1494,6 +1942,52 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.alerts.list
      * @desc List the alerts for the specified AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.alerts.list({
+     *     // Account for which to retrieve the alerts.
+     *     accountId: 'placeholder-value',
+     *     // The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     *     locale: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.alerts.list
      * @memberOf! ()
      *
@@ -1608,6 +2102,57 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.customchannels.get
      * @desc Get the specified custom channel from the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.customchannels.get({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client which contains the custom channel.
+     *     adClientId: 'placeholder-value',
+     *     // Custom channel to retrieve.
+     *     customChannelId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targetingInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.customchannels.get
      * @memberOf! ()
      *
@@ -1684,6 +2229,58 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.customchannels.list
      * @desc List all custom channels in the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.customchannels.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client for which to list custom channels.
+     *     adClientId: 'placeholder-value',
+     *     // The maximum number of custom channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.customchannels.list
      * @memberOf! ()
      *
@@ -1813,6 +2410,62 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.customchannels.adunits.list
      * @desc List all ad units in the specified custom channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.customchannels.adunits.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client which contains the custom channel.
+     *     adClientId: 'placeholder-value',
+     *     // Custom channel for which to list ad units.
+     *     customChannelId: 'placeholder-value',
+     *     // Whether to include inactive ad units. Default: true.
+     *     includeInactive: 'placeholder-value',
+     *     // The maximum number of ad units to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.customchannels.adunits.list
      * @memberOf! ()
      *
@@ -1930,6 +2583,50 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.payments.list
      * @desc List the payments for the specified AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.payments.list({
+     *     // Account for which to retrieve the payments.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.payments.list
      * @memberOf! ()
      *
@@ -2023,6 +2720,81 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.reports.generate
      * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.generate({
+     *     // Account upon which to report.
+     *     accountId: 'placeholder-value',
+     *     // Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     *     currency: '[a-zA-Z]+',
+     *     // Dimensions to base the report on.
+     *     dimension: '[a-zA-Z_]+',
+     *     // End of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     *     endDate:
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)|(latest-(d{2})-(d{2})(-d+y)?)|(latest-latest-(d{2})(-d+m)?)',
+     *     // Filters to be run on the report.
+     *     filter: '[a-zA-Z_]+(==|=@).+',
+     *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     *     locale: '[a-zA-Z_]+',
+     *     // The maximum number of rows of report data to return.
+     *     maxResults: 'placeholder-value',
+     *     // Numeric columns to include in the report.
+     *     metric: '[a-zA-Z_]+',
+     *     // The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     *     sort: '(+|-)?[a-zA-Z_]+',
+     *     // Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     *     startDate:
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)|(latest-(d{2})-(d{2})(-d+y)?)|(latest-latest-(d{2})(-d+m)?)',
+     *     // Index of the first row of report data to return.
+     *     startIndex: 'placeholder-value',
+     *     // Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
+     *     useTimezoneReporting: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": [],
+     *   //   "endDate": "my_endDate",
+     *   //   "headers": [],
+     *   //   "kind": "my_kind",
+     *   //   "rows": [],
+     *   //   "startDate": "my_startDate",
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.reports.generate
      * @memberOf! ()
      *
@@ -2180,6 +2952,65 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.reports.saved.generate
      * @desc Generate an AdSense report based on the saved report ID sent in the query parameters.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.saved.generate({
+     *     // Account to which the saved reports belong.
+     *     accountId: 'placeholder-value',
+     *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     *     locale: '[a-zA-Z_]+',
+     *     // The maximum number of rows of report data to return.
+     *     maxResults: 'placeholder-value',
+     *     // The saved report to retrieve.
+     *     savedReportId: 'placeholder-value',
+     *     // Index of the first row of report data to return.
+     *     startIndex: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": [],
+     *   //   "endDate": "my_endDate",
+     *   //   "headers": [],
+     *   //   "kind": "my_kind",
+     *   //   "rows": [],
+     *   //   "startDate": "my_startDate",
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.reports.saved.generate
      * @memberOf! ()
      *
@@ -2267,6 +3098,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.reports.saved.list
      * @desc List all saved reports in the specified AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.saved.list({
+     *     // Account to which the saved reports belong.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of saved reports to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.reports.saved.list
      * @memberOf! ()
      *
@@ -2398,6 +3279,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.savedadstyles.get
      * @desc List a specific saved ad style for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.savedadstyles.get({
+     *     // Account for which to get the saved ad style.
+     *     accountId: 'placeholder-value',
+     *     // Saved ad style to retrieve.
+     *     savedAdStyleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adStyle": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.savedadstyles.get
      * @memberOf! ()
      *
@@ -2473,6 +3402,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.savedadstyles.list
      * @desc List all saved ad styles in the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.savedadstyles.list({
+     *     // Account for which to list saved ad styles.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of saved ad styles to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.savedadstyles.list
      * @memberOf! ()
      *
@@ -2592,6 +3571,58 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.urlchannels.list
      * @desc List all URL channels in the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.urlchannels.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client for which to list URL channels.
+     *     adClientId: 'placeholder-value',
+     *     // The maximum number of URL channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.urlchannels.list
      * @memberOf! ()
      *
@@ -2701,6 +3732,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adclients.list
      * @desc List all ad clients in this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.adclients.list({
+     *     // The maximum number of ad clients to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adclients.list
      * @memberOf! ()
      *
@@ -2800,6 +3879,60 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adunits.get
      * @desc Gets the specified ad unit in the specified ad client.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.adunits.get({
+     *     // Ad client for which to get the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit to retrieve.
+     *     adUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "contentAdsSettings": {},
+     *   //   "customStyle": {},
+     *   //   "feedAdsSettings": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "mobileContentAdsSettings": {},
+     *   //   "name": "my_name",
+     *   //   "savedStyleId": "my_savedStyleId",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adunits.get
      * @memberOf! ()
      *
@@ -2872,6 +4005,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adunits.getAdCode
      * @desc Get ad code for the specified ad unit.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.adunits.getAdCode({
+     *     // Ad client with contains the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit to get the code for.
+     *     adUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adCode": "my_adCode",
+     *   //   "ampBody": "my_ampBody",
+     *   //   "ampHead": "my_ampHead",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adunits.getAdCode
      * @memberOf! ()
      *
@@ -2945,6 +4126,58 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adunits.list
      * @desc List all ad units in the specified ad client for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.adunits.list({
+     *     // Ad client for which to list ad units.
+     *     adClientId: 'placeholder-value',
+     *     // Whether to include inactive ad units. Default: true.
+     *     includeInactive: 'placeholder-value',
+     *     // The maximum number of ad units to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adunits.list
      * @memberOf! ()
      *
@@ -3080,6 +4313,58 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adunits.customchannels.list
      * @desc List all custom channels which the specified ad unit belongs to.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.adunits.customchannels.list({
+     *     // Ad client which contains the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit for which to list custom channels.
+     *     adUnitId: 'placeholder-value',
+     *     // The maximum number of custom channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adunits.customchannels.list
      * @memberOf! ()
      *
@@ -3189,6 +4474,41 @@ export namespace adsense_v1_4 {
     /**
      * adsense.alerts.delete
      * @desc Dismiss (delete) the specified alert from the publisher's AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.alerts.delete({
+     *     // Alert to delete.
+     *     alertId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.alerts.delete
      * @memberOf! ()
      *
@@ -3260,6 +4580,50 @@ export namespace adsense_v1_4 {
     /**
      * adsense.alerts.list
      * @desc List the alerts for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.alerts.list({
+     *     // The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     *     locale: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.alerts.list
      * @memberOf! ()
      *
@@ -3363,6 +4727,55 @@ export namespace adsense_v1_4 {
     /**
      * adsense.customchannels.get
      * @desc Get the specified custom channel from the specified ad client.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.customchannels.get({
+     *     // Ad client which contains the custom channel.
+     *     adClientId: 'placeholder-value',
+     *     // Custom channel to retrieve.
+     *     customChannelId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targetingInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.customchannels.get
      * @memberOf! ()
      *
@@ -3438,6 +4851,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.customchannels.list
      * @desc List all custom channels in the specified ad client for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.customchannels.list({
+     *     // Ad client for which to list custom channels.
+     *     adClientId: 'placeholder-value',
+     *     // The maximum number of custom channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.customchannels.list
      * @memberOf! ()
      *
@@ -3557,6 +5020,60 @@ export namespace adsense_v1_4 {
     /**
      * adsense.customchannels.adunits.list
      * @desc List all ad units in the specified custom channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.customchannels.adunits.list({
+     *     // Ad client which contains the custom channel.
+     *     adClientId: 'placeholder-value',
+     *     // Custom channel for which to list ad units.
+     *     customChannelId: 'placeholder-value',
+     *     // Whether to include inactive ad units. Default: true.
+     *     includeInactive: 'placeholder-value',
+     *     // The maximum number of ad units to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.customchannels.adunits.list
      * @memberOf! ()
      *
@@ -3680,6 +5197,47 @@ export namespace adsense_v1_4 {
     /**
      * adsense.metadata.dimensions.list
      * @desc List the metadata for the dimensions available to this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.metadata.dimensions.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.metadata.dimensions.list
      * @memberOf! ()
      *
@@ -3766,6 +5324,47 @@ export namespace adsense_v1_4 {
     /**
      * adsense.metadata.metrics.list
      * @desc List the metadata for the metrics available to this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.metadata.metrics.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.metadata.metrics.list
      * @memberOf! ()
      *
@@ -3852,6 +5451,47 @@ export namespace adsense_v1_4 {
     /**
      * adsense.payments.list
      * @desc List the payments for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.payments.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.payments.list
      * @memberOf! ()
      *
@@ -3938,6 +5578,81 @@ export namespace adsense_v1_4 {
     /**
      * adsense.reports.generate
      * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.reports.generate({
+     *     // Accounts upon which to report.
+     *     accountId: 'placeholder-value',
+     *     // Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     *     currency: '[a-zA-Z]+',
+     *     // Dimensions to base the report on.
+     *     dimension: '[a-zA-Z_]+',
+     *     // End of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     *     endDate:
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)|(latest-(d{2})-(d{2})(-d+y)?)|(latest-latest-(d{2})(-d+m)?)',
+     *     // Filters to be run on the report.
+     *     filter: '[a-zA-Z_]+(==|=@).+',
+     *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     *     locale: '[a-zA-Z_]+',
+     *     // The maximum number of rows of report data to return.
+     *     maxResults: 'placeholder-value',
+     *     // Numeric columns to include in the report.
+     *     metric: '[a-zA-Z_]+',
+     *     // The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     *     sort: '(+|-)?[a-zA-Z_]+',
+     *     // Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     *     startDate:
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)|(latest-(d{2})-(d{2})(-d+y)?)|(latest-latest-(d{2})(-d+m)?)',
+     *     // Index of the first row of report data to return.
+     *     startIndex: 'placeholder-value',
+     *     // Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
+     *     useTimezoneReporting: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": [],
+     *   //   "endDate": "my_endDate",
+     *   //   "headers": [],
+     *   //   "kind": "my_kind",
+     *   //   "rows": [],
+     *   //   "startDate": "my_startDate",
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.reports.generate
      * @memberOf! ()
      *
@@ -4094,6 +5809,63 @@ export namespace adsense_v1_4 {
     /**
      * adsense.reports.saved.generate
      * @desc Generate an AdSense report based on the saved report ID sent in the query parameters.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.reports.saved.generate({
+     *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     *     locale: '[a-zA-Z_]+',
+     *     // The maximum number of rows of report data to return.
+     *     maxResults: 'placeholder-value',
+     *     // The saved report to retrieve.
+     *     savedReportId: 'placeholder-value',
+     *     // Index of the first row of report data to return.
+     *     startIndex: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": [],
+     *   //   "endDate": "my_endDate",
+     *   //   "headers": [],
+     *   //   "kind": "my_kind",
+     *   //   "rows": [],
+     *   //   "startDate": "my_startDate",
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.reports.saved.generate
      * @memberOf! ()
      *
@@ -4180,6 +5952,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.reports.saved.list
      * @desc List all saved reports in this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.reports.saved.list({
+     *     // The maximum number of saved reports to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.reports.saved.list
      * @memberOf! ()
      *
@@ -4303,6 +6123,52 @@ export namespace adsense_v1_4 {
     /**
      * adsense.savedadstyles.get
      * @desc Get a specific saved ad style from the user's account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.savedadstyles.get({
+     *     // Saved ad style to retrieve.
+     *     savedAdStyleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adStyle": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.savedadstyles.get
      * @memberOf! ()
      *
@@ -4376,6 +6242,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.savedadstyles.list
      * @desc List all saved ad styles in the user's account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.savedadstyles.list({
+     *     // The maximum number of saved ad styles to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.savedadstyles.list
      * @memberOf! ()
      *
@@ -4487,6 +6401,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.urlchannels.list
      * @desc List all URL channels in the specified ad client for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await adsense.urlchannels.list({
+     *     // Ad client for which to list URL channels.
+     *     adClientId: 'placeholder-value',
+     *     // The maximum number of URL channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.urlchannels.list
      * @memberOf! ()
      *

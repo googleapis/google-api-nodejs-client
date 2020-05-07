@@ -241,6 +241,66 @@ export namespace pagespeedonline_v2 {
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
      * @desc Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pagespeedonline.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pagespeedonline = google.pagespeedonline('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await pagespeedonline.pagespeedapi.runpagespeed({
+     *     // Indicates if third party resources should be filtered out before PageSpeed analysis.
+     *     filter_third_party_resources: 'placeholder-value',
+     *     // The locale used to localize formatted results
+     *     locale: '[a-zA-Z]+(_[a-zA-Z]+)?',
+     *     // A PageSpeed rule to run; if none are given, all rules are run
+     *     rule: '[a-zA-Z]+',
+     *     // Indicates if binary data containing a screenshot should be included
+     *     screenshot: 'placeholder-value',
+     *     // The analysis strategy to use
+     *     strategy: 'placeholder-value',
+     *     // The URL to fetch and analyze
+     *     url: '(?i)http(s)?://.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "captchaResult": "my_captchaResult",
+     *   //   "formattedResults": {},
+     *   //   "id": "my_id",
+     *   //   "invalidRules": [],
+     *   //   "kind": "my_kind",
+     *   //   "pageStats": {},
+     *   //   "responseCode": 0,
+     *   //   "ruleGroups": {},
+     *   //   "screenshot": {},
+     *   //   "title": "my_title",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! ()
      *

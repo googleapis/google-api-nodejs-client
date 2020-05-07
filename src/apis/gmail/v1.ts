@@ -846,6 +846,55 @@ export namespace gmail_v1 {
     /**
      * gmail.users.getProfile
      * @desc Gets the current user's Gmail profile.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.getProfile({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "historyId": "my_historyId",
+     *   //   "messagesTotal": 0,
+     *   //   "threadsTotal": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.getProfile
      * @memberOf! ()
      *
@@ -917,6 +966,46 @@ export namespace gmail_v1 {
     /**
      * gmail.users.stop
      * @desc Stop receiving push notifications for the given user mailbox.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.stop({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.stop
      * @memberOf! ()
      *
@@ -988,6 +1077,62 @@ export namespace gmail_v1 {
     /**
      * gmail.users.watch
      * @desc Set up or update a push notification watch on the given user mailbox.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.watch({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labelFilterAction": "my_labelFilterAction",
+     *       //   "labelIds": [],
+     *       //   "topicName": "my_topicName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiration": "my_expiration",
+     *   //   "historyId": "my_historyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.watch
      * @memberOf! ()
      *
@@ -1108,6 +1253,65 @@ export namespace gmail_v1 {
     /**
      * gmail.users.drafts.create
      * @desc Creates a new draft with the DRAFT label.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.create({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "message": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "message": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.drafts.create
      * @memberOf! ()
      *
@@ -1188,6 +1392,47 @@ export namespace gmail_v1 {
     /**
      * gmail.users.drafts.delete
      * @desc Immediately and permanently deletes the specified draft. Does not simply trash it.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.delete({
+     *     // The ID of the draft to delete.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.drafts.delete
      * @memberOf! ()
      *
@@ -1261,6 +1506,56 @@ export namespace gmail_v1 {
     /**
      * gmail.users.drafts.get
      * @desc Gets the specified draft.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.get({
+     *     // The format to return the draft in.
+     *     format: 'placeholder-value',
+     *     // The ID of the draft to retrieve.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "message": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.drafts.get
      * @memberOf! ()
      *
@@ -1334,6 +1629,61 @@ export namespace gmail_v1 {
     /**
      * gmail.users.drafts.list
      * @desc Lists the drafts in the user's mailbox.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.list({
+     *     // Include drafts from SPAM and TRASH in the results.
+     *     includeSpamTrash: 'placeholder-value',
+     *     // Maximum number of drafts to return.
+     *     maxResults: 'placeholder-value',
+     *     // Page token to retrieve a specific page of results in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
+     *     q: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "drafts": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resultSizeEstimate": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.drafts.list
      * @memberOf! ()
      *
@@ -1412,6 +1762,71 @@ export namespace gmail_v1 {
     /**
      * gmail.users.drafts.send
      * @desc Sends the specified, existing draft to the recipients in the To, Cc, and Bcc headers.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.send({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "message": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.drafts.send
      * @memberOf! ()
      *
@@ -1491,6 +1906,66 @@ export namespace gmail_v1 {
     /**
      * gmail.users.drafts.update
      * @desc Replaces a draft's content.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.update({
+     *     // The ID of the draft to update.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "message": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "message": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.drafts.update
      * @memberOf! ()
      *
@@ -1742,6 +2217,63 @@ export namespace gmail_v1 {
     /**
      * gmail.users.history.list
      * @desc Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing historyId).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.history.list({
+     *     // History types to be returned by the function
+     *     historyTypes: 'placeholder-value',
+     *     // Only return messages with a label matching the ID.
+     *     labelId: 'placeholder-value',
+     *     // The maximum number of history records to return.
+     *     maxResults: 'placeholder-value',
+     *     // Page token to retrieve a specific page of results in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Returns history records after the specified startHistoryId. The supplied startHistoryId should be obtained from the historyId of a message, thread, or previous list response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date startHistoryId typically returns an HTTP 404 error code. A historyId is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an HTTP 404 error response, your application should perform a full sync. If you receive no nextPageToken in the response, there are no updates to retrieve and you can store the returned historyId for a future request.
+     *     startHistoryId: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "history": [],
+     *   //   "historyId": "my_historyId",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.history.list
      * @memberOf! ()
      *
@@ -1861,6 +2393,76 @@ export namespace gmail_v1 {
     /**
      * gmail.users.labels.create
      * @desc Creates a new label.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.create({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "color": {},
+     *       //   "id": "my_id",
+     *       //   "labelListVisibility": "my_labelListVisibility",
+     *       //   "messageListVisibility": "my_messageListVisibility",
+     *       //   "messagesTotal": 0,
+     *       //   "messagesUnread": 0,
+     *       //   "name": "my_name",
+     *       //   "threadsTotal": 0,
+     *       //   "threadsUnread": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "color": {},
+     *   //   "id": "my_id",
+     *   //   "labelListVisibility": "my_labelListVisibility",
+     *   //   "messageListVisibility": "my_messageListVisibility",
+     *   //   "messagesTotal": 0,
+     *   //   "messagesUnread": 0,
+     *   //   "name": "my_name",
+     *   //   "threadsTotal": 0,
+     *   //   "threadsUnread": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.labels.create
      * @memberOf! ()
      *
@@ -1934,6 +2536,47 @@ export namespace gmail_v1 {
     /**
      * gmail.users.labels.delete
      * @desc Immediately and permanently deletes the specified label and removes it from any messages and threads that it is applied to.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.delete({
+     *     // The ID of the label to delete.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.labels.delete
      * @memberOf! ()
      *
@@ -2007,6 +2650,63 @@ export namespace gmail_v1 {
     /**
      * gmail.users.labels.get
      * @desc Gets the specified label.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.get({
+     *     // The ID of the label to retrieve.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "color": {},
+     *   //   "id": "my_id",
+     *   //   "labelListVisibility": "my_labelListVisibility",
+     *   //   "messageListVisibility": "my_messageListVisibility",
+     *   //   "messagesTotal": 0,
+     *   //   "messagesUnread": 0,
+     *   //   "name": "my_name",
+     *   //   "threadsTotal": 0,
+     *   //   "threadsUnread": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.labels.get
      * @memberOf! ()
      *
@@ -2079,6 +2779,52 @@ export namespace gmail_v1 {
     /**
      * gmail.users.labels.list
      * @desc Lists all labels in the user's mailbox.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.list({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.labels.list
      * @memberOf! ()
      *
@@ -2153,6 +2899,78 @@ export namespace gmail_v1 {
     /**
      * gmail.users.labels.patch
      * @desc Updates the specified label. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.patch({
+     *     // The ID of the label to update.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "color": {},
+     *       //   "id": "my_id",
+     *       //   "labelListVisibility": "my_labelListVisibility",
+     *       //   "messageListVisibility": "my_messageListVisibility",
+     *       //   "messagesTotal": 0,
+     *       //   "messagesUnread": 0,
+     *       //   "name": "my_name",
+     *       //   "threadsTotal": 0,
+     *       //   "threadsUnread": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "color": {},
+     *   //   "id": "my_id",
+     *   //   "labelListVisibility": "my_labelListVisibility",
+     *   //   "messageListVisibility": "my_messageListVisibility",
+     *   //   "messagesTotal": 0,
+     *   //   "messagesUnread": 0,
+     *   //   "name": "my_name",
+     *   //   "threadsTotal": 0,
+     *   //   "threadsUnread": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.labels.patch
      * @memberOf! ()
      *
@@ -2227,6 +3045,78 @@ export namespace gmail_v1 {
     /**
      * gmail.users.labels.update
      * @desc Updates the specified label.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.update({
+     *     // The ID of the label to update.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "color": {},
+     *       //   "id": "my_id",
+     *       //   "labelListVisibility": "my_labelListVisibility",
+     *       //   "messageListVisibility": "my_messageListVisibility",
+     *       //   "messagesTotal": 0,
+     *       //   "messagesUnread": 0,
+     *       //   "name": "my_name",
+     *       //   "threadsTotal": 0,
+     *       //   "threadsUnread": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "color": {},
+     *   //   "id": "my_id",
+     *   //   "labelListVisibility": "my_labelListVisibility",
+     *   //   "messageListVisibility": "my_messageListVisibility",
+     *   //   "messagesTotal": 0,
+     *   //   "messagesUnread": 0,
+     *   //   "name": "my_name",
+     *   //   "threadsTotal": 0,
+     *   //   "threadsUnread": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.labels.update
      * @memberOf! ()
      *
@@ -2413,6 +3303,49 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.batchDelete
      * @desc Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://mail.google.com/'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.batchDelete({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ids": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.batchDelete
      * @memberOf! ()
      *
@@ -2485,6 +3418,54 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.batchModify
      * @desc Modifies the labels on the specified messages.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.batchModify({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addLabelIds": [],
+     *       //   "ids": [],
+     *       //   "removeLabelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.batchModify
      * @memberOf! ()
      *
@@ -2557,6 +3538,43 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.delete
      * @desc Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer messages.trash instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://mail.google.com/'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.delete({
+     *     // The ID of the message to delete.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.delete
      * @memberOf! ()
      *
@@ -2630,6 +3648,68 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.get
      * @desc Gets the specified message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.metadata',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.get({
+     *     // The format to return the message in.
+     *     format: 'placeholder-value',
+     *     // The ID of the message to retrieve.
+     *     id: 'placeholder-value',
+     *     // When given and format is METADATA, only include headers specified.
+     *     metadataHeaders: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.get
      * @memberOf! ()
      *
@@ -2705,6 +3785,86 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.import
      * @desc Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.insert',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.import({
+     *     // Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+     *     deleted: 'placeholder-value',
+     *     // Source for Gmail's internal date of the message.
+     *     internalDateSource: 'placeholder-value',
+     *     // Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
+     *     neverMarkSpam: 'placeholder-value',
+     *     // Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
+     *     processForCalendar: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "historyId": "my_historyId",
+     *       //   "id": "my_id",
+     *       //   "internalDate": "my_internalDate",
+     *       //   "labelIds": [],
+     *       //   "payload": {},
+     *       //   "raw": "my_raw",
+     *       //   "sizeEstimate": 0,
+     *       //   "snippet": "my_snippet",
+     *       //   "threadId": "my_threadId"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.import
      * @memberOf! ()
      *
@@ -2788,6 +3948,82 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.insert
      * @desc Directly inserts a message into only this user's mailbox similar to IMAP APPEND, bypassing most scanning and classification. Does not send a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.insert',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.insert({
+     *     // Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+     *     deleted: 'placeholder-value',
+     *     // Source for Gmail's internal date of the message.
+     *     internalDateSource: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "historyId": "my_historyId",
+     *       //   "id": "my_id",
+     *       //   "internalDate": "my_internalDate",
+     *       //   "labelIds": [],
+     *       //   "payload": {},
+     *       //   "raw": "my_raw",
+     *       //   "sizeEstimate": 0,
+     *       //   "snippet": "my_snippet",
+     *       //   "threadId": "my_threadId"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.insert
      * @memberOf! ()
      *
@@ -2869,6 +4105,63 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.list
      * @desc Lists the messages in the user's mailbox.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.list({
+     *     // Include messages from SPAM and TRASH in the results.
+     *     includeSpamTrash: 'placeholder-value',
+     *     // Only return messages with labels that match all of the specified label IDs.
+     *     labelIds: 'placeholder-value',
+     *     // Maximum number of messages to return.
+     *     maxResults: 'placeholder-value',
+     *     // Page token to retrieve a specific page of results in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
+     *     q: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messages": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resultSizeEstimate": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.list
      * @memberOf! ()
      *
@@ -2950,6 +4243,68 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.modify
      * @desc Modifies the labels on the specified message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.modify({
+     *     // The ID of the message to modify.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addLabelIds": [],
+     *       //   "removeLabelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.modify
      * @memberOf! ()
      *
@@ -3023,6 +4378,80 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.send
      * @desc Sends the specified message to the recipients in the To, Cc, and Bcc headers.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.send',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.send({
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "historyId": "my_historyId",
+     *       //   "id": "my_id",
+     *       //   "internalDate": "my_internalDate",
+     *       //   "labelIds": [],
+     *       //   "payload": {},
+     *       //   "raw": "my_raw",
+     *       //   "sizeEstimate": 0,
+     *       //   "snippet": "my_snippet",
+     *       //   "threadId": "my_threadId"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.send
      * @memberOf! ()
      *
@@ -3102,6 +4531,59 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.trash
      * @desc Moves the specified message to the trash.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.trash({
+     *     // The ID of the message to Trash.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.trash
      * @memberOf! ()
      *
@@ -3174,6 +4656,59 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.untrash
      * @desc Removes the specified message from the trash.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.untrash({
+     *     // The ID of the message to remove from Trash.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.untrash
      * @memberOf! ()
      *
@@ -3533,6 +5068,58 @@ export namespace gmail_v1 {
     /**
      * gmail.users.messages.attachments.get
      * @desc Gets the specified message attachment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.attachments.get({
+     *     // The ID of the attachment.
+     *     id: 'placeholder-value',
+     *     // The ID of the message containing the attachment.
+     *     messageId: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attachmentId": "my_attachmentId",
+     *   //   "data": "my_data",
+     *   //   "size": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.messages.attachments.get
      * @memberOf! ()
      *
@@ -3647,6 +5234,53 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.getAutoForwarding
      * @desc Gets the auto-forwarding setting for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getAutoForwarding({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disposition": "my_disposition",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "enabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.getAutoForwarding
      * @memberOf! ()
      *
@@ -3722,6 +5356,54 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.getImap
      * @desc Gets IMAP settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getImap({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpunge": false,
+     *   //   "enabled": false,
+     *   //   "expungeBehavior": "my_expungeBehavior",
+     *   //   "maxFolderSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.getImap
      * @memberOf! ()
      *
@@ -3796,6 +5478,51 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.getLanguage
      * @desc Gets language settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getLanguage({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayLanguage": "my_displayLanguage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.getLanguage
      * @memberOf! ()
      *
@@ -3869,6 +5596,52 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.getPop
      * @desc Gets POP settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getPop({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessWindow": "my_accessWindow",
+     *   //   "disposition": "my_disposition"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.getPop
      * @memberOf! ()
      *
@@ -3943,6 +5716,58 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.getVacation
      * @desc Gets vacation responder settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getVacation({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enableAutoReply": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "responseBodyHtml": "my_responseBodyHtml",
+     *   //   "responseBodyPlainText": "my_responseBodyPlainText",
+     *   //   "responseSubject": "my_responseSubject",
+     *   //   "restrictToContacts": false,
+     *   //   "restrictToDomain": false,
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.getVacation
      * @memberOf! ()
      *
@@ -4016,6 +5841,58 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.updateAutoForwarding
      * @desc Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updateAutoForwarding({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disposition": "my_disposition",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "enabled": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disposition": "my_disposition",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "enabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.updateAutoForwarding
      * @memberOf! ()
      *
@@ -4092,6 +5969,60 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.updateImap
      * @desc Updates IMAP settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updateImap({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoExpunge": false,
+     *       //   "enabled": false,
+     *       //   "expungeBehavior": "my_expungeBehavior",
+     *       //   "maxFolderSize": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpunge": false,
+     *   //   "enabled": false,
+     *   //   "expungeBehavior": "my_expungeBehavior",
+     *   //   "maxFolderSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.updateImap
      * @memberOf! ()
      *
@@ -4167,6 +6098,54 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.updateLanguage
      * @desc Updates language settings.  If successful, the return object contains the displayLanguage that was saved for the user, which may differ from the value passed into the request. This is because the requested displayLanguage may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updateLanguage({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayLanguage": "my_displayLanguage"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayLanguage": "my_displayLanguage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.updateLanguage
      * @memberOf! ()
      *
@@ -4243,6 +6222,56 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.updatePop
      * @desc Updates POP settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updatePop({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessWindow": "my_accessWindow",
+     *       //   "disposition": "my_disposition"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessWindow": "my_accessWindow",
+     *   //   "disposition": "my_disposition"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.updatePop
      * @memberOf! ()
      *
@@ -4318,6 +6347,68 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.updateVacation
      * @desc Updates vacation responder settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updateVacation({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enableAutoReply": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "responseBodyHtml": "my_responseBodyHtml",
+     *       //   "responseBodyPlainText": "my_responseBodyPlainText",
+     *       //   "responseSubject": "my_responseSubject",
+     *       //   "restrictToContacts": false,
+     *       //   "restrictToDomain": false,
+     *       //   "startTime": "my_startTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enableAutoReply": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "responseBodyHtml": "my_responseBodyHtml",
+     *   //   "responseBodyPlainText": "my_responseBodyPlainText",
+     *   //   "responseSubject": "my_responseSubject",
+     *   //   "restrictToContacts": false,
+     *   //   "restrictToDomain": false,
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.updateVacation
      * @memberOf! ()
      *
@@ -4547,6 +6638,56 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.delegates.create
      * @desc Adds a delegate with its verification status set directly to accepted, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user.  Gmail imposes limitations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.delegates.create({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegateEmail": "my_delegateEmail",
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delegateEmail": "my_delegateEmail",
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.delegates.create
      * @memberOf! ()
      *
@@ -4619,6 +6760,43 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.delegates.delete
      * @desc Removes the specified delegate (which can be of any verification status), and revokes any verification that may have been required for using it.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.delegates.delete({
+     *     // The email address of the user to be removed as a delegate.
+     *     delegateEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.delegates.delete
      * @memberOf! ()
      *
@@ -4692,6 +6870,54 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.delegates.get
      * @desc Gets the specified delegate.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.delegates.get({
+     *     // The email address of the user whose delegate relationship is to be retrieved.
+     *     delegateEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delegateEmail": "my_delegateEmail",
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.delegates.get
      * @memberOf! ()
      *
@@ -4765,6 +6991,51 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.delegates.list
      * @desc Lists the delegates for the specified account.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.delegates.list({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delegates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.delegates.list
      * @memberOf! ()
      *
@@ -4909,6 +7180,58 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.filters.create
      * @desc Creates a filter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.filters.create({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": {},
+     *       //   "criteria": {},
+     *       //   "id": "my_id"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": {},
+     *   //   "criteria": {},
+     *   //   "id": "my_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.filters.create
      * @memberOf! ()
      *
@@ -4981,6 +7304,43 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.filters.delete
      * @desc Deletes a filter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.filters.delete({
+     *     // The ID of the filter to be deleted.
+     *     id: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.filters.delete
      * @memberOf! ()
      *
@@ -5053,6 +7413,55 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.filters.get
      * @desc Gets a filter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.filters.get({
+     *     // The ID of the filter to be fetched.
+     *     id: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": {},
+     *   //   "criteria": {},
+     *   //   "id": "my_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.filters.get
      * @memberOf! ()
      *
@@ -5125,6 +7534,51 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.filters.list
      * @desc Lists the message filters of a Gmail user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.filters.list({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filter": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.filters.list
      * @memberOf! ()
      *
@@ -5267,6 +7721,56 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.forwardingAddresses.create
      * @desc Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.forwardingAddresses.create({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "forwardingEmail": "my_forwardingEmail",
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "forwardingEmail": "my_forwardingEmail",
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.forwardingAddresses.create
      * @memberOf! ()
      *
@@ -5341,6 +7845,43 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.forwardingAddresses.delete
      * @desc Deletes the specified forwarding address and revokes any verification that may have been required.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.forwardingAddresses.delete({
+     *     // The forwarding address to be deleted.
+     *     forwardingEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.forwardingAddresses.delete
      * @memberOf! ()
      *
@@ -5414,6 +7955,54 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.forwardingAddresses.get
      * @desc Gets the specified forwarding address.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.forwardingAddresses.get({
+     *     // The forwarding address to be retrieved.
+     *     forwardingEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "forwardingEmail": "my_forwardingEmail",
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.forwardingAddresses.get
      * @memberOf! ()
      *
@@ -5489,6 +8078,51 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.forwardingAddresses.list
      * @desc Lists the forwarding addresses for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.forwardingAddresses.list({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "forwardingAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.forwardingAddresses.list
      * @memberOf! ()
      *
@@ -5644,6 +8278,70 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.create
      * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.create({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "isDefault": false,
+     *       //   "isPrimary": false,
+     *       //   "replyToAddress": "my_replyToAddress",
+     *       //   "sendAsEmail": "my_sendAsEmail",
+     *       //   "signature": "my_signature",
+     *       //   "smtpMsa": {},
+     *       //   "treatAsAlias": false,
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "isPrimary": false,
+     *   //   "replyToAddress": "my_replyToAddress",
+     *   //   "sendAsEmail": "my_sendAsEmail",
+     *   //   "signature": "my_signature",
+     *   //   "smtpMsa": {},
+     *   //   "treatAsAlias": false,
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.create
      * @memberOf! ()
      *
@@ -5717,6 +8415,43 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.delete
      * @desc Deletes the specified send-as alias. Revokes any verification that may have been required for using it.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.delete({
+     *     // The send-as alias to be deleted.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.delete
      * @memberOf! ()
      *
@@ -5789,6 +8524,61 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.get
      * @desc Gets the specified send-as alias. Fails with an HTTP 404 error if the specified address is not a member of the collection.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.get({
+     *     // The send-as alias to be retrieved.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "isPrimary": false,
+     *   //   "replyToAddress": "my_replyToAddress",
+     *   //   "sendAsEmail": "my_sendAsEmail",
+     *   //   "signature": "my_signature",
+     *   //   "smtpMsa": {},
+     *   //   "treatAsAlias": false,
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.get
      * @memberOf! ()
      *
@@ -5861,6 +8651,51 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.list
      * @desc Lists the send-as aliases for the specified account. The result includes the primary send-as address associated with the account as well as any custom "from" aliases.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.list({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sendAs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.list
      * @memberOf! ()
      *
@@ -5935,6 +8770,75 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.patch
      * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.patch({
+     *     // The send-as alias to be updated.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "isDefault": false,
+     *       //   "isPrimary": false,
+     *       //   "replyToAddress": "my_replyToAddress",
+     *       //   "sendAsEmail": "my_sendAsEmail",
+     *       //   "signature": "my_signature",
+     *       //   "smtpMsa": {},
+     *       //   "treatAsAlias": false,
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "isPrimary": false,
+     *   //   "replyToAddress": "my_replyToAddress",
+     *   //   "sendAsEmail": "my_sendAsEmail",
+     *   //   "signature": "my_signature",
+     *   //   "smtpMsa": {},
+     *   //   "treatAsAlias": false,
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.patch
      * @memberOf! ()
      *
@@ -6008,6 +8912,75 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.update
      * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.update({
+     *     // The send-as alias to be updated.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "isDefault": false,
+     *       //   "isPrimary": false,
+     *       //   "replyToAddress": "my_replyToAddress",
+     *       //   "sendAsEmail": "my_sendAsEmail",
+     *       //   "signature": "my_signature",
+     *       //   "smtpMsa": {},
+     *       //   "treatAsAlias": false,
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "isPrimary": false,
+     *   //   "replyToAddress": "my_replyToAddress",
+     *   //   "sendAsEmail": "my_sendAsEmail",
+     *   //   "signature": "my_signature",
+     *   //   "smtpMsa": {},
+     *   //   "treatAsAlias": false,
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.update
      * @memberOf! ()
      *
@@ -6081,6 +9054,43 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.verify
      * @desc Sends a verification email to the specified send-as alias address. The verification status must be pending.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.verify({
+     *     // The send-as alias to be verified.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.verify
      * @memberOf! ()
      *
@@ -6281,6 +9291,48 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.smimeInfo.delete
      * @desc Deletes the specified S/MIME config for the specified send-as alias.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.delete({
+     *     // The immutable ID for the SmimeInfo.
+     *     id: 'placeholder-value',
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.smimeInfo.delete
      * @memberOf! ()
      *
@@ -6355,6 +9407,62 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.smimeInfo.get
      * @desc Gets the specified S/MIME config for the specified send-as alias.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.get({
+     *     // The immutable ID for the SmimeInfo.
+     *     id: 'placeholder-value',
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "encryptedKeyPassword": "my_encryptedKeyPassword",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "isDefault": false,
+     *   //   "issuerCn": "my_issuerCn",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs12": "my_pkcs12"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.smimeInfo.get
      * @memberOf! ()
      *
@@ -6431,6 +9539,71 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.smimeInfo.insert
      * @desc Insert (upload) the given S/MIME config for the specified send-as alias. Note that pkcs12 format is required for the key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.insert({
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encryptedKeyPassword": "my_encryptedKeyPassword",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "isDefault": false,
+     *       //   "issuerCn": "my_issuerCn",
+     *       //   "pem": "my_pem",
+     *       //   "pkcs12": "my_pkcs12"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "encryptedKeyPassword": "my_encryptedKeyPassword",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "isDefault": false,
+     *   //   "issuerCn": "my_issuerCn",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs12": "my_pkcs12"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.smimeInfo.insert
      * @memberOf! ()
      *
@@ -6507,6 +9680,54 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.smimeInfo.list
      * @desc Lists S/MIME configs for the specified send-as alias.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.list({
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "smimeInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.smimeInfo.list
      * @memberOf! ()
      *
@@ -6584,6 +9805,48 @@ export namespace gmail_v1 {
     /**
      * gmail.users.settings.sendAs.smimeInfo.setDefault
      * @desc Sets the default S/MIME config for the specified send-as alias.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.setDefault({
+     *     // The immutable ID for the SmimeInfo.
+     *     id: 'placeholder-value',
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.settings.sendAs.smimeInfo.setDefault
      * @memberOf! ()
      *
@@ -6763,6 +10026,43 @@ export namespace gmail_v1 {
     /**
      * gmail.users.threads.delete
      * @desc Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer threads.trash instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://mail.google.com/'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.delete({
+     *     // ID of the Thread to delete.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.threads.delete
      * @memberOf! ()
      *
@@ -6836,6 +10136,63 @@ export namespace gmail_v1 {
     /**
      * gmail.users.threads.get
      * @desc Gets the specified thread.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.metadata',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.get({
+     *     // The format to return the messages in.
+     *     format: 'placeholder-value',
+     *     // The ID of the thread to retrieve.
+     *     id: 'placeholder-value',
+     *     // When given and format is METADATA, only include headers specified.
+     *     metadataHeaders: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "messages": [],
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.threads.get
      * @memberOf! ()
      *
@@ -6911,6 +10268,63 @@ export namespace gmail_v1 {
     /**
      * gmail.users.threads.list
      * @desc Lists the threads in the user's mailbox.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.list({
+     *     // Include threads from SPAM and TRASH in the results.
+     *     includeSpamTrash: 'placeholder-value',
+     *     // Only return threads with labels that match all of the specified label IDs.
+     *     labelIds: 'placeholder-value',
+     *     // Maximum number of threads to return.
+     *     maxResults: 'placeholder-value',
+     *     // Page token to retrieve a specific page of results in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
+     *     q: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resultSizeEstimate": 0,
+     *   //   "threads": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.threads.list
      * @memberOf! ()
      *
@@ -6990,6 +10404,63 @@ export namespace gmail_v1 {
     /**
      * gmail.users.threads.modify
      * @desc Modifies the labels applied to the thread. This applies to all messages in the thread.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.modify({
+     *     // The ID of the thread to modify.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addLabelIds": [],
+     *       //   "removeLabelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "messages": [],
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.threads.modify
      * @memberOf! ()
      *
@@ -7063,6 +10534,54 @@ export namespace gmail_v1 {
     /**
      * gmail.users.threads.trash
      * @desc Moves the specified thread to the trash.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.trash({
+     *     // The ID of the thread to Trash.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "messages": [],
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.threads.trash
      * @memberOf! ()
      *
@@ -7135,6 +10654,54 @@ export namespace gmail_v1 {
     /**
      * gmail.users.threads.untrash
      * @desc Removes the specified thread from the trash.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.untrash({
+     *     // The ID of the thread to remove from Trash.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value me can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "messages": [],
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gmail.users.threads.untrash
      * @memberOf! ()
      *
