@@ -116,7 +116,7 @@ interface MethodBag {
  * @param bag
  * @param methods
  */
-function getAllMethods(bag: MethodBag, methods?: SchemaMethod[]) {
+export function getAllMethods(bag: MethodBag, methods?: SchemaMethod[]) {
   if (!methods) {
     methods = new Array<SchemaMethod>();
   }
