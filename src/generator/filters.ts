@@ -119,8 +119,8 @@ export function getSafeParamName(param: string) {
   return param;
 }
 
-export function hasResourceParam(method: SchemaMethod) {
-  return method.parameters && method.parameters['resource'];
+export function hasResourceParam(method: SchemaMethod): boolean {
+  return !!method.parameters && !!method.parameters['resource'];
 }
 
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
