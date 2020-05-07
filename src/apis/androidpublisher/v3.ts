@@ -1057,21 +1057,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.commit
      * @desc Commits/applies the changes made in this edit back to the app.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -1175,21 +1172,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.delete
      * @desc Deletes an edit for an app. Creating a new edit will automatically delete any of your previous edits so this method need only be called if you want to preemptively abandon an edit.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -1287,21 +1281,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.get
      * @desc Returns information about the edit specified. Calls will fail if the edit is no long active (e.g. has been deleted, superseded or expired).
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -1405,21 +1396,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.insert
      * @desc Creates a new edit for an app, populated with the app's current state.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -1529,21 +1517,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.validate
      * @desc Checks that the edit can be successfully committed. The edit's changes are not applied to the live app.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -1731,21 +1716,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.apks.addexternallyhosted
      * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to enterprises using Google Play for Work whose application is configured to restrict distribution to the enterprise domain.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -1868,21 +1850,18 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.apks.list
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -1987,21 +1966,18 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.apks.upload
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -2201,21 +2177,18 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.bundles.list
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -2322,21 +2295,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.bundles.upload
      * @desc Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -2524,21 +2494,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.deobfuscationfiles.upload
      * @desc Uploads the deobfuscation file of the specified APK. If a deobfuscation or symbolication file already exists, it will be replaced. See https://developer.android.com/studio/build/shrink-code to learn more about deobfuscation files.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -2736,21 +2703,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.details.get
      * @desc Fetches app details for this edit. This includes the default language and developer support contact information.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -2859,21 +2823,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.details.patch
      * @desc Updates app details for this edit. This method supports patch semantics.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -2994,21 +2955,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.details.update
      * @desc Updates app details for this edit.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -3195,21 +3153,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.expansionfiles.get
      * @desc Fetches the Expansion File configuration for the APK specified.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -3332,21 +3287,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.expansionfiles.patch
      * @desc Updates the APK's Expansion File configuration to reference another APK's Expansion Files. To add a new Expansion File use the Upload method. This method supports patch semantics.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -3479,21 +3431,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.expansionfiles.update
      * @desc Updates the APK's Expansion File configuration to reference another APK's Expansion Files. To add a new Expansion File use the Upload method.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -3626,21 +3575,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.expansionfiles.upload
      * @desc Uploads and attaches a new Expansion File to the APK specified.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -3920,21 +3866,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.images.delete
      * @desc Deletes the image (specified by id) from the edit.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -4054,21 +3997,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.images.deleteall
      * @desc Deletes all images for the specified language and image type.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -4184,21 +4124,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.images.list
      * @desc Lists all images for the specified language and image type.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -4310,21 +4247,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.images.upload
      * @desc Uploads a new image and adds it to the list of images for the specified language and image type.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -4581,21 +4515,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.listings.delete
      * @desc Deletes the specified localized store listing from an edit.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -4697,21 +4628,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.listings.deleteall
      * @desc Deletes all localized listings from an edit.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -4810,21 +4738,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.listings.get
      * @desc Fetches information about a localized store listing.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -4935,21 +4860,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.listings.list
      * @desc Returns all of the localized store listings attached to this edit.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -5058,21 +4980,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.listings.patch
      * @desc Creates or updates a localized store listing. This method supports patch semantics.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -5196,21 +5115,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.listings.update
      * @desc Creates or updates a localized store listing.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -5463,21 +5379,18 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.testers.get
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -5586,21 +5499,18 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.testers.patch
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -5721,21 +5631,18 @@ export namespace androidpublisher_v3 {
     /**
      * androidpublisher.edits.testers.update
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -5935,21 +5842,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.tracks.get
      * @desc Fetches the track configuration for the specified track type. Includes the APK version codes that are in this track.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -6056,21 +5960,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.tracks.list
      * @desc Lists all the track configurations for this edit.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -6177,21 +6078,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.tracks.patch
      * @desc Updates the track configuration for the specified track type. This method supports patch semantics.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -6309,21 +6207,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.edits.tracks.update
      * @desc Updates the track configuration for the specified track type.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -6534,21 +6429,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.inappproducts.delete
      * @desc Delete an in-app product for an app.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -6647,21 +6539,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.inappproducts.get
      * @desc Returns information about the in-app product specified.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -6776,21 +6665,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.inappproducts.insert
      * @desc Creates a new in-app product for an app.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -6925,21 +6811,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.inappproducts.list
      * @desc List all the in-app products for an Android app, both subscriptions and managed in-app products..
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -7060,21 +6943,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.inappproducts.patch
      * @desc Updates the details of an in-app product. This method supports patch semantics.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -7212,21 +7092,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.inappproducts.update
      * @desc Updates the details of an in-app product.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -7499,21 +7376,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.internalappsharingartifacts.uploadapk
      * @desc Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -7640,21 +7514,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.internalappsharingartifacts.uploadbundle
      * @desc Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -7853,21 +7724,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.orders.refund
      * @desc Refund a user's subscription or in-app purchase order.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -8010,21 +7878,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.products.acknowledge
      * @desc Acknowledges a purchase of an inapp item.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -8135,21 +8000,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.products.get
      * @desc Checks the purchase and consumption status of an inapp item.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -8321,21 +8183,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.subscriptions.acknowledge
      * @desc Acknowledges a subscription purchase.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -8446,21 +8305,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.subscriptions.cancel
      * @desc Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -8562,21 +8418,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.subscriptions.defer
      * @desc Defers a user's subscription purchase until a specified future expiration time.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -8703,21 +8556,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.subscriptions.get
      * @desc Checks whether a user's subscription purchase is valid and returns its expiry time.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -8854,21 +8704,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.subscriptions.refund
      * @desc Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -8970,21 +8817,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.subscriptions.revoke
      * @desc Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -9224,21 +9068,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.purchases.voidedpurchases.list
      * @desc Lists the purchases that were canceled, refunded or charged-back.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -9414,21 +9255,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.reviews.get
      * @desc Returns a single review.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -9536,21 +9374,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.reviews.list
      * @desc Returns a list of reviews. Only reviews from last week will be returned.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -9665,21 +9500,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.reviews.reply
      * @desc Reply to a single review, or update an existing reply.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -9878,21 +9710,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.systemapks.variants.create
      * @desc Creates a new variant of APK which is suitable for inclusion in a system image.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -10006,21 +9835,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.systemapks.variants.download
      * @desc Download a previously created APK which is suitable for inclusion in a system image.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -10122,21 +9948,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.systemapks.variants.get
      * @desc Returns a previously created system APK variant.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
@@ -10244,21 +10067,18 @@ export namespace androidpublisher_v3 {
      * androidpublisher.systemapks.variants.list
      * @desc Returns the list of previously created system APK variants.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const androidpublisher = google.androidpublisher('v3');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],

@@ -282,21 +282,18 @@ export namespace billingbudgets_v1beta1 {
      * billingbudgets.billingAccounts.budgets.create
      * @desc Creates a new budget. See <a href="https://cloud.google.com/billing/quotas">Quotas and limits</a> for more information on the limits of the number of budgets you can create.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const billingbudgets = google.billingbudgets('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -433,21 +430,18 @@ export namespace billingbudgets_v1beta1 {
      * billingbudgets.billingAccounts.budgets.delete
      * @desc Deletes a budget. Returns successfully if already deleted.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const billingbudgets = google.billingbudgets('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -547,21 +541,18 @@ export namespace billingbudgets_v1beta1 {
      * billingbudgets.billingAccounts.budgets.get
      * @desc Returns a budget.  WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const billingbudgets = google.billingbudgets('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -686,21 +677,18 @@ export namespace billingbudgets_v1beta1 {
      * billingbudgets.billingAccounts.budgets.list
      * @desc Returns a list of budgets for a billing account.  WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const billingbudgets = google.billingbudgets('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -841,21 +829,18 @@ export namespace billingbudgets_v1beta1 {
      * billingbudgets.billingAccounts.budgets.patch
      * @desc Updates a budget and returns the updated budget.  WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. Budget fields that are not exposed in this API will not be changed by this method.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const billingbudgets = google.billingbudgets('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],

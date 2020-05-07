@@ -395,21 +395,18 @@ export namespace clouderrorreporting_v1beta1 {
      * clouderrorreporting.projects.deleteEvents
      * @desc Deletes all error events of a given project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const clouderrorreporting = google.clouderrorreporting('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -540,21 +537,18 @@ export namespace clouderrorreporting_v1beta1 {
      * clouderrorreporting.projects.events.list
      * @desc Lists the specified events.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const clouderrorreporting = google.clouderrorreporting('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -689,21 +683,18 @@ export namespace clouderrorreporting_v1beta1 {
      * clouderrorreporting.projects.events.report
      * @desc Report an individual error event.  This endpoint accepts **either** an OAuth token, **or** an [API key](https://support.google.com/cloud/answer/6158862) for authentication. To use an API key, append it to the URL as the value of a `key` parameter. For example:  `POST https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const clouderrorreporting = google.clouderrorreporting('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -891,21 +882,18 @@ export namespace clouderrorreporting_v1beta1 {
      * clouderrorreporting.projects.groups.get
      * @desc Get the specified group.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const clouderrorreporting = google.clouderrorreporting('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -1018,21 +1006,18 @@ export namespace clouderrorreporting_v1beta1 {
      * clouderrorreporting.projects.groups.update
      * @desc Replace the data for the specified group. Fails if the group does not exist.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const clouderrorreporting = google.clouderrorreporting('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -1184,21 +1169,18 @@ export namespace clouderrorreporting_v1beta1 {
      * clouderrorreporting.projects.groupStats.list
      * @desc Lists the specified groups.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const clouderrorreporting = google.clouderrorreporting('v1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],

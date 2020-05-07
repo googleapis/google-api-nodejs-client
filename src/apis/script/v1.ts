@@ -719,21 +719,18 @@ export namespace script_v1 {
      * script.processes.list
      * @desc List information about processes made by or on behalf of a user, such as process type and current status.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.processes'],
@@ -881,21 +878,18 @@ export namespace script_v1 {
      * script.processes.listScriptProcesses
      * @desc List information about a script's executed processes, such as process type and current status.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.processes'],
@@ -1153,21 +1147,18 @@ export namespace script_v1 {
      * script.projects.create
      * @desc Creates a new, empty script project with no script files and a base manifest file.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.projects'],
@@ -1276,21 +1267,18 @@ export namespace script_v1 {
      * script.projects.get
      * @desc Gets a script project's metadata.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
@@ -1399,21 +1387,18 @@ export namespace script_v1 {
      * script.projects.getContent
      * @desc Gets the content of the script project, including the code source and metadata for each script file.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
@@ -1522,21 +1507,18 @@ export namespace script_v1 {
      * script.projects.getMetrics
      * @desc Get metrics data for scripts, such as number of executions and active users.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.metrics'],
@@ -1645,21 +1627,18 @@ export namespace script_v1 {
      * script.projects.updateContent
      * @desc Updates the content of the specified script project. This content is stored as the HEAD version, and is used when the script is executed as a trigger, in the script editor, in add-on preview mode, or as a web app or Apps Script API in development mode. This clears all the existing files in the project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.projects'],
@@ -1854,21 +1833,18 @@ export namespace script_v1 {
      * script.projects.deployments.create
      * @desc Creates a deployment of an Apps Script project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
@@ -1986,21 +1962,18 @@ export namespace script_v1 {
      * script.projects.deployments.delete
      * @desc Deletes a deployment of an Apps Script project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
@@ -2101,21 +2074,18 @@ export namespace script_v1 {
      * script.projects.deployments.get
      * @desc Gets a deployment of an Apps Script project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
@@ -2226,21 +2196,18 @@ export namespace script_v1 {
      * script.projects.deployments.list
      * @desc Lists the deployments of an Apps Script project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
@@ -2356,21 +2323,18 @@ export namespace script_v1 {
      * script.projects.deployments.update
      * @desc Updates a deployment of an Apps Script project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
@@ -2585,21 +2549,18 @@ export namespace script_v1 {
      * script.projects.versions.create
      * @desc Creates a new immutable version using the current code, with a unique version number.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/script.projects'],
@@ -2715,21 +2676,18 @@ export namespace script_v1 {
      * script.projects.versions.get
      * @desc Gets a version of a script project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
@@ -2838,21 +2796,18 @@ export namespace script_v1 {
      * script.projects.versions.list
      * @desc List the versions of a script project.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
@@ -3029,21 +2984,18 @@ export namespace script_v1 {
      * script.scripts.run
      * @desc Runs a function in an Apps Script project. The script project must be deployed for use with the Apps Script API and the calling application must share the same Cloud Platform project.  This method requires authorization with an OAuth 2.0 token that includes at least one of the scopes listed in the [Authorization](#authorization-scopes) section; script projects that do not require authorization cannot be executed through this API. To find the correct scopes to include in the authentication token, open the project in the script editor, then select **File > Project properties** and click the **Scopes** tab.  The error `403, PERMISSION_DENIED: The caller does not have permission` indicates that the Cloud Platform project used to authorize the request is not the same as the one used by the script.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const script = google.script('v1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [

@@ -545,21 +545,18 @@ export namespace speech_v1p1beta1 {
      * speech.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const speech = google.speech('v1p1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -665,21 +662,18 @@ export namespace speech_v1p1beta1 {
      * speech.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const speech = google.speech('v1p1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -855,21 +849,18 @@ export namespace speech_v1p1beta1 {
      * speech.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const speech = google.speech('v1p1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -973,21 +964,18 @@ export namespace speech_v1p1beta1 {
      * speech.projects.locations.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const speech = google.speech('v1p1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -1146,21 +1134,18 @@ export namespace speech_v1p1beta1 {
      * speech.speech.longrunningrecognize
      * @desc Performs asynchronous speech recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains a `LongRunningRecognizeResponse` message. For more information on asynchronous speech recognition, see the [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize).
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const speech = google.speech('v1p1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -1275,21 +1260,18 @@ export namespace speech_v1p1beta1 {
      * speech.speech.recognize
      * @desc Performs synchronous speech recognition: receive results after all audio has been sent and processed.
      * @example
-     * // Before running the sample, please make sure to run:
-     * //   $ npm install googleapis
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
      * const speech = google.speech('v1p1beta1');
      *
      * async function main() {
-     *   // By default, this method will look for, in order:
-     *   // 1. An environment variable set to `GOOGLE_APPLICATION_CREDENTIALS`
-     *   //    pointing to a service account credential file.
-     *   // 2. A GCE metadata server, present in Google Cloud products like
-     *   //    Compute Engine, Kubernetes Engine, Cloud Run, etc.
-     *   // 3. A local OAuth token written by the Cloud SDK, obtained by running
-     *   //    `gcloud auth application-default login`. This is preferred for local
-     *   //    development.
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
