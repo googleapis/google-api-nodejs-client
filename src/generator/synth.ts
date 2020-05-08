@@ -39,6 +39,7 @@ async function main() {
       const title = `feat(${dir}): update the API`;
       await execa('git', ['checkout', '-B', branch]);
       await execa('git', ['add', path.join('src/apis', dir)]);
+      await execa('git', ['add', `discovery/${dir}-*`]);
       await execa('git', ['commit', '-m', title]);
       await execa('git', ['push', 'origin', branch, '--force']);
       await gaxios.request({
