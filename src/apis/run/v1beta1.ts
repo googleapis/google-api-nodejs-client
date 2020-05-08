@@ -510,6 +510,70 @@ export namespace run_v1beta1 {
     /**
      * run.customresourcedefinitions.list
      * @desc Rpc to list custom resource definitions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.customresourcedefinitions.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the storages should
+     *     // be listed.
+     *     parent: 'placeholder-value',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.customresourcedefinitions.list
      * @memberOf! ()
      *
@@ -667,6 +731,51 @@ export namespace run_v1beta1 {
     /**
      * run.namespaces.customresourcedefinitions.get
      * @desc Rpc to get information about a CustomResourceDefinition.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.customresourcedefinitions.get({
+     *     // The name of the CustomResourceDefinition being retrieved. If needed,
+     *     // replace {namespace_id} with the project ID.
+     *     name:
+     *       'namespaces/my-namespace/customresourcedefinitions/my-customresourcedefinition',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.namespaces.customresourcedefinitions.get
      * @memberOf! ()
      *
@@ -782,6 +891,51 @@ export namespace run_v1beta1 {
     /**
      * run.projects.locations.customresourcedefinitions.get
      * @desc Rpc to get information about a CustomResourceDefinition.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.customresourcedefinitions.get({
+     *     // The name of the CustomResourceDefinition being retrieved. If needed,
+     *     // replace {namespace_id} with the project ID.
+     *     name:
+     *       'projects/my-project/locations/my-location/customresourcedefinitions/my-customresourcedefinition',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.customresourcedefinitions.get
      * @memberOf! ()
      *
@@ -855,6 +1009,70 @@ export namespace run_v1beta1 {
     /**
      * run.projects.locations.customresourcedefinitions.list
      * @desc Rpc to list custom resource definitions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.customresourcedefinitions.list({
+     *     // Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name.
+     *     // Send this in a query string format. i.e. 'metadata.name%3Dlorem'.
+     *     // Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *
+     *     limit: 'placeholder-value',
+     *     // The project ID or project number from which the storages should
+     *     // be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should
+     *     // start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well.
+     *     // Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias run.projects.locations.customresourcedefinitions.list
      * @memberOf! ()
      *

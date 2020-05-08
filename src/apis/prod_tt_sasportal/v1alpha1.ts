@@ -661,6 +661,48 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.get
      * @desc Returns a requested customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.get({
+     *     // Required. The name of the customer.
+     *     name: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.get
      * @memberOf! ()
      *
@@ -732,6 +774,51 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.list
      * @desc Returns a list of requested customers.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.list({
+     *     // The maximum number of customers
+     *     // to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListCustomers method that indicates where
+     *     // this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.list
      * @memberOf! ()
      *
@@ -816,6 +903,60 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.patch
      * @desc Updates an existing customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.patch({
+     *     // Output only. Resource name of the customer.
+     *     name: 'customers/my-customer',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.patch
      * @memberOf! ()
      *
@@ -943,6 +1084,54 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.bulk
      * @desc Creates a device under a node or customer. Returned devices are unordered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.bulk({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "csv": "my_csv"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.bulk
      * @memberOf! ()
      *
@@ -1028,6 +1217,68 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.create
      * @desc Creates a device under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.create
      * @memberOf! ()
      *
@@ -1104,6 +1355,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.createSigned
      * @desc Creates a signed device under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.createSigned
      * @memberOf! ()
      *
@@ -1180,6 +1487,44 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.delete
      * @desc Deletes a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.delete({
+     *     // Required. The name of the device.
+     *     name: 'customers/my-customer/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.delete
      * @memberOf! ()
      *
@@ -1252,6 +1597,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.get
      * @desc Gets details about a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.get({
+     *     // Required. The name of the device.
+     *     name: 'customers/my-customer/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.get
      * @memberOf! ()
      *
@@ -1324,6 +1716,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.list
      * @desc Lists devices under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.list({
+     *     // The filter expression. The filter should have one of the following
+     *     // formats: "sn=123454" or "display_name=MyDevice". sn
+     *     // corresponds to serial_number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response.
+     *     // If empty or zero, all devices will be listed.
+     *     // Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.list
      * @memberOf! ()
      *
@@ -1411,6 +1855,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.move
      * @desc Moves a device under another node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.move({
+     *     // Required. The name of the device to move.
+     *     name: 'customers/my-customer/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.move
      * @memberOf! ()
      *
@@ -1487,6 +1983,70 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.patch
      * @desc Updates a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.patch({
+     *     // Output only. The resource path name.
+     *     name: 'customers/my-customer/devices/my-device',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.patch
      * @memberOf! ()
      *
@@ -1561,6 +2121,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.signDevice
      * @desc Signs a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.signDevice({
+     *     // Output only. The resource path name.
+     *     name: 'customers/my-customer/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "device": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.signDevice
      * @memberOf! ()
      *
@@ -1637,6 +2243,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.devices.updateSigned
      * @desc Updates a signed device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.updateSigned({
+     *     // Required. The name of the device to update.
+     *     name: 'customers/my-customer/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.devices.updateSigned
      * @memberOf! ()
      *
@@ -1894,6 +2556,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.nodes.create
      * @desc Creates a new node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.create({
+     *     // Required. The parent resource name where the node is to be created.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.nodes.create
      * @memberOf! ()
      *
@@ -1970,6 +2684,44 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.nodes.delete
      * @desc Deletes a node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.delete({
+     *     // Required. The name of the node.
+     *     name: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.nodes.delete
      * @memberOf! ()
      *
@@ -2042,6 +2794,48 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.nodes.get
      * @desc Returns a requested node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.get({
+     *     // Required. The name of the node.
+     *     name: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.nodes.get
      * @memberOf! ()
      *
@@ -2114,6 +2908,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.nodes.list
      * @desc Lists nodes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.list({
+     *     // The maximum number of nodes to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListNodes method
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1".
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.nodes.list
      * @memberOf! ()
      *
@@ -2198,6 +3038,59 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.nodes.move
      * @desc Moves a node under another node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.move({
+     *     // Required. The name of the node to
+     *     // move.
+     *     name: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.nodes.move
      * @memberOf! ()
      *
@@ -2274,6 +3167,60 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.nodes.patch
      * @desc Updates an existing node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.patch({
+     *     // Output only. Resource name.
+     *     name: 'customers/my-customer/nodes/my-node',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.nodes.patch
      * @memberOf! ()
      *
@@ -2455,6 +3402,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.nodes.nodes.create
      * @desc Creates a new node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.nodes.create({
+     *     // Required. The parent resource name where the node is to be created.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.nodes.nodes.create
      * @memberOf! ()
      *
@@ -2531,6 +3530,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.customers.nodes.nodes.list
      * @desc Lists nodes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.nodes.list({
+     *     // The maximum number of nodes to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListNodes method
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1".
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.customers.nodes.nodes.list
      * @memberOf! ()
      *
@@ -2660,6 +3705,49 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.installer.generateSecret
      * @desc Generates a secret to be used with the ValidateInstaller method
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.installer.generateSecret({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "secret": "my_secret"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.installer.generateSecret
      * @memberOf! ()
      *
@@ -2744,6 +3832,51 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.installer.validate
      * @desc Validates the identity of a Certified Professional Installer (CPI).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.installer.validate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedSecret": "my_encodedSecret",
+     *       //   "installerId": "my_installerId",
+     *       //   "secret": "my_secret"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.installer.validate
      * @memberOf! ()
      *
@@ -2871,6 +4004,54 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.bulk
      * @desc Creates a device under a node or customer. Returned devices are unordered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.bulk({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "csv": "my_csv"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.bulk
      * @memberOf! ()
      *
@@ -2956,6 +4137,68 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.create
      * @desc Creates a device under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.create
      * @memberOf! ()
      *
@@ -3032,6 +4275,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.createSigned
      * @desc Creates a signed device under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.createSigned
      * @memberOf! ()
      *
@@ -3108,6 +4407,44 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.delete
      * @desc Deletes a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.delete({
+     *     // Required. The name of the device.
+     *     name: 'nodes/my-node/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.delete
      * @memberOf! ()
      *
@@ -3180,6 +4517,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.get
      * @desc Gets details about a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.get({
+     *     // Required. The name of the device.
+     *     name: 'nodes/my-node/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.get
      * @memberOf! ()
      *
@@ -3252,6 +4636,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.list
      * @desc Lists devices under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.list({
+     *     // The filter expression. The filter should have one of the following
+     *     // formats: "sn=123454" or "display_name=MyDevice". sn
+     *     // corresponds to serial_number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response.
+     *     // If empty or zero, all devices will be listed.
+     *     // Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.list
      * @memberOf! ()
      *
@@ -3339,6 +4775,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.move
      * @desc Moves a device under another node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.move({
+     *     // Required. The name of the device to move.
+     *     name: 'nodes/my-node/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.move
      * @memberOf! ()
      *
@@ -3415,6 +4903,70 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.patch
      * @desc Updates a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.patch({
+     *     // Output only. The resource path name.
+     *     name: 'nodes/my-node/devices/my-device',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.patch
      * @memberOf! ()
      *
@@ -3489,6 +5041,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.signDevice
      * @desc Signs a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.signDevice({
+     *     // Output only. The resource path name.
+     *     name: 'nodes/my-node/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "device": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.signDevice
      * @memberOf! ()
      *
@@ -3565,6 +5163,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.devices.updateSigned
      * @desc Updates a signed device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.updateSigned({
+     *     // Required. The name of the device to update.
+     *     name: 'nodes/my-node/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.devices.updateSigned
      * @memberOf! ()
      *
@@ -3824,6 +5478,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.create
      * @desc Creates a new node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.create({
+     *     // Required. The parent resource name where the node is to be created.
+     *     parent: 'nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.create
      * @memberOf! ()
      *
@@ -3900,6 +5606,44 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.delete
      * @desc Deletes a node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.delete({
+     *     // Required. The name of the node.
+     *     name: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.delete
      * @memberOf! ()
      *
@@ -3972,6 +5716,48 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.get
      * @desc Returns a requested node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.get({
+     *     // Required. The name of the node.
+     *     name: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.get
      * @memberOf! ()
      *
@@ -4043,6 +5829,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.list
      * @desc Lists nodes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.list({
+     *     // The maximum number of nodes to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListNodes method
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1".
+     *     parent: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.list
      * @memberOf! ()
      *
@@ -4126,6 +5958,59 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.move
      * @desc Moves a node under another node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.move({
+     *     // Required. The name of the node to
+     *     // move.
+     *     name: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.move
      * @memberOf! ()
      *
@@ -4201,6 +6086,60 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.patch
      * @desc Updates an existing node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.patch({
+     *     // Output only. Resource name.
+     *     name: 'nodes/my-node/nodes/my-node',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.patch
      * @memberOf! ()
      *
@@ -4379,6 +6318,54 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.devices.bulk
      * @desc Creates a device under a node or customer. Returned devices are unordered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.devices.bulk({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "csv": "my_csv"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.devices.bulk
      * @memberOf! ()
      *
@@ -4464,6 +6451,68 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.devices.create
      * @desc Creates a device under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.devices.create
      * @memberOf! ()
      *
@@ -4540,6 +6589,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.devices.createSigned
      * @desc Creates a signed device under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.devices.createSigned
      * @memberOf! ()
      *
@@ -4616,6 +6721,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.devices.list
      * @desc Lists devices under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.devices.list({
+     *     // The filter expression. The filter should have one of the following
+     *     // formats: "sn=123454" or "display_name=MyDevice". sn
+     *     // corresponds to serial_number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response.
+     *     // If empty or zero, all devices will be listed.
+     *     // Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.devices.list
      * @memberOf! ()
      *
@@ -4786,6 +6943,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.nodes.create
      * @desc Creates a new node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.nodes.create({
+     *     // Required. The parent resource name where the node is to be created.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.nodes.create
      * @memberOf! ()
      *
@@ -4862,6 +7071,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.nodes.nodes.nodes.list
      * @desc Lists nodes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.nodes.list({
+     *     // The maximum number of nodes to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListNodes method
+     *     // that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1".
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.nodes.nodes.nodes.list
      * @memberOf! ()
      *
@@ -4991,6 +7246,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.policies.get
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.policies.get({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resource": "my_resource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignments": [],
+     *   //   "etag": "my_etag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.policies.get
      * @memberOf! ()
      *
@@ -5065,6 +7366,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.policies.set
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.policies.set({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "resource": "my_resource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignments": [],
+     *   //   "etag": "my_etag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.policies.set
      * @memberOf! ()
      *
@@ -5139,6 +7487,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
     /**
      * prod_tt_sasportal.policies.test
      * @desc Returns permissions that a caller has on the specified resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.policies.test({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": [],
+     *       //   "resource": "my_resource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias prod_tt_sasportal.policies.test
      * @memberOf! ()
      *

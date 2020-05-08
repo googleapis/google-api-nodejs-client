@@ -374,6 +374,49 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.achievements.reset
      * @desc Resets the achievement with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.reset({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentState": "my_currentState",
+     *   //   "definitionId": "my_definitionId",
+     *   //   "kind": "my_kind",
+     *   //   "updateOccurred": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.achievements.reset
      * @memberOf! ()
      *
@@ -451,6 +494,44 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.achievements.resetAll
      * @desc Resets all achievements for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.resetAll({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.achievements.resetAll
      * @memberOf! ()
      *
@@ -531,6 +612,38 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.achievements.resetAllForAllPlayers
      * @desc Resets all draft achievements for all players. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.resetAllForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.achievements.resetAllForAllPlayers
      * @memberOf! ()
      *
@@ -601,6 +714,41 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.achievements.resetForAllPlayers
      * @desc Resets the achievement with the given ID for all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.resetForAllPlayers({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.achievements.resetForAllPlayers
      * @memberOf! ()
      *
@@ -673,6 +821,47 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.achievements.resetMultipleForAllPlayers
      * @desc Resets achievements with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft achievements may be reset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.resetMultipleForAllPlayers({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "achievement_ids": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.achievements.resetMultipleForAllPlayers
      * @memberOf! ()
      *
@@ -803,6 +992,52 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.applications.listHidden
      * @desc Get the list of players hidden from the given application. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.applications.listHidden({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.applications.listHidden
      * @memberOf! ()
      *
@@ -907,6 +1142,41 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.events.reset
      * @desc Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.reset({
+     *     // The ID of the event.
+     *     eventId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.events.reset
      * @memberOf! ()
      *
@@ -977,6 +1247,38 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.events.resetAll
      * @desc Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.resetAll({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.events.resetAll
      * @memberOf! ()
      *
@@ -1047,6 +1349,38 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.events.resetAllForAllPlayers
      * @desc Resets all draft events for all players. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.resetAllForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.events.resetAllForAllPlayers
      * @memberOf! ()
      *
@@ -1117,6 +1451,41 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.events.resetForAllPlayers
      * @desc Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.resetForAllPlayers({
+     *     // The ID of the event.
+     *     eventId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.events.resetForAllPlayers
      * @memberOf! ()
      *
@@ -1189,6 +1558,47 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.events.resetMultipleForAllPlayers
      * @desc Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.resetMultipleForAllPlayers({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "event_ids": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.events.resetMultipleForAllPlayers
      * @memberOf! ()
      *
@@ -1316,6 +1726,43 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.players.hide
      * @desc Hide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.players.hide({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.players.hide
      * @memberOf! ()
      *
@@ -1388,6 +1835,43 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.players.unhide
      * @desc Unhide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.players.unhide({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.players.unhide
      * @memberOf! ()
      *
@@ -1498,6 +1982,38 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.rooms.reset
      * @desc Reset all rooms for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.rooms.reset({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.rooms.reset
      * @memberOf! ()
      *
@@ -1568,6 +2084,38 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.rooms.resetForAllPlayers
      * @desc Deletes rooms where the only room participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.rooms.resetForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.rooms.resetForAllPlayers
      * @memberOf! ()
      *
@@ -1659,6 +2207,48 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.scores.reset
      * @desc Resets scores for the leaderboard with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.reset({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "definitionId": "my_definitionId",
+     *   //   "kind": "my_kind",
+     *   //   "resetScoreTimeSpans": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.scores.reset
      * @memberOf! ()
      *
@@ -1736,6 +2326,44 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.scores.resetAll
      * @desc Resets all scores for all leaderboards for the currently authenticated players. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.resetAll({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.scores.resetAll
      * @memberOf! ()
      *
@@ -1815,6 +2443,38 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.scores.resetAllForAllPlayers
      * @desc Resets scores for all draft leaderboards for all players. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.resetAllForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.scores.resetAllForAllPlayers
      * @memberOf! ()
      *
@@ -1885,6 +2545,41 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.scores.resetForAllPlayers
      * @desc Resets scores for the leaderboard with the given ID for all players. This method is only available to user accounts for your developer console. Only draft leaderboards can be reset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.resetForAllPlayers({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.scores.resetForAllPlayers
      * @memberOf! ()
      *
@@ -1957,6 +2652,47 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.scores.resetMultipleForAllPlayers
      * @desc Resets scores for the leaderboards with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft leaderboards may be reset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.resetMultipleForAllPlayers({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "leaderboard_ids": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.scores.resetMultipleForAllPlayers
      * @memberOf! ()
      *
@@ -2084,6 +2820,38 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.turnBasedMatches.reset
      * @desc Reset all turn-based match data for a user. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.turnBasedMatches.reset({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.turnBasedMatches.reset
      * @memberOf! ()
      *
@@ -2154,6 +2922,38 @@ export namespace gamesManagement_v1management {
     /**
      * gamesManagement.turnBasedMatches.resetForAllPlayers
      * @desc Deletes turn-based matches where the only match participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.turnBasedMatches.resetForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias gamesManagement.turnBasedMatches.resetForAllPlayers
      * @memberOf! ()
      *

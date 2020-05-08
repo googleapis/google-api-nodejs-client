@@ -784,6 +784,50 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.operations.cancel
      * @memberOf! ()
      *
@@ -854,6 +898,50 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.operations.get
      * @memberOf! ()
      *
@@ -924,6 +1012,53 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.operations.list
      * @memberOf! ()
      *
@@ -1069,6 +1204,76 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.cancel
      * @desc Cancels a build in progress.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.cancel({
+     *     // Required. ID of the build.
+     *     id: 'placeholder-value',
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifacts": {},
+     *   //   "buildTriggerId": "my_buildTriggerId",
+     *   //   "createTime": "my_createTime",
+     *   //   "finishTime": "my_finishTime",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "logUrl": "my_logUrl",
+     *   //   "logsBucket": "my_logsBucket",
+     *   //   "options": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "queueTtl": "my_queueTtl",
+     *   //   "results": {},
+     *   //   "secrets": [],
+     *   //   "source": {},
+     *   //   "sourceProvenance": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusDetail": "my_statusDetail",
+     *   //   "steps": [],
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "timeout": "my_timeout",
+     *   //   "timing": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.cancel
      * @memberOf! ()
      *
@@ -1142,6 +1347,80 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.create
      * @desc Starts a build with the specified configuration.  This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.create({
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "artifacts": {},
+     *       //   "buildTriggerId": "my_buildTriggerId",
+     *       //   "createTime": "my_createTime",
+     *       //   "finishTime": "my_finishTime",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "logUrl": "my_logUrl",
+     *       //   "logsBucket": "my_logsBucket",
+     *       //   "options": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "queueTtl": "my_queueTtl",
+     *       //   "results": {},
+     *       //   "secrets": [],
+     *       //   "source": {},
+     *       //   "sourceProvenance": {},
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "statusDetail": "my_statusDetail",
+     *       //   "steps": [],
+     *       //   "substitutions": {},
+     *       //   "tags": [],
+     *       //   "timeout": "my_timeout",
+     *       //   "timing": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.create
      * @memberOf! ()
      *
@@ -1217,6 +1496,70 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.get
      * @desc Returns information about a previously requested build.  The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.get({
+     *     // Required. ID of the build.
+     *     id: 'placeholder-value',
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifacts": {},
+     *   //   "buildTriggerId": "my_buildTriggerId",
+     *   //   "createTime": "my_createTime",
+     *   //   "finishTime": "my_finishTime",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "logUrl": "my_logUrl",
+     *   //   "logsBucket": "my_logsBucket",
+     *   //   "options": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "queueTtl": "my_queueTtl",
+     *   //   "results": {},
+     *   //   "secrets": [],
+     *   //   "source": {},
+     *   //   "sourceProvenance": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusDetail": "my_statusDetail",
+     *   //   "steps": [],
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "timeout": "my_timeout",
+     *   //   "timing": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.get
      * @memberOf! ()
      *
@@ -1290,6 +1633,53 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.list
      * @desc Lists previously requested builds.  Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.list({
+     *     // The raw filter text to constrain the results.
+     *     filter: 'placeholder-value',
+     *     // Number of results to return in the list.
+     *     pageSize: 'placeholder-value',
+     *     // Token to provide to skip to a particular spot in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "builds": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.list
      * @memberOf! ()
      *
@@ -1367,6 +1757,58 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.retry
      * @desc Creates a new build based on the specified build.  This method creates a new build using the original build request, which may or may not result in an identical build.  For triggered builds:  * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision.  For non-triggered builds that specify `RepoSource`:  * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source.  For builds that specify `StorageSource`:  * If the original build pulled source from Google Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.retry({
+     *     // Required. Build ID of the original build.
+     *     id: 'placeholder-value',
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.retry
      * @memberOf! ()
      *
@@ -1549,6 +1991,78 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.create
      * @desc Creates a new `BuildTrigger`.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.create({
+     *     // Required. ID of the project for which to configure automatic builds.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "build": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filename": "my_filename",
+     *       //   "github": {},
+     *       //   "id": "my_id",
+     *       //   "ignoredFiles": [],
+     *       //   "includedFiles": [],
+     *       //   "name": "my_name",
+     *       //   "substitutions": {},
+     *       //   "tags": [],
+     *       //   "triggerTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filename": "my_filename",
+     *   //   "github": {},
+     *   //   "id": "my_id",
+     *   //   "ignoredFiles": [],
+     *   //   "includedFiles": [],
+     *   //   "name": "my_name",
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "triggerTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.create
      * @memberOf! ()
      *
@@ -1624,6 +2138,46 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.delete
      * @desc Deletes a `BuildTrigger` by its project ID and trigger ID.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.delete({
+     *     // Required. ID of the project that owns the trigger.
+     *     projectId: 'placeholder-value',
+     *     // Required. ID of the `BuildTrigger` to delete.
+     *     triggerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.delete
      * @memberOf! ()
      *
@@ -1696,6 +2250,60 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.get
      * @desc Returns information about a `BuildTrigger`.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.get({
+     *     // Required. ID of the project that owns the trigger.
+     *     projectId: 'placeholder-value',
+     *     // Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
+     *     triggerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filename": "my_filename",
+     *   //   "github": {},
+     *   //   "id": "my_id",
+     *   //   "ignoredFiles": [],
+     *   //   "includedFiles": [],
+     *   //   "name": "my_name",
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "triggerTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.get
      * @memberOf! ()
      *
@@ -1770,6 +2378,51 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.list
      * @desc Lists existing `BuildTrigger`s.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.list({
+     *     // Number of results to return in the list.
+     *     pageSize: 'placeholder-value',
+     *     // Token to provide to skip to a particular spot in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. ID of the project for which to list BuildTriggers.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "triggers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.list
      * @memberOf! ()
      *
@@ -1853,6 +2506,80 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.patch
      * @desc Updates a `BuildTrigger` by its project ID and trigger ID.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.patch({
+     *     // Required. ID of the project that owns the trigger.
+     *     projectId: 'placeholder-value',
+     *     // Required. ID of the `BuildTrigger` to update.
+     *     triggerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "build": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filename": "my_filename",
+     *       //   "github": {},
+     *       //   "id": "my_id",
+     *       //   "ignoredFiles": [],
+     *       //   "includedFiles": [],
+     *       //   "name": "my_name",
+     *       //   "substitutions": {},
+     *       //   "tags": [],
+     *       //   "triggerTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filename": "my_filename",
+     *   //   "github": {},
+     *   //   "id": "my_id",
+     *   //   "ignoredFiles": [],
+     *   //   "includedFiles": [],
+     *   //   "name": "my_name",
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "triggerTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.patch
      * @memberOf! ()
      *
@@ -1928,6 +2655,67 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.run
      * @desc Runs a `BuildTrigger` at a particular source revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.run({
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *     // Required. ID of the trigger.
+     *     triggerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "branchName": "my_branchName",
+     *       //   "commitSha": "my_commitSha",
+     *       //   "dir": "my_dir",
+     *       //   "invertRegex": false,
+     *       //   "projectId": "my_projectId",
+     *       //   "repoName": "my_repoName",
+     *       //   "substitutions": {},
+     *       //   "tagName": "my_tagName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.run
      * @memberOf! ()
      *

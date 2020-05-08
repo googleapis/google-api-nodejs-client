@@ -322,6 +322,63 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.searchReservationGrants
      * @desc Look up grants for a specified resource for a particular region. If the request is about a project:   1) Grants created on the project will be returned if they exist.   2) Otherwise grants created on the closest ancestor will be returned.   3) Grants for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then grants created on the organization will be returned (organization doesn't have ancestors). Comparing to ListReservationGrants, there are two behavior differences:   1) permission on the grantee will be verified in this API.   2) Hierarchy lookup (project->folder->organization) happens in this API.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.searchReservationGrants(
+     *     {
+     *       // The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // The parent resource name (containing project and location), which owns the
+     *       // grants. e.g.:
+     *       //   "projects/myproject/locations/us-central1".
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Please specify resource name as grantee in the query.
+     *       // e.g., "grantee=projects/myproject"
+     *       //       "grantee=folders/123"
+     *       //       "grantee=organizations/456"
+     *       query: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reservationGrants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.searchReservationGrants
      * @memberOf! ()
      *
@@ -440,6 +497,47 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.operations.cancel
      * @memberOf! ()
      *
@@ -513,6 +611,53 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -617,6 +762,68 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservationGrants.create
      * @desc Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the grant does not match location of the reservation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservationGrants.create(
+     *     {
+     *       // The parent resource name of the reservation grant
+     *       // E.g.: projects/myproject/location/eu.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "grantee": "my_grantee",
+     *         //   "jobType": "my_jobType",
+     *         //   "name": "my_name",
+     *         //   "reservation": "my_reservation",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "grantee": "my_grantee",
+     *   //   "jobType": "my_jobType",
+     *   //   "name": "my_name",
+     *   //   "reservation": "my_reservation",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservationGrants.create
      * @memberOf! ()
      *
@@ -693,6 +900,51 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservationGrants.delete
      * @desc Deletes a reservation grant. No expansion will happen. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly:   <organizationA, res1>   <project1, res1> Then deletion of <organizationA, res1> won't affect <project1, res1>. After deletion of <organizationA, res1>, queries from project1 will still use res1, while queries from project2 will use on-demand mode.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservationGrants.delete(
+     *     {
+     *       // Name of the resource, e.g.:
+     *       //   projects/myproject/locations/eu/reservationGrants/123
+     *       name:
+     *         'projects/my-project/locations/my-location/reservationGrants/my-reservationGrant',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservationGrants.delete
      * @memberOf! ()
      *
@@ -763,6 +1015,56 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservationGrants.list
      * @desc Lists reservation grants. Only explicitly created grants will be returned. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly:   <organizationA, res1>   <project1, res1> Then this API will just return the above two grants for reservation res1, and no expansion/merge will happen.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservationGrants.list(
+     *     {
+     *       // The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // The parent resource name e.g.: projects/myproject/location/eu.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reservationGrants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservationGrants.list
      * @memberOf! ()
      *
@@ -910,6 +1212,65 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.create
      * @desc Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.create({
+     *     // Project, location, and (optionally) reservation name. E.g.,
+     *     //    projects/myproject/locations/us-central1/reservations/parent
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The reservation ID relative to the parent, e.g., "dev". This field must
+     *     // only contain alphanumeric characters.
+     *     reservationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "slotCapacity": "my_slotCapacity",
+     *       //   "useParentReservation": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "useParentReservation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.create
      * @memberOf! ()
      *
@@ -987,6 +1348,67 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.createReservation
      * @desc Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.createReservation(
+     *     {
+     *       // Project, location, and (optionally) reservation name. E.g.,
+     *       //    projects/myproject/locations/us-central1/reservations/parent
+     *       parent: 'projects/my-project/locations/my-location/reservations/.*',
+     *       // The reservation ID relative to the parent, e.g., "dev". This field must
+     *       // only contain alphanumeric characters.
+     *       reservationId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "name": "my_name",
+     *         //   "slotCapacity": "my_slotCapacity",
+     *         //   "useParentReservation": false
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "useParentReservation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.createReservation
      * @memberOf! ()
      *
@@ -1064,6 +1486,53 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.delete
      * @desc Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` in the following cases:   1. When reservation has child reservations. This check can be bypassed by      setting DeleteReservationRequest.force flag to true.   2. When top-level reservation with slot pools is being deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.delete({
+     *     // If true, deletes all the child reservations of the given reservation.
+     *     // Otherwise, attempting to delete a reservation that has child
+     *     // reservations will fail with error code
+     *     // `google.rpc.Code.FAILED_PRECONDITION`.
+     *     force: 'placeholder-value',
+     *     // Resource name of the reservation to retrieve. E.g.,
+     *     //    projects/myproject/locations/us-central1/reservations/my_reservation
+     *     name: 'projects/my-project/locations/my-location/reservations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.delete
      * @memberOf! ()
      *
@@ -1135,6 +1604,52 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.get
      * @desc Returns information about the reservation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.get({
+     *     // Resource name of the reservation to retrieve. E.g.,
+     *     //    projects/myproject/locations/us-central1/reservations/path/to/reserv
+     *     name: 'projects/my-project/locations/my-location/reservations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "useParentReservation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.get
      * @memberOf! ()
      *
@@ -1207,6 +1722,61 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.list
      * @desc Lists all the reservations for the project in the specified location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.list({
+     *     // Can be used to filter out reservations based on names, capacity, etc, e.g.:
+     *     // filter="reservation.slot_capacity > 200"
+     *     // filter="reservation.name = \"*dev/x\""
+     *     // Advanced filtering syntax can be
+     *     // [here](https://cloud.google.com/logging/docs/view/advanced-filters).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // The parent resource name containing project and location, e.g.:
+     *     //   "projects/myproject/locations/us-central1"
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reservations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.list
      * @memberOf! ()
      *
@@ -1287,6 +1857,67 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.patch
      * @desc Updates an existing reservation resource. Applicable only for child reservations.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.patch({
+     *     // The resource name of the reservation, e.g.,
+     *     // "projects/x/locations/x/reservations/dev/team/product". Reservation names
+     *     // (e.g., "dev/team/product") exceeding a depth of six will fail with
+     *     // `google.rpc.Code.INVALID_ARGUMENT`.
+     *     name:
+     *       'projects/my-project/locations/my-location/reservations/my-reservation/.*',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "slotCapacity": "my_slotCapacity",
+     *       //   "useParentReservation": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "useParentReservation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.patch
      * @memberOf! ()
      *
@@ -1484,6 +2115,51 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.slotPools.delete
      * @desc Deletes a slot pool. Attempting to delete slot pool before its commitment_end_time will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.delete(
+     *     {
+     *       // Resource name of the slot pool to delete. E.g.,
+     *       //    projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
+     *       name:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation/slotPools/my-slotPool',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.slotPools.delete
      * @memberOf! ()
      *
@@ -1554,6 +2230,58 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.slotPools.get
      * @desc Returns information about the slot pool.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.get(
+     *     {
+     *       // Resource name of the slot pool to retrieve. E.g.,
+     *       //    projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
+     *       name:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation/slotPools/my-slotPool',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "failureStatus": {},
+     *   //   "name": "my_name",
+     *   //   "plan": "my_plan",
+     *   //   "slotCount": "my_slotCount",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.slotPools.get
      * @memberOf! ()
      *
@@ -1624,6 +2352,59 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.slotPools.list
      * @desc Lists all the slot pools for the reservation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.list(
+     *     {
+     *       // The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Resource name of the parent reservation. Only top-level reservations can
+     *       // have slot pools. E.g.,
+     *       //    projects/myproject/locations/us-central1/reservations/my_reservation
+     *       parent:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "slotPools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.slotPools.list
      * @memberOf! ()
      *

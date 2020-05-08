@@ -5142,52 +5142,54 @@ export namespace vision_v1 {
      * vision.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.files.annotate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.files.annotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.files.annotate
      * @memberOf! ()
      *
@@ -5266,52 +5268,58 @@ export namespace vision_v1 {
      * vision.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.files.asyncBatchAnnotate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.files.asyncBatchAnnotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.files.asyncBatchAnnotate
      * @memberOf! ()
      *
@@ -5418,52 +5426,54 @@ export namespace vision_v1 {
      * vision.images.annotate
      * @desc Run image detection and annotation for a batch of images.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.images.annotate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.images.annotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.images.annotate
      * @memberOf! ()
      *
@@ -5545,52 +5555,59 @@ export namespace vision_v1 {
      * vision.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.images.asyncBatchAnnotate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.images.asyncBatchAnnotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.images.asyncBatchAnnotate
      * @memberOf! ()
      *
@@ -5706,51 +5723,52 @@ export namespace vision_v1 {
      * vision.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: 'locations/my-location/operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.locations.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.locations.operations.get
      * @memberOf! ()
      *
@@ -5843,52 +5861,52 @@ export namespace vision_v1 {
      * vision.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.operations.cancel(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.operations.cancel
      * @memberOf! ()
      *
@@ -5960,48 +5978,46 @@ export namespace vision_v1 {
      * vision.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource to be deleted.
-     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.operations.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.operations.delete
      * @memberOf! ()
      *
@@ -6072,51 +6088,52 @@ export namespace vision_v1 {
      * vision.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.operations.get
      * @memberOf! ()
      *
@@ -6188,64 +6205,55 @@ export namespace vision_v1 {
      * vision.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
-     *     name: 'operations',  // TODO: Update placeholder value.
+     *     name: 'operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var operationsPage = response['operations'];
-     *     if (!operationsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < operationsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `operationsPage`:
-     *       console.log(JSON.stringify(operationsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.operations.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.operations.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.operations.list
      * @memberOf! ()
      *
@@ -6407,6 +6415,69 @@ export namespace vision_v1 {
     /**
      * vision.projects.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.files.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.files.annotate
      * @memberOf! ()
      *
@@ -6489,6 +6560,73 @@ export namespace vision_v1 {
     /**
      * vision.projects.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.files.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.files.asyncBatchAnnotate
      * @memberOf! ()
      *
@@ -6606,6 +6744,69 @@ export namespace vision_v1 {
     /**
      * vision.projects.images.annotate
      * @desc Run image detection and annotation for a batch of images.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.images.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.images.annotate
      * @memberOf! ()
      *
@@ -6688,6 +6889,74 @@ export namespace vision_v1 {
     /**
      * vision.projects.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.images.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.images.asyncBatchAnnotate
      * @memberOf! ()
      *
@@ -6826,6 +7095,69 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.files.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.files.annotate
      * @memberOf! ()
      *
@@ -6908,6 +7240,73 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.files.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.files.asyncBatchAnnotate
      * @memberOf! ()
      *
@@ -7025,6 +7424,69 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.images.annotate
      * @desc Run image detection and annotation for a batch of images.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.images.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.images.annotate
      * @memberOf! ()
      *
@@ -7107,6 +7569,74 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.images.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.images.asyncBatchAnnotate
      * @memberOf! ()
      *
@@ -7225,51 +7755,52 @@ export namespace vision_v1 {
      * vision.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -7366,57 +7897,72 @@ export namespace vision_v1 {
      * vision.projects.locations.products.create
      * @desc Creates and returns a new product resource.  Possible errors:  * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096   characters. * Returns INVALID_ARGUMENT if description is longer than 4096 characters. * Returns INVALID_ARGUMENT if product_category is missing or invalid.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project in which the Product should be created.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.create({
+     *     // Required. The project in which the Product should be created.
+     *     //
      *     // Format is
      *     // `projects/PROJECT_ID/locations/LOC_ID`.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // A user-supplied resource id for this Product. If set, the server will
+     *     // attempt to use this value as the resource id. If it is already in use, an
+     *     // error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+     *     // long. It cannot contain the character `/`.
+     *     productId: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "productCategory": "my_productCategory",
+     *       //   "productLabels": []
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "productCategory": "my_productCategory",
+     *   //   "productLabels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.create
      * @memberOf! ()
      *
@@ -7492,50 +8038,49 @@ export namespace vision_v1 {
      * vision.projects.locations.products.delete
      * @desc Permanently deletes a product and its reference images.  Metadata of the product and all its images will be deleted right away, but search queries against ProductSets containing the product may still work until all related caches are refreshed.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of product to delete.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.delete({
+     *     // Required. Resource name of product to delete.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     *     name: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *     name: 'projects/my-project/locations/my-location/products/my-product',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.delete
      * @memberOf! ()
      *
@@ -7606,53 +8151,55 @@ export namespace vision_v1 {
      * vision.projects.locations.products.get
      * @desc Gets information associated with a Product.  Possible errors:  * Returns NOT_FOUND if the Product does not exist.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the Product to get.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.get({
+     *     // Required. Resource name of the Product to get.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     *     name: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     name: 'projects/my-project/locations/my-location/products/my-product',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "productCategory": "my_productCategory",
+     *   //   "productLabels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.get
      * @memberOf! ()
      *
@@ -7723,66 +8270,56 @@ export namespace vision_v1 {
      * vision.projects.locations.products.list
      * @desc Lists products in an unspecified order.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project OR ProductSet from which Products should be listed.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.list({
+     *     // The maximum number of items to return. Default 10, maximum 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project OR ProductSet from which Products should be listed.
+     *     //
      *     // Format:
      *     // `projects/PROJECT_ID/locations/LOC_ID`
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var productsPage = response['products'];
-     *     if (!productsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < productsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `productsPage`:
-     *       console.log(JSON.stringify(productsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.projects.locations.products.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.projects.locations.products.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.list
      * @memberOf! ()
      *
@@ -7862,59 +8399,75 @@ export namespace vision_v1 {
      * vision.projects.locations.products.patch
      * @desc Makes changes to a Product resource. Only the `display_name`, `description`, and `labels` fields can be updated right now.  If labels are updated, the change will not be reflected in queries until the next index time.  Possible errors:  * Returns NOT_FOUND if the Product does not exist. * Returns INVALID_ARGUMENT if display_name is present in update_mask but is   missing from the request or longer than 4096 characters. * Returns INVALID_ARGUMENT if description is present in update_mask but is   longer than 4096 characters. * Returns INVALID_ARGUMENT if product_category is present in update_mask.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.patch({
      *     // The resource name of the product.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     *     //
      *     // This field is ignored when creating a product.
-     *     name: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/products/my-product',
+     *     // The FieldMask that specifies which fields
+     *     // to update.
+     *     // If update_mask isn't specified, all mutable fields are to be updated.
+     *     // Valid mask paths include `product_labels`, `display_name`, and
+     *     // `description`.
+     *     updateMask: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "productCategory": "my_productCategory",
+     *       //   "productLabels": []
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "productCategory": "my_productCategory",
+     *   //   "productLabels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.patch
      * @memberOf! ()
      *
@@ -7986,6 +8539,65 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.products.purge
      * @desc Asynchronous API to delete all Products in a ProductSet or all Products that are in no ProductSet.  If a Product is a member of the specified ProductSet in addition to other ProductSets, the Product will still be deleted.  It is recommended to not delete the specified ProductSet until after this operation has completed. It is also recommended to not add any of the Products involved in the batch delete to a new ProductSet while this operation is running because those Products may still end up deleted.  It's not possible to undo the PurgeProducts operation. Therefore, it is recommended to keep the csv files used in ImportProductSets (if that was how you originally built the Product Set) before starting PurgeProducts, in case you need to re-import the data after deletion.  If the plan is to purge all of the Products from a ProductSet and then re-use the empty ProductSet to re-import new Products into the empty ProductSet, you must wait until the PurgeProducts operation has finished for that ProductSet.  The google.longrunning.Operation API can be used to keep track of the progress and results of the request. `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.purge({
+     *     // Required. The project and location in which the Products should be deleted.
+     *     //
+     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deleteOrphanProducts": false,
+     *       //   "force": false,
+     *       //   "productSetPurgeConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.products.purge
      * @memberOf! ()
      *
@@ -8173,57 +8785,68 @@ export namespace vision_v1 {
      * vision.projects.locations.products.referenceImages.create
      * @desc Creates and returns a new ReferenceImage resource.  The `bounding_poly` field is optional. If `bounding_poly` is not specified, the system will try to detect regions of interest in the image that are compatible with the product_category on the parent product. If it is specified, detection is ALWAYS skipped. The system converts polygons into non-rotated rectangles.  Note that the pipeline will resize the image if the image resolution is too large to process (above 50MP).  Possible errors:  * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096   characters. * Returns INVALID_ARGUMENT if the product does not exist. * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing   compatible with the parent product's product_category is detected. * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the product in which to create the reference image.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.referenceImages.create({
+     *     // Required. Resource name of the product in which to create the reference image.
+     *     //
      *     // Format is
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     *     parent: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location/products/my-product',
+     *     // A user-supplied resource id for the ReferenceImage to be added. If set,
+     *     // the server will attempt to use this value as the resource id. If it is
+     *     // already in use, an error is returned with code ALREADY_EXISTS. Must be at
+     *     // most 128 characters long. It cannot contain the character `/`.
+     *     referenceImageId: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boundingPolys": [],
+     *       //   "name": "my_name",
+     *       //   "uri": "my_uri"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.referenceImages.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boundingPolys": [],
+     *   //   "name": "my_name",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.referenceImages.create
      * @memberOf! ()
      *
@@ -8301,50 +8924,51 @@ export namespace vision_v1 {
      * vision.projects.locations.products.referenceImages.delete
      * @desc Permanently deletes a reference image.  The image metadata will be deleted right away, but search queries against ProductSets containing the image may still work until all related caches are refreshed.  The actual image files are not deleted from Google Cloud Storage.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the reference image to delete.
-     *     // Format is:
-     *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
-     *     name: 'projects/my-project/locations/my-location/products/my-product/referenceImages/my-reference-image',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.referenceImages.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.referenceImages.delete({
+     *     // Required. The resource name of the reference image to delete.
+     *     //
+     *     // Format is:
+     *     //
+     *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+     *     name:
+     *       'projects/my-project/locations/my-location/products/my-product/referenceImages/my-referenceImage',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.referenceImages.delete
      * @memberOf! ()
      *
@@ -8415,53 +9039,55 @@ export namespace vision_v1 {
      * vision.projects.locations.products.referenceImages.get
      * @desc Gets information associated with a ReferenceImage.  Possible errors:  * Returns NOT_FOUND if the specified image does not exist.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the ReferenceImage to get.
-     *     // Format is:
-     *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
-     *     name: 'projects/my-project/locations/my-location/products/my-product/referenceImages/my-reference-image',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.referenceImages.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.referenceImages.get({
+     *     // Required. The resource name of the ReferenceImage to get.
+     *     //
+     *     // Format is:
+     *     //
+     *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     *     name:
+     *       'projects/my-project/locations/my-location/products/my-product/referenceImages/my-referenceImage',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boundingPolys": [],
+     *   //   "name": "my_name",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.referenceImages.get
      * @memberOf! ()
      *
@@ -8534,66 +9160,60 @@ export namespace vision_v1 {
      * vision.projects.locations.products.referenceImages.list
      * @desc Lists reference images.  Possible errors:  * Returns NOT_FOUND if the parent product does not exist. * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less   than 1.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the product containing the reference images.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.referenceImages.list({
+     *     // The maximum number of items to return. Default 10, maximum 100.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results to be returned. This is the value
+     *     // of `nextPageToken` returned in a previous reference image list request.
+     *     //
+     *     // Defaults to the first page if not specified.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the product containing the reference images.
+     *     //
      *     // Format is
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     *     parent: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location/products/my-product',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageSize": 0,
+     *   //   "referenceImages": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var referenceImagesPage = response['referenceImages'];
-     *     if (!referenceImagesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < referenceImagesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `referenceImagesPage`:
-     *       console.log(JSON.stringify(referenceImagesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.projects.locations.products.referenceImages.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.projects.locations.products.referenceImages.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.referenceImages.list
      * @memberOf! ()
      *
@@ -8755,54 +9375,57 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.addProduct
      * @desc Adds a Product to the specified ProductSet. If the Product is already present, no change is made.  One Product can be added to at most 100 ProductSets.  Possible errors:  * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name for the ProductSet to modify.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.addProduct({
+     *     // Required. The resource name for the ProductSet to modify.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "product": "my_product"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.addProduct(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.addProduct
      * @memberOf! ()
      *
@@ -8877,56 +9500,69 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.create
      * @desc Creates and returns a new ProductSet resource.  Possible errors:  * Returns INVALID_ARGUMENT if display_name is missing, or is longer than   4096 characters.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project in which the ProductSet should be created.
-     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.create({
+     *     // Required. The project in which the ProductSet should be created.
+     *     //
+     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // A user-supplied resource id for this ProductSet. If set, the server will
+     *     // attempt to use this value as the resource id. If it is already in use, an
+     *     // error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+     *     // long. It cannot contain the character `/`.
+     *     productSetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "indexError": {},
+     *       //   "indexTime": "my_indexTime",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "indexError": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.create
      * @memberOf! ()
      *
@@ -9004,50 +9640,49 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.delete
      * @desc Permanently deletes a ProductSet. Products and ReferenceImages in the ProductSet are not deleted.  The actual image files are not deleted from Google Cloud Storage.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the ProductSet to delete.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.delete({
+     *     // Required. Resource name of the ProductSet to delete.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.delete
      * @memberOf! ()
      *
@@ -9118,53 +9753,54 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.get
      * @desc Gets information associated with a ProductSet.  Possible errors:  * Returns NOT_FOUND if the ProductSet does not exist.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the ProductSet to get.
-     *     // Format is:
-     *     // `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.get({
+     *     // Required. Resource name of the ProductSet to get.
+     *     //
+     *     // Format is:
+     *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "indexError": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.get
      * @memberOf! ()
      *
@@ -9237,56 +9873,62 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.import
      * @desc Asynchronous API that imports a list of reference images to specified product sets based on a list of image information.  The google.longrunning.Operation API can be used to keep track of the progress and results of the request. `Operation.metadata` contains `BatchOperationMetadata`. (progress) `Operation.response` contains `ImportProductSetsResponse`. (results)  The input source of this method is a csv file on Google Cloud Storage. For the format of the csv file please see ImportProductSetsGcsSource.csv_file_uri.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project in which the ProductSets should be imported.
-     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.import(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.import({
+     *     // Required. The project in which the ProductSets should be imported.
+     *     //
+     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "inputConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.import
      * @memberOf! ()
      *
@@ -9363,65 +10005,55 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.list
      * @desc Lists ProductSets in an unspecified order.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100, or less   than 1.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project from which ProductSets should be listed.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.list({
+     *     // The maximum number of items to return. Default 10, maximum 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project from which ProductSets should be listed.
+     *     //
      *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "productSets": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var productSetsPage = response['productSets'];
-     *     if (!productSetsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < productSetsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `productSetsPage`:
-     *       console.log(JSON.stringify(productSetsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.projects.locations.productSets.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.projects.locations.productSets.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.list
      * @memberOf! ()
      *
@@ -9501,59 +10133,72 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.patch
      * @desc Makes changes to a ProductSet resource. Only display_name can be updated currently.  Possible errors:  * Returns NOT_FOUND if the ProductSet does not exist. * Returns INVALID_ARGUMENT if display_name is present in update_mask but   missing from the request or longer than 4096 characters.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.patch({
      *     // The resource name of the ProductSet.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
+     *     //
      *     // This field is ignored when creating a ProductSet.
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
+     *     // The FieldMask that specifies which fields to
+     *     // update.
+     *     // If update_mask isn't specified, all mutable fields are to be updated.
+     *     // Valid mask path is `display_name`.
+     *     updateMask: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "indexError": {},
+     *       //   "indexTime": "my_indexTime",
+     *       //   "name": "my_name"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "indexError": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.patch
      * @memberOf! ()
      *
@@ -9628,54 +10273,57 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.removeProduct
      * @desc Removes a Product from the specified ProductSet.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name for the ProductSet to modify.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.removeProduct({
+     *     // Required. The resource name for the ProductSet to modify.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "product": "my_product"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.removeProduct(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.removeProduct
      * @memberOf! ()
      *
@@ -9895,66 +10543,56 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.products.list
      * @desc Lists the Products in a ProductSet, in an unspecified order. If the ProductSet does not exist, the products field of the response will be empty.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ProductSet resource for which to retrieve Products.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.products.list({
+     *     // Required. The ProductSet resource for which to retrieve Products.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
+     *     // The maximum number of items to return. Default 10, maximum 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var productsPage = response['products'];
-     *     if (!productsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < productsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `productsPage`:
-     *       console.log(JSON.stringify(productsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.projects.locations.productSets.products.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.projects.locations.productSets.products.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.products.list
      * @memberOf! ()
      *
@@ -10069,51 +10707,52 @@ export namespace vision_v1 {
      * vision.projects.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.operations.get
      * @memberOf! ()
      *

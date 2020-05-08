@@ -227,6 +227,57 @@ export namespace oslogin_v1beta {
     /**
      * oslogin.users.getLoginProfile
      * @desc Retrieves the profile information used for logging in to a virtual machine on Google Compute Engine.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.getLoginProfile({
+     *     // Required. The unique ID for the user in format `users/{user}`.
+     *     name: 'users/my-user',
+     *     // The project ID of the Google Cloud Platform project.
+     *     projectId: 'placeholder-value',
+     *     // A system ID for filtering the results of the request.
+     *     systemId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "posixAccounts": [],
+     *   //   "sshPublicKeys": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.getLoginProfile
      * @memberOf! ()
      *
@@ -303,6 +354,62 @@ export namespace oslogin_v1beta {
     /**
      * oslogin.users.importSshPublicKey
      * @desc Adds an SSH public key and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.importSshPublicKey({
+     *     // The unique ID for the user in format `users/{user}`.
+     *     parent: 'users/my-user',
+     *     // The project ID of the Google Cloud Platform project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "key": "my_key",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "loginProfile": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.importSshPublicKey
      * @memberOf! ()
      *
@@ -435,6 +542,49 @@ export namespace oslogin_v1beta {
     /**
      * oslogin.users.projects.delete
      * @desc Deletes a POSIX account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.projects.delete({
+     *     // Required. A reference to the POSIX account to update. POSIX accounts are identified
+     *     // by the project ID they are associated with. A reference to the POSIX
+     *     // account is in format `users/{user}/projects/{project}`.
+     *     name: 'users/my-user/projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.projects.delete
      * @memberOf! ()
      *
@@ -524,6 +674,49 @@ export namespace oslogin_v1beta {
     /**
      * oslogin.users.sshPublicKeys.delete
      * @desc Deletes an SSH public key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.delete({
+     *     // Required. The fingerprint of the public key to update. Public keys are identified by
+     *     // their SHA-256 fingerprint. The fingerprint of the public key is in format
+     *     // `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.sshPublicKeys.delete
      * @memberOf! ()
      *
@@ -593,6 +786,54 @@ export namespace oslogin_v1beta {
     /**
      * oslogin.users.sshPublicKeys.get
      * @desc Retrieves an SSH public key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.get({
+     *     // Required. The fingerprint of the public key to retrieve. Public keys are identified
+     *     // by their SHA-256 fingerprint. The fingerprint of the public key is in
+     *     // format `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.sshPublicKeys.get
      * @memberOf! ()
      *
@@ -664,6 +905,67 @@ export namespace oslogin_v1beta {
     /**
      * oslogin.users.sshPublicKeys.patch
      * @desc Updates an SSH public key and returns the profile information. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.patch({
+     *     // Required. The fingerprint of the public key to update. Public keys are identified by
+     *     // their SHA-256 fingerprint. The fingerprint of the public key is in format
+     *     // `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *     // Mask to control which fields get updated. Updates all if not present.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "key": "my_key",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.sshPublicKeys.patch
      * @memberOf! ()
      *

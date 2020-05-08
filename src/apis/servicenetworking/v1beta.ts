@@ -1445,6 +1445,53 @@ export namespace servicenetworking_v1beta {
     /**
      * servicenetworking.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicenetworking.operations.get
      * @memberOf! ()
      *
@@ -1537,6 +1584,75 @@ export namespace servicenetworking_v1beta {
     /**
      * servicenetworking.services.addSubnetwork
      * @desc For service producers, provisions a new subnet in a peered service's shared VPC network in the requested region and with the requested size that's expressed as a CIDR range (number of leading bits of ipV4 network mask). The method checks against the assigned allocated ranges to find a non-conflicting IP address range. The method will reuse a subnet if subsequent calls contain the same subnet name, region, and prefix length. This method will make producer's tenant project to be a shared VPC service project as needed. The response from the `get` operation will be of type `Subnetwork` if the operation successfully completes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.services.addSubnetwork({
+     *     // Required. A tenant project in the service producer organization, in the
+     *     // following format: services/{service}/{collection-id}/{resource-id}.
+     *     // {collection-id} is the cloud resource collection type that represents the
+     *     // tenant project. Only `projects` are supported.
+     *     // {resource-id} is the tenant project numeric id, such as
+     *     // `123456`. {service} the name of the peering service, such as
+     *     // `service-peering.example.com`. This service must already be
+     *     // enabled in the service consumer's project.
+     *     parent: 'services/my-service/[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "consumer": "my_consumer",
+     *       //   "consumerNetwork": "my_consumerNetwork",
+     *       //   "description": "my_description",
+     *       //   "ipPrefixLength": 0,
+     *       //   "region": "my_region",
+     *       //   "requestedAddress": "my_requestedAddress",
+     *       //   "subnetwork": "my_subnetwork",
+     *       //   "subnetworkUsers": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicenetworking.services.addSubnetwork
      * @memberOf! ()
      *
@@ -1613,6 +1729,64 @@ export namespace servicenetworking_v1beta {
     /**
      * servicenetworking.services.searchRange
      * @desc Service producers can use this method to find a currently unused range within consumer allocated ranges.   This returned range is not reserved, and not guaranteed to remain unused. It will validate previously provided allocated ranges, find non-conflicting sub-range of requested size (expressed in number of leading bits of ipv4 network mask, as in CIDR range notation). Operation<response: Range>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.services.searchRange({
+     *     // Required. This is in a form services/{service}.
+     *     // {service} the name of the private access management service, for example
+     *     // 'service-peering.example.com'.
+     *     parent: 'services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ipPrefixLength": 0,
+     *       //   "network": "my_network"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicenetworking.services.searchRange
      * @memberOf! ()
      *
@@ -1689,6 +1863,73 @@ export namespace servicenetworking_v1beta {
     /**
      * servicenetworking.services.updateConnections
      * @desc Updates the allocated ranges that are assigned to a connection. The response from the `get` operation will be of type `Connection` if the operation successfully completes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.services.updateConnections({
+     *     // If a previously defined allocated range is removed, force flag must be
+     *     // set to true.
+     *     force: 'placeholder-value',
+     *     // The service producer peering service that is managing peering connectivity
+     *     // for a service producer organization.
+     *     // For Google services that support this functionality, this is
+     *     // `services/servicenetworking.googleapis.com`.
+     *     name: 'services/my-service',
+     *     // The update mask. If this is omitted, it defaults to "*". You can only
+     *     // update the listed peering ranges.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "network": "my_network",
+     *       //   "peering": "my_peering",
+     *       //   "reservedPeeringRanges": [],
+     *       //   "service": "my_service"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicenetworking.services.updateConnections
      * @memberOf! ()
      *
@@ -1834,6 +2075,66 @@ export namespace servicenetworking_v1beta {
     /**
      * servicenetworking.services.connections.create
      * @desc Creates a private connection that establishes a VPC Network Peering connection to a VPC network in the service producer's organization. The administrator of the service consumer's VPC network invokes this method. The administrator must assign one or more allocated IP ranges for provisioning subnetworks in the service producer's VPC network. This connection is used for all supported services in the service producer's organization, so it only needs to be invoked once. The response from the `get` operation will be of type `Connection` if the operation successfully completes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.services.connections.create({
+     *     // The service that is managing peering connectivity for a service producer's
+     *     // organization. For Google services that support this functionality, this
+     *     // value is `services/servicenetworking.googleapis.com`.
+     *     parent: 'services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "network": "my_network",
+     *       //   "peering": "my_peering",
+     *       //   "reservedPeeringRanges": [],
+     *       //   "service": "my_service"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicenetworking.services.connections.create
      * @memberOf! ()
      *
@@ -1910,6 +2211,61 @@ export namespace servicenetworking_v1beta {
     /**
      * servicenetworking.services.connections.list
      * @desc List the private connections that are configured in a service consumer's VPC network.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.services.connections.list({
+     *     // The name of service consumer's VPC network that's connected with service
+     *     // producer network through a private connection. The network name must be in
+     *     // the following format:
+     *     // `projects/{project}/global/networks/{network}`. {project} is a
+     *     // project number, such as in `12345` that includes the VPC service
+     *     // consumer's VPC network. {network} is the name of the service consumer's VPC
+     *     // network.
+     *     network: 'placeholder-value',
+     *     // The service that is managing peering connectivity for a service producer's
+     *     // organization. For Google services that support this functionality, this
+     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // If you specify `-` as the parameter value, all configured public peering
+     *     // services are listed.
+     *     parent: 'services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connections": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicenetworking.services.connections.list
      * @memberOf! ()
      *

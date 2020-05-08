@@ -2723,51 +2723,47 @@ export namespace bigquery_v2 {
      * bigquery.datasets.delete
      * @desc Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the dataset being deleted
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of dataset being deleted
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.delete({
+     *     // Dataset ID of dataset being deleted
+     *     datasetId: 'placeholder-value',
+     *     // If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
+     *     deleteContents: 'placeholder-value',
+     *     // Project ID of the dataset being deleted
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.datasets.delete
      * @memberOf! ()
      *
@@ -2841,54 +2837,66 @@ export namespace bigquery_v2 {
      * bigquery.datasets.get
      * @desc Returns the dataset specified by datasetID.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the requested dataset
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the requested dataset
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.get({
+     *     // Dataset ID of the requested dataset
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the requested dataset
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.datasets.get
      * @memberOf! ()
      *
@@ -2961,55 +2969,84 @@ export namespace bigquery_v2 {
      * bigquery.datasets.insert
      * @desc Creates a new empty dataset.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the new dataset
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.insert({
+     *     // Project ID of the new dataset
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "datasetReference": {},
+     *       //   "defaultEncryptionConfiguration": {},
+     *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.datasets.insert
      * @memberOf! ()
      *
@@ -3082,64 +3119,61 @@ export namespace bigquery_v2 {
      * bigquery.datasets.list
      * @desc Lists all datasets in the specified project to which you have been granted the READER dataset role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.list({
+     *     // Whether to list all datasets, including hidden ones
+     *     all: 'placeholder-value',
+     *     // An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results
+     *     pageToken: 'placeholder-value',
      *     // Project ID of the datasets to be listed
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "datasets": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var datasetsPage = response['datasets'];
-     *     if (!datasetsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < datasetsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `datasetsPage`:
-     *       console.log(JSON.stringify(datasetsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.datasets.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.datasets.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.datasets.list
      * @memberOf! ()
      *
@@ -3217,59 +3251,86 @@ export namespace bigquery_v2 {
      * bigquery.datasets.patch
      * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports patch semantics.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the dataset being updated
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the dataset being updated
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.patch({
+     *     // Dataset ID of the dataset being updated
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the dataset being updated
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "datasetReference": {},
+     *       //   "defaultEncryptionConfiguration": {},
+     *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.datasets.patch
      * @memberOf! ()
      *
@@ -3343,59 +3404,86 @@ export namespace bigquery_v2 {
      * bigquery.datasets.update
      * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the dataset being updated
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the dataset being updated
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.update({
+     *     // Dataset ID of the dataset being updated
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the dataset being updated
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "datasetReference": {},
+     *       //   "defaultEncryptionConfiguration": {},
+     *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.datasets.update
      * @memberOf! ()
      *
@@ -3594,54 +3682,53 @@ export namespace bigquery_v2 {
      * bigquery.jobs.cancel
      * @desc Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // [Required] Project ID of the job to cancel
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // [Required] Job ID of the job to cancel
-     *     jobId: 'my-job-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.jobs.cancel(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.cancel({
+     *     // [Required] Job ID of the job to cancel
+     *     jobId: 'placeholder-value',
+     *     // The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     *     location: 'placeholder-value',
+     *     // [Required] Project ID of the job to cancel
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "job": {},
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.jobs.cancel
      * @memberOf! ()
      *
@@ -3717,54 +3804,62 @@ export namespace bigquery_v2 {
      * bigquery.jobs.get
      * @desc Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // [Required] Project ID of the requested job
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // [Required] Job ID of the requested job
-     *     jobId: 'my-job-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.jobs.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.get({
+     *     // [Required] Job ID of the requested job
+     *     jobId: 'placeholder-value',
+     *     // The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     *     location: 'placeholder-value',
+     *     // [Required] Project ID of the requested job
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configuration": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "jobReference": {},
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "statistics": {},
+     *   //   "status": {},
+     *   //   "user_email": "my_user_email"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.jobs.get
      * @memberOf! ()
      *
@@ -3838,67 +3933,73 @@ export namespace bigquery_v2 {
      * bigquery.jobs.getQueryResults
      * @desc Retrieves the results of a query job.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // [Required] Project ID of the query job
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
      *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.getQueryResults({
      *     // [Required] Job ID of the query job
-     *     jobId: 'my-job-id',  // TODO: Update placeholder value.
+     *     jobId: 'placeholder-value',
+     *     // The geographic location where the job should run. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     *     location: 'placeholder-value',
+     *     // Maximum number of results to read
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results
+     *     pageToken: 'placeholder-value',
+     *     // [Required] Project ID of the query job
+     *     projectId: 'placeholder-value',
+     *     // Zero-based index of the starting row
+     *     startIndex: 'placeholder-value',
+     *     // How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
+     *     timeoutMs: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "cacheHit": false,
+     *   //   "errors": [],
+     *   //   "etag": "my_etag",
+     *   //   "jobComplete": false,
+     *   //   "jobReference": {},
+     *   //   "kind": "my_kind",
+     *   //   "numDmlAffectedRows": "my_numDmlAffectedRows",
+     *   //   "pageToken": "my_pageToken",
+     *   //   "rows": [],
+     *   //   "schema": {},
+     *   //   "totalBytesProcessed": "my_totalBytesProcessed",
+     *   //   "totalRows": "my_totalRows"
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var errorsPage = response['errors'];
-     *     if (!errorsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < errorsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `errorsPage`:
-     *       console.log(JSON.stringify(errorsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.pageToken) {
-     *       request.pageToken = response.pageToken;
-     *       bigquery.jobs.getQueryResults(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.jobs.getQueryResults(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.jobs.getQueryResults
      * @memberOf! ()
      *
@@ -3983,62 +4084,79 @@ export namespace bigquery_v2 {
      * bigquery.jobs.insert
      * @desc Starts a new asynchronous job. Requires the Can View project role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the project that will be billed for the job
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     media: {
-     *       // TODO: Add desired media content for upload. See
-     *       // https://github.com/google/google-api-nodejs-client#media-uploads
-     *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
-     *       body: '',
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.jobs.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.insert({
+     *     // Project ID of the project that will be billed for the job
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configuration": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "jobReference": {},
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "statistics": {},
+     *       //   "status": {},
+     *       //   "user_email": "my_user_email"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configuration": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "jobReference": {},
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "statistics": {},
+     *   //   "status": {},
+     *   //   "user_email": "my_user_email"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.jobs.insert
      * @memberOf! ()
      *
@@ -4118,64 +4236,69 @@ export namespace bigquery_v2 {
      * bigquery.jobs.list
      * @desc Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.list({
+     *     // Whether to display jobs owned by all users in the project. Default false
+     *     allUsers: 'placeholder-value',
+     *     // Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned
+     *     maxCreationTime: 'placeholder-value',
+     *     // Maximum number of results to return
+     *     maxResults: 'placeholder-value',
+     *     // Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
+     *     minCreationTime: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results
+     *     pageToken: 'placeholder-value',
+     *     // If set, retrieves only jobs whose parent is this job. Otherwise, retrieves only jobs which have no parent
+     *     parentJobId: 'placeholder-value',
      *     // Project ID of the jobs to list
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *     projectId: 'placeholder-value',
+     *     // Restrict information returned to a set of selected fields
+     *     projection: 'placeholder-value',
+     *     // Filter for job state
+     *     stateFilter: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "jobs": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var jobsPage = response['jobs'];
-     *     if (!jobsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < jobsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `jobsPage`:
-     *       console.log(JSON.stringify(jobsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.jobs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.jobs.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.jobs.list
      * @memberOf! ()
      *
@@ -4256,55 +4379,80 @@ export namespace bigquery_v2 {
      * bigquery.jobs.query
      * @desc Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the project billed for the query
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.jobs.query(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.query({
+     *     // Project ID of the project billed for the query
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectionProperties": [],
+     *       //   "defaultDataset": {},
+     *       //   "dryRun": false,
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "maxResults": 0,
+     *       //   "parameterMode": "my_parameterMode",
+     *       //   "preserveNulls": false,
+     *       //   "query": "my_query",
+     *       //   "queryParameters": [],
+     *       //   "timeoutMs": 0,
+     *       //   "useLegacySql": false,
+     *       //   "useQueryCache": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheHit": false,
+     *   //   "errors": [],
+     *   //   "jobComplete": false,
+     *   //   "jobReference": {},
+     *   //   "kind": "my_kind",
+     *   //   "numDmlAffectedRows": "my_numDmlAffectedRows",
+     *   //   "pageToken": "my_pageToken",
+     *   //   "rows": [],
+     *   //   "schema": {},
+     *   //   "totalBytesProcessed": "my_totalBytesProcessed",
+     *   //   "totalRows": "my_totalRows"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.jobs.query
      * @memberOf! ()
      *
@@ -4551,54 +4699,47 @@ export namespace bigquery_v2 {
      * bigquery.models.delete
      * @desc Deletes the model specified by modelId from the dataset.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the model to delete.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the model to delete.
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Model ID of the model to delete.
-     *     modelId: 'my-model-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.models.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.models.delete({
+     *     // Required. Dataset ID of the model to delete.
+     *     datasetId: '[^/]+',
+     *     // Required. Model ID of the model to delete.
+     *     modelId: '[^/]+',
+     *     // Required. Project ID of the model to delete.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.models.delete
      * @memberOf! ()
      *
@@ -4673,57 +4814,67 @@ export namespace bigquery_v2 {
      * bigquery.models.get
      * @desc Gets the specified model resource by model ID.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the requested model.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the requested model.
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Model ID of the requested model.
-     *     modelId: 'my-model-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.models.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.models.get({
+     *     // Required. Dataset ID of the requested model.
+     *     datasetId: '[^/]+',
+     *     // Required. Model ID of the requested model.
+     *     modelId: '[^/]+',
+     *     // Required. Project ID of the requested model.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "featureColumns": [],
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "labelColumns": [],
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "modelReference": {},
+     *   //   "modelType": "my_modelType",
+     *   //   "trainingRuns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.models.get
      * @memberOf! ()
      *
@@ -4798,67 +4949,59 @@ export namespace bigquery_v2 {
      * bigquery.models.list
      * @desc Lists all models in the specified dataset. Requires the READER dataset role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the models to list.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
      *
-     *     // Dataset ID of the models to list.
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
-     *     auth: authClient,
-     *   };
+     *   // Do the magic
+     *   const res = await bigquery.models.list({
+     *     // Required. Dataset ID of the models to list.
+     *     datasetId: '[^/]+',
+     *     // The maximum number of results to return in a single response page.
+     *     // Leverage the page tokens to iterate through the entire collection.
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call to request the next page of
+     *     // results
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the models to list.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Example response
+     *   // {
+     *   //   "models": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
      *
-     *     var modelsPage = response['models'];
-     *     if (!modelsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < modelsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `modelsPage`:
-     *       console.log(JSON.stringify(modelsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.models.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.models.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.models.list
      * @memberOf! ()
      *
@@ -4936,62 +5079,86 @@ export namespace bigquery_v2 {
      * bigquery.models.patch
      * @desc Patch specific fields in the specified model.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the model to patch.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the model to patch.
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Model ID of the model to patch.
-     *     modelId: 'my-model-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.models.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.models.patch({
+     *     // Required. Dataset ID of the model to patch.
+     *     datasetId: '[^/]+',
+     *     // Required. Model ID of the model to patch.
+     *     modelId: '[^/]+',
+     *     // Required. Project ID of the model to patch.
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTime": "my_creationTime",
+     *       //   "description": "my_description",
+     *       //   "encryptionConfiguration": {},
+     *       //   "etag": "my_etag",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "featureColumns": [],
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "labelColumns": [],
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "modelReference": {},
+     *       //   "modelType": "my_modelType",
+     *       //   "trainingRuns": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "featureColumns": [],
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "labelColumns": [],
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "modelReference": {},
+     *   //   "modelType": "my_modelType",
+     *   //   "trainingRuns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.models.patch
      * @memberOf! ()
      *
@@ -5160,51 +5327,51 @@ export namespace bigquery_v2 {
      * bigquery.projects.getServiceAccount
      * @desc Returns the email address of the service account for your project used for interactions with Google Cloud KMS.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for which the service account is requested.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.projects.getServiceAccount(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.projects.getServiceAccount({
+     *     // Project ID for which the service account is requested.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.projects.getServiceAccount
      * @memberOf! ()
      *
@@ -5286,61 +5453,56 @@ export namespace bigquery_v2 {
      * bigquery.projects.list
      * @desc Lists all projects to which you have been granted any project role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient,
-     *   };
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
-     *     var projectsPage = response['projects'];
-     *     if (!projectsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < projectsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `projectsPage`:
-     *       console.log(JSON.stringify(projectsPage[i], null, 2));
-     *     }
+     *   // Do the magic
+     *   const res = await bigquery.projects.list({
+     *     // Maximum number of results to return
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.projects.list(request, handlePage);
-     *     }
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "projects": [],
+     *   //   "totalItems": 0
+     *   // }
+     * }
      *
-     *   bigquery.projects.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.projects.list
      * @memberOf! ()
      *
@@ -5451,54 +5613,47 @@ export namespace bigquery_v2 {
      * bigquery.routines.delete
      * @desc Deletes the routine specified by routineId from the dataset.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the routine to delete
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the routine to delete
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Routine ID of the routine to delete
-     *     routineId: 'my-routine-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.routines.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.delete({
+     *     // Required. Dataset ID of the routine to delete
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the routine to delete
+     *     projectId: '[^/]+',
+     *     // Required. Routine ID of the routine to delete
+     *     routineId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.routines.delete
      * @memberOf! ()
      *
@@ -5573,57 +5728,67 @@ export namespace bigquery_v2 {
      * bigquery.routines.get
      * @desc Gets the specified routine resource by routine ID.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the requested routine
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the requested routine
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Routine ID of the requested routine
-     *     routineId: 'my-routine-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.routines.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.get({
+     *     // Required. Dataset ID of the requested routine
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the requested routine
+     *     projectId: '[^/]+',
+     *     // If set, only the Routine fields in the field mask are returned in the
+     *     // response. If unset, all Routine fields are returned.
+     *     readMask: 'placeholder-value',
+     *     // Required. Routine ID of the requested routine
+     *     routineId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "arguments": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "definitionBody": "my_definitionBody",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "importedLibraries": [],
+     *   //   "language": "my_language",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnType": {},
+     *   //   "routineReference": {},
+     *   //   "routineType": "my_routineType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.routines.get
      * @memberOf! ()
      *
@@ -5699,58 +5864,78 @@ export namespace bigquery_v2 {
      * bigquery.routines.insert
      * @desc Creates a new routine in the dataset.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the new routine
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the new routine
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.routines.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.insert({
+     *     // Required. Dataset ID of the new routine
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the new routine
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "arguments": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "definitionBody": "my_definitionBody",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "importedLibraries": [],
+     *       //   "language": "my_language",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "returnType": {},
+     *       //   "routineReference": {},
+     *       //   "routineType": "my_routineType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "arguments": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "definitionBody": "my_definitionBody",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "importedLibraries": [],
+     *   //   "language": "my_language",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnType": {},
+     *   //   "routineReference": {},
+     *   //   "routineType": "my_routineType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.routines.insert
      * @memberOf! ()
      *
@@ -5825,67 +6010,70 @@ export namespace bigquery_v2 {
      * bigquery.routines.list
      * @desc Lists all routines in the specified dataset. Requires the READER dataset role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the routines to list
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
      *
-     *     // Dataset ID of the routines to list
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
-     *     auth: authClient,
-     *   };
+     *   // Do the magic
+     *   const res = await bigquery.routines.list({
+     *     // Required. Dataset ID of the routines to list
+     *     datasetId: '[^/]+',
+     *     // If set, then only the Routines matching this filter are returned.
+     *     // The current supported form is either "routine_type:<RoutineType>" or
+     *     // "routineType:<RoutineType>", where <RoutineType> is a RoutineType enum.
+     *     // Example: "routineType:SCALAR_FUNCTION".
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return in a single response page.
+     *     // Leverage the page tokens to iterate through the entire collection.
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of
+     *     // results
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the routines to list
+     *     projectId: '[^/]+',
+     *     // If set, then only the Routine fields in the field mask, as well as
+     *     // project_id, dataset_id and routine_id, are returned in the response.
+     *     // If unset, then the following Routine fields are returned:
+     *     // etag, project_id, dataset_id, routine_id, routine_type, creation_time,
+     *     // last_modified_time, and language.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "routines": []
+     *   // }
+     * }
      *
-     *     var routinesPage = response['routines'];
-     *     if (!routinesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < routinesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `routinesPage`:
-     *       console.log(JSON.stringify(routinesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.routines.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.routines.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.routines.list
      * @memberOf! ()
      *
@@ -5967,62 +6155,80 @@ export namespace bigquery_v2 {
      * bigquery.routines.update
      * @desc Updates information in an existing routine. The update method replaces the entire Routine resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the routine to update
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the routine to update
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Routine ID of the routine to update
-     *     routineId: 'my-routine-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.routines.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.update({
+     *     // Required. Dataset ID of the routine to update
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the routine to update
+     *     projectId: '[^/]+',
+     *     // Required. Routine ID of the routine to update
+     *     routineId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "arguments": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "definitionBody": "my_definitionBody",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "importedLibraries": [],
+     *       //   "language": "my_language",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "returnType": {},
+     *       //   "routineReference": {},
+     *       //   "routineType": "my_routineType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "arguments": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "definitionBody": "my_definitionBody",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "importedLibraries": [],
+     *   //   "language": "my_language",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnType": {},
+     *   //   "routineReference": {},
+     *   //   "routineType": "my_routineType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.routines.update
      * @memberOf! ()
      *
@@ -6223,61 +6429,66 @@ export namespace bigquery_v2 {
      * bigquery.tabledata.insertAll
      * @desc Streams data into BigQuery one record at a time without needing to run a load job. Requires the WRITER dataset role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the destination table.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the destination table.
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the destination table.
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tabledata.insertAll(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.insertdata',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tabledata.insertAll({
+     *     // Dataset ID of the destination table.
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the destination table.
+     *     projectId: 'placeholder-value',
+     *     // Table ID of the destination table.
+     *     tableId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ignoreUnknownValues": false,
+     *       //   "kind": "my_kind",
+     *       //   "rows": [],
+     *       //   "skipInvalidRows": false,
+     *       //   "templateSuffix": "my_templateSuffix"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insertErrors": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.tabledata.insertAll
      * @memberOf! ()
      *
@@ -6363,70 +6574,66 @@ export namespace bigquery_v2 {
      * bigquery.tabledata.list
      * @desc Retrieves table data from a specified set of rows. Requires the READER dataset role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the table to read
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
      *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tabledata.list({
      *     // Dataset ID of the table to read
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
+     *     datasetId: 'placeholder-value',
+     *     // Maximum number of results to return
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, identifying the result set
+     *     pageToken: 'placeholder-value',
+     *     // Project ID of the table to read
+     *     projectId: 'placeholder-value',
+     *     // List of fields to return (comma-separated). If unspecified, all fields are returned
+     *     selectedFields: 'placeholder-value',
+     *     // Zero-based index of the starting row to read
+     *     startIndex: 'placeholder-value',
      *     // Table ID of the table to read
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
+     *     tableId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "pageToken": "my_pageToken",
+     *   //   "rows": [],
+     *   //   "totalRows": "my_totalRows"
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var rowsPage = response['rows'];
-     *     if (!rowsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rowsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rowsPage`:
-     *       console.log(JSON.stringify(rowsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.pageToken) {
-     *       request.pageToken = response.pageToken;
-     *       bigquery.tabledata.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.tabledata.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.tabledata.list
      * @memberOf! ()
      *
@@ -6575,54 +6782,47 @@ export namespace bigquery_v2 {
      * bigquery.tables.delete
      * @desc Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the table to delete
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the table to delete
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the table to delete
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.delete({
+     *     // Dataset ID of the table to delete
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the table to delete
+     *     projectId: 'placeholder-value',
+     *     // Table ID of the table to delete
+     *     tableId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.tables.delete
      * @memberOf! ()
      *
@@ -6697,57 +6897,83 @@ export namespace bigquery_v2 {
      * bigquery.tables.get
      * @desc Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the requested table
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the requested table
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the requested table
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.get({
+     *     // Dataset ID of the requested table
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the requested table
+     *     projectId: 'placeholder-value',
+     *     // List of fields to return (comma-separated). If unspecified, all fields are returned
+     *     selectedFields: 'placeholder-value',
+     *     // Table ID of the requested table
+     *     tableId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clustering": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "externalDataConfiguration": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "materializedView": {},
+     *   //   "model": {},
+     *   //   "numBytes": "my_numBytes",
+     *   //   "numLongTermBytes": "my_numLongTermBytes",
+     *   //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *   //   "numRows": "my_numRows",
+     *   //   "rangePartitioning": {},
+     *   //   "requirePartitionFilter": false,
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "streamingBuffer": {},
+     *   //   "tableReference": {},
+     *   //   "timePartitioning": {},
+     *   //   "type": "my_type",
+     *   //   "view": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.tables.get
      * @memberOf! ()
      *
@@ -6823,58 +7049,112 @@ export namespace bigquery_v2 {
      * bigquery.tables.insert
      * @desc Creates a new, empty table in the dataset.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the new table
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the new table
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.insert({
+     *     // Dataset ID of the new table
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the new table
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clustering": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "description": "my_description",
+     *       //   "encryptionConfiguration": {},
+     *       //   "etag": "my_etag",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "externalDataConfiguration": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "materializedView": {},
+     *       //   "model": {},
+     *       //   "numBytes": "my_numBytes",
+     *       //   "numLongTermBytes": "my_numLongTermBytes",
+     *       //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *       //   "numRows": "my_numRows",
+     *       //   "rangePartitioning": {},
+     *       //   "requirePartitionFilter": false,
+     *       //   "schema": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "streamingBuffer": {},
+     *       //   "tableReference": {},
+     *       //   "timePartitioning": {},
+     *       //   "type": "my_type",
+     *       //   "view": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clustering": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "externalDataConfiguration": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "materializedView": {},
+     *   //   "model": {},
+     *   //   "numBytes": "my_numBytes",
+     *   //   "numLongTermBytes": "my_numLongTermBytes",
+     *   //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *   //   "numRows": "my_numRows",
+     *   //   "rangePartitioning": {},
+     *   //   "requirePartitionFilter": false,
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "streamingBuffer": {},
+     *   //   "tableReference": {},
+     *   //   "timePartitioning": {},
+     *   //   "type": "my_type",
+     *   //   "view": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.tables.insert
      * @memberOf! ()
      *
@@ -6949,67 +7229,60 @@ export namespace bigquery_v2 {
      * bigquery.tables.list
      * @desc Lists all tables in the specified dataset. Requires the READER dataset role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the tables to list
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
      *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.list({
      *     // Dataset ID of the tables to list
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *     datasetId: 'placeholder-value',
+     *     // Maximum number of results to return
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results
+     *     pageToken: 'placeholder-value',
+     *     // Project ID of the tables to list
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tables": [],
+     *   //   "totalItems": 0
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var tablesPage = response['tables'];
-     *     if (!tablesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < tablesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `tablesPage`:
-     *       console.log(JSON.stringify(tablesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.tables.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.tables.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.tables.list
      * @memberOf! ()
      *
@@ -7087,62 +7360,114 @@ export namespace bigquery_v2 {
      * bigquery.tables.patch
      * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports patch semantics.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the table to update
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the table to update
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the table to update
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.patch({
+     *     // Dataset ID of the table to update
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the table to update
+     *     projectId: 'placeholder-value',
+     *     // Table ID of the table to update
+     *     tableId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clustering": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "description": "my_description",
+     *       //   "encryptionConfiguration": {},
+     *       //   "etag": "my_etag",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "externalDataConfiguration": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "materializedView": {},
+     *       //   "model": {},
+     *       //   "numBytes": "my_numBytes",
+     *       //   "numLongTermBytes": "my_numLongTermBytes",
+     *       //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *       //   "numRows": "my_numRows",
+     *       //   "rangePartitioning": {},
+     *       //   "requirePartitionFilter": false,
+     *       //   "schema": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "streamingBuffer": {},
+     *       //   "tableReference": {},
+     *       //   "timePartitioning": {},
+     *       //   "type": "my_type",
+     *       //   "view": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clustering": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "externalDataConfiguration": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "materializedView": {},
+     *   //   "model": {},
+     *   //   "numBytes": "my_numBytes",
+     *   //   "numLongTermBytes": "my_numLongTermBytes",
+     *   //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *   //   "numRows": "my_numRows",
+     *   //   "rangePartitioning": {},
+     *   //   "requirePartitionFilter": false,
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "streamingBuffer": {},
+     *   //   "tableReference": {},
+     *   //   "timePartitioning": {},
+     *   //   "type": "my_type",
+     *   //   "view": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.tables.patch
      * @memberOf! ()
      *
@@ -7218,62 +7543,114 @@ export namespace bigquery_v2 {
      * bigquery.tables.update
      * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var bigquery = google.bigquery('v2');
+     * const bigquery = google.bigquery('v2');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the table to update
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the table to update
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the table to update
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.update({
+     *     // Dataset ID of the table to update
+     *     datasetId: 'placeholder-value',
+     *     // Project ID of the table to update
+     *     projectId: 'placeholder-value',
+     *     // Table ID of the table to update
+     *     tableId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clustering": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "description": "my_description",
+     *       //   "encryptionConfiguration": {},
+     *       //   "etag": "my_etag",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "externalDataConfiguration": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "materializedView": {},
+     *       //   "model": {},
+     *       //   "numBytes": "my_numBytes",
+     *       //   "numLongTermBytes": "my_numLongTermBytes",
+     *       //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *       //   "numRows": "my_numRows",
+     *       //   "rangePartitioning": {},
+     *       //   "requirePartitionFilter": false,
+     *       //   "schema": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "streamingBuffer": {},
+     *       //   "tableReference": {},
+     *       //   "timePartitioning": {},
+     *       //   "type": "my_type",
+     *       //   "view": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clustering": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "externalDataConfiguration": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "materializedView": {},
+     *   //   "model": {},
+     *   //   "numBytes": "my_numBytes",
+     *   //   "numLongTermBytes": "my_numLongTermBytes",
+     *   //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *   //   "numRows": "my_numRows",
+     *   //   "rangePartitioning": {},
+     *   //   "requirePartitionFilter": false,
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "streamingBuffer": {},
+     *   //   "tableReference": {},
+     *   //   "timePartitioning": {},
+     *   //   "type": "my_type",
+     *   //   "view": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias bigquery.tables.update
      * @memberOf! ()
      *

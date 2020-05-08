@@ -5378,6 +5378,44 @@ export namespace content_v2_1 {
     /**
      * content.accounts.authinfo
      * @desc Returns information about the authenticated user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.authinfo({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdentifiers": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.authinfo
      * @memberOf! ()
      *
@@ -5455,6 +5493,50 @@ export namespace content_v2_1 {
     /**
      * content.accounts.claimwebsite
      * @desc Claims the website of a Merchant Center sub-account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.claimwebsite({
+     *     // The ID of the account whose website is claimed.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *     // Only available to selected merchants. When set to `True`, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
+     *     overwrite: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.claimwebsite
      * @memberOf! ()
      *
@@ -5540,6 +5622,52 @@ export namespace content_v2_1 {
     /**
      * content.accounts.custombatch
      * @desc Retrieves, inserts, updates, and deletes multiple Merchant Center (sub-)accounts in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.custombatch
      * @memberOf! ()
      *
@@ -5621,6 +5749,45 @@ export namespace content_v2_1 {
     /**
      * content.accounts.delete
      * @desc Deletes a Merchant Center sub-account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.delete({
+     *     // The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // Flag to delete sub-accounts with products. The default value is false.
+     *     force: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account, and accountId must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.delete
      * @memberOf! ()
      *
@@ -5693,6 +5860,58 @@ export namespace content_v2_1 {
     /**
      * content.accounts.get
      * @desc Retrieves a Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.get({
+     *     // The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsLinks": [],
+     *   //   "adultContent": false,
+     *   //   "businessInformation": {},
+     *   //   "googleMyBusinessLink": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "sellerId": "my_sellerId",
+     *   //   "users": [],
+     *   //   "websiteUrl": "my_websiteUrl",
+     *   //   "youtubeChannelLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.get
      * @memberOf! ()
      *
@@ -5764,6 +5983,74 @@ export namespace content_v2_1 {
     /**
      * content.accounts.insert
      * @desc Creates a Merchant Center sub-account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.insert({
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adsLinks": [],
+     *       //   "adultContent": false,
+     *       //   "businessInformation": {},
+     *       //   "googleMyBusinessLink": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "sellerId": "my_sellerId",
+     *       //   "users": [],
+     *       //   "websiteUrl": "my_websiteUrl",
+     *       //   "youtubeChannelLinks": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsLinks": [],
+     *   //   "adultContent": false,
+     *   //   "businessInformation": {},
+     *   //   "googleMyBusinessLink": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "sellerId": "my_sellerId",
+     *   //   "users": [],
+     *   //   "websiteUrl": "my_websiteUrl",
+     *   //   "youtubeChannelLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.insert
      * @memberOf! ()
      *
@@ -5836,6 +6123,59 @@ export namespace content_v2_1 {
     /**
      * content.accounts.link
      * @desc Performs an action on a link between two Merchant Center accounts, namely accountId and linkedAccountId.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.link({
+     *     // The ID of the account that should be linked.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "linkType": "my_linkType",
+     *       //   "linkedAccountId": "my_linkedAccountId",
+     *       //   "services": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.link
      * @memberOf! ()
      *
@@ -5912,6 +6252,52 @@ export namespace content_v2_1 {
     /**
      * content.accounts.list
      * @desc Lists the sub-accounts in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.list({
+     *     // The maximum number of accounts to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.list
      * @memberOf! ()
      *
@@ -5989,6 +6375,54 @@ export namespace content_v2_1 {
     /**
      * content.accounts.listlinks
      * @desc Returns the list of accounts linked to your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.listlinks({
+     *     // The ID of the account for which to list links.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of links to return in the response, used for pagination.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.listlinks
      * @memberOf! ()
      *
@@ -6073,6 +6507,76 @@ export namespace content_v2_1 {
     /**
      * content.accounts.update
      * @desc Updates a Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.update({
+     *     // The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adsLinks": [],
+     *       //   "adultContent": false,
+     *       //   "businessInformation": {},
+     *       //   "googleMyBusinessLink": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "sellerId": "my_sellerId",
+     *       //   "users": [],
+     *       //   "websiteUrl": "my_websiteUrl",
+     *       //   "youtubeChannelLinks": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsLinks": [],
+     *   //   "adultContent": false,
+     *   //   "businessInformation": {},
+     *   //   "googleMyBusinessLink": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "sellerId": "my_sellerId",
+     *   //   "users": [],
+     *   //   "websiteUrl": "my_websiteUrl",
+     *   //   "youtubeChannelLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounts.update
      * @memberOf! ()
      *
@@ -6325,6 +6829,52 @@ export namespace content_v2_1 {
     /**
      * content.accountstatuses.custombatch
      * @desc Retrieves multiple Merchant Center account statuses in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accountstatuses.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accountstatuses.custombatch
      * @memberOf! ()
      *
@@ -6408,6 +6958,54 @@ export namespace content_v2_1 {
     /**
      * content.accountstatuses.get
      * @desc Retrieves the status of a Merchant Center account. No itemLevelIssues are returned for multi-client accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accountstatuses.get({
+     *     // The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountLevelIssues": [],
+     *   //   "kind": "my_kind",
+     *   //   "products": [],
+     *   //   "websiteClaimed": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accountstatuses.get
      * @memberOf! ()
      *
@@ -6483,6 +7081,54 @@ export namespace content_v2_1 {
     /**
      * content.accountstatuses.list
      * @desc Lists the statuses of the sub-accounts in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accountstatuses.list({
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // The maximum number of account statuses to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accountstatuses.list
      * @memberOf! ()
      *
@@ -6630,6 +7276,52 @@ export namespace content_v2_1 {
     /**
      * content.accounttax.custombatch
      * @desc Retrieves and updates tax settings of multiple accounts in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounttax.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounttax.custombatch
      * @memberOf! ()
      *
@@ -6713,6 +7405,50 @@ export namespace content_v2_1 {
     /**
      * content.accounttax.get
      * @desc Retrieves the tax settings of the account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounttax.get({
+     *     // The ID of the account for which to get/update account tax settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "kind": "my_kind",
+     *   //   "rules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounttax.get
      * @memberOf! ()
      *
@@ -6786,6 +7522,52 @@ export namespace content_v2_1 {
     /**
      * content.accounttax.list
      * @desc Lists the tax settings of the sub-accounts in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounttax.list({
+     *     // The maximum number of tax settings to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounttax.list
      * @memberOf! ()
      *
@@ -6863,6 +7645,60 @@ export namespace content_v2_1 {
     /**
      * content.accounttax.update
      * @desc Updates the tax settings of the account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.accounttax.update({
+     *     // The ID of the account for which to get/update account tax settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "kind": "my_kind",
+     *       //   "rules": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "kind": "my_kind",
+     *   //   "rules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.accounttax.update
      * @memberOf! ()
      *
@@ -7013,6 +7849,52 @@ export namespace content_v2_1 {
     /**
      * content.datafeeds.custombatch
      * @desc Deletes, fetches, gets, inserts and updates multiple datafeeds in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeeds.custombatch
      * @memberOf! ()
      *
@@ -7096,6 +7978,43 @@ export namespace content_v2_1 {
     /**
      * content.datafeeds.delete
      * @desc Deletes a datafeed configuration from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.delete({
+     *     // The ID of the datafeed.
+     *     datafeedId: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeeds.delete
      * @memberOf! ()
      *
@@ -7167,6 +8086,48 @@ export namespace content_v2_1 {
     /**
      * content.datafeeds.fetchnow
      * @desc Invokes a fetch for the datafeed in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.fetchnow({
+     *     // The ID of the datafeed to be fetched.
+     *     datafeedId: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeeds.fetchnow
      * @memberOf! ()
      *
@@ -7249,6 +8210,56 @@ export namespace content_v2_1 {
     /**
      * content.datafeeds.get
      * @desc Retrieves a datafeed configuration from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.get({
+     *     // The ID of the datafeed.
+     *     datafeedId: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeLanguage": "my_attributeLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "fetchSchedule": {},
+     *   //   "fileName": "my_fileName",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeeds.get
      * @memberOf! ()
      *
@@ -7320,6 +8331,70 @@ export namespace content_v2_1 {
     /**
      * content.datafeeds.insert
      * @desc Registers a datafeed configuration with your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.insert({
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeLanguage": "my_attributeLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "fetchSchedule": {},
+     *       //   "fileName": "my_fileName",
+     *       //   "format": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "targets": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeLanguage": "my_attributeLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "fetchSchedule": {},
+     *   //   "fileName": "my_fileName",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeeds.insert
      * @memberOf! ()
      *
@@ -7392,6 +8467,52 @@ export namespace content_v2_1 {
     /**
      * content.datafeeds.list
      * @desc Lists the configurations for datafeeds in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.list({
+     *     // The maximum number of products to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeeds.list
      * @memberOf! ()
      *
@@ -7469,6 +8590,72 @@ export namespace content_v2_1 {
     /**
      * content.datafeeds.update
      * @desc Updates a datafeed configuration of your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.update({
+     *     // The ID of the datafeed.
+     *     datafeedId: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeLanguage": "my_attributeLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "fetchSchedule": {},
+     *       //   "fileName": "my_fileName",
+     *       //   "format": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "targets": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeLanguage": "my_attributeLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "fetchSchedule": {},
+     *   //   "fileName": "my_fileName",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeeds.update
      * @memberOf! ()
      *
@@ -7662,6 +8849,52 @@ export namespace content_v2_1 {
     /**
      * content.datafeedstatuses.custombatch
      * @desc Gets multiple Merchant Center datafeed statuses in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeedstatuses.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeedstatuses.custombatch
      * @memberOf! ()
      *
@@ -7747,6 +8980,61 @@ export namespace content_v2_1 {
     /**
      * content.datafeedstatuses.get
      * @desc Retrieves the status of a datafeed from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeedstatuses.get({
+     *     // The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     *     country: 'placeholder-value',
+     *     // The ID of the datafeed.
+     *     datafeedId: 'placeholder-value',
+     *     // The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     *     language: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "country": "my_country",
+     *   //   "datafeedId": "my_datafeedId",
+     *   //   "errors": [],
+     *   //   "itemsTotal": "my_itemsTotal",
+     *   //   "itemsValid": "my_itemsValid",
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "lastUploadDate": "my_lastUploadDate",
+     *   //   "processingStatus": "my_processingStatus",
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeedstatuses.get
      * @memberOf! ()
      *
@@ -7824,6 +9112,52 @@ export namespace content_v2_1 {
     /**
      * content.datafeedstatuses.list
      * @desc Lists the statuses of the datafeeds in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.datafeedstatuses.list({
+     *     // The maximum number of products to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.datafeedstatuses.list
      * @memberOf! ()
      *
@@ -7972,6 +9306,52 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.custombatch
      * @desc Retrieves and/or updates the LIA settings of multiple accounts in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.custombatch
      * @memberOf! ()
      *
@@ -8055,6 +9435,50 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.get
      * @desc Retrieves the LIA settings of the account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.get({
+     *     // The ID of the account for which to get or update LIA settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "countrySettings": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.get
      * @memberOf! ()
      *
@@ -8128,6 +9552,50 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.getaccessiblegmbaccounts
      * @desc Retrieves the list of accessible Google My Business accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.getaccessiblegmbaccounts({
+     *     // The ID of the account for which to retrieve accessible Google My Business accounts.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "gmbAccounts": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.getaccessiblegmbaccounts
      * @memberOf! ()
      *
@@ -8228,6 +9696,52 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.list
      * @desc Lists the LIA settings of the sub-accounts in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.list({
+     *     // The maximum number of LIA settings to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.list
      * @memberOf! ()
      *
@@ -8305,6 +9819,44 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.listposdataproviders
      * @desc Retrieves the list of POS data providers that have active settings for the all eiligible countries.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.listposdataproviders({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "posDataProviders": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.listposdataproviders
      * @memberOf! ()
      *
@@ -8394,6 +9946,50 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.requestgmbaccess
      * @desc Requests access to a specified Google My Business account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.requestgmbaccess({
+     *     // The ID of the account for which GMB access is requested.
+     *     accountId: 'placeholder-value',
+     *     // The email of the Google My Business account.
+     *     gmbEmail: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.requestgmbaccess
      * @memberOf! ()
      *
@@ -8481,6 +10077,50 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.requestinventoryverification
      * @desc Requests inventory validation for the specified country.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.requestinventoryverification({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     accountId: 'placeholder-value',
+     *     // The country for which inventory validation is requested.
+     *     country: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.requestinventoryverification
      * @memberOf! ()
      *
@@ -8581,6 +10221,56 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.setinventoryverificationcontact
      * @desc Sets the inventory verification contract for the specified country.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.setinventoryverificationcontact({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     accountId: 'placeholder-value',
+     *     // The email of the inventory verification contact.
+     *     contactEmail: 'placeholder-value',
+     *     // The name of the inventory verification contact.
+     *     contactName: 'placeholder-value',
+     *     // The country for which inventory verification is requested.
+     *     country: 'placeholder-value',
+     *     // The language for which inventory verification is requested.
+     *     language: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.setinventoryverificationcontact
      * @memberOf! ()
      *
@@ -8691,6 +10381,54 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.setposdataprovider
      * @desc Sets the POS data provider for the specified country.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.setposdataprovider({
+     *     // The ID of the account for which to retrieve accessible Google My Business accounts.
+     *     accountId: 'placeholder-value',
+     *     // The country for which the POS data provider is selected.
+     *     country: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of POS data provider.
+     *     posDataProviderId: 'placeholder-value',
+     *     // The account ID by which this merchant is known to the POS data provider.
+     *     posExternalAccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.setposdataprovider
      * @memberOf! ()
      *
@@ -8786,6 +10524,60 @@ export namespace content_v2_1 {
     /**
      * content.liasettings.update
      * @desc Updates the LIA settings of the account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.update({
+     *     // The ID of the account for which to get or update LIA settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "countrySettings": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "countrySettings": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.liasettings.update
      * @memberOf! ()
      *
@@ -9059,6 +10851,52 @@ export namespace content_v2_1 {
     /**
      * content.localinventory.custombatch
      * @desc Updates local inventory for multiple products or stores in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.localinventory.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.localinventory.custombatch
      * @memberOf! ()
      *
@@ -9142,6 +10980,74 @@ export namespace content_v2_1 {
     /**
      * content.localinventory.insert
      * @desc Update the local inventory of a product in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.localinventory.insert({
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product for which to update local inventory.
+     *     productId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availability": "my_availability",
+     *       //   "instoreProductLocation": "my_instoreProductLocation",
+     *       //   "kind": "my_kind",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
+     *       //   "price": {},
+     *       //   "quantity": 0,
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *       //   "storeCode": "my_storeCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availability": "my_availability",
+     *   //   "instoreProductLocation": "my_instoreProductLocation",
+     *   //   "kind": "my_kind",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
+     *   //   "price": {},
+     *   //   "quantity": 0,
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *   //   "storeCode": "my_storeCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.localinventory.insert
      * @memberOf! ()
      *
@@ -9259,6 +11165,61 @@ export namespace content_v2_1 {
     /**
      * content.orderinvoices.createchargeinvoice
      * @desc Creates a charge invoice for a shipment group, and triggers a charge capture for orderinvoice enabled orders.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orderinvoices.createchargeinvoice({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "invoiceId": "my_invoiceId",
+     *       //   "invoiceSummary": {},
+     *       //   "lineItemInvoices": [],
+     *       //   "operationId": "my_operationId",
+     *       //   "shipmentGroupId": "my_shipmentGroupId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orderinvoices.createchargeinvoice
      * @memberOf! ()
      *
@@ -9352,6 +11313,61 @@ export namespace content_v2_1 {
     /**
      * content.orderinvoices.createrefundinvoice
      * @desc Creates a refund invoice for one or more shipment groups, and triggers a refund for orderinvoice enabled orders. This can only be used for line items that have previously been charged using `createChargeInvoice`. All amounts (except for the summary) are incremental with respect to the previous invoice.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orderinvoices.createrefundinvoice({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "invoiceId": "my_invoiceId",
+     *       //   "operationId": "my_operationId",
+     *       //   "refundOnlyOption": {},
+     *       //   "returnOption": {},
+     *       //   "shipmentInvoices": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orderinvoices.createrefundinvoice
      * @memberOf! ()
      *
@@ -9495,6 +11511,56 @@ export namespace content_v2_1 {
     /**
      * content.orderreports.listdisbursements
      * @desc Retrieves a report for disbursements from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orderreports.listdisbursements({
+     *     // The last date which disbursements occurred. In ISO 8601 format. Default: current date.
+     *     disbursementEndDate: 'placeholder-value',
+     *     // The first date which disbursements occurred. In ISO 8601 format.
+     *     disbursementStartDate: 'placeholder-value',
+     *     // The maximum number of disbursements to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disbursements": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orderreports.listdisbursements
      * @memberOf! ()
      *
@@ -9589,6 +11655,58 @@ export namespace content_v2_1 {
     /**
      * content.orderreports.listtransactions
      * @desc Retrieves a list of transactions for a disbursement from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orderreports.listtransactions({
+     *     // The Google-provided ID of the disbursement (found in Wallet).
+     *     disbursementId: 'placeholder-value',
+     *     // The maximum number of disbursements to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // The last date in which transaction occurred. In ISO 8601 format. Default: current date.
+     *     transactionEndDate: 'placeholder-value',
+     *     // The first date in which transaction occurred. In ISO 8601 format.
+     *     transactionStartDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transactions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orderreports.listtransactions
      * @memberOf! ()
      *
@@ -9757,6 +11875,57 @@ export namespace content_v2_1 {
     /**
      * content.orderreturns.acknowledge
      * @desc Acks an order return in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orderreturns.acknowledge({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the return.
+     *     returnId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "operationId": "my_operationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orderreturns.acknowledge
      * @memberOf! ()
      *
@@ -9842,6 +12011,54 @@ export namespace content_v2_1 {
     /**
      * content.orderreturns.get
      * @desc Retrieves an order return from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orderreturns.get({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // Merchant order return ID generated by Google.
+     *     returnId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationDate": "my_creationDate",
+     *   //   "merchantOrderId": "my_merchantOrderId",
+     *   //   "orderId": "my_orderId",
+     *   //   "orderReturnId": "my_orderReturnId",
+     *   //   "returnItems": [],
+     *   //   "returnPricingInfo": {},
+     *   //   "returnShipments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orderreturns.get
      * @memberOf! ()
      *
@@ -9915,6 +12132,73 @@ export namespace content_v2_1 {
     /**
      * content.orderreturns.list
      * @desc Lists order returns in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orderreturns.list({
+     *     // Obtains order returns that match the acknowledgement status. When set to true, obtains order returns that have been acknowledged. When false, obtains order returns that have not been acknowledged. When not provided, obtains order returns regardless of their acknowledgement status.
+     *     // We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged order returns are returned.
+     *     acknowledged: 'placeholder-value',
+     *     // Obtains order returns created before this date (inclusively), in ISO 8601 format.
+     *     createdEndDate: 'placeholder-value',
+     *     // Obtains order returns created after this date (inclusively), in ISO 8601 format.
+     *     createdStartDate: 'placeholder-value',
+     *     // Obtains order returns with the specified order ids. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set.
+     *     // Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
+     *     googleOrderIds: 'placeholder-value',
+     *     // The maximum number of order returns to return in the response, used for paging. The default value is 25 returns per page, and the maximum allowed value is 250 returns per page.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // Return the results in the specified order.
+     *     orderBy: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Obtains order returns that match any shipment state provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment states.
+     *     shipmentStates: 'placeholder-value',
+     *     // Obtains order returns that match any shipment status provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment statuses.
+     *     shipmentStatus: 'placeholder-value',
+     *     // Obtains order returns with the specified tracking numbers. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set.
+     *     // Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
+     *     shipmentTrackingNumbers: 'placeholder-value',
+     *     // Obtains order returns that match any shipment type provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment types.
+     *     shipmentTypes: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orderreturns.list
      * @memberOf! ()
      *
@@ -10002,6 +12286,60 @@ export namespace content_v2_1 {
     /**
      * content.orderreturns.process
      * @desc Processes return in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orderreturns.process({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the return.
+     *     returnId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullChargeReturnShippingCost": false,
+     *       //   "operationId": "my_operationId",
+     *       //   "refundShippingFee": {},
+     *       //   "returnItems": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orderreturns.process
      * @memberOf! ()
      *
@@ -10206,6 +12544,57 @@ export namespace content_v2_1 {
     /**
      * content.orders.acknowledge
      * @desc Marks an order as acknowledged.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.acknowledge({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "operationId": "my_operationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.acknowledge
      * @memberOf! ()
      *
@@ -10289,6 +12678,48 @@ export namespace content_v2_1 {
     /**
      * content.orders.advancetestorder
      * @desc Sandbox only. Moves a test order from state "`inProgress`" to state "`pendingShipment`".
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.advancetestorder({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the test order to modify.
+     *     orderId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.advancetestorder
      * @memberOf! ()
      *
@@ -10373,6 +12804,59 @@ export namespace content_v2_1 {
     /**
      * content.orders.cancel
      * @desc Cancels all line items in an order, making a full refund.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.cancel({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order to cancel.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "operationId": "my_operationId",
+     *       //   "reason": "my_reason",
+     *       //   "reasonText": "my_reasonText"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.cancel
      * @memberOf! ()
      *
@@ -10449,6 +12933,62 @@ export namespace content_v2_1 {
     /**
      * content.orders.cancellineitem
      * @desc Cancels a line item, making a full refund.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.cancellineitem({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lineItemId": "my_lineItemId",
+     *       //   "operationId": "my_operationId",
+     *       //   "productId": "my_productId",
+     *       //   "quantity": 0,
+     *       //   "reason": "my_reason",
+     *       //   "reasonText": "my_reasonText"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.cancellineitem
      * @memberOf! ()
      *
@@ -10534,6 +13074,56 @@ export namespace content_v2_1 {
     /**
      * content.orders.canceltestorderbycustomer
      * @desc Sandbox only. Cancels a test order for customer-initiated cancellation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.canceltestorderbycustomer({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the test order to cancel.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "reason": "my_reason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.canceltestorderbycustomer
      * @memberOf! ()
      *
@@ -10627,6 +13217,57 @@ export namespace content_v2_1 {
     /**
      * content.orders.createtestorder
      * @desc Sandbox only. Creates a test order.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.createtestorder({
+     *     // The ID of the account that should manage the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "country": "my_country",
+     *       //   "templateName": "my_templateName",
+     *       //   "testOrder": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "orderId": "my_orderId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.createtestorder
      * @memberOf! ()
      *
@@ -10711,6 +13352,57 @@ export namespace content_v2_1 {
     /**
      * content.orders.createtestreturn
      * @desc Sandbox only. Creates a test return.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.createtestreturn({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "items": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "returnId": "my_returnId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.createtestreturn
      * @memberOf! ()
      *
@@ -10795,6 +13487,68 @@ export namespace content_v2_1 {
     /**
      * content.orders.get
      * @desc Retrieves an order from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.get({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acknowledged": false,
+     *   //   "billingAddress": {},
+     *   //   "customer": {},
+     *   //   "deliveryDetails": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lineItems": [],
+     *   //   "merchantId": "my_merchantId",
+     *   //   "merchantOrderId": "my_merchantOrderId",
+     *   //   "netPriceAmount": {},
+     *   //   "netTaxAmount": {},
+     *   //   "paymentStatus": "my_paymentStatus",
+     *   //   "pickupDetails": {},
+     *   //   "placedDate": "my_placedDate",
+     *   //   "promotions": [],
+     *   //   "refunds": [],
+     *   //   "shipments": [],
+     *   //   "shippingCost": {},
+     *   //   "shippingCostTax": {},
+     *   //   "status": "my_status",
+     *   //   "taxCollector": "my_taxCollector"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.get
      * @memberOf! ()
      *
@@ -10866,6 +13620,49 @@ export namespace content_v2_1 {
     /**
      * content.orders.getbymerchantorderid
      * @desc Retrieves an order using merchant order ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.getbymerchantorderid({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The merchant order ID to be looked for.
+     *     merchantOrderId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "order": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.getbymerchantorderid
      * @memberOf! ()
      *
@@ -10950,6 +13747,51 @@ export namespace content_v2_1 {
     /**
      * content.orders.gettestordertemplate
      * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.gettestordertemplate({
+     *     // The country of the template to retrieve. Defaults to `US`.
+     *     country: 'placeholder-value',
+     *     // The ID of the account that should manage the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The name of the template to retrieve.
+     *     templateName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "template": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.gettestordertemplate
      * @memberOf! ()
      *
@@ -11035,6 +13877,64 @@ export namespace content_v2_1 {
     /**
      * content.orders.instorerefundlineitem
      * @desc Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.instorerefundlineitem({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lineItemId": "my_lineItemId",
+     *       //   "operationId": "my_operationId",
+     *       //   "priceAmount": {},
+     *       //   "productId": "my_productId",
+     *       //   "quantity": 0,
+     *       //   "reason": "my_reason",
+     *       //   "reasonText": "my_reasonText",
+     *       //   "taxAmount": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *
@@ -11122,6 +14022,67 @@ export namespace content_v2_1 {
     /**
      * content.orders.list
      * @desc Lists the orders in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.list({
+     *     // Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged.
+     *     // We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged orders are returned.
+     *     acknowledged: 'placeholder-value',
+     *     // The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // Order results by placement date in descending or ascending order.
+     *     //
+     *     // Acceptable values are:
+     *     // - placedDateAsc
+     *     // - placedDateDesc
+     *     orderBy: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Obtains orders placed before this date (exclusively), in ISO 8601 format.
+     *     placedDateEnd: 'placeholder-value',
+     *     // Obtains orders placed after this date (inclusively), in ISO 8601 format.
+     *     placedDateStart: 'placeholder-value',
+     *     // Obtains orders that match any of the specified statuses. Please note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.
+     *     statuses: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.list
      * @memberOf! ()
      *
@@ -11202,6 +14163,62 @@ export namespace content_v2_1 {
     /**
      * content.orders.rejectreturnlineitem
      * @desc Rejects return on an line item.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.rejectreturnlineitem({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lineItemId": "my_lineItemId",
+     *       //   "operationId": "my_operationId",
+     *       //   "productId": "my_productId",
+     *       //   "quantity": 0,
+     *       //   "reason": "my_reason",
+     *       //   "reasonText": "my_reasonText"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.rejectreturnlineitem
      * @memberOf! ()
      *
@@ -11287,6 +14304,64 @@ export namespace content_v2_1 {
     /**
      * content.orders.returnrefundlineitem
      * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.returnrefundlineitem({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lineItemId": "my_lineItemId",
+     *       //   "operationId": "my_operationId",
+     *       //   "priceAmount": {},
+     *       //   "productId": "my_productId",
+     *       //   "quantity": 0,
+     *       //   "reason": "my_reason",
+     *       //   "reasonText": "my_reasonText",
+     *       //   "taxAmount": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.returnrefundlineitem
      * @memberOf! ()
      *
@@ -11372,6 +14447,60 @@ export namespace content_v2_1 {
     /**
      * content.orders.setlineitemmetadata
      * @desc Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided via other methods. Submitted key-value pairs can be retrieved as part of the orders resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.setlineitemmetadata({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": [],
+     *       //   "lineItemId": "my_lineItemId",
+     *       //   "operationId": "my_operationId",
+     *       //   "productId": "my_productId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.setlineitemmetadata
      * @memberOf! ()
      *
@@ -11457,6 +14586,60 @@ export namespace content_v2_1 {
     /**
      * content.orders.shiplineitems
      * @desc Marks line item(s) as shipped.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.shiplineitems({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lineItems": [],
+     *       //   "operationId": "my_operationId",
+     *       //   "shipmentGroupId": "my_shipmentGroupId",
+     *       //   "shipmentInfos": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.shiplineitems
      * @memberOf! ()
      *
@@ -11540,6 +14723,61 @@ export namespace content_v2_1 {
     /**
      * content.orders.updatelineitemshippingdetails
      * @desc Updates ship by and delivery by dates for a line item.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.updatelineitemshippingdetails({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deliverByDate": "my_deliverByDate",
+     *       //   "lineItemId": "my_lineItemId",
+     *       //   "operationId": "my_operationId",
+     *       //   "productId": "my_productId",
+     *       //   "shipByDate": "my_shipByDate"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.updatelineitemshippingdetails
      * @memberOf! ()
      *
@@ -11641,6 +14879,58 @@ export namespace content_v2_1 {
     /**
      * content.orders.updatemerchantorderid
      * @desc Updates the merchant order ID for a given order.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.updatemerchantorderid({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "merchantOrderId": "my_merchantOrderId",
+     *       //   "operationId": "my_operationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.updatemerchantorderid
      * @memberOf! ()
      *
@@ -11728,6 +15018,62 @@ export namespace content_v2_1 {
     /**
      * content.orders.updateshipment
      * @desc Updates a shipment's status, carrier, and/or tracking ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.orders.updateshipment({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "carrier": "my_carrier",
+     *       //   "deliveryDate": "my_deliveryDate",
+     *       //   "operationId": "my_operationId",
+     *       //   "shipmentId": "my_shipmentId",
+     *       //   "status": "my_status",
+     *       //   "trackingId": "my_trackingId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.orders.updateshipment
      * @memberOf! ()
      *
@@ -12216,6 +15562,52 @@ export namespace content_v2_1 {
     /**
      * content.pos.custombatch
      * @desc Batches multiple POS-related calls in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pos.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pos.custombatch
      * @memberOf! ()
      *
@@ -12293,6 +15685,45 @@ export namespace content_v2_1 {
     /**
      * content.pos.delete
      * @desc Deletes a store for the given merchant.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pos.delete({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // A store code that is unique per merchant.
+     *     storeCode: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pos.delete
      * @memberOf! ()
      *
@@ -12366,6 +15797,52 @@ export namespace content_v2_1 {
     /**
      * content.pos.get
      * @desc Retrieves information about the given store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pos.get({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // A store code that is unique per merchant.
+     *     storeCode: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "storeAddress": "my_storeAddress",
+     *   //   "storeCode": "my_storeCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pos.get
      * @memberOf! ()
      *
@@ -12439,6 +15916,60 @@ export namespace content_v2_1 {
     /**
      * content.pos.insert
      * @desc Creates a store for the given merchant.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pos.insert({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "storeAddress": "my_storeAddress",
+     *       //   "storeCode": "my_storeCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "storeAddress": "my_storeAddress",
+     *   //   "storeCode": "my_storeCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pos.insert
      * @memberOf! ()
      *
@@ -12512,6 +16043,71 @@ export namespace content_v2_1 {
     /**
      * content.pos.inventory
      * @desc Submit inventory for the given merchant.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pos.inventory({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "gtin": "my_gtin",
+     *       //   "itemId": "my_itemId",
+     *       //   "price": {},
+     *       //   "quantity": "my_quantity",
+     *       //   "storeCode": "my_storeCode",
+     *       //   "targetCountry": "my_targetCountry",
+     *       //   "timestamp": "my_timestamp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "gtin": "my_gtin",
+     *   //   "itemId": "my_itemId",
+     *   //   "kind": "my_kind",
+     *   //   "price": {},
+     *   //   "quantity": "my_quantity",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "timestamp": "my_timestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pos.inventory
      * @memberOf! ()
      *
@@ -12591,6 +16187,49 @@ export namespace content_v2_1 {
     /**
      * content.pos.list
      * @desc Lists the stores of the target merchant.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pos.list({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pos.list
      * @memberOf! ()
      *
@@ -12665,6 +16304,73 @@ export namespace content_v2_1 {
     /**
      * content.pos.sale
      * @desc Submit a sale event for the given merchant.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pos.sale({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "gtin": "my_gtin",
+     *       //   "itemId": "my_itemId",
+     *       //   "price": {},
+     *       //   "quantity": "my_quantity",
+     *       //   "saleId": "my_saleId",
+     *       //   "storeCode": "my_storeCode",
+     *       //   "targetCountry": "my_targetCountry",
+     *       //   "timestamp": "my_timestamp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "gtin": "my_gtin",
+     *   //   "itemId": "my_itemId",
+     *   //   "kind": "my_kind",
+     *   //   "price": {},
+     *   //   "quantity": "my_quantity",
+     *   //   "saleId": "my_saleId",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "timestamp": "my_timestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pos.sale
      * @memberOf! ()
      *
@@ -12871,6 +16577,52 @@ export namespace content_v2_1 {
     /**
      * content.products.custombatch
      * @desc Retrieves, inserts, and deletes multiple products in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.products.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.products.custombatch
      * @memberOf! ()
      *
@@ -12952,6 +16704,45 @@ export namespace content_v2_1 {
     /**
      * content.products.delete
      * @desc Deletes a product from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.products.delete({
+     *     // The Content API Supplemental Feed ID.
+     *     feedId: 'placeholder-value',
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.products.delete
      * @memberOf! ()
      *
@@ -13024,6 +16815,122 @@ export namespace content_v2_1 {
     /**
      * content.products.get
      * @desc Retrieves a product from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.products.get({
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImageLinks": [],
+     *   //   "adsGrouping": "my_adsGrouping",
+     *   //   "adsLabels": [],
+     *   //   "adsRedirect": "my_adsRedirect",
+     *   //   "adult": false,
+     *   //   "ageGroup": "my_ageGroup",
+     *   //   "availability": "my_availability",
+     *   //   "availabilityDate": "my_availabilityDate",
+     *   //   "brand": "my_brand",
+     *   //   "channel": "my_channel",
+     *   //   "color": "my_color",
+     *   //   "condition": "my_condition",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "costOfGoodsSold": {},
+     *   //   "customAttributes": [],
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "description": "my_description",
+     *   //   "displayAdsId": "my_displayAdsId",
+     *   //   "displayAdsLink": "my_displayAdsLink",
+     *   //   "displayAdsSimilarIds": [],
+     *   //   "displayAdsTitle": "my_displayAdsTitle",
+     *   //   "displayAdsValue": {},
+     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *   //   "excludedDestinations": [],
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "gender": "my_gender",
+     *   //   "googleProductCategory": "my_googleProductCategory",
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "identifierExists": false,
+     *   //   "imageLink": "my_imageLink",
+     *   //   "includedDestinations": [],
+     *   //   "installment": {},
+     *   //   "isBundle": false,
+     *   //   "itemGroupId": "my_itemGroupId",
+     *   //   "kind": "my_kind",
+     *   //   "link": "my_link",
+     *   //   "loyaltyPoints": {},
+     *   //   "material": "my_material",
+     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *   //   "maxHandlingTime": "my_maxHandlingTime",
+     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *   //   "minHandlingTime": "my_minHandlingTime",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "mpn": "my_mpn",
+     *   //   "multipack": "my_multipack",
+     *   //   "offerId": "my_offerId",
+     *   //   "pattern": "my_pattern",
+     *   //   "price": {},
+     *   //   "productTypes": [],
+     *   //   "promotionIds": [],
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *   //   "shipping": [],
+     *   //   "shippingHeight": {},
+     *   //   "shippingLabel": "my_shippingLabel",
+     *   //   "shippingLength": {},
+     *   //   "shippingWeight": {},
+     *   //   "shippingWidth": {},
+     *   //   "sizeSystem": "my_sizeSystem",
+     *   //   "sizeType": "my_sizeType",
+     *   //   "sizes": [],
+     *   //   "source": "my_source",
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "taxCategory": "my_taxCategory",
+     *   //   "taxes": [],
+     *   //   "title": "my_title",
+     *   //   "transitTimeLabel": "my_transitTimeLabel",
+     *   //   "unitPricingBaseMeasure": {},
+     *   //   "unitPricingMeasure": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.products.get
      * @memberOf! ()
      *
@@ -13095,6 +17002,204 @@ export namespace content_v2_1 {
     /**
      * content.products.insert
      * @desc Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.products.insert({
+     *     // The Content API Supplemental Feed ID.
+     *     feedId: 'placeholder-value',
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalImageLinks": [],
+     *       //   "adsGrouping": "my_adsGrouping",
+     *       //   "adsLabels": [],
+     *       //   "adsRedirect": "my_adsRedirect",
+     *       //   "adult": false,
+     *       //   "ageGroup": "my_ageGroup",
+     *       //   "availability": "my_availability",
+     *       //   "availabilityDate": "my_availabilityDate",
+     *       //   "brand": "my_brand",
+     *       //   "channel": "my_channel",
+     *       //   "color": "my_color",
+     *       //   "condition": "my_condition",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "costOfGoodsSold": {},
+     *       //   "customAttributes": [],
+     *       //   "customLabel0": "my_customLabel0",
+     *       //   "customLabel1": "my_customLabel1",
+     *       //   "customLabel2": "my_customLabel2",
+     *       //   "customLabel3": "my_customLabel3",
+     *       //   "customLabel4": "my_customLabel4",
+     *       //   "description": "my_description",
+     *       //   "displayAdsId": "my_displayAdsId",
+     *       //   "displayAdsLink": "my_displayAdsLink",
+     *       //   "displayAdsSimilarIds": [],
+     *       //   "displayAdsTitle": "my_displayAdsTitle",
+     *       //   "displayAdsValue": {},
+     *       //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *       //   "excludedDestinations": [],
+     *       //   "expirationDate": "my_expirationDate",
+     *       //   "gender": "my_gender",
+     *       //   "googleProductCategory": "my_googleProductCategory",
+     *       //   "gtin": "my_gtin",
+     *       //   "id": "my_id",
+     *       //   "identifierExists": false,
+     *       //   "imageLink": "my_imageLink",
+     *       //   "includedDestinations": [],
+     *       //   "installment": {},
+     *       //   "isBundle": false,
+     *       //   "itemGroupId": "my_itemGroupId",
+     *       //   "kind": "my_kind",
+     *       //   "link": "my_link",
+     *       //   "loyaltyPoints": {},
+     *       //   "material": "my_material",
+     *       //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *       //   "maxHandlingTime": "my_maxHandlingTime",
+     *       //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *       //   "minHandlingTime": "my_minHandlingTime",
+     *       //   "mobileLink": "my_mobileLink",
+     *       //   "mpn": "my_mpn",
+     *       //   "multipack": "my_multipack",
+     *       //   "offerId": "my_offerId",
+     *       //   "pattern": "my_pattern",
+     *       //   "price": {},
+     *       //   "productTypes": [],
+     *       //   "promotionIds": [],
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *       //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *       //   "shipping": [],
+     *       //   "shippingHeight": {},
+     *       //   "shippingLabel": "my_shippingLabel",
+     *       //   "shippingLength": {},
+     *       //   "shippingWeight": {},
+     *       //   "shippingWidth": {},
+     *       //   "sizeSystem": "my_sizeSystem",
+     *       //   "sizeType": "my_sizeType",
+     *       //   "sizes": [],
+     *       //   "source": "my_source",
+     *       //   "targetCountry": "my_targetCountry",
+     *       //   "taxCategory": "my_taxCategory",
+     *       //   "taxes": [],
+     *       //   "title": "my_title",
+     *       //   "transitTimeLabel": "my_transitTimeLabel",
+     *       //   "unitPricingBaseMeasure": {},
+     *       //   "unitPricingMeasure": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImageLinks": [],
+     *   //   "adsGrouping": "my_adsGrouping",
+     *   //   "adsLabels": [],
+     *   //   "adsRedirect": "my_adsRedirect",
+     *   //   "adult": false,
+     *   //   "ageGroup": "my_ageGroup",
+     *   //   "availability": "my_availability",
+     *   //   "availabilityDate": "my_availabilityDate",
+     *   //   "brand": "my_brand",
+     *   //   "channel": "my_channel",
+     *   //   "color": "my_color",
+     *   //   "condition": "my_condition",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "costOfGoodsSold": {},
+     *   //   "customAttributes": [],
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "description": "my_description",
+     *   //   "displayAdsId": "my_displayAdsId",
+     *   //   "displayAdsLink": "my_displayAdsLink",
+     *   //   "displayAdsSimilarIds": [],
+     *   //   "displayAdsTitle": "my_displayAdsTitle",
+     *   //   "displayAdsValue": {},
+     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *   //   "excludedDestinations": [],
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "gender": "my_gender",
+     *   //   "googleProductCategory": "my_googleProductCategory",
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "identifierExists": false,
+     *   //   "imageLink": "my_imageLink",
+     *   //   "includedDestinations": [],
+     *   //   "installment": {},
+     *   //   "isBundle": false,
+     *   //   "itemGroupId": "my_itemGroupId",
+     *   //   "kind": "my_kind",
+     *   //   "link": "my_link",
+     *   //   "loyaltyPoints": {},
+     *   //   "material": "my_material",
+     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *   //   "maxHandlingTime": "my_maxHandlingTime",
+     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *   //   "minHandlingTime": "my_minHandlingTime",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "mpn": "my_mpn",
+     *   //   "multipack": "my_multipack",
+     *   //   "offerId": "my_offerId",
+     *   //   "pattern": "my_pattern",
+     *   //   "price": {},
+     *   //   "productTypes": [],
+     *   //   "promotionIds": [],
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *   //   "shipping": [],
+     *   //   "shippingHeight": {},
+     *   //   "shippingLabel": "my_shippingLabel",
+     *   //   "shippingLength": {},
+     *   //   "shippingWeight": {},
+     *   //   "shippingWidth": {},
+     *   //   "sizeSystem": "my_sizeSystem",
+     *   //   "sizeType": "my_sizeType",
+     *   //   "sizes": [],
+     *   //   "source": "my_source",
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "taxCategory": "my_taxCategory",
+     *   //   "taxes": [],
+     *   //   "title": "my_title",
+     *   //   "transitTimeLabel": "my_transitTimeLabel",
+     *   //   "unitPricingBaseMeasure": {},
+     *   //   "unitPricingMeasure": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.products.insert
      * @memberOf! ()
      *
@@ -13168,6 +17273,52 @@ export namespace content_v2_1 {
     /**
      * content.products.list
      * @desc Lists the products in your Merchant Center account. The response might contain fewer items than specified by maxResults. Rely on nextPageToken to determine if there are more items to be requested.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.products.list({
+     *     // The maximum number of products to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that contains the products. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.products.list
      * @memberOf! ()
      *
@@ -13338,6 +17489,52 @@ export namespace content_v2_1 {
     /**
      * content.productstatuses.custombatch
      * @desc Gets the statuses of multiple products in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.productstatuses.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.productstatuses.custombatch
      * @memberOf! ()
      *
@@ -13421,6 +17618,58 @@ export namespace content_v2_1 {
     /**
      * content.productstatuses.get
      * @desc Gets the status of a product from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.productstatuses.get({
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationDate": "my_creationDate",
+     *   //   "destinationStatuses": [],
+     *   //   "googleExpirationDate": "my_googleExpirationDate",
+     *   //   "itemLevelIssues": [],
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDate": "my_lastUpdateDate",
+     *   //   "link": "my_link",
+     *   //   "productId": "my_productId",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.productstatuses.get
      * @memberOf! ()
      *
@@ -13496,6 +17745,54 @@ export namespace content_v2_1 {
     /**
      * content.productstatuses.list
      * @desc Lists the statuses of the products in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.productstatuses.list({
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // The maximum number of product statuses to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that contains the products. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.productstatuses.list
      * @memberOf! ()
      *
@@ -13643,6 +17940,48 @@ export namespace content_v2_1 {
     /**
      * content.pubsubnotificationsettings.get
      * @desc Retrieves a Merchant Center account's pubsub notification settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pubsubnotificationsettings.get({
+     *     // The ID of the account for which to get pubsub notification settings.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudTopicName": "my_cloudTopicName",
+     *   //   "kind": "my_kind",
+     *   //   "registeredEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pubsubnotificationsettings.get
      * @memberOf! ()
      *
@@ -13723,6 +18062,58 @@ export namespace content_v2_1 {
     /**
      * content.pubsubnotificationsettings.update
      * @desc Register a Merchant Center account for pubsub notifications. Note that cloud topic name should not be provided as part of the request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.pubsubnotificationsettings.update({
+     *     // The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudTopicName": "my_cloudTopicName",
+     *       //   "kind": "my_kind",
+     *       //   "registeredEvents": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudTopicName": "my_cloudTopicName",
+     *   //   "kind": "my_kind",
+     *   //   "registeredEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.pubsubnotificationsettings.update
      * @memberOf! ()
      *
@@ -13841,6 +18232,52 @@ export namespace content_v2_1 {
     /**
      * content.regionalinventory.custombatch
      * @desc Updates regional inventory for multiple products or regions in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.regionalinventory.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.regionalinventory.custombatch
      * @memberOf! ()
      *
@@ -13932,6 +18369,68 @@ export namespace content_v2_1 {
     /**
      * content.regionalinventory.insert
      * @desc Update the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.regionalinventory.insert({
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product for which to update the regional inventory.
+     *     productId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availability": "my_availability",
+     *       //   "customAttributes": [],
+     *       //   "kind": "my_kind",
+     *       //   "price": {},
+     *       //   "regionId": "my_regionId",
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availability": "my_availability",
+     *   //   "customAttributes": [],
+     *   //   "kind": "my_kind",
+     *   //   "price": {},
+     *   //   "regionId": "my_regionId",
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.regionalinventory.insert
      * @memberOf! ()
      *
@@ -14049,6 +18548,52 @@ export namespace content_v2_1 {
     /**
      * content.returnaddress.custombatch
      * @desc Batches multiple return address related calls in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnaddress.custombatch
      * @memberOf! ()
      *
@@ -14132,6 +18677,43 @@ export namespace content_v2_1 {
     /**
      * content.returnaddress.delete
      * @desc Deletes a return address for the given Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.delete({
+     *     // The Merchant Center account from which to delete the given return address.
+     *     merchantId: 'placeholder-value',
+     *     // Return address ID generated by Google.
+     *     returnAddressId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnaddress.delete
      * @memberOf! ()
      *
@@ -14205,6 +18787,53 @@ export namespace content_v2_1 {
     /**
      * content.returnaddress.get
      * @desc Gets a return address of the Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.get({
+     *     // The Merchant Center account to get a return address for.
+     *     merchantId: 'placeholder-value',
+     *     // Return address ID generated by Google.
+     *     returnAddressId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "country": "my_country",
+     *   //   "kind": "my_kind",
+     *   //   "label": "my_label",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "returnAddressId": "my_returnAddressId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnaddress.get
      * @memberOf! ()
      *
@@ -14280,6 +18909,64 @@ export namespace content_v2_1 {
     /**
      * content.returnaddress.insert
      * @desc Inserts a return address for the Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.insert({
+     *     // The Merchant Center account to insert a return address for.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": {},
+     *       //   "country": "my_country",
+     *       //   "kind": "my_kind",
+     *       //   "label": "my_label",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "returnAddressId": "my_returnAddressId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "country": "my_country",
+     *   //   "kind": "my_kind",
+     *   //   "label": "my_label",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "returnAddressId": "my_returnAddressId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnaddress.insert
      * @memberOf! ()
      *
@@ -14355,6 +19042,54 @@ export namespace content_v2_1 {
     /**
      * content.returnaddress.list
      * @desc Lists the return addresses of the Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.list({
+     *     // List only return addresses applicable to the given country of sale. When omitted, all return addresses are listed.
+     *     country: 'placeholder-value',
+     *     // The maximum number of addresses in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The Merchant Center account to list return addresses for.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnaddress.list
      * @memberOf! ()
      *
@@ -14532,6 +19267,52 @@ export namespace content_v2_1 {
     /**
      * content.returnpolicy.custombatch
      * @desc Batches multiple return policy related calls in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnpolicy.custombatch
      * @memberOf! ()
      *
@@ -14615,6 +19396,43 @@ export namespace content_v2_1 {
     /**
      * content.returnpolicy.delete
      * @desc Deletes a return policy for the given Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.delete({
+     *     // The Merchant Center account from which to delete the given return policy.
+     *     merchantId: 'placeholder-value',
+     *     // Return policy ID generated by Google.
+     *     returnPolicyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnpolicy.delete
      * @memberOf! ()
      *
@@ -14688,6 +19506,55 @@ export namespace content_v2_1 {
     /**
      * content.returnpolicy.get
      * @desc Gets a return policy of the Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.get({
+     *     // The Merchant Center account to get a return policy for.
+     *     merchantId: 'placeholder-value',
+     *     // Return policy ID generated by Google.
+     *     returnPolicyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "country": "my_country",
+     *   //   "kind": "my_kind",
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "nonFreeReturnReasons": [],
+     *   //   "policy": {},
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "seasonalOverrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnpolicy.get
      * @memberOf! ()
      *
@@ -14762,6 +19629,68 @@ export namespace content_v2_1 {
     /**
      * content.returnpolicy.insert
      * @desc Inserts a return policy for the Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.insert({
+     *     // The Merchant Center account to insert a return policy for.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "country": "my_country",
+     *       //   "kind": "my_kind",
+     *       //   "label": "my_label",
+     *       //   "name": "my_name",
+     *       //   "nonFreeReturnReasons": [],
+     *       //   "policy": {},
+     *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "seasonalOverrides": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "country": "my_country",
+     *   //   "kind": "my_kind",
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "nonFreeReturnReasons": [],
+     *   //   "policy": {},
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "seasonalOverrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnpolicy.insert
      * @memberOf! ()
      *
@@ -14837,6 +19766,47 @@ export namespace content_v2_1 {
     /**
      * content.returnpolicy.list
      * @desc Lists the return policies of the Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.list({
+     *     // The Merchant Center account to list return policies for.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.returnpolicy.list
      * @memberOf! ()
      *
@@ -14993,6 +19963,55 @@ export namespace content_v2_1 {
     /**
      * content.settlementreports.get
      * @desc Retrieves a settlement report from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.settlementreports.get({
+     *     // The Merchant Center account of the settlement report.
+     *     merchantId: 'placeholder-value',
+     *     // The Google-provided ID of the settlement.
+     *     settlementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endDate": "my_endDate",
+     *   //   "kind": "my_kind",
+     *   //   "previousBalance": {},
+     *   //   "settlementId": "my_settlementId",
+     *   //   "startDate": "my_startDate",
+     *   //   "transferAmount": {},
+     *   //   "transferDate": "my_transferDate",
+     *   //   "transferIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.settlementreports.get
      * @memberOf! ()
      *
@@ -15068,6 +20087,56 @@ export namespace content_v2_1 {
     /**
      * content.settlementreports.list
      * @desc Retrieves a list of settlement reports from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.settlementreports.list({
+     *     // The maximum number of settlements to return in the response, used for paging. The default value is 200 returns per page, and the maximum allowed value is 5000 returns per page.
+     *     maxResults: 'placeholder-value',
+     *     // The Merchant Center account to list settlements for.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Obtains settlements which have transactions before this date (inclusively), in ISO 8601 format.
+     *     transferEndDate: 'placeholder-value',
+     *     // Obtains settlements which have transactions after this date (inclusively), in ISO 8601 format.
+     *     transferStartDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.settlementreports.list
      * @memberOf! ()
      *
@@ -15206,6 +20275,56 @@ export namespace content_v2_1 {
     /**
      * content.settlementtransactions.list
      * @desc Retrieves a list of transactions for the settlement.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.settlementtransactions.list({
+     *     // The maximum number of transactions to return in the response, used for paging. The default value is 200 transactions per page, and the maximum allowed value is 5000 transactions per page.
+     *     maxResults: 'placeholder-value',
+     *     // The Merchant Center account to list transactions for.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // The Google-provided ID of the settlement.
+     *     settlementId: 'placeholder-value',
+     *     // The list of transactions to return. If not set, all transactions will be returned.
+     *     transactionIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.settlementtransactions.list
      * @memberOf! ()
      *
@@ -15329,6 +20448,52 @@ export namespace content_v2_1 {
     /**
      * content.shippingsettings.custombatch
      * @desc Retrieves and updates the shipping settings of multiple accounts in a single request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.shippingsettings.custombatch
      * @memberOf! ()
      *
@@ -15414,6 +20579,50 @@ export namespace content_v2_1 {
     /**
      * content.shippingsettings.get
      * @desc Retrieves the shipping settings of the account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.get({
+     *     // The ID of the account for which to get/update shipping settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "postalCodeGroups": [],
+     *   //   "services": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.shippingsettings.get
      * @memberOf! ()
      *
@@ -15489,6 +20698,47 @@ export namespace content_v2_1 {
     /**
      * content.shippingsettings.getsupportedcarriers
      * @desc Retrieves supported carriers and carrier services for an account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.getsupportedcarriers({
+     *     // The ID of the account for which to retrieve the supported carriers.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "carriers": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.shippingsettings.getsupportedcarriers
      * @memberOf! ()
      *
@@ -15587,6 +20837,47 @@ export namespace content_v2_1 {
     /**
      * content.shippingsettings.getsupportedholidays
      * @desc Retrieves supported holidays for an account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.getsupportedholidays({
+     *     // The ID of the account for which to retrieve the supported holidays.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "holidays": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.shippingsettings.getsupportedholidays
      * @memberOf! ()
      *
@@ -15685,6 +20976,47 @@ export namespace content_v2_1 {
     /**
      * content.shippingsettings.getsupportedpickupservices
      * @desc Retrieves supported pickup services for an account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.getsupportedpickupservices({
+     *     // The ID of the account for which to retrieve the supported pickup services.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "pickupServices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.shippingsettings.getsupportedpickupservices
      * @memberOf! ()
      *
@@ -15782,6 +21114,52 @@ export namespace content_v2_1 {
     /**
      * content.shippingsettings.list
      * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.list({
+     *     // The maximum number of shipping settings to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.shippingsettings.list
      * @memberOf! ()
      *
@@ -15866,6 +21244,60 @@ export namespace content_v2_1 {
     /**
      * content.shippingsettings.update
      * @desc Updates the shipping settings of the account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.update({
+     *     // The ID of the account for which to get/update shipping settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "postalCodeGroups": [],
+     *       //   "services": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "postalCodeGroups": [],
+     *   //   "services": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias content.shippingsettings.update
      * @memberOf! ()
      *

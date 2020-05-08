@@ -601,6 +601,50 @@ export namespace chat_v1 {
     /**
      * chat.spaces.get
      * @desc Returns a space.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.get({
+     *     // Required. Resource name of the space, in the form "spaces/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY
+     *     name: 'spaces/my-space',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.get
      * @memberOf! ()
      *
@@ -669,6 +713,51 @@ export namespace chat_v1 {
     /**
      * chat.spaces.list
      * @desc Lists spaces the caller is a member of.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.list({
+     *     // Requested page size. The value is capped at 1000.
+     *     // Server may return fewer results than requested.
+     *     // If unspecified, server will default to 100.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "spaces": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.list
      * @memberOf! ()
      *
@@ -774,6 +863,52 @@ export namespace chat_v1 {
     /**
      * chat.spaces.members.get
      * @desc Returns a membership.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.members.get({
+     *     // Required. Resource name of the membership to be retrieved, in the form
+     *     // "spaces/x/members/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY/members/105115627578887013105
+     *     name: 'spaces/my-space/members/my-member',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "member": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.members.get
      * @memberOf! ()
      *
@@ -845,6 +980,56 @@ export namespace chat_v1 {
     /**
      * chat.spaces.members.list
      * @desc Lists human memberships in a space.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.members.list({
+     *     // Requested page size. The value is capped at 1000.
+     *     // Server may return fewer results than requested.
+     *     // If unspecified, server will default to 100.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the space for which membership list is to be
+     *     // fetched, in the form "spaces/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY
+     *     parent: 'spaces/my-space',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "memberships": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.members.list
      * @memberOf! ()
      *
@@ -963,6 +1148,87 @@ export namespace chat_v1 {
     /**
      * chat.spaces.messages.create
      * @desc Creates a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.create({
+     *     // Required. Space resource name, in the form "spaces/x".
+     *     // Example: spaces/AAAAMpdlehY
+     *     parent: 'spaces/my-space',
+     *     // Opaque thread identifier string that can be specified to group messages
+     *     // into a single thread. If this is the first message with a given thread
+     *     // identifier, a new thread is created. Subsequent messages with the same
+     *     // thread identifier will be posted into the same thread. This relieves bots
+     *     // and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post
+     *     // further updates to it.
+     *     //
+     *     // Has no effect if thread field,
+     *     // corresponding to an existing thread, is set in message.
+     *     threadKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionResponse": {},
+     *       //   "annotations": [],
+     *       //   "argumentText": "my_argumentText",
+     *       //   "cards": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "fallbackText": "my_fallbackText",
+     *       //   "name": "my_name",
+     *       //   "previewText": "my_previewText",
+     *       //   "sender": {},
+     *       //   "space": {},
+     *       //   "text": "my_text",
+     *       //   "thread": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.messages.create
      * @memberOf! ()
      *
@@ -1037,6 +1303,47 @@ export namespace chat_v1 {
     /**
      * chat.spaces.messages.delete
      * @desc Deletes a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.delete({
+     *     // Required. Resource name of the message to be deleted, in the form
+     *     // "spaces/x/messages/x"
+     *     //
+     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     name: 'spaces/my-space/messages/my-message',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.messages.delete
      * @memberOf! ()
      *
@@ -1106,6 +1413,60 @@ export namespace chat_v1 {
     /**
      * chat.spaces.messages.get
      * @desc Returns a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.get({
+     *     // Required. Resource name of the message to be retrieved, in the form
+     *     // "spaces/x/messages/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     name: 'spaces/my-space/messages/my-message',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.messages.get
      * @memberOf! ()
      *
@@ -1175,6 +1536,85 @@ export namespace chat_v1 {
     /**
      * chat.spaces.messages.update
      * @desc Updates a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.update({
+     *     // Resource name, in the form "spaces/x/messages/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     name: 'spaces/my-space/messages/my-message',
+     *     // Required. The field paths to be updated, comma separated if there are
+     *     // multiple.
+     *     //
+     *     // Currently supported field paths:
+     *     // * text
+     *     // * cards
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionResponse": {},
+     *       //   "annotations": [],
+     *       //   "argumentText": "my_argumentText",
+     *       //   "cards": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "fallbackText": "my_fallbackText",
+     *       //   "name": "my_name",
+     *       //   "previewText": "my_previewText",
+     *       //   "sender": {},
+     *       //   "space": {},
+     *       //   "text": "my_text",
+     *       //   "thread": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.messages.update
      * @memberOf! ()
      *

@@ -1573,6 +1573,50 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.operations.get
      * @memberOf! ()
      *
@@ -1678,6 +1722,58 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.services.consumerQuotaMetrics.get
      * @desc Retrieves a summary of quota information for a specific quota metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.get(
+     *     {
+     *       // The resource name of the quota metric, returned by a
+     *       // ListConsumerQuotaMetrics call.
+     *       //
+     *       // An example name would be:
+     *       // `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus`
+     *       name:
+     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric',
+     *       // Specifies the level of detail for quota information in the response.
+     *       view: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consumerQuotaLimits": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "metric": "my_metric",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.consumerQuotaMetrics.get
      * @memberOf! ()
      *
@@ -1758,6 +1854,64 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.services.consumerQuotaMetrics.importProducerOverrides
      * @desc Create or update multiple producer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.importProducerOverrides(
+     *     {
+     *       // The resource name of the consumer.
+     *       //
+     *       // An example name would be:
+     *       // `services/compute.googleapis.com/projects/123`
+     *       parent: 'services/my-service/[^/]+/[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "force": false,
+     *         //   "inlineSource": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.consumerQuotaMetrics.importProducerOverrides
      * @memberOf! ()
      *
@@ -1836,6 +1990,59 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.services.consumerQuotaMetrics.list
      * @desc Retrieves a summary of all quota information about this consumer that is visible to the service producer, for each quota metric defined by the service. Each metric includes information about all of its defined limits. Each limit includes the limit configuration (quota unit, preciseness, default value), the current effective limit value, and all of the overrides applied to the limit.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.list(
+     *     {
+     *       // Requested size of the next page of data.
+     *       pageSize: 'placeholder-value',
+     *       // Token identifying which result to start with; returned by a previous list
+     *       // call.
+     *       pageToken: 'placeholder-value',
+     *       // Parent of the quotas resource.
+     *       //
+     *       // An example parent would be:
+     *       // `services/serviceconsumermanagement.googleapis.com/projects/123`
+     *       parent: 'services/my-service/[^/]+/[^/]+',
+     *       // Specifies the level of detail for quota information in the response.
+     *       view: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metrics": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.consumerQuotaMetrics.list
      * @memberOf! ()
      *
@@ -2000,6 +2207,59 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.services.consumerQuotaMetrics.limits.get
      * @desc Retrieves a summary of quota information for a specific quota limit.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.get(
+     *     {
+     *       // The resource name of the quota limit, returned by a
+     *       // ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.
+     *       //
+     *       // An example name would be:
+     *       // `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *       name:
+     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *       // Specifies the level of detail for quota information in the response.
+     *       view: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isPrecise": false,
+     *   //   "metric": "my_metric",
+     *   //   "name": "my_name",
+     *   //   "quotaBuckets": [],
+     *   //   "unit": "my_unit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.consumerQuotaMetrics.limits.get
      * @memberOf! ()
      *
@@ -2102,6 +2362,75 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.create
      * @desc Creates a producer override. A producer override is applied by the owner or administrator of a service to increase or decrease the amount of quota a consumer of the service is allowed to use. To create multiple overrides at once, use ImportProducerOverrides instead. If an override with the specified dimensions already exists, this call will fail. To overwrite an existing override if one is already present ("upsert" semantics), use ImportProducerOverrides instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.create(
+     *     {
+     *       // Whether to force the creation of the quota override.
+     *       // If creating an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the parent quota limit, returned by a
+     *       // ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.
+     *       //
+     *       // An example name would be:
+     *       // `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *       parent:
+     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dimensions": {},
+     *         //   "metric": "my_metric",
+     *         //   "name": "my_name",
+     *         //   "overrideValue": "my_overrideValue",
+     *         //   "unit": "my_unit"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.create
      * @memberOf! ()
      *
@@ -2179,6 +2508,62 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.delete
      * @desc Deletes a producer override.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.delete(
+     *     {
+     *       // Whether to force the deletion of the quota override.
+     *       // If deleting an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the override to delete.
+     *       //
+     *       // An example name would be:
+     *       // `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
+     *       name:
+     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/producerOverrides/my-producerOverride',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.delete
      * @memberOf! ()
      *
@@ -2252,6 +2637,59 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.list
      * @desc Lists all producer overrides on this limit.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.list(
+     *     {
+     *       // Requested size of the next page of data.
+     *       pageSize: 'placeholder-value',
+     *       // Token identifying which result to start with; returned by a previous list
+     *       // call.
+     *       pageToken: 'placeholder-value',
+     *       // The resource name of the parent quota limit, returned by a
+     *       // ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.
+     *       //
+     *       // An example name would be:
+     *       // `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *       parent:
+     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "overrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.list
      * @memberOf! ()
      *
@@ -2346,6 +2784,77 @@ export namespace serviceconsumermanagement_v1beta1 {
     /**
      * serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.patch
      * @desc Updates a producer override.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.patch(
+     *     {
+     *       // Whether to force the update of the quota override.
+     *       // If updating an override would cause the effective quota for the consumer to
+     *       // decrease by more than 10 percent, the call is rejected, as a safety measure
+     *       // to avoid accidentally decreasing quota too quickly. Setting the force
+     *       // parameter to true ignores this restriction.
+     *       force: 'placeholder-value',
+     *       // The resource name of the override to update.
+     *       //
+     *       // An example name would be:
+     *       // `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
+     *       name:
+     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/producerOverrides/my-producerOverride',
+     *       // Update only the specified fields. If unset, all modifiable fields will be
+     *       // updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dimensions": {},
+     *         //   "metric": "my_metric",
+     *         //   "name": "my_name",
+     *         //   "overrideValue": "my_overrideValue",
+     *         //   "unit": "my_unit"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.patch
      * @memberOf! ()
      *

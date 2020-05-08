@@ -240,6 +240,53 @@ export namespace texttospeech_v1 {
     /**
      * texttospeech.text.synthesize
      * @desc Synthesizes speech synchronously: receive results after all text input has been processed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/texttospeech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const texttospeech = google.texttospeech('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await texttospeech.text.synthesize({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audioConfig": {},
+     *       //   "input": {},
+     *       //   "voice": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audioContent": "my_audioContent"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias texttospeech.text.synthesize
      * @memberOf! ()
      *
@@ -336,6 +383,53 @@ export namespace texttospeech_v1 {
     /**
      * texttospeech.voices.list
      * @desc Returns a list of Voice supported for synthesis.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/texttospeech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const texttospeech = google.texttospeech('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await texttospeech.voices.list({
+     *     // Optional. Recommended.
+     *     // [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
+     *     // specified, the ListVoices call will only return voices that can be used to
+     *     // synthesize this language_code. E.g. when specifying "en-NZ", you will get
+     *     // supported "en-*" voices; when specifying "no", you will get supported
+     *     // "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh"
+     *     // will also get supported "cmn-*" voices; specifying "zh-hk" will also get
+     *     // supported "yue-*" voices.
+     *     languageCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "voices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias texttospeech.voices.list
      * @memberOf! ()
      *

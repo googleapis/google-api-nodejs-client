@@ -1563,6 +1563,45 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.devices.forceReportUpload
      * @desc Uploads a report containing any changes in app states on the device since the last report was generated. You can call this method up to 3 times every 24 hours for a given device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.devices.forceReportUpload({
+     *     // The ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.devices.forceReportUpload
      * @memberOf! ()
      *
@@ -1637,6 +1676,54 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.devices.get
      * @desc Retrieves the details of a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.devices.get({
+     *     // The ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidId": "my_androidId",
+     *   //   "kind": "my_kind",
+     *   //   "managementType": "my_managementType",
+     *   //   "policy": {},
+     *   //   "report": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.devices.get
      * @memberOf! ()
      *
@@ -1710,6 +1797,51 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.devices.getState
      * @desc Retrieves whether a device's access to Google services is enabled or disabled. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services. This is only supported for Google-managed users.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.devices.getState({
+     *     // The ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountState": "my_accountState",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.devices.getState
      * @memberOf! ()
      *
@@ -1785,6 +1917,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.devices.list
      * @desc Retrieves the IDs of all of a user's devices.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.devices.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "device": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.devices.list
      * @memberOf! ()
      *
@@ -1859,6 +2034,60 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.devices.setState
      * @desc Sets whether a device's access to Google services is enabled or disabled. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services. This is only supported for Google-managed users.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.devices.setState({
+     *     // The ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountState": "my_accountState",
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountState": "my_accountState",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.devices.setState
      * @memberOf! ()
      *
@@ -1935,6 +2164,70 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.devices.update
      * @desc Updates the device policy
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.devices.update({
+     *     // The ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // Mask that identifies which fields to update. If not set, all modifiable fields will be modified.
+     *     //
+     *     // When set in a query parameter, this field should be specified as updateMask=<field1>,<field2>,...
+     *     updateMask: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "androidId": "my_androidId",
+     *       //   "kind": "my_kind",
+     *       //   "managementType": "my_managementType",
+     *       //   "policy": {},
+     *       //   "report": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidId": "my_androidId",
+     *   //   "kind": "my_kind",
+     *   //   "managementType": "my_managementType",
+     *   //   "policy": {},
+     *   //   "report": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.devices.update
      * @memberOf! ()
      *
@@ -2143,6 +2436,41 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.acknowledgeNotificationSet
      * @desc Acknowledges notifications that were received from Enterprises.PullNotificationSet to prevent subsequent calls from returning the same notifications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.acknowledgeNotificationSet({
+     *     // The notification set ID as returned by Enterprises.PullNotificationSet. This must be provided.
+     *     notificationSetId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.acknowledgeNotificationSet
      * @memberOf! ()
      *
@@ -2215,6 +2543,52 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.completeSignup
      * @desc Completes the signup flow, by specifying the Completion token and Enterprise token. This request must not be called multiple times for a given Enterprise Token.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.completeSignup({
+     *     // The Completion token initially returned by GenerateSignupUrl.
+     *     completionToken: 'placeholder-value',
+     *     // The Enterprise token appended to the Callback URL.
+     *     enterpriseToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "administrator": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "primaryDomain": "my_primaryDomain"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.completeSignup
      * @memberOf! ()
      *
@@ -2289,6 +2663,62 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.createWebToken
      * @desc Returns a unique token to access an embeddable UI. To generate a web UI, pass the generated token into the managed Google Play javascript API. Each token may only be used to start one UI session. See the javascript API documentation for further information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.createWebToken({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "managedConfigurations": {},
+     *       //   "parent": "my_parent",
+     *       //   "permission": [],
+     *       //   "playSearch": {},
+     *       //   "privateApps": {},
+     *       //   "storeBuilder": {},
+     *       //   "webApps": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.createWebToken
      * @memberOf! ()
      *
@@ -2368,6 +2798,62 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.enroll
      * @desc Enrolls an enterprise with the calling EMM.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.enroll({
+     *     // The token provided by the enterprise to register the EMM.
+     *     token: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "administrator": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "primaryDomain": "my_primaryDomain"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "administrator": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "primaryDomain": "my_primaryDomain"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.enroll
      * @memberOf! ()
      *
@@ -2443,6 +2929,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.generateSignupUrl
      * @desc Generates a sign-up URL.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.generateSignupUrl({
+     *     // The callback URL to which the Admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a single query parameter to this URL named "enterpriseToken" which will contain an opaque token to be used for the CompleteSignup request.
+     *     // Beware that this means that the URL will be parsed, the parameter added and then a new URL formatted, i.e. there may be some minor formatting changes and, more importantly, the URL must be well-formed so that it can be parsed.
+     *     callbackUrl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completionToken": "my_completionToken",
+     *   //   "kind": "my_kind",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.generateSignupUrl
      * @memberOf! ()
      *
@@ -2516,6 +3045,50 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.get
      * @desc Retrieves the name and domain of an enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.get({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "administrator": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "primaryDomain": "my_primaryDomain"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.get
      * @memberOf! ()
      *
@@ -2588,6 +3161,50 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.getServiceAccount
      * @desc Returns a service account and credentials. The service account can be bound to the enterprise by calling setAccount. The service account is unique to this enterprise and EMM, and will be deleted if the enterprise is unbound. The credentials contain private key data and are not stored server-side.  This method can only be called after calling Enterprises.Enroll or Enterprises.CompleteSignup, and before Enterprises.SetAccount; at other times it will return an error.  Subsequent calls after the first will generate a new, unique set of credentials, and invalidate the previously generated credentials.  Once the service account is bound to the enterprise, it can be managed using the serviceAccountKeys resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.getServiceAccount({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The type of credential to return with the service account. Required.
+     *     keyType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "key": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.getServiceAccount
      * @memberOf! ()
      *
@@ -2665,6 +3282,48 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.getStoreLayout
      * @desc Returns the store layout for the enterprise. If the store layout has not been set, returns "basic" as the store layout type and no homepage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.getStoreLayout({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "homepageId": "my_homepageId",
+     *   //   "kind": "my_kind",
+     *   //   "storeLayoutType": "my_storeLayoutType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.getStoreLayout
      * @memberOf! ()
      *
@@ -2739,6 +3398,47 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.list
      * @desc Looks up an enterprise by domain name. This is only supported for enterprises created via the Google-initiated creation flow. Lookup of the id is not needed for enterprises created via the EMM-initiated flow since the EMM learns the enterprise ID in the callback specified in the Enterprises.generateSignupUrl call.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.list({
+     *     // The exact primary domain name of the enterprise to look up.
+     *     domain: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enterprise": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.list
      * @memberOf! ()
      *
@@ -2814,6 +3514,51 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.pullNotificationSet
      * @desc Pulls and returns a notification set for the enterprises associated with the service account authenticated for the request. The notification set may be empty if no notification are pending. A notification set returned needs to be acknowledged within 20 seconds by calling Enterprises.AcknowledgeNotificationSet, unless the notification set is empty. Notifications that are not acknowledged within the 20 seconds will eventually be included again in the response to another PullNotificationSet request, and those that are never acknowledged will ultimately be deleted according to the Google Cloud Platform Pub/Sub system policy. Multiple requests might be performed concurrently to retrieve notifications, in which case the pending notifications (if any) will be split among each caller, if any are pending. If no notifications are present, an empty notification list is returned. Subsequent requests may return more notifications once they become available.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.pullNotificationSet({
+     *     // The request mode for pulling notifications.
+     *     // Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time.
+     *     // Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present.
+     *     // If omitted, defaults to waitForNotifications.
+     *     requestMode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "notification": [],
+     *   //   "notificationSetId": "my_notificationSetId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.pullNotificationSet
      * @memberOf! ()
      *
@@ -2889,6 +3634,47 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.sendTestPushNotification
      * @desc Sends a test notification to validate the EMM integration with the Google Cloud Pub/Sub service for this enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.sendTestPushNotification({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messageId": "my_messageId",
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.sendTestPushNotification
      * @memberOf! ()
      *
@@ -2988,6 +3774,56 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.setAccount
      * @desc Sets the account that will be used to authenticate to the API as the enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.setAccount({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountEmail": "my_accountEmail",
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountEmail": "my_accountEmail",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.setAccount
      * @memberOf! ()
      *
@@ -3063,6 +3899,58 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.setStoreLayout
      * @desc Sets the store layout for the enterprise. By default, storeLayoutType is set to "basic" and the basic store layout is enabled. The basic layout only contains apps approved by the admin, and that have been added to the available product set for a user (using the  setAvailableProductSet call). Apps on the page are sorted in order of their product ID value. If you create a custom store layout (by setting storeLayoutType = "custom" and setting a homepage), the basic store layout is disabled.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.setStoreLayout({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "homepageId": "my_homepageId",
+     *       //   "kind": "my_kind",
+     *       //   "storeLayoutType": "my_storeLayoutType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "homepageId": "my_homepageId",
+     *   //   "kind": "my_kind",
+     *   //   "storeLayoutType": "my_storeLayoutType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.setStoreLayout
      * @memberOf! ()
      *
@@ -3138,6 +4026,41 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.enterprises.unenroll
      * @desc Unenrolls an enterprise from the calling EMM.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.unenroll({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.enterprises.unenroll
      * @memberOf! ()
      *
@@ -3412,6 +4335,45 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.entitlements.delete
      * @desc Removes an entitlement to an app for a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.entitlements.delete({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     *     entitlementId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.entitlements.delete
      * @memberOf! ()
      *
@@ -3486,6 +4448,52 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.entitlements.get
      * @desc Retrieves details of an entitlement.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.entitlements.get({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     *     entitlementId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "productId": "my_productId",
+     *   //   "reason": "my_reason"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.entitlements.get
      * @memberOf! ()
      *
@@ -3561,6 +4569,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.entitlements.list
      * @desc Lists all entitlements for the specified user. Only the ID is set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.entitlements.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entitlement": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.entitlements.list
      * @memberOf! ()
      *
@@ -3638,6 +4689,64 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.entitlements.update
      * @desc Adds or updates an entitlement to an app for a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.entitlements.update({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     *     entitlementId: 'placeholder-value',
+     *     // Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
+     *     install: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "productId": "my_productId",
+     *       //   "reason": "my_reason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "productId": "my_productId",
+     *   //   "reason": "my_reason"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.entitlements.update
      * @memberOf! ()
      *
@@ -3808,6 +4917,54 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.grouplicenses.get
      * @desc Retrieves details of an enterprise's group license for a product.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.grouplicenses.get({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product the group license is for, e.g. "app:com.google.android.gm".
+     *     groupLicenseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquisitionKind": "my_acquisitionKind",
+     *   //   "approval": "my_approval",
+     *   //   "kind": "my_kind",
+     *   //   "numProvisioned": 0,
+     *   //   "numPurchased": 0,
+     *   //   "permissions": "my_permissions",
+     *   //   "productId": "my_productId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.grouplicenses.get
      * @memberOf! ()
      *
@@ -3883,6 +5040,47 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.grouplicenses.list
      * @desc Retrieves IDs of all products for which the enterprise has a group license.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.grouplicenses.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groupLicense": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.grouplicenses.list
      * @memberOf! ()
      *
@@ -4000,6 +5198,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.grouplicenseusers.list
      * @desc Retrieves the IDs of the users who have been granted entitlements under the license.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.grouplicenseusers.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product the group license is for, e.g. "app:com.google.android.gm".
+     *     groupLicenseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "user": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.grouplicenseusers.list
      * @memberOf! ()
      *
@@ -4108,6 +5349,47 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.installs.delete
      * @desc Requests to remove an app from a device. A call to get or list will still show the app as installed on the device until it is actually removed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.installs.delete({
+     *     // The Android ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+     *     installId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.installs.delete
      * @memberOf! ()
      *
@@ -4182,6 +5464,55 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.installs.get
      * @desc Retrieves details of an installation of an app on a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.installs.get({
+     *     // The Android ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+     *     installId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "installState": "my_installState",
+     *   //   "kind": "my_kind",
+     *   //   "productId": "my_productId",
+     *   //   "versionCode": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.installs.get
      * @memberOf! ()
      *
@@ -4256,6 +5587,51 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.installs.list
      * @desc Retrieves the details of all apps installed on the specified device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.installs.list({
+     *     // The Android ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "install": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.installs.list
      * @memberOf! ()
      *
@@ -4333,6 +5709,66 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.installs.update
      * @desc Requests to install the latest version of an app to a device. If the app is already installed, then it is updated to the latest version if necessary.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.installs.update({
+     *     // The Android ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+     *     installId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "installState": "my_installState",
+     *       //   "kind": "my_kind",
+     *       //   "productId": "my_productId",
+     *       //   "versionCode": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "installState": "my_installState",
+     *   //   "kind": "my_kind",
+     *   //   "productId": "my_productId",
+     *   //   "versionCode": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.installs.update
      * @memberOf! ()
      *
@@ -4509,6 +5945,47 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationsfordevice.delete
      * @desc Removes a per-device managed configuration for an app for the specified device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationsfordevice.delete({
+     *     // The Android ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     *     managedConfigurationForDeviceId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationsfordevice.delete
      * @memberOf! ()
      *
@@ -4594,6 +6071,55 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationsfordevice.get
      * @desc Retrieves details of a per-device managed configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationsfordevice.get({
+     *     // The Android ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     *     managedConfigurationForDeviceId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configurationVariables": {},
+     *   //   "kind": "my_kind",
+     *   //   "managedProperty": [],
+     *   //   "productId": "my_productId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationsfordevice.get
      * @memberOf! ()
      *
@@ -4683,6 +6209,51 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationsfordevice.list
      * @desc Lists all the per-device managed configurations for the specified device. Only the ID is set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationsfordevice.list({
+     *     // The Android ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "managedConfigurationForDevice": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationsfordevice.list
      * @memberOf! ()
      *
@@ -4782,6 +6353,66 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationsfordevice.update
      * @desc Adds or updates a per-device managed configuration for an app for the specified device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationsfordevice.update({
+     *     // The Android ID of the device.
+     *     deviceId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     *     managedConfigurationForDeviceId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configurationVariables": {},
+     *       //   "kind": "my_kind",
+     *       //   "managedProperty": [],
+     *       //   "productId": "my_productId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configurationVariables": {},
+     *   //   "kind": "my_kind",
+     *   //   "managedProperty": [],
+     *   //   "productId": "my_productId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationsfordevice.update
      * @memberOf! ()
      *
@@ -4977,6 +6608,45 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationsforuser.delete
      * @desc Removes a per-user managed configuration for an app for the specified user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationsforuser.delete({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     *     managedConfigurationForUserId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationsforuser.delete
      * @memberOf! ()
      *
@@ -5055,6 +6725,53 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationsforuser.get
      * @desc Retrieves details of a per-user managed configuration for an app for the specified user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationsforuser.get({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     *     managedConfigurationForUserId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configurationVariables": {},
+     *   //   "kind": "my_kind",
+     *   //   "managedProperty": [],
+     *   //   "productId": "my_productId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationsforuser.get
      * @memberOf! ()
      *
@@ -5137,6 +6854,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationsforuser.list
      * @desc Lists all the per-user managed configurations for the specified user. Only the ID is set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationsforuser.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "managedConfigurationForUser": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationsforuser.list
      * @memberOf! ()
      *
@@ -5229,6 +6989,64 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationsforuser.update
      * @desc Adds or updates the managed configuration settings for an app for the specified user. If you support the Managed configurations iframe, you can apply managed configurations to a user by specifying an mcmId and its associated configuration variables (if any) in the request. Alternatively, all EMMs can apply managed configurations by passing a list of managed properties.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationsforuser.update({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+     *     managedConfigurationForUserId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configurationVariables": {},
+     *       //   "kind": "my_kind",
+     *       //   "managedProperty": [],
+     *       //   "productId": "my_productId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configurationVariables": {},
+     *   //   "kind": "my_kind",
+     *   //   "managedProperty": [],
+     *   //   "productId": "my_productId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationsforuser.update
      * @memberOf! ()
      *
@@ -5401,6 +7219,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.managedconfigurationssettings.list
      * @desc Lists all the managed configurations settings for the specified app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.managedconfigurationssettings.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product for which the managed configurations settings applies to.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "managedConfigurationsSettings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.managedconfigurationssettings.list
      * @memberOf! ()
      *
@@ -5523,6 +7384,51 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.permissions.get
      * @desc Retrieves details of an Android app permission for display to an enterprise admin.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.permissions.get({
+     *     // The BCP47 tag for the user's preferred language (e.g. "en-US", "de")
+     *     language: 'placeholder-value',
+     *     // The ID of the permission.
+     *     permissionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "permissionId": "my_permissionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.permissions.get
      * @memberOf! ()
      *
@@ -5619,6 +7525,52 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.products.approve
      * @desc Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000.  To learn how to use managed Google Play to design and create a store layout to display approved products to your users, see Store Layout Design.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.products.approve({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product.
+     *     productId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "approvalUrlInfo": {},
+     *       //   "approvedPermissions": "my_approvedPermissions"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.products.approve
      * @memberOf! ()
      *
@@ -5692,6 +7644,50 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.products.generateApprovalUrl
      * @desc Generates a URL that can be rendered in an iframe to display the permissions (if any) of a product. An enterprise admin must view these permissions and accept them on behalf of their organization in order to approve that product.  Admins should accept the displayed permissions by interacting with a separate UI element in the EMM console, which in turn should trigger the use of this URL as the approvalUrlInfo.approvalUrl property in a Products.approve call to approve the product. This URL can only be used to display permissions for up to 1 day.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.products.generateApprovalUrl({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance "en-US".
+     *     languageCode: 'placeholder-value',
+     *     // The ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.products.generateApprovalUrl
      * @memberOf! ()
      *
@@ -5779,6 +7775,74 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.products.get
      * @desc Retrieves details of a product for display to an enterprise admin.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.products.get({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
+     *     language: 'placeholder-value',
+     *     // The ID of the product, e.g. "app:com.google.android.gm".
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appTracks": [],
+     *   //   "appVersion": [],
+     *   //   "authorName": "my_authorName",
+     *   //   "availableCountries": [],
+     *   //   "availableTracks": [],
+     *   //   "category": "my_category",
+     *   //   "contentRating": "my_contentRating",
+     *   //   "description": "my_description",
+     *   //   "detailsUrl": "my_detailsUrl",
+     *   //   "distributionChannel": "my_distributionChannel",
+     *   //   "features": [],
+     *   //   "iconUrl": "my_iconUrl",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdatedTimestampMillis": "my_lastUpdatedTimestampMillis",
+     *   //   "minAndroidSdkVersion": 0,
+     *   //   "permissions": [],
+     *   //   "productId": "my_productId",
+     *   //   "productPricing": "my_productPricing",
+     *   //   "recentChanges": "my_recentChanges",
+     *   //   "requiresContainerApp": false,
+     *   //   "screenshotUrls": [],
+     *   //   "signingCertificate": {},
+     *   //   "smallIconUrl": "my_smallIconUrl",
+     *   //   "title": "my_title",
+     *   //   "workDetailsUrl": "my_workDetailsUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.products.get
      * @memberOf! ()
      *
@@ -5852,6 +7916,51 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.products.getAppRestrictionsSchema
      * @desc Retrieves the schema that defines the configurable properties for this product. All products have a schema, but this schema may be empty if no managed configurations have been defined. This schema can be used to populate a UI that allows an admin to configure the product. To apply a managed configuration based on the schema obtained using this API, see Managed Configurations through Play.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.products.getAppRestrictionsSchema({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
+     *     language: 'placeholder-value',
+     *     // The ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "restrictions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.products.getAppRestrictionsSchema
      * @memberOf! ()
      *
@@ -5932,6 +8041,50 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.products.getPermissions
      * @desc Retrieves the Android app permissions required by this app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.products.getPermissions({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "permission": [],
+     *   //   "productId": "my_productId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.products.getPermissions
      * @memberOf! ()
      *
@@ -6009,6 +8162,59 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.products.list
      * @desc Finds approved products that match a query, or all approved products if there is no query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.products.list({
+     *     // Specifies whether to search among all products (false) or among only products that have been approved (true). Only "true" is supported, and should be specified.
+     *     approved: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
+     *     language: 'placeholder-value',
+     *     // Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
+     *     maxResults: 'placeholder-value',
+     *     // The search query as typed in the Google Play store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
+     *     query: 'placeholder-value',
+     *     // A pagination token is contained in a request's response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "pageInfo": {},
+     *   //   "product": [],
+     *   //   "tokenPagination": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.products.list
      * @memberOf! ()
      *
@@ -6089,6 +8295,43 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.products.unapprove
      * @desc Unapproves the specified product (and the relevant app permissions, if any)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.products.unapprove({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.products.unapprove
      * @memberOf! ()
      *
@@ -6312,6 +8555,43 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.serviceaccountkeys.delete
      * @desc Removes and invalidates the specified credentials for the service account associated with this enterprise. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.serviceaccountkeys.delete({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the key.
+     *     keyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.serviceaccountkeys.delete
      * @memberOf! ()
      *
@@ -6385,6 +8665,62 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.serviceaccountkeys.insert
      * @desc Generates new credentials for the service account associated with this enterprise. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.  Only the type of the key should be populated in the resource to be inserted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.serviceaccountkeys.insert({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": "my_data",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "publicData": "my_publicData",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "data": "my_data",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "publicData": "my_publicData",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.serviceaccountkeys.insert
      * @memberOf! ()
      *
@@ -6460,6 +8796,46 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.serviceaccountkeys.list
      * @desc Lists all active credentials for the service account associated with this enterprise. Only the ID and key type are returned. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.serviceaccountkeys.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "serviceAccountKey": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.serviceaccountkeys.list
      * @memberOf! ()
      *
@@ -6596,6 +8972,45 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutclusters.delete
      * @desc Deletes a cluster.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutclusters.delete({
+     *     // The ID of the cluster.
+     *     clusterId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the page.
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutclusters.delete
      * @memberOf! ()
      *
@@ -6670,6 +9085,54 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutclusters.get
      * @desc Retrieves details of a cluster.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutclusters.get({
+     *     // The ID of the cluster.
+     *     clusterId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the page.
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": [],
+     *   //   "orderInPage": "my_orderInPage",
+     *   //   "productId": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutclusters.get
      * @memberOf! ()
      *
@@ -6746,6 +9209,64 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutclusters.insert
      * @desc Inserts a new cluster in a page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutclusters.insert({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the page.
+     *     pageId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": [],
+     *       //   "orderInPage": "my_orderInPage",
+     *       //   "productId": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": [],
+     *   //   "orderInPage": "my_orderInPage",
+     *   //   "productId": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutclusters.insert
      * @memberOf! ()
      *
@@ -6822,6 +9343,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutclusters.list
      * @desc Retrieves the details of all clusters on the specified page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutclusters.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the page.
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cluster": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutclusters.list
      * @memberOf! ()
      *
@@ -6906,6 +9470,66 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutclusters.update
      * @desc Updates a cluster.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutclusters.update({
+     *     // The ID of the cluster.
+     *     clusterId: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the page.
+     *     pageId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": [],
+     *       //   "orderInPage": "my_orderInPage",
+     *       //   "productId": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": [],
+     *   //   "orderInPage": "my_orderInPage",
+     *   //   "productId": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutclusters.update
      * @memberOf! ()
      *
@@ -7093,6 +9717,43 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutpages.delete
      * @desc Deletes a store page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutpages.delete({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the page.
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutpages.delete
      * @memberOf! ()
      *
@@ -7166,6 +9827,51 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutpages.get
      * @desc Retrieves details of a store page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutpages.get({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the page.
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "link": [],
+     *   //   "name": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutpages.get
      * @memberOf! ()
      *
@@ -7241,6 +9947,60 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutpages.insert
      * @desc Inserts a new store page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutpages.insert({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "link": [],
+     *       //   "name": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "link": [],
+     *   //   "name": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutpages.insert
      * @memberOf! ()
      *
@@ -7316,6 +10076,47 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutpages.list
      * @desc Retrieves the details of all pages in the store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutpages.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "page": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutpages.list
      * @memberOf! ()
      *
@@ -7399,6 +10200,62 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.storelayoutpages.update
      * @desc Updates the content of a store page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.storelayoutpages.update({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the page.
+     *     pageId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "link": [],
+     *       //   "name": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "link": [],
+     *   //   "name": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.storelayoutpages.update
      * @memberOf! ()
      *
@@ -7565,6 +10422,43 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.delete
      * @desc Deleted an EMM-managed user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.delete({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.delete
      * @memberOf! ()
      *
@@ -7637,6 +10531,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.generateAuthenticationToken
      * @desc Generates an authentication token which the device policy client can use to provision the given EMM-managed user account on a device. The generated token is single-use and expires after a few minutes.  You can provision a maximum of 10 devices per user.  This call only works with EMM-managed accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.generateAuthenticationToken({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.generateAuthenticationToken
      * @memberOf! ()
      *
@@ -7714,6 +10651,50 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.generateToken
      * @desc Generates a token (activation code) to allow this user to configure their managed account in the Android Setup Wizard. Revokes any previously generated token.  This call only works with Google managed accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.generateToken({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "token": "my_token",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.generateToken
      * @memberOf! ()
      *
@@ -7789,6 +10770,54 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.get
      * @desc Retrieves a user's details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.get({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdentifier": "my_accountIdentifier",
+     *   //   "accountType": "my_accountType",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "managementType": "my_managementType",
+     *   //   "primaryEmail": "my_primaryEmail"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.get
      * @memberOf! ()
      *
@@ -7861,6 +10890,51 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.getAvailableProductSet
      * @desc Retrieves the set of products a user is entitled to access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.getAvailableProductSet({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "productId": [],
+     *   //   "productSetBehavior": "my_productSetBehavior",
+     *   //   "productVisibility": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.getAvailableProductSet
      * @memberOf! ()
      *
@@ -7938,6 +11012,66 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.insert
      * @desc Creates a new EMM-managed user.  The Users resource passed in the body of the request should include an accountIdentifier and an accountType. If a corresponding user already exists with the same account identifier, the user will be updated with the resource. In this case only the displayName field can be changed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.insert({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdentifier": "my_accountIdentifier",
+     *       //   "accountType": "my_accountType",
+     *       //   "displayName": "my_displayName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "managementType": "my_managementType",
+     *       //   "primaryEmail": "my_primaryEmail"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdentifier": "my_accountIdentifier",
+     *   //   "accountType": "my_accountType",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "managementType": "my_managementType",
+     *   //   "primaryEmail": "my_primaryEmail"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.insert
      * @memberOf! ()
      *
@@ -8009,6 +11143,49 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.list
      * @desc Looks up a user by primary email address. This is only supported for Google-managed users. Lookup of the id is not needed for EMM-managed users because the id is already returned in the result of the Users.insert call.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.list({
+     *     // The exact primary email address of the user to look up.
+     *     email: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "user": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.list
      * @memberOf! ()
      *
@@ -8082,6 +11259,43 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.revokeDeviceAccess
      * @desc Revokes access to all devices currently provisioned to the user. The user will no longer be able to use the managed Play store on any of their managed devices.  This call only works with EMM-managed accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.revokeDeviceAccess({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.revokeDeviceAccess
      * @memberOf! ()
      *
@@ -8155,6 +11369,43 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.revokeToken
      * @desc Revokes a previously generated token (activation code) for the user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.revokeToken({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.revokeToken
      * @memberOf! ()
      *
@@ -8228,6 +11479,62 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.setAvailableProductSet
      * @desc Modifies the set of products that a user is entitled to access (referred to as whitelisted products). Only products that are approved or products that were previously approved (products with revoked approval) can be whitelisted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.setAvailableProductSet({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "productId": [],
+     *       //   "productSetBehavior": "my_productSetBehavior",
+     *       //   "productVisibility": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "productId": [],
+     *   //   "productSetBehavior": "my_productSetBehavior",
+     *   //   "productVisibility": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.setAvailableProductSet
      * @memberOf! ()
      *
@@ -8306,6 +11613,68 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.users.update
      * @desc Updates the details of an EMM-managed user.  Can be used with EMM-managed users only (not Google managed users). Pass the new details in the Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.users.update({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdentifier": "my_accountIdentifier",
+     *       //   "accountType": "my_accountType",
+     *       //   "displayName": "my_displayName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "managementType": "my_managementType",
+     *       //   "primaryEmail": "my_primaryEmail"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdentifier": "my_accountIdentifier",
+     *   //   "accountType": "my_accountType",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "managementType": "my_managementType",
+     *   //   "primaryEmail": "my_primaryEmail"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.users.update
      * @memberOf! ()
      *
@@ -8569,6 +11938,43 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.webapps.delete
      * @desc Deletes an existing web app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.webapps.delete({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the web app.
+     *     webAppId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.webapps.delete
      * @memberOf! ()
      *
@@ -8641,6 +12047,54 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.webapps.get
      * @desc Gets an existing web app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.webapps.get({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the web app.
+     *     webAppId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayMode": "my_displayMode",
+     *   //   "icons": [],
+     *   //   "isPublished": false,
+     *   //   "startUrl": "my_startUrl",
+     *   //   "title": "my_title",
+     *   //   "versionCode": "my_versionCode",
+     *   //   "webAppId": "my_webAppId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.webapps.get
      * @memberOf! ()
      *
@@ -8713,6 +12167,66 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.webapps.insert
      * @desc Creates a new web app for the enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.webapps.insert({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayMode": "my_displayMode",
+     *       //   "icons": [],
+     *       //   "isPublished": false,
+     *       //   "startUrl": "my_startUrl",
+     *       //   "title": "my_title",
+     *       //   "versionCode": "my_versionCode",
+     *       //   "webAppId": "my_webAppId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayMode": "my_displayMode",
+     *   //   "icons": [],
+     *   //   "isPublished": false,
+     *   //   "startUrl": "my_startUrl",
+     *   //   "title": "my_title",
+     *   //   "versionCode": "my_versionCode",
+     *   //   "webAppId": "my_webAppId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.webapps.insert
      * @memberOf! ()
      *
@@ -8785,6 +12299,47 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.webapps.list
      * @desc Retrieves the details of all web apps for a given enterprise.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.webapps.list({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "webApp": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.webapps.list
      * @memberOf! ()
      *
@@ -8858,6 +12413,68 @@ export namespace androidenterprise_v1 {
     /**
      * androidenterprise.webapps.update
      * @desc Updates an existing web app.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.webapps.update({
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *     // The ID of the web app.
+     *     webAppId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayMode": "my_displayMode",
+     *       //   "icons": [],
+     *       //   "isPublished": false,
+     *       //   "startUrl": "my_startUrl",
+     *       //   "title": "my_title",
+     *       //   "versionCode": "my_versionCode",
+     *       //   "webAppId": "my_webAppId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayMode": "my_displayMode",
+     *   //   "icons": [],
+     *   //   "isPublished": false,
+     *   //   "startUrl": "my_startUrl",
+     *   //   "title": "my_title",
+     *   //   "versionCode": "my_versionCode",
+     *   //   "webAppId": "my_webAppId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidenterprise.webapps.update
      * @memberOf! ()
      *

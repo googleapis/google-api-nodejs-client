@@ -2328,6 +2328,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.asps.delete
      * @desc Delete an ASP issued by a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.asps.delete({
+     *     // The unique ID of the ASP to be deleted.
+     *     codeId: 'placeholder-value',
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.asps.delete
      * @memberOf! ()
      *
@@ -2399,6 +2436,54 @@ export namespace admin_directory_v1 {
     /**
      * directory.asps.get
      * @desc Get information about an ASP issued by a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.asps.get({
+     *     // The unique ID of the ASP.
+     *     codeId: 'placeholder-value',
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "codeId": 0,
+     *   //   "creationTime": "my_creationTime",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "lastTimeUsed": "my_lastTimeUsed",
+     *   //   "name": "my_name",
+     *   //   "userKey": "my_userKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.asps.get
      * @memberOf! ()
      *
@@ -2470,6 +2555,48 @@ export namespace admin_directory_v1 {
     /**
      * directory.asps.list
      * @desc List the ASPs issued by a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.asps.list({
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.asps.list
      * @memberOf! ()
      *
@@ -2590,6 +2717,61 @@ export namespace admin_directory_v1 {
     /**
      * admin.channels.stop
      * @desc Stop watching resources through this channel
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.alias',
+     *       'https://www.googleapis.com/auth/admin.directory.user.alias.readonly',
+     *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await admin.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias admin.channels.stop
      * @memberOf! ()
      *
@@ -2679,6 +2861,52 @@ export namespace admin_directory_v1 {
     /**
      * directory.chromeosdevices.action
      * @desc Take action on Chrome OS Device
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.device.chromeos'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.chromeosdevices.action({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Immutable ID of Chrome OS Device
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "deprovisionReason": "my_deprovisionReason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.chromeosdevices.action
      * @memberOf! ()
      *
@@ -2753,6 +2981,87 @@ export namespace admin_directory_v1 {
     /**
      * directory.chromeosdevices.get
      * @desc Retrieve Chrome OS Device
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.device.chromeos',
+     *       'https://www.googleapis.com/auth/admin.directory.device.chromeos.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.chromeosdevices.get({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Immutable ID of Chrome OS Device
+     *     deviceId: 'placeholder-value',
+     *     // Restrict information returned to a set of selected fields.
+     *     projection: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeTimeRanges": [],
+     *   //   "annotatedAssetId": "my_annotatedAssetId",
+     *   //   "annotatedLocation": "my_annotatedLocation",
+     *   //   "annotatedUser": "my_annotatedUser",
+     *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
+     *   //   "bootMode": "my_bootMode",
+     *   //   "cpuStatusReports": [],
+     *   //   "deviceFiles": [],
+     *   //   "deviceId": "my_deviceId",
+     *   //   "diskVolumeReports": [],
+     *   //   "dockMacAddress": "my_dockMacAddress",
+     *   //   "etag": "my_etag",
+     *   //   "ethernetMacAddress": "my_ethernetMacAddress",
+     *   //   "ethernetMacAddress0": "my_ethernetMacAddress0",
+     *   //   "firmwareVersion": "my_firmwareVersion",
+     *   //   "kind": "my_kind",
+     *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *   //   "lastSync": "my_lastSync",
+     *   //   "macAddress": "my_macAddress",
+     *   //   "manufactureDate": "my_manufactureDate",
+     *   //   "meid": "my_meid",
+     *   //   "model": "my_model",
+     *   //   "notes": "my_notes",
+     *   //   "orderNumber": "my_orderNumber",
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "osVersion": "my_osVersion",
+     *   //   "platformVersion": "my_platformVersion",
+     *   //   "recentUsers": [],
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "status": "my_status",
+     *   //   "supportEndDate": "my_supportEndDate",
+     *   //   "systemRamFreeReports": [],
+     *   //   "systemRamTotal": "my_systemRamTotal",
+     *   //   "tpmVersionInfo": {},
+     *   //   "willAutoRenew": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.chromeosdevices.get
      * @memberOf! ()
      *
@@ -2829,6 +3138,66 @@ export namespace admin_directory_v1 {
     /**
      * directory.chromeosdevices.list
      * @desc Retrieve all Chrome OS Devices of a customer (paginated)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.device.chromeos',
+     *       'https://www.googleapis.com/auth/admin.directory.device.chromeos.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.chromeosdevices.list({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Maximum number of results to return. Max allowed value is 200.
+     *     maxResults: 'placeholder-value',
+     *     // Column to use for sorting results
+     *     orderBy: 'placeholder-value',
+     *     // Full path of the organizational unit or its ID
+     *     orgUnitPath: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *     // Restrict information returned to a set of selected fields.
+     *     projection: 'placeholder-value',
+     *     // Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
+     *     query: 'placeholder-value',
+     *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chromeosdevices": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.chromeosdevices.list
      * @memberOf! ()
      *
@@ -2910,6 +3279,51 @@ export namespace admin_directory_v1 {
     /**
      * directory.chromeosdevices.moveDevicesToOu
      * @desc Move or insert multiple Chrome OS Devices to organizational unit
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.device.chromeos'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.chromeosdevices.moveDevicesToOu({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Full path of the target organizational unit or its ID
+     *     orgUnitPath: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deviceIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.chromeosdevices.moveDevicesToOu
      * @memberOf! ()
      *
@@ -2984,6 +3398,126 @@ export namespace admin_directory_v1 {
     /**
      * directory.chromeosdevices.patch
      * @desc Update Chrome OS Device. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.device.chromeos'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.chromeosdevices.patch({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Immutable ID of Chrome OS Device
+     *     deviceId: 'placeholder-value',
+     *     // Restrict information returned to a set of selected fields.
+     *     projection: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeTimeRanges": [],
+     *       //   "annotatedAssetId": "my_annotatedAssetId",
+     *       //   "annotatedLocation": "my_annotatedLocation",
+     *       //   "annotatedUser": "my_annotatedUser",
+     *       //   "autoUpdateExpiration": "my_autoUpdateExpiration",
+     *       //   "bootMode": "my_bootMode",
+     *       //   "cpuStatusReports": [],
+     *       //   "deviceFiles": [],
+     *       //   "deviceId": "my_deviceId",
+     *       //   "diskVolumeReports": [],
+     *       //   "dockMacAddress": "my_dockMacAddress",
+     *       //   "etag": "my_etag",
+     *       //   "ethernetMacAddress": "my_ethernetMacAddress",
+     *       //   "ethernetMacAddress0": "my_ethernetMacAddress0",
+     *       //   "firmwareVersion": "my_firmwareVersion",
+     *       //   "kind": "my_kind",
+     *       //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *       //   "lastSync": "my_lastSync",
+     *       //   "macAddress": "my_macAddress",
+     *       //   "manufactureDate": "my_manufactureDate",
+     *       //   "meid": "my_meid",
+     *       //   "model": "my_model",
+     *       //   "notes": "my_notes",
+     *       //   "orderNumber": "my_orderNumber",
+     *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "osVersion": "my_osVersion",
+     *       //   "platformVersion": "my_platformVersion",
+     *       //   "recentUsers": [],
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "status": "my_status",
+     *       //   "supportEndDate": "my_supportEndDate",
+     *       //   "systemRamFreeReports": [],
+     *       //   "systemRamTotal": "my_systemRamTotal",
+     *       //   "tpmVersionInfo": {},
+     *       //   "willAutoRenew": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeTimeRanges": [],
+     *   //   "annotatedAssetId": "my_annotatedAssetId",
+     *   //   "annotatedLocation": "my_annotatedLocation",
+     *   //   "annotatedUser": "my_annotatedUser",
+     *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
+     *   //   "bootMode": "my_bootMode",
+     *   //   "cpuStatusReports": [],
+     *   //   "deviceFiles": [],
+     *   //   "deviceId": "my_deviceId",
+     *   //   "diskVolumeReports": [],
+     *   //   "dockMacAddress": "my_dockMacAddress",
+     *   //   "etag": "my_etag",
+     *   //   "ethernetMacAddress": "my_ethernetMacAddress",
+     *   //   "ethernetMacAddress0": "my_ethernetMacAddress0",
+     *   //   "firmwareVersion": "my_firmwareVersion",
+     *   //   "kind": "my_kind",
+     *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *   //   "lastSync": "my_lastSync",
+     *   //   "macAddress": "my_macAddress",
+     *   //   "manufactureDate": "my_manufactureDate",
+     *   //   "meid": "my_meid",
+     *   //   "model": "my_model",
+     *   //   "notes": "my_notes",
+     *   //   "orderNumber": "my_orderNumber",
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "osVersion": "my_osVersion",
+     *   //   "platformVersion": "my_platformVersion",
+     *   //   "recentUsers": [],
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "status": "my_status",
+     *   //   "supportEndDate": "my_supportEndDate",
+     *   //   "systemRamFreeReports": [],
+     *   //   "systemRamTotal": "my_systemRamTotal",
+     *   //   "tpmVersionInfo": {},
+     *   //   "willAutoRenew": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.chromeosdevices.patch
      * @memberOf! ()
      *
@@ -3061,6 +3595,126 @@ export namespace admin_directory_v1 {
     /**
      * directory.chromeosdevices.update
      * @desc Update Chrome OS Device
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.device.chromeos'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.chromeosdevices.update({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Immutable ID of Chrome OS Device
+     *     deviceId: 'placeholder-value',
+     *     // Restrict information returned to a set of selected fields.
+     *     projection: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeTimeRanges": [],
+     *       //   "annotatedAssetId": "my_annotatedAssetId",
+     *       //   "annotatedLocation": "my_annotatedLocation",
+     *       //   "annotatedUser": "my_annotatedUser",
+     *       //   "autoUpdateExpiration": "my_autoUpdateExpiration",
+     *       //   "bootMode": "my_bootMode",
+     *       //   "cpuStatusReports": [],
+     *       //   "deviceFiles": [],
+     *       //   "deviceId": "my_deviceId",
+     *       //   "diskVolumeReports": [],
+     *       //   "dockMacAddress": "my_dockMacAddress",
+     *       //   "etag": "my_etag",
+     *       //   "ethernetMacAddress": "my_ethernetMacAddress",
+     *       //   "ethernetMacAddress0": "my_ethernetMacAddress0",
+     *       //   "firmwareVersion": "my_firmwareVersion",
+     *       //   "kind": "my_kind",
+     *       //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *       //   "lastSync": "my_lastSync",
+     *       //   "macAddress": "my_macAddress",
+     *       //   "manufactureDate": "my_manufactureDate",
+     *       //   "meid": "my_meid",
+     *       //   "model": "my_model",
+     *       //   "notes": "my_notes",
+     *       //   "orderNumber": "my_orderNumber",
+     *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "osVersion": "my_osVersion",
+     *       //   "platformVersion": "my_platformVersion",
+     *       //   "recentUsers": [],
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "status": "my_status",
+     *       //   "supportEndDate": "my_supportEndDate",
+     *       //   "systemRamFreeReports": [],
+     *       //   "systemRamTotal": "my_systemRamTotal",
+     *       //   "tpmVersionInfo": {},
+     *       //   "willAutoRenew": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeTimeRanges": [],
+     *   //   "annotatedAssetId": "my_annotatedAssetId",
+     *   //   "annotatedLocation": "my_annotatedLocation",
+     *   //   "annotatedUser": "my_annotatedUser",
+     *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
+     *   //   "bootMode": "my_bootMode",
+     *   //   "cpuStatusReports": [],
+     *   //   "deviceFiles": [],
+     *   //   "deviceId": "my_deviceId",
+     *   //   "diskVolumeReports": [],
+     *   //   "dockMacAddress": "my_dockMacAddress",
+     *   //   "etag": "my_etag",
+     *   //   "ethernetMacAddress": "my_ethernetMacAddress",
+     *   //   "ethernetMacAddress0": "my_ethernetMacAddress0",
+     *   //   "firmwareVersion": "my_firmwareVersion",
+     *   //   "kind": "my_kind",
+     *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *   //   "lastSync": "my_lastSync",
+     *   //   "macAddress": "my_macAddress",
+     *   //   "manufactureDate": "my_manufactureDate",
+     *   //   "meid": "my_meid",
+     *   //   "model": "my_model",
+     *   //   "notes": "my_notes",
+     *   //   "orderNumber": "my_orderNumber",
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "osVersion": "my_osVersion",
+     *   //   "platformVersion": "my_platformVersion",
+     *   //   "recentUsers": [],
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "status": "my_status",
+     *   //   "supportEndDate": "my_supportEndDate",
+     *   //   "systemRamFreeReports": [],
+     *   //   "systemRamTotal": "my_systemRamTotal",
+     *   //   "tpmVersionInfo": {},
+     *   //   "willAutoRenew": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.chromeosdevices.update
      * @memberOf! ()
      *
@@ -3298,6 +3952,57 @@ export namespace admin_directory_v1 {
     /**
      * directory.customers.get
      * @desc Retrieves a customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.customer',
+     *       'https://www.googleapis.com/auth/admin.directory.customer.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.customers.get({
+     *     // Id of the customer to be retrieved
+     *     customerKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerCreationTime": "my_customerCreationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.customers.get
      * @memberOf! ()
      *
@@ -3368,6 +4073,70 @@ export namespace admin_directory_v1 {
     /**
      * directory.customers.patch
      * @desc Updates a customer. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.customer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.customers.patch({
+     *     // Id of the customer to be updated
+     *     customerKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateEmail": "my_alternateEmail",
+     *       //   "customerCreationTime": "my_customerCreationTime",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "language": "my_language",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "postalAddress": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerCreationTime": "my_customerCreationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.customers.patch
      * @memberOf! ()
      *
@@ -3439,6 +4208,70 @@ export namespace admin_directory_v1 {
     /**
      * directory.customers.update
      * @desc Updates a customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.customer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.customers.update({
+     *     // Id of the customer to be updated
+     *     customerKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateEmail": "my_alternateEmail",
+     *       //   "customerCreationTime": "my_customerCreationTime",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "language": "my_language",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "postalAddress": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerCreationTime": "my_customerCreationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.customers.update
      * @memberOf! ()
      *
@@ -3561,6 +4394,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.domainAliases.delete
      * @desc Deletes a Domain Alias of the customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.domain'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.domainAliases.delete({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Name of domain alias to be retrieved.
+     *     domainAliasName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.domainAliases.delete
      * @memberOf! ()
      *
@@ -3634,6 +4504,56 @@ export namespace admin_directory_v1 {
     /**
      * directory.domainAliases.get
      * @desc Retrieves a domain alias of the customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.domain',
+     *       'https://www.googleapis.com/auth/admin.directory.domain.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.domainAliases.get({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Name of domain alias to be retrieved.
+     *     domainAliasName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "domainAliasName": "my_domainAliasName",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "parentDomainName": "my_parentDomainName",
+     *   //   "verified": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.domainAliases.get
      * @memberOf! ()
      *
@@ -3709,6 +4629,64 @@ export namespace admin_directory_v1 {
     /**
      * directory.domainAliases.insert
      * @desc Inserts a Domain alias of the customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.domain'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.domainAliases.insert({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTime": "my_creationTime",
+     *       //   "domainAliasName": "my_domainAliasName",
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "parentDomainName": "my_parentDomainName",
+     *       //   "verified": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "domainAliasName": "my_domainAliasName",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "parentDomainName": "my_parentDomainName",
+     *   //   "verified": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.domainAliases.insert
      * @memberOf! ()
      *
@@ -3783,6 +4761,53 @@ export namespace admin_directory_v1 {
     /**
      * directory.domainAliases.list
      * @desc Lists the domain aliases of the customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.domain',
+     *       'https://www.googleapis.com/auth/admin.directory.domain.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.domainAliases.list({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Name of the parent domain for which domain aliases are to be fetched.
+     *     parentDomainName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainAliases": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.domainAliases.list
      * @memberOf! ()
      *
@@ -3930,6 +4955,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.domains.delete
      * @desc Deletes a domain of the customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.domain'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.domains.delete({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Name of domain to be deleted
+     *     domainName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.domains.delete
      * @memberOf! ()
      *
@@ -4002,6 +5064,57 @@ export namespace admin_directory_v1 {
     /**
      * directory.domains.get
      * @desc Retrieves a domain of the customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.domain',
+     *       'https://www.googleapis.com/auth/admin.directory.domain.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.domains.get({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Name of domain to be retrieved
+     *     domainName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "domainAliases": [],
+     *   //   "domainName": "my_domainName",
+     *   //   "etag": "my_etag",
+     *   //   "isPrimary": false,
+     *   //   "kind": "my_kind",
+     *   //   "verified": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.domains.get
      * @memberOf! ()
      *
@@ -4074,6 +5187,66 @@ export namespace admin_directory_v1 {
     /**
      * directory.domains.insert
      * @desc Inserts a domain of the customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.domain'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.domains.insert({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTime": "my_creationTime",
+     *       //   "domainAliases": [],
+     *       //   "domainName": "my_domainName",
+     *       //   "etag": "my_etag",
+     *       //   "isPrimary": false,
+     *       //   "kind": "my_kind",
+     *       //   "verified": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "domainAliases": [],
+     *   //   "domainName": "my_domainName",
+     *   //   "etag": "my_etag",
+     *   //   "isPrimary": false,
+     *   //   "kind": "my_kind",
+     *   //   "verified": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.domains.insert
      * @memberOf! ()
      *
@@ -4145,6 +5318,51 @@ export namespace admin_directory_v1 {
     /**
      * directory.domains.list
      * @desc Lists the domains of the customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.domain',
+     *       'https://www.googleapis.com/auth/admin.directory.domain.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.domains.list({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.domains.list
      * @memberOf! ()
      *
@@ -4282,6 +5500,41 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.delete
      * @desc Delete Group
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.group'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.delete({
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.delete
      * @memberOf! ()
      *
@@ -4353,6 +5606,58 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.get
      * @desc Retrieve Group
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.get({
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminCreated": false,
+     *   //   "aliases": [],
+     *   //   "description": "my_description",
+     *   //   "directMembersCount": "my_directMembersCount",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "nonEditableAliases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.get
      * @memberOf! ()
      *
@@ -4424,6 +5729,69 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.insert
      * @desc Create Group
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.group'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminCreated": false,
+     *       //   "aliases": [],
+     *       //   "description": "my_description",
+     *       //   "directMembersCount": "my_directMembersCount",
+     *       //   "email": "my_email",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "nonEditableAliases": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminCreated": false,
+     *   //   "aliases": [],
+     *   //   "description": "my_description",
+     *   //   "directMembersCount": "my_directMembersCount",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "nonEditableAliases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.insert
      * @memberOf! ()
      *
@@ -4495,6 +5863,66 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.list
      * @desc Retrieve all groups of a domain or of a user given a userKey (paginated)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.list({
+     *     // Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
+     *     customer: 'placeholder-value',
+     *     // Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
+     *     domain: 'placeholder-value',
+     *     // Maximum number of results to return. Max allowed value is 200.
+     *     maxResults: 'placeholder-value',
+     *     // Column to use for sorting results
+     *     orderBy: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *     // Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
+     *     query: 'placeholder-value',
+     *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     *     sortOrder: 'placeholder-value',
+     *     // Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If it's an ID, it should match with the ID of the user object.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "groups": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.list
      * @memberOf! ()
      *
@@ -4573,6 +6001,72 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.patch
      * @desc Update Group. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.group'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.patch({
+     *     // Email or immutable ID of the group. If ID, it should match with id of group object
+     *     groupKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminCreated": false,
+     *       //   "aliases": [],
+     *       //   "description": "my_description",
+     *       //   "directMembersCount": "my_directMembersCount",
+     *       //   "email": "my_email",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "nonEditableAliases": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminCreated": false,
+     *   //   "aliases": [],
+     *   //   "description": "my_description",
+     *   //   "directMembersCount": "my_directMembersCount",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "nonEditableAliases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.patch
      * @memberOf! ()
      *
@@ -4645,6 +6139,72 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.update
      * @desc Update Group
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.group'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.update({
+     *     // Email or immutable ID of the group. If ID, it should match with id of group object
+     *     groupKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminCreated": false,
+     *       //   "aliases": [],
+     *       //   "description": "my_description",
+     *       //   "directMembersCount": "my_directMembersCount",
+     *       //   "email": "my_email",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "nonEditableAliases": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminCreated": false,
+     *   //   "aliases": [],
+     *   //   "description": "my_description",
+     *   //   "directMembersCount": "my_directMembersCount",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "nonEditableAliases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.update
      * @memberOf! ()
      *
@@ -4829,6 +6389,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.aliases.delete
      * @desc Remove a alias for the group
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.group'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.aliases.delete({
+     *     // The alias to be removed
+     *     alias: 'placeholder-value',
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.aliases.delete
      * @memberOf! ()
      *
@@ -4901,6 +6498,62 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.aliases.insert
      * @desc Add a alias for the group
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.group'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.aliases.insert({
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alias": "my_alias",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "primaryEmail": "my_primaryEmail"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alias": "my_alias",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "primaryEmail": "my_primaryEmail"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.aliases.insert
      * @memberOf! ()
      *
@@ -4973,6 +6626,51 @@ export namespace admin_directory_v1 {
     /**
      * directory.groups.aliases.list
      * @desc List all aliases for a group
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.groups.aliases.list({
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aliases": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.groups.aliases.list
      * @memberOf! ()
      *
@@ -5097,6 +6795,46 @@ export namespace admin_directory_v1 {
     /**
      * directory.members.delete
      * @desc Remove membership.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.members.delete({
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *     // Email or immutable ID of the member
+     *     memberKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.members.delete
      * @memberOf! ()
      *
@@ -5169,6 +6907,60 @@ export namespace admin_directory_v1 {
     /**
      * directory.members.get
      * @desc Retrieve Group Member
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member.readonly',
+     *       'https://www.googleapis.com/auth/admin.directory.group.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.members.get({
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *     // Email or immutable ID of the member
+     *     memberKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delivery_settings": "my_delivery_settings",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "status": "my_status",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.members.get
      * @memberOf! ()
      *
@@ -5241,6 +7033,53 @@ export namespace admin_directory_v1 {
     /**
      * directory.members.hasMember
      * @desc Checks whether the given user is a member of the group. Membership can be direct or nested.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member.readonly',
+     *       'https://www.googleapis.com/auth/admin.directory.group.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.members.hasMember({
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
+     *     groupKey: 'placeholder-value',
+     *     // Identifies the user member in the API request. The value can be the user's primary email address, alias, or unique ID.
+     *     memberKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isMember": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.members.hasMember
      * @memberOf! ()
      *
@@ -5316,6 +7155,71 @@ export namespace admin_directory_v1 {
     /**
      * directory.members.insert
      * @desc Add user to the specified group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.members.insert({
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delivery_settings": "my_delivery_settings",
+     *       //   "email": "my_email",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "status": "my_status",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delivery_settings": "my_delivery_settings",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "status": "my_status",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.members.insert
      * @memberOf! ()
      *
@@ -5387,6 +7291,62 @@ export namespace admin_directory_v1 {
     /**
      * directory.members.list
      * @desc Retrieve all members in a group (paginated)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member.readonly',
+     *       'https://www.googleapis.com/auth/admin.directory.group.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.members.list({
+     *     // Email or immutable ID of the group
+     *     groupKey: 'placeholder-value',
+     *     // Whether to list indirect memberships. Default: false.
+     *     includeDerivedMembership: 'placeholder-value',
+     *     // Maximum number of results to return. Max allowed value is 200.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *     // Comma separated role values to filter list results on.
+     *     roles: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "members": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.members.list
      * @memberOf! ()
      *
@@ -5461,6 +7421,73 @@ export namespace admin_directory_v1 {
     /**
      * directory.members.patch
      * @desc Update membership of a user in the specified group. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.members.patch({
+     *     // Email or immutable ID of the group. If ID, it should match with id of group object
+     *     groupKey: 'placeholder-value',
+     *     // Email or immutable ID of the user. If ID, it should match with id of member object
+     *     memberKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delivery_settings": "my_delivery_settings",
+     *       //   "email": "my_email",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "status": "my_status",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delivery_settings": "my_delivery_settings",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "status": "my_status",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.members.patch
      * @memberOf! ()
      *
@@ -5534,6 +7561,73 @@ export namespace admin_directory_v1 {
     /**
      * directory.members.update
      * @desc Update membership of a user in the specified group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.group.member',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.members.update({
+     *     // Email or immutable ID of the group. If ID, it should match with id of group object
+     *     groupKey: 'placeholder-value',
+     *     // Email or immutable ID of the user. If ID, it should match with id of member object
+     *     memberKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delivery_settings": "my_delivery_settings",
+     *       //   "email": "my_email",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "status": "my_status",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delivery_settings": "my_delivery_settings",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "status": "my_status",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.members.update
      * @memberOf! ()
      *
@@ -5744,6 +7838,54 @@ export namespace admin_directory_v1 {
     /**
      * directory.mobiledevices.action
      * @desc Take action on Mobile Device
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.device.mobile',
+     *       'https://www.googleapis.com/auth/admin.directory.device.mobile.action',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.mobiledevices.action({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Immutable ID of Mobile Device
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.mobiledevices.action
      * @memberOf! ()
      *
@@ -5818,6 +7960,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.mobiledevices.delete
      * @desc Delete Mobile Device
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.device.mobile'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.mobiledevices.delete({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Immutable ID of Mobile Device
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.mobiledevices.delete
      * @memberOf! ()
      *
@@ -5891,6 +8070,93 @@ export namespace admin_directory_v1 {
     /**
      * directory.mobiledevices.get
      * @desc Retrieve Mobile Device
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.device.mobile',
+     *       'https://www.googleapis.com/auth/admin.directory.device.mobile.action',
+     *       'https://www.googleapis.com/auth/admin.directory.device.mobile.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.mobiledevices.get({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Restrict information returned to a set of selected fields.
+     *     projection: 'placeholder-value',
+     *     // Immutable ID of Mobile Device
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adbStatus": false,
+     *   //   "applications": [],
+     *   //   "basebandVersion": "my_basebandVersion",
+     *   //   "bootloaderVersion": "my_bootloaderVersion",
+     *   //   "brand": "my_brand",
+     *   //   "buildNumber": "my_buildNumber",
+     *   //   "defaultLanguage": "my_defaultLanguage",
+     *   //   "developerOptionsStatus": false,
+     *   //   "deviceCompromisedStatus": "my_deviceCompromisedStatus",
+     *   //   "deviceId": "my_deviceId",
+     *   //   "devicePasswordStatus": "my_devicePasswordStatus",
+     *   //   "email": [],
+     *   //   "encryptionStatus": "my_encryptionStatus",
+     *   //   "etag": "my_etag",
+     *   //   "firstSync": "my_firstSync",
+     *   //   "hardware": "my_hardware",
+     *   //   "hardwareId": "my_hardwareId",
+     *   //   "imei": "my_imei",
+     *   //   "kernelVersion": "my_kernelVersion",
+     *   //   "kind": "my_kind",
+     *   //   "lastSync": "my_lastSync",
+     *   //   "managedAccountIsOnOwnerProfile": false,
+     *   //   "manufacturer": "my_manufacturer",
+     *   //   "meid": "my_meid",
+     *   //   "model": "my_model",
+     *   //   "name": [],
+     *   //   "networkOperator": "my_networkOperator",
+     *   //   "os": "my_os",
+     *   //   "otherAccountsInfo": [],
+     *   //   "privilege": "my_privilege",
+     *   //   "releaseVersion": "my_releaseVersion",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "securityPatchLevel": "my_securityPatchLevel",
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "status": "my_status",
+     *   //   "supportsWorkProfile": false,
+     *   //   "type": "my_type",
+     *   //   "unknownSourcesStatus": false,
+     *   //   "userAgent": "my_userAgent",
+     *   //   "wifiMacAddress": "my_wifiMacAddress"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.mobiledevices.get
      * @memberOf! ()
      *
@@ -5967,6 +8233,65 @@ export namespace admin_directory_v1 {
     /**
      * directory.mobiledevices.list
      * @desc Retrieve all Mobile Devices of a customer (paginated)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.device.mobile',
+     *       'https://www.googleapis.com/auth/admin.directory.device.mobile.action',
+     *       'https://www.googleapis.com/auth/admin.directory.device.mobile.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.mobiledevices.list({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Maximum number of results to return. Max allowed value is 100.
+     *     maxResults: 'placeholder-value',
+     *     // Column to use for sorting results
+     *     orderBy: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *     // Restrict information returned to a set of selected fields.
+     *     projection: 'placeholder-value',
+     *     // Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
+     *     query: 'placeholder-value',
+     *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "mobiledevices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.mobiledevices.list
      * @memberOf! ()
      *
@@ -6148,6 +8473,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.notifications.delete
      * @desc Deletes a notification
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.notifications.delete({
+     *     // The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the notification.
+     *     notificationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.notifications.delete
      * @memberOf! ()
      *
@@ -6221,6 +8583,55 @@ export namespace admin_directory_v1 {
     /**
      * directory.notifications.get
      * @desc Retrieves a notification.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.notifications.get({
+     *     // The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the notification.
+     *     notificationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": "my_body",
+     *   //   "etag": "my_etag",
+     *   //   "fromAddress": "my_fromAddress",
+     *   //   "isUnread": false,
+     *   //   "kind": "my_kind",
+     *   //   "notificationId": "my_notificationId",
+     *   //   "sendTime": "my_sendTime",
+     *   //   "subject": "my_subject"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.notifications.get
      * @memberOf! ()
      *
@@ -6296,6 +8707,56 @@ export namespace admin_directory_v1 {
     /**
      * directory.notifications.list
      * @desc Retrieves a list of notifications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.notifications.list({
+     *     // The unique ID for the customer's G Suite account.
+     *     customer: 'placeholder-value',
+     *     // The ISO 639-1 code of the language notifications are returned in. The default is English (en).
+     *     language: 'placeholder-value',
+     *     // Maximum number of notifications to return per page. The default is 100.
+     *     maxResults: 'placeholder-value',
+     *     // The token to specify the page of results to retrieve.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreadNotificationsCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.notifications.list
      * @memberOf! ()
      *
@@ -6372,6 +8833,70 @@ export namespace admin_directory_v1 {
     /**
      * directory.notifications.patch
      * @desc Updates a notification. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.notifications.patch({
+     *     // The unique ID for the customer's G Suite account.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the notification.
+     *     notificationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "body": "my_body",
+     *       //   "etag": "my_etag",
+     *       //   "fromAddress": "my_fromAddress",
+     *       //   "isUnread": false,
+     *       //   "kind": "my_kind",
+     *       //   "notificationId": "my_notificationId",
+     *       //   "sendTime": "my_sendTime",
+     *       //   "subject": "my_subject"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": "my_body",
+     *   //   "etag": "my_etag",
+     *   //   "fromAddress": "my_fromAddress",
+     *   //   "isUnread": false,
+     *   //   "kind": "my_kind",
+     *   //   "notificationId": "my_notificationId",
+     *   //   "sendTime": "my_sendTime",
+     *   //   "subject": "my_subject"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.notifications.patch
      * @memberOf! ()
      *
@@ -6448,6 +8973,70 @@ export namespace admin_directory_v1 {
     /**
      * directory.notifications.update
      * @desc Updates a notification.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.notifications.update({
+     *     // The unique ID for the customer's G Suite account.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the notification.
+     *     notificationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "body": "my_body",
+     *       //   "etag": "my_etag",
+     *       //   "fromAddress": "my_fromAddress",
+     *       //   "isUnread": false,
+     *       //   "kind": "my_kind",
+     *       //   "notificationId": "my_notificationId",
+     *       //   "sendTime": "my_sendTime",
+     *       //   "subject": "my_subject"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": "my_body",
+     *   //   "etag": "my_etag",
+     *   //   "fromAddress": "my_fromAddress",
+     *   //   "isUnread": false,
+     *   //   "kind": "my_kind",
+     *   //   "notificationId": "my_notificationId",
+     *   //   "sendTime": "my_sendTime",
+     *   //   "subject": "my_subject"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.notifications.update
      * @memberOf! ()
      *
@@ -6630,6 +9219,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.orgunits.delete
      * @desc Remove organizational unit
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.orgunit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.orgunits.delete({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Full path of the organizational unit or its ID
+     *     orgUnitPath: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.orgunits.delete
      * @memberOf! ()
      *
@@ -6702,6 +9328,59 @@ export namespace admin_directory_v1 {
     /**
      * directory.orgunits.get
      * @desc Retrieve organizational unit
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.orgunit',
+     *       'https://www.googleapis.com/auth/admin.directory.orgunit.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.orgunits.get({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Full path of the organizational unit or its ID
+     *     orgUnitPath: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blockInheritance": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "parentOrgUnitId": "my_parentOrgUnitId",
+     *   //   "parentOrgUnitPath": "my_parentOrgUnitPath"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.orgunits.get
      * @memberOf! ()
      *
@@ -6774,6 +9453,70 @@ export namespace admin_directory_v1 {
     /**
      * directory.orgunits.insert
      * @desc Add organizational unit
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.orgunit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.orgunits.insert({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blockInheritance": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "parentOrgUnitId": "my_parentOrgUnitId",
+     *       //   "parentOrgUnitPath": "my_parentOrgUnitPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blockInheritance": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "parentOrgUnitId": "my_parentOrgUnitId",
+     *   //   "parentOrgUnitPath": "my_parentOrgUnitPath"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.orgunits.insert
      * @memberOf! ()
      *
@@ -6845,6 +9588,55 @@ export namespace admin_directory_v1 {
     /**
      * directory.orgunits.list
      * @desc Retrieve all organizational units
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.orgunit',
+     *       'https://www.googleapis.com/auth/admin.directory.orgunit.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.orgunits.list({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // the URL-encoded organizational unit's path or its ID
+     *     orgUnitPath: 'placeholder-value',
+     *     // Whether to return all sub-organizations or just immediate children
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "organizationUnits": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.orgunits.list
      * @memberOf! ()
      *
@@ -6917,6 +9709,72 @@ export namespace admin_directory_v1 {
     /**
      * directory.orgunits.patch
      * @desc Update organizational unit. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.orgunit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.orgunits.patch({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Full path of the organizational unit or its ID
+     *     orgUnitPath: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blockInheritance": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "parentOrgUnitId": "my_parentOrgUnitId",
+     *       //   "parentOrgUnitPath": "my_parentOrgUnitPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blockInheritance": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "parentOrgUnitId": "my_parentOrgUnitId",
+     *   //   "parentOrgUnitPath": "my_parentOrgUnitPath"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.orgunits.patch
      * @memberOf! ()
      *
@@ -6990,6 +9848,72 @@ export namespace admin_directory_v1 {
     /**
      * directory.orgunits.update
      * @desc Update organizational unit
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.orgunit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.orgunits.update({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Full path of the organizational unit or its ID
+     *     orgUnitPath: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blockInheritance": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "parentOrgUnitId": "my_parentOrgUnitId",
+     *       //   "parentOrgUnitPath": "my_parentOrgUnitPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blockInheritance": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "parentOrgUnitId": "my_parentOrgUnitId",
+     *   //   "parentOrgUnitPath": "my_parentOrgUnitPath"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.orgunits.update
      * @memberOf! ()
      *
@@ -7176,6 +10100,51 @@ export namespace admin_directory_v1 {
     /**
      * directory.privileges.list
      * @desc Retrieves a paginated list of all privileges for a customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement',
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.privileges.list({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.privileges.list
      * @memberOf! ()
      *
@@ -7281,6 +10250,45 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.buildings.delete
      * @desc Deletes a building.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.buildings.delete({
+     *     // The ID of the building to delete.
+     *     buildingId: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.buildings.delete
      * @memberOf! ()
      *
@@ -7354,6 +10362,58 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.buildings.get
      * @desc Retrieves a building.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.buildings.get({
+     *     // The unique ID of the building to retrieve.
+     *     buildingId: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "buildingId": "my_buildingId",
+     *   //   "buildingName": "my_buildingName",
+     *   //   "coordinates": {},
+     *   //   "description": "my_description",
+     *   //   "etags": "my_etags",
+     *   //   "floorNames": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.buildings.get
      * @memberOf! ()
      *
@@ -7427,6 +10487,72 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.buildings.insert
      * @desc Inserts a building.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.buildings.insert({
+     *     // Source from which Building.coordinates are derived.
+     *     coordinatesSource: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": {},
+     *       //   "buildingId": "my_buildingId",
+     *       //   "buildingName": "my_buildingName",
+     *       //   "coordinates": {},
+     *       //   "description": "my_description",
+     *       //   "etags": "my_etags",
+     *       //   "floorNames": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "buildingId": "my_buildingId",
+     *   //   "buildingName": "my_buildingName",
+     *   //   "coordinates": {},
+     *   //   "description": "my_description",
+     *   //   "etags": "my_etags",
+     *   //   "floorNames": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.buildings.insert
      * @memberOf! ()
      *
@@ -7501,6 +10627,56 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.buildings.list
      * @desc Retrieves a list of buildings for an account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.buildings.list({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify the next page in the list.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.buildings.list
      * @memberOf! ()
      *
@@ -7577,6 +10753,74 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.buildings.patch
      * @desc Updates a building. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.buildings.patch({
+     *     // The ID of the building to update.
+     *     buildingId: 'placeholder-value',
+     *     // Source from which Building.coordinates are derived.
+     *     coordinatesSource: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": {},
+     *       //   "buildingId": "my_buildingId",
+     *       //   "buildingName": "my_buildingName",
+     *       //   "coordinates": {},
+     *       //   "description": "my_description",
+     *       //   "etags": "my_etags",
+     *       //   "floorNames": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "buildingId": "my_buildingId",
+     *   //   "buildingName": "my_buildingName",
+     *   //   "coordinates": {},
+     *   //   "description": "my_description",
+     *   //   "etags": "my_etags",
+     *   //   "floorNames": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.buildings.patch
      * @memberOf! ()
      *
@@ -7652,6 +10896,74 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.buildings.update
      * @desc Updates a building.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.buildings.update({
+     *     // The ID of the building to update.
+     *     buildingId: 'placeholder-value',
+     *     // Source from which Building.coordinates are derived.
+     *     coordinatesSource: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": {},
+     *       //   "buildingId": "my_buildingId",
+     *       //   "buildingName": "my_buildingName",
+     *       //   "coordinates": {},
+     *       //   "description": "my_description",
+     *       //   "etags": "my_etags",
+     *       //   "floorNames": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "buildingId": "my_buildingId",
+     *   //   "buildingName": "my_buildingName",
+     *   //   "coordinates": {},
+     *   //   "description": "my_description",
+     *   //   "etags": "my_etags",
+     *   //   "floorNames": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.buildings.update
      * @memberOf! ()
      *
@@ -7858,6 +11170,45 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.calendars.delete
      * @desc Deletes a calendar resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.calendars.delete({
+     *     // The unique ID of the calendar resource to delete.
+     *     calendarResourceId: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.calendars.delete
      * @memberOf! ()
      *
@@ -7931,6 +11282,65 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.calendars.get
      * @desc Retrieves a calendar resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.calendars.get({
+     *     // The unique ID of the calendar resource to retrieve.
+     *     calendarResourceId: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildingId": "my_buildingId",
+     *   //   "capacity": 0,
+     *   //   "etags": "my_etags",
+     *   //   "featureInstances": {},
+     *   //   "floorName": "my_floorName",
+     *   //   "floorSection": "my_floorSection",
+     *   //   "generatedResourceName": "my_generatedResourceName",
+     *   //   "kind": "my_kind",
+     *   //   "resourceCategory": "my_resourceCategory",
+     *   //   "resourceDescription": "my_resourceDescription",
+     *   //   "resourceEmail": "my_resourceEmail",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "resourceType": "my_resourceType",
+     *   //   "userVisibleDescription": "my_userVisibleDescription"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.calendars.get
      * @memberOf! ()
      *
@@ -8006,6 +11416,84 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.calendars.insert
      * @desc Inserts a calendar resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.calendars.insert({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "buildingId": "my_buildingId",
+     *       //   "capacity": 0,
+     *       //   "etags": "my_etags",
+     *       //   "featureInstances": {},
+     *       //   "floorName": "my_floorName",
+     *       //   "floorSection": "my_floorSection",
+     *       //   "generatedResourceName": "my_generatedResourceName",
+     *       //   "kind": "my_kind",
+     *       //   "resourceCategory": "my_resourceCategory",
+     *       //   "resourceDescription": "my_resourceDescription",
+     *       //   "resourceEmail": "my_resourceEmail",
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceName": "my_resourceName",
+     *       //   "resourceType": "my_resourceType",
+     *       //   "userVisibleDescription": "my_userVisibleDescription"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildingId": "my_buildingId",
+     *   //   "capacity": 0,
+     *   //   "etags": "my_etags",
+     *   //   "featureInstances": {},
+     *   //   "floorName": "my_floorName",
+     *   //   "floorSection": "my_floorSection",
+     *   //   "generatedResourceName": "my_generatedResourceName",
+     *   //   "kind": "my_kind",
+     *   //   "resourceCategory": "my_resourceCategory",
+     *   //   "resourceDescription": "my_resourceDescription",
+     *   //   "resourceEmail": "my_resourceEmail",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "resourceType": "my_resourceType",
+     *   //   "userVisibleDescription": "my_userVisibleDescription"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.calendars.insert
      * @memberOf! ()
      *
@@ -8081,6 +11569,60 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.calendars.list
      * @desc Retrieves a list of calendar resources for an account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.calendars.list({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.
+     *     orderBy: 'placeholder-value',
+     *     // Token to specify the next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Supported fields include generatedResourceName, name, buildingId, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.calendars.list
      * @memberOf! ()
      *
@@ -8159,6 +11701,86 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.calendars.patch
      * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.calendars.patch({
+     *     // The unique ID of the calendar resource to update.
+     *     calendarResourceId: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "buildingId": "my_buildingId",
+     *       //   "capacity": 0,
+     *       //   "etags": "my_etags",
+     *       //   "featureInstances": {},
+     *       //   "floorName": "my_floorName",
+     *       //   "floorSection": "my_floorSection",
+     *       //   "generatedResourceName": "my_generatedResourceName",
+     *       //   "kind": "my_kind",
+     *       //   "resourceCategory": "my_resourceCategory",
+     *       //   "resourceDescription": "my_resourceDescription",
+     *       //   "resourceEmail": "my_resourceEmail",
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceName": "my_resourceName",
+     *       //   "resourceType": "my_resourceType",
+     *       //   "userVisibleDescription": "my_userVisibleDescription"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildingId": "my_buildingId",
+     *   //   "capacity": 0,
+     *   //   "etags": "my_etags",
+     *   //   "featureInstances": {},
+     *   //   "floorName": "my_floorName",
+     *   //   "floorSection": "my_floorSection",
+     *   //   "generatedResourceName": "my_generatedResourceName",
+     *   //   "kind": "my_kind",
+     *   //   "resourceCategory": "my_resourceCategory",
+     *   //   "resourceDescription": "my_resourceDescription",
+     *   //   "resourceEmail": "my_resourceEmail",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "resourceType": "my_resourceType",
+     *   //   "userVisibleDescription": "my_userVisibleDescription"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.calendars.patch
      * @memberOf! ()
      *
@@ -8235,6 +11857,86 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.calendars.update
      * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.calendars.update({
+     *     // The unique ID of the calendar resource to update.
+     *     calendarResourceId: 'placeholder-value',
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "buildingId": "my_buildingId",
+     *       //   "capacity": 0,
+     *       //   "etags": "my_etags",
+     *       //   "featureInstances": {},
+     *       //   "floorName": "my_floorName",
+     *       //   "floorSection": "my_floorSection",
+     *       //   "generatedResourceName": "my_generatedResourceName",
+     *       //   "kind": "my_kind",
+     *       //   "resourceCategory": "my_resourceCategory",
+     *       //   "resourceDescription": "my_resourceDescription",
+     *       //   "resourceEmail": "my_resourceEmail",
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceName": "my_resourceName",
+     *       //   "resourceType": "my_resourceType",
+     *       //   "userVisibleDescription": "my_userVisibleDescription"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildingId": "my_buildingId",
+     *   //   "capacity": 0,
+     *   //   "etags": "my_etags",
+     *   //   "featureInstances": {},
+     *   //   "floorName": "my_floorName",
+     *   //   "floorSection": "my_floorSection",
+     *   //   "generatedResourceName": "my_generatedResourceName",
+     *   //   "kind": "my_kind",
+     *   //   "resourceCategory": "my_resourceCategory",
+     *   //   "resourceDescription": "my_resourceDescription",
+     *   //   "resourceEmail": "my_resourceEmail",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "resourceType": "my_resourceType",
+     *   //   "userVisibleDescription": "my_userVisibleDescription"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.calendars.update
      * @memberOf! ()
      *
@@ -8438,6 +12140,45 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.features.delete
      * @desc Deletes a feature.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.features.delete({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the feature to delete.
+     *     featureKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.features.delete
      * @memberOf! ()
      *
@@ -8511,6 +12252,53 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.features.get
      * @desc Retrieves a feature.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.features.get({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the feature to retrieve.
+     *     featureKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etags": "my_etags",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.features.get
      * @memberOf! ()
      *
@@ -8584,6 +12372,60 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.features.insert
      * @desc Inserts a feature.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.features.insert({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etags": "my_etags",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etags": "my_etags",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.features.insert
      * @memberOf! ()
      *
@@ -8657,6 +12499,56 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.features.list
      * @desc Retrieves a list of features for an account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.features.list({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify the next page in the list.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "features": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.features.list
      * @memberOf! ()
      *
@@ -8731,6 +12623,62 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.features.patch
      * @desc Updates a feature. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.features.patch({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the feature to update.
+     *     featureKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etags": "my_etags",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etags": "my_etags",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.features.patch
      * @memberOf! ()
      *
@@ -8805,6 +12753,53 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.features.rename
      * @desc Renames a feature.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.features.rename({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the feature to rename.
+     *     oldName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "newName": "my_newName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.features.rename
      * @memberOf! ()
      *
@@ -8879,6 +12874,62 @@ export namespace admin_directory_v1 {
     /**
      * directory.resources.features.update
      * @desc Updates a feature.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.resource.calendar',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.resources.features.update({
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     customer: 'placeholder-value',
+     *     // The unique ID of the feature to update.
+     *     featureKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etags": "my_etags",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etags": "my_etags",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.resources.features.update
      * @memberOf! ()
      *
@@ -9093,6 +13144,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.roleAssignments.delete
      * @desc Deletes a role assignment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.rolemanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roleAssignments.delete({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Immutable ID of the role assignment.
+     *     roleAssignmentId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roleAssignments.delete
      * @memberOf! ()
      *
@@ -9166,6 +13254,57 @@ export namespace admin_directory_v1 {
     /**
      * directory.roleAssignments.get
      * @desc Retrieve a role assignment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement',
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roleAssignments.get({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Immutable ID of the role assignment.
+     *     roleAssignmentId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTo": "my_assignedTo",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "roleAssignmentId": "my_roleAssignmentId",
+     *   //   "roleId": "my_roleId",
+     *   //   "scopeType": "my_scopeType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roleAssignments.get
      * @memberOf! ()
      *
@@ -9241,6 +13380,66 @@ export namespace admin_directory_v1 {
     /**
      * directory.roleAssignments.insert
      * @desc Creates a role assignment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.rolemanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roleAssignments.insert({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignedTo": "my_assignedTo",
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "roleAssignmentId": "my_roleAssignmentId",
+     *       //   "roleId": "my_roleId",
+     *       //   "scopeType": "my_scopeType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTo": "my_assignedTo",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "roleAssignmentId": "my_roleAssignmentId",
+     *   //   "roleId": "my_roleId",
+     *   //   "scopeType": "my_scopeType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roleAssignments.insert
      * @memberOf! ()
      *
@@ -9316,6 +13515,60 @@ export namespace admin_directory_v1 {
     /**
      * directory.roleAssignments.list
      * @desc Retrieves a paginated list of all roleAssignments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement',
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roleAssignments.list({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify the next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
+     *     roleId: 'placeholder-value',
+     *     // The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roleAssignments.list
      * @memberOf! ()
      *
@@ -9479,6 +13732,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.roles.delete
      * @desc Deletes a role.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.rolemanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roles.delete({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Immutable ID of the role.
+     *     roleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roles.delete
      * @memberOf! ()
      *
@@ -9550,6 +13840,58 @@ export namespace admin_directory_v1 {
     /**
      * directory.roles.get
      * @desc Retrieves a role.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement',
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roles.get({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Immutable ID of the role.
+     *     roleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "isSuperAdminRole": false,
+     *   //   "isSystemRole": false,
+     *   //   "kind": "my_kind",
+     *   //   "roleDescription": "my_roleDescription",
+     *   //   "roleId": "my_roleId",
+     *   //   "roleName": "my_roleName",
+     *   //   "rolePrivileges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roles.get
      * @memberOf! ()
      *
@@ -9621,6 +13963,68 @@ export namespace admin_directory_v1 {
     /**
      * directory.roles.insert
      * @desc Creates a role.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.rolemanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roles.insert({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "isSuperAdminRole": false,
+     *       //   "isSystemRole": false,
+     *       //   "kind": "my_kind",
+     *       //   "roleDescription": "my_roleDescription",
+     *       //   "roleId": "my_roleId",
+     *       //   "roleName": "my_roleName",
+     *       //   "rolePrivileges": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "isSuperAdminRole": false,
+     *   //   "isSystemRole": false,
+     *   //   "kind": "my_kind",
+     *   //   "roleDescription": "my_roleDescription",
+     *   //   "roleId": "my_roleId",
+     *   //   "roleName": "my_roleName",
+     *   //   "rolePrivileges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roles.insert
      * @memberOf! ()
      *
@@ -9692,6 +14096,56 @@ export namespace admin_directory_v1 {
     /**
      * directory.roles.list
      * @desc Retrieves a paginated list of all the roles in a domain.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement',
+     *       'https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roles.list({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify the next page in the list.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roles.list
      * @memberOf! ()
      *
@@ -9764,6 +14218,70 @@ export namespace admin_directory_v1 {
     /**
      * directory.roles.patch
      * @desc Updates a role. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.rolemanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roles.patch({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Immutable ID of the role.
+     *     roleId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "isSuperAdminRole": false,
+     *       //   "isSystemRole": false,
+     *       //   "kind": "my_kind",
+     *       //   "roleDescription": "my_roleDescription",
+     *       //   "roleId": "my_roleId",
+     *       //   "roleName": "my_roleName",
+     *       //   "rolePrivileges": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "isSuperAdminRole": false,
+     *   //   "isSystemRole": false,
+     *   //   "kind": "my_kind",
+     *   //   "roleDescription": "my_roleDescription",
+     *   //   "roleId": "my_roleId",
+     *   //   "roleName": "my_roleName",
+     *   //   "rolePrivileges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roles.patch
      * @memberOf! ()
      *
@@ -9836,6 +14354,70 @@ export namespace admin_directory_v1 {
     /**
      * directory.roles.update
      * @desc Updates a role.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.rolemanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.roles.update({
+     *     // Immutable ID of the G Suite account.
+     *     customer: 'placeholder-value',
+     *     // Immutable ID of the role.
+     *     roleId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "isSuperAdminRole": false,
+     *       //   "isSystemRole": false,
+     *       //   "kind": "my_kind",
+     *       //   "roleDescription": "my_roleDescription",
+     *       //   "roleId": "my_roleId",
+     *       //   "roleName": "my_roleName",
+     *       //   "rolePrivileges": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "isSuperAdminRole": false,
+     *   //   "isSystemRole": false,
+     *   //   "kind": "my_kind",
+     *   //   "roleDescription": "my_roleDescription",
+     *   //   "roleId": "my_roleId",
+     *   //   "roleName": "my_roleName",
+     *   //   "rolePrivileges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.roles.update
      * @memberOf! ()
      *
@@ -10021,6 +14603,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.schemas.delete
      * @desc Delete schema
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.userschema'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.schemas.delete({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Name or immutable ID of the schema
+     *     schemaKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.schemas.delete
      * @memberOf! ()
      *
@@ -10093,6 +14712,56 @@ export namespace admin_directory_v1 {
     /**
      * directory.schemas.get
      * @desc Retrieve schema
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.userschema',
+     *       'https://www.googleapis.com/auth/admin.directory.userschema.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.schemas.get({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Name or immutable ID of the schema
+     *     schemaKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "fields": [],
+     *   //   "kind": "my_kind",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "schemaName": "my_schemaName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.schemas.get
      * @memberOf! ()
      *
@@ -10165,6 +14834,64 @@ export namespace admin_directory_v1 {
     /**
      * directory.schemas.insert
      * @desc Create schema.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.userschema'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.schemas.insert({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "fields": [],
+     *       //   "kind": "my_kind",
+     *       //   "schemaId": "my_schemaId",
+     *       //   "schemaName": "my_schemaName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "fields": [],
+     *   //   "kind": "my_kind",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "schemaName": "my_schemaName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.schemas.insert
      * @memberOf! ()
      *
@@ -10236,6 +14963,51 @@ export namespace admin_directory_v1 {
     /**
      * directory.schemas.list
      * @desc Retrieve all schemas for a customer
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.userschema',
+     *       'https://www.googleapis.com/auth/admin.directory.userschema.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.schemas.list({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "schemas": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.schemas.list
      * @memberOf! ()
      *
@@ -10306,6 +15078,66 @@ export namespace admin_directory_v1 {
     /**
      * directory.schemas.patch
      * @desc Update schema. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.userschema'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.schemas.patch({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Name or immutable ID of the schema.
+     *     schemaKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "fields": [],
+     *       //   "kind": "my_kind",
+     *       //   "schemaId": "my_schemaId",
+     *       //   "schemaName": "my_schemaName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "fields": [],
+     *   //   "kind": "my_kind",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "schemaName": "my_schemaName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.schemas.patch
      * @memberOf! ()
      *
@@ -10379,6 +15211,66 @@ export namespace admin_directory_v1 {
     /**
      * directory.schemas.update
      * @desc Update schema
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.userschema'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.schemas.update({
+     *     // Immutable ID of the G Suite account
+     *     customerId: 'placeholder-value',
+     *     // Name or immutable ID of the schema.
+     *     schemaKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "fields": [],
+     *       //   "kind": "my_kind",
+     *       //   "schemaId": "my_schemaId",
+     *       //   "schemaName": "my_schemaName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "fields": [],
+     *   //   "kind": "my_kind",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "schemaName": "my_schemaName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.schemas.update
      * @memberOf! ()
      *
@@ -10557,6 +15449,43 @@ export namespace admin_directory_v1 {
     /**
      * directory.tokens.delete
      * @desc Delete all access tokens issued by a user for an application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.tokens.delete({
+     *     // The Client ID of the application the token is issued to.
+     *     clientId: 'placeholder-value',
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.tokens.delete
      * @memberOf! ()
      *
@@ -10628,6 +15557,55 @@ export namespace admin_directory_v1 {
     /**
      * directory.tokens.get
      * @desc Get information about an access token issued by a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.tokens.get({
+     *     // The Client ID of the application the token is issued to.
+     *     clientId: 'placeholder-value',
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anonymous": false,
+     *   //   "clientId": "my_clientId",
+     *   //   "displayText": "my_displayText",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nativeApp": false,
+     *   //   "scopes": [],
+     *   //   "userKey": "my_userKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.tokens.get
      * @memberOf! ()
      *
@@ -10699,6 +15677,48 @@ export namespace admin_directory_v1 {
     /**
      * directory.tokens.list
      * @desc Returns the set of tokens specified user has issued to 3rd party applications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.tokens.list({
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.tokens.list
      * @memberOf! ()
      *
@@ -10822,6 +15842,41 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.delete
      * @desc Delete user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.delete({
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.delete
      * @memberOf! ()
      *
@@ -10893,6 +15948,100 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.get
      * @desc retrieve user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.get({
+     *     // Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     *     customFieldMask: 'placeholder-value',
+     *     // What subset of fields to fetch for this user.
+     *     projection: 'placeholder-value',
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *     // Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     *     viewType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": {},
+     *   //   "agreedToTerms": false,
+     *   //   "aliases": [],
+     *   //   "archived": false,
+     *   //   "changePasswordAtNextLogin": false,
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customSchemas": {},
+     *   //   "customerId": "my_customerId",
+     *   //   "deletionTime": "my_deletionTime",
+     *   //   "emails": {},
+     *   //   "etag": "my_etag",
+     *   //   "externalIds": {},
+     *   //   "gender": {},
+     *   //   "hashFunction": "my_hashFunction",
+     *   //   "id": "my_id",
+     *   //   "ims": {},
+     *   //   "includeInGlobalAddressList": false,
+     *   //   "ipWhitelisted": false,
+     *   //   "isAdmin": false,
+     *   //   "isDelegatedAdmin": false,
+     *   //   "isEnforcedIn2Sv": false,
+     *   //   "isEnrolledIn2Sv": false,
+     *   //   "isMailboxSetup": false,
+     *   //   "keywords": {},
+     *   //   "kind": "my_kind",
+     *   //   "languages": {},
+     *   //   "lastLoginTime": "my_lastLoginTime",
+     *   //   "locations": {},
+     *   //   "name": {},
+     *   //   "nonEditableAliases": [],
+     *   //   "notes": {},
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "organizations": {},
+     *   //   "password": "my_password",
+     *   //   "phones": {},
+     *   //   "posixAccounts": {},
+     *   //   "primaryEmail": "my_primaryEmail",
+     *   //   "recoveryEmail": "my_recoveryEmail",
+     *   //   "recoveryPhone": "my_recoveryPhone",
+     *   //   "relations": {},
+     *   //   "sshPublicKeys": {},
+     *   //   "suspended": false,
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
+     *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
+     *   //   "websites": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.get
      * @memberOf! ()
      *
@@ -10967,6 +16116,141 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.insert
      * @desc create user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addresses": {},
+     *       //   "agreedToTerms": false,
+     *       //   "aliases": [],
+     *       //   "archived": false,
+     *       //   "changePasswordAtNextLogin": false,
+     *       //   "creationTime": "my_creationTime",
+     *       //   "customSchemas": {},
+     *       //   "customerId": "my_customerId",
+     *       //   "deletionTime": "my_deletionTime",
+     *       //   "emails": {},
+     *       //   "etag": "my_etag",
+     *       //   "externalIds": {},
+     *       //   "gender": {},
+     *       //   "hashFunction": "my_hashFunction",
+     *       //   "id": "my_id",
+     *       //   "ims": {},
+     *       //   "includeInGlobalAddressList": false,
+     *       //   "ipWhitelisted": false,
+     *       //   "isAdmin": false,
+     *       //   "isDelegatedAdmin": false,
+     *       //   "isEnforcedIn2Sv": false,
+     *       //   "isEnrolledIn2Sv": false,
+     *       //   "isMailboxSetup": false,
+     *       //   "keywords": {},
+     *       //   "kind": "my_kind",
+     *       //   "languages": {},
+     *       //   "lastLoginTime": "my_lastLoginTime",
+     *       //   "locations": {},
+     *       //   "name": {},
+     *       //   "nonEditableAliases": [],
+     *       //   "notes": {},
+     *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "organizations": {},
+     *       //   "password": "my_password",
+     *       //   "phones": {},
+     *       //   "posixAccounts": {},
+     *       //   "primaryEmail": "my_primaryEmail",
+     *       //   "recoveryEmail": "my_recoveryEmail",
+     *       //   "recoveryPhone": "my_recoveryPhone",
+     *       //   "relations": {},
+     *       //   "sshPublicKeys": {},
+     *       //   "suspended": false,
+     *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
+     *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
+     *       //   "websites": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": {},
+     *   //   "agreedToTerms": false,
+     *   //   "aliases": [],
+     *   //   "archived": false,
+     *   //   "changePasswordAtNextLogin": false,
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customSchemas": {},
+     *   //   "customerId": "my_customerId",
+     *   //   "deletionTime": "my_deletionTime",
+     *   //   "emails": {},
+     *   //   "etag": "my_etag",
+     *   //   "externalIds": {},
+     *   //   "gender": {},
+     *   //   "hashFunction": "my_hashFunction",
+     *   //   "id": "my_id",
+     *   //   "ims": {},
+     *   //   "includeInGlobalAddressList": false,
+     *   //   "ipWhitelisted": false,
+     *   //   "isAdmin": false,
+     *   //   "isDelegatedAdmin": false,
+     *   //   "isEnforcedIn2Sv": false,
+     *   //   "isEnrolledIn2Sv": false,
+     *   //   "isMailboxSetup": false,
+     *   //   "keywords": {},
+     *   //   "kind": "my_kind",
+     *   //   "languages": {},
+     *   //   "lastLoginTime": "my_lastLoginTime",
+     *   //   "locations": {},
+     *   //   "name": {},
+     *   //   "nonEditableAliases": [],
+     *   //   "notes": {},
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "organizations": {},
+     *   //   "password": "my_password",
+     *   //   "phones": {},
+     *   //   "posixAccounts": {},
+     *   //   "primaryEmail": "my_primaryEmail",
+     *   //   "recoveryEmail": "my_recoveryEmail",
+     *   //   "recoveryPhone": "my_recoveryPhone",
+     *   //   "relations": {},
+     *   //   "sshPublicKeys": {},
+     *   //   "suspended": false,
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
+     *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
+     *   //   "websites": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.insert
      * @memberOf! ()
      *
@@ -11038,6 +16322,76 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.list
      * @desc Retrieve either deleted users or all users in a domain (paginated)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.list({
+     *     // Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     *     customer: 'placeholder-value',
+     *     // Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     *     customFieldMask: 'placeholder-value',
+     *     // Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+     *     domain: 'placeholder-value',
+     *     // Event on which subscription is intended (if subscribing)
+     *     event: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Column to use for sorting results
+     *     orderBy: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *     // What subset of fields to fetch for this user.
+     *     projection: 'placeholder-value',
+     *     // Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     *     query: 'placeholder-value',
+     *     // If set to true, retrieves the list of deleted users. (Default: false)
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to return results in ascending or descending order.
+     *     sortOrder: 'placeholder-value',
+     *     // Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     *     viewType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "trigger_event": "my_trigger_event",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.list
      * @memberOf! ()
      *
@@ -11120,6 +16474,49 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.makeAdmin
      * @desc change admin status of a user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.makeAdmin({
+     *     // Email or immutable ID of the user as admin
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "status": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.makeAdmin
      * @memberOf! ()
      *
@@ -11191,6 +16588,144 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.patch
      * @desc update user. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.patch({
+     *     // Email or immutable ID of the user. If ID, it should match with id of user object
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addresses": {},
+     *       //   "agreedToTerms": false,
+     *       //   "aliases": [],
+     *       //   "archived": false,
+     *       //   "changePasswordAtNextLogin": false,
+     *       //   "creationTime": "my_creationTime",
+     *       //   "customSchemas": {},
+     *       //   "customerId": "my_customerId",
+     *       //   "deletionTime": "my_deletionTime",
+     *       //   "emails": {},
+     *       //   "etag": "my_etag",
+     *       //   "externalIds": {},
+     *       //   "gender": {},
+     *       //   "hashFunction": "my_hashFunction",
+     *       //   "id": "my_id",
+     *       //   "ims": {},
+     *       //   "includeInGlobalAddressList": false,
+     *       //   "ipWhitelisted": false,
+     *       //   "isAdmin": false,
+     *       //   "isDelegatedAdmin": false,
+     *       //   "isEnforcedIn2Sv": false,
+     *       //   "isEnrolledIn2Sv": false,
+     *       //   "isMailboxSetup": false,
+     *       //   "keywords": {},
+     *       //   "kind": "my_kind",
+     *       //   "languages": {},
+     *       //   "lastLoginTime": "my_lastLoginTime",
+     *       //   "locations": {},
+     *       //   "name": {},
+     *       //   "nonEditableAliases": [],
+     *       //   "notes": {},
+     *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "organizations": {},
+     *       //   "password": "my_password",
+     *       //   "phones": {},
+     *       //   "posixAccounts": {},
+     *       //   "primaryEmail": "my_primaryEmail",
+     *       //   "recoveryEmail": "my_recoveryEmail",
+     *       //   "recoveryPhone": "my_recoveryPhone",
+     *       //   "relations": {},
+     *       //   "sshPublicKeys": {},
+     *       //   "suspended": false,
+     *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
+     *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
+     *       //   "websites": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": {},
+     *   //   "agreedToTerms": false,
+     *   //   "aliases": [],
+     *   //   "archived": false,
+     *   //   "changePasswordAtNextLogin": false,
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customSchemas": {},
+     *   //   "customerId": "my_customerId",
+     *   //   "deletionTime": "my_deletionTime",
+     *   //   "emails": {},
+     *   //   "etag": "my_etag",
+     *   //   "externalIds": {},
+     *   //   "gender": {},
+     *   //   "hashFunction": "my_hashFunction",
+     *   //   "id": "my_id",
+     *   //   "ims": {},
+     *   //   "includeInGlobalAddressList": false,
+     *   //   "ipWhitelisted": false,
+     *   //   "isAdmin": false,
+     *   //   "isDelegatedAdmin": false,
+     *   //   "isEnforcedIn2Sv": false,
+     *   //   "isEnrolledIn2Sv": false,
+     *   //   "isMailboxSetup": false,
+     *   //   "keywords": {},
+     *   //   "kind": "my_kind",
+     *   //   "languages": {},
+     *   //   "lastLoginTime": "my_lastLoginTime",
+     *   //   "locations": {},
+     *   //   "name": {},
+     *   //   "nonEditableAliases": [],
+     *   //   "notes": {},
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "organizations": {},
+     *   //   "password": "my_password",
+     *   //   "phones": {},
+     *   //   "posixAccounts": {},
+     *   //   "primaryEmail": "my_primaryEmail",
+     *   //   "recoveryEmail": "my_recoveryEmail",
+     *   //   "recoveryPhone": "my_recoveryPhone",
+     *   //   "relations": {},
+     *   //   "sshPublicKeys": {},
+     *   //   "suspended": false,
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
+     *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
+     *   //   "websites": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.patch
      * @memberOf! ()
      *
@@ -11263,6 +16798,49 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.undelete
      * @desc Undelete a deleted user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.undelete({
+     *     // The immutable id of the user
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "orgUnitPath": "my_orgUnitPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.undelete
      * @memberOf! ()
      *
@@ -11334,6 +16912,144 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.update
      * @desc update user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.update({
+     *     // Email or immutable ID of the user. If ID, it should match with id of user object
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addresses": {},
+     *       //   "agreedToTerms": false,
+     *       //   "aliases": [],
+     *       //   "archived": false,
+     *       //   "changePasswordAtNextLogin": false,
+     *       //   "creationTime": "my_creationTime",
+     *       //   "customSchemas": {},
+     *       //   "customerId": "my_customerId",
+     *       //   "deletionTime": "my_deletionTime",
+     *       //   "emails": {},
+     *       //   "etag": "my_etag",
+     *       //   "externalIds": {},
+     *       //   "gender": {},
+     *       //   "hashFunction": "my_hashFunction",
+     *       //   "id": "my_id",
+     *       //   "ims": {},
+     *       //   "includeInGlobalAddressList": false,
+     *       //   "ipWhitelisted": false,
+     *       //   "isAdmin": false,
+     *       //   "isDelegatedAdmin": false,
+     *       //   "isEnforcedIn2Sv": false,
+     *       //   "isEnrolledIn2Sv": false,
+     *       //   "isMailboxSetup": false,
+     *       //   "keywords": {},
+     *       //   "kind": "my_kind",
+     *       //   "languages": {},
+     *       //   "lastLoginTime": "my_lastLoginTime",
+     *       //   "locations": {},
+     *       //   "name": {},
+     *       //   "nonEditableAliases": [],
+     *       //   "notes": {},
+     *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "organizations": {},
+     *       //   "password": "my_password",
+     *       //   "phones": {},
+     *       //   "posixAccounts": {},
+     *       //   "primaryEmail": "my_primaryEmail",
+     *       //   "recoveryEmail": "my_recoveryEmail",
+     *       //   "recoveryPhone": "my_recoveryPhone",
+     *       //   "relations": {},
+     *       //   "sshPublicKeys": {},
+     *       //   "suspended": false,
+     *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
+     *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
+     *       //   "websites": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": {},
+     *   //   "agreedToTerms": false,
+     *   //   "aliases": [],
+     *   //   "archived": false,
+     *   //   "changePasswordAtNextLogin": false,
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customSchemas": {},
+     *   //   "customerId": "my_customerId",
+     *   //   "deletionTime": "my_deletionTime",
+     *   //   "emails": {},
+     *   //   "etag": "my_etag",
+     *   //   "externalIds": {},
+     *   //   "gender": {},
+     *   //   "hashFunction": "my_hashFunction",
+     *   //   "id": "my_id",
+     *   //   "ims": {},
+     *   //   "includeInGlobalAddressList": false,
+     *   //   "ipWhitelisted": false,
+     *   //   "isAdmin": false,
+     *   //   "isDelegatedAdmin": false,
+     *   //   "isEnforcedIn2Sv": false,
+     *   //   "isEnrolledIn2Sv": false,
+     *   //   "isMailboxSetup": false,
+     *   //   "keywords": {},
+     *   //   "kind": "my_kind",
+     *   //   "languages": {},
+     *   //   "lastLoginTime": "my_lastLoginTime",
+     *   //   "locations": {},
+     *   //   "name": {},
+     *   //   "nonEditableAliases": [],
+     *   //   "notes": {},
+     *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "organizations": {},
+     *   //   "password": "my_password",
+     *   //   "phones": {},
+     *   //   "posixAccounts": {},
+     *   //   "primaryEmail": "my_primaryEmail",
+     *   //   "recoveryEmail": "my_recoveryEmail",
+     *   //   "recoveryPhone": "my_recoveryPhone",
+     *   //   "relations": {},
+     *   //   "sshPublicKeys": {},
+     *   //   "suspended": false,
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
+     *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
+     *   //   "websites": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.update
      * @memberOf! ()
      *
@@ -11406,6 +17122,98 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.watch
      * @desc Watch for changes in users list
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.watch({
+     *     // Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     *     customer: 'placeholder-value',
+     *     // Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     *     customFieldMask: 'placeholder-value',
+     *     // Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+     *     domain: 'placeholder-value',
+     *     // Event on which subscription is intended (if subscribing)
+     *     event: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Column to use for sorting results
+     *     orderBy: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *     // What subset of fields to fetch for this user.
+     *     projection: 'placeholder-value',
+     *     // Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     *     query: 'placeholder-value',
+     *     // If set to true, retrieves the list of deleted users. (Default: false)
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to return results in ascending or descending order.
+     *     sortOrder: 'placeholder-value',
+     *     // Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     *     viewType: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.watch
      * @memberOf! ()
      *
@@ -11721,6 +17529,46 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.aliases.delete
      * @desc Remove a alias for the user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.alias',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.aliases.delete({
+     *     // The alias to be removed
+     *     alias: 'placeholder-value',
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.aliases.delete
      * @memberOf! ()
      *
@@ -11793,6 +17641,65 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.aliases.insert
      * @desc Add a alias for the user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.alias',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.aliases.insert({
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alias": "my_alias",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "primaryEmail": "my_primaryEmail"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alias": "my_alias",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "primaryEmail": "my_primaryEmail"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.aliases.insert
      * @memberOf! ()
      *
@@ -11865,6 +17772,55 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.aliases.list
      * @desc List all aliases for a user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.alias',
+     *       'https://www.googleapis.com/auth/admin.directory.user.alias.readonly',
+     *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.aliases.list({
+     *     // Event on which subscription is intended (if subscribing)
+     *     event: 'placeholder-value',
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aliases": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.aliases.list
      * @memberOf! ()
      *
@@ -11937,6 +17893,79 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.aliases.watch
      * @desc Watch for changes in user aliases list
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.alias',
+     *       'https://www.googleapis.com/auth/admin.directory.user.alias.readonly',
+     *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.aliases.watch({
+     *     // Event on which subscription is intended (if subscribing)
+     *     event: 'placeholder-value',
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.aliases.watch
      * @memberOf! ()
      *
@@ -12088,6 +18117,41 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.photos.delete
      * @desc Remove photos for the user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.photos.delete({
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.photos.delete
      * @memberOf! ()
      *
@@ -12159,6 +18223,56 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.photos.get
      * @desc Retrieve photo of a user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.photos.get({
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "height": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "photoData": "my_photoData",
+     *   //   "primaryEmail": "my_primaryEmail",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.photos.get
      * @memberOf! ()
      *
@@ -12231,6 +18345,68 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.photos.patch
      * @desc Add a photo for the user. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.photos.patch({
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "height": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "photoData": "my_photoData",
+     *       //   "primaryEmail": "my_primaryEmail",
+     *       //   "width": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "height": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "photoData": "my_photoData",
+     *   //   "primaryEmail": "my_primaryEmail",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.photos.patch
      * @memberOf! ()
      *
@@ -12305,6 +18481,68 @@ export namespace admin_directory_v1 {
     /**
      * directory.users.photos.update
      * @desc Add a photo for the user
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.users.photos.update({
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "height": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "photoData": "my_photoData",
+     *       //   "primaryEmail": "my_primaryEmail",
+     *       //   "width": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "height": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "photoData": "my_photoData",
+     *   //   "primaryEmail": "my_primaryEmail",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.users.photos.update
      * @memberOf! ()
      *
@@ -12444,6 +18682,41 @@ export namespace admin_directory_v1 {
     /**
      * directory.verificationCodes.generate
      * @desc Generate new backup verification codes for the user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.verificationCodes.generate({
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.verificationCodes.generate
      * @memberOf! ()
      *
@@ -12516,6 +18789,41 @@ export namespace admin_directory_v1 {
     /**
      * directory.verificationCodes.invalidate
      * @desc Invalidate the current backup verification codes for the user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.verificationCodes.invalidate({
+     *     // Email or immutable ID of the user
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.verificationCodes.invalidate
      * @memberOf! ()
      *
@@ -12588,6 +18896,48 @@ export namespace admin_directory_v1 {
     /**
      * directory.verificationCodes.list
      * @desc Returns the current set of valid backup verification codes for the specified user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await directory.verificationCodes.list({
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias directory.verificationCodes.list
      * @memberOf! ()
      *

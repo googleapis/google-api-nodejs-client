@@ -718,6 +718,78 @@ export namespace script_v1 {
     /**
      * script.processes.list
      * @desc List information about processes made by or on behalf of a user, such as process type and current status.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.processes'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.processes.list({
+     *     // The maximum number of returned processes per page of results. Defaults to
+     *     // 50.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This
+     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // projects with a specific deployment ID.
+     *     'userProcessFilter.deploymentId': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those that completed
+     *     // on or before the given timestamp.
+     *     'userProcessFilter.endTime': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // a script function with the given function name.
+     *     'userProcessFilter.functionName': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // projects with project names containing a specific string.
+     *     'userProcessFilter.projectName': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // projects with a specific script ID.
+     *     'userProcessFilter.scriptId': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those that were
+     *     // started on or after the given timestamp.
+     *     'userProcessFilter.startTime': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified process statuses.
+     *     'userProcessFilter.statuses': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified process types.
+     *     'userProcessFilter.types': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified user access levels.
+     *     'userProcessFilter.userAccessLevels': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "processes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.processes.list
      * @memberOf! ()
      *
@@ -805,6 +877,74 @@ export namespace script_v1 {
     /**
      * script.processes.listScriptProcesses
      * @desc List information about a script's executed processes, such as process type and current status.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.processes'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.processes.listScriptProcesses({
+     *     // The maximum number of returned processes per page of results. Defaults to
+     *     // 50.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This
+     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The script ID of the project whose processes are listed.
+     *     scriptId: 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // projects with a specific deployment ID.
+     *     'scriptProcessFilter.deploymentId': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those that completed
+     *     // on or before the given timestamp.
+     *     'scriptProcessFilter.endTime': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // a script function with the given function name.
+     *     'scriptProcessFilter.functionName': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those that were
+     *     // started on or after the given timestamp.
+     *     'scriptProcessFilter.startTime': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified process statuses.
+     *     'scriptProcessFilter.statuses': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified process types.
+     *     'scriptProcessFilter.types': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified user access levels.
+     *     'scriptProcessFilter.userAccessLevels': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "processes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.processes.listScriptProcesses
      * @memberOf! ()
      *
@@ -1006,6 +1146,58 @@ export namespace script_v1 {
     /**
      * script.projects.create
      * @desc Creates a new, empty script project with no script files and a base manifest file.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.projects'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parentId": "my_parentId",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "lastModifyUser": {},
+     *   //   "parentId": "my_parentId",
+     *   //   "scriptId": "my_scriptId",
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.create
      * @memberOf! ()
      *
@@ -1074,6 +1266,55 @@ export namespace script_v1 {
     /**
      * script.projects.get
      * @desc Gets a script project's metadata.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.projects',
+     *       'https://www.googleapis.com/auth/script.projects.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.get({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "lastModifyUser": {},
+     *   //   "parentId": "my_parentId",
+     *   //   "scriptId": "my_scriptId",
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.get
      * @memberOf! ()
      *
@@ -1145,6 +1386,53 @@ export namespace script_v1 {
     /**
      * script.projects.getContent
      * @desc Gets the content of the script project, including the code source and metadata for each script file.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.projects',
+     *       'https://www.googleapis.com/auth/script.projects.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.getContent({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *     // The version number of the project to retrieve. If not provided, the
+     *     // project's HEAD version is returned.
+     *     versionNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "scriptId": "my_scriptId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.getContent
      * @memberOf! ()
      *
@@ -1218,6 +1506,52 @@ export namespace script_v1 {
     /**
      * script.projects.getMetrics
      * @desc Get metrics data for scripts, such as number of executions and active users.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.metrics'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.getMetrics({
+     *     // Optional field indicating a specific deployment to retrieve metrics from.
+     *     'metricsFilter.deploymentId': 'placeholder-value',
+     *     // Required field indicating what granularity of metrics are returned.
+     *     metricsGranularity: 'placeholder-value',
+     *     // Required field indicating the script to get metrics for.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeUsers": [],
+     *   //   "failedExecutions": [],
+     *   //   "totalExecutions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.getMetrics
      * @memberOf! ()
      *
@@ -1292,6 +1626,56 @@ export namespace script_v1 {
     /**
      * script.projects.updateContent
      * @desc Updates the content of the specified script project. This content is stored as the HEAD version, and is used when the script is executed as a trigger, in the script editor, in add-on preview mode, or as a web app or Apps Script API in development mode. This clears all the existing files in the project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.projects'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.updateContent({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "files": [],
+     *       //   "scriptId": "my_scriptId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "scriptId": "my_scriptId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.updateContent
      * @memberOf! ()
      *
@@ -1448,6 +1832,60 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.create
      * @desc Creates a deployment of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.create({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "manifestFileName": "my_manifestFileName",
+     *       //   "scriptId": "my_scriptId",
+     *       //   "versionNumber": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deploymentConfig": {},
+     *   //   "deploymentId": "my_deploymentId",
+     *   //   "entryPoints": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.create
      * @memberOf! ()
      *
@@ -1523,6 +1961,46 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.delete
      * @desc Deletes a deployment of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.delete({
+     *     // The deployment ID to be undeployed.
+     *     deploymentId: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.delete
      * @memberOf! ()
      *
@@ -1595,6 +2073,54 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.get
      * @desc Gets a deployment of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.deployments',
+     *       'https://www.googleapis.com/auth/script.deployments.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.get({
+     *     // The deployment ID.
+     *     deploymentId: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deploymentConfig": {},
+     *   //   "deploymentId": "my_deploymentId",
+     *   //   "entryPoints": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.get
      * @memberOf! ()
      *
@@ -1669,6 +2195,55 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.list
      * @desc Lists the deployments of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.deployments',
+     *       'https://www.googleapis.com/auth/script.deployments.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.list({
+     *     // The maximum number of deployments on each returned page. Defaults to 50.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This
+     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.list
      * @memberOf! ()
      *
@@ -1747,6 +2322,59 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.update
      * @desc Updates a deployment of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.update({
+     *     // The deployment ID for this deployment.
+     *     deploymentId: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deploymentConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deploymentConfig": {},
+     *   //   "deploymentId": "my_deploymentId",
+     *   //   "entryPoints": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.update
      * @memberOf! ()
      *
@@ -1920,6 +2548,60 @@ export namespace script_v1 {
     /**
      * script.projects.versions.create
      * @desc Creates a new immutable version using the current code, with a unique version number.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.projects'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.versions.create({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "scriptId": "my_scriptId",
+     *       //   "versionNumber": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "scriptId": "my_scriptId",
+     *   //   "versionNumber": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.versions.create
      * @memberOf! ()
      *
@@ -1993,6 +2675,54 @@ export namespace script_v1 {
     /**
      * script.projects.versions.get
      * @desc Gets a version of a script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.projects',
+     *       'https://www.googleapis.com/auth/script.projects.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.versions.get({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *     // The version number.
+     *     versionNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "scriptId": "my_scriptId",
+     *   //   "versionNumber": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.versions.get
      * @memberOf! ()
      *
@@ -2065,6 +2795,55 @@ export namespace script_v1 {
     /**
      * script.projects.versions.list
      * @desc List the versions of a script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.projects',
+     *       'https://www.googleapis.com/auth/script.projects.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.projects.versions.list({
+     *     // The maximum number of versions on each returned page. Defaults to 50.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This
+     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.versions.list
      * @memberOf! ()
      *
@@ -2204,6 +2983,73 @@ export namespace script_v1 {
     /**
      * script.scripts.run
      * @desc Runs a function in an Apps Script project. The script project must be deployed for use with the Apps Script API and the calling application must share the same Cloud Platform project.  This method requires authorization with an OAuth 2.0 token that includes at least one of the scopes listed in the [Authorization](#authorization-scopes) section; script projects that do not require authorization cannot be executed through this API. To find the correct scopes to include in the authentication token, open the project in the script editor, then select **File > Project properties** and click the **Scopes** tab.  The error `403, PERMISSION_DENIED: The caller does not have permission` indicates that the Cloud Platform project used to authorize the request is not the same as the one used by the script.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.google.com/calendar/feeds',
+     *       'https://www.google.com/m8/feeds',
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/forms',
+     *       'https://www.googleapis.com/auth/forms.currentonly',
+     *       'https://www.googleapis.com/auth/groups',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await script.scripts.run({
+     *     // The script ID of the script to be executed. To find the script ID, open
+     *     // the project in the script editor and select **File > Project properties**.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "devMode": false,
+     *       //   "function": "my_function",
+     *       //   "parameters": [],
+     *       //   "sessionState": "my_sessionState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.scripts.run
      * @memberOf! ()
      *

@@ -556,6 +556,54 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
      * @desc Retrieves line items in CSV format. TrueView line items are not supported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.lineitems.downloadlineitems({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fileSpec": "my_fileSpec",
+     *       //   "filterIds": [],
+     *       //   "filterType": "my_filterType",
+     *       //   "format": "my_format"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lineItems": "my_lineItems"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.lineitems.downloadlineitems
      * @memberOf! ()
      *
@@ -637,6 +685,53 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.lineitems.uploadlineitems
      * @desc Uploads line items in CSV format. TrueView line items are not supported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.lineitems.uploadlineitems({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dryRun": false,
+     *       //   "format": "my_format",
+     *       //   "lineItems": "my_lineItems"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "uploadStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.lineitems.uploadlineitems
      * @memberOf! ()
      *
@@ -746,6 +841,68 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.queries.createquery
      * @desc Creates a query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.createquery({
+     *     // If true, tries to run the query asynchronously. Only applicable when the frequency is ONE_TIME.
+     *     asynchronous: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "params": {},
+     *       //   "queryId": "my_queryId",
+     *       //   "reportDataEndTimeMs": "my_reportDataEndTimeMs",
+     *       //   "reportDataStartTimeMs": "my_reportDataStartTimeMs",
+     *       //   "schedule": {},
+     *       //   "timezoneCode": "my_timezoneCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "params": {},
+     *   //   "queryId": "my_queryId",
+     *   //   "reportDataEndTimeMs": "my_reportDataEndTimeMs",
+     *   //   "reportDataStartTimeMs": "my_reportDataStartTimeMs",
+     *   //   "schedule": {},
+     *   //   "timezoneCode": "my_timezoneCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.createquery
      * @memberOf! ()
      *
@@ -819,6 +976,41 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.queries.deletequery
      * @desc Deletes a stored query as well as the associated stored reports.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.deletequery({
+     *     // Query ID to delete.
+     *     queryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.deletequery
      * @memberOf! ()
      *
@@ -890,6 +1082,53 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.queries.getquery
      * @desc Retrieves a stored query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.getquery({
+     *     // Query ID to retrieve.
+     *     queryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "params": {},
+     *   //   "queryId": "my_queryId",
+     *   //   "reportDataEndTimeMs": "my_reportDataEndTimeMs",
+     *   //   "reportDataStartTimeMs": "my_reportDataStartTimeMs",
+     *   //   "schedule": {},
+     *   //   "timezoneCode": "my_timezoneCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.getquery
      * @memberOf! ()
      *
@@ -960,6 +1199,50 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.queries.listqueries
      * @desc Retrieves stored queries.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.listqueries({
+     *     // Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "queries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.listqueries
      * @memberOf! ()
      *
@@ -1037,6 +1320,54 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.queries.runquery
      * @desc Runs a stored query to generate a report.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.runquery({
+     *     // If true, tries to run the query asynchronously.
+     *     asynchronous: 'placeholder-value',
+     *     // Query ID to run.
+     *     queryId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataRange": "my_dataRange",
+     *       //   "reportDataEndTimeMs": "my_reportDataEndTimeMs",
+     *       //   "reportDataStartTimeMs": "my_reportDataStartTimeMs",
+     *       //   "timezoneCode": "my_timezoneCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.runquery
      * @memberOf! ()
      *
@@ -1193,6 +1524,52 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.reports.listreports
      * @desc Retrieves stored reports.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.reports.listreports({
+     *     // Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token.
+     *     pageToken: 'placeholder-value',
+     *     // Query ID with which the reports are associated.
+     *     queryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.reports.listreports
      * @memberOf! ()
      *
@@ -1298,6 +1675,59 @@ export namespace doubleclickbidmanager_v1_1 {
     /**
      * doubleclickbidmanager.sdf.download
      * @desc Retrieves entities in SDF format.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.sdf.download({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fileTypes": [],
+     *       //   "filterIds": [],
+     *       //   "filterType": "my_filterType",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adGroups": "my_adGroups",
+     *   //   "ads": "my_ads",
+     *   //   "campaigns": "my_campaigns",
+     *   //   "insertionOrders": "my_insertionOrders",
+     *   //   "inventorySources": "my_inventorySources",
+     *   //   "lineItems": "my_lineItems"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.sdf.download
      * @memberOf! ()
      *

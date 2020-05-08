@@ -1558,6 +1558,69 @@ export namespace sql_v1beta4 {
     /**
      * sql.backupRuns.delete
      * @desc Deletes the backup taken by a backup run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.backupRuns.delete({
+     *     // The ID of the Backup Run to delete. To find a Backup Run ID, use the <a
+     *     // href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a>
+     *     // method.
+     *     id: 'placeholder-value',
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.backupRuns.delete
      * @memberOf! ()
      *
@@ -1634,6 +1697,67 @@ export namespace sql_v1beta4 {
     /**
      * sql.backupRuns.get
      * @desc Retrieves a resource containing information about a backup run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.backupRuns.get({
+     *     // The ID of this Backup Run.
+     *     id: 'placeholder-value',
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "diskEncryptionConfiguration": {},
+     *   //   "diskEncryptionStatus": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "enqueuedTime": "my_enqueuedTime",
+     *   //   "error": {},
+     *   //   "id": "my_id",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "type": "my_type",
+     *   //   "windowStartTime": "my_windowStartTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.backupRuns.get
      * @memberOf! ()
      *
@@ -1709,6 +1833,87 @@ export namespace sql_v1beta4 {
     /**
      * sql.backupRuns.insert
      * @desc Creates a new backup run on demand. This method is applicable only to Second Generation instances.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.backupRuns.insert({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "diskEncryptionConfiguration": {},
+     *       //   "diskEncryptionStatus": {},
+     *       //   "endTime": "my_endTime",
+     *       //   "enqueuedTime": "my_enqueuedTime",
+     *       //   "error": {},
+     *       //   "id": "my_id",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "type": "my_type",
+     *       //   "windowStartTime": "my_windowStartTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.backupRuns.insert
      * @memberOf! ()
      *
@@ -1785,6 +1990,58 @@ export namespace sql_v1beta4 {
     /**
      * sql.backupRuns.list
      * @desc Lists all backup runs associated with a given instance and configuration in the reverse chronological order of the backup initiation time.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.backupRuns.list({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Maximum number of backup runs per response.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of
+     *     // results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.backupRuns.list
      * @memberOf! ()
      *
@@ -1954,6 +2211,67 @@ export namespace sql_v1beta4 {
     /**
      * sql.databases.delete
      * @desc Deletes a database from a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.delete({
+     *     // Name of the database to be deleted in the instance.
+     *     database: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.databases.delete
      * @memberOf! ()
      *
@@ -2029,6 +2347,61 @@ export namespace sql_v1beta4 {
     /**
      * sql.databases.get
      * @desc Retrieves a resource containing information about a database inside a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.get({
+     *     // Name of the database in the instance.
+     *     database: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "charset": "my_charset",
+     *   //   "collation": "my_collation",
+     *   //   "etag": "my_etag",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "project": "my_project",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "sqlserverDatabaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.databases.get
      * @memberOf! ()
      *
@@ -2102,6 +2475,81 @@ export namespace sql_v1beta4 {
     /**
      * sql.databases.insert
      * @desc Inserts a resource containing information about a database inside a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.insert({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "charset": "my_charset",
+     *       //   "collation": "my_collation",
+     *       //   "etag": "my_etag",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "project": "my_project",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "sqlserverDatabaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.databases.insert
      * @memberOf! ()
      *
@@ -2177,6 +2625,52 @@ export namespace sql_v1beta4 {
     /**
      * sql.databases.list
      * @desc Lists databases in the specified Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.list({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.databases.list
      * @memberOf! ()
      *
@@ -2253,6 +2747,83 @@ export namespace sql_v1beta4 {
     /**
      * sql.databases.patch
      * @desc Partially updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.patch({
+     *     // Name of the database to be updated in the instance.
+     *     database: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "charset": "my_charset",
+     *       //   "collation": "my_collation",
+     *       //   "etag": "my_etag",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "project": "my_project",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "sqlserverDatabaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.databases.patch
      * @memberOf! ()
      *
@@ -2329,6 +2900,83 @@ export namespace sql_v1beta4 {
     /**
      * sql.databases.update
      * @desc Updates a resource containing information about a database inside a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.update({
+     *     // Name of the database to be updated in the instance.
+     *     database: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "charset": "my_charset",
+     *       //   "collation": "my_collation",
+     *       //   "etag": "my_etag",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "project": "my_project",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "sqlserverDatabaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.databases.update
      * @memberOf! ()
      *
@@ -2534,6 +3182,51 @@ export namespace sql_v1beta4 {
     /**
      * sql.flags.list
      * @desc List all available database flags for Cloud SQL instances.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.flags.list({
+     *     // Database type and version you want to retrieve flags for. By default, this
+     *     // method returns flags for all database types and versions.
+     *     databaseVersion: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.flags.list
      * @memberOf! ()
      *
@@ -2623,6 +3316,65 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.addServerCa
      * @desc Add a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.addServerCa({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.addServerCa
      * @memberOf! ()
      *
@@ -2698,6 +3450,74 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.clone
      * @desc Creates a Cloud SQL instance as a clone of the source instance. Using this operation might cause your instance to restart.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.clone({
+     *     // The ID of the Cloud SQL instance to be cloned (source). This does not
+     *     // include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the source as well as the clone Cloud SQL instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloneContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.clone
      * @memberOf! ()
      *
@@ -2773,6 +3593,65 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.delete
      * @desc Deletes a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.delete({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance to be deleted.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.delete
      * @memberOf! ()
      *
@@ -2846,6 +3725,73 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.demoteMaster
      * @desc Demotes the stand-alone instance to be a Cloud SQL read replica for an external database server.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.demoteMaster({
+     *     // Cloud SQL instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "demoteMasterContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.demoteMaster
      * @memberOf! ()
      *
@@ -2922,6 +3868,70 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.export
      * @desc Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL dump or CSV file.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.export({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance to be exported.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "exportContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.export
      * @memberOf! ()
      *
@@ -2997,6 +4007,73 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.failover
      * @desc Failover the instance to its failover replica instance. Using this operation might cause your instance to restart.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.failover({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "failoverContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.failover
      * @memberOf! ()
      *
@@ -3073,6 +4150,79 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.get
      * @desc Retrieves a resource containing information about a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.get({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backendType": "my_backendType",
+     *   //   "connectionName": "my_connectionName",
+     *   //   "currentDiskSize": "my_currentDiskSize",
+     *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "diskEncryptionConfiguration": {},
+     *   //   "diskEncryptionStatus": {},
+     *   //   "etag": "my_etag",
+     *   //   "failoverReplica": {},
+     *   //   "gceZone": "my_gceZone",
+     *   //   "instanceType": "my_instanceType",
+     *   //   "ipAddresses": [],
+     *   //   "ipv6Address": "my_ipv6Address",
+     *   //   "kind": "my_kind",
+     *   //   "masterInstanceName": "my_masterInstanceName",
+     *   //   "maxDiskSize": "my_maxDiskSize",
+     *   //   "name": "my_name",
+     *   //   "onPremisesConfiguration": {},
+     *   //   "project": "my_project",
+     *   //   "region": "my_region",
+     *   //   "replicaConfiguration": {},
+     *   //   "replicaNames": [],
+     *   //   "rootPassword": "my_rootPassword",
+     *   //   "scheduledMaintenance": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "serverCaCert": {},
+     *   //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
+     *   //   "settings": {},
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.get
      * @memberOf! ()
      *
@@ -3146,6 +4296,70 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.import
      * @desc Imports data into a Cloud SQL instance from a SQL dump  or CSV file in Cloud Storage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.import({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "importContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.import
      * @memberOf! ()
      *
@@ -3221,6 +4435,100 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.insert
      * @desc Creates a new Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.insert({
+     *     // Project ID of the project to which the newly created Cloud SQL instances
+     *     // should belong.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backendType": "my_backendType",
+     *       //   "connectionName": "my_connectionName",
+     *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "diskEncryptionConfiguration": {},
+     *       //   "diskEncryptionStatus": {},
+     *       //   "etag": "my_etag",
+     *       //   "failoverReplica": {},
+     *       //   "gceZone": "my_gceZone",
+     *       //   "instanceType": "my_instanceType",
+     *       //   "ipAddresses": [],
+     *       //   "ipv6Address": "my_ipv6Address",
+     *       //   "kind": "my_kind",
+     *       //   "masterInstanceName": "my_masterInstanceName",
+     *       //   "maxDiskSize": "my_maxDiskSize",
+     *       //   "name": "my_name",
+     *       //   "onPremisesConfiguration": {},
+     *       //   "project": "my_project",
+     *       //   "region": "my_region",
+     *       //   "replicaConfiguration": {},
+     *       //   "replicaNames": [],
+     *       //   "rootPassword": "my_rootPassword",
+     *       //   "scheduledMaintenance": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "serverCaCert": {},
+     *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
+     *       //   "settings": {},
+     *       //   "state": "my_state",
+     *       //   "suspensionReason": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.insert
      * @memberOf! ()
      *
@@ -3294,6 +4602,67 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.list
      * @desc Lists instances under a given project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.list({
+     *     // A filter expression that filters resources listed in the response.
+     *     // The expression is in the form of field:value. For example,
+     *     // 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per
+     *     // their JSON representation, such as 'settings.userLabels.auto_start:true'.
+     *     //
+     *     // Multiple filter queries are space-separated. For example.
+     *     // 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each
+     *     // expression is an AND expression. However, you can include AND and OR
+     *     // expressions explicitly.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return per response.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of
+     *     // results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID of the project for which to list Cloud SQL instances.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.list
      * @memberOf! ()
      *
@@ -3371,6 +4740,53 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.listServerCas
      * @desc Lists all of the trusted Certificate Authorities (CAs) for the specified instance. There can be up to three CAs listed: the CA that was used to sign the certificate that is currently in use, a CA that has been added but not yet used to sign a certificate, and a CA used to sign a certificate that has previously rotated out.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.listServerCas({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeVersion": "my_activeVersion",
+     *   //   "certs": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.listServerCas
      * @memberOf! ()
      *
@@ -3455,6 +4871,101 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.patch
      * @desc Updates settings of a Cloud SQL instance. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.patch({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backendType": "my_backendType",
+     *       //   "connectionName": "my_connectionName",
+     *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "diskEncryptionConfiguration": {},
+     *       //   "diskEncryptionStatus": {},
+     *       //   "etag": "my_etag",
+     *       //   "failoverReplica": {},
+     *       //   "gceZone": "my_gceZone",
+     *       //   "instanceType": "my_instanceType",
+     *       //   "ipAddresses": [],
+     *       //   "ipv6Address": "my_ipv6Address",
+     *       //   "kind": "my_kind",
+     *       //   "masterInstanceName": "my_masterInstanceName",
+     *       //   "maxDiskSize": "my_maxDiskSize",
+     *       //   "name": "my_name",
+     *       //   "onPremisesConfiguration": {},
+     *       //   "project": "my_project",
+     *       //   "region": "my_region",
+     *       //   "replicaConfiguration": {},
+     *       //   "replicaNames": [],
+     *       //   "rootPassword": "my_rootPassword",
+     *       //   "scheduledMaintenance": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "serverCaCert": {},
+     *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
+     *       //   "settings": {},
+     *       //   "state": "my_state",
+     *       //   "suspensionReason": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.patch
      * @memberOf! ()
      *
@@ -3529,6 +5040,65 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.promoteReplica
      * @desc Promotes the read replica instance to be a stand-alone Cloud SQL instance. Using this operation might cause your instance to restart.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.promoteReplica({
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.promoteReplica
      * @memberOf! ()
      *
@@ -3604,6 +5174,65 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.resetSslConfig
      * @desc Deletes all client certificates and generates a new server SSL certificate for the instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.resetSslConfig({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.resetSslConfig
      * @memberOf! ()
      *
@@ -3679,6 +5308,65 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.restart
      * @desc Restarts a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.restart({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance to be restarted.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.restart
      * @memberOf! ()
      *
@@ -3754,6 +5442,73 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.restoreBackup
      * @desc Restores a backup of a Cloud SQL instance. Using this operation might cause your instance to restart.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.restoreBackup({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "restoreBackupContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.restoreBackup
      * @memberOf! ()
      *
@@ -3830,6 +5585,73 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.rotateServerCa
      * @desc Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.rotateServerCa({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "rotateServerCaContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.rotateServerCa
      * @memberOf! ()
      *
@@ -3906,6 +5728,65 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.startReplica
      * @desc Starts the replication in the read replica instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.startReplica({
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.startReplica
      * @memberOf! ()
      *
@@ -3981,6 +5862,65 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.stopReplica
      * @desc Stops the replication in the read replica instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.stopReplica({
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.stopReplica
      * @memberOf! ()
      *
@@ -4056,6 +5996,73 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.truncateLog
      * @desc Truncate MySQL general and slow query log tables
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.truncateLog({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the Cloud SQL project.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "truncateLogContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.truncateLog
      * @memberOf! ()
      *
@@ -4132,6 +6139,101 @@ export namespace sql_v1beta4 {
     /**
      * sql.instances.update
      * @desc Updates settings of a Cloud SQL instance. Using this operation might cause your instance to restart.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.update({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backendType": "my_backendType",
+     *       //   "connectionName": "my_connectionName",
+     *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "diskEncryptionConfiguration": {},
+     *       //   "diskEncryptionStatus": {},
+     *       //   "etag": "my_etag",
+     *       //   "failoverReplica": {},
+     *       //   "gceZone": "my_gceZone",
+     *       //   "instanceType": "my_instanceType",
+     *       //   "ipAddresses": [],
+     *       //   "ipv6Address": "my_ipv6Address",
+     *       //   "kind": "my_kind",
+     *       //   "masterInstanceName": "my_masterInstanceName",
+     *       //   "maxDiskSize": "my_maxDiskSize",
+     *       //   "name": "my_name",
+     *       //   "onPremisesConfiguration": {},
+     *       //   "project": "my_project",
+     *       //   "region": "my_region",
+     *       //   "replicaConfiguration": {},
+     *       //   "replicaNames": [],
+     *       //   "rootPassword": "my_rootPassword",
+     *       //   "scheduledMaintenance": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "serverCaCert": {},
+     *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
+     *       //   "settings": {},
+     *       //   "state": "my_state",
+     *       //   "suspensionReason": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.instances.update
      * @memberOf! ()
      *
@@ -4600,6 +6702,65 @@ export namespace sql_v1beta4 {
     /**
      * sql.operations.get
      * @desc Retrieves an instance operation that has been performed on an instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.operations.get({
+     *     // Instance operation ID.
+     *     operation: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.operations.get
      * @memberOf! ()
      *
@@ -4673,6 +6834,58 @@ export namespace sql_v1beta4 {
     /**
      * sql.operations.list
      * @desc Lists all instance operations that have been performed on the given Cloud SQL instance in the reverse chronological order of the start time.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.operations.list({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Maximum number of operations per response.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of
+     *     // results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.operations.list
      * @memberOf! ()
      *
@@ -4805,6 +7018,73 @@ export namespace sql_v1beta4 {
     /**
      * sql.projects.instances.rescheduleMaintenance
      * @desc Reschedules the maintenance on the given instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.rescheduleMaintenance({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "reschedule": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.projects.instances.rescheduleMaintenance
      * @memberOf! ()
      *
@@ -4883,6 +7163,67 @@ export namespace sql_v1beta4 {
     /**
      * sql.projects.instances.startExternalSync
      * @desc Start External master migration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.startExternalSync({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the first generation instance.
+     *     project: 'placeholder-value',
+     *     // External sync mode
+     *     syncMode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.projects.instances.startExternalSync
      * @memberOf! ()
      *
@@ -4959,6 +7300,56 @@ export namespace sql_v1beta4 {
     /**
      * sql.projects.instances.verifyExternalSyncSettings
      * @desc Verify External master external sync settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.verifyExternalSyncSettings({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *     // External sync mode
+     *     syncMode: 'placeholder-value',
+     *     // Flag to enable verifying connection only
+     *     verifyConnectionOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errors": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.projects.instances.verifyExternalSyncSettings
      * @memberOf! ()
      *
@@ -5134,6 +7525,67 @@ export namespace sql_v1beta4 {
     /**
      * sql.sslCerts.createEphemeral
      * @desc Generates a short-lived X509 certificate containing the provided public key and signed by a private key specific to the target instance. Users may use the certificate to authenticate as themselves when connecting to the database.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.createEphemeral({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the Cloud SQL project.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "public_key": "my_public_key"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cert": "my_cert",
+     *   //   "certSerialNumber": "my_certSerialNumber",
+     *   //   "commonName": "my_commonName",
+     *   //   "createTime": "my_createTime",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Fingerprint": "my_sha1Fingerprint"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.sslCerts.createEphemeral
      * @memberOf! ()
      *
@@ -5208,6 +7660,67 @@ export namespace sql_v1beta4 {
     /**
      * sql.sslCerts.delete
      * @desc Deletes the SSL certificate. For First Generation instances, the certificate remains valid until the instance is restarted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.delete({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *     // Sha1 FingerPrint.
+     *     sha1Fingerprint: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.sslCerts.delete
      * @memberOf! ()
      *
@@ -5283,6 +7796,61 @@ export namespace sql_v1beta4 {
     /**
      * sql.sslCerts.get
      * @desc Retrieves a particular SSL certificate.  Does not include the private key (required for usage).  The private key must be saved from the response to initial creation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.get({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *     // Sha1 FingerPrint.
+     *     sha1Fingerprint: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cert": "my_cert",
+     *   //   "certSerialNumber": "my_certSerialNumber",
+     *   //   "commonName": "my_commonName",
+     *   //   "createTime": "my_createTime",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Fingerprint": "my_sha1Fingerprint"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.sslCerts.get
      * @memberOf! ()
      *
@@ -5356,6 +7924,62 @@ export namespace sql_v1beta4 {
     /**
      * sql.sslCerts.insert
      * @desc Creates an SSL certificate and returns it along with the private key and server certificate authority.  The new certificate will not be usable until the instance is restarted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.insert({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commonName": "my_commonName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientCert": {},
+     *   //   "kind": "my_kind",
+     *   //   "operation": {},
+     *   //   "serverCaCert": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.sslCerts.insert
      * @memberOf! ()
      *
@@ -5433,6 +8057,52 @@ export namespace sql_v1beta4 {
     /**
      * sql.sslCerts.list
      * @desc Lists all of the current SSL certificates for the instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.list({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.sslCerts.list
      * @memberOf! ()
      *
@@ -5611,6 +8281,50 @@ export namespace sql_v1beta4 {
     /**
      * sql.tiers.list
      * @desc Lists all available machine types (tiers) for Cloud SQL, for example, db-n1-standard-1. For related information, see <a href="/sql/pricing">Pricing</a>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.tiers.list({
+     *     // Project ID of the project for which to list tiers.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.tiers.list
      * @memberOf! ()
      *
@@ -5703,6 +8417,69 @@ export namespace sql_v1beta4 {
     /**
      * sql.users.delete
      * @desc Deletes a user from a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.users.delete({
+     *     // Host of the user in the instance.
+     *     host: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Name of the user in the instance.
+     *     name: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.users.delete
      * @memberOf! ()
      *
@@ -5779,6 +8556,80 @@ export namespace sql_v1beta4 {
     /**
      * sql.users.insert
      * @desc Creates a new user in a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.users.insert({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "host": "my_host",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "password": "my_password",
+     *       //   "project": "my_project",
+     *       //   "sqlserverUserDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.users.insert
      * @memberOf! ()
      *
@@ -5854,6 +8705,53 @@ export namespace sql_v1beta4 {
     /**
      * sql.users.list
      * @desc Lists users in the specified Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.users.list({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.users.list
      * @memberOf! ()
      *
@@ -5928,6 +8826,84 @@ export namespace sql_v1beta4 {
     /**
      * sql.users.update
      * @desc Updates an existing user in a Cloud SQL instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sql.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sql = google.sql('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sql.users.update({
+     *     // Optional. Host of the user in the instance.
+     *     host: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Name of the user in the instance.
+     *     name: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "host": "my_host",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "password": "my_password",
+     *       //   "project": "my_project",
+     *       //   "sqlserverUserDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias sql.users.update
      * @memberOf! ()
      *

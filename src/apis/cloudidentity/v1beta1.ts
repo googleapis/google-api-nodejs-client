@@ -769,6 +769,69 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.create
      * @desc Creates a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.create({
+     *     // Required. The initial configuration option for the `Group`.
+     *     initialGroupConfig: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalGroupKeys": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "groupKey": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.create
      * @memberOf! ()
      *
@@ -841,6 +904,56 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.delete
      * @desc Deletes a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.delete({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Group` to retrieve.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     name: 'groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.delete
      * @memberOf! ()
      *
@@ -912,6 +1025,61 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.get
      * @desc Retrieves a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.get({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Group` to retrieve.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     name: 'groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalGroupKeys": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "groupKey": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.get
      * @memberOf! ()
      *
@@ -981,6 +1149,71 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.list
      * @desc Lists the `Group`s under a customer or namespace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.list({
+     *     // The maximum number of results to return.
+     *     //
+     *     // Note that the number of results returned may be less than this value even
+     *     // if there are more available results. To fetch all results, clients must
+     *     // continue calling this method repeatedly until the response no longer
+     *     // contains a `next_page_token`.
+     *     //
+     *     // If unspecified, defaults to 200 for `View.BASIC` and to 50 for `View.FULL`.
+     *     //
+     *     // Must not be greater than 1000 for `View.BASIC` or 500 for `View.FULL`.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous list request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource under which to list all `Group`s.
+     *     //
+     *     // Must be of the form `identitysources/{identity_source_id}` for external-
+     *     // identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     *     parent: 'placeholder-value',
+     *     // The level of detail to be returned.
+     *     //
+     *     // If unspecified, defaults to `View.BASIC`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.list
      * @memberOf! ()
      *
@@ -1055,6 +1288,67 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.lookup
      * @desc Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Group` by its `EntityKey`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.lookup({
+     *     // The ID of the entity.
+     *     //
+     *     // For Google-managed entities, the `id` must be the email address of an
+     *     // existing group or user.
+     *     //
+     *     // For external-identity-mapped entities, the `id` must be a string conforming
+     *     // to the Identity Source's requirements.
+     *     //
+     *     // Must be unique within a `namespace`.
+     *     'groupKey.id': 'placeholder-value',
+     *     // The namespace in which the entity exists.
+     *     //
+     *     // If not specified, the `EntityKey` represents a Google-managed entity such
+     *     // as a Google user or a Google Group.
+     *     //
+     *     // If specified, the `EntityKey` represents an external-identity-mapped group.
+     *     // The namespace must correspond to an identity source created in Admin
+     *     // Console and must be in the form of `identitysources/{identity_source_id}.
+     *     'groupKey.namespace': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.lookup
      * @memberOf! ()
      *
@@ -1134,6 +1428,76 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.patch
      * @desc Updates a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.patch({
+     *     // Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Group`.
+     *     //
+     *     // Shall be of the form `groups/{group_id}`.
+     *     name: 'groups/my-group',
+     *     // Required. The fully-qualified names of fields to update.
+     *     //
+     *     // May only contain the following fields: `display_name`, `description`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalGroupKeys": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "groupKey": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.patch
      * @memberOf! ()
      *
@@ -1207,6 +1571,77 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.search
      * @desc Searches for `Group`s matching a specified query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.search({
+     *     // The maximum number of results to return.
+     *     //
+     *     // Note that the number of results returned may be less than this value even
+     *     // if there are more available results. To fetch all results, clients must
+     *     // continue calling this method repeatedly until the response no longer
+     *     // contains a `next_page_token`.
+     *     //
+     *     // If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for
+     *     // `GroupView.FULL`.
+     *     //
+     *     // Must not be greater than 1000 for `GroupView.BASIC` or 500 for
+     *     // `GroupView.FULL`.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous search request, if
+     *     // any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The search query.
+     *     //
+     *     // Must be specified in [Common Expression
+     *     // Language](https://opensource.google/projects/cel). May only contain
+     *     // equality operators on the parent and inclusion operators on labels (e.g.,
+     *     // `parent == 'customers/{customer_id}' &&
+     *     // 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     *     query: 'placeholder-value',
+     *     // The level of detail to be returned.
+     *     //
+     *     // If unspecified, defaults to `View.BASIC`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.search
      * @memberOf! ()
      *
@@ -1413,6 +1848,68 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.memberships.create
      * @desc Creates a `Membership`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.create({
+     *     // Required. The parent `Group` resource under which to create the `Membership`.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     parent: 'groups/my-group',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "memberKey": {},
+     *       //   "name": "my_name",
+     *       //   "preferredMemberKey": {},
+     *       //   "roles": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.create
      * @memberOf! ()
      *
@@ -1489,6 +1986,56 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.memberships.delete
      * @desc Deletes a `Membership`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.delete({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Membership` to delete.
+     *     //
+     *     // Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     *     name: 'groups/my-group/memberships/my-membership',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.delete
      * @memberOf! ()
      *
@@ -1561,6 +2108,58 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.memberships.get
      * @desc Retrieves a `Membership`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.get({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Membership` to retrieve.
+     *     //
+     *     // Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     *     name: 'groups/my-group/memberships/my-membership',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "memberKey": {},
+     *   //   "name": "my_name",
+     *   //   "preferredMemberKey": {},
+     *   //   "roles": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.get
      * @memberOf! ()
      *
@@ -1633,6 +2232,73 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.memberships.list
      * @desc Lists the `Membership`s within a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.list({
+     *     // The maximum number of results to return.
+     *     //
+     *     // Note that the number of results returned may be less than this value even
+     *     // if there are more available results. To fetch all results, clients must
+     *     // continue calling this method repeatedly until the response no longer
+     *     // contains a `next_page_token`.
+     *     //
+     *     // If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for
+     *     // `GroupView.FULL`.
+     *     //
+     *     // Must not be greater than 1000 for `GroupView.BASIC` or 500 for
+     *     // `GroupView.FULL`.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous search request, if
+     *     // any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent `Group` resource under which to lookup the `Membership` name.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     parent: 'groups/my-group',
+     *     // The level of detail to be returned.
+     *     //
+     *     // If unspecified, defaults to `MembershipView.BASIC`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "memberships": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.list
      * @memberOf! ()
      *
@@ -1713,6 +2379,71 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.memberships.lookup
      * @desc Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Membership` by its `EntityKey`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.lookup({
+     *     // The ID of the entity.
+     *     //
+     *     // For Google-managed entities, the `id` must be the email address of an
+     *     // existing group or user.
+     *     //
+     *     // For external-identity-mapped entities, the `id` must be a string conforming
+     *     // to the Identity Source's requirements.
+     *     //
+     *     // Must be unique within a `namespace`.
+     *     'memberKey.id': 'placeholder-value',
+     *     // The namespace in which the entity exists.
+     *     //
+     *     // If not specified, the `EntityKey` represents a Google-managed entity such
+     *     // as a Google user or a Google Group.
+     *     //
+     *     // If specified, the `EntityKey` represents an external-identity-mapped group.
+     *     // The namespace must correspond to an identity source created in Admin
+     *     // Console and must be in the form of `identitysources/{identity_source_id}.
+     *     'memberKey.namespace': 'placeholder-value',
+     *     // Required. The parent `Group` resource under which to lookup the `Membership` name.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     parent: 'groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.lookup
      * @memberOf! ()
      *
@@ -1799,6 +2530,62 @@ export namespace cloudidentity_v1beta1 {
     /**
      * cloudidentity.groups.memberships.modifyMembershipRoles
      * @desc Modifies the `MembershipRole`s of a `Membership`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.modifyMembershipRoles({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Membership` whose roles are to be modified.
+     *     //
+     *     // Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     *     name: 'groups/my-group/memberships/my-membership',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addRoles": [],
+     *       //   "removeRoles": [],
+     *       //   "updateRolesParams": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "membership": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.modifyMembershipRoles
      * @memberOf! ()
      *

@@ -387,6 +387,50 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.get
      * @memberOf! ()
      *
@@ -457,6 +501,53 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.list
      * @memberOf! ()
      *
@@ -585,6 +676,65 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.create
      * @desc Creates a namespace, and returns the new Namespace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.create({
+     *     // Required. The Resource ID must be 1-63 characters long, and comply with
+     *     // <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
+     *     // Specifically, the name must be 1-63 characters long and match the regular
+     *     // expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
+     *     // character must be a lowercase letter, and all following characters must
+     *     // be a dash, lowercase letter, or digit, except the last character, which
+     *     // cannot be a dash.
+     *     namespaceId: 'placeholder-value',
+     *     // Required. The resource name of the project and location the namespace
+     *     // will be created in.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labels": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.create
      * @memberOf! ()
      *
@@ -662,6 +812,44 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.delete
      * @desc Deletes a namespace. This also deletes all services and endpoints in the namespace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.delete({
+     *     // Required. The name of the namespace to delete.
+     *     name: 'projects/my-project/locations/my-location/namespaces/my-namespace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.delete
      * @memberOf! ()
      *
@@ -732,6 +920,47 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.get
      * @desc Gets a namespace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.get({
+     *     // Required. The name of the namespace to retrieve.
+     *     name: 'projects/my-project/locations/my-location/namespaces/my-namespace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.get
      * @memberOf! ()
      *
@@ -804,6 +1033,60 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.getIamPolicy
      * @desc Gets the IAM Policy for a resource (namespace or service only).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.getIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "options": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.getIamPolicy
      * @memberOf! ()
      *
@@ -878,6 +1161,86 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.list
      * @desc Lists all namespaces.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.list({
+     *     // Optional. The filter to list result by.
+     *     //
+     *     // General filter string syntax:
+     *     // <field> <operator> <value> (<logical connector>)
+     *     // <field> can be "name", or "labels.<key>" for map field.
+     *     // <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and
+     *     // is roughly the same as "=".
+     *     // <value> must be the same data type as field.
+     *     // <logical connector> can be "AND, OR, NOT".
+     *     //
+     *     // Examples of valid filters:
+     *     // * "labels.owner" returns Namespaces that have a label with the key "owner"
+     *     //   this is the same as "labels:owner".
+     *     // * "labels.protocol=gRPC" returns Namespaces that have key/value
+     *     //   "protocol=gRPC".
+     *     // * "name>projects/my-project/locations/us-east/namespaces/namespace-c"
+     *     //   returns Namespaces that have name that is alphabetically later than the
+     *     //   string, so "namespace-e" will be returned but "namespace-a" will not be.
+     *     // * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have
+     *     //   "owner" in label key but value is not "sd" AND have key/value foo=bar.
+     *     // * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't
+     *     //   have a field called "doesnotexist". Since the filter does not match any
+     *     //   Namespaces, it returns no results.
+     *     filter: 'placeholder-value',
+     *     // Optional. The order to list result by.
+     *     //
+     *     // General order by string syntax:
+     *     // <field> (<asc|desc>) (,)
+     *     // <field> allows values {"name"}
+     *     // <asc/desc> ascending or descending order by <field>. If this is left
+     *     // blank, "asc" is used.
+     *     // Note that an empty order_by string result in default order, which is order
+     *     // by name in ascending order.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the project and location whose namespaces we'd like to
+     *     // list.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "namespaces": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.list
      * @memberOf! ()
      *
@@ -959,6 +1322,59 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.patch
      * @desc Updates a namespace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.patch({
+     *     // Immutable. The resource name for the namespace in the format
+     *     // 'projects/x/locations/x/namespaces/x'.
+     *     name: 'projects/my-project/locations/my-location/namespaces/my-namespace',
+     *     // Required. List of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labels": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.patch
      * @memberOf! ()
      *
@@ -1033,6 +1449,60 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.setIamPolicy
      * @desc Sets the IAM Policy for a resource (namespace or service only).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.setIamPolicy
      * @memberOf! ()
      *
@@ -1107,6 +1577,58 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.testIamPermissions
      * @desc Tests IAM permissions for a resource (namespace or service only).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.testIamPermissions
      * @memberOf! ()
      *
@@ -1347,6 +1869,69 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.create
      * @desc Creates a service, and returns the new Service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.create(
+     *     {
+     *       // Required. The resource name of the namespace this service will belong to.
+     *       parent:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace',
+     *       // Required. The Resource ID must be 1-63 characters long, and comply with
+     *       // <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
+     *       // Specifically, the name must be 1-63 characters long and match the regular
+     *       // expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
+     *       // character must be a lowercase letter, and all following characters must
+     *       // be a dash, lowercase letter, or digit, except the last character, which
+     *       // cannot be a dash.
+     *       serviceId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "endpoints": [],
+     *         //   "metadata": {},
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endpoints": [],
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.create
      * @memberOf! ()
      *
@@ -1422,6 +2007,47 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.delete
      * @desc Deletes a service. This also deletes all endpoints associated with the service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.delete(
+     *     {
+     *       // Required. The name of the service to delete.
+     *       name:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.delete
      * @memberOf! ()
      *
@@ -1492,6 +2118,51 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.get
      * @desc Gets a service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.get(
+     *     {
+     *       // Required. The name of the service to get.
+     *       name:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endpoints": [],
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.get
      * @memberOf! ()
      *
@@ -1562,6 +2233,60 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.getIamPolicy
      * @desc Gets the IAM Policy for a resource (namespace or service only).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.getIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "options": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.getIamPolicy
      * @memberOf! ()
      *
@@ -1636,6 +2361,82 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.list
      * @desc Lists all services belonging to a namespace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.list(
+     *     {
+     *       // Optional. The filter to list result by.
+     *       //
+     *       // General filter string syntax:
+     *       // <field> <operator> <value> (<logical connector>)
+     *       // <field> can be "name", or "metadata.<key>" for map field.
+     *       // <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and
+     *       // is roughly the same as "=".
+     *       // <value> must be the same data type as field.
+     *       // <logical connector> can be "AND, OR, NOT".
+     *       //
+     *       // Examples of valid filters:
+     *       // * "metadata.owner" returns Services that have a label with the key "owner"
+     *       //   this is the same as "metadata:owner".
+     *       // * "metadata.protocol=gRPC" returns Services that have key/value
+     *       //   "protocol=gRPC".
+     *       // * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c"
+     *       //   returns Services that have name that is alphabetically later than the
+     *       //   string, so "service-e" will be returned but "service-a" will not be.
+     *       // * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have
+     *       //   "owner" in label key but value is not "sd" AND have key/value foo=bar.
+     *       // * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't
+     *       //   have a field called "doesnotexist". Since the filter does not match any
+     *       //   Services, it returns no results.
+     *       filter: 'placeholder-value',
+     *       // Optional. The order to list result by.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous List request,
+     *       // if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the namespace whose services we'd
+     *       // like to list.
+     *       parent:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "services": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.list
      * @memberOf! ()
      *
@@ -1717,6 +2518,64 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.patch
      * @desc Updates a service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.patch(
+     *     {
+     *       // Immutable. The resource name for the service in the format
+     *       // 'projects/x/locations/x/namespaces/x/services/x'.
+     *       name:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *       // Required. List of fields to be updated in this request.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "endpoints": [],
+     *         //   "metadata": {},
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endpoints": [],
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.patch
      * @memberOf! ()
      *
@@ -1789,6 +2648,58 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.resolve
      * @desc Returns a service and its associated endpoints. Resolving a service is not considered an active developer method.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.resolve(
+     *     {
+     *       // Required. The name of the service to resolve.
+     *       name:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "endpointFilter": "my_endpointFilter",
+     *         //   "maxEndpoints": 0
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "service": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.resolve
      * @memberOf! ()
      *
@@ -1869,6 +2780,60 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.setIamPolicy
      * @desc Sets the IAM Policy for a resource (namespace or service only).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.setIamPolicy
      * @memberOf! ()
      *
@@ -1943,6 +2908,58 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.testIamPermissions
      * @desc Tests IAM permissions for a resource (namespace or service only).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.testIamPermissions
      * @memberOf! ()
      *
@@ -2196,6 +3213,71 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.endpoints.create
      * @desc Creates a endpoint, and returns the new Endpoint.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.create(
+     *     {
+     *       // Required. The Resource ID must be 1-63 characters long, and comply with
+     *       // <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
+     *       // Specifically, the name must be 1-63 characters long and match the regular
+     *       // expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
+     *       // character must be a lowercase letter, and all following characters must
+     *       // be a dash, lowercase letter, or digit, except the last character, which
+     *       // cannot be a dash.
+     *       endpointId: 'placeholder-value',
+     *       // Required. The resource name of the service that this endpoint provides.
+     *       parent:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "address": "my_address",
+     *         //   "metadata": {},
+     *         //   "name": "my_name",
+     *         //   "port": 0
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "port": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.endpoints.create
      * @memberOf! ()
      *
@@ -2271,6 +3353,47 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.endpoints.delete
      * @desc Deletes a endpoint.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.delete(
+     *     {
+     *       // Required. The name of the endpoint to delete.
+     *       name:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.endpoints.delete
      * @memberOf! ()
      *
@@ -2341,6 +3464,52 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.endpoints.get
      * @desc Gets a endpoint.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.get(
+     *     {
+     *       // Required. The name of the endpoint to get.
+     *       name:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "port": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.endpoints.get
      * @memberOf! ()
      *
@@ -2411,6 +3580,84 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.endpoints.list
      * @desc Lists all endpoints.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.list(
+     *     {
+     *       // Optional. The filter to list result by.
+     *       //
+     *       // General filter string syntax:
+     *       // <field> <operator> <value> (<logical connector>)
+     *       // <field> can be "name", "address", "port" or "metadata.<key>" for map field.
+     *       // <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and
+     *       // is roughly the same as "=".
+     *       // <value> must be the same data type as field.
+     *       // <logical connector> can be "AND, OR, NOT".
+     *       //
+     *       // Examples of valid filters:
+     *       // * "metadata.owner" returns Endpoints that have a label with the key "owner"
+     *       //   this is the same as "metadata:owner".
+     *       // * "metadata.protocol=gRPC" returns Endpoints that have key/value
+     *       //   "protocol=gRPC".
+     *       // * "address=192.108.1.105" returns Endpoints that have this address.
+     *       // * "port>8080" returns Endpoints that have port number larger than 8080.
+     *       // * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c"
+     *       //   returns Endpoints that have name that is alphabetically later than the
+     *       //   string, so "endpoint-e" will be returned but "endpoint-a" will not be.
+     *       // * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have
+     *       //   "owner" in label key but value is not "sd" AND have key/value foo=bar.
+     *       // * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't
+     *       //   have a field called "doesnotexist". Since the filter does not match any
+     *       //   Endpoints, it returns no results.
+     *       filter: 'placeholder-value',
+     *       // Optional. The order to list result by.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous List request,
+     *       // if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the service whose endpoints we'd like to
+     *       // list.
+     *       parent:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endpoints": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.endpoints.list
      * @memberOf! ()
      *
@@ -2492,6 +3739,66 @@ export namespace servicedirectory_v1beta1 {
     /**
      * servicedirectory.projects.locations.namespaces.services.endpoints.patch
      * @desc Updates a endpoint.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicedirectory = google.servicedirectory('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.patch(
+     *     {
+     *       // Immutable. The resource name for the endpoint in the format
+     *       // 'projects/x/locations/x/namespaces/x/services/x/endpoints/x'.
+     *       name:
+     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
+     *       // Required. List of fields to be updated in this request.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "address": "my_address",
+     *         //   "metadata": {},
+     *         //   "name": "my_name",
+     *         //   "port": 0
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "port": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicedirectory.projects.locations.namespaces.services.endpoints.patch
      * @memberOf! ()
      *

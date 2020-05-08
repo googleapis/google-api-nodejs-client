@@ -1063,6 +1063,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.buckets.get
      * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'billingAccounts/my-billingAccount/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.buckets.get
      * @memberOf! ()
      *
@@ -1154,6 +1209,72 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'billingAccounts/my-billingAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.create
      * @memberOf! ()
      *
@@ -1229,6 +1350,52 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.delete
      * @memberOf! ()
      *
@@ -1298,6 +1465,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.get
      * @memberOf! ()
      *
@@ -1369,6 +1591,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'billingAccounts/my-billingAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.list
      * @memberOf! ()
      *
@@ -1447,6 +1724,74 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.patch
      * @memberOf! ()
      *
@@ -1621,6 +1966,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.locations.buckets.list
      * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: 'billingAccounts/my-billingAccount/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.locations.buckets.list
      * @memberOf! ()
      *
@@ -1697,6 +2097,75 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.locations.buckets.patch
      * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name:
+     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.locations.buckets.patch
      * @memberOf! ()
      *
@@ -1819,6 +2288,52 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.logs.delete
      * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: 'billingAccounts/my-billingAccount/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.logs.delete
      * @memberOf! ()
      *
@@ -1888,6 +2403,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'billingAccounts/my-billingAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.logs.list
      * @memberOf! ()
      *
@@ -2001,6 +2571,84 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'billingAccounts/my-billingAccount',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.create
      * @memberOf! ()
      *
@@ -2075,6 +2723,52 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.delete
      * @memberOf! ()
      *
@@ -2144,6 +2838,66 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.get
      * @memberOf! ()
      *
@@ -2213,6 +2967,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'billingAccounts/my-billingAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.list
      * @memberOf! ()
      *
@@ -2289,6 +3098,89 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.patch({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.patch
      * @memberOf! ()
      *
@@ -2361,6 +3253,89 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.update
      * @memberOf! ()
      *
@@ -2556,6 +3531,62 @@ export namespace logging_v2 {
     /**
      * logging.entries.list
      * @desc Lists log entries. Use this method to retrieve log entries that originated from a project/folder/organization/billing account. For ways to export log entries, see Exporting Logs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.entries.list({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "projectIds": [],
+     *       //   "resourceNames": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.entries.list
      * @memberOf! ()
      *
@@ -2628,6 +3659,58 @@ export namespace logging_v2 {
     /**
      * logging.entries.write
      * @desc Writes log entries to Logging. This API method is the only way to send log entries to Logging. This method is used, directly or indirectly, by the Logging agent (fluentd) and all logging libraries configured to use Logging. A single request may contain log entries for a maximum of 1000 different resources (projects, organizations, billing accounts or folders)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.entries.write({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dryRun": false,
+     *       //   "entries": [],
+     *       //   "labels": {},
+     *       //   "logName": "my_logName",
+     *       //   "partialSuccess": false,
+     *       //   "resource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.entries.write
      * @memberOf! ()
      *
@@ -2730,6 +3813,72 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: '[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.create
      * @memberOf! ()
      *
@@ -2805,6 +3954,52 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.delete
      * @memberOf! ()
      *
@@ -2874,6 +4069,61 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.get
      * @memberOf! ()
      *
@@ -2944,6 +4194,61 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.list
      * @memberOf! ()
      *
@@ -3021,6 +4326,74 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.patch
      * @memberOf! ()
      *
@@ -3195,6 +4568,72 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.create
      * @memberOf! ()
      *
@@ -3270,6 +4709,52 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'folders/my-folder/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.delete
      * @memberOf! ()
      *
@@ -3339,6 +4824,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'folders/my-folder/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.get
      * @memberOf! ()
      *
@@ -3410,6 +4950,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.list
      * @memberOf! ()
      *
@@ -3488,6 +5083,74 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'folders/my-folder/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.patch
      * @memberOf! ()
      *
@@ -3660,6 +5323,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.locations.buckets.get
      * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.locations.buckets.get
      * @memberOf! ()
      *
@@ -3731,6 +5449,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.locations.buckets.list
      * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: 'folders/my-folder/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.locations.buckets.list
      * @memberOf! ()
      *
@@ -3807,6 +5580,74 @@ export namespace logging_v2 {
     /**
      * logging.folders.locations.buckets.patch
      * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.locations.buckets.patch
      * @memberOf! ()
      *
@@ -3941,6 +5782,52 @@ export namespace logging_v2 {
     /**
      * logging.folders.logs.delete
      * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: 'folders/my-folder/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.logs.delete
      * @memberOf! ()
      *
@@ -4010,6 +5897,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.logs.list
      * @memberOf! ()
      *
@@ -4123,6 +6065,84 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'folders/my-folder',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.create
      * @memberOf! ()
      *
@@ -4197,6 +6217,52 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'folders/my-folder/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.delete
      * @memberOf! ()
      *
@@ -4266,6 +6332,66 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'folders/my-folder/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.get
      * @memberOf! ()
      *
@@ -4335,6 +6461,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.list
      * @memberOf! ()
      *
@@ -4411,6 +6592,89 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.patch({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'folders/my-folder/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.patch
      * @memberOf! ()
      *
@@ -4483,6 +6747,89 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'folders/my-folder/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.update
      * @memberOf! ()
      *
@@ -4687,6 +7034,61 @@ export namespace logging_v2 {
     /**
      * logging.locations.buckets.get
      * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.locations.buckets.get
      * @memberOf! ()
      *
@@ -4758,6 +7160,61 @@ export namespace logging_v2 {
     /**
      * logging.locations.buckets.list
      * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: '[^/]+/[^/]+/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.locations.buckets.list
      * @memberOf! ()
      *
@@ -4834,6 +7291,74 @@ export namespace logging_v2 {
     /**
      * logging.locations.buckets.patch
      * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.locations.buckets.patch
      * @memberOf! ()
      *
@@ -4968,6 +7493,52 @@ export namespace logging_v2 {
     /**
      * logging.logs.delete
      * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: '[^/]+/[^/]+/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.logs.delete
      * @memberOf! ()
      *
@@ -5036,6 +7607,61 @@ export namespace logging_v2 {
     /**
      * logging.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.logs.list
      * @memberOf! ()
      *
@@ -5146,6 +7772,54 @@ export namespace logging_v2 {
     /**
      * logging.monitoredResourceDescriptors.list
      * @desc Lists the descriptors for monitored resource types used by Logging.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.monitoredResourceDescriptors.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resourceDescriptors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.monitoredResourceDescriptors.list
      * @memberOf! ()
      *
@@ -5270,6 +7944,58 @@ export namespace logging_v2 {
     /**
      * logging.organizations.getCmekSettings
      * @desc Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router for more information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.getCmekSettings({
+     *     // Required. The resource for which to retrieve CMEK settings.
+     *     // "projects/[PROJECT_ID]/cmekSettings"
+     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     // "folders/[FOLDER_ID]/cmekSettings"
+     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     name: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "serviceAccountId": "my_serviceAccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.getCmekSettings
      * @memberOf! ()
      *
@@ -5344,6 +8070,68 @@ export namespace logging_v2 {
     /**
      * logging.organizations.updateCmekSettings
      * @desc Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router for more information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.updateCmekSettings({
+     *     // Required. The resource name for the CMEK settings to update.
+     *     // "projects/[PROJECT_ID]/cmekSettings"
+     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     // "folders/[FOLDER_ID]/cmekSettings"
+     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     name: 'organizations/my-organization',
+     *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "name": "my_name",
+     *       //   "serviceAccountId": "my_serviceAccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "serviceAccountId": "my_serviceAccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.updateCmekSettings
      * @memberOf! ()
      *
@@ -5463,6 +8251,72 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.create
      * @memberOf! ()
      *
@@ -5538,6 +8392,52 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'organizations/my-organization/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.delete
      * @memberOf! ()
      *
@@ -5607,6 +8507,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'organizations/my-organization/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.get
      * @memberOf! ()
      *
@@ -5678,6 +8633,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.list
      * @memberOf! ()
      *
@@ -5756,6 +8766,74 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'organizations/my-organization/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.patch
      * @memberOf! ()
      *
@@ -5928,6 +9006,62 @@ export namespace logging_v2 {
     /**
      * logging.organizations.locations.buckets.get
      * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name:
+     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.locations.buckets.get
      * @memberOf! ()
      *
@@ -5999,6 +9133,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.locations.buckets.list
      * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.locations.buckets.list
      * @memberOf! ()
      *
@@ -6075,6 +9264,75 @@ export namespace logging_v2 {
     /**
      * logging.organizations.locations.buckets.patch
      * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name:
+     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.locations.buckets.patch
      * @memberOf! ()
      *
@@ -6209,6 +9467,52 @@ export namespace logging_v2 {
     /**
      * logging.organizations.logs.delete
      * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: 'organizations/my-organization/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.logs.delete
      * @memberOf! ()
      *
@@ -6278,6 +9582,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.logs.list
      * @memberOf! ()
      *
@@ -6391,6 +9750,84 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'organizations/my-organization',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.create
      * @memberOf! ()
      *
@@ -6465,6 +9902,52 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'organizations/my-organization/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.delete
      * @memberOf! ()
      *
@@ -6534,6 +10017,66 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'organizations/my-organization/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.get
      * @memberOf! ()
      *
@@ -6603,6 +10146,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.list
      * @memberOf! ()
      *
@@ -6679,6 +10277,89 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.patch({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'organizations/my-organization/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.patch
      * @memberOf! ()
      *
@@ -6751,6 +10432,89 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'organizations/my-organization/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.update
      * @memberOf! ()
      *
@@ -6963,6 +10727,72 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.create
      * @memberOf! ()
      *
@@ -7038,6 +10868,52 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'projects/my-project/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.delete
      * @memberOf! ()
      *
@@ -7107,6 +10983,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'projects/my-project/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.get
      * @memberOf! ()
      *
@@ -7178,6 +11109,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.list
      * @memberOf! ()
      *
@@ -7256,6 +11242,74 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'projects/my-project/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.patch
      * @memberOf! ()
      *
@@ -7428,6 +11482,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.locations.buckets.get
      * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.locations.buckets.get
      * @memberOf! ()
      *
@@ -7499,6 +11608,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.locations.buckets.list
      * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.locations.buckets.list
      * @memberOf! ()
      *
@@ -7575,6 +11739,74 @@ export namespace logging_v2 {
     /**
      * logging.projects.locations.buckets.patch
      * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.locations.buckets.patch
      * @memberOf! ()
      *
@@ -7709,6 +11941,52 @@ export namespace logging_v2 {
     /**
      * logging.projects.logs.delete
      * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: 'projects/my-project/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.logs.delete
      * @memberOf! ()
      *
@@ -7778,6 +12056,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.logs.list
      * @memberOf! ()
      *
@@ -7891,6 +12224,78 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.create
      * @desc Creates a logs-based metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.create({
+     *     // Required. The resource name of the project in which to create the metric:
+     *     // "projects/[PROJECT_ID]"
+     *     // The new metric must be provided in the request.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucketOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "labelExtractors": {},
+     *       //   "metricDescriptor": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "valueExtractor": "my_valueExtractor",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucketOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "labelExtractors": {},
+     *   //   "metricDescriptor": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "valueExtractor": "my_valueExtractor",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.create
      * @memberOf! ()
      *
@@ -7966,6 +12371,50 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.delete
      * @desc Deletes a logs-based metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.delete({
+     *     // Required. The resource name of the metric to delete:
+     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *     //
+     *     metricName: 'projects/my-project/metrics/my-metric',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.delete
      * @memberOf! ()
      *
@@ -8035,6 +12484,62 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.get
      * @desc Gets a logs-based metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.get({
+     *     // Required. The resource name of the desired metric:
+     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *     //
+     *     metricName: 'projects/my-project/metrics/my-metric',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucketOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "labelExtractors": {},
+     *   //   "metricDescriptor": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "valueExtractor": "my_valueExtractor",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.get
      * @memberOf! ()
      *
@@ -8106,6 +12611,58 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.list
      * @desc Lists logs-based metrics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project containing the metrics:
+     *     // "projects/[PROJECT_ID]"
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metrics": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.list
      * @memberOf! ()
      *
@@ -8184,6 +12741,78 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.update
      * @desc Creates or updates a logs-based metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.update({
+     *     // Required. The resource name of the metric to update:
+     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *     // The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+     *     metricName: 'projects/my-project/metrics/my-metric',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucketOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "labelExtractors": {},
+     *       //   "metricDescriptor": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "valueExtractor": "my_valueExtractor",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucketOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "labelExtractors": {},
+     *   //   "metricDescriptor": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "valueExtractor": "my_valueExtractor",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.update
      * @memberOf! ()
      *
@@ -8342,6 +12971,84 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'projects/my-project',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.create
      * @memberOf! ()
      *
@@ -8416,6 +13123,52 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'projects/my-project/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.delete
      * @memberOf! ()
      *
@@ -8485,6 +13238,66 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'projects/my-project/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.get
      * @memberOf! ()
      *
@@ -8554,6 +13367,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.list
      * @memberOf! ()
      *
@@ -8630,6 +13498,89 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.patch({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'projects/my-project/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.patch
      * @memberOf! ()
      *
@@ -8702,6 +13653,89 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'projects/my-project/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.update
      * @memberOf! ()
      *
@@ -8897,6 +13931,84 @@ export namespace logging_v2 {
     /**
      * logging.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: '[^/]+/[^/]+',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.create
      * @memberOf! ()
      *
@@ -8970,6 +14082,52 @@ export namespace logging_v2 {
     /**
      * logging.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.delete
      * @memberOf! ()
      *
@@ -9038,6 +14196,66 @@ export namespace logging_v2 {
     /**
      * logging.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.get
      * @memberOf! ()
      *
@@ -9106,6 +14324,61 @@ export namespace logging_v2 {
     /**
      * logging.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.list
      * @memberOf! ()
      *
@@ -9181,6 +14454,89 @@ export namespace logging_v2 {
     /**
      * logging.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.update
      * @memberOf! ()
      *
@@ -9345,6 +14701,58 @@ export namespace logging_v2 {
     /**
      * logging.getCmekSettings
      * @desc Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router for more information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.getCmekSettings({
+     *     // Required. The resource for which to retrieve CMEK settings.
+     *     // "projects/[PROJECT_ID]/cmekSettings"
+     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     // "folders/[FOLDER_ID]/cmekSettings"
+     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     name: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "serviceAccountId": "my_serviceAccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.getCmekSettings
      * @memberOf! ()
      *
@@ -9419,6 +14827,68 @@ export namespace logging_v2 {
     /**
      * logging.updateCmekSettings
      * @desc Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router for more information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await logging.updateCmekSettings({
+     *     // Required. The resource name for the CMEK settings to update.
+     *     // "projects/[PROJECT_ID]/cmekSettings"
+     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     // "folders/[FOLDER_ID]/cmekSettings"
+     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     name: '[^/]+/[^/]+',
+     *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "name": "my_name",
+     *       //   "serviceAccountId": "my_serviceAccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "serviceAccountId": "my_serviceAccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.updateCmekSettings
      * @memberOf! ()
      *

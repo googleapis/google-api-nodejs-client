@@ -1778,6 +1778,64 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.autoscalingPolicies.create
      * @desc Creates new autoscaling policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.autoscalingPolicies.create({
+     *     // Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies.create, the resource name  has the following format:  projects/{project_id}/regions/{region}
+     *     // For projects.locations.autoscalingPolicies.create, the resource name  has the following format:  projects/{project_id}/locations/{location}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "basicAlgorithm": {},
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "secondaryWorkerConfig": {},
+     *       //   "workerConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basicAlgorithm": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "secondaryWorkerConfig": {},
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.autoscalingPolicies.create
      * @memberOf! ()
      *
@@ -1853,6 +1911,47 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.autoscalingPolicies.delete
      * @desc Deletes an autoscaling policy. It is an error to delete an autoscaling policy that is in use by one or more clusters.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.autoscalingPolicies.delete({
+     *     // Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}
+     *     // For projects.locations.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     *     name:
+     *       'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.autoscalingPolicies.delete
      * @memberOf! ()
      *
@@ -1922,6 +2021,53 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.autoscalingPolicies.get
      * @desc Retrieves autoscaling policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.autoscalingPolicies.get({
+     *     // Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}
+     *     // For projects.locations.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     *     name:
+     *       'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basicAlgorithm": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "secondaryWorkerConfig": {},
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.autoscalingPolicies.get
      * @memberOf! ()
      *
@@ -1993,6 +2139,53 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.autoscalingPolicies.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.autoscalingPolicies.getIamPolicy(
+     *     {
+     *       // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.autoscalingPolicies.getIamPolicy
      * @memberOf! ()
      *
@@ -2066,6 +2259,53 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.autoscalingPolicies.list
      * @desc Lists autoscaling policies in the project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.autoscalingPolicies.list({
+     *     // Optional. The maximum number of results to return in each response. Must be less than or equal to 1000. Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies.list, the resource name  of the region has the following format:  projects/{project_id}/regions/{region}
+     *     // For projects.locations.autoscalingPolicies.list, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.autoscalingPolicies.list
      * @memberOf! ()
      *
@@ -2151,6 +2391,59 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.autoscalingPolicies.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.autoscalingPolicies.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.autoscalingPolicies.setIamPolicy
      * @memberOf! ()
      *
@@ -2224,6 +2517,57 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.autoscalingPolicies.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.autoscalingPolicies.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.autoscalingPolicies.testIamPermissions
      * @memberOf! ()
      *
@@ -2306,6 +2650,65 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.autoscalingPolicies.update
      * @desc Updates (replaces) autoscaling policy.Disabled check for update_mask, because all updates will be full replacements.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.autoscalingPolicies.update({
+     *     // Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}
+     *     // For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     *     name:
+     *       'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "basicAlgorithm": {},
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "secondaryWorkerConfig": {},
+     *       //   "workerConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basicAlgorithm": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "secondaryWorkerConfig": {},
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.autoscalingPolicies.update
      * @memberOf! ()
      *
@@ -2514,6 +2917,72 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.create
      * @desc Creates new workflow template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.create({
+     *     // Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region}
+     *     // For projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "jobs": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parameters": [],
+     *       //   "placement": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "jobs": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "placement": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.create
      * @memberOf! ()
      *
@@ -2589,6 +3058,49 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.delete
      * @desc Deletes a workflow template. It does not cancel in-progress workflows.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.delete({
+     *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates.delete, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     *     // For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     *     name:
+     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *     // Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.delete
      * @memberOf! ()
      *
@@ -2659,6 +3171,59 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.get
      * @desc Retrieves the latest workflow template.Can retrieve previously instantiated template by specifying optional version parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.get({
+     *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     *     // For projects.locations.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     *     name:
+     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *     // Optional. The version of workflow template to retrieve. Only previously instantiated versions can be retrieved.If unspecified, retrieves the current version.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "jobs": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "placement": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.get
      * @memberOf! ()
      *
@@ -2731,6 +3296,51 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.getIamPolicy({
+     *     // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.getIamPolicy
      * @memberOf! ()
      *
@@ -2804,6 +3414,64 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.instantiate
      * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#workflowmetadata). Also see Using WorkflowMetadata (https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).On successful completion, Operation.response will be Empty.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.instantiate({
+     *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     *     // For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     *     name:
+     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "instanceId": "my_instanceId",
+     *       //   "parameters": {},
+     *       //   "requestId": "my_requestId",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.instantiate
      * @memberOf! ()
      *
@@ -2879,6 +3547,74 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.instantiateInline
      * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata). Also see Using WorkflowMetadata (https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).On successful completion, Operation.response will be Empty.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.instantiateInline(
+     *     {
+     *       // Deprecated. Please use request_id field instead.
+     *       instanceId: 'placeholder-value',
+     *       // Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *       // For projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region}
+     *       // For projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "id": "my_id",
+     *         //   "jobs": [],
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "parameters": [],
+     *         //   "placement": {},
+     *         //   "updateTime": "my_updateTime",
+     *         //   "version": 0
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.instantiateInline
      * @memberOf! ()
      *
@@ -2955,6 +3691,53 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.list
      * @desc Lists workflows that match the specified filter in the request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.list({
+     *     // Optional. The maximum number of results to return in each response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates,list, the resource  name of the region has the following format:  projects/{project_id}/regions/{region}
+     *     // For projects.locations.workflowTemplates.list, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "templates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.list
      * @memberOf! ()
      *
@@ -3040,6 +3823,57 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.setIamPolicy
      * @memberOf! ()
      *
@@ -3113,6 +3947,57 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.testIamPermissions
      * @memberOf! ()
      *
@@ -3195,6 +4080,73 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.locations.workflowTemplates.update
      * @desc Updates (replaces) workflow template. The updated template must contain version that matches the current server version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.workflowTemplates.update({
+     *     // Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     *     // For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     *     name:
+     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "jobs": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parameters": [],
+     *       //   "placement": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "jobs": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "placement": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.locations.workflowTemplates.update
      * @memberOf! ()
      *
@@ -3474,6 +4426,64 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.autoscalingPolicies.create
      * @desc Creates new autoscaling policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.autoscalingPolicies.create({
+     *     // Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies.create, the resource name  has the following format:  projects/{project_id}/regions/{region}
+     *     // For projects.locations.autoscalingPolicies.create, the resource name  has the following format:  projects/{project_id}/locations/{location}
+     *     parent: 'projects/my-project/regions/my-region',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "basicAlgorithm": {},
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "secondaryWorkerConfig": {},
+     *       //   "workerConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basicAlgorithm": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "secondaryWorkerConfig": {},
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.autoscalingPolicies.create
      * @memberOf! ()
      *
@@ -3549,6 +4559,47 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.autoscalingPolicies.delete
      * @desc Deletes an autoscaling policy. It is an error to delete an autoscaling policy that is in use by one or more clusters.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.autoscalingPolicies.delete({
+     *     // Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}
+     *     // For projects.locations.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     *     name:
+     *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.autoscalingPolicies.delete
      * @memberOf! ()
      *
@@ -3618,6 +4669,53 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.autoscalingPolicies.get
      * @desc Retrieves autoscaling policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.autoscalingPolicies.get({
+     *     // Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}
+     *     // For projects.locations.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     *     name:
+     *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basicAlgorithm": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "secondaryWorkerConfig": {},
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.autoscalingPolicies.get
      * @memberOf! ()
      *
@@ -3689,6 +4787,51 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.autoscalingPolicies.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.autoscalingPolicies.getIamPolicy({
+     *     // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.autoscalingPolicies.getIamPolicy
      * @memberOf! ()
      *
@@ -3762,6 +4905,53 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.autoscalingPolicies.list
      * @desc Lists autoscaling policies in the project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.autoscalingPolicies.list({
+     *     // Optional. The maximum number of results to return in each response. Must be less than or equal to 1000. Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies.list, the resource name  of the region has the following format:  projects/{project_id}/regions/{region}
+     *     // For projects.locations.autoscalingPolicies.list, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     *     parent: 'projects/my-project/regions/my-region',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.autoscalingPolicies.list
      * @memberOf! ()
      *
@@ -3847,6 +5037,57 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.autoscalingPolicies.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.autoscalingPolicies.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.autoscalingPolicies.setIamPolicy
      * @memberOf! ()
      *
@@ -3920,6 +5161,57 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.autoscalingPolicies.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.autoscalingPolicies.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.autoscalingPolicies.testIamPermissions
      * @memberOf! ()
      *
@@ -4002,6 +5294,65 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.autoscalingPolicies.update
      * @desc Updates (replaces) autoscaling policy.Disabled check for update_mask, because all updates will be full replacements.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.autoscalingPolicies.update({
+     *     // Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}
+     *     // For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     *     name:
+     *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "basicAlgorithm": {},
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "secondaryWorkerConfig": {},
+     *       //   "workerConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basicAlgorithm": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "secondaryWorkerConfig": {},
+     *   //   "workerConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.autoscalingPolicies.update
      * @memberOf! ()
      *
@@ -4210,6 +5561,69 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.create
      * @desc Creates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.create({
+     *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *     // Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterName": "my_clusterName",
+     *       //   "clusterUuid": "my_clusterUuid",
+     *       //   "config": {},
+     *       //   "labels": {},
+     *       //   "metrics": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "status": {},
+     *       //   "statusHistory": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.create
      * @memberOf! ()
      *
@@ -4287,6 +5701,58 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.delete
      * @desc Deletes a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.delete({
+     *     // Required. The cluster name.
+     *     clusterName: 'placeholder-value',
+     *     // Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     *     clusterUuid: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *     // Optional. A unique id used to identify the request. If the server receives two DeleteClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.delete
      * @memberOf! ()
      *
@@ -4365,6 +5831,60 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.diagnose
      * @desc Gets cluster diagnostic information. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata). After the operation completes, Operation.response contains Empty.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.diagnose({
+     *     // Required. The cluster name.
+     *     clusterName: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.diagnose
      * @memberOf! ()
      *
@@ -4442,6 +5962,57 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.get
      * @desc Gets the resource representation for a cluster in a project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.get({
+     *     // Required. The cluster name.
+     *     clusterName: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterName": "my_clusterName",
+     *   //   "clusterUuid": "my_clusterUuid",
+     *   //   "config": {},
+     *   //   "labels": {},
+     *   //   "metrics": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "status": {},
+     *   //   "statusHistory": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.get
      * @memberOf! ()
      *
@@ -4516,6 +6087,50 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.getIamPolicy({
+     *     // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.getIamPolicy
      * @memberOf! ()
      *
@@ -4589,6 +6204,55 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.list
      * @desc Lists all regions/{region}/clusters in a project alphabetically.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.list({
+     *     // Optional. A filter constraining the clusters to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is one of status.state, clusterName, or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be one of the following: ACTIVE, INACTIVE, CREATING, RUNNING, ERROR, DELETING, or UPDATING. ACTIVE contains the CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING and ERROR states. clusterName is the name of the cluster provided at creation time. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND clusterName = mycluster AND labels.env = staging AND labels.starred = *
+     *     filter: 'placeholder-value',
+     *     // Optional. The standard List page size.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The standard List page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusters": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.list
      * @memberOf! ()
      *
@@ -4669,6 +6333,123 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.patch
      * @desc Updates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.patch({
+     *     // Required. The cluster name.
+     *     clusterName: 'placeholder-value',
+     *     // Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.
+     *     gracefulDecommissionTimeout: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project the cluster belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *     // Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     requestId: 'placeholder-value',
+     *     // Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows:
+     *     // {
+     *     //   "config":{
+     *     //     "workerConfig":{
+     *     //       "numInstances":"5"
+     *     //     }
+     *     //   }
+     *     // }
+     *     // Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows:
+     *     // {
+     *     //   "config":{
+     *     //     "secondaryWorkerConfig":{
+     *     //       "numInstances":"5"
+     *     //     }
+     *     //   }
+     *     // }
+     *     // <strong>Note:</strong> currently only the following fields can be updated:
+     *     // <table>
+     *     // <tr>
+     *     // <td><strong>Mask</strong></td><td><strong>Purpose</strong></td>
+     *     // </tr>
+     *     // <tr>
+     *     // <td>labels</td><td>Updates labels</td>
+     *     // </tr>
+     *     // <tr>
+     *     // <td>config.worker_config.num_instances</td><td>Resize primary worker
+     *     // group</td>
+     *     // </tr>
+     *     // <tr>
+     *     // <td>config.secondary_worker_config.num_instances</td><td>Resize secondary
+     *     // worker group</td>
+     *     // </tr>
+     *     // <tr>
+     *     // <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL
+     *     // duration</td>
+     *     // </tr>
+     *     // <tr>
+     *     // <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL
+     *     // deletion timestamp</td>
+     *     // </tr>
+     *     // <tr>
+     *     // <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
+     *     // duration</td>
+     *     // </tr>
+     *     // <tr>
+     *     // <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or change
+     *     // autoscaling policies</td>
+     *     // </tr>
+     *     // </table>
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterName": "my_clusterName",
+     *       //   "clusterUuid": "my_clusterUuid",
+     *       //   "config": {},
+     *       //   "labels": {},
+     *       //   "metrics": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "status": {},
+     *       //   "statusHistory": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.patch
      * @memberOf! ()
      *
@@ -4749,6 +6530,56 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.setIamPolicy
      * @memberOf! ()
      *
@@ -4822,6 +6653,63 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.start
      * @desc Starts a cluster in a project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.start({
+     *     // Required. The cluster name.
+     *     clusterName: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project the cluster belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterUuid": "my_clusterUuid",
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.start
      * @memberOf! ()
      *
@@ -4899,6 +6787,63 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.stop
      * @desc Stops a cluster in a project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.stop({
+     *     // Required. The cluster name.
+     *     clusterName: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project the cluster belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterUuid": "my_clusterUuid",
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.stop
      * @memberOf! ()
      *
@@ -4976,6 +6921,54 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.clusters.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.clusters.testIamPermissions
      * @memberOf! ()
      *
@@ -5329,6 +7322,75 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.cancel
      * @desc Starts a job cancellation request. To access the job resource after cancellation, call regions/{region}/jobs.list (https://cloud.google.com/dataproc/docs/reference/rest/v1beta2/projects.regions.jobs/list) or regions/{region}/jobs.get (https://cloud.google.com/dataproc/docs/reference/rest/v1beta2/projects.regions.jobs/get).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.cancel({
+     *     // Required. The job ID.
+     *     jobId: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "driverControlFilesUri": "my_driverControlFilesUri",
+     *   //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *   //   "hadoopJob": {},
+     *   //   "hiveJob": {},
+     *   //   "jobUuid": "my_jobUuid",
+     *   //   "labels": {},
+     *   //   "pigJob": {},
+     *   //   "placement": {},
+     *   //   "prestoJob": {},
+     *   //   "pysparkJob": {},
+     *   //   "reference": {},
+     *   //   "scheduling": {},
+     *   //   "sparkJob": {},
+     *   //   "sparkRJob": {},
+     *   //   "sparkSqlJob": {},
+     *   //   "status": {},
+     *   //   "statusHistory": [],
+     *   //   "submittedBy": "my_submittedBy",
+     *   //   "yarnApplications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.cancel
      * @memberOf! ()
      *
@@ -5404,6 +7466,48 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.delete
      * @desc Deletes the job from the project. If the job is active, the delete fails, and the response returns FAILED_PRECONDITION.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.delete({
+     *     // Required. The job ID.
+     *     jobId: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.delete
      * @memberOf! ()
      *
@@ -5478,6 +7582,69 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.get
      * @desc Gets the resource representation for a job in a project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.get({
+     *     // Required. The job ID.
+     *     jobId: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "driverControlFilesUri": "my_driverControlFilesUri",
+     *   //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *   //   "hadoopJob": {},
+     *   //   "hiveJob": {},
+     *   //   "jobUuid": "my_jobUuid",
+     *   //   "labels": {},
+     *   //   "pigJob": {},
+     *   //   "placement": {},
+     *   //   "prestoJob": {},
+     *   //   "pysparkJob": {},
+     *   //   "reference": {},
+     *   //   "scheduling": {},
+     *   //   "sparkJob": {},
+     *   //   "sparkRJob": {},
+     *   //   "sparkSqlJob": {},
+     *   //   "status": {},
+     *   //   "statusHistory": [],
+     *   //   "submittedBy": "my_submittedBy",
+     *   //   "yarnApplications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.get
      * @memberOf! ()
      *
@@ -5552,6 +7719,50 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.getIamPolicy({
+     *     // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.getIamPolicy
      * @memberOf! ()
      *
@@ -5625,6 +7836,59 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.list
      * @desc Lists regions/{region}/jobs in a project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.list({
+     *     // Optional. If set, the returned jobs list includes only jobs that were submitted to the named cluster.
+     *     clusterName: 'placeholder-value',
+     *     // Optional. A filter constraining the jobs to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is status.state or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be either ACTIVE or NON_ACTIVE. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND labels.env = staging AND labels.starred = *
+     *     filter: 'placeholder-value',
+     *     // Optional. Specifies enumerated categories of jobs to list. (default = match ALL jobs).If filter is provided, jobStateMatcher will be ignored.
+     *     jobStateMatcher: 'placeholder-value',
+     *     // Optional. The number of results to return in each response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.list
      * @memberOf! ()
      *
@@ -5704,6 +7968,98 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.patch
      * @desc Updates a job in a project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.patch({
+     *     // Required. The job ID.
+     *     jobId: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *     // Required. Specifies the path, relative to <code>Job</code>, of the field to update. For example, to update the labels of a Job the <code>update_mask</code> parameter would be specified as <code>labels</code>, and the PATCH request body would specify the new value. <strong>Note:</strong> Currently, <code>labels</code> is the only field that can be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "done": false,
+     *       //   "driverControlFilesUri": "my_driverControlFilesUri",
+     *       //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *       //   "hadoopJob": {},
+     *       //   "hiveJob": {},
+     *       //   "jobUuid": "my_jobUuid",
+     *       //   "labels": {},
+     *       //   "pigJob": {},
+     *       //   "placement": {},
+     *       //   "prestoJob": {},
+     *       //   "pysparkJob": {},
+     *       //   "reference": {},
+     *       //   "scheduling": {},
+     *       //   "sparkJob": {},
+     *       //   "sparkRJob": {},
+     *       //   "sparkSqlJob": {},
+     *       //   "status": {},
+     *       //   "statusHistory": [],
+     *       //   "submittedBy": "my_submittedBy",
+     *       //   "yarnApplications": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "driverControlFilesUri": "my_driverControlFilesUri",
+     *   //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *   //   "hadoopJob": {},
+     *   //   "hiveJob": {},
+     *   //   "jobUuid": "my_jobUuid",
+     *   //   "labels": {},
+     *   //   "pigJob": {},
+     *   //   "placement": {},
+     *   //   "prestoJob": {},
+     *   //   "pysparkJob": {},
+     *   //   "reference": {},
+     *   //   "scheduling": {},
+     *   //   "sparkJob": {},
+     *   //   "sparkRJob": {},
+     *   //   "sparkSqlJob": {},
+     *   //   "status": {},
+     *   //   "statusHistory": [],
+     *   //   "submittedBy": "my_submittedBy",
+     *   //   "yarnApplications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.patch
      * @memberOf! ()
      *
@@ -5780,6 +8136,56 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.setIamPolicy
      * @memberOf! ()
      *
@@ -5853,6 +8259,76 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.submit
      * @desc Submits a job to a cluster.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.submit({
+     *     // Required. The ID of the Google Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "job": {},
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "driverControlFilesUri": "my_driverControlFilesUri",
+     *   //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *   //   "hadoopJob": {},
+     *   //   "hiveJob": {},
+     *   //   "jobUuid": "my_jobUuid",
+     *   //   "labels": {},
+     *   //   "pigJob": {},
+     *   //   "placement": {},
+     *   //   "prestoJob": {},
+     *   //   "pysparkJob": {},
+     *   //   "reference": {},
+     *   //   "scheduling": {},
+     *   //   "sparkJob": {},
+     *   //   "sparkRJob": {},
+     *   //   "sparkSqlJob": {},
+     *   //   "status": {},
+     *   //   "statusHistory": [],
+     *   //   "submittedBy": "my_submittedBy",
+     *   //   "yarnApplications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.submit
      * @memberOf! ()
      *
@@ -5927,6 +8403,61 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.submitAsOperation
      * @desc Submits job to a cluster.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.submitAsOperation({
+     *     // Required. The ID of the Google Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Required. The Dataproc region in which to handle the request.
+     *     region: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "job": {},
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.submitAsOperation
      * @memberOf! ()
      *
@@ -6003,6 +8534,54 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.jobs.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.jobs.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.jobs.testIamPermissions
      * @memberOf! ()
      *
@@ -6315,6 +8894,44 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/regions/my-region/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.operations.cancel
      * @memberOf! ()
      *
@@ -6387,6 +9004,44 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/regions/my-region/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.operations.delete
      * @memberOf! ()
      *
@@ -6456,6 +9111,50 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.operations.get
      * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/regions/my-region/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.operations.get
      * @memberOf! ()
      *
@@ -6527,6 +9226,50 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.operations.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.operations.getIamPolicy({
+     *     // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.operations.getIamPolicy
      * @memberOf! ()
      *
@@ -6600,6 +9343,53 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/regions/my-region/operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.operations.list
      * @memberOf! ()
      *
@@ -6676,6 +9466,56 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.operations.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.operations.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.operations.setIamPolicy
      * @memberOf! ()
      *
@@ -6749,6 +9589,54 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.operations.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.operations.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.operations.testIamPermissions
      * @memberOf! ()
      *
@@ -6949,6 +9837,72 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.create
      * @desc Creates new workflow template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.create({
+     *     // Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region}
+     *     // For projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}
+     *     parent: 'projects/my-project/regions/my-region',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "jobs": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parameters": [],
+     *       //   "placement": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "jobs": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "placement": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.create
      * @memberOf! ()
      *
@@ -7024,6 +9978,49 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.delete
      * @desc Deletes a workflow template. It does not cancel in-progress workflows.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.delete({
+     *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates.delete, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     *     // For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     *     name:
+     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *     // Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.delete
      * @memberOf! ()
      *
@@ -7094,6 +10091,59 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.get
      * @desc Retrieves the latest workflow template.Can retrieve previously instantiated template by specifying optional version parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.get({
+     *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     *     // For projects.locations.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     *     name:
+     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *     // Optional. The version of workflow template to retrieve. Only previously instantiated versions can be retrieved.If unspecified, retrieves the current version.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "jobs": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "placement": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.get
      * @memberOf! ()
      *
@@ -7166,6 +10216,51 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.getIamPolicy({
+     *     // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.getIamPolicy
      * @memberOf! ()
      *
@@ -7239,6 +10334,64 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.instantiate
      * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#workflowmetadata). Also see Using WorkflowMetadata (https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).On successful completion, Operation.response will be Empty.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.instantiate({
+     *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     *     // For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     *     name:
+     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "instanceId": "my_instanceId",
+     *       //   "parameters": {},
+     *       //   "requestId": "my_requestId",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.instantiate
      * @memberOf! ()
      *
@@ -7314,6 +10467,74 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.instantiateInline
      * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata). Also see Using WorkflowMetadata (https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).On successful completion, Operation.response will be Empty.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.instantiateInline(
+     *     {
+     *       // Deprecated. Please use request_id field instead.
+     *       instanceId: 'placeholder-value',
+     *       // Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *       // For projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region}
+     *       // For projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
+     *       parent: 'projects/my-project/regions/my-region',
+     *       // Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "id": "my_id",
+     *         //   "jobs": [],
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "parameters": [],
+     *         //   "placement": {},
+     *         //   "updateTime": "my_updateTime",
+     *         //   "version": 0
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.instantiateInline
      * @memberOf! ()
      *
@@ -7390,6 +10611,53 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.list
      * @desc Lists workflows that match the specified filter in the request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.list({
+     *     // Optional. The maximum number of results to return in each response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates,list, the resource  name of the region has the following format:  projects/{project_id}/regions/{region}
+     *     // For projects.locations.workflowTemplates.list, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
+     *     parent: 'projects/my-project/regions/my-region',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "templates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.list
      * @memberOf! ()
      *
@@ -7475,6 +10743,57 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.setIamPolicy
      * @memberOf! ()
      *
@@ -7548,6 +10867,57 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.testIamPermissions
      * @memberOf! ()
      *
@@ -7630,6 +11000,73 @@ export namespace dataproc_v1beta2 {
     /**
      * dataproc.projects.regions.workflowTemplates.update
      * @desc Updates (replaces) workflow template. The updated template must contain version that matches the current server version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.workflowTemplates.update({
+     *     // Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.
+     *     // For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     *     // For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     *     name:
+     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "jobs": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parameters": [],
+     *       //   "placement": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "jobs": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "placement": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataproc.projects.regions.workflowTemplates.update
      * @memberOf! ()
      *

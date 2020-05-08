@@ -597,6 +597,67 @@ export namespace pagespeedonline_v5 {
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
      * @desc Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pagespeedonline.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pagespeedonline = google.pagespeedonline('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['openid'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await pagespeedonline.pagespeedapi.runpagespeed({
+     *     // The captcha token passed when filling out a captcha.
+     *     captchaToken: 'placeholder-value',
+     *     // A Lighthouse category to run; if none are given, only Performance category
+     *     // will be run
+     *     category: 'placeholder-value',
+     *     // The locale used to localize formatted results
+     *     locale: 'placeholder-value',
+     *     // The analysis strategy (desktop or mobile) to use, and desktop is the
+     *     // default
+     *     strategy: 'placeholder-value',
+     *     // The URL to fetch and analyze
+     *     url: 'placeholder-value',
+     *     // Campaign name for analytics.
+     *     utm_campaign: 'placeholder-value',
+     *     // Campaign source for analytics.
+     *     utm_source: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "analysisUTCTimestamp": "my_analysisUTCTimestamp",
+     *   //   "captchaResult": "my_captchaResult",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lighthouseResult": {},
+     *   //   "loadingExperience": {},
+     *   //   "originLoadingExperience": {},
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! ()
      *

@@ -734,6 +734,50 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.get
      * @memberOf! ()
      *
@@ -803,6 +847,53 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.list
      * @memberOf! ()
      *
@@ -926,6 +1017,60 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.applyParameters
      * @desc ApplyParameters will update current set of Parameters to the set of specified nodes of the Memcached Instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.applyParameters({
+     *     // Required. Resource name of the Memcached instance for which parameter group updates
+     *     // should be applied.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "applyAll": false,
+     *       //   "nodeIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.applyParameters
      * @memberOf! ()
      *
@@ -1001,6 +1146,84 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.create
      * @desc Creates a new Instance in a given project and location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.create({
+     *     // Required. The logical name of the Memcached instance in the user
+     *     // project with the following restrictions:
+     *     //
+     *     // * Must contain only lowercase letters, numbers, and hyphens.
+     *     // * Must start with a letter.
+     *     // * Must be between 1-40 characters.
+     *     // * Must end with a number or a letter.
+     *     // * Must be unique within the user project / location
+     *     instanceId: 'placeholder-value',
+     *     // Required. The resource name of the instance location using the form:
+     *     //     `projects/{project_id}/locations/{location_id}`
+     *     // where `location_id` refers to a GCP region
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "createTime": "my_createTime",
+     *       //   "discoveryEndpoint": "my_discoveryEndpoint",
+     *       //   "displayName": "my_displayName",
+     *       //   "instanceMessages": [],
+     *       //   "labels": {},
+     *       //   "memcacheFullVersion": "my_memcacheFullVersion",
+     *       //   "memcacheNodes": [],
+     *       //   "memcacheVersion": "my_memcacheVersion",
+     *       //   "name": "my_name",
+     *       //   "nodeConfig": {},
+     *       //   "nodeCount": 0,
+     *       //   "parameters": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "zones": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.create
      * @memberOf! ()
      *
@@ -1077,6 +1300,52 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.delete
      * @desc Deletes a single Instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.delete({
+     *     // Required. Memcached instance resource name in the format:
+     *     //     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *     // where `location_id` refers to a GCP region
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.delete
      * @memberOf! ()
      *
@@ -1148,6 +1417,63 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.get
      * @desc Gets details of a single Instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.get({
+     *     // Required. Memcached instance resource name in the format:
+     *     //     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *     // where `location_id` refers to a GCP region
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorizedNetwork": "my_authorizedNetwork",
+     *   //   "createTime": "my_createTime",
+     *   //   "discoveryEndpoint": "my_discoveryEndpoint",
+     *   //   "displayName": "my_displayName",
+     *   //   "instanceMessages": [],
+     *   //   "labels": {},
+     *   //   "memcacheFullVersion": "my_memcacheFullVersion",
+     *   //   "memcacheNodes": [],
+     *   //   "memcacheVersion": "my_memcacheVersion",
+     *   //   "name": "my_name",
+     *   //   "nodeConfig": {},
+     *   //   "nodeCount": 0,
+     *   //   "parameters": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "zones": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.get
      * @memberOf! ()
      *
@@ -1217,6 +1543,59 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.getIamPolicy({
+     *     // Optional. The policy format version to be returned.
+     *     //
+     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *     // rejected.
+     *     //
+     *     // Requests for policies with any conditional bindings must specify version 3.
+     *     // Policies without any conditional bindings may specify any valid value or
+     *     // leave the field unset.
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.getIamPolicy
      * @memberOf! ()
      *
@@ -1290,6 +1669,66 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.list
      * @desc Lists Instances in a given project and location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.list({
+     *     // List filter. For example, exclude all Memcached instances with name as
+     *     // my-instance by specifying "name != my-instance".
+     *     filter: 'placeholder-value',
+     *     // Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     //
+     *     // If not specified, a default value of 1000 will be used by the service.
+     *     // Regardless of the page_size value, the response may include a partial list
+     *     // and a caller should only rely on response's
+     *     // next_page_token
+     *     // to determine if there are more instances left to be queried.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request,
+     *     // if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the instance location using the form:
+     *     //     `projects/{project_id}/locations/{location_id}`
+     *     // where `location_id` refers to a GCP region
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.list
      * @memberOf! ()
      *
@@ -1370,6 +1809,83 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.patch
      * @desc Updates an existing Instance in a given project and location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.patch({
+     *     // Required. Unique name of the resource in this scope including project and
+     *     // location using the form:
+     *     //     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *     //
+     *     // Note: Memcached instances are managed and addressed at regional level so
+     *     // location_id here refers to a GCP region; however, users may choose which
+     *     // zones Memcached nodes within an instances should be provisioned in.
+     *     // Refer to [zones] field for more details.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     // Required. Mask of fields to update.
+     *     //  *   `displayName`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "createTime": "my_createTime",
+     *       //   "discoveryEndpoint": "my_discoveryEndpoint",
+     *       //   "displayName": "my_displayName",
+     *       //   "instanceMessages": [],
+     *       //   "labels": {},
+     *       //   "memcacheFullVersion": "my_memcacheFullVersion",
+     *       //   "memcacheNodes": [],
+     *       //   "memcacheVersion": "my_memcacheVersion",
+     *       //   "name": "my_name",
+     *       //   "nodeConfig": {},
+     *       //   "nodeCount": 0,
+     *       //   "parameters": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "zones": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.patch
      * @memberOf! ()
      *
@@ -1443,6 +1959,59 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.setIamPolicy
      * @memberOf! ()
      *
@@ -1516,6 +2085,55 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.testIamPermissions
      * @memberOf! ()
      *
@@ -1598,6 +2216,60 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.instances.updateParameters
      * @desc Updates the defined Memcached Parameters for an existing Instance. This method only stages the parameters, it must be followed by ApplyParameters to apply the parameters to nodes of the Memcached Instance.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.updateParameters({
+     *     // Required. Resource name of the Memcached instance for which the parameters should be
+     *     // updated.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parameters": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.instances.updateParameters
      * @memberOf! ()
      *
@@ -1859,6 +2531,50 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.operations.cancel
      * @memberOf! ()
      *
@@ -1932,6 +2648,44 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.operations.delete
      * @memberOf! ()
      *
@@ -2001,6 +2755,50 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -2072,6 +2870,53 @@ export namespace memcache_v1beta2 {
     /**
      * memcache.projects.locations.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias memcache.projects.locations.operations.list
      * @memberOf! ()
      *

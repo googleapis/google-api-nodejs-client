@@ -442,6 +442,56 @@ export namespace cloudtrace_v2 {
     /**
      * cloudtrace.projects.traces.batchWrite
      * @desc Sends new spans to new or existing traces. You cannot update existing spans. In this case, writing traces is not considered an active developer method since traces are machine generated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudtrace = google.cloudtrace('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/trace.append',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudtrace.projects.traces.batchWrite({
+     *     // Required. The name of the project where the spans belong. The format is
+     *     // `projects/[PROJECT_ID]`.
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "spans": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudtrace.projects.traces.batchWrite
      * @memberOf! ()
      *
@@ -540,6 +590,89 @@ export namespace cloudtrace_v2 {
     /**
      * cloudtrace.projects.traces.spans.createSpan
      * @desc Creates a new span. In this case, writing traces is not considered an active developer method since traces are machine generated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudtrace = google.cloudtrace('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/trace.append',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await cloudtrace.projects.traces.spans.createSpan({
+     *     // The resource name of the span in the following format:
+     *     //
+     *     //     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;
+     *     // it is a 32-character hexadecimal encoding of a 16-byte array.
+     *     //
+     *     // [SPAN_ID] is a unique identifier for a span within a trace; it
+     *     // is a 16-character hexadecimal encoding of an 8-byte array.
+     *     name: 'projects/my-project/traces/my-trace/spans/my-span',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "childSpanCount": 0,
+     *       //   "displayName": {},
+     *       //   "endTime": "my_endTime",
+     *       //   "links": {},
+     *       //   "name": "my_name",
+     *       //   "parentSpanId": "my_parentSpanId",
+     *       //   "sameProcessAsParentSpan": false,
+     *       //   "spanId": "my_spanId",
+     *       //   "spanKind": "my_spanKind",
+     *       //   "stackTrace": {},
+     *       //   "startTime": "my_startTime",
+     *       //   "status": {},
+     *       //   "timeEvents": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "childSpanCount": 0,
+     *   //   "displayName": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "links": {},
+     *   //   "name": "my_name",
+     *   //   "parentSpanId": "my_parentSpanId",
+     *   //   "sameProcessAsParentSpan": false,
+     *   //   "spanId": "my_spanId",
+     *   //   "spanKind": "my_spanKind",
+     *   //   "stackTrace": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": {},
+     *   //   "timeEvents": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudtrace.projects.traces.spans.createSpan
      * @memberOf! ()
      *

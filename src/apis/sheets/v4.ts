@@ -4130,61 +4130,62 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.batchUpdate
      * @desc Applies one or more updates to the spreadsheet.  Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. The replies will mirror the requests.  For example, if you applied 4 updates and the 3rd one had a reply, then the response will have 2 empty replies, the actual reply, and another empty reply, in that order.  Due to the collaborative nature of spreadsheets, it is not guaranteed that the spreadsheet will reflect exactly your changes after this completes, however it is guaranteed that the updates in the request will be applied together atomically. Your changes may be altered with respect to collaborator changes. If there are no collaborators, the spreadsheet should reflect your changes.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The spreadsheet to apply the updates to.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // A list of updates to apply to the spreadsheet.
-     *       // Requests will be applied in the order they are specified.
-     *       // If any request is not valid, no requests will be applied.
-     *       requests: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.batchUpdate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.batchUpdate({
+     *     // The spreadsheet to apply the updates to.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "includeSpreadsheetInResponse": false,
+     *       //   "requests": [],
+     *       //   "responseIncludeGridData": false,
+     *       //   "responseRanges": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "replies": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "updatedSpreadsheet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.batchUpdate
      * @memberOf! ()
      *
@@ -4269,53 +4270,64 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.create
      * @desc Creates a spreadsheet, returning the newly created spreadsheet.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "developerMetadata": [],
+     *       //   "namedRanges": [],
+     *       //   "properties": {},
+     *       //   "sheets": [],
+     *       //   "spreadsheetId": "my_spreadsheetId",
+     *       //   "spreadsheetUrl": "my_spreadsheetUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "developerMetadata": [],
+     *   //   "namedRanges": [],
+     *   //   "properties": {},
+     *   //   "sheets": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "spreadsheetUrl": "my_spreadsheetUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.create
      * @memberOf! ()
      *
@@ -4388,61 +4400,61 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.get
      * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData URL parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.  To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified.  Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The spreadsheet to request.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *     ],
+     *   });
      *
-     *     // The ranges to retrieve from the spreadsheet.
-     *     ranges: [],  // TODO: Update placeholder value.
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.get({
      *     // True if grid data should be returned.
      *     // This parameter is ignored if a field mask was set in the request.
-     *     includeGridData: false,  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     includeGridData: 'placeholder-value',
+     *     // The ranges to retrieve from the spreadsheet.
+     *     ranges: 'placeholder-value',
+     *     // The spreadsheet to request.
+     *     spreadsheetId: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "developerMetadata": [],
+     *   //   "namedRanges": [],
+     *   //   "properties": {},
+     *   //   "sheets": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "spreadsheetUrl": "my_spreadsheetUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/drive.readonly'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.get
      * @memberOf! ()
      *
@@ -4519,64 +4531,63 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.getByDataFilter
      * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified.  Specifying one or more data filters will return the portions of the spreadsheet that intersect ranges matched by any of the filters.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The spreadsheet to request.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // The DataFilters used to select which ranges to retrieve from
-     *       // the spreadsheet.
-     *       dataFilters: [],  // TODO: Update placeholder value.
-     *
-     *       // True if grid data should be returned.
-     *       // This parameter is ignored if a field mask was set in the request.
-     *       includeGridData: false,  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.getByDataFilter(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.getByDataFilter({
+     *     // The spreadsheet to request.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataFilters": [],
+     *       //   "includeGridData": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "developerMetadata": [],
+     *   //   "namedRanges": [],
+     *   //   "properties": {},
+     *   //   "sheets": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "spreadsheetUrl": "my_spreadsheetUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.getByDataFilter
      * @memberOf! ()
      *
@@ -4725,55 +4736,55 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.developerMetadata.get
      * @desc Returns the developer metadata with the specified ID. The caller must specify the spreadsheet ID and the developer metadata's unique metadataId.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve metadata from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the developer metadata to retrieve.
-     *     metadataId: 0,  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.developerMetadata.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.developerMetadata.get({
+     *     // The ID of the developer metadata to retrieve.
+     *     metadataId: 'placeholder-value',
+     *     // The ID of the spreadsheet to retrieve metadata from.
+     *     spreadsheetId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "location": {},
+     *   //   "metadataId": 0,
+     *   //   "metadataKey": "my_metadataKey",
+     *   //   "metadataValue": "my_metadataValue",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.developerMetadata.get
      * @memberOf! ()
      *
@@ -4850,56 +4861,57 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.developerMetadata.search
      * @desc Returns all developer metadata matching the specified DataFilter. If the provided DataFilter represents a DeveloperMetadataLookup object, this will return all DeveloperMetadata entries selected by it. If the DataFilter represents a location in a spreadsheet, this will return all developer metadata associated with locations intersecting that region.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve metadata from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.developerMetadata.search(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.developerMetadata.search({
+     *     // The ID of the spreadsheet to retrieve metadata from.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataFilters": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matchedDeveloperMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.developerMetadata.search
      * @memberOf! ()
      *
@@ -5026,62 +5038,67 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.sheets.copyTo
      * @desc Copies a single sheet from a spreadsheet to another spreadsheet. Returns the properties of the newly created sheet.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet containing the sheet to copy.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the sheet to copy.
-     *     sheetId: 0,  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // The ID of the spreadsheet to copy the sheet to.
-     *       destinationSpreadsheetId: '',  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.sheets.copyTo(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.sheets.copyTo({
+     *     // The ID of the sheet to copy.
+     *     sheetId: 'placeholder-value',
+     *     // The ID of the spreadsheet containing the sheet to copy.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinationSpreadsheetId": "my_destinationSpreadsheetId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gridProperties": {},
+     *   //   "hidden": false,
+     *   //   "index": 0,
+     *   //   "rightToLeft": false,
+     *   //   "sheetId": 0,
+     *   //   "sheetType": "my_sheetType",
+     *   //   "tabColor": {},
+     *   //   "tabColorStyle": {},
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.sheets.copyTo
      * @memberOf! ()
      *
@@ -5188,66 +5205,80 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.append
      * @desc Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/api/guides/values#appending_values) and [sample code](/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended.  The caller must specify the spreadsheet ID, range, and a valueInputOption.  The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The A1 notation of a range to search for a logical table of data.
-     *     // Values will be appended after the last row of the table.
-     *     range: 'my-range',  // TODO: Update placeholder value.
-     *
-     *     // How the input data should be interpreted.
-     *     valueInputOption: '',  // TODO: Update placeholder value.
-     *
-     *     // How the input data should be inserted.
-     *     insertDataOption: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.append(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.append({
+     *     // Determines if the update response should include the values
+     *     // of the cells that were appended. By default, responses
+     *     // do not include the updated values.
+     *     includeValuesInResponse: 'placeholder-value',
+     *     // How the input data should be inserted.
+     *     insertDataOption: 'placeholder-value',
+     *     // The A1 notation of a range to search for a logical table of data.
+     *     // Values are appended after the last row of the table.
+     *     range: 'placeholder-value',
+     *     // Determines how dates, times, and durations in the response should be
+     *     // rendered. This is ignored if response_value_render_option is
+     *     // FORMATTED_VALUE.
+     *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     responseDateTimeRenderOption: 'placeholder-value',
+     *     // Determines how values in the response should be rendered.
+     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     responseValueRenderOption: 'placeholder-value',
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *     // How the input data should be interpreted.
+     *     valueInputOption: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "majorDimension": "my_majorDimension",
+     *       //   "range": "my_range",
+     *       //   "values": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "tableRange": "my_tableRange",
+     *   //   "updates": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.append
      * @memberOf! ()
      *
@@ -5331,59 +5362,58 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchClear
      * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // The ranges to clear, in A1 notation.
-     *       ranges: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchClear(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchClear({
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ranges": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clearedRanges": [],
+     *   //   "spreadsheetId": "my_spreadsheetId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchClear
      * @memberOf! ()
      *
@@ -5463,59 +5493,58 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchClearByDataFilter
      * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges matching any of the specified data filters will be cleared.  Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // The DataFilters used to determine which ranges to clear.
-     *       dataFilters: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchClearByDataFilter(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchClearByDataFilter({
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataFilters": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clearedRanges": [],
+     *   //   "spreadsheetId": "my_spreadsheetId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchClearByDataFilter
      * @memberOf! ()
      *
@@ -5609,67 +5638,69 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchGet
      * @desc Returns one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *     ],
+     *   });
      *
-     *     // The A1 notation of the values to retrieve.
-     *     ranges: [],  // TODO: Update placeholder value.
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
-     *     // How values should be represented in the output.
-     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
-     *     valueRenderOption: '',  // TODO: Update placeholder value.
-     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchGet({
      *     // How dates, times, and durations should be represented in the output.
      *     // This is ignored if value_render_option is
      *     // FORMATTED_VALUE.
      *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     *     dateTimeRenderOption: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchGet(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     dateTimeRenderOption: 'placeholder-value',
+     *     // The major dimension that results should use.
+     *     //
+     *     // For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`,
+     *     // then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`,
+     *     // whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns
+     *     // `[[1,3],[2,4]]`.
+     *     majorDimension: 'placeholder-value',
+     *     // The A1 notation of the values to retrieve.
+     *     ranges: 'placeholder-value',
+     *     // The ID of the spreadsheet to retrieve data from.
+     *     spreadsheetId: 'placeholder-value',
+     *     // How values should be represented in the output.
+     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     valueRenderOption: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "valueRanges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/drive.readonly'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchGet
      * @memberOf! ()
      *
@@ -5752,71 +5783,61 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchGetByDataFilter
      * @desc Returns one or more ranges of values that match the specified data filters. The caller must specify the spreadsheet ID and one or more DataFilters.  Ranges that match any of the data filters in the request will be returned.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // How values should be represented in the output.
-     *       // The default render option is ValueRenderOption.FORMATTED_VALUE.
-     *       valueRenderOption: '',  // TODO: Update placeholder value.
-     *
-     *       // The data filters used to match the ranges of values to retrieve.  Ranges
-     *       // that match any of the specified data filters will be included in the
-     *       // response.
-     *       dataFilters: [],  // TODO: Update placeholder value.
-     *
-     *       // How dates, times, and durations should be represented in the output.
-     *       // This is ignored if value_render_option is
-     *       // FORMATTED_VALUE.
-     *       // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     *       dateTimeRenderOption: '',  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchGetByDataFilter(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchGetByDataFilter({
+     *     // The ID of the spreadsheet to retrieve data from.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataFilters": [],
+     *       //   "dateTimeRenderOption": "my_dateTimeRenderOption",
+     *       //   "majorDimension": "my_majorDimension",
+     *       //   "valueRenderOption": "my_valueRenderOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "valueRanges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchGetByDataFilter
      * @memberOf! ()
      *
@@ -5902,62 +5923,66 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchUpdate
      * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more ValueRanges.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // How the input data should be interpreted.
-     *       valueInputOption: '',  // TODO: Update placeholder value.
-     *
-     *       // The new values to apply to the spreadsheet.
-     *       data: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchUpdate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchUpdate({
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": [],
+     *       //   "includeValuesInResponse": false,
+     *       //   "responseDateTimeRenderOption": "my_responseDateTimeRenderOption",
+     *       //   "responseValueRenderOption": "my_responseValueRenderOption",
+     *       //   "valueInputOption": "my_valueInputOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "totalUpdatedCells": 0,
+     *   //   "totalUpdatedColumns": 0,
+     *   //   "totalUpdatedRows": 0,
+     *   //   "totalUpdatedSheets": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchUpdate
      * @memberOf! ()
      *
@@ -6040,64 +6065,66 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchUpdateByDataFilter
      * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more DataFilterValueRanges.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // How the input data should be interpreted.
-     *       valueInputOption: '',  // TODO: Update placeholder value.
-     *
-     *       // The new values to apply to the spreadsheet.  If more than one range is
-     *       // matched by the specified DataFilter the specified values will be
-     *       // applied to all of those ranges.
-     *       data: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchUpdateByDataFilter(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchUpdateByDataFilter({
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": [],
+     *       //   "includeValuesInResponse": false,
+     *       //   "responseDateTimeRenderOption": "my_responseDateTimeRenderOption",
+     *       //   "responseValueRenderOption": "my_responseValueRenderOption",
+     *       //   "valueInputOption": "my_valueInputOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "totalUpdatedCells": 0,
+     *   //   "totalUpdatedColumns": 0,
+     *   //   "totalUpdatedRows": 0,
+     *   //   "totalUpdatedSheets": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchUpdateByDataFilter
      * @memberOf! ()
      *
@@ -6191,59 +6218,58 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.clear
      * @desc Clears values from a spreadsheet. The caller must specify the spreadsheet ID and range. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The A1 notation of the values to clear.
-     *     range: 'my-range',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.clear(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.clear({
+     *     // The A1 notation of the values to clear.
+     *     range: 'placeholder-value',
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clearedRange": "my_clearedRange",
+     *   //   "spreadsheetId": "my_spreadsheetId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.clear
      * @memberOf! ()
      *
@@ -6320,67 +6346,70 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.get
      * @desc Returns a range of values from a spreadsheet. The caller must specify the spreadsheet ID and a range.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *     ],
+     *   });
      *
-     *     // The A1 notation of the values to retrieve.
-     *     range: 'my-range',  // TODO: Update placeholder value.
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
      *
-     *     // How values should be represented in the output.
-     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
-     *     valueRenderOption: '',  // TODO: Update placeholder value.
-     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.get({
      *     // How dates, times, and durations should be represented in the output.
      *     // This is ignored if value_render_option is
      *     // FORMATTED_VALUE.
      *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     *     dateTimeRenderOption: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     dateTimeRenderOption: 'placeholder-value',
+     *     // The major dimension that results should use.
+     *     //
+     *     // For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then
+     *     // requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`,
+     *     // whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns
+     *     // `[[1,3],[2,4]]`.
+     *     majorDimension: 'placeholder-value',
+     *     // The A1 notation of the values to retrieve.
+     *     range: 'placeholder-value',
+     *     // The ID of the spreadsheet to retrieve data from.
+     *     spreadsheetId: 'placeholder-value',
+     *     // How values should be represented in the output.
+     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     valueRenderOption: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "majorDimension": "my_majorDimension",
+     *   //   "range": "my_range",
+     *   //   "values": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/drive.readonly'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.get
      * @memberOf! ()
      *
@@ -6459,63 +6488,84 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.update
      * @desc Sets values in a range of a spreadsheet. The caller must specify the spreadsheet ID, range, and a valueInputOption.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The A1 notation of the values to update.
-     *     range: 'my-range',  // TODO: Update placeholder value.
-     *
-     *     // How the input data should be interpreted.
-     *     valueInputOption: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.update({
+     *     // Determines if the update response should include the values
+     *     // of the cells that were updated. By default, responses
+     *     // do not include the updated values.
+     *     // If the range to write was larger than the range actually written, the
+     *     // response includes all values in the requested range (excluding trailing
+     *     // empty rows and columns).
+     *     includeValuesInResponse: 'placeholder-value',
+     *     // The A1 notation of the values to update.
+     *     range: 'placeholder-value',
+     *     // Determines how dates, times, and durations in the response should be
+     *     // rendered. This is ignored if response_value_render_option is
+     *     // FORMATTED_VALUE.
+     *     // The default dateTime render option is
+     *     // DateTimeRenderOption.SERIAL_NUMBER.
+     *     responseDateTimeRenderOption: 'placeholder-value',
+     *     // Determines how values in the response should be rendered.
+     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     responseValueRenderOption: 'placeholder-value',
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *     // How the input data should be interpreted.
+     *     valueInputOption: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "majorDimension": "my_majorDimension",
+     *       //   "range": "my_range",
+     *       //   "values": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "updatedCells": 0,
+     *   //   "updatedColumns": 0,
+     *   //   "updatedData": {},
+     *   //   "updatedRange": "my_updatedRange",
+     *   //   "updatedRows": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.update
      * @memberOf! ()
      *

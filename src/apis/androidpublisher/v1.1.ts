@@ -140,6 +140,56 @@ export namespace androidpublisher_v1_1 {
     /**
      * androidpublisher.inapppurchases.get
      * @desc Checks the purchase and consumption status of an inapp item.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.inapppurchases.get({
+     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
+     *     productId: 'placeholder-value',
+     *     // The token provided to the user's device when the inapp product was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consumptionState": 0,
+     *   //   "developerPayload": "my_developerPayload",
+     *   //   "kind": "my_kind",
+     *   //   "orderId": "my_orderId",
+     *   //   "purchaseState": 0,
+     *   //   "purchaseTime": "my_purchaseTime",
+     *   //   "purchaseType": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.inapppurchases.get
      * @memberOf! ()
      *
