@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [50.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v50.0.0...v50.1.0) (2020-05-11)
+
+
+### Features
+
+* generate samples ([#2056](https://www.github.com/googleapis/google-api-nodejs-client/issues/2056)) ([ea599ac](https://www.github.com/googleapis/google-api-nodejs-client/commit/ea599acb1a5adfdfe4efefdf701f19cc07963b70))
+
 ## [50.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v49.0.0...v50.0.0) (2020-05-05)
 
 
