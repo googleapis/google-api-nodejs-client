@@ -17,6 +17,13 @@ import * as fs from 'fs';
 import * as gaxios from 'gaxios';
 
 async function main() {
+  await execa('git', [
+    'config',
+    '--global',
+    'user.email',
+    '"yoshi-automation@google.com"',
+  ]);
+  await execa('git', ['config', '--global', 'user.name', '"Yoshi Automation"']);
   const statusResult = await execa('git', ['status']);
   const status = statusResult.stdout;
   const apiDir = path.resolve('./src/apis');
