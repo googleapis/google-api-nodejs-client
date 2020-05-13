@@ -27,4 +27,5 @@ s.copy(templates, excludes=[
   ".eslintignore",
   ".prettierignore"
 ])
+subprocess.run(['npm', 'i'])
 subprocess.run(['npm', 'run', 'generate'])
