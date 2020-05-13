@@ -325,7 +325,7 @@ export namespace serviceusage_v1 {
     services?: Schema$GoogleApiServiceusageV1Service[];
   }
   /**
-   * Billing related configuration of the service.  The following example shows how to configure monitored resources and metrics for billing:      monitored_resources:     - type: library.googleapis.com/branch       labels:       - key: /city         description: The city where the library branch is located in.       - key: /name         description: The name of the branch.     metrics:     - name: library.googleapis.com/book/borrowed_count       metric_kind: DELTA       value_type: INT64     billing:       consumer_destinations:       - monitored_resource: library.googleapis.com/branch         metrics:         - library.googleapis.com/book/borrowed_count
+   * Billing related configuration of the service.  The following example shows how to configure monitored resources and metrics for billing, `consumer_destinations` is the only supported destination and the monitored resources need at least one label key `cloud.googleapis.com/location` to indicate the location of the billing usage, using different monitored resources between monitoring and billing is recommended so they can be evolved independently:       monitored_resources:     - type: library.googleapis.com/billing_branch       labels:       - key: cloud.googleapis.com/location         description: |           Predefined label to support billing location restriction.       - key: city         description: |           Custom label to define the city where the library branch is located           in.       - key: name         description: Custom label to define the name of the library branch.     metrics:     - name: library.googleapis.com/book/borrowed_count       metric_kind: DELTA       value_type: INT64       unit: &quot;1&quot;     billing:       consumer_destinations:       - monitored_resource: library.googleapis.com/billing_branch         metrics:         - library.googleapis.com/book/borrowed_count
    */
   export interface Schema$Billing {
     /**
@@ -2268,7 +2268,7 @@ export namespace serviceusage_v1 {
      *     // An example name would be:
      *     // `projects/123/services/serviceusage.googleapis.com` where `123` is the
      *     // project number.
-     *     // A single request can get a maximum of 20 services at a time.
+     *     // A single request can get a maximum of 30 services at a time.
      *     names: 'placeholder-value',
      *     // Parent to retrieve services from.
      *     // If this is set, the parent of all of the services specified in `names` must
@@ -2294,7 +2294,7 @@ export namespace serviceusage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.names Names of the services to retrieve.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number. A single request can get a maximum of 20 services at a time.
+     * @param {string=} params.names Names of the services to retrieve.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number. A single request can get a maximum of 30 services at a time.
      * @param {string} params.parent Parent to retrieve services from. If this is set, the parent of all of the services specified in `names` must match this field. An example name would be: `projects/123` where `123` is the project number. The `BatchGetServices` method currently only supports projects.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2925,7 +2925,7 @@ export namespace serviceusage_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Names of the services to retrieve.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number. A single request can get a maximum of 20 services at a time.
+     * Names of the services to retrieve.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number. A single request can get a maximum of 30 services at a time.
      */
     names?: string[];
     /**

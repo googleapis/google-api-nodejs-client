@@ -160,7 +160,7 @@ export namespace osconfig_v1 {
      */
     allowedSuccessCodes?: number[] | null;
     /**
-     * A Google Cloud Storage object containing the executable.
+     * A Cloud Storage object containing the executable.
      */
     gcsObject?: Schema$GcsObject;
     /**
@@ -173,7 +173,7 @@ export namespace osconfig_v1 {
     localPath?: string | null;
   }
   /**
-   * A request message to initiate patching across Google Compute Engine instances.
+   * A request message to initiate patching across Compute Engine instances.
    */
   export interface Schema$ExecutePatchJobRequest {
     /**
@@ -202,19 +202,19 @@ export namespace osconfig_v1 {
     patchConfig?: Schema$PatchConfig;
   }
   /**
-   * Google Cloud Storage object representation.
+   * Cloud Storage object representation.
    */
   export interface Schema$GcsObject {
     /**
-     * Required. Bucket of the Google Cloud Storage object.
+     * Required. Bucket of the Cloud Storage object.
      */
     bucket?: string | null;
     /**
-     * Required. Generation number of the Google Cloud Storage object. This is used to ensure that the ExecStep specified by this PatchJob does not change.
+     * Required. Generation number of the Cloud Storage object. This is used to ensure that the ExecStep specified by this PatchJob does not change.
      */
     generationNumber?: string | null;
     /**
-     * Required. Name of the Google Cloud Storage object.
+     * Required. Name of the Cloud Storage object.
      */
     object?: string | null;
   }
@@ -275,7 +275,7 @@ export namespace osconfig_v1 {
     weekDayOfMonth?: Schema$WeekDayOfMonth;
   }
   /**
-   * Sets the time for a one time patch deployment. Timestamp is in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot; target=&quot;_blank&quot;&gt;RFC3339&lt;/a&gt; text format.
+   * Sets the time for a one time patch deployment. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
    */
   export interface Schema$OneTimeSchedule {
     /**
@@ -321,11 +321,11 @@ export namespace osconfig_v1 {
     zypper?: Schema$ZypperSettings;
   }
   /**
-   * Patch deployments are configurations that individual patch jobs use to complete a patch. These configurations include instance filter, package repository settings, and a schedule. For more information about creating and managing patch deployments, see [Scheduling patch jobs](/compute/docs/os-patch-management/schedule-patch-jobs).
+   * Patch deployments are configurations that individual patch jobs use to complete a patch. These configurations include instance filter, package repository settings, and a schedule. For more information about creating and managing patch deployments, see [Scheduling patch jobs](https://cloud.google.com/compute/docs/os-patch-management/schedule-patch-jobs).
    */
   export interface Schema$PatchDeployment {
     /**
-     * Output only. Time the patch deployment was created. Timestamp is in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot; target=&quot;_blank&quot;&gt;RFC3339&lt;/a&gt; text format.
+     * Output only. Time the patch deployment was created. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     createTime?: string | null;
     /**
@@ -341,7 +341,7 @@ export namespace osconfig_v1 {
      */
     instanceFilter?: Schema$PatchInstanceFilter;
     /**
-     * Output only. The last time a patch job was started by this deployment. Timestamp is in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot; target=&quot;_blank&quot;&gt;RFC3339&lt;/a&gt; text format.
+     * Output only. The last time a patch job was started by this deployment. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     lastExecuteTime?: string | null;
     /**
@@ -361,7 +361,7 @@ export namespace osconfig_v1 {
      */
     recurringSchedule?: Schema$RecurringSchedule;
     /**
-     * Output only. Time the patch deployment was last updated. Timestamp is in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot; target=&quot;_blank&quot;&gt;RFC3339&lt;/a&gt; text format.
+     * Output only. Time the patch deployment was last updated. Timestamp is in [RFC3339](&quot;https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     updateTime?: string | null;
   }
@@ -374,7 +374,7 @@ export namespace osconfig_v1 {
      */
     all?: boolean | null;
     /**
-     * Targets VM instances matching at least one of these label sets. This allows targeting of disparate groups, for example &quot;env=prod or env=staging&quot;.
+     * Targets VM instances matching ANY of these GroupLabels. This allows targeting of disparate groups of VM instances.
      */
     groupLabels?: Schema$PatchInstanceFilterGroupLabel[];
     /**
@@ -391,16 +391,16 @@ export namespace osconfig_v1 {
     zones?: string[] | null;
   }
   /**
-   * Represents a group of VMs that can be identified as having all these labels, for example &quot;env=prod and app=web&quot;.
+   * Targets a group of VM instances by using their [assigned labels](https://cloud.google.com/compute/docs/labeling-resources). Labels are key-value pairs. A `GroupLabel` is a combination of labels that is used to target VMs for a patch job.  For example, a patch job can target VMs that have the following `GroupLabel`: `{&quot;env&quot;:&quot;test&quot;, &quot;app&quot;:&quot;web&quot;}`. This means that the patch job is applied to VMs that have both the labels `env=test` and `app=web`.
    */
   export interface Schema$PatchInstanceFilterGroupLabel {
     /**
-     * Google Compute Engine instance labels that must be present for a VM instance to be targeted by this filter.
+     * Compute Engine instance labels that must be present for a VM instance to be targeted by this filter.
      */
     labels?: {[key: string]: string} | null;
   }
   /**
-   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](/compute/docs/os-patch-management/create-patch-job).
+   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
    */
   export interface Schema$PatchJob {
     /**
@@ -461,7 +461,7 @@ export namespace osconfig_v1 {
     updateTime?: string | null;
   }
   /**
-   * Patch details for a VM instance. For more information about reviewing VM instance details, see [Listing all VM instance details for a specific patch job](/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details).
+   * Patch details for a VM instance. For more information about reviewing VM instance details, see [Listing all VM instance details for a specific patch job](https://cloud.google.com/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details).
    */
   export interface Schema$PatchJobInstanceDetails {
     /**

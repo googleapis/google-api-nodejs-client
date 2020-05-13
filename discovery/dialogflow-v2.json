@@ -2049,7 +2049,7 @@
       }
     }
   },
-  "revision": "20200428",
+  "revision": "20200512",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowV2Agent": {
@@ -2703,7 +2703,7 @@
           "type": "object"
         },
         "uri": {
-          "description": "Required. The fulfillment URI for receiving POST requests.",
+          "description": "Required. The fulfillment URI for receiving POST requests.\nIt must use https protocol.",
           "type": "string"
         },
         "username": {
@@ -4197,7 +4197,7 @@
       "id": "GoogleCloudDialogflowV2SpeechContext",
       "properties": {
         "boost": {
-          "description": "Optional. Boost for this context compared to other contexts:\n* If the boost is positive, Dialogflow will increase the probability that\n  the phrases in this context are recognized over similar sounding phrases.\n* If the boost is unspecified or non-positive, Dialogflow will not apply\n  any boost.\n\nDialogflow recommends that you use boosts in the range (0, 20] and that you\nfind a value that fits your use case with binary search.",
+          "description": "Optional. Boost for this context compared to other contexts:\n\n* If the boost is positive, Dialogflow will increase the probability that\n  the phrases in this context are recognized over similar sounding phrases.\n* If the boost is unspecified or non-positive, Dialogflow will not apply\n  any boost.\n\nDialogflow recommends that you use boosts in the range (0, 20] and that you\nfind a value that fits your use case with binary search.",
           "format": "float",
           "type": "number"
         },
@@ -4371,21 +4371,21 @@
       "properties": {
         "followupEventInput": {
           "$ref": "GoogleCloudDialogflowV2EventInput",
-          "description": "Optional. Makes the platform immediately invoke another `DetectIntent` call\ninternally with the specified event as input.\nWhen this field is set, Dialogflow ignores the `fulfillment_text`,\n`fulfillment_messages`, and `payload` fields."
+          "description": "Optional. Invokes the supplied events.\nWhen this field is set, Dialogflow ignores the `fulfillment_text`,\n`fulfillment_messages`, and `payload` fields."
         },
         "fulfillmentMessages": {
-          "description": "Optional. The collection of rich messages to present to the user. This\nvalue is passed directly to `QueryResult.fulfillment_messages`.",
+          "description": "Optional. The rich response messages intended for the end-user.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.fulfillment_messages sent to the integration or API caller.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2IntentMessage"
           },
           "type": "array"
         },
         "fulfillmentText": {
-          "description": "Optional. The text to be shown on the screen. This value is passed directly\nto `QueryResult.fulfillment_text`.",
+          "description": "Optional. The text response message intended for the end-user.\nIt is recommended to use `fulfillment_messages.text.text[0]` instead.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.fulfillment_text sent to the integration or API caller.",
           "type": "string"
         },
         "outputContexts": {
-          "description": "Optional. The collection of output contexts. This value is passed directly\nto `QueryResult.output_contexts`.",
+          "description": "Optional. The collection of output contexts that will overwrite currently\nactive contexts for the session and reset their lifespans.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.output_contexts sent to the integration or API caller.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2Context"
           },
@@ -4396,18 +4396,18 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Optional. This field can be used to pass custom data from your webhook to the API\ncaller. Arbitrary JSON objects are supported.\nWhen provided, Dialogflow uses this field to populate\n`QueryResult.webhook_payload` sent to the API caller.\nThis field is also used by the\n[Google Assistant\nintegration](https://cloud.google.com/dialogflow/docs/integrations/aog)\nfor rich response messages.\nSee the format definition at [Google Assistant Dialogflow webhook\nformat](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)",
+          "description": "Optional. This field can be used to pass custom data from your webhook to the\nintegration or API caller. Arbitrary JSON objects are supported.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.webhook_payload sent to the integration or API caller.\nThis field is also used by the\n[Google Assistant\nintegration](https://cloud.google.com/dialogflow/docs/integrations/aog)\nfor rich response messages.\nSee the format definition at [Google Assistant Dialogflow webhook\nformat](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)",
           "type": "object"
         },
         "sessionEntityTypes": {
-          "description": "Optional. Additional session entity types to replace or extend developer\nentity types with. The entity synonyms apply to all languages and persist\nfor the session of this query. Setting the session entity types inside\nwebhook overwrites the session entity types that have been set through\n`DetectIntentRequest.query_params.session_entity_types`.",
+          "description": "Optional. Additional session entity types to replace or extend developer\nentity types with. The entity synonyms apply to all languages and persist\nfor the session. Setting this data from a webhook overwrites\nthe session entity types that have been set using `detectIntent`,\n`streamingDetectIntent` or SessionEntityType management methods.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2SessionEntityType"
           },
           "type": "array"
         },
         "source": {
-          "description": "Optional. This value is passed directly to `QueryResult.webhook_source`.",
+          "description": "Optional. A custom field used to identify the webhook source.\nArbitrary strings are supported.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.webhook_source sent to the integration or API caller.",
           "type": "string"
         }
       },
@@ -4671,7 +4671,7 @@
           "type": "array"
         },
         "followupIntentInfo": {
-          "description": "Read-only. Information about all followup intents that have this intent as\na direct or indirect parent. We populate this field only in the output.",
+          "description": "Output only. Information about all followup intents that have this intent as\na direct or indirect parent. We populate this field only in the output.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo"
           },
@@ -4704,7 +4704,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "The unique identifier of this intent.\nRequired for Intents.UpdateIntent and Intents.BatchUpdateIntents\nmethods.\nFormat: `projects/<Project ID>/agent/intents/<Intent ID>`.",
+          "description": "Optional. The unique identifier of this intent.\nRequired for Intents.UpdateIntent and Intents.BatchUpdateIntents\nmethods.\nFormat: `projects/<Project ID>/agent/intents/<Intent ID>`.",
           "type": "string"
         },
         "outputContexts": {
@@ -4722,11 +4722,11 @@
           "type": "array"
         },
         "parentFollowupIntentName": {
-          "description": "Read-only after creation. The unique identifier of the parent intent in the\nchain of followup intents. You can set this field when creating an intent,\nfor example with CreateIntent or\nBatchUpdateIntents, in order to make this\nintent a followup intent.\n\nIt identifies the parent followup intent.\nFormat: `projects/<Project ID>/agent/intents/<Intent ID>`.",
+          "description": "Optional. The unique identifier of the parent intent in the\nchain of followup intents. You can set this field when creating an intent,\nfor example with CreateIntent or\nBatchUpdateIntents, in order to make this\nintent a followup intent.\n\nIt identifies the parent followup intent.\nFormat: `projects/<Project ID>/agent/intents/<Intent ID>`.",
           "type": "string"
         },
         "priority": {
-          "description": "The priority of this intent. Higher numbers represent higher\npriorities.\n\n- If the supplied value is unspecified or 0, the service\n  translates the value to 500,000, which corresponds to the\n  `Normal` priority in the console.\n- If the supplied value is negative, the intent is ignored\n  in runtime detect intent requests.",
+          "description": "Optional. The priority of this intent. Higher numbers represent higher\npriorities.\n\n- If the supplied value is unspecified or 0, the service\n  translates the value to 500,000, which corresponds to the\n  `Normal` priority in the console.\n- If the supplied value is negative, the intent is ignored\n  in runtime detect intent requests.",
           "format": "int32",
           "type": "integer"
         },
@@ -4735,7 +4735,7 @@
           "type": "boolean"
         },
         "rootFollowupIntentName": {
-          "description": "Read-only. The unique identifier of the root intent in the chain of\nfollowup intents. It identifies the correct followup intents chain for\nthis intent. We populate this field only in the output.\n\nFormat: `projects/<Project ID>/agent/intents/<Intent ID>`.",
+          "description": "Output only. The unique identifier of the root intent in the chain of\nfollowup intents. It identifies the correct followup intents chain for\nthis intent.\n\nFormat: `projects/<Project ID>/agent/intents/<Intent ID>`.",
           "type": "string"
         },
         "trainingPhrases": {
@@ -5873,7 +5873,7 @@
       "id": "GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata",
       "properties": {
         "state": {
-          "description": "Required. The current state of this operation.",
+          "description": "Required. Output only. The current state of this operation.",
           "enum": [
             "STATE_UNSPECIFIED",
             "PENDING",
@@ -6116,21 +6116,21 @@
         },
         "followupEventInput": {
           "$ref": "GoogleCloudDialogflowV2beta1EventInput",
-          "description": "Optional. Makes the platform immediately invoke another `DetectIntent` call\ninternally with the specified event as input.\nWhen this field is set, Dialogflow ignores the `fulfillment_text`,\n`fulfillment_messages`, and `payload` fields."
+          "description": "Optional. Invokes the supplied events.\nWhen this field is set, Dialogflow ignores the `fulfillment_text`,\n`fulfillment_messages`, and `payload` fields."
         },
         "fulfillmentMessages": {
-          "description": "Optional. The collection of rich messages to present to the user. This\nvalue is passed directly to `QueryResult.fulfillment_messages`.",
+          "description": "Optional. The rich response messages intended for the end-user.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.fulfillment_messages sent to the integration or API caller.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2beta1IntentMessage"
           },
           "type": "array"
         },
         "fulfillmentText": {
-          "description": "Optional. The text to be shown on the screen. This value is passed directly\nto `QueryResult.fulfillment_text`.",
+          "description": "Optional. The text response message intended for the end-user.\nIt is recommended to use `fulfillment_messages.text.text[0]` instead.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.fulfillment_text sent to the integration or API caller.",
           "type": "string"
         },
         "outputContexts": {
-          "description": "Optional. The collection of output contexts. This value is passed directly\nto `QueryResult.output_contexts`.",
+          "description": "Optional. The collection of output contexts that will overwrite currently\nactive contexts for the session and reset their lifespans.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.output_contexts sent to the integration or API caller.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2beta1Context"
           },
@@ -6141,18 +6141,34 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Optional. This field can be used to pass custom data from your webhook to the API\ncaller. Arbitrary JSON objects are supported.\nWhen provided, Dialogflow uses this field to populate\n`QueryResult.webhook_payload` sent to the API caller.\nThis field is also used by the\n[Google Assistant\nintegration](https://cloud.google.com/dialogflow/docs/integrations/aog)\nfor rich response messages.\nSee the format definition at [Google Assistant Dialogflow webhook\nformat](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)",
+          "description": "Optional. This field can be used to pass custom data from your webhook to the\nintegration or API caller. Arbitrary JSON objects are supported.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.webhook_payload sent to the integration or API caller.\nThis field is also used by the\n[Google Assistant\nintegration](https://cloud.google.com/dialogflow/docs/integrations/aog)\nfor rich response messages.\nSee the format definition at [Google Assistant Dialogflow webhook\nformat](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)",
           "type": "object"
         },
         "sessionEntityTypes": {
-          "description": "Optional. Additional session entity types to replace or extend developer\nentity types with. The entity synonyms apply to all languages and persist\nfor the session of this query. Setting the session entity types inside\nwebhook overwrites the session entity types that have been set through\n`DetectIntentRequest.query_params.session_entity_types`.",
+          "description": "Optional. Additional session entity types to replace or extend developer\nentity types with. The entity synonyms apply to all languages and persist\nfor the session. Setting this data from a webhook overwrites\nthe session entity types that have been set using `detectIntent`,\n`streamingDetectIntent` or SessionEntityType management methods.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2beta1SessionEntityType"
           },
           "type": "array"
         },
         "source": {
-          "description": "Optional. This value is passed directly to `QueryResult.webhook_source`.",
+          "description": "Optional. A custom field used to identify the webhook source.\nArbitrary strings are supported.\nWhen provided, Dialogflow uses this field to populate\nQueryResult.webhook_source sent to the integration or API caller.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV3alpha1ExportAgentResponse": {
+      "description": "The response message for Agents.ExportAgent.",
+      "id": "GoogleCloudDialogflowV3alpha1ExportAgentResponse",
+      "properties": {
+        "agentContent": {
+          "description": "Uncompressed raw byte content for agent.",
+          "format": "byte",
+          "type": "string"
+        },
+        "agentUri": {
+          "description": "The URI to a file containing the exported agent. This field is populated\nonly if `agent_uri` is specified in ExportAgentRequest.",
           "type": "string"
         }
       },

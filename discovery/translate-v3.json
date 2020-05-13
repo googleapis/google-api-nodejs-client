@@ -687,7 +687,7 @@
       }
     }
   },
-  "revision": "20200417",
+  "revision": "20200508",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchTranslateTextRequest": {

@@ -1971,6 +1971,10 @@ export namespace displayvideo_v1 {
      */
     budgetAmountMicros?: string | null;
     /**
+     * The ID of the campaign budget linked to this insertion order budget segment.
+     */
+    campaignBudgetId?: string | null;
+    /**
      * Required. The start and end date settings of the budget segment. They are resolved relative to the parent advertiser&#39;s time zone.  * When creating a new budget segment, both `start_date` and `end_date` must be in the future. * An existing budget segment with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
      */
     dateRange?: Schema$DateRange;

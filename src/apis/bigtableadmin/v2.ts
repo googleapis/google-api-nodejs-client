@@ -865,7 +865,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.operations.cancel({
      *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/.+',
+     *     name: 'operations/.*',
      *   });
      *   console.log(res.data);
      *
@@ -980,7 +980,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.operations.delete({
      *     // The name of the operation resource to be deleted.
-     *     name: 'operations/.+',
+     *     name: 'operations/.*',
      *   });
      *   console.log(res.data);
      *
@@ -1096,7 +1096,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.operations.get({
      *     // The name of the operation resource.
-     *     name: 'operations/.+',
+     *     name: 'operations/.*',
      *   });
      *   console.log(res.data);
      *
@@ -1275,7 +1275,7 @@ export namespace bigtableadmin_v2 {
      *     // The standard list filter.
      *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
-     *     name: 'operations/projects/.+',
+     *     name: 'operations/projects/.*',
      *     // The standard list page size.
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
@@ -4308,7 +4308,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.projects.instances.clusters.backups.getIamPolicy
-     * @desc Gets the access control policy for a Table or Backup resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * @desc Gets the access control policy for a Table resource. Returns an empty policy if the resource exists but does not have a policy set.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4443,7 +4443,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.projects.instances.clusters.backups.setIamPolicy
-     * @desc Sets the access control policy on a Table or Backup resource. Replaces any existing policy.
+     * @desc Sets the access control policy on a Table resource. Replaces any existing policy.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5561,7 +5561,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.projects.instances.tables.getIamPolicy
-     * @desc Gets the access control policy for a Table or Backup resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * @desc Gets the access control policy for a Table resource. Returns an empty policy if the resource exists but does not have a policy set.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5970,7 +5970,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.projects.instances.tables.setIamPolicy
-     * @desc Sets the access control policy on a Table or Backup resource. Replaces any existing policy.
+     * @desc Sets the access control policy on a Table resource. Replaces any existing policy.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

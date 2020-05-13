@@ -2486,7 +2486,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200509",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -2659,6 +2659,10 @@
         "measurableImpressions": {
           "$ref": "MetricValue",
           "description": "The number of bids for which the corresponding impression was measurable\nfor viewability (as defined by Active View)."
+        },
+        "reachedQueries": {
+          "$ref": "MetricValue",
+          "description": "The number of bids that won the auction and also won the mediation\nwaterfall (if any)."
         },
         "rowDimensions": {
           "$ref": "RowDimensions",
@@ -4963,12 +4967,16 @@
           "enum": [
             "STATUS_UNSPECIFIED",
             "AD_NOT_RENDERED",
-            "INVALID_IMPRESSION"
+            "INVALID_IMPRESSION",
+            "FATAL_VAST_ERROR",
+            "LOST_IN_MEDIATION"
           ],
           "enumDescriptions": [
             "A placeholder for an undefined status.\nThis value will never be returned in responses.",
             "The buyer was not billed because the ad was not rendered by the\npublisher.",
-            "The buyer was not billed because the impression won by the bid was\ndetermined to be invalid."
+            "The buyer was not billed because the impression won by the bid was\ndetermined to be invalid.",
+            "A video impression was served but a fatal error was reported from the\nclient during playback.",
+            "The buyer was not billed because the ad was outplaced in the mediation\nwaterfall."
           ],
           "type": "string"
         }

@@ -500,7 +500,15 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The type of a space.
+     * Whether the space is a DM between a bot and a single human.
+     */
+    singleUserBotDm?: boolean | null;
+    /**
+     * Whether the messages are threaded in this space.
+     */
+    threaded?: boolean | null;
+    /**
+     * Output only. The type of a space. This is deprecated. Use `single_user_bot_dm` instead.
      */
     type?: string | null;
   }
@@ -636,6 +644,8 @@ export namespace chat_v1 {
      *   // {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
+     *   //   "singleUserBotDm": false,
+     *   //   "threaded": false,
      *   //   "type": "my_type"
      *   // }
      * }

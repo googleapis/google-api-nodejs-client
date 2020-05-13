@@ -290,7 +290,7 @@
       }
     }
   },
-  "revision": "20200421",
+  "revision": "20200502",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ClassItem": {
@@ -309,7 +309,7 @@
       "id": "CustomClass",
       "properties": {
         "customClassId": {
-          "description": "If this custom class is a resource, the custom_class_id is the resource id\nof the CustomClass.",
+          "description": "If this custom class is a resource, the custom_class_id is the resource id\nof the CustomClass. Case sensitive.",
           "type": "string"
         },
         "items": {
@@ -435,7 +435,7 @@
       "type": "object"
     },
     "Phrase": {
-      "description": "A phrases containing words and phrase \"hints\" so that\nthe speech recognition is more likely to recognize them. This can be used\nto improve the accuracy for specific words and phrases, for example, if\nspecific commands are typically spoken by the user. This can also be used\nto add additional words to the vocabulary of the recognizer. See\n[usage limits](https://cloud.google.com/speech-to-text/quotas#content).\n\nList items can also include pre-built or custom classes containing groups\nof words that represent common concepts that occur in natural language. For\nexample, rather than providing a phrase hint for every month of the\nyear (e.g. \"i was born in january\", \"i was born in febuary\", ...), use the\npre-built $MONTH class improves the likelihood of correctly transcribing\naudio that includes months (e.g. \"i was born in $month\").\nTo refer to pre-built classes, use the class' symbol prepended with $ e.g.\n$MONTH. To refer to custom classes that were defined inline in the request,\nset the class's `custom_class_id` to a string unique to all class resources\nand inline classes. Then use the class' id wrapped in ${...} e.g.\n\"${my-months}\". To refer to custom classes resources, use the class' id\nwrapped in ${} (e.g.\n${my-months}).",
+      "description": "A phrases containing words and phrase \"hints\" so that\nthe speech recognition is more likely to recognize them. This can be used\nto improve the accuracy for specific words and phrases, for example, if\nspecific commands are typically spoken by the user. This can also be used\nto add additional words to the vocabulary of the recognizer. See\n[usage limits](https://cloud.google.com/speech-to-text/quotas#content).\n\nList items can also include pre-built or custom classes containing groups\nof words that represent common concepts that occur in natural language. For\nexample, rather than providing a phrase hint for every month of the\nyear (e.g. \"i was born in january\", \"i was born in febuary\", ...), use the\npre-built `$MONTH` class improves the likelihood of correctly transcribing\naudio that includes months (e.g. \"i was born in $month\").\nTo refer to pre-built classes, use the class' symbol prepended with `$`\ne.g. `$MONTH`. To refer to custom classes that were defined inline in the\nrequest, set the class's `custom_class_id` to a string unique to all class\nresources and inline classes. Then use the class' id wrapped in $`{...}`\ne.g. \"${my-months}\". To refer to custom classes resources, use the class'\nid wrapped in `${}` (e.g. `${my-months}`).",
       "id": "Phrase",
       "properties": {
         "boost": {

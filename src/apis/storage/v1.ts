@@ -184,9 +184,11 @@ export namespace storage_v1 {
           createdBefore?: string;
           customTimeBefore?: string;
           daysSinceCustomTime?: number;
+          daysSinceNoncurrentTime?: number;
           isLive?: boolean;
           matchesPattern?: string;
           matchesStorageClass?: string[];
+          noncurrentTimeBefore?: string;
           numNewerVersions?: number;
         };
       }>;

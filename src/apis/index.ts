@@ -61,7 +61,6 @@ import * as cloudsearch from './cloudsearch';
 import * as cloudshell from './cloudshell';
 import * as cloudtasks from './cloudtasks';
 import * as cloudtrace from './cloudtrace';
-import * as commentanalyzer from './commentanalyzer';
 import * as composer from './composer';
 import * as compute from './compute';
 import * as container from './container';
@@ -237,7 +236,6 @@ export const APIS: APIList = {
   cloudshell: cloudshell.VERSIONS,
   cloudtasks: cloudtasks.VERSIONS,
   cloudtrace: cloudtrace.VERSIONS,
-  commentanalyzer: commentanalyzer.VERSIONS,
   composer: composer.VERSIONS,
   compute: compute.VERSIONS,
   container: container.VERSIONS,
@@ -410,7 +408,6 @@ export class GeneratedAPIs {
   cloudshell = cloudshell.cloudshell;
   cloudtasks = cloudtasks.cloudtasks;
   cloudtrace = cloudtrace.cloudtrace;
-  commentanalyzer = commentanalyzer.commentanalyzer;
   composer = composer.composer;
   compute = compute.compute;
   container = container.container;

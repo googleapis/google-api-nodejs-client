@@ -194,7 +194,7 @@ export namespace vault_v1 {
    */
   export interface Schema$CloudStorageFile {
     /**
-     * The cloud storage bucket name of this export file. Can be used in cloud storage JSON/XML API.
+     * The cloud storage bucket name of this export file. Can be used in cloud storage JSON/XML API, but not to list the bucket contents. Instead, you can &lt;a href=&quot;https://cloud.google.com/storage/docs/json_api/v1/objects/get&quot;&gt; get individual export files&lt;/a&gt; by object name.
      */
     bucketName?: string | null;
     /**

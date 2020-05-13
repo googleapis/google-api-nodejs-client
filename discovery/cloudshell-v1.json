@@ -229,7 +229,7 @@
       }
     }
   },
-  "revision": "20200504",
+  "revision": "20200512",
   "rootUrl": "https://cloudshell.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -300,13 +300,15 @@
             "STATE_UNSPECIFIED",
             "DISABLED",
             "STARTING",
-            "RUNNING"
+            "RUNNING",
+            "DELETING"
           ],
           "enumDescriptions": [
             "The environment's states is unknown.",
             "The environment is not running and can't be connected to. Starting the\nenvironment will transition it to the STARTING state.",
             "The environment is being started but is not yet ready to accept\nconnections.",
-            "The environment is running and ready to accept connections. It will\nautomatically transition back to DISABLED after a period of inactivity or\nif another environment is started."
+            "The environment is running and ready to accept connections. It will\nautomatically transition back to DISABLED after a period of inactivity or\nif another environment is started.",
+            "The environment is being deleted and can't be connected to."
           ],
           "type": "string"
         },

@@ -1309,21 +1309,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "commentanalyzer:v1alpha1",
-      "name": "commentanalyzer",
-      "version": "v1alpha1",
-      "title": "Perspective Comment Analyzer API",
-      "description": "The Perspective Comment Analyzer API provides information about the potential impact of a comment on a conversation (e.g. it can provide a score for the \"toxicity\" of a comment). Users can leverage the \"SuggestCommentScore\" method to submit corrections to improve Perspective over time. Users can set the \"doNotStore\" flag to ensure that all submitted comments are automatically deleted after scores are returned.",
-      "discoveryRestUrl": "https://commentanalyzer.googleapis.com/$discovery/rest?version=v1alpha1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://github.com/conversationai/perspectiveapi/blob/master/README.md",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "composer:v1",
       "name": "composer",
       "version": "v1",

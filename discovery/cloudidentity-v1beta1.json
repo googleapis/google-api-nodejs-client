@@ -550,7 +550,7 @@
       }
     }
   },
-  "revision": "20200428",
+  "revision": "20200509",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1159,6 +1159,24 @@
         "updateTime": {
           "description": "Output only. The time when the `Group` was last updated.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListClientStatesResponse": {
+      "description": "Response message that is returned in LRO result of ListClientStates\nOperation.",
+      "id": "ListClientStatesResponse",
+      "properties": {
+        "clientStates": {
+          "description": "Client states meeting the list restrictions.",
+          "items": {
+            "$ref": "ClientState"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results. Empty if there are no more\nresults.",
           "type": "string"
         }
       },

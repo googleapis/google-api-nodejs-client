@@ -228,6 +228,10 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     measurableImpressions?: Schema$MetricValue;
     /**
+     * The number of bids that won the auction and also won the mediation waterfall (if any).
+     */
+    reachedQueries?: Schema$MetricValue;
+    /**
      * The values of all dimensions associated with metric values in this row.
      */
     rowDimensions?: Schema$RowDimensions;

@@ -317,7 +317,7 @@
       }
     }
   },
-  "revision": "20200425",
+  "revision": "20200508",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -970,8 +970,16 @@
           "description": "Resource name of the space, in the form \"spaces/*\".\n\nExample: spaces/AAAAMpdlehYs",
           "type": "string"
         },
+        "singleUserBotDm": {
+          "description": "Whether the space is a DM between a bot and a single human.",
+          "type": "boolean"
+        },
+        "threaded": {
+          "description": "Whether the messages are threaded in this space.",
+          "type": "boolean"
+        },
         "type": {
-          "description": "Output only. The type of a space.",
+          "description": "Output only. The type of a space.\nThis is deprecated. Use `single_user_bot_dm` instead.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "ROOM",
@@ -979,7 +987,7 @@
           ],
           "enumDescriptions": [
             "",
-            "A chat space where memberships are free to change. Messages in rooms are\nthreaded.",
+            "Multi-user spaces such as rooms and DMs between humans.",
             "1:1 Direct Message between a human and a bot, where all messages are\nflat."
           ],
           "type": "string"
