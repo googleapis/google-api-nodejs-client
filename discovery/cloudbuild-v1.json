@@ -574,7 +574,7 @@
       }
     }
   },
-  "revision": "20200410",
+  "revision": "20200506",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -1282,7 +1282,7 @@
           "type": "string"
         },
         "commentControl": {
-          "description": "Whether to block builds on a \"/gcbrun\" comment from a repository admin or\ncollaborator.",
+          "description": "Configure builds to run only when a repository owner or collaborator\ncomments `/gcbrun`.",
           "enum": [
             "COMMENTS_DISABLED",
             "COMMENTS_ENABLED"

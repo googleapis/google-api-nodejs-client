@@ -576,7 +576,7 @@ export namespace cloudbuild_v1 {
      */
     branch?: string | null;
     /**
-     * Whether to block builds on a &quot;/gcbrun&quot; comment from a repository admin or collaborator.
+     * Configure builds to run only when a repository owner or collaborator comments `/gcbrun`.
      */
     commentControl?: string | null;
     /**

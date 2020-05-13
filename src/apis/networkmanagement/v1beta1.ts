@@ -157,7 +157,7 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
@@ -198,7 +198,7 @@ export namespace networkmanagement_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Unique name of the resource using the form:     `projects/{project_id}/tests/{test_id}`
+     * Required. Unique name of the resource using the form:     `projects/{project_id}/locations/global/connectivityTests/{test}`
      */
     name?: string | null;
     /**
@@ -640,7 +640,7 @@ export namespace networkmanagement_v1beta1 {
      */
     statusDetail?: string | null;
     /**
-     * Target of the operation - for example projects/project-1/connectivityTests/test-1
+     * Target of the operation - for example projects/project-1/locations/global/connectivityTests/test-1
      */
     target?: string | null;
     /**
@@ -649,7 +649,7 @@ export namespace networkmanagement_v1beta1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  Optionally, a `binding` can specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both.  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -665,7 +665,7 @@ export namespace networkmanagement_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -744,7 +744,7 @@ export namespace networkmanagement_v1beta1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -1437,7 +1437,7 @@ export namespace networkmanagement_v1beta1 {
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.delete(
      *     {
      *       // Required. Connectivity Test resource name using the form:
-     *       //     `projects/{project_id}/connectivityTests/{test_id}`
+     *       //     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *       name:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *     }
@@ -1463,7 +1463,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Connectivity Test resource name using the form:     `projects/{project_id}/connectivityTests/{test_id}`
+     * @param {string} params.name Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1690,6 +1690,10 @@ export namespace networkmanagement_v1beta1 {
      *       // Requests for policies with any conditional bindings must specify version 3.
      *       // Policies without any conditional bindings may specify any valid value or
      *       // leave the field unset.
+     *       //
+     *       // To learn which resources support conditions in their IAM policies, see the
+     *       // [IAM
+     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested.
      *       // See the operation documentation for the appropriate value for this field.
@@ -1717,7 +1721,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1823,7 +1827,7 @@ export namespace networkmanagement_v1beta1 {
      *       //
      *       // Examples:
      *       // - Filter by name:
-     *       //   name = "projects/proj-1/connectivityTests/test-1
+     *       //   name = "projects/proj-1/locations/global/connectivityTests/test-1
      *       //
      *       // - Filter by labels:
      *       //   - Resources that have a key called `foo`
@@ -1861,7 +1865,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form `<field> <operator> <value>` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). <field> can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.  Examples: - Filter by name:   name = "projects/proj-1/connectivityTests/test-1  - Filter by labels:   - Resources that have a key called `foo`     labels.foo:*   - Resources that have a key called `foo` whose value is `bar`     labels.foo = bar
+     * @param {string=} params.filter Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form `<field> <operator> <value>` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). <field> can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.  Examples: - Filter by name:   name = "projects/proj-1/locations/global/connectivityTests/test-1  - Filter by labels:   - Resources that have a key called `foo`     labels.foo:*   - Resources that have a key called `foo` whose value is `bar`     labels.foo = bar
      * @param {string=} params.orderBy Field to use to sort the list.
      * @param {integer=} params.pageSize Number of `ConnectivityTests` to return.
      * @param {string=} params.pageToken Page token from an earlier query, as returned in `next_page_token`.
@@ -1971,7 +1975,7 @@ export namespace networkmanagement_v1beta1 {
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.patch(
      *     {
      *       // Required. Unique name of the resource using the form:
-     *       //     `projects/{project_id}/tests/{test_id}`
+     *       //     `projects/{project_id}/locations/global/connectivityTests/{test}`
      *       name:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *       // Required. Mask of fields to update. At least one path must be supplied in
@@ -2018,7 +2022,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Unique name of the resource using the form:     `projects/{project_id}/tests/{test_id}`
+     * @param {string} params.name Required. Unique name of the resource using the form:     `projects/{project_id}/locations/global/connectivityTests/{test}`
      * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field.
      * @param {().ConnectivityTest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2114,7 +2118,7 @@ export namespace networkmanagement_v1beta1 {
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.rerun(
      *     {
      *       // Required. Connectivity Test resource name using the form:
-     *       //     `projects/{project_id}/connectivityTests/{test_id}`
+     *       //     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *       name:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *
@@ -2146,7 +2150,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Connectivity Test resource name using the form:     `projects/{project_id}/connectivityTests/{test_id}`
+     * @param {string} params.name Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      * @param {().RerunConnectivityTestRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2217,7 +2221,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.connectivityTests.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2347,7 +2351,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.connectivityTests.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2510,7 +2514,7 @@ export namespace networkmanagement_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Connectivity Test resource name using the form:     `projects/{project_id}/connectivityTests/{test_id}`
+     * Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      */
     name?: string;
   }
@@ -2534,7 +2538,7 @@ export namespace networkmanagement_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -2550,7 +2554,7 @@ export namespace networkmanagement_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form `<field> <operator> <value>` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). <field> can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.  Examples: - Filter by name:   name = "projects/proj-1/connectivityTests/test-1  - Filter by labels:   - Resources that have a key called `foo`     labels.foo:*   - Resources that have a key called `foo` whose value is `bar`     labels.foo = bar
+     * Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form `<field> <operator> <value>` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). <field> can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.  Examples: - Filter by name:   name = "projects/proj-1/locations/global/connectivityTests/test-1  - Filter by labels:   - Resources that have a key called `foo`     labels.foo:*   - Resources that have a key called `foo` whose value is `bar`     labels.foo = bar
      */
     filter?: string;
     /**
@@ -2578,7 +2582,7 @@ export namespace networkmanagement_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Unique name of the resource using the form:     `projects/{project_id}/tests/{test_id}`
+     * Required. Unique name of the resource using the form:     `projects/{project_id}/locations/global/connectivityTests/{test}`
      */
     name?: string;
     /**
@@ -2599,7 +2603,7 @@ export namespace networkmanagement_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Connectivity Test resource name using the form:     `projects/{project_id}/connectivityTests/{test_id}`
+     * Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      */
     name?: string;
 

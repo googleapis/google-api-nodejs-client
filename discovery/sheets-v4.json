@@ -810,7 +810,7 @@
       }
     }
   },
-  "revision": "20200428",
+  "revision": "20200508",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -3526,7 +3526,7 @@
             "Corresponds to the `#VALUE!` error.",
             "Corresponds to the `#REF!` error.",
             "Corresponds to the `#NAME?` error.",
-            "Corresponds to the `#NUM`! error.",
+            "Corresponds to the `#NUM!` error.",
             "Corresponds to the `#N/A` error.",
             "Corresponds to the `Loading...` state."
           ],

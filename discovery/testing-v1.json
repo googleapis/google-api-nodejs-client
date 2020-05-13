@@ -273,7 +273,7 @@
       }
     }
   },
-  "revision": "20200429",
+  "revision": "20200509",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {

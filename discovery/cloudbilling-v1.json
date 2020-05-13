@@ -495,7 +495,7 @@
       }
     }
   },
-  "revision": "20200503",
+  "revision": "20200509",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "AggregationInfo": {

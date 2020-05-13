@@ -2796,7 +2796,7 @@
       }
     }
   },
-  "revision": "20200430",
+  "revision": "20200512",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -6665,6 +6665,11 @@
       "properties": {
         "budgetAmountMicros": {
           "description": "Required. The budget amount the insertion order will spend for the given\ndate_range.\nThe amount is in micros. Must be greater than 0. For example, 500000000\nrepresents 500 standard units of the currency.",
+          "format": "int64",
+          "type": "string"
+        },
+        "campaignBudgetId": {
+          "description": "The ID of the campaign budget linked to this insertion order budget\nsegment.",
           "format": "int64",
           "type": "string"
         },

@@ -143,7 +143,7 @@
             "name": {
               "description": "The name of the operation resource to be cancelled.",
               "location": "path",
-              "pattern": "^operations/.+$",
+              "pattern": "^operations/.*$",
               "required": true,
               "type": "string"
             }
@@ -173,7 +173,7 @@
             "name": {
               "description": "The name of the operation resource to be deleted.",
               "location": "path",
-              "pattern": "^operations/.+$",
+              "pattern": "^operations/.*$",
               "required": true,
               "type": "string"
             }
@@ -203,7 +203,7 @@
             "name": {
               "description": "The name of the operation resource.",
               "location": "path",
-              "pattern": "^operations/.+$",
+              "pattern": "^operations/.*$",
               "required": true,
               "type": "string"
             }
@@ -245,7 +245,7 @@
                     "name": {
                       "description": "The name of the operation's parent resource.",
                       "location": "path",
-                      "pattern": "^operations/projects/.+$",
+                      "pattern": "^operations/projects/.*$",
                       "required": true,
                       "type": "string"
                     },
@@ -961,7 +961,7 @@
                 "backups": {
                   "methods": {
                     "getIamPolicy": {
-                      "description": "Gets the access control policy for a Table or Backup resource.\nReturns an empty policy if the resource exists but does not have a policy\nset.",
+                      "description": "Gets the access control policy for a Table resource.\nReturns an empty policy if the resource exists but does not have a policy\nset.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}:getIamPolicy",
                       "httpMethod": "POST",
                       "id": "bigtableadmin.projects.instances.clusters.backups.getIamPolicy",
@@ -993,7 +993,7 @@
                       ]
                     },
                     "setIamPolicy": {
-                      "description": "Sets the access control policy on a Table or Backup resource.\nReplaces any existing policy.",
+                      "description": "Sets the access control policy on a Table resource.\nReplaces any existing policy.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}:setIamPolicy",
                       "httpMethod": "POST",
                       "id": "bigtableadmin.projects.instances.clusters.backups.setIamPolicy",
@@ -1262,7 +1262,7 @@
                   ]
                 },
                 "getIamPolicy": {
-                  "description": "Gets the access control policy for a Table or Backup resource.\nReturns an empty policy if the resource exists but does not have a policy\nset.",
+                  "description": "Gets the access control policy for a Table resource.\nReturns an empty policy if the resource exists but does not have a policy\nset.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}:getIamPolicy",
                   "httpMethod": "POST",
                   "id": "bigtableadmin.projects.instances.tables.getIamPolicy",
@@ -1379,7 +1379,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on a Table or Backup resource.\nReplaces any existing policy.",
+                  "description": "Sets the access control policy on a Table resource.\nReplaces any existing policy.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "bigtableadmin.projects.instances.tables.setIamPolicy",
@@ -1531,7 +1531,7 @@
       }
     }
   },
-  "revision": "20200421",
+  "revision": "20200424",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2010,7 +2010,7 @@
           "enumDescriptions": [
             "The type of the instance is unspecified. If set when creating an\ninstance, a `PRODUCTION` instance will be created. If set when updating\nan instance, the type will be left unchanged.",
             "An instance meant for production use. `serve_nodes` must be set\non the cluster.",
-            "The instance is meant for development and testing purposes only; it has\nno performance or uptime guarantees and is not covered by SLA.\nAfter a development instance is created, it can be upgraded by\nupdating the instance to type `PRODUCTION`. An instance created\nas a production instance cannot be changed to a development instance.\nWhen creating a development instance, `serve_nodes` on the cluster must\nnot be set."
+            "DEPRECATED: Prefer PRODUCTION for all use cases, as it no longer enforces\na higher minimum node count than DEVELOPMENT."
           ],
           "type": "string"
         }

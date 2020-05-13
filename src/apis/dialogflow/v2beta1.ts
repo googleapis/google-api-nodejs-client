@@ -463,7 +463,7 @@ export namespace dialogflow_v2beta1 {
      */
     mimeType?: string | null;
     /**
-     * The document resource name. The name must be empty when creating a document. Format: `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;/documents/&lt;Document ID&gt;`.
+     * Optional. The document resource name. The name must be empty when creating a document. Format: `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;/documents/&lt;Document ID&gt;`.
      */
     name?: string | null;
     /**
@@ -650,7 +650,7 @@ export namespace dialogflow_v2beta1 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
-     * Required. The fulfillment URI for receiving POST requests.
+     * Required. The fulfillment URI for receiving POST requests. It must use https protocol.
      */
     uri?: string | null;
     /**
@@ -746,7 +746,7 @@ export namespace dialogflow_v2beta1 {
      */
     events?: string[] | null;
     /**
-     * Read-only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.
+     * Output only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.
      */
     followupIntentInfo?: Schema$GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo[];
     /**
@@ -770,7 +770,7 @@ export namespace dialogflow_v2beta1 {
      */
     mlEnabled?: boolean | null;
     /**
-     * The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Optional. The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     name?: string | null;
     /**
@@ -782,11 +782,11 @@ export namespace dialogflow_v2beta1 {
      */
     parameters?: Schema$GoogleCloudDialogflowV2beta1IntentParameter[];
     /**
-     * Read-only after creation. The unique identifier of the parent intent in the chain of followup intents. You can set this field when creating an intent, for example with CreateIntent or BatchUpdateIntents, in order to make this intent a followup intent.  It identifies the parent followup intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Optional. The unique identifier of the parent intent in the chain of followup intents. You can set this field when creating an intent, for example with CreateIntent or BatchUpdateIntents, in order to make this intent a followup intent.  It identifies the parent followup intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string | null;
     /**
-     * The priority of this intent. Higher numbers represent higher priorities.  - If the supplied value is unspecified or 0, the service   translates the value to 500,000, which corresponds to the   `Normal` priority in the console. - If the supplied value is negative, the intent is ignored   in runtime detect intent requests.
+     * Optional. The priority of this intent. Higher numbers represent higher priorities.  - If the supplied value is unspecified or 0, the service   translates the value to 500,000, which corresponds to the   `Normal` priority in the console. - If the supplied value is negative, the intent is ignored   in runtime detect intent requests.
      */
     priority?: number | null;
     /**
@@ -794,7 +794,7 @@ export namespace dialogflow_v2beta1 {
      */
     resetContexts?: boolean | null;
     /**
-     * Read-only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. We populate this field only in the output.  Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Output only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent.  Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     rootFollowupIntentName?: string | null;
     /**
@@ -1644,7 +1644,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
     /**
-     * Required. The current state of this operation.
+     * Required. Output only. The current state of this operation.
      */
     state?: string | null;
   }
@@ -2001,7 +2001,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SpeechContext {
     /**
-     * Optional. Boost for this context compared to other contexts: * If the boost is positive, Dialogflow will increase the probability that   the phrases in this context are recognized over similar sounding phrases. * If the boost is unspecified or non-positive, Dialogflow will not apply   any boost.  Dialogflow recommends that you use boosts in the range (0, 20] and that you find a value that fits your use case with binary search.
+     * Optional. Boost for this context compared to other contexts:  * If the boost is positive, Dialogflow will increase the probability that   the phrases in this context are recognized over similar sounding phrases. * If the boost is unspecified or non-positive, Dialogflow will not apply   any boost.  Dialogflow recommends that you use boosts in the range (0, 20] and that you find a value that fits your use case with binary search.
      */
     boost?: number | null;
     /**
@@ -2137,31 +2137,31 @@ export namespace dialogflow_v2beta1 {
      */
     endInteraction?: boolean | null;
     /**
-     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
+     * Optional. Invokes the supplied events. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
      */
     followupEventInput?: Schema$GoogleCloudDialogflowV2beta1EventInput;
     /**
-     * Optional. The collection of rich messages to present to the user. This value is passed directly to `QueryResult.fulfillment_messages`.
+     * Optional. The rich response messages intended for the end-user. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_messages sent to the integration or API caller.
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2beta1IntentMessage[];
     /**
-     * Optional. The text to be shown on the screen. This value is passed directly to `QueryResult.fulfillment_text`.
+     * Optional. The text response message intended for the end-user. It is recommended to use `fulfillment_messages.text.text[0]` instead. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_text sent to the integration or API caller.
      */
     fulfillmentText?: string | null;
     /**
-     * Optional. The collection of output contexts. This value is passed directly to `QueryResult.output_contexts`.
+     * Optional. The collection of output contexts that will overwrite currently active contexts for the session and reset their lifespans. When provided, Dialogflow uses this field to populate QueryResult.output_contexts sent to the integration or API caller.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
-     * Optional. This field can be used to pass custom data from your webhook to the API caller. Arbitrary JSON objects are supported. When provided, Dialogflow uses this field to populate `QueryResult.webhook_payload` sent to the API caller. This field is also used by the [Google Assistant integration](https://cloud.google.com/dialogflow/docs/integrations/aog) for rich response messages. See the format definition at [Google Assistant Dialogflow webhook format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
+     * Optional. This field can be used to pass custom data from your webhook to the integration or API caller. Arbitrary JSON objects are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_payload sent to the integration or API caller. This field is also used by the [Google Assistant integration](https://cloud.google.com/dialogflow/docs/integrations/aog) for rich response messages. See the format definition at [Google Assistant Dialogflow webhook format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
      */
     payload?: {[key: string]: any} | null;
     /**
-     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session of this query. Setting the session entity types inside webhook overwrites the session entity types that have been set through `DetectIntentRequest.query_params.session_entity_types`.
+     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session. Setting this data from a webhook overwrites the session entity types that have been set using `detectIntent`, `streamingDetectIntent` or SessionEntityType management methods.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_source`.
+     * Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.
      */
     source?: string | null;
   }
@@ -3109,33 +3109,46 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2WebhookResponse {
     /**
-     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
+     * Optional. Invokes the supplied events. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
      */
     followupEventInput?: Schema$GoogleCloudDialogflowV2EventInput;
     /**
-     * Optional. The collection of rich messages to present to the user. This value is passed directly to `QueryResult.fulfillment_messages`.
+     * Optional. The rich response messages intended for the end-user. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_messages sent to the integration or API caller.
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2IntentMessage[];
     /**
-     * Optional. The text to be shown on the screen. This value is passed directly to `QueryResult.fulfillment_text`.
+     * Optional. The text response message intended for the end-user. It is recommended to use `fulfillment_messages.text.text[0]` instead. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_text sent to the integration or API caller.
      */
     fulfillmentText?: string | null;
     /**
-     * Optional. The collection of output contexts. This value is passed directly to `QueryResult.output_contexts`.
+     * Optional. The collection of output contexts that will overwrite currently active contexts for the session and reset their lifespans. When provided, Dialogflow uses this field to populate QueryResult.output_contexts sent to the integration or API caller.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2Context[];
     /**
-     * Optional. This field can be used to pass custom data from your webhook to the API caller. Arbitrary JSON objects are supported. When provided, Dialogflow uses this field to populate `QueryResult.webhook_payload` sent to the API caller. This field is also used by the [Google Assistant integration](https://cloud.google.com/dialogflow/docs/integrations/aog) for rich response messages. See the format definition at [Google Assistant Dialogflow webhook format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
+     * Optional. This field can be used to pass custom data from your webhook to the integration or API caller. Arbitrary JSON objects are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_payload sent to the integration or API caller. This field is also used by the [Google Assistant integration](https://cloud.google.com/dialogflow/docs/integrations/aog) for rich response messages. See the format definition at [Google Assistant Dialogflow webhook format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
      */
     payload?: {[key: string]: any} | null;
     /**
-     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session of this query. Setting the session entity types inside webhook overwrites the session entity types that have been set through `DetectIntentRequest.query_params.session_entity_types`.
+     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session. Setting this data from a webhook overwrites the session entity types that have been set using `detectIntent`, `streamingDetectIntent` or SessionEntityType management methods.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2SessionEntityType[];
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_source`.
+     * Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.
      */
     source?: string | null;
+  }
+  /**
+   * The response message for Agents.ExportAgent.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1ExportAgentResponse {
+    /**
+     * Uncompressed raw byte content for agent.
+     */
+    agentContent?: string | null;
+    /**
+     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
+     */
+    agentUri?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -4411,7 +4424,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.search
-     * @desc Returns the list of agents.  Since there is at most one conversational agent per project, this method is useful primarily for listing all agents across projects the caller has access to. One can achieve that with a wildcard project collection id "-". Refer to [List Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
+     * @desc Returns the list of agents. Since there is at most one conversational agent per project, this method is useful primarily for listing all agents across projects the caller has access to. One can achieve that with a wildcard project collection id "-". Refer to [List Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4999,7 +5012,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.entityTypes.batchDelete
-     * @desc Deletes entity types in the specified agent.  Operation <response: google.protobuf.Empty>
+     * @desc Deletes entity types in the specified agent. Operation <response: google.protobuf.Empty>
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5136,7 +5149,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.entityTypes.batchUpdate
-     * @desc Updates/Creates multiple entity types in the specified agent.  Operation <response: BatchUpdateEntityTypesResponse>
+     * @desc Updates/Creates multiple entity types in the specified agent. Operation <response: BatchUpdateEntityTypesResponse>
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9752,7 +9765,7 @@ export namespace dialogflow_v2beta1 {
      *     // [Multilingual intent and entity
      *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     languageCode: 'placeholder-value',
-     *     // The unique identifier of this intent.
+     *     // Optional. The unique identifier of this intent.
      *     // Required for Intents.UpdateIntent and Intents.BatchUpdateIntents
      *     // methods.
      *     // Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
@@ -9825,7 +9838,7 @@ export namespace dialogflow_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
      * @param {string=} params.languageCode Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
-     * @param {string} params.name The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string} params.name Optional. The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1Intent} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10036,7 +10049,7 @@ export namespace dialogflow_v2beta1 {
      */
     languageCode?: string;
     /**
-     * The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * Optional. The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
     /**
@@ -10904,7 +10917,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.documents.create({
-     *     // Required. The knoweldge base to create a document for.
+     *     // The knoweldge base to create a document for.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      *     parent: 'projects/my-project/agent/knowledgeBases/my-knowledgeBase',
      *
@@ -10945,7 +10958,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param {string} params.parent The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      * @param {().GoogleCloudDialogflowV2beta1Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11050,7 +11063,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.documents.delete({
-     *     // The name of the document to delete.
+     *     // Required. The name of the document to delete.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
      *     // ID>/documents/<Document ID>`.
      *     name:
@@ -11077,7 +11090,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * @param {string} params.name Required. The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11470,7 +11483,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.documents.patch({
-     *     // The document resource name.
+     *     // Optional. The document resource name.
      *     // The name must be empty when creating a document.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
      *     // ID>/documents/<Document ID>`.
@@ -11518,7 +11531,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * @param {string} params.name Optional. The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      * @param {string=} params.updateMask Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
      * @param {().GoogleCloudDialogflowV2beta1Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11621,7 +11634,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.documents.reload({
-     *     // The name of the document to reload.
+     *     // Required. The name of the document to reload.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
      *     // ID>/documents/<Document ID>`
      *     name:
@@ -11656,7 +11669,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     * @param {string} params.name Required. The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
      * @param {().GoogleCloudDialogflowV2beta1ReloadDocumentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11740,7 +11753,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
 
@@ -11757,7 +11770,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * Required. The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
   }
@@ -11801,7 +11814,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * Optional. The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
     /**
@@ -11822,7 +11835,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     * Required. The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
      */
     name?: string;
 
@@ -14651,7 +14664,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.documents.create({
-     *     // Required. The knoweldge base to create a document for.
+     *     // The knoweldge base to create a document for.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      *     parent: 'projects/my-project/knowledgeBases/my-knowledgeBase',
      *
@@ -14692,7 +14705,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param {string} params.parent The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      * @param {().GoogleCloudDialogflowV2beta1Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14797,7 +14810,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.documents.delete({
-     *     // The name of the document to delete.
+     *     // Required. The name of the document to delete.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
      *     // ID>/documents/<Document ID>`.
      *     name:
@@ -14824,7 +14837,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * @param {string} params.name Required. The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15217,7 +15230,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.documents.patch({
-     *     // The document resource name.
+     *     // Optional. The document resource name.
      *     // The name must be empty when creating a document.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
      *     // ID>/documents/<Document ID>`.
@@ -15265,7 +15278,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * @param {string} params.name Optional. The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      * @param {string=} params.updateMask Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
      * @param {().GoogleCloudDialogflowV2beta1Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15368,7 +15381,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.documents.reload({
-     *     // The name of the document to reload.
+     *     // Required. The name of the document to reload.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
      *     // ID>/documents/<Document ID>`
      *     name:
@@ -15403,7 +15416,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     * @param {string} params.name Required. The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
      * @param {().GoogleCloudDialogflowV2beta1ReloadDocumentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15487,7 +15500,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
 
@@ -15504,7 +15517,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * Required. The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
   }
@@ -15548,7 +15561,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * Optional. The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
     /**
@@ -15569,7 +15582,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     * Required. The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
      */
     name?: string;
 
@@ -17033,7 +17046,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.locations.agent.entityTypes.batchDelete
-     * @desc Deletes entity types in the specified agent.  Operation <response: google.protobuf.Empty>
+     * @desc Deletes entity types in the specified agent. Operation <response: google.protobuf.Empty>
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17172,7 +17185,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.locations.agent.entityTypes.batchUpdate
-     * @desc Updates/Creates multiple entity types in the specified agent.  Operation <response: BatchUpdateEntityTypesResponse>
+     * @desc Updates/Creates multiple entity types in the specified agent. Operation <response: BatchUpdateEntityTypesResponse>
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -21804,7 +21817,7 @@ export namespace dialogflow_v2beta1 {
      *     // [Multilingual intent and entity
      *     // data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     languageCode: 'placeholder-value',
-     *     // The unique identifier of this intent.
+     *     // Optional. The unique identifier of this intent.
      *     // Required for Intents.UpdateIntent and Intents.BatchUpdateIntents
      *     // methods.
      *     // Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
@@ -21877,7 +21890,7 @@ export namespace dialogflow_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
      * @param {string=} params.languageCode Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
-     * @param {string} params.name The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string} params.name Optional. The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1Intent} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22088,7 +22101,7 @@ export namespace dialogflow_v2beta1 {
      */
     languageCode?: string;
     /**
-     * The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * Optional. The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
     /**

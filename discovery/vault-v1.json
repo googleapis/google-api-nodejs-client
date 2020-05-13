@@ -1051,7 +1051,7 @@
       }
     }
   },
-  "revision": "20200430",
+  "revision": "20200501",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountInfo": {
@@ -1159,7 +1159,7 @@
       "id": "CloudStorageFile",
       "properties": {
         "bucketName": {
-          "description": "The cloud storage bucket name of this export file.\nCan be used in cloud storage JSON/XML API.",
+          "description": "The cloud storage bucket name of this export file.\nCan be used in cloud storage JSON/XML API, but not to list the bucket\ncontents. Instead, you can <a\nhref=\"https://cloud.google.com/storage/docs/json_api/v1/objects/get\">\nget individual export files</a> by object name.",
           "type": "string"
         },
         "md5Hash": {

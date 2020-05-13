@@ -53,7 +53,7 @@
   "description": "Access Gmail mailboxes including sending user email.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/gmail/api/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/g3bzeMMQiCUwx2f62jBl-yFDoB8\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/wuvO3debMRRbS1xgERSPmyvlCL4\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/googlemail-16.png",
     "x32": "https://www.google.com/images/icons/product/googlemail-32.png"
@@ -2578,7 +2578,7 @@
       }
     }
   },
-  "revision": "20200203",
+  "revision": "20200504",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AutoForwarding": {

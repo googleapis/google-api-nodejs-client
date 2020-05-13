@@ -418,7 +418,7 @@
       }
     }
   },
-  "revision": "20200414",
+  "revision": "20200505",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {

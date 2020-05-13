@@ -304,7 +304,7 @@
       }
     }
   },
-  "revision": "20200429",
+  "revision": "20200508",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AffineTransform": {

@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20200415",
+  "revision": "20200509",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "AddTenantProjectRequest": {
@@ -816,7 +816,7 @@
       "type": "object"
     },
     "Billing": {
-      "description": "Billing related configuration of the service.\n\nThe following example shows how to configure monitored resources and metrics\nfor billing:\n\n    monitored_resources:\n    - type: library.googleapis.com/branch\n      labels:\n      - key: /city\n        description: The city where the library branch is located in.\n      - key: /name\n        description: The name of the branch.\n    metrics:\n    - name: library.googleapis.com/book/borrowed_count\n      metric_kind: DELTA\n      value_type: INT64\n    billing:\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/borrowed_count",
+      "description": "Billing related configuration of the service.\n\nThe following example shows how to configure monitored resources and metrics\nfor billing, `consumer_destinations` is the only supported destination and\nthe monitored resources need at least one label key\n`cloud.googleapis.com/location` to indicate the location of the billing\nusage, using different monitored resources between monitoring and billing is\nrecommended so they can be evolved independently:\n\n\n    monitored_resources:\n    - type: library.googleapis.com/billing_branch\n      labels:\n      - key: cloud.googleapis.com/location\n        description: |\n          Predefined label to support billing location restriction.\n      - key: city\n        description: |\n          Custom label to define the city where the library branch is located\n          in.\n      - key: name\n        description: Custom label to define the name of the library branch.\n    metrics:\n    - name: library.googleapis.com/book/borrowed_count\n      metric_kind: DELTA\n      value_type: INT64\n      unit: \"1\"\n    billing:\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/billing_branch\n        metrics:\n        - library.googleapis.com/book/borrowed_count",
       "id": "Billing",
       "properties": {
         "consumerDestinations": {

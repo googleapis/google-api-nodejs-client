@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/KCYZbfuowVghIgfO0xcetlVhLhw\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/YHQWlCS_UdYiRxWbR3ICljRAiNg\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -3442,7 +3442,7 @@
       }
     }
   },
-  "revision": "20200417",
+  "revision": "20200505",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
