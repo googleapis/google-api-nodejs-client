@@ -291,7 +291,7 @@
       }
     }
   },
-  "revision": "20200424",
+  "revision": "20200509",
   "rootUrl": "https://poly.googleapis.com/",
   "schemas": {
     "Asset": {

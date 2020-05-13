@@ -439,7 +439,7 @@
       }
     }
   },
-  "revision": "20200410",
+  "revision": "20200501",
   "rootUrl": "https://clouddebugger.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -669,7 +669,7 @@
             "CANARY_MODE_DEFAULT_DISABLED"
           ],
           "enumDescriptions": [
-            "Before \"use_breakpoint_canary\" is deprecated:\n  CANARY_MODE_UNSPECIFIED = use_breakpoint_canary ?\n                            CANARY_MODE_DEFAULT_ENABLED :\n                            CANARY_MODE_DEFAULT_DISABLED;\nAfter \"use_breakpoint_canary\" is deprecated:\n  CANARY_MODE_UNSPECIFIED = CANARY_MODE_DEFAULT_ENABLED;",
+            "CANARY_MODE_UNSPECIFIED is equivalent to CANARY_MODE_ALWAYS_DISABLED so\nthat if the debuggee is not configured to use the canary feature, the\nfeature will be disabled.",
             "Always enable breakpoint canary regardless of the value of breakpoint's\ncanary option.",
             "Always disable breakpoint canary regardless of the value of breakpoint's\ncanary option.",
             "Depends on the breakpoint's canary option. Enable canary by default if\nthe breakpoint's canary option is not specified.",

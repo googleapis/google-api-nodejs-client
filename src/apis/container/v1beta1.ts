@@ -258,7 +258,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {
     /**
-     * The name (project, location, operation id) of the operation to cancel. Specified in the format &#39;projects/x/locations/x/operations/*&#39;.
+     * The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x.
      */
     name?: string | null;
     /**
@@ -674,7 +674,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -713,7 +713,7 @@ export namespace container_v1beta1 {
      */
     cluster?: Schema$Cluster;
     /**
-     * The parent (project and location) where the cluster will be created. Specified in the format &#39;projects/x/locations/*&#39;.
+     * The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x.
      */
     parent?: string | null;
     /**
@@ -738,7 +738,7 @@ export namespace container_v1beta1 {
      */
     nodePool?: Schema$NodePool;
     /**
-     * The parent (project, location, cluster id) where the node pool will be created. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x.
      */
     parent?: string | null;
     /**
@@ -1100,7 +1100,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * Contains the name of the resource requested. Specified in the format &#39;projects/x/locations/*&#39;.
+     * Contains the name of the resource requested. Specified in the format `projects/x/locations/x.
      */
     name?: string | null;
     /**
@@ -1683,7 +1683,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
+     * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
      */
     name?: string | null;
     /**
@@ -1754,7 +1754,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to set addons. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1779,7 +1779,7 @@ export namespace container_v1beta1 {
      */
     labelFingerprint?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set labels. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1808,7 +1808,7 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1833,7 +1833,7 @@ export namespace container_v1beta1 {
      */
     locations?: string[] | null;
     /**
-     * The name (project, location, cluster) of the cluster to set locations. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1858,7 +1858,7 @@ export namespace container_v1beta1 {
      */
     loggingService?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to set logging. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1883,7 +1883,7 @@ export namespace container_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
-     * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1908,7 +1908,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to set auth. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1937,7 +1937,7 @@ export namespace container_v1beta1 {
      */
     monitoringService?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1958,7 +1958,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -1987,7 +1987,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
+     * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
      */
     name?: string | null;
     /**
@@ -2016,7 +2016,7 @@ export namespace container_v1beta1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
+     * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
      */
     name?: string | null;
     /**
@@ -2041,7 +2041,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
+     * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
      */
     name?: string | null;
     /**
@@ -2092,7 +2092,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -2160,7 +2160,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to update. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -2189,7 +2189,7 @@ export namespace container_v1beta1 {
      */
     masterVersion?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to update. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+     * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x.
      */
     name?: string | null;
     /**
@@ -2218,7 +2218,7 @@ export namespace container_v1beta1 {
      */
     locations?: string[] | null;
     /**
-     * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
+     * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
      */
     name?: string | null;
     /**
@@ -2408,7 +2408,7 @@ export namespace container_v1beta1 {
      *     // previous list requests to get the next page of results.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent project where subnetworks are usable.
-     *     // Specified in the format 'projects/x'.
+     *     // Specified in the format `projects/x`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2432,7 +2432,7 @@ export namespace container_v1beta1 {
      * @param {string=} params.filter Filtering currently only supports equality on the networkProjectId and must be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId` is the project which owns the listed subnetworks. This defaults to the parent project ID.
      * @param {integer=} params.pageSize The max number of results per page that should be returned. If the number of available results is larger than `page_size`, a `next_page_token` is returned which can be used to get the next page of results in subsequent requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.pageToken Specifies a page token to use. Set this to the nextPageToken returned by previous list requests to get the next page of results.
-     * @param {string} params.parent Required. The parent project where subnetworks are usable. Specified in the format 'projects/x'.
+     * @param {string} params.parent Required. The parent project where subnetworks are usable. Specified in the format `projects/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2528,7 +2528,7 @@ export namespace container_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent project where subnetworks are usable. Specified in the format 'projects/x'.
+     * Required. The parent project where subnetworks are usable. Specified in the format `projects/x`.
      */
     parent?: string;
   }
@@ -2573,7 +2573,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.getServerConfig({
      *     // The name (project and location) of the server config to get,
-     *     // specified in the format 'projects/x/locations/x'.
+     *     // specified in the format `projects/x/locations/x`.
      *     name: 'projects/my-project/locations/my-location',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
@@ -2607,7 +2607,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project and location) of the server config to get, specified in the format 'projects/x/locations/x'.
+     * @param {string} params.name The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2704,7 +2704,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.list({
      *     // Required. Contains the name of the resource requested.
-     *     // Specified in the format 'projects/x'.
+     *     // Specified in the format `projects/x`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2725,7 +2725,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Contains the name of the resource requested. Specified in the format 'projects/x'.
+     * @param {string} params.parent Required. Contains the name of the resource requested. Specified in the format `projects/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2803,7 +2803,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project and location) of the server config to get, specified in the format 'projects/x/locations/x'.
+     * The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      */
     name?: string;
     /**
@@ -2823,7 +2823,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Contains the name of the resource requested. Specified in the format 'projects/x'.
+     * Required. Contains the name of the resource requested. Specified in the format `projects/x`.
      */
     parent?: string;
   }
@@ -2870,7 +2870,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.completeIpRotation({
      *     // The name (project, location, cluster id) of the cluster to complete IP
-     *     // rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -2914,7 +2914,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().CompleteIPRotationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3010,7 +3010,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.create({
      *     // The parent (project and location) where the cluster will be created.
-     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -3054,7 +3054,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the cluster will be created. Specified in the format 'projects/x/locations/x'.
+     * @param {string} params.parent The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x`.
      * @param {().CreateClusterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3153,7 +3153,7 @@ export namespace container_v1beta1 {
      *     // This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster) of the cluster to delete.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
@@ -3196,7 +3196,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clusterId Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3293,7 +3293,7 @@ export namespace container_v1beta1 {
      *     // This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster) of the cluster to retrieve.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
@@ -3378,7 +3378,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clusterId Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3470,7 +3470,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.getJwks({
      *     // The cluster (project, location, cluster id) to get keys for. Specified in
-     *     // the format 'projects/x/locations/x/clusters/x'.
+     *     // the format `projects/x/locations/x/clusters/x`.
      *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *   });
      *   console.log(res.data);
@@ -3491,7 +3491,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The cluster (project, location, cluster id) to get keys for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.parent The cluster (project, location, cluster id) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3590,7 +3590,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.list({
      *     // The parent (project and location) where the clusters will be listed.
-     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Specified in the format `projects/x/locations/x`.
      *     // Location "-" matches all zones and all regions.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
@@ -3621,7 +3621,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * @param {string} params.parent The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3720,7 +3720,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setAddons({
      *     // The name (project, location, cluster) of the cluster to set addons.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -3765,7 +3765,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set addons. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetAddonsConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3861,7 +3861,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setLegacyAbac({
      *     // The name (project, location, cluster id) of the cluster to set legacy abac.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -3906,7 +3906,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetLegacyAbacRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4002,7 +4002,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setLocations({
      *     // The name (project, location, cluster) of the cluster to set locations.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4047,7 +4047,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set locations. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetLocationsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4143,7 +4143,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setLogging({
      *     // The name (project, location, cluster) of the cluster to set logging.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4188,7 +4188,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set logging. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetLoggingServiceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4285,7 +4285,7 @@ export namespace container_v1beta1 {
      *   const res = await container.projects.locations.clusters.setMaintenancePolicy({
      *     // The name (project, location, cluster id) of the cluster to set maintenance
      *     // policy.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4330,7 +4330,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetMaintenancePolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4428,7 +4428,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setMasterAuth({
      *     // The name (project, location, cluster) of the cluster to set auth.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4474,7 +4474,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set auth. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetMasterAuthRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4570,7 +4570,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setMonitoring({
      *     // The name (project, location, cluster) of the cluster to set monitoring.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4615,7 +4615,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set monitoring. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetMonitoringServiceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4711,7 +4711,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setNetworkPolicy({
      *     // The name (project, location, cluster id) of the cluster to set networking
-     *     // policy. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // policy. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4756,7 +4756,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetNetworkPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4852,7 +4852,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setResourceLabels({
      *     // The name (project, location, cluster id) of the cluster to set labels.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4898,7 +4898,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to set labels. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().SetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4994,7 +4994,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.startIpRotation({
      *     // The name (project, location, cluster id) of the cluster to start IP
-     *     // rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -5039,7 +5039,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().StartIPRotationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5135,7 +5135,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.update({
      *     // The name (project, location, cluster) of the cluster to update.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -5180,7 +5180,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to update. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().UpdateClusterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5273,7 +5273,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.updateMaster({
      *     // The name (project, location, cluster) of the cluster to update.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -5318,7 +5318,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to update. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().UpdateMasterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5395,7 +5395,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5412,7 +5412,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent (project and location) where the cluster will be created. Specified in the format 'projects/x/locations/x'.
+     * The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x`.
      */
     parent?: string;
 
@@ -5433,7 +5433,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
     /**
@@ -5457,7 +5457,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
     /**
@@ -5477,7 +5477,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The cluster (project, location, cluster id) to get keys for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The cluster (project, location, cluster id) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
   }
@@ -5489,7 +5489,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
     parent?: string;
     /**
@@ -5509,7 +5509,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster) of the cluster to set addons. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5526,7 +5526,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5543,7 +5543,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster) of the cluster to set locations. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5560,7 +5560,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster) of the cluster to set logging. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5577,7 +5577,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5594,7 +5594,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster) of the cluster to set auth. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5611,7 +5611,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5628,7 +5628,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5645,7 +5645,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster id) of the cluster to set labels. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5662,7 +5662,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5679,7 +5679,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster) of the cluster to update. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5696,7 +5696,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster) of the cluster to update. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -5741,7 +5741,7 @@ export namespace container_v1beta1 {
      *   const res = await container.projects.locations.clusters.nodePools.create({
      *     // The parent (project, location, cluster id) where the node pool will be
      *     // created. Specified in the format
-     *     // 'projects/x/locations/x/clusters/x'.
+     *     // `projects/x/locations/x/clusters/x`.
      *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -5786,7 +5786,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {().CreateNodePoolRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5886,7 +5886,7 @@ export namespace container_v1beta1 {
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster, node pool id) of the node pool to
      *     // delete. Specified in the format
-     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     // `projects/x/locations/x/clusters/x/nodePools/x`.
      *     name:
      *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *     // Required. Deprecated. The name of the node pool to delete.
@@ -5933,7 +5933,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {string=} params.nodePoolId Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
@@ -6032,7 +6032,7 @@ export namespace container_v1beta1 {
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster, node pool id) of the node pool to
      *     // get. Specified in the format
-     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     // `projects/x/locations/x/clusters/x/nodePools/x`.
      *     name:
      *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *     // Required. Deprecated. The name of the node pool.
@@ -6080,7 +6080,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {string=} params.nodePoolId Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
@@ -6176,7 +6176,7 @@ export namespace container_v1beta1 {
      *     // This field has been deprecated and replaced by the parent field.
      *     clusterId: 'placeholder-value',
      *     // The parent (project, location, cluster id) where the node pools will be
-     *     // listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // listed. Specified in the format `projects/x/locations/x/clusters/x`.
      *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
@@ -6206,7 +6206,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-     * @param {string} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6306,7 +6306,7 @@ export namespace container_v1beta1 {
      *   const res = await container.projects.locations.clusters.nodePools.rollback({
      *     // The name (project, location, cluster, node pool id) of the node poll to
      *     // rollback upgrade.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      *     name:
      *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
@@ -6352,7 +6352,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {().RollbackNodePoolUpgradeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6450,7 +6450,7 @@ export namespace container_v1beta1 {
      *     {
      *       // The name (project, location, cluster, node pool) of the node pool to set
      *       // autoscaler settings. Specified in the format
-     *       // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *       // `projects/x/locations/x/clusters/x/nodePools/x`.
      *       name:
      *         'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
@@ -6498,7 +6498,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {().SetNodePoolAutoscalingRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6596,7 +6596,7 @@ export namespace container_v1beta1 {
      *     {
      *       // The name (project, location, cluster, node pool id) of the node pool to set
      *       // management properties. Specified in the format
-     *       // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *       // `projects/x/locations/x/clusters/x/nodePools/x`.
      *       name:
      *         'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
@@ -6644,7 +6644,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {().SetNodePoolManagementRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6741,7 +6741,7 @@ export namespace container_v1beta1 {
      *   const res = await container.projects.locations.clusters.nodePools.setSize({
      *     // The name (project, location, cluster, node pool id) of the node pool to set
      *     // size.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      *     name:
      *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
@@ -6788,7 +6788,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {().SetNodePoolSizeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6885,7 +6885,7 @@ export namespace container_v1beta1 {
      *   const res = await container.projects.locations.clusters.nodePools.update({
      *     // The name (project, location, cluster, node pool) of the node pool to
      *     // update. Specified in the format
-     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     // `projects/x/locations/x/clusters/x/nodePools/x`.
      *     name:
      *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
@@ -6936,7 +6936,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to update. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {().UpdateNodePoolRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7010,7 +7010,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
 
@@ -7031,7 +7031,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
     /**
@@ -7059,7 +7059,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
     /**
@@ -7087,7 +7087,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
     /**
@@ -7107,7 +7107,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
 
@@ -7124,7 +7124,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
 
@@ -7141,7 +7141,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
 
@@ -7158,7 +7158,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
 
@@ -7175,7 +7175,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
 
@@ -7222,7 +7222,7 @@ export namespace container_v1beta1 {
      *     known.getOpenid -
      *     configuration({
      *       // The cluster (project, location, cluster id) to get the discovery document
-     *       // for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *       // for. Specified in the format `projects/x/locations/x/clusters/x`.
      *       parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *     });
      *   console.log(res.data);
@@ -7249,7 +7249,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The cluster (project, location, cluster id) to get the discovery document for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.parent The cluster (project, location, cluster id) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7328,7 +7328,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The cluster (project, location, cluster id) to get the discovery document for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The cluster (project, location, cluster id) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
   }
@@ -7367,7 +7367,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.operations.cancel({
      *     // The name (project, location, operation id) of the operation to cancel.
-     *     // Specified in the format 'projects/x/locations/x/operations/x'.
+     *     // Specified in the format `projects/x/locations/x/operations/x`.
      *     name: 'projects/my-project/locations/my-location/operations/my-operation',
      *
      *     // Request body metadata
@@ -7396,7 +7396,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, operation id) of the operation to cancel. Specified in the format 'projects/x/locations/x/operations/x'.
+     * @param {string} params.name The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x`.
      * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7490,7 +7490,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.operations.get({
      *     // The name (project, location, operation id) of the operation to get.
-     *     // Specified in the format 'projects/x/locations/x/operations/x'.
+     *     // Specified in the format `projects/x/locations/x/operations/x`.
      *     name: 'projects/my-project/locations/my-location/operations/my-operation',
      *     // Required. Deprecated. The server-assigned `name` of the operation.
      *     // This field has been deprecated and replaced by the name field.
@@ -7535,7 +7535,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
+     * @param {string} params.name The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
      * @param {string=} params.operationId Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
@@ -7630,7 +7630,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.operations.list({
      *     // The parent (project and location) where the operations will be listed.
-     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Specified in the format `projects/x/locations/x`.
      *     // Location "-" matches all zones and all regions.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
@@ -7661,7 +7661,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * @param {string} params.parent The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7741,7 +7741,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, operation id) of the operation to cancel. Specified in the format 'projects/x/locations/x/operations/x'.
+     * The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x`.
      */
     name?: string;
 
@@ -7758,7 +7758,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
+     * The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
      */
     name?: string;
     /**
@@ -7782,7 +7782,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
     parent?: string;
     /**
@@ -7833,7 +7833,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.zones.getServerconfig({
      *     // The name (project and location) of the server config to get,
-     *     // specified in the format 'projects/x/locations/x'.
+     *     // specified in the format `projects/x/locations/x`.
      *     name: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
@@ -7867,7 +7867,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.name The name (project and location) of the server config to get, specified in the format 'projects/x/locations/x'.
+     * @param {string=} params.name The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7945,7 +7945,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project and location) of the server config to get, specified in the format 'projects/x/locations/x'.
+     * The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      */
     name?: string;
     /**
@@ -8448,7 +8448,7 @@ export namespace container_v1beta1 {
      *     // This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster) of the cluster to delete.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
@@ -8491,7 +8491,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterId Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string=} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8591,7 +8591,7 @@ export namespace container_v1beta1 {
      *     // This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster) of the cluster to retrieve.
-     *     // Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
      *     // number](https://support.google.com/cloud/answer/6158840).
@@ -8676,7 +8676,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterId Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string=} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8923,7 +8923,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.zones.clusters.list({
      *     // The parent (project and location) where the clusters will be listed.
-     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Specified in the format `projects/x/locations/x`.
      *     // Location "-" matches all zones and all regions.
      *     parent: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
@@ -8954,7 +8954,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * @param {string=} params.parent The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10629,7 +10629,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
     /**
@@ -10653,7 +10653,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
     /**
@@ -10698,7 +10698,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
     parent?: string;
     /**
@@ -11308,7 +11308,7 @@ export namespace container_v1beta1 {
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster, node pool id) of the node pool to
      *     // delete. Specified in the format
-     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     // `projects/x/locations/x/clusters/x/nodePools/x`.
      *     name: 'placeholder-value',
      *     // Required. Deprecated. The name of the node pool to delete.
      *     // This field has been deprecated and replaced by the name field.
@@ -11354,7 +11354,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
@@ -11456,7 +11456,7 @@ export namespace container_v1beta1 {
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster, node pool id) of the node pool to
      *     // get. Specified in the format
-     *     // 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *     // `projects/x/locations/x/clusters/x/nodePools/x`.
      *     name: 'placeholder-value',
      *     // Required. Deprecated. The name of the node pool.
      *     // This field has been deprecated and replaced by the name field.
@@ -11503,7 +11503,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
@@ -11602,7 +11602,7 @@ export namespace container_v1beta1 {
      *     // This field has been deprecated and replaced by the parent field.
      *     clusterId: 'placeholder-value',
      *     // The parent (project, location, cluster id) where the node pools will be
-     *     // listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     *     // listed. Specified in the format `projects/x/locations/x/clusters/x`.
      *     parent: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
      *     // number](https://developers.google.com/console/help/new/#projectnumber).
@@ -11632,7 +11632,7 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string=} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12401,7 +12401,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
     /**
@@ -12429,7 +12429,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
     /**
@@ -12457,7 +12457,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
     /**
@@ -12754,7 +12754,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.zones.operations.get({
      *     // The name (project, location, operation id) of the operation to get.
-     *     // Specified in the format 'projects/x/locations/x/operations/x'.
+     *     // Specified in the format `projects/x/locations/x/operations/x`.
      *     name: 'placeholder-value',
      *     // Required. Deprecated. The server-assigned `name` of the operation.
      *     // This field has been deprecated and replaced by the name field.
@@ -12799,7 +12799,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.name The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
+     * @param {string=} params.name The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
      * @param {string} params.operationId Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
@@ -12897,7 +12897,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.zones.operations.list({
      *     // The parent (project and location) where the operations will be listed.
-     *     // Specified in the format 'projects/x/locations/x'.
+     *     // Specified in the format `projects/x/locations/x`.
      *     // Location "-" matches all zones and all regions.
      *     parent: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project
@@ -12928,7 +12928,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * @param {string=} params.parent The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13032,7 +13032,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
+     * The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
      */
     name?: string;
     /**
@@ -13056,7 +13056,7 @@ export namespace container_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
     parent?: string;
     /**

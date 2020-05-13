@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20200410",
+  "revision": "20200504",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -485,7 +485,7 @@
         },
         "gcsObject": {
           "$ref": "GcsObject",
-          "description": "A Google Cloud Storage object containing the executable."
+          "description": "A Cloud Storage object containing the executable."
         },
         "interpreter": {
           "description": "The script interpreter to use to run the script. If no interpreter is\nspecified the script will be executed directly, which will likely\nonly succeed for scripts with [shebang lines]\n(https://en.wikipedia.org/wiki/Shebang_\\(Unix\\)).",
@@ -509,7 +509,7 @@
       "type": "object"
     },
     "ExecutePatchJobRequest": {
-      "description": "A request message to initiate patching across Google Compute Engine\ninstances.",
+      "description": "A request message to initiate patching across Compute Engine\ninstances.",
       "id": "ExecutePatchJobRequest",
       "properties": {
         "description": {
@@ -541,20 +541,20 @@
       "type": "object"
     },
     "GcsObject": {
-      "description": "Google Cloud Storage object representation.",
+      "description": "Cloud Storage object representation.",
       "id": "GcsObject",
       "properties": {
         "bucket": {
-          "description": "Required. Bucket of the Google Cloud Storage object.",
+          "description": "Required. Bucket of the Cloud Storage object.",
           "type": "string"
         },
         "generationNumber": {
-          "description": "Required. Generation number of the Google Cloud Storage object. This is used to\nensure that the ExecStep specified by this PatchJob does not change.",
+          "description": "Required. Generation number of the Cloud Storage object. This is used to\nensure that the ExecStep specified by this PatchJob does not change.",
           "format": "int64",
           "type": "string"
         },
         "object": {
-          "description": "Required. Name of the Google Cloud Storage object.",
+          "description": "Required. Name of the Cloud Storage object.",
           "type": "string"
         }
       },
@@ -637,7 +637,7 @@
       "type": "object"
     },
     "OneTimeSchedule": {
-      "description": "Sets the time for a one time patch deployment. Timestamp is in\n<a href=\"https://www.ietf.org/rfc/rfc3339.txt\" target=\"_blank\">RFC3339</a>\ntext format.",
+      "description": "Sets the time for a one time patch deployment. Timestamp is in\n[RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
       "id": "OneTimeSchedule",
       "properties": {
         "executeTime": {
@@ -700,11 +700,11 @@
       "type": "object"
     },
     "PatchDeployment": {
-      "description": "Patch deployments are configurations that individual patch jobs use to\ncomplete a patch. These configurations include instance filter, package\nrepository settings, and a schedule. For more information about creating and\nmanaging patch deployments, see [Scheduling patch\njobs](/compute/docs/os-patch-management/schedule-patch-jobs).",
+      "description": "Patch deployments are configurations that individual patch jobs use to\ncomplete a patch. These configurations include instance filter, package\nrepository settings, and a schedule. For more information about creating and\nmanaging patch deployments, see [Scheduling patch\njobs](https://cloud.google.com/compute/docs/os-patch-management/schedule-patch-jobs).",
       "id": "PatchDeployment",
       "properties": {
         "createTime": {
-          "description": "Output only. Time the patch deployment was created. Timestamp is in\n<a href=\"https://www.ietf.org/rfc/rfc3339.txt\" target=\"_blank\">RFC3339</a>\ntext format.",
+          "description": "Output only. Time the patch deployment was created. Timestamp is in\n[RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -722,7 +722,7 @@
           "description": "Required. VM instances to patch."
         },
         "lastExecuteTime": {
-          "description": "Output only. The last time a patch job was started by this deployment.\nTimestamp is in\n<a href=\"https://www.ietf.org/rfc/rfc3339.txt\" target=\"_blank\">RFC3339</a>\ntext format.",
+          "description": "Output only. The last time a patch job was started by this deployment.\nTimestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text\nformat.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -743,7 +743,7 @@
           "description": "Required. Schedule recurring executions."
         },
         "updateTime": {
-          "description": "Output only. Time the patch deployment was last updated. Timestamp is in\n<a href=\"https://www.ietf.org/rfc/rfc3339.txt\" target=\"_blank\">RFC3339</a>\ntext format.",
+          "description": "Output only. Time the patch deployment was last updated. Timestamp is in\n[RFC3339](\"https://www.ietf.org/rfc/rfc3339.txt) text format.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -759,7 +759,7 @@
           "type": "boolean"
         },
         "groupLabels": {
-          "description": "Targets VM instances matching at least one of these label sets. This allows\ntargeting of disparate groups, for example \"env=prod or env=staging\".",
+          "description": "Targets VM instances matching ANY of these GroupLabels. This allows\ntargeting of disparate groups of VM instances.",
           "items": {
             "$ref": "PatchInstanceFilterGroupLabel"
           },
@@ -790,21 +790,21 @@
       "type": "object"
     },
     "PatchInstanceFilterGroupLabel": {
-      "description": "Represents a group of VMs that can be identified as having all these\nlabels, for example \"env=prod and app=web\".",
+      "description": "Targets a group of VM instances by using their [assigned\nlabels](https://cloud.google.com/compute/docs/labeling-resources). Labels\nare key-value pairs. A `GroupLabel` is a combination of labels\nthat is used to target VMs for a patch job.\n\nFor example, a patch job can target VMs that have the following\n`GroupLabel`: `{\"env\":\"test\", \"app\":\"web\"}`. This means that the patch job\nis applied to VMs that have both the labels `env=test` and `app=web`.",
       "id": "PatchInstanceFilterGroupLabel",
       "properties": {
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Google Compute Engine instance labels that must be present for a VM\ninstance to be targeted by this filter.",
+          "description": "Compute Engine instance labels that must be present for a VM\ninstance to be targeted by this filter.",
           "type": "object"
         }
       },
       "type": "object"
     },
     "PatchJob": {
-      "description": "A high level representation of a patch job that is either in progress\nor has completed.\n\nInstances details are not included in the job. To paginate through instance\ndetails, use ListPatchJobInstanceDetails.\n\nFor more information about patch jobs, see\n[Creating patch jobs](/compute/docs/os-patch-management/create-patch-job).",
+      "description": "A high level representation of a patch job that is either in progress\nor has completed.\n\nInstances details are not included in the job. To paginate through instance\ndetails, use ListPatchJobInstanceDetails.\n\nFor more information about patch jobs, see\n[Creating patch\njobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).",
       "id": "PatchJob",
       "properties": {
         "createTime": {
@@ -891,7 +891,7 @@
       "type": "object"
     },
     "PatchJobInstanceDetails": {
-      "description": "Patch details for a VM instance. For more information about reviewing VM\ninstance details, see\n[Listing all VM instance details for a specific patch\njob](/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details).",
+      "description": "Patch details for a VM instance. For more information about reviewing VM\ninstance details, see\n[Listing all VM instance details for a specific patch\njob](https://cloud.google.com/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details).",
       "id": "PatchJobInstanceDetails",
       "properties": {
         "attemptCount": {

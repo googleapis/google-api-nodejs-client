@@ -131,7 +131,7 @@ export namespace speech_v1p1beta1 {
    */
   export interface Schema$CustomClass {
     /**
-     * If this custom class is a resource, the custom_class_id is the resource id of the CustomClass.
+     * If this custom class is a resource, the custom_class_id is the resource id of the CustomClass. Case sensitive.
      */
     customClassId?: string | null;
     /**
@@ -225,7 +225,7 @@ export namespace speech_v1p1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A phrases containing words and phrase &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content).  List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. &quot;i was born in january&quot;, &quot;i was born in febuary&quot;, ...), use the pre-built $MONTH class improves the likelihood of correctly transcribing audio that includes months (e.g. &quot;i was born in $month&quot;). To refer to pre-built classes, use the class&#39; symbol prepended with $ e.g. $MONTH. To refer to custom classes that were defined inline in the request, set the class&#39;s `custom_class_id` to a string unique to all class resources and inline classes. Then use the class&#39; id wrapped in ${...} e.g. &quot;${my-months}&quot;. To refer to custom classes resources, use the class&#39; id wrapped in ${} (e.g. ${my-months}).
+   * A phrases containing words and phrase &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content).  List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. &quot;i was born in january&quot;, &quot;i was born in febuary&quot;, ...), use the pre-built `$MONTH` class improves the likelihood of correctly transcribing audio that includes months (e.g. &quot;i was born in $month&quot;). To refer to pre-built classes, use the class&#39; symbol prepended with `$` e.g. `$MONTH`. To refer to custom classes that were defined inline in the request, set the class&#39;s `custom_class_id` to a string unique to all class resources and inline classes. Then use the class&#39; id wrapped in $`{...}` e.g. &quot;${my-months}&quot;. To refer to custom classes resources, use the class&#39; id wrapped in `${}` (e.g. `${my-months}`).
    */
   export interface Schema$Phrase {
     /**

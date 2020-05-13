@@ -470,7 +470,7 @@ export namespace dialogflow_v2 {
      */
     events?: string[] | null;
     /**
-     * Read-only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.
+     * Output only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.
      */
     followupIntentInfo?: Schema$GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo[];
     /**
@@ -494,7 +494,7 @@ export namespace dialogflow_v2 {
      */
     mlEnabled?: boolean | null;
     /**
-     * The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Optional. The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     name?: string | null;
     /**
@@ -506,11 +506,11 @@ export namespace dialogflow_v2 {
      */
     parameters?: Schema$GoogleCloudDialogflowV2beta1IntentParameter[];
     /**
-     * Read-only after creation. The unique identifier of the parent intent in the chain of followup intents. You can set this field when creating an intent, for example with CreateIntent or BatchUpdateIntents, in order to make this intent a followup intent.  It identifies the parent followup intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Optional. The unique identifier of the parent intent in the chain of followup intents. You can set this field when creating an intent, for example with CreateIntent or BatchUpdateIntents, in order to make this intent a followup intent.  It identifies the parent followup intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string | null;
     /**
-     * The priority of this intent. Higher numbers represent higher priorities.  - If the supplied value is unspecified or 0, the service   translates the value to 500,000, which corresponds to the   `Normal` priority in the console. - If the supplied value is negative, the intent is ignored   in runtime detect intent requests.
+     * Optional. The priority of this intent. Higher numbers represent higher priorities.  - If the supplied value is unspecified or 0, the service   translates the value to 500,000, which corresponds to the   `Normal` priority in the console. - If the supplied value is negative, the intent is ignored   in runtime detect intent requests.
      */
     priority?: number | null;
     /**
@@ -518,7 +518,7 @@ export namespace dialogflow_v2 {
      */
     resetContexts?: boolean | null;
     /**
-     * Read-only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. We populate this field only in the output.  Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Output only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent.  Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     rootFollowupIntentName?: string | null;
     /**
@@ -1342,7 +1342,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
     /**
-     * Required. The current state of this operation.
+     * Required. Output only. The current state of this operation.
      */
     state?: string | null;
   }
@@ -1514,31 +1514,31 @@ export namespace dialogflow_v2 {
      */
     endInteraction?: boolean | null;
     /**
-     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
+     * Optional. Invokes the supplied events. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
      */
     followupEventInput?: Schema$GoogleCloudDialogflowV2beta1EventInput;
     /**
-     * Optional. The collection of rich messages to present to the user. This value is passed directly to `QueryResult.fulfillment_messages`.
+     * Optional. The rich response messages intended for the end-user. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_messages sent to the integration or API caller.
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2beta1IntentMessage[];
     /**
-     * Optional. The text to be shown on the screen. This value is passed directly to `QueryResult.fulfillment_text`.
+     * Optional. The text response message intended for the end-user. It is recommended to use `fulfillment_messages.text.text[0]` instead. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_text sent to the integration or API caller.
      */
     fulfillmentText?: string | null;
     /**
-     * Optional. The collection of output contexts. This value is passed directly to `QueryResult.output_contexts`.
+     * Optional. The collection of output contexts that will overwrite currently active contexts for the session and reset their lifespans. When provided, Dialogflow uses this field to populate QueryResult.output_contexts sent to the integration or API caller.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
-     * Optional. This field can be used to pass custom data from your webhook to the API caller. Arbitrary JSON objects are supported. When provided, Dialogflow uses this field to populate `QueryResult.webhook_payload` sent to the API caller. This field is also used by the [Google Assistant integration](https://cloud.google.com/dialogflow/docs/integrations/aog) for rich response messages. See the format definition at [Google Assistant Dialogflow webhook format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
+     * Optional. This field can be used to pass custom data from your webhook to the integration or API caller. Arbitrary JSON objects are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_payload sent to the integration or API caller. This field is also used by the [Google Assistant integration](https://cloud.google.com/dialogflow/docs/integrations/aog) for rich response messages. See the format definition at [Google Assistant Dialogflow webhook format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
      */
     payload?: {[key: string]: any} | null;
     /**
-     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session of this query. Setting the session entity types inside webhook overwrites the session entity types that have been set through `DetectIntentRequest.query_params.session_entity_types`.
+     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session. Setting this data from a webhook overwrites the session entity types that have been set using `detectIntent`, `streamingDetectIntent` or SessionEntityType management methods.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_source`.
+     * Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.
      */
     source?: string | null;
   }
@@ -1796,7 +1796,7 @@ export namespace dialogflow_v2 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
-     * Required. The fulfillment URI for receiving POST requests.
+     * Required. The fulfillment URI for receiving POST requests. It must use https protocol.
      */
     uri?: string | null;
     /**
@@ -2847,7 +2847,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SpeechContext {
     /**
-     * Optional. Boost for this context compared to other contexts: * If the boost is positive, Dialogflow will increase the probability that   the phrases in this context are recognized over similar sounding phrases. * If the boost is unspecified or non-positive, Dialogflow will not apply   any boost.  Dialogflow recommends that you use boosts in the range (0, 20] and that you find a value that fits your use case with binary search.
+     * Optional. Boost for this context compared to other contexts:  * If the boost is positive, Dialogflow will increase the probability that   the phrases in this context are recognized over similar sounding phrases. * If the boost is unspecified or non-positive, Dialogflow will not apply   any boost.  Dialogflow recommends that you use boosts in the range (0, 20] and that you find a value that fits your use case with binary search.
      */
     boost?: number | null;
     /**
@@ -2962,33 +2962,46 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2WebhookResponse {
     /**
-     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
+     * Optional. Invokes the supplied events. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
      */
     followupEventInput?: Schema$GoogleCloudDialogflowV2EventInput;
     /**
-     * Optional. The collection of rich messages to present to the user. This value is passed directly to `QueryResult.fulfillment_messages`.
+     * Optional. The rich response messages intended for the end-user. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_messages sent to the integration or API caller.
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2IntentMessage[];
     /**
-     * Optional. The text to be shown on the screen. This value is passed directly to `QueryResult.fulfillment_text`.
+     * Optional. The text response message intended for the end-user. It is recommended to use `fulfillment_messages.text.text[0]` instead. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_text sent to the integration or API caller.
      */
     fulfillmentText?: string | null;
     /**
-     * Optional. The collection of output contexts. This value is passed directly to `QueryResult.output_contexts`.
+     * Optional. The collection of output contexts that will overwrite currently active contexts for the session and reset their lifespans. When provided, Dialogflow uses this field to populate QueryResult.output_contexts sent to the integration or API caller.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2Context[];
     /**
-     * Optional. This field can be used to pass custom data from your webhook to the API caller. Arbitrary JSON objects are supported. When provided, Dialogflow uses this field to populate `QueryResult.webhook_payload` sent to the API caller. This field is also used by the [Google Assistant integration](https://cloud.google.com/dialogflow/docs/integrations/aog) for rich response messages. See the format definition at [Google Assistant Dialogflow webhook format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
+     * Optional. This field can be used to pass custom data from your webhook to the integration or API caller. Arbitrary JSON objects are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_payload sent to the integration or API caller. This field is also used by the [Google Assistant integration](https://cloud.google.com/dialogflow/docs/integrations/aog) for rich response messages. See the format definition at [Google Assistant Dialogflow webhook format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
      */
     payload?: {[key: string]: any} | null;
     /**
-     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session of this query. Setting the session entity types inside webhook overwrites the session entity types that have been set through `DetectIntentRequest.query_params.session_entity_types`.
+     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session. Setting this data from a webhook overwrites the session entity types that have been set using `detectIntent`, `streamingDetectIntent` or SessionEntityType management methods.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2SessionEntityType[];
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_source`.
+     * Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.
      */
     source?: string | null;
+  }
+  /**
+   * The response message for Agents.ExportAgent.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1ExportAgentResponse {
+    /**
+     * Uncompressed raw byte content for agent.
+     */
+    agentContent?: string | null;
+    /**
+     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
+     */
+    agentUri?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.

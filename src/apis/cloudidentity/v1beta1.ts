@@ -495,6 +495,19 @@ export namespace cloudidentity_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * Response message that is returned in LRO result of ListClientStates Operation.
+   */
+  export interface Schema$ListClientStatesResponse {
+    /**
+     * Client states meeting the list restrictions.
+     */
+    clientStates?: Schema$ClientState[];
+    /**
+     * Token to retrieve the next page of results. Empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message that is returned in LRO result of ListDevices Operation.
    */
   export interface Schema$ListDevicesResponse {

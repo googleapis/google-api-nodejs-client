@@ -885,6 +885,10 @@ export namespace remotebuildexecution_v1alpha {
      */
     autoscale?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAutoscale;
     /**
+     * Channel specifies the release channel of the pool.
+     */
+    channel?: string | null;
+    /**
      * WorkerPool resource name formatted as: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`. name should not be populated when creating a worker pool since it is provided in the `poolId` field.
      */
     name?: string | null;
@@ -2106,6 +2110,7 @@ export namespace remotebuildexecution_v1alpha {
      *   // Example response
      *   // {
      *   //   "autoscale": {},
+     *   //   "channel": "my_channel",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "workerConfig": {},

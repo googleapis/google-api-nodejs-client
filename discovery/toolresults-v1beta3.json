@@ -10,7 +10,7 @@
   },
   "basePath": "",
   "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch",
+  "batchPath": "batch/toolresults/v1beta3",
   "canonicalName": "Tool Results",
   "description": "API to publish and access results from developer tools.",
   "discoveryVersion": "v1",
@@ -1446,7 +1446,7 @@
       }
     }
   },
-  "revision": "20200430",
+  "revision": "20200512",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "ANR": {

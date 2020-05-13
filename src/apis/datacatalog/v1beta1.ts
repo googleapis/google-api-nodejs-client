@@ -380,7 +380,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesRequest {
     /**
-     * Inline source used for taxonomies import
+     * Inline source used for taxonomies to be imported.
      */
     inlineSource?: Schema$GoogleCloudDatacatalogV1beta1InlineSource;
   }
@@ -551,6 +551,10 @@ export namespace datacatalog_v1beta1 {
      * The list of project IDs to search within. To learn more about the distinction between project names/IDs/numbers, go to https://cloud.google.com/docs/overview/#projects.
      */
     includeProjectIds?: string[] | null;
+    /**
+     * Optional. The list of locations to search within. 1. If empty, search will be performed in all locations; 2. If any of the locations are NOT in the valid locations list, error will be returned; 3. Otherwise, search only the given locations for matching results. Typical usage is to leave this field empty. When a location is unreachable as returned in the `SearchCatalogResponse.unreachable` field, users can repeat the search request with this parameter set to get additional information on the error.  Valid locations:  * asia-east1  * asia-east2  * asia-northeast1  * asia-northeast2  * asia-northeast3  * asia-south1  * asia-southeast1  * australia-southeast1  * eu  * europe-north1  * europe-west1  * europe-west2  * europe-west3  * europe-west4  * europe-west6  * global  * northamerica-northeast1  * southamerica-east1  * us  * us-central1  * us-east1  * us-east4  * us-west1  * us-west2
+     */
+    restrictedLocations?: string[] | null;
   }
   /**
    * Response message for SearchCatalog.
@@ -564,6 +568,10 @@ export namespace datacatalog_v1beta1 {
      * Search results.
      */
     results?: Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResult[];
+    /**
+     * Unreachable locations. Search result does not include data from those locations. Users can get additional information on the error by repeating the search request with a more restrictive parameter -- setting the value for `SearchDataCatalogRequest.scope.include_locations`.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * A result that appears in the response of a search request. Each result captures details of one entry that matches the search.
@@ -602,6 +610,10 @@ export namespace datacatalog_v1beta1 {
      * Required. Display name of the policy tag. Max 200 bytes when encoded in UTF-8.
      */
     displayName?: string | null;
+    /**
+     * Resource name of the policy tag.  This field will be ignored when calling ImportTaxonomies.
+     */
+    policyTag?: string | null;
   }
   /**
    * Message capturing a taxonomy and its policy tag hierarchy as a nested proto. Used for taxonomy import/export and mutation.
@@ -884,7 +896,8 @@ export namespace datacatalog_v1beta1 {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "results": []
+     *   //   "results": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -7346,8 +7359,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.import({
-     *     // Required. Resource name of project that the newly created taxonomies will
-     *     // belong to.
+     *     // Required. Resource name of project that the imported taxonomies will belong to.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -7375,7 +7387,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name of project that the newly created taxonomies will belong to.
+     * @param {string} params.parent Required. Resource name of project that the imported taxonomies will belong to.
      * @param {().GoogleCloudDatacatalogV1beta1ImportTaxonomiesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8114,7 +8126,7 @@ export namespace datacatalog_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of project that the newly created taxonomies will belong to.
+     * Required. Resource name of project that the imported taxonomies will belong to.
      */
     parent?: string;
 

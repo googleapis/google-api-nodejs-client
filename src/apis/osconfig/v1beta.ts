@@ -491,7 +491,7 @@ export namespace osconfig_v1beta {
     weekDayOfMonth?: Schema$WeekDayOfMonth;
   }
   /**
-   * Sets the time for a one time patch deployment. Timestamp is in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot; target=&quot;_blank&quot;&gt;RFC3339&lt;/a&gt; text format.
+   * Sets the time for a one time patch deployment. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
    */
   export interface Schema$OneTimeSchedule {
     /**
@@ -575,11 +575,11 @@ export namespace osconfig_v1beta {
     zypper?: Schema$ZypperSettings;
   }
   /**
-   * Patch deployments are configurations that individual patch jobs use to complete a patch. These configurations include instance filter, package repository settings, and a schedule. For more information about creating and managing patch deployments, see [Scheduling patch jobs](/compute/docs/os-patch-management/schedule-patch-jobs).
+   * Patch deployments are configurations that individual patch jobs use to complete a patch. These configurations include instance filter, package repository settings, and a schedule. For more information about creating and managing patch deployments, see [Scheduling patch jobs](https://cloud.google.com/compute/docs/os-patch-management/schedule-patch-jobs).
    */
   export interface Schema$PatchDeployment {
     /**
-     * Output only. Time the patch deployment was created. Timestamp is in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot; target=&quot;_blank&quot;&gt;RFC3339&lt;/a&gt; text format.
+     * Output only. Time the patch deployment was created. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     createTime?: string | null;
     /**
@@ -595,7 +595,7 @@ export namespace osconfig_v1beta {
      */
     instanceFilter?: Schema$PatchInstanceFilter;
     /**
-     * Output only. The last time a patch job was started by this deployment. Timestamp is in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot; target=&quot;_blank&quot;&gt;RFC3339&lt;/a&gt; text format.
+     * Output only. The last time a patch job was started by this deployment. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     lastExecuteTime?: string | null;
     /**
@@ -615,7 +615,7 @@ export namespace osconfig_v1beta {
      */
     recurringSchedule?: Schema$RecurringSchedule;
     /**
-     * Output only. Time the patch deployment was last updated. Timestamp is in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot; target=&quot;_blank&quot;&gt;RFC3339&lt;/a&gt; text format.
+     * Output only. Time the patch deployment was last updated. Timestamp is in [RFC3339](&quot;https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     updateTime?: string | null;
   }
@@ -654,7 +654,7 @@ export namespace osconfig_v1beta {
     labels?: {[key: string]: string} | null;
   }
   /**
-   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](/compute/docs/os-patch-management/create-patch-job).
+   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
    */
   export interface Schema$PatchJob {
     /**
@@ -715,7 +715,7 @@ export namespace osconfig_v1beta {
     updateTime?: string | null;
   }
   /**
-   * Patch details for a VM instance. For more information about reviewing VM instance details, see [Listing all VM instance details for a specific patch job](/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details).
+   * Patch details for a VM instance. For more information about reviewing VM instance details, see [Listing all VM instance details for a specific patch job](https://cloud.google.com/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details).
    */
   export interface Schema$PatchJobInstanceDetails {
     /**
@@ -846,7 +846,7 @@ export namespace osconfig_v1beta {
     weekly?: Schema$WeeklySchedule;
   }
   /**
-   * A software recipe is a set of instructions for installing and configuring a piece of software. It consists of a set of artifacts that are downloaded, and a set of steps that install, configure, and/or update the software.  Recipes support installing and updating software from artifacts in the following formats: Zip archive, Tar archive, Windows MSI, Debian package, and RPM package.  Additionally, recipes support executing a script (either defined in a file or directly in this api) in bash, sh, cmd, and powershell.  Updating a software recipe  If a recipe is assigned to an instance and there is a recipe with the same name but a lower version already installed and the assigned state of the recipe is `INSTALLED_KEEP_UPDATED`, then the recipe is updated to the new version.  Script Working Directories  Each script or execution step is run in its own temporary directory which is deleted after completing the step.
+   * A software recipe is a set of instructions for installing and configuring a piece of software. It consists of a set of artifacts that are downloaded, and a set of steps that install, configure, and/or update the software.  Recipes support installing and updating software from artifacts in the following formats: Zip archive, Tar archive, Windows MSI, Debian package, and RPM package.  Additionally, recipes support executing a script (either defined in a file or directly in this api) in bash, sh, cmd, and powershell.  Updating a software recipe  If a recipe is assigned to an instance and there is a recipe with the same name but a lower version already installed and the assigned state of the recipe is `UPDATED`, then the recipe is updated to the new version.  Script Working Directories  Each script or execution step is run in its own temporary directory which is deleted after completing the step.
    */
   export interface Schema$SoftwareRecipe {
     /**
@@ -854,7 +854,7 @@ export namespace osconfig_v1beta {
      */
     artifacts?: Schema$SoftwareRecipeArtifact[];
     /**
-     * Default is INSTALLED. The desired state the agent should maintain for this recipe.  INSTALLED: The software recipe is installed on the instance but            won&#39;t be updated to new versions. INSTALLED_KEEP_UPDATED: The software recipe is installed on the                         instance. The recipe is updated to a higher                         version, if a higher version of the recipe is                         assigned to this instance. REMOVE: Remove is unsupported for software recipes and attempts to         create or update a recipe to the REMOVE state is rejected.
+     * Default is INSTALLED. The desired state the agent should maintain for this recipe.  INSTALLED: The software recipe is installed on the instance but            won&#39;t be updated to new versions. UPDATED: The software recipe is installed on the instance. The recipe is          updated to a higher version, if a higher version of the recipe is          assigned to this instance. REMOVE: Remove is unsupported for software recipes and attempts to         create or update a recipe to the REMOVE state is rejected.
      */
     desiredState?: string | null;
     /**

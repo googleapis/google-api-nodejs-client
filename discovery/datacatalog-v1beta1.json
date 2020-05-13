@@ -1385,7 +1385,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Resource name of project that the newly created taxonomies will\nbelong to.",
+                      "description": "Required. Resource name of project that the imported taxonomies will belong to.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1774,7 +1774,7 @@
       }
     }
   },
-  "revision": "20200422",
+  "revision": "20200430",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2148,7 +2148,7 @@
       "properties": {
         "inlineSource": {
           "$ref": "GoogleCloudDatacatalogV1beta1InlineSource",
-          "description": "Inline source used for taxonomies import"
+          "description": "Inline source used for taxonomies to be imported."
         }
       },
       "type": "object"
@@ -2375,6 +2375,13 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "restrictedLocations": {
+          "description": "Optional. The list of locations to search within.\n1. If empty, search will be performed in all locations;\n2. If any of the locations are NOT in the valid locations list, error\nwill be returned;\n3. Otherwise, search only the given locations for matching results.\nTypical usage is to leave this field empty. When a location is\nunreachable as returned in the `SearchCatalogResponse.unreachable` field,\nusers can repeat the search request with this parameter set to get\nadditional information on the error.\n\nValid locations:\n * asia-east1\n * asia-east2\n * asia-northeast1\n * asia-northeast2\n * asia-northeast3\n * asia-south1\n * asia-southeast1\n * australia-southeast1\n * eu\n * europe-north1\n * europe-west1\n * europe-west2\n * europe-west3\n * europe-west4\n * europe-west6\n * global\n * northamerica-northeast1\n * southamerica-east1\n * us\n * us-central1\n * us-east1\n * us-east4\n * us-west1\n * us-west2",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2391,6 +2398,13 @@
           "description": "Search results.",
           "items": {
             "$ref": "GoogleCloudDatacatalogV1beta1SearchCatalogResult"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable locations. Search result does not include data from those\nlocations. Users can get additional information on the error by repeating\nthe search request with a more restrictive parameter -- setting the value\nfor `SearchDataCatalogRequest.scope.include_locations`.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -2449,6 +2463,10 @@
         },
         "displayName": {
           "description": "Required. Display name of the policy tag. Max 200 bytes when encoded in UTF-8.",
+          "type": "string"
+        },
+        "policyTag": {
+          "description": "Resource name of the policy tag.\n\nThis field will be ignored when calling ImportTaxonomies.",
           "type": "string"
         }
       },

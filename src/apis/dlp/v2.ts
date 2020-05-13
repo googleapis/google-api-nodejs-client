@@ -1284,11 +1284,11 @@ export namespace dlp_v2 {
      */
     bucketSize?: number | null;
     /**
-     * Required. Lower bound value of buckets. All values less than `lower_bound` are grouped together into a single bucket; for example if `lower_bound` = 10, then all values less than 10 are replaced with the value “-10”.
+     * Required. Lower bound value of buckets. All values less than `lower_bound` are grouped together into a single bucket; for example if `lower_bound` = 10, then all values less than 10 are replaced with the value &quot;-10&quot;.
      */
     lowerBound?: Schema$GooglePrivacyDlpV2Value;
     /**
-     * Required. Upper bound value of buckets. All values greater than upper_bound are grouped together into a single bucket; for example if `upper_bound` = 89, then all values greater than 89 are replaced with the value “89+”.
+     * Required. Upper bound value of buckets. All values greater than upper_bound are grouped together into a single bucket; for example if `upper_bound` = 89, then all values greater than 89 are replaced with the value &quot;89+&quot;.
      */
     upperBound?: Schema$GooglePrivacyDlpV2Value;
   }
