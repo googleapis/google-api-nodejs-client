@@ -1805,7 +1805,7 @@
       }
     }
   },
-  "revision": "20200421",
+  "revision": "20200505",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "BooleanOperatorOptions": {
@@ -2396,7 +2396,7 @@
           "type": "integer"
         },
         "percentage": {
-          "description": "Percent of results that match the bucket value. This value is between\n(0-100]. Percentages are returned for all searches, but are an estimate.\nBecause percentages are always returned, you should render percentages\ninstead of counts.",
+          "description": "Percent of results that match the bucket value. The returned value is\nbetween (0-100], and is rounded down to an integer if fractional. If the\nvalue is not explicitly returned, it represents a percentage value that\nrounds to 0. Percentages are returned for all searches, but are an\nestimate. Because percentages are always returned, you should render\npercentages instead of counts.",
           "format": "int32",
           "type": "integer"
         },
@@ -3367,7 +3367,7 @@
           "type": "array"
         },
         "objectDisplayLabel": {
-          "description": "The user friendly label to display in the search result to indicate the\ntype of the item. This is OPTIONAL; if not provided, an object label isn't\ndisplayed on the context line of the search results. The maximum length\nis 32 characters.",
+          "description": "The user friendly label to display in the search result to indicate the\ntype of the item. This is OPTIONAL; if not provided, an object label isn't\ndisplayed on the context line of the search results. The maximum length\nis 64 characters.",
           "type": "string"
         }
       },
@@ -3690,7 +3690,7 @@
       "id": "PropertyDisplayOptions",
       "properties": {
         "displayLabel": {
-          "description": "The user friendly label for the property that is used if the property\nis specified to be displayed in ObjectDisplayOptions. If provided, the\ndisplay label is shown in front of the property values when the property is\npart of the object display options. For example, if the property value is\n'1', the value by itself may not be useful context for the user. If the\ndisplay name given was 'priority', then the user sees 'priority : 1' in\nthe search results which provides clear context to search users. This is\nOPTIONAL; if not given, only the property values are displayed.\nThe maximum length is 32 characters.",
+          "description": "The user friendly label for the property that is used if the property\nis specified to be displayed in ObjectDisplayOptions. If provided, the\ndisplay label is shown in front of the property values when the property is\npart of the object display options. For example, if the property value is\n'1', the value by itself may not be useful context for the user. If the\ndisplay name given was 'priority', then the user sees 'priority : 1' in\nthe search results which provides clear context to search users. This is\nOPTIONAL; if not given, only the property values are displayed.\nThe maximum length is 64 characters.",
           "type": "string"
         }
       },

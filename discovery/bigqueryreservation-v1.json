@@ -211,7 +211,7 @@
               ]
             },
             "searchAssignments": {
-              "description": "Looks up assignments for a specified resource for a particular region.\nIf the request is about a project:\n  1) Assignments created on the project will be returned if they exist.\n  2) Otherwise assignments created on the closest ancestor will be\n  returned. 3) Assignments for different JobTypes will all be returned.\nSame logic applies if the request is about a folder.\nIf the request is about an organization, then assignments created on the\norganization will be returned (organization doesn't have ancestors).\nComparing to ListAssignments, there are some behavior\ndifferences:\n  1) permission on the assignee will be verified in this API.\n  2) Hierarchy lookup (project->folder->organization) happens in this API.\n  3) Parent here is projects/*/locations/*, instead of\n  projects/*/locations/*reservations/*.\nNote \"-\" cannot be used for projects\nnor locations.",
+              "description": "Looks up assignments for a specified resource for a particular region.\nIf the request is about a project:\n\n1. Assignments created on the project will be returned if they exist.\n2. Otherwise assignments created on the closest ancestor will be\n   returned.\n3. Assignments for different JobTypes will all be returned.\n\nThe same logic applies if the request is about a folder.\n\nIf the request is about an organization, then assignments created on the\norganization will be returned (organization doesn't have ancestors).\n\nComparing to ListAssignments, there are some behavior\ndifferences:\n\n1. permission on the assignee will be verified in this API.\n2. Hierarchy lookup (project->folder->organization) happens in this API.\n3. Parent here is `projects/*/locations/*`, instead of\n   `projects/*/locations/*reservations/*`.\n\n**Note** \"-\" cannot be used for projects\nnor locations.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:searchAssignments",
               "httpMethod": "GET",
               "id": "bigqueryreservation.projects.locations.searchAssignments",
@@ -220,7 +220,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The maximum number of items to return.",
+                  "description": "The maximum number of items to return per page.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -238,7 +238,7 @@
                   "type": "string"
                 },
                 "query": {
-                  "description": "Please specify resource name as assignee in the query.\ne.g., \"assignee=projects/myproject\"\n      \"assignee=folders/123\"\n      \"assignee=organizations/456\"",
+                  "description": "Please specify resource name as assignee in the query.\n\nExamples:\n\n* `assignee=projects/myproject`\n* `assignee=folders/123`\n* `assignee=organizations/456`",
                   "location": "query",
                   "type": "string"
                 }
@@ -253,7 +253,7 @@
               ]
             },
             "updateBiReservation": {
-              "description": "Updates a BI reservation.\nOnly fields specified in the field_mask are updated.\nSingleton BI reservation always exists with default size 0.\nIn order to reserve BI capacity it needs to be updated to an amount\ngreater than 0. In order to release BI capacity reservation size\nmust be set to 0.",
+              "description": "Updates a BI reservation.\n\nOnly fields specified in the `field_mask` are updated.\n\nA singleton BI reservation always exists with default size 0.\nIn order to reserve BI capacity it needs to be updated to an amount\ngreater than 0. In order to release BI capacity reservation size\nmust be set to 0.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/biReservation",
               "httpMethod": "PATCH",
               "id": "bigqueryreservation.projects.locations.updateBiReservation",
@@ -415,7 +415,7 @@
                   ]
                 },
                 "merge": {
-                  "description": "Merges capacity commitments of the same plan into one. Resulting capacity\ncommitment has the longer commitment_end_time out of the two. Attempting to\nmerge capacity commitments of different plan will fail with the error code\n`google.rpc.Code.FAILED_PRECONDITION`.",
+                  "description": "Merges capacity commitments of the same plan into a single commitment.\n\nThe resulting capacity commitment has the greater commitment_end_time\nout of the to-be-merged capacity commitments.\n\nAttempting to merge capacity commitments of different plan will fail\nwith the error code `google.rpc.Code.FAILED_PRECONDITION`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/capacityCommitments:merge",
                   "httpMethod": "POST",
                   "id": "bigqueryreservation.projects.locations.capacityCommitments.merge",
@@ -444,7 +444,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates an existing capacity commitment.\n\nOnly plan and renewal_plan fields can be updated.\nPlan can only be changed to a plan of a longer commitment period.\nAttempting to change to a plan with shorter commitment period will fail\nwith the error code `google.rpc.Code.FAILED_PRECONDITION`.",
+                  "description": "Updates an existing capacity commitment.\n\nOnly `plan` and `renewal_plan` fields can be updated.\n\nPlan can only be changed to a plan of a longer commitment period.\nAttempting to change to a plan with shorter commitment period will fail\nwith the error code `google.rpc.Code.FAILED_PRECONDITION`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/capacityCommitments/{capacityCommitmentsId}",
                   "httpMethod": "PATCH",
                   "id": "bigqueryreservation.projects.locations.capacityCommitments.patch",
@@ -453,7 +453,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the capacity commitment, e.g.,\n   projects/myproject/locations/US/capacityCommitments/123",
+                      "description": "Output only. The resource name of the capacity commitment, e.g.,\n`projects/myproject/locations/US/capacityCommitments/123`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/capacityCommitments/[^/]+$",
                       "required": true,
@@ -479,7 +479,7 @@
                   ]
                 },
                 "split": {
-                  "description": "Splits capacity commitment to two commitments of the same plan and\ncommitment_end_time. A common use case to do that is to perform a downgrade\ne.g., in order to downgrade from 10000 slots to 8000, one might split 10000\ncapacity commitment to 2000 and 8000, change the plan of the first one to\nflex and then delete it.",
+                  "description": "Splits capacity commitment to two commitments of the same plan and\n`commitment_end_time`.\n\nA common use case is to enable downgrading commitments.\n\nFor example, in order to downgrade from 10000 slots to 8000, you might\nsplit a 10000 capacity commitment into commitments of 2000 and 8000. Then,\nyou would change the plan of the first one to `FLEX` and then delete it.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/capacityCommitments/{capacityCommitmentsId}:split",
                   "httpMethod": "POST",
                   "id": "bigqueryreservation.projects.locations.capacityCommitments.split",
@@ -521,7 +521,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Project, location. E.g.,\n   projects/myproject/locations/US",
+                      "description": "Required. Project, location. E.g.,\n`projects/myproject/locations/US`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -555,7 +555,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name of the reservation to retrieve. E.g.,\n   projects/myproject/locations/US/reservations/team1-prod",
+                      "description": "Required. Resource name of the reservation to retrieve. E.g.,\n   `projects/myproject/locations/US/reservations/team1-prod`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
                       "required": true,
@@ -581,7 +581,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name of the reservation to retrieve. E.g.,\n   projects/myproject/locations/US/reservations/team1-prod",
+                      "description": "Required. Resource name of the reservation to retrieve. E.g.,\n   `projects/myproject/locations/US/reservations/team1-prod`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
                       "required": true,
@@ -607,7 +607,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of items to return.",
+                      "description": "The maximum number of items to return per page.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -644,7 +644,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the reservation, e.g.,\n\"projects/*/locations/*/reservations/team1-prod\".",
+                      "description": "The resource name of the reservation, e.g.,\n`projects/*/locations/*/reservations/team1-prod`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
                       "required": true,
@@ -674,7 +674,7 @@
                 "assignments": {
                   "methods": {
                     "create": {
-                      "description": "Creates an object which allows the given project to submit jobs\nof a certain type using slots from the specified reservation. Currently a\nresource (project, folder, organization) can only have one assignment per\n{job_type, location}, and that reservation will be used for all jobs of the\nmatching type. Within the organization, different assignments can be\ncreated on projects, folders or organization level. During query execution,\nthe assignment is looked up at the project, folder and organization levels\nin that order. The first assignment found is applied to the query. When\ncreating assignments, it does not matter if other assignments exist at\nhigher levels. E.g: organizationA contains project1, project2. Assignments\nfor organizationA, project1 and project2 could all be created, mapping to\nthe same or different reservations.\nReturns `google.rpc.Code.PERMISSION_DENIED` if user does not have\n'bigquery.admin' permissions on the project using the reservation\nand the project that owns this reservation.\nReturns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment\ndoes not match location of the reservation.",
+                      "description": "Creates an assignment object which allows the given project to submit jobs\nof a certain type using slots from the specified reservation.\n\nCurrently a\nresource (project, folder, organization) can only have one assignment per\neach (job_type, location) combination, and that reservation will be used\nfor all jobs of the matching type.\n\nDifferent assignments can be created on different levels of the\nprojects, folders or organization hierarchy.  During query execution,\nthe assignment is looked up at the project, folder and organization levels\nin that order. The first assignment found is applied to the query.\n\nWhen creating assignments, it does not matter if other assignments exist at\nhigher levels.\n\nExample:\n\n* The organization `organizationA` contains two projects, `project1`\n  and `project2`.\n* Assignments for all three entities (`organizationA`, `project1`, and\n  `project2`) could all be created and mapped to the same or different\n  reservations.\n\nReturns `google.rpc.Code.PERMISSION_DENIED` if user does not have\n'bigquery.admin' permissions on the project using the reservation\nand the project that owns this reservation.\n\nReturns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment\ndoes not match location of the reservation.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}/assignments",
                       "httpMethod": "POST",
                       "id": "bigqueryreservation.projects.locations.reservations.assignments.create",
@@ -683,7 +683,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The parent resource name of the assignment\nE.g.: projects/myproject/locations/US/reservations/team1-prod",
+                          "description": "Required. The parent resource name of the assignment\nE.g. `projects/myproject/locations/US/reservations/team1-prod`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
                           "required": true,
@@ -703,7 +703,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a assignment. No expansion will happen.\nE.g:\norganizationA contains project1 and project2. Reservation res1 exists.\nCreateAssignment was invoked previously and following assignments were\ncreated explicitly:\n  <organizationA, res1>\n  <project1, res1>\nThen deletion of <organizationA, res1> won't affect <project1, res1>. After\ndeletion of <organizationA, res1>, queries from project1 will still use\nres1, while queries from project2 will use on-demand mode.",
+                      "description": "Deletes a assignment. No expansion will happen.\n\nExample:\n\n* Organization `organizationA` contains two projects, `project1` and\n  `project2`.\n* Reservation `res1` exists and was created previously.\n* CreateAssignment was used previously to define the following\n  associations between entities and reservations: `<organizationA, res1>`\n  and `<project1, res1>`\n\nIn this example, deletion of the `<organizationA, res1>` assignment won't\naffect the other assignment `<project1, res1>`. After said deletion,\nqueries from `project1` will still use `res1` while queries from\n`project2` will switch to use on-demand mode.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}/assignments/{assignmentsId}",
                       "httpMethod": "DELETE",
                       "id": "bigqueryreservation.projects.locations.reservations.assignments.delete",
@@ -712,7 +712,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the resource, e.g.:\n  projects/myproject/locations/US/reservations/team1-prod/assignments/123",
+                          "description": "Required. Name of the resource, e.g.\n  `projects/myproject/locations/US/reservations/team1-prod/assignments/123`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+/assignments/[^/]+$",
                           "required": true,
@@ -729,7 +729,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists assignments.\nOnly explicitly created assignments will be returned. E.g:\norganizationA contains project1 and project2. Reservation res1 exists.\nCreateAssignment was invoked previously and following assignments were\ncreated explicitly:\n  <organizationA, res1>\n  <project1, res1>\nThen this API will just return the above two assignments for reservation\nres1, and no expansion/merge will happen. Wildcard \"-\" can be used for\nreservations in the request. In that case all assignments belongs to the\nspecified project and location will be listed. Note\n\"-\" cannot be used for projects nor locations.",
+                      "description": "Lists assignments.\n\nOnly explicitly created assignments will be returned.\n\nExample:\n\n* Organization `organizationA` contains two projects, `project1` and\n  `project2`.\n* Reservation `res1` exists and was created previously.\n* CreateAssignment was used previously to define the following\n  associations between entities and reservations: `<organizationA, res1>`\n  and `<project1, res1>`\n\nIn this example, ListAssignments will just return the above two assignments\nfor reservation `res1`, and no expansion/merge will happen.\n\nThe wildcard \"-\" can be used for\nreservations in the request. In that case all assignments belongs to the\nspecified project and location will be listed.\n\n**Note** \"-\" cannot be used for projects nor locations.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}/assignments",
                       "httpMethod": "GET",
                       "id": "bigqueryreservation.projects.locations.reservations.assignments.list",
@@ -738,7 +738,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of items to return.",
+                          "description": "The maximum number of items to return per page.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -749,7 +749,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name e.g.:\nprojects/myproject/locations/US/reservations/team1-prod\nOr:\nprojects/myproject/locations/US/reservations/-",
+                          "description": "Required. The parent resource name e.g.:\n\n`projects/myproject/locations/US/reservations/team1-prod`\n\nOr:\n\n`projects/myproject/locations/US/reservations/-`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
                           "required": true,
@@ -766,7 +766,7 @@
                       ]
                     },
                     "move": {
-                      "description": "Moves a assignment under a new reservation. Customers can do this by\ndeleting the existing assignment followed by creating another assignment\nunder the new reservation, but this method provides a transactional way to\ndo so, to make sure the assignee always has an associated reservation.\nWithout the method customers might see some queries run on-demand which\nmight be unexpected.",
+                      "description": "Moves an assignment under a new reservation.\n\nThis differs from removing an existing assignment and recreating a new one\nby providing a transactional change that ensures an assignee always has an\nassociated reservation.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}/assignments/{assignmentsId}:move",
                       "httpMethod": "POST",
                       "id": "bigqueryreservation.projects.locations.reservations.assignments.move",
@@ -775,7 +775,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the assignment,\ne.g.:\n  projects/myproject/locations/US/reservations/team1-prod/assignments/123",
+                          "description": "Required. The resource name of the assignment,\ne.g.\n`projects/myproject/locations/US/reservations/team1-prod/assignments/123`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+/assignments/[^/]+$",
                           "required": true,
@@ -803,7 +803,7 @@
       }
     }
   },
-  "revision": "20200410",
+  "revision": "20200509",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -811,7 +811,7 @@
       "id": "Assignment",
       "properties": {
         "assignee": {
-          "description": "The resource which will use the reservation. E.g.\nprojects/myproject, folders/123, organizations/456.",
+          "description": "The resource which will use the reservation. E.g.\n`projects/myproject`, `folders/123`, or `organizations/456`.",
           "type": "string"
         },
         "jobType": {
@@ -829,7 +829,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Name of the resource. E.g.:\nprojects/myproject/locations/US/reservations/team1-prod/assignments/123.",
+          "description": "Output only. Name of the resource. E.g.:\n`projects/myproject/locations/US/reservations/team1-prod/assignments/123`.",
           "type": "string"
         },
         "state": {
@@ -871,7 +871,7 @@
       "type": "object"
     },
     "CapacityCommitment": {
-      "description": "Capacity commitment is a way to purchase compute capacity for BigQuery jobs\n(in the form of slots) with some committed period of usage. Annual\ncommitments renew by default. Commitments can be removed after their\ncommitment end time passes. In order to remove annual commitment, its plan\nneeds to be changed to monthly or flex first.\n\nA capacity commitment resource exists as a child resource of the admin\nproject.",
+      "description": "Capacity commitment is a way to purchase compute capacity for BigQuery jobs\n(in the form of slots) with some committed period of usage. Annual\ncommitments renew by default. Commitments can be removed after their\ncommitment end time passes.\n\nIn order to remove annual commitment, its plan needs to be changed\nto monthly or flex first.\n\nA capacity commitment resource exists as a child resource of the admin\nproject.",
       "id": "CapacityCommitment",
       "properties": {
         "commitmentEndTime": {
@@ -884,7 +884,7 @@
           "description": "Output only. For FAILED commitment plan, provides the reason of failure."
         },
         "name": {
-          "description": "Output only. The resource name of the capacity commitment, e.g.,\n   projects/myproject/locations/US/capacityCommitments/123",
+          "description": "Output only. The resource name of the capacity commitment, e.g.,\n`projects/myproject/locations/US/capacityCommitments/123`",
           "type": "string"
         },
         "plan": {
@@ -892,28 +892,32 @@
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
+            "TRIAL",
             "MONTHLY",
             "ANNUAL"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE.\nAfter that, they are not in a committed period anymore and can be removed\nany time.",
+            "Trial commitments have a committed period of 182 days after becoming\nACTIVE. After that, they are converted to a new commitment based on the\n`renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so\nthat it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming\nACTIVE. After that, they are not in a committed period anymore and can be\nremoved any time.",
             "Annual commitments have a committed period of 365 days after becoming\nACTIVE. After that they are converted to a new commitment based on the\nrenewal_plan."
           ],
           "type": "string"
         },
         "renewalPlan": {
-          "description": "The plan this capacity commitment is converted to after commitment_end_time\npasses. Once the plan is changed, committed period is extended according to\ncommitment plan. Only applicable for ANNUAL commitments.",
+          "description": "The plan this capacity commitment is converted to after commitment_end_time\npasses. Once the plan is changed, committed period is extended according to\ncommitment plan. Only applicable for ANNUAL and TRIAL commitments.",
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
+            "TRIAL",
             "MONTHLY",
             "ANNUAL"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE.\nAfter that, they are not in a committed period anymore and can be removed\nany time.",
+            "Trial commitments have a committed period of 182 days after becoming\nACTIVE. After that, they are converted to a new commitment based on the\n`renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so\nthat it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming\nACTIVE. After that, they are not in a committed period anymore and can be\nremoved any time.",
             "Annual commitments have a committed period of 365 days after becoming\nACTIVE. After that they are converted to a new commitment based on the\nrenewal_plan."
           ],
@@ -1047,11 +1051,11 @@
       "type": "object"
     },
     "MoveAssignmentRequest": {
-      "description": "The request for\nReservationService.MoveAssignment.\nNote: \"bigquery.reservationAssignments.create\" permission is required on the\ndestination_id. Note: \"bigquery.reservationAssignments.create\" and\n\"bigquery.reservationAssignments.delete\" permission is required on the\nrelated assignee.",
+      "description": "The request for\nReservationService.MoveAssignment.\n\n**Note**: \"bigquery.reservationAssignments.create\" permission is required on\nthe destination_id.\n\n**Note**: \"bigquery.reservationAssignments.create\" and\n\"bigquery.reservationAssignments.delete\" permission are required on the\nrelated assignee.",
       "id": "MoveAssignmentRequest",
       "properties": {
         "destinationId": {
-          "description": "The new reservation ID, e.g.:\n  projects/myotherproject/locations/US/reservations/team2-prod",
+          "description": "The new reservation ID, e.g.:\n  `projects/myotherproject/locations/US/reservations/team2-prod`",
           "type": "string"
         }
       },
@@ -1101,11 +1105,11 @@
           "type": "boolean"
         },
         "name": {
-          "description": "The resource name of the reservation, e.g.,\n\"projects/*/locations/*/reservations/team1-prod\".",
+          "description": "The resource name of the reservation, e.g.,\n`projects/*/locations/*/reservations/team1-prod`.",
           "type": "string"
         },
         "slotCapacity": {
-          "description": "Minimum slots available to this reservation. A slot is a unit of\ncomputational power in BigQuery, and serves as the unit of parallelism.\nQueries using this reservation might use more slots during runtime if\nignore_idle_slots is set to false.\nIf the new reservation's slot capacity exceed the parent's slot capacity or\nif total slot capacity of the new reservation and its siblings exceeds the\nparent's slot capacity, the request will fail with\n`google.rpc.Code.RESOURCE_EXHAUSTED`.",
+          "description": "Minimum slots available to this reservation. A slot is a unit of\ncomputational power in BigQuery, and serves as the unit of parallelism.\n\nQueries using this reservation might use more slots during runtime if\nignore_idle_slots is set to false.\n\nIf the new reservation's slot capacity exceed the parent's slot capacity or\nif total slot capacity of the new reservation and its siblings exceeds the\nparent's slot capacity, the request will fail with\n`google.rpc.Code.RESOURCE_EXHAUSTED`.",
           "format": "int64",
           "type": "string"
         }

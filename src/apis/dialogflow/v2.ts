@@ -1257,7 +1257,7 @@ export namespace dialogflow_v2 {
      */
     prompts?: string[] | null;
     /**
-     * Optional. The definition of the parameter value. It can be: - a constant string, - a parameter value defined as `$parameter_name`, - an original parameter value defined as `$parameter_name.original`, - a parameter value from some context defined as   `#context_name.parameter_name`.
+     * Optional. The definition of the parameter value. It can be:  - a constant string, - a parameter value defined as `$parameter_name`, - an original parameter value defined as `$parameter_name.original`, - a parameter value from some context defined as   `#context_name.parameter_name`.
      */
     value?: string | null;
   }
@@ -2462,7 +2462,7 @@ export namespace dialogflow_v2 {
      */
     prompts?: string[] | null;
     /**
-     * Optional. The definition of the parameter value. It can be: - a constant string, - a parameter value defined as `$parameter_name`, - an original parameter value defined as `$parameter_name.original`, - a parameter value from some context defined as   `#context_name.parameter_name`.
+     * Optional. The definition of the parameter value. It can be:  - a constant string, - a parameter value defined as `$parameter_name`, - an original parameter value defined as `$parameter_name.original`, - a parameter value from some context defined as   `#context_name.parameter_name`.
      */
     value?: string | null;
   }

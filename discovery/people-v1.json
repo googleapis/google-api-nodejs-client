@@ -585,7 +585,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Optional. The number of connections to include in the response. Valid values are\nbetween 1 and 2000, inclusive. Defaults to 100 if not set or set to 0.",
+                  "description": "Optional. The number of connections to include in the response. Valid values are\nbetween 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -650,7 +650,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200513",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
