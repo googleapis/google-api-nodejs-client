@@ -39,21 +39,9 @@ export namespace gamesManagement_v1management {
 
   interface StandardParameters {
     /**
-     * V1 error format.
-     */
-    '$.xgafv'?: string;
-    /**
-     * OAuth access token.
-     */
-    access_token?: string;
-    /**
-     * Data format for response.
+     * Data format for the response.
      */
     alt?: string;
-    /**
-     * JSONP
-     */
-    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -71,23 +59,19 @@ export namespace gamesManagement_v1management {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Legacy upload protocol for media (e.g. "media", "multipart").
+     * Deprecated. Please use quotaUser instead.
      */
-    uploadType?: string;
-    /**
-     * Upload protocol for media (e.g. "raw", "multipart").
-     */
-    upload_protocol?: string;
+    userIp?: string;
   }
 
   /**
-   * Google Play Game Management
+   * Google Play Game Services Management API
    *
-   * The Google Play Game Management API allows developers to manage resources from the Google      Play Game service.
+   * The Management API for Google Play Game Services.
    *
    * @example
    * const {google} = require('googleapis');
@@ -105,7 +89,9 @@ export namespace gamesManagement_v1management {
     applications: Resource$Applications;
     events: Resource$Events;
     players: Resource$Players;
+    rooms: Resource$Rooms;
     scores: Resource$Scores;
+    turnBasedMatches: Resource$Turnbasedmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -117,16 +103,18 @@ export namespace gamesManagement_v1management {
       this.applications = new Resource$Applications(this.context);
       this.events = new Resource$Events(this.context);
       this.players = new Resource$Players(this.context);
+      this.rooms = new Resource$Rooms(this.context);
       this.scores = new Resource$Scores(this.context);
+      this.turnBasedMatches = new Resource$Turnbasedmatches(this.context);
     }
   }
 
   /**
-   * Achievement reset all response.
+   * This is a JSON template for achievement reset all response.
    */
   export interface Schema$AchievementResetAllResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#achievementResetAllResponse`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetAllResponse.
      */
     kind?: string | null;
     /**
@@ -134,22 +122,25 @@ export namespace gamesManagement_v1management {
      */
     results?: Schema$AchievementResetResponse[];
   }
+  /**
+   * This is a JSON template for multiple achievements reset all request.
+   */
   export interface Schema$AchievementResetMultipleForAllRequest {
     /**
      * The IDs of achievements to reset.
      */
     achievement_ids?: string[] | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#achievementResetMultipleForAllRequest`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetMultipleForAllRequest.
      */
     kind?: string | null;
   }
   /**
-   * An achievement reset response.
+   * This is a JSON template for an achievement reset response.
    */
   export interface Schema$AchievementResetResponse {
     /**
-     * The current state of the achievement.  This is the same as the initial state of the achievement. &lt;br/&gt;Possible values are: &lt;ul&gt; &lt;li&gt;&quot;`HIDDEN`&quot;- Achievement is hidden.&lt;/li&gt; &lt;li&gt;&quot;`REVEALED`&quot; - Achievement is revealed.&lt;/li&gt; &lt;li&gt;&quot;`UNLOCKED`&quot; - Achievement is unlocked.&lt;/li&gt; &lt;/ul&gt;
+     * The current state of the achievement. This is the same as the initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot;- Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
     currentState?: string | null;
     /**
@@ -157,7 +148,7 @@ export namespace gamesManagement_v1management {
      */
     definitionId?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#achievementResetResponse`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetResponse.
      */
     kind?: string | null;
     /**
@@ -166,7 +157,7 @@ export namespace gamesManagement_v1management {
     updateOccurred?: boolean | null;
   }
   /**
-   * Multiple events reset all request.
+   * This is a JSON template for multiple events reset all request.
    */
   export interface Schema$EventsResetMultipleForAllRequest {
     /**
@@ -174,12 +165,25 @@ export namespace gamesManagement_v1management {
      */
     event_ids?: string[] | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#eventsResetMultipleForAllRequest`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#eventsResetMultipleForAllRequest.
      */
     kind?: string | null;
   }
   /**
-   * 1P/3P metadata about the player&#39;s experience.
+   * This is a JSON template for metadata about a player playing a game with the currently authenticated user.
+   */
+  export interface Schema$GamesPlayedResource {
+    /**
+     * True if the player was auto-matched with the currently authenticated user.
+     */
+    autoMatched?: boolean | null;
+    /**
+     * The last time the player played the game in milliseconds since the epoch in UTC.
+     */
+    timeMillis?: string | null;
+  }
+  /**
+   * This is a JSON template for 1P/3P metadata about the player&#39;s experience.
    */
   export interface Schema$GamesPlayerExperienceInfoResource {
     /**
@@ -200,7 +204,7 @@ export namespace gamesManagement_v1management {
     nextLevel?: Schema$GamesPlayerLevelResource;
   }
   /**
-   * 1P/3P metadata about a user&#39;s level.
+   * This is a JSON template for 1P/3P metadata about a user&#39;s level.
    */
   export interface Schema$GamesPlayerLevelResource {
     /**
@@ -217,24 +221,24 @@ export namespace gamesManagement_v1management {
     minExperiencePoints?: string | null;
   }
   /**
-   * The HiddenPlayer resource.
+   * This is a JSON template for the HiddenPlayer resource.
    */
   export interface Schema$HiddenPlayer {
     /**
-     * Output only. The time this player was hidden.
+     * The time this player was hidden.
      */
     hiddenTimeMillis?: string | null;
     /**
-     * Output only. Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#hiddenPlayer`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayer.
      */
     kind?: string | null;
     /**
-     * Output only. The player information.
+     * The player information.
      */
     player?: Schema$Player;
   }
   /**
-   * A list of hidden players.
+   * This is a JSON template for a list of hidden players.
    */
   export interface Schema$HiddenPlayerList {
     /**
@@ -242,7 +246,7 @@ export namespace gamesManagement_v1management {
      */
     items?: Schema$HiddenPlayer[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#hiddenPlayerList`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayerList.
      */
     kind?: string | null;
     /**
@@ -251,7 +255,7 @@ export namespace gamesManagement_v1management {
     nextPageToken?: string | null;
   }
   /**
-   * A Player resource.
+   * This is a JSON template for a Player resource.
    */
   export interface Schema$Player {
     /**
@@ -275,9 +279,17 @@ export namespace gamesManagement_v1management {
      */
     experienceInfo?: Schema$GamesPlayerExperienceInfoResource;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#player`.
+     * The friend status of the given player, relative to the requester. This is unset if the player is not sharing their friends list with the game.
+     */
+    friendStatus?: string | null;
+    /**
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#player.
      */
     kind?: string | null;
+    /**
+     * Details about the last time this player played a multiplayer game with the currently authenticated player. Populated for PLAYED_WITH player collection members.
+     */
+    lastPlayedWith?: Schema$GamesPlayedResource;
     /**
      * An object representation of the individual components of the player&#39;s name. For some players, these fields may not be present.
      */
@@ -300,11 +312,11 @@ export namespace gamesManagement_v1management {
     title?: string | null;
   }
   /**
-   * A list of leaderboard reset resources.
+   * This is a JSON template for a list of leaderboard reset resources.
    */
   export interface Schema$PlayerScoreResetAllResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#playerScoreResetAllResponse`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
      */
     kind?: string | null;
     /**
@@ -313,7 +325,7 @@ export namespace gamesManagement_v1management {
     results?: Schema$PlayerScoreResetResponse[];
   }
   /**
-   * A list of reset leaderboard entry resources.
+   * This is a JSON template for a list of reset leaderboard entry resources.
    */
   export interface Schema$PlayerScoreResetResponse {
     /**
@@ -321,27 +333,30 @@ export namespace gamesManagement_v1management {
      */
     definitionId?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#playerScoreResetResponse`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
      */
     kind?: string | null;
     /**
-     * The time spans of the updated score. &lt;br/&gt;Possible values are: &lt;ul&gt; &lt;li&gt;&quot;`ALL_TIME`&quot; - The score is an all-time score.&lt;/li&gt; &lt;li&gt;&quot;`WEEKLY`&quot; - The score is a weekly score.&lt;/li&gt; &lt;li&gt;&quot;`DAILY`&quot; - The score is a daily score.&lt;/li&gt; &lt;/ul&gt;
+     * The time spans of the updated score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
      */
     resetScoreTimeSpans?: string[] | null;
   }
   /**
-   * Profile settings
+   * This is a JSON template for profile settings
    */
   export interface Schema$ProfileSettings {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#profileSettings`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#profileSettings.
      */
     kind?: string | null;
     profileVisible?: boolean | null;
   }
+  /**
+   * This is a JSON template for multiple scores reset all request.
+   */
   export interface Schema$ScoresResetMultipleForAllRequest {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#scoresResetMultipleForAllRequest`.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#scoresResetMultipleForAllRequest.
      */
     kind?: string | null;
     /**
@@ -520,7 +535,7 @@ export namespace gamesManagement_v1management {
      * @alias gamesManagement.achievements.resetAll
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -632,7 +647,7 @@ export namespace gamesManagement_v1management {
      * @alias gamesManagement.achievements.resetAllForAllPlayers
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1003,9 +1018,7 @@ export namespace gamesManagement_v1management {
      *   const res = await gamesManagement.applications.listHidden({
      *     // The application ID from the Google Play developer console.
      *     applicationId: 'placeholder-value',
-     *     // The maximum number of player resources to return in the response, used for
-     *     // paging. For any response, the actual number of player resources returned
-     *     // may be less than the specified `maxResults`.
+     *     // The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -1030,7 +1043,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.
+     * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1111,7 +1124,7 @@ export namespace gamesManagement_v1management {
      */
     applicationId?: string;
     /**
-     * The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.
+     * The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -1269,7 +1282,7 @@ export namespace gamesManagement_v1management {
      * @alias gamesManagement.events.resetAll
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1371,7 +1384,7 @@ export namespace gamesManagement_v1management {
      * @alias gamesManagement.events.resetAllForAllPlayers
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1739,8 +1752,7 @@ export namespace gamesManagement_v1management {
      *   const res = await gamesManagement.players.hide({
      *     // The application ID from the Google Play developer console.
      *     applicationId: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the
-     *     // authenticated player's ID.
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1756,7 +1768,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1849,8 +1861,7 @@ export namespace gamesManagement_v1management {
      *   const res = await gamesManagement.players.unhide({
      *     // The application ID from the Google Play developer console.
      *     applicationId: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the
-     *     // authenticated player's ID.
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1866,7 +1877,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1942,7 +1953,7 @@ export namespace gamesManagement_v1management {
      */
     applicationId?: string;
     /**
-     * A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
   }
@@ -1957,9 +1968,234 @@ export namespace gamesManagement_v1management {
      */
     applicationId?: string;
     /**
-     * A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
+  }
+
+  export class Resource$Rooms {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * gamesManagement.rooms.reset
+     * @desc Reset all rooms for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.rooms.reset({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias gamesManagement.rooms.reset
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reset(
+      params?: Params$Resource$Rooms$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    reset(
+      params: Params$Resource$Rooms$Reset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reset(
+      params: Params$Resource$Rooms$Reset,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reset(callback: BodyResponseCallback<void>): void;
+    reset(
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Reset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Reset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/games/v1management/rooms/reset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * gamesManagement.rooms.resetForAllPlayers
+     * @desc Deletes rooms where the only room participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.rooms.resetForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias gamesManagement.rooms.resetForAllPlayers
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    resetForAllPlayers(
+      params?: Params$Resource$Rooms$Resetforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    resetForAllPlayers(
+      params: Params$Resource$Rooms$Resetforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    resetForAllPlayers(
+      params: Params$Resource$Rooms$Resetforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
+    resetForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Resetforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rooms$Resetforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Resetforallplayers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/games/v1management/rooms/resetForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Rooms$Reset extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+  }
+  export interface Params$Resource$Rooms$Resetforallplayers
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
 
   export class Resource$Scores {
@@ -2131,7 +2367,7 @@ export namespace gamesManagement_v1management {
      * @alias gamesManagement.scores.resetAll
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2242,7 +2478,7 @@ export namespace gamesManagement_v1management {
      * @alias gamesManagement.scores.resetAllForAllPlayers
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2573,5 +2809,232 @@ export namespace gamesManagement_v1management {
      * Request body metadata
      */
     requestBody?: Schema$ScoresResetMultipleForAllRequest;
+  }
+
+  export class Resource$Turnbasedmatches {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * gamesManagement.turnBasedMatches.reset
+     * @desc Reset all turn-based match data for a user. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.turnBasedMatches.reset({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias gamesManagement.turnBasedMatches.reset
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reset(
+      params?: Params$Resource$Turnbasedmatches$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    reset(
+      params: Params$Resource$Turnbasedmatches$Reset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reset(
+      params: Params$Resource$Turnbasedmatches$Reset,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reset(callback: BodyResponseCallback<void>): void;
+    reset(
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Reset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Reset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/games/v1management/turnbasedmatches/reset'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * gamesManagement.turnBasedMatches.resetForAllPlayers
+     * @desc Deletes turn-based matches where the only match participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.turnBasedMatches.resetForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias gamesManagement.turnBasedMatches.resetForAllPlayers
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    resetForAllPlayers(
+      params?: Params$Resource$Turnbasedmatches$Resetforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    resetForAllPlayers(
+      params: Params$Resource$Turnbasedmatches$Resetforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    resetForAllPlayers(
+      params: Params$Resource$Turnbasedmatches$Resetforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
+    resetForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Resetforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Resetforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Resetforallplayers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/turnbasedmatches/resetForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Turnbasedmatches$Reset
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+  }
+  export interface Params$Resource$Turnbasedmatches$Resetforallplayers
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
 }

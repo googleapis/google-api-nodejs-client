@@ -8,60 +8,33 @@
       }
     }
   },
-  "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch",
+  "basePath": "/games/v1management/",
+  "baseUrl": "https://www.googleapis.com/games/v1management/",
+  "batchPath": "batch/gamesManagement/v1management",
   "canonicalName": "Games Management",
-  "description": "The Google Play Game Management API allows developers to manage resources from the Google\n     Play Game service.",
+  "description": "The Management API for Google Play Game Services.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/games/",
+  "documentationLink": "https://developers.google.com/games/services",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/0vywllof2KmJMV_A_P1FQUHxgfM\"",
   "icons": {
-    "x16": "http://www.google.com/images/icons/product/search-16.gif",
-    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+    "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+    "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
   },
   "id": "gamesManagement:v1management",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
   "name": "gamesManagement",
   "ownerDomain": "google.com",
   "ownerName": "Google",
   "parameters": {
-    "$.xgafv": {
-      "description": "V1 error format.",
-      "enum": [
-        "1",
-        "2"
-      ],
-      "enumDescriptions": [
-        "v1 error format",
-        "v2 error format"
-      ],
-      "location": "query",
-      "type": "string"
-    },
-    "access_token": {
-      "description": "OAuth access token.",
-      "location": "query",
-      "type": "string"
-    },
     "alt": {
       "default": "json",
-      "description": "Data format for response.",
+      "description": "Data format for the response.",
       "enum": [
-        "json",
-        "media",
-        "proto"
+        "json"
       ],
       "enumDescriptions": [
-        "Responses with Content-Type of application/json",
-        "Media download with context-dependent Content-Type",
-        "Responses with Content-Type of application/x-protobuf"
+        "Responses with Content-Type of application/json"
       ],
-      "location": "query",
-      "type": "string"
-    },
-    "callback": {
-      "description": "JSONP",
       "location": "query",
       "type": "string"
     },
@@ -87,17 +60,12 @@
       "type": "boolean"
     },
     "quotaUser": {
-      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "description": "An opaque string that represents a user for quota purposes. Must not exceed 40 characters.",
       "location": "query",
       "type": "string"
     },
-    "uploadType": {
-      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
-      "location": "query",
-      "type": "string"
-    },
-    "upload_protocol": {
-      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+    "userIp": {
+      "description": "Deprecated. Please use quotaUser instead.",
       "location": "query",
       "type": "string"
     }
@@ -107,8 +75,7 @@
     "achievements": {
       "methods": {
         "reset": {
-          "description": "Resets the achievement with the given ID for the currently authenticated\nplayer. This method is only accessible to whitelisted tester accounts for\nyour application.",
-          "flatPath": "games/v1management/achievements/{achievementId}/reset",
+          "description": "Resets the achievement with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.",
           "httpMethod": "POST",
           "id": "gamesManagement.achievements.reset",
           "parameterOrder": [
@@ -122,7 +89,7 @@
               "type": "string"
             }
           },
-          "path": "games/v1management/achievements/{achievementId}/reset",
+          "path": "achievements/{achievementId}/reset",
           "response": {
             "$ref": "AchievementResetResponse"
           },
@@ -131,13 +98,10 @@
           ]
         },
         "resetAll": {
-          "description": "Resets all achievements for the currently authenticated player for your\napplication. This method is only accessible to whitelisted tester accounts\nfor your application.",
-          "flatPath": "games/v1management/achievements/reset",
+          "description": "Resets all achievements for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.",
           "httpMethod": "POST",
           "id": "gamesManagement.achievements.resetAll",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/achievements/reset",
+          "path": "achievements/reset",
           "response": {
             "$ref": "AchievementResetAllResponse"
           },
@@ -146,20 +110,16 @@
           ]
         },
         "resetAllForAllPlayers": {
-          "description": "Resets all draft achievements for all players. This method is only\navailable to user accounts for your developer console.",
-          "flatPath": "games/v1management/achievements/resetAllForAllPlayers",
+          "description": "Resets all draft achievements for all players. This method is only available to user accounts for your developer console.",
           "httpMethod": "POST",
           "id": "gamesManagement.achievements.resetAllForAllPlayers",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/achievements/resetAllForAllPlayers",
+          "path": "achievements/resetAllForAllPlayers",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "resetForAllPlayers": {
-          "description": "Resets the achievement with the given ID for all players. This method is\nonly available to user accounts for your developer console. Only draft\nachievements can be reset.",
-          "flatPath": "games/v1management/achievements/{achievementId}/resetForAllPlayers",
+          "description": "Resets the achievement with the given ID for all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset.",
           "httpMethod": "POST",
           "id": "gamesManagement.achievements.resetForAllPlayers",
           "parameterOrder": [
@@ -173,19 +133,16 @@
               "type": "string"
             }
           },
-          "path": "games/v1management/achievements/{achievementId}/resetForAllPlayers",
+          "path": "achievements/{achievementId}/resetForAllPlayers",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "resetMultipleForAllPlayers": {
-          "description": "Resets achievements with the given IDs for all players. This method is only\navailable to user accounts for your developer console. Only draft\nachievements may be reset.",
-          "flatPath": "games/v1management/achievements/resetMultipleForAllPlayers",
+          "description": "Resets achievements with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft achievements may be reset.",
           "httpMethod": "POST",
           "id": "gamesManagement.achievements.resetMultipleForAllPlayers",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/achievements/resetMultipleForAllPlayers",
+          "path": "achievements/resetMultipleForAllPlayers",
           "request": {
             "$ref": "AchievementResetMultipleForAllRequest"
           },
@@ -198,8 +155,7 @@
     "applications": {
       "methods": {
         "listHidden": {
-          "description": "Get the list of players hidden from the given application. This method is\nonly available to user accounts for your developer console.",
-          "flatPath": "games/v1management/applications/{applicationId}/players/hidden",
+          "description": "Get the list of players hidden from the given application. This method is only available to user accounts for your developer console.",
           "httpMethod": "GET",
           "id": "gamesManagement.applications.listHidden",
           "parameterOrder": [
@@ -213,9 +169,11 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of player resources to return in the response, used for\npaging. For any response, the actual number of player resources returned\nmay be less than the specified `maxResults`.",
+              "description": "The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.",
               "format": "int32",
               "location": "query",
+              "maximum": "50",
+              "minimum": "1",
               "type": "integer"
             },
             "pageToken": {
@@ -224,7 +182,7 @@
               "type": "string"
             }
           },
-          "path": "games/v1management/applications/{applicationId}/players/hidden",
+          "path": "applications/{applicationId}/players/hidden",
           "response": {
             "$ref": "HiddenPlayerList"
           },
@@ -237,8 +195,7 @@
     "events": {
       "methods": {
         "reset": {
-          "description": "Resets all player progress on the event with the given ID for the currently\nauthenticated player. This method is only accessible to whitelisted tester\naccounts for your application.",
-          "flatPath": "games/v1management/events/{eventId}/reset",
+          "description": "Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.",
           "httpMethod": "POST",
           "id": "gamesManagement.events.reset",
           "parameterOrder": [
@@ -252,38 +209,31 @@
               "type": "string"
             }
           },
-          "path": "games/v1management/events/{eventId}/reset",
+          "path": "events/{eventId}/reset",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "resetAll": {
-          "description": "Resets all player progress on all events for the currently authenticated\nplayer. This method is only accessible to whitelisted tester accounts for\nyour application.",
-          "flatPath": "games/v1management/events/reset",
+          "description": "Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.",
           "httpMethod": "POST",
           "id": "gamesManagement.events.resetAll",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/events/reset",
+          "path": "events/reset",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "resetAllForAllPlayers": {
-          "description": "Resets all draft events for all players. This method is only available to\nuser accounts for your developer console.",
-          "flatPath": "games/v1management/events/resetAllForAllPlayers",
+          "description": "Resets all draft events for all players. This method is only available to user accounts for your developer console.",
           "httpMethod": "POST",
           "id": "gamesManagement.events.resetAllForAllPlayers",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/events/resetAllForAllPlayers",
+          "path": "events/resetAllForAllPlayers",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "resetForAllPlayers": {
-          "description": "Resets the event with the given ID for all players. This method is only\navailable to user accounts for your developer console. Only draft events\ncan be reset.",
-          "flatPath": "games/v1management/events/{eventId}/resetForAllPlayers",
+          "description": "Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset.",
           "httpMethod": "POST",
           "id": "gamesManagement.events.resetForAllPlayers",
           "parameterOrder": [
@@ -297,19 +247,16 @@
               "type": "string"
             }
           },
-          "path": "games/v1management/events/{eventId}/resetForAllPlayers",
+          "path": "events/{eventId}/resetForAllPlayers",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "resetMultipleForAllPlayers": {
-          "description": "Resets events with the given IDs for all players. This method is only\navailable to user accounts for your developer console. Only draft events\nmay be reset.",
-          "flatPath": "games/v1management/events/resetMultipleForAllPlayers",
+          "description": "Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset.",
           "httpMethod": "POST",
           "id": "gamesManagement.events.resetMultipleForAllPlayers",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/events/resetMultipleForAllPlayers",
+          "path": "events/resetMultipleForAllPlayers",
           "request": {
             "$ref": "EventsResetMultipleForAllRequest"
           },
@@ -322,8 +269,7 @@
     "players": {
       "methods": {
         "hide": {
-          "description": "Hide the given player's leaderboard scores from the given application. This\nmethod is only available to user accounts for your developer console.",
-          "flatPath": "games/v1management/applications/{applicationId}/players/hidden/{playerId}",
+          "description": "Hide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.",
           "httpMethod": "POST",
           "id": "gamesManagement.players.hide",
           "parameterOrder": [
@@ -338,20 +284,19 @@
               "type": "string"
             },
             "playerId": {
-              "description": "A player ID. A value of `me` may be used in place of the\nauthenticated player's ID.",
+              "description": "A player ID. A value of me may be used in place of the authenticated player's ID.",
               "location": "path",
               "required": true,
               "type": "string"
             }
           },
-          "path": "games/v1management/applications/{applicationId}/players/hidden/{playerId}",
+          "path": "applications/{applicationId}/players/hidden/{playerId}",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "unhide": {
-          "description": "Unhide the given player's leaderboard scores from the given application.\nThis method is only available to user accounts for your developer console.",
-          "flatPath": "games/v1management/applications/{applicationId}/players/hidden/{playerId}",
+          "description": "Unhide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.",
           "httpMethod": "DELETE",
           "id": "gamesManagement.players.unhide",
           "parameterOrder": [
@@ -366,13 +311,35 @@
               "type": "string"
             },
             "playerId": {
-              "description": "A player ID. A value of `me` may be used in place of the\nauthenticated player's ID.",
+              "description": "A player ID. A value of me may be used in place of the authenticated player's ID.",
               "location": "path",
               "required": true,
               "type": "string"
             }
           },
-          "path": "games/v1management/applications/{applicationId}/players/hidden/{playerId}",
+          "path": "applications/{applicationId}/players/hidden/{playerId}",
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        }
+      }
+    },
+    "rooms": {
+      "methods": {
+        "reset": {
+          "description": "Reset all rooms for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.",
+          "httpMethod": "POST",
+          "id": "gamesManagement.rooms.reset",
+          "path": "rooms/reset",
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        },
+        "resetForAllPlayers": {
+          "description": "Deletes rooms where the only room participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.",
+          "httpMethod": "POST",
+          "id": "gamesManagement.rooms.resetForAllPlayers",
+          "path": "rooms/resetForAllPlayers",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
@@ -382,8 +349,7 @@
     "scores": {
       "methods": {
         "reset": {
-          "description": "Resets scores for the leaderboard with the given ID for the currently\nauthenticated player. This method is only accessible to whitelisted tester\naccounts for your application.",
-          "flatPath": "games/v1management/leaderboards/{leaderboardId}/scores/reset",
+          "description": "Resets scores for the leaderboard with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.",
           "httpMethod": "POST",
           "id": "gamesManagement.scores.reset",
           "parameterOrder": [
@@ -397,7 +363,7 @@
               "type": "string"
             }
           },
-          "path": "games/v1management/leaderboards/{leaderboardId}/scores/reset",
+          "path": "leaderboards/{leaderboardId}/scores/reset",
           "response": {
             "$ref": "PlayerScoreResetResponse"
           },
@@ -406,13 +372,10 @@
           ]
         },
         "resetAll": {
-          "description": "Resets all scores for all leaderboards for the currently authenticated\nplayers. This method is only accessible to whitelisted tester accounts for\nyour application.",
-          "flatPath": "games/v1management/scores/reset",
+          "description": "Resets all scores for all leaderboards for the currently authenticated players. This method is only accessible to whitelisted tester accounts for your application.",
           "httpMethod": "POST",
           "id": "gamesManagement.scores.resetAll",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/scores/reset",
+          "path": "scores/reset",
           "response": {
             "$ref": "PlayerScoreResetAllResponse"
           },
@@ -421,20 +384,16 @@
           ]
         },
         "resetAllForAllPlayers": {
-          "description": "Resets scores for all draft leaderboards for all players. This method is\nonly available to user accounts for your developer console.",
-          "flatPath": "games/v1management/scores/resetAllForAllPlayers",
+          "description": "Resets scores for all draft leaderboards for all players. This method is only available to user accounts for your developer console.",
           "httpMethod": "POST",
           "id": "gamesManagement.scores.resetAllForAllPlayers",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/scores/resetAllForAllPlayers",
+          "path": "scores/resetAllForAllPlayers",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "resetForAllPlayers": {
-          "description": "Resets scores for the leaderboard with the given ID for all players. This\nmethod is only available to user accounts for your developer console. Only\ndraft leaderboards can be reset.",
-          "flatPath": "games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers",
+          "description": "Resets scores for the leaderboard with the given ID for all players. This method is only available to user accounts for your developer console. Only draft leaderboards can be reset.",
           "httpMethod": "POST",
           "id": "gamesManagement.scores.resetForAllPlayers",
           "parameterOrder": [
@@ -448,19 +407,16 @@
               "type": "string"
             }
           },
-          "path": "games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers",
+          "path": "leaderboards/{leaderboardId}/scores/resetForAllPlayers",
           "scopes": [
             "https://www.googleapis.com/auth/games"
           ]
         },
         "resetMultipleForAllPlayers": {
-          "description": "Resets scores for the leaderboards with the given IDs for all players. This\nmethod is only available to user accounts for your developer console. Only\ndraft leaderboards may be reset.",
-          "flatPath": "games/v1management/scores/resetMultipleForAllPlayers",
+          "description": "Resets scores for the leaderboards with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft leaderboards may be reset.",
           "httpMethod": "POST",
           "id": "gamesManagement.scores.resetMultipleForAllPlayers",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "games/v1management/scores/resetMultipleForAllPlayers",
+          "path": "scores/resetMultipleForAllPlayers",
           "request": {
             "$ref": "ScoresResetMultipleForAllRequest"
           },
@@ -469,17 +425,40 @@
           ]
         }
       }
+    },
+    "turnBasedMatches": {
+      "methods": {
+        "reset": {
+          "description": "Reset all turn-based match data for a user. This method is only accessible to whitelisted tester accounts for your application.",
+          "httpMethod": "POST",
+          "id": "gamesManagement.turnBasedMatches.reset",
+          "path": "turnbasedmatches/reset",
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        },
+        "resetForAllPlayers": {
+          "description": "Deletes turn-based matches where the only match participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.",
+          "httpMethod": "POST",
+          "id": "gamesManagement.turnBasedMatches.resetForAllPlayers",
+          "path": "turnbasedmatches/resetForAllPlayers",
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        }
+      }
     }
   },
-  "revision": "20200504",
+  "revision": "20200416",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AchievementResetAllResponse": {
-      "description": "Achievement reset all response.",
+      "description": "This is a JSON template for achievement reset all response.",
       "id": "AchievementResetAllResponse",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#achievementResetAllResponse`.",
+          "default": "gamesManagement#achievementResetAllResponse",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetAllResponse.",
           "type": "string"
         },
         "results": {
@@ -493,6 +472,7 @@
       "type": "object"
     },
     "AchievementResetMultipleForAllRequest": {
+      "description": "This is a JSON template for multiple achievements reset all request.",
       "id": "AchievementResetMultipleForAllRequest",
       "properties": {
         "achievement_ids": {
@@ -503,18 +483,19 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#achievementResetMultipleForAllRequest`.",
+          "default": "gamesManagement#achievementResetMultipleForAllRequest",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetMultipleForAllRequest.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "AchievementResetResponse": {
-      "description": "An achievement reset response.",
+      "description": "This is a JSON template for an achievement reset response.",
       "id": "AchievementResetResponse",
       "properties": {
         "currentState": {
-          "description": "The current state of the achievement.  This is the same as the initial\nstate of the achievement. <br/>Possible values are: <ul>\n<li>\"`HIDDEN`\"- Achievement is hidden.</li>\n<li>\"`REVEALED`\" - Achievement is revealed.</li>\n<li>\"`UNLOCKED`\" - Achievement is unlocked.</li> </ul>",
+          "description": "The current state of the achievement. This is the same as the initial state of the achievement.\nPossible values are:  \n- \"HIDDEN\"- Achievement is hidden. \n- \"REVEALED\" - Achievement is revealed. \n- \"UNLOCKED\" - Achievement is unlocked.",
           "type": "string"
         },
         "definitionId": {
@@ -522,7 +503,8 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#achievementResetResponse`.",
+          "default": "gamesManagement#achievementResetResponse",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetResponse.",
           "type": "string"
         },
         "updateOccurred": {
@@ -533,7 +515,7 @@
       "type": "object"
     },
     "EventsResetMultipleForAllRequest": {
-      "description": "Multiple events reset all request.",
+      "description": "This is a JSON template for multiple events reset all request.",
       "id": "EventsResetMultipleForAllRequest",
       "properties": {
         "event_ids": {
@@ -544,14 +526,31 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#eventsResetMultipleForAllRequest`.",
+          "default": "gamesManagement#eventsResetMultipleForAllRequest",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#eventsResetMultipleForAllRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GamesPlayedResource": {
+      "description": "This is a JSON template for metadata about a player playing a game with the currently authenticated user.",
+      "id": "GamesPlayedResource",
+      "properties": {
+        "autoMatched": {
+          "description": "True if the player was auto-matched with the currently authenticated user.",
+          "type": "boolean"
+        },
+        "timeMillis": {
+          "description": "The last time the player played the game in milliseconds since the epoch in UTC.",
+          "format": "int64",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GamesPlayerExperienceInfoResource": {
-      "description": "1P/3P metadata about the player's experience.",
+      "description": "This is a JSON template for 1P/3P metadata about the player's experience.",
       "id": "GamesPlayerExperienceInfoResource",
       "properties": {
         "currentExperiencePoints": {
@@ -564,19 +563,19 @@
           "description": "The current level of the player."
         },
         "lastLevelUpTimestampMillis": {
-          "description": "The timestamp when the player was leveled up, in millis since Unix epoch\nUTC.",
+          "description": "The timestamp when the player was leveled up, in millis since Unix epoch UTC.",
           "format": "int64",
           "type": "string"
         },
         "nextLevel": {
           "$ref": "GamesPlayerLevelResource",
-          "description": "The next level of the player. If the current level is the maximum level,\nthis should be same as the current level."
+          "description": "The next level of the player. If the current level is the maximum level, this should be same as the current level."
         }
       },
       "type": "object"
     },
     "GamesPlayerLevelResource": {
-      "description": "1P/3P metadata about a user's level.",
+      "description": "This is a JSON template for 1P/3P metadata about a user's level.",
       "id": "GamesPlayerLevelResource",
       "properties": {
         "level": {
@@ -598,27 +597,28 @@
       "type": "object"
     },
     "HiddenPlayer": {
-      "description": "The HiddenPlayer resource.",
+      "description": "This is a JSON template for the HiddenPlayer resource.",
       "id": "HiddenPlayer",
       "properties": {
         "hiddenTimeMillis": {
-          "description": "Output only. The time this player was hidden.",
+          "description": "The time this player was hidden.",
           "format": "int64",
           "type": "string"
         },
         "kind": {
-          "description": "Output only. Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#hiddenPlayer`.",
+          "default": "gamesManagement#hiddenPlayer",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayer.",
           "type": "string"
         },
         "player": {
           "$ref": "Player",
-          "description": "Output only. The player information."
+          "description": "The player information."
         }
       },
       "type": "object"
     },
     "HiddenPlayerList": {
-      "description": "A list of hidden players.",
+      "description": "This is a JSON template for a list of hidden players.",
       "id": "HiddenPlayerList",
       "properties": {
         "items": {
@@ -629,7 +629,8 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#hiddenPlayerList`.",
+          "default": "gamesManagement#hiddenPlayerList",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayerList.",
           "type": "string"
         },
         "nextPageToken": {
@@ -640,7 +641,7 @@
       "type": "object"
     },
     "Player": {
-      "description": "A Player resource.",
+      "description": "This is a JSON template for a Player resource.",
       "id": "Player",
       "properties": {
         "avatarImageUrl": {
@@ -663,26 +664,35 @@
           "$ref": "GamesPlayerExperienceInfoResource",
           "description": "An object to represent Play Game experience information for the player."
         },
-        "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#player`.",
+        "friendStatus": {
+          "description": "The friend status of the given player, relative to the requester. This is unset if the player is not sharing their friends list with the game.",
           "type": "string"
         },
+        "kind": {
+          "default": "gamesManagement#player",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#player.",
+          "type": "string"
+        },
+        "lastPlayedWith": {
+          "$ref": "GamesPlayedResource",
+          "description": "Details about the last time this player played a multiplayer game with the currently authenticated player. Populated for PLAYED_WITH player collection members."
+        },
         "name": {
-          "description": "An object representation of the individual components of the player's name.\nFor some players, these fields may not be present.",
+          "description": "An object representation of the individual components of the player's name. For some players, these fields may not be present.",
           "properties": {
             "familyName": {
-              "description": "The family name of this player. In some places, this is known as the last\nname.",
+              "description": "The family name of this player. In some places, this is known as the last name.",
               "type": "string"
             },
             "givenName": {
-              "description": "The given name of this player. In some places, this is known as the first\nname.",
+              "description": "The given name of this player. In some places, this is known as the first name.",
               "type": "string"
             }
           },
           "type": "object"
         },
         "originalPlayerId": {
-          "description": "The player ID that was used for this player the first time they signed into\nthe game in question. This is only populated for calls to player.get for\nthe requesting player, only if the player ID has subsequently changed, and\nonly to clients that support remapping player IDs.",
+          "description": "The player ID that was used for this player the first time they signed into the game in question. This is only populated for calls to player.get for the requesting player, only if the player ID has subsequently changed, and only to clients that support remapping player IDs.",
           "type": "string"
         },
         "playerId": {
@@ -691,7 +701,7 @@
         },
         "profileSettings": {
           "$ref": "ProfileSettings",
-          "description": "The player's profile settings. Controls whether or not the player's profile\nis visible to other players."
+          "description": "The player's profile settings. Controls whether or not the player's profile is visible to other players."
         },
         "title": {
           "description": "The player's title rewarded for their game activities.",
@@ -701,11 +711,12 @@
       "type": "object"
     },
     "PlayerScoreResetAllResponse": {
-      "description": "A list of leaderboard reset resources.",
+      "description": "This is a JSON template for a list of leaderboard reset resources.",
       "id": "PlayerScoreResetAllResponse",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#playerScoreResetAllResponse`.",
+          "default": "gamesManagement#playerScoreResetAllResponse",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.",
           "type": "string"
         },
         "results": {
@@ -719,7 +730,7 @@
       "type": "object"
     },
     "PlayerScoreResetResponse": {
-      "description": "A list of reset leaderboard entry resources.",
+      "description": "This is a JSON template for a list of reset leaderboard entry resources.",
       "id": "PlayerScoreResetResponse",
       "properties": {
         "definitionId": {
@@ -727,11 +738,12 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#playerScoreResetResponse`.",
+          "default": "gamesManagement#playerScoreResetResponse",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.",
           "type": "string"
         },
         "resetScoreTimeSpans": {
-          "description": "The time spans of the updated score. <br/>Possible values are: <ul>\n<li>\"`ALL_TIME`\" - The score is an all-time score.</li>\n<li>\"`WEEKLY`\" - The score is a weekly score.</li>\n<li>\"`DAILY`\" - The score is a daily score.</li> </ul>",
+          "description": "The time spans of the updated score.\nPossible values are:  \n- \"ALL_TIME\" - The score is an all-time score. \n- \"WEEKLY\" - The score is a weekly score. \n- \"DAILY\" - The score is a daily score.",
           "items": {
             "type": "string"
           },
@@ -741,11 +753,12 @@
       "type": "object"
     },
     "ProfileSettings": {
-      "description": "Profile settings",
+      "description": "This is a JSON template for profile settings",
       "id": "ProfileSettings",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#profileSettings`.",
+          "default": "gamesManagement#profileSettings",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#profileSettings.",
           "type": "string"
         },
         "profileVisible": {
@@ -755,10 +768,12 @@
       "type": "object"
     },
     "ScoresResetMultipleForAllRequest": {
+      "description": "This is a JSON template for multiple scores reset all request.",
       "id": "ScoresResetMultipleForAllRequest",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesManagement#scoresResetMultipleForAllRequest`.",
+          "default": "gamesManagement#scoresResetMultipleForAllRequest",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#scoresResetMultipleForAllRequest.",
           "type": "string"
         },
         "leaderboard_ids": {
@@ -772,7 +787,7 @@
       "type": "object"
     }
   },
-  "servicePath": "",
-  "title": "Google Play Game Management",
+  "servicePath": "games/v1management/",
+  "title": "Google Play Game Services Management API",
   "version": "v1management"
 }
