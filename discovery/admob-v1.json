@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200513",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "Date": {

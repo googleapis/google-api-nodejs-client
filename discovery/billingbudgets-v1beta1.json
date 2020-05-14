@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20200502",
+  "revision": "20200509",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule": {

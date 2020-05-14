@@ -426,7 +426,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200512",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "Api": {
