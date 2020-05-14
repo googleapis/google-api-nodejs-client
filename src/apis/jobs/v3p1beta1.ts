@@ -470,7 +470,7 @@ export namespace jobs_v3p1beta1 {
    */
   export interface Schema$CustomAttribute {
     /**
-     * Optional. If the `filterable` flag is true, custom field values are searchable. If false, values are not searchable.  Default is false.
+     * Optional. If the `filterable` flag is true, the custom field values may be used for custom attribute filters JobQuery.custom_attribute_filter. If false, these values may not be used for custom attribute filters.  Default is false.
      */
     filterable?: boolean | null;
     /**
