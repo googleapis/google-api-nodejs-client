@@ -1522,7 +1522,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200512",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {

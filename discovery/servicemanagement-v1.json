@@ -877,7 +877,7 @@
       }
     }
   },
-  "revision": "20200506",
+  "revision": "20200508",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
