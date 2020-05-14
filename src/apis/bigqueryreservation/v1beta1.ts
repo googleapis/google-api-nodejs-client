@@ -135,19 +135,6 @@ export namespace bigqueryreservation_v1beta1 {
     state?: string | null;
   }
   /**
-   * Auto scaling settings and current situation. System will create a dedicated FLEX capacity commitment to hold the slots for auto-scale. Users won&#39;t be able to manage it,to avoid conflicts. Scale-up will happen, if there are always pending tasks for the past 10 minutes. Scale-down will happen, if the system knows that scale-up won&#39;t be triggered again. Note this is an alpha feature.
-   */
-  export interface Schema$Autoscale {
-    /**
-     * Output only. The slot capacity added to this reservation when autoscale happens. Will be between [0, max_slots].
-     */
-    currentSlots?: string | null;
-    /**
-     * Number of slots to be scaled when needed.
-     */
-    maxSlots?: string | null;
-  }
-  /**
    * Represents a BI Reservation.
    */
   export interface Schema$BiReservation {
@@ -271,10 +258,6 @@ export namespace bigqueryreservation_v1beta1 {
    * A reservation is a mechanism used to guarantee slots to users.
    */
   export interface Schema$Reservation {
-    /**
-     * The configuration parameters for the auto scaling feature. Note this is an alpha feature.
-     */
-    autoscale?: Schema$Autoscale;
     /**
      * If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the slot capacity specified above at most.
      */
@@ -1939,7 +1922,6 @@ export namespace bigqueryreservation_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "autoscale": {},
      *       //   "ignoreIdleSlots": false,
      *       //   "name": "my_name",
      *       //   "slotCapacity": "my_slotCapacity"
@@ -1950,7 +1932,6 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "autoscale": {},
      *   //   "ignoreIdleSlots": false,
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity"
@@ -2188,7 +2169,6 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "autoscale": {},
      *   //   "ignoreIdleSlots": false,
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity"
@@ -2445,7 +2425,6 @@ export namespace bigqueryreservation_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "autoscale": {},
      *       //   "ignoreIdleSlots": false,
      *       //   "name": "my_name",
      *       //   "slotCapacity": "my_slotCapacity"
@@ -2456,7 +2435,6 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "autoscale": {},
      *   //   "ignoreIdleSlots": false,
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity"

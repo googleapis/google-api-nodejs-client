@@ -6524,7 +6524,7 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.timeSeries.query
-     * @desc Queries time series using the time series query language. This method does not require a Workspace.
+     * @desc Queries time series using Monitoring Query Language. This method does not require a Workspace.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

@@ -280,9 +280,6 @@ export namespace firebasehosting_v1beta1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * The response when listing Releases.
-   */
   export interface Schema$ListReleasesResponse {
     /**
      * If there are additional releases remaining beyond the ones in this response, then supply this token in the next [`list`](../sites.versions.files/list) call to continue with the next set of releases.
@@ -293,9 +290,6 @@ export namespace firebasehosting_v1beta1 {
      */
     releases?: Schema$Release[];
   }
-  /**
-   * The response when listing a Version&#39;s Files..
-   */
   export interface Schema$ListVersionFilesResponse {
     /**
      * The list path/hashes in the specified version.
@@ -306,9 +300,6 @@ export namespace firebasehosting_v1beta1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * The response when listing Versions.
-   */
   export interface Schema$ListVersionsResponse {
     /**
      * The pagination token, if more results exist
@@ -353,9 +344,6 @@ export namespace firebasehosting_v1beta1 {
      */
     files?: {[key: string]: string} | null;
   }
-  /**
-   * The response to a PopulateVersionFilesRequest.
-   */
   export interface Schema$PopulateVersionFilesResponse {
     /**
      * The content hashes of the specified files that need to be uploaded to the specified endpoint.
