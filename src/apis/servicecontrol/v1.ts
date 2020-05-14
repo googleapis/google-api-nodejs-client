@@ -340,7 +340,7 @@ export namespace servicecontrol_v1 {
      */
     status?: Schema$Status;
     /**
-     * Subject to whom this error applies. See the specific code enum for more details on this field. For example:     - “project:&lt;project-id or project-number&gt;”     - “folder:&lt;folder-id&gt;”     - “organization:&lt;organization-id&gt;”
+     * Subject to whom this error applies. See the specific code enum for more details on this field. For example:  - &quot;project:&lt;project-id or project-number&gt;&quot; - &quot;folder:&lt;folder-id&gt;&quot; - &quot;organization:&lt;organization-id&gt;&quot;
      */
     subject?: string | null;
   }
