@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200504",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {

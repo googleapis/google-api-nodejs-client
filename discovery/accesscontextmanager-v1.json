@@ -777,7 +777,7 @@
       }
     }
   },
-  "revision": "20200502",
+  "revision": "20200419",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessLevel": {
