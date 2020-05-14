@@ -14,12 +14,10 @@
 
 import * as minimist from 'yargs-parser';
 import * as path from 'path';
-import * as util from 'util';
 import * as fs from 'fs';
 import Q from 'p-queue';
 import {request, Headers} from 'gaxios';
 import {Schemas} from 'googleapis-common';
-import * as rf from 'rimraf';
 import * as mkdirp from 'mkdirp';
 
 export interface DownloadOptions {
@@ -30,10 +28,12 @@ export interface DownloadOptions {
 
 // exported for mocking purposes
 export const gfs = {
-  rimraf: async (dir: string) => util.promisify(rf)(dir),
   mkdir: async (dir: string) => mkdirp(dir),
   writeFile: (path: string, obj: {}) => {
     fs.writeFileSync(path, JSON.stringify(obj, null, 2));
+  },
+  readFile: (path: string) => {
+    return fs.readFileSync(path, 'utf8');
   },
 };
 
@@ -42,7 +42,6 @@ export const gfs = {
  * @param options
  */
 export async function downloadDiscoveryDocs(options: DownloadOptions) {
-  await gfs.rimraf(options.downloadPath);
   await gfs.mkdir(options.downloadPath);
   const headers: Headers = options.includePrivate
     ? {}
@@ -66,12 +65,38 @@ export async function downloadDiscoveryDocs(options: DownloadOptions) {
         const res = await request<{}>({url});
         // The keys in the downloaded JSON come back in an arbitrary order from
         // request to request. Sort them before storing.
-        const data = sortKeys(res.data);
-        gfs.writeFile(apiPath, data);
+        const newDoc = sortKeys(res.data);
+        let updateFile = true;
+        try {
+          const oldDoc = JSON.parse(await gfs.readFile(apiPath));
+          updateFile = shouldUpdate(newDoc, oldDoc);
+        } catch {
+          // If the file doesn't exist, that's fine it's just new
+        }
+        if (updateFile) {
+          gfs.writeFile(apiPath, newDoc);
+        }
       };
     })
   );
   await queue.onIdle();
+}
+
+const ignoreLines = /^\s+"(?:etag|revision)": ".+"/;
+
+/**
+ * Determine if any of the changes in the discovery docs were interesting
+ * @param newDoc New downloaded schema
+ * @param oldDoc The existing schema from disk
+ */
+export function shouldUpdate(newDoc: {}, oldDoc: {}) {
+  const [newLines, oldLines] = [newDoc, oldDoc].map(doc =>
+    JSON.stringify(doc, null, 2)
+      .split('\n')
+      .filter(l => !ignoreLines.test(l))
+      .join('\n')
+  );
+  return newLines !== oldLines;
 }
 
 /**
