@@ -19,7 +19,7 @@ import {addFragments, getAllMethods} from '../src/generator/samplegen';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const schema = require('../../test/fixtures/discovery/webfonts-v1.json');
 
-describe.only(__filename, () => {
+describe(__filename, () => {
   it('should add fragments', () => {
     addFragments(schema);
     const methods = getAllMethods(schema);

@@ -25,6 +25,7 @@ import * as http from 'http';
 describe(__filename, () => {
   nock.disableNetConnect();
   const discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/';
+  const fakeIndexPath = 'test/fixtures/index.json';
   const sandbox = sinon.createSandbox();
 
   afterEach(() => sandbox.restore());
@@ -50,28 +51,73 @@ describe(__filename, () => {
     assert.strictEqual(JSON.stringify(sorted), JSON.stringify(result));
   });
 
+  it('should not ignore real schema changes', () => {
+    const newDoc = {
+      revision: '1234',
+      api: 'ch-ch-changes',
+    };
+    const oldDoc = {
+      revision: '1234',
+      api: 'steady',
+    };
+    const shouldUpdate = dn.shouldUpdate(newDoc, oldDoc);
+    assert.strictEqual(shouldUpdate, true);
+  });
+
+  it('should ignore schema changes that only touch revision', () => {
+    const newDoc = {
+      revision: '1234',
+      api: 'steady',
+    };
+    const oldDoc = {
+      revision: 'abcd',
+      api: 'steady',
+    };
+    const shouldUpdate = dn.shouldUpdate(newDoc, oldDoc);
+    assert.strictEqual(shouldUpdate, false);
+  });
+
   it('should download the discovery docs', async () => {
     const scopes = [
       nock('https://www.googleapis.com')
         .get('/discovery/v1/apis/')
-        .reply(200, {
-          items: [
-            {
-              id: 'fake:v1',
-              discoveryRestUrl: 'https://fake/path',
-            },
-          ],
-        }),
-      nock('https://fake').get('/path').reply(200, {}),
+        .replyWithFile(200, fakeIndexPath),
+      nock('http://localhost:3030').get('/path').reply(200, {}),
     ];
-    const rimrafStub = sandbox.stub(dn.gfs, 'rimraf').resolves();
     const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
+    const readFileStub = sandbox.stub(dn.gfs, 'readFile');
     const downloadPath = path.join(__dirname, '../../discovery');
     await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath});
-    assert(rimrafStub.calledOnce);
     assert(mkdirpStub.calledOnce);
     assert(writeFileStub.calledTwice);
+    assert(readFileStub.calledOnce);
+    scopes.forEach(s => s.done());
+  });
+
+  it('should ignore changes to schemas that only have revision changes', async () => {
+    const scopes = [
+      nock('https://www.googleapis.com')
+        .get('/discovery/v1/apis/')
+        .replyWithFile(200, fakeIndexPath),
+      nock('http://localhost:3030').get('/path').reply(200, {
+        revision: '1234',
+      }),
+    ];
+    const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
+    const readFileStub = sandbox.stub(dn.gfs, 'readFile').callsFake(() => {
+      return JSON.stringify(
+        {
+          revision: 'abcd',
+        },
+        null,
+        2
+      );
+    });
+    const downloadPath = path.join(__dirname, '../../discovery');
+    await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath});
+    assert(writeFileStub.calledOnce);
+    assert(readFileStub.calledOnce);
     scopes.forEach(s => s.done());
   });
 
