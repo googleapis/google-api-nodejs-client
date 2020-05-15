@@ -226,7 +226,7 @@ export namespace toolresults_v1beta3 {
     testTimeout?: Schema$Duration;
   }
   /**
-   * Test Loops are tests that can be launched by the app itself, determining when to run by listening for an intent. go/ftl-games-dd
+   * Test Loops are tests that can be launched by the app itself, determining when to run by listening for an intent.
    */
   export interface Schema$AndroidTestLoop {}
   /**
@@ -572,6 +572,10 @@ export namespace toolresults_v1beta3 {
      * A name to uniquely identify a history within a project. Maximum of 200 characters.  - In response always set - In create request: always set
      */
     name?: string | null;
+    /**
+     * The platform of the test history.  - In response: always set. Returns the platform of the last execution if unknown.
+     */
+    testPlatform?: string | null;
   }
   /**
    * An image, with a link to the main image and a thumbnail.
@@ -651,6 +655,66 @@ export namespace toolresults_v1beta3 {
      * The stack trace, if one is available. Optional.
      */
     stackTrace?: Schema$StackTrace;
+  }
+  /**
+   * iOS app information
+   */
+  export interface Schema$IosAppInfo {
+    /**
+     * The name of the app. Required
+     */
+    name?: string | null;
+  }
+  /**
+   * A Robo test for an iOS application.
+   */
+  export interface Schema$IosRoboTest {}
+  /**
+   * A iOS mobile test specification
+   */
+  export interface Schema$IosTest {
+    /**
+     * Information about the application under test.
+     */
+    iosAppInfo?: Schema$IosAppInfo;
+    /**
+     * An iOS Robo test.
+     */
+    iosRoboTest?: Schema$IosRoboTest;
+    /**
+     * An iOS test loop.
+     */
+    iosTestLoop?: Schema$IosTestLoop;
+    /**
+     * An iOS XCTest.
+     */
+    iosXcTest?: Schema$IosXcTest;
+    /**
+     * Max time a test is allowed to run before it is automatically cancelled.
+     */
+    testTimeout?: Schema$Duration;
+  }
+  /**
+   * A game loop test of an iOS application.
+   */
+  export interface Schema$IosTestLoop {
+    /**
+     * Bundle ID of the app.
+     */
+    bundleId?: string | null;
+  }
+  /**
+   * A test of an iOS application that uses the XCTest framework.
+   */
+  export interface Schema$IosXcTest {
+    /**
+     * Bundle ID of the app.
+     */
+    bundleId?: string | null;
+    /**
+     * Xcode version that the test was run with.
+     */
+    xcodeVersion?: string | null;
   }
   /**
    * Failed to find the launcher activity of an app.
@@ -1223,6 +1287,10 @@ export namespace toolresults_v1beta3 {
      * An Android mobile test execution specification.
      */
     androidTest?: Schema$AndroidTest;
+    /**
+     * An iOS mobile test execution specification.
+     */
+    iosTest?: Schema$IosTest;
   }
   /**
    * A stacktrace.
@@ -3068,7 +3136,8 @@ export namespace toolresults_v1beta3 {
      *       // {
      *       //   "displayName": "my_displayName",
      *       //   "historyId": "my_historyId",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "testPlatform": "my_testPlatform"
      *       // }
      *     },
      *   });
@@ -3078,7 +3147,8 @@ export namespace toolresults_v1beta3 {
      *   // {
      *   //   "displayName": "my_displayName",
      *   //   "historyId": "my_historyId",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "testPlatform": "my_testPlatform"
      *   // }
      * }
      *
@@ -3198,7 +3268,8 @@ export namespace toolresults_v1beta3 {
      *   // {
      *   //   "displayName": "my_displayName",
      *   //   "historyId": "my_historyId",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "testPlatform": "my_testPlatform"
      *   // }
      * }
      *

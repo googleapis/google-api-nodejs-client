@@ -736,7 +736,7 @@
       }
     }
   },
-  "revision": "20200410",
+  "revision": "20200509",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -777,23 +777,6 @@
             "Queries from assignee will be executed as on-demand, if related\nassignment is pending.",
             "Assignment is ready."
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Autoscale": {
-      "description": "Auto scaling settings and current situation.\nSystem will create a dedicated FLEX capacity commitment to hold the slots\nfor auto-scale. Users won't be able to manage it,to avoid conflicts.\nScale-up will happen, if there are always pending tasks for the past 10\nminutes.\nScale-down will happen, if the system knows that scale-up won't be\ntriggered again.\nNote this is an alpha feature.",
-      "id": "Autoscale",
-      "properties": {
-        "currentSlots": {
-          "description": "Output only. The slot capacity added to this reservation when autoscale happens. Will\nbe between [0, max_slots].",
-          "format": "int64",
-          "type": "string"
-        },
-        "maxSlots": {
-          "description": "Number of slots to be scaled when needed.",
-          "format": "int64",
           "type": "string"
         }
       },
@@ -842,12 +825,14 @@
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
+            "TRIAL",
             "MONTHLY",
             "ANNUAL"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE.\nAfter that, they are not in a committed period anymore and can be removed\nany time.",
+            "Trial commitments have a committed period of 182 days after becoming\nACTIVE. After that, they are converted to a new commitment based on the\nrenewal_plan. Default renewal_plan for Trial commitment is Flex so that\nit can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming\nACTIVE. After that, they are not in a committed period anymore and can be\nremoved any time.",
             "Annual commitments have a committed period of 365 days after becoming\nACTIVE. After that they are converted to a new commitment based on the\nrenewal_plan."
           ],
@@ -858,12 +843,14 @@
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
+            "TRIAL",
             "MONTHLY",
             "ANNUAL"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE.\nAfter that, they are not in a committed period anymore and can be removed\nany time.",
+            "Trial commitments have a committed period of 182 days after becoming\nACTIVE. After that, they are converted to a new commitment based on the\nrenewal_plan. Default renewal_plan for Trial commitment is Flex so that\nit can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming\nACTIVE. After that, they are not in a committed period anymore and can be\nremoved any time.",
             "Annual commitments have a committed period of 365 days after becoming\nACTIVE. After that they are converted to a new commitment based on the\nrenewal_plan."
           ],
@@ -993,10 +980,6 @@
       "description": "A reservation is a mechanism used to guarantee slots to users.",
       "id": "Reservation",
       "properties": {
-        "autoscale": {
-          "$ref": "Autoscale",
-          "description": "The configuration parameters for the auto scaling feature. Note this is an\nalpha feature."
-        },
         "ignoreIdleSlots": {
           "description": "If false, any query using this reservation will use idle slots from other\nreservations within the same admin project. If true, a query using this\nreservation will execute with the slot capacity specified above at most.",
           "type": "boolean"

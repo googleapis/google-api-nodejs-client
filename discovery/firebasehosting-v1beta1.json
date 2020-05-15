@@ -1381,7 +1381,7 @@
       }
     }
   },
-  "revision": "20200430",
+  "revision": "20200512",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -1643,7 +1643,6 @@
       "type": "object"
     },
     "ListReleasesResponse": {
-      "description": "The response when listing Releases.",
       "id": "ListReleasesResponse",
       "properties": {
         "nextPageToken": {
@@ -1661,7 +1660,6 @@
       "type": "object"
     },
     "ListVersionFilesResponse": {
-      "description": "The response when listing a Version's Files..",
       "id": "ListVersionFilesResponse",
       "properties": {
         "files": {
@@ -1679,7 +1677,6 @@
       "type": "object"
     },
     "ListVersionsResponse": {
-      "description": "The response when listing Versions.",
       "id": "ListVersionsResponse",
       "properties": {
         "nextPageToken": {
@@ -1746,7 +1743,6 @@
       "type": "object"
     },
     "PopulateVersionFilesResponse": {
-      "description": "The response to a PopulateVersionFilesRequest.",
       "id": "PopulateVersionFilesResponse",
       "properties": {
         "uploadRequiredHashes": {
@@ -2042,8 +2038,7 @@
             "FINALIZED",
             "DELETED",
             "ABANDONED",
-            "EXPIRED",
-            "CLONING"
+            "EXPIRED"
           ],
           "enumDescriptions": [
             "The default status; should not be intentionally used.",
@@ -2051,8 +2046,7 @@
             "All content has been added to the version, and the version can no longer be\nchanged.",
             "The version has been deleted.",
             "The version was not updated to `FINALIZED` within 12&nbsp;hours and was\nautomatically deleted.",
-            "The version is outside the site-configured limit for the number of\nretained versions, so the version's content is scheduled for deletion.",
-            "The version is being cloned from another version. All content is still\nbeing copied over."
+            "The version is outside the site-configured limit for the number of\nretained versions, so the version's content is scheduled for deletion."
           ],
           "type": "string"
         },

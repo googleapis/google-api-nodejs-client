@@ -273,7 +273,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200508",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -535,7 +535,7 @@
           "type": "array"
         },
         "thumbnailUrl": {
-          "description": "URL of a thumbnail image of the device.",
+          "description": "URL of a thumbnail image (photo) of the device.\ne.g. https://lh3.googleusercontent.com/90WcauuJiCYABEl8U0lcZeuS5STUbf2yW...",
           "type": "string"
         }
       },
@@ -1065,7 +1065,7 @@
       "type": "object"
     },
     "IosModel": {
-      "description": "A description of an iOS device tests may be run on.\nNext tag: 12",
+      "description": "A description of an iOS device tests may be run on.\nNext tag: 13",
       "id": "IosModel",
       "properties": {
         "deviceCapabilities": {

@@ -1041,409 +1041,6 @@
             }
           }
         },
-        "companies": {
-          "methods": {
-            "create": {
-              "description": "Creates an app for a company. Note that you must first create a profile\nfor the company in your organization before you can register apps that\nare associated with the company.",
-              "flatPath": "v1/organizations/{organizationsId}/companies",
-              "httpMethod": "POST",
-              "id": "apigee.organizations.companies.create",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Name of org that the company will be created in\n`{parent=organizations/*}`",
-                  "location": "path",
-                  "pattern": "^organizations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+parent}/companies",
-              "request": {
-                "$ref": "GoogleCloudApigeeV1Company"
-              },
-              "response": {
-                "$ref": "GoogleCloudApigeeV1Company"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "delete": {
-              "description": "Deletes an existing company.",
-              "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}",
-              "httpMethod": "DELETE",
-              "id": "apigee.organizations.companies.delete",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "The company resource name\n`organizations/{org}/companies/{company}`",
-                  "location": "path",
-                  "pattern": "^organizations/[^/]+/companies/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+name}",
-              "response": {
-                "$ref": "GoogleCloudApigeeV1Company"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "get": {
-              "description": "List details for a company.",
-              "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}",
-              "httpMethod": "GET",
-              "id": "apigee.organizations.companies.get",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "The company resource name\n`organizations/{org}/companies/{company}`",
-                  "location": "path",
-                  "pattern": "^organizations/[^/]+/companies/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+name}",
-              "response": {
-                "$ref": "GoogleCloudApigeeV1Company"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "list": {
-              "description": "List all companies in an organization, and optionally returns an\nexpanded list of companies, displaying a full profile for each company in\nthe organization.",
-              "flatPath": "v1/organizations/{organizationsId}/companies",
-              "httpMethod": "GET",
-              "id": "apigee.organizations.companies.list",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "count": {
-                  "description": "Limits the list to the number you specify. The limit is 100.",
-                  "format": "int64",
-                  "location": "query",
-                  "type": "string"
-                },
-                "expand": {
-                  "description": "Set expand to true to return a full profile for each company.",
-                  "location": "query",
-                  "type": "boolean"
-                },
-                "includeDevelopers": {
-                  "description": "Optional. include developers in the response.",
-                  "location": "query",
-                  "type": "boolean"
-                },
-                "parent": {
-                  "description": "The parent organization name\n`organizations/{org}`",
-                  "location": "path",
-                  "pattern": "^organizations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                },
-                "startKey": {
-                  "description": "To filter the keys that are returned, enter the email of a developer\nthat the list will start with.",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+parent}/companies",
-              "response": {
-                "$ref": "GoogleCloudApigeeV1ListCompaniesResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "update": {
-              "description": "Updates an existing company.\nSend the complete company record as a payload with any changes you want to\nmake. Note that to change the status of the Company you use Set the Status\nof a Company. The attributes in the sample payload below apply to company\nconfiguration in monetization. For non-monetized companies, you need send\nonly displayName.",
-              "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}",
-              "httpMethod": "PUT",
-              "id": "apigee.organizations.companies.update",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "action": {
-                  "description": "Specify the status as active or inactive.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "name": {
-                  "description": "Name of the company to be updated.\n`{name=organizations/*/companies/*}`",
-                  "location": "path",
-                  "pattern": "^organizations/[^/]+/companies/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+name}",
-              "request": {
-                "$ref": "GoogleCloudApigeeV1Company"
-              },
-              "response": {
-                "$ref": "GoogleCloudApigeeV1Company"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            }
-          },
-          "resources": {
-            "apps": {
-              "methods": {
-                "create": {
-                  "description": "Creates an app for a company.",
-                  "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}/apps",
-                  "httpMethod": "POST",
-                  "id": "apigee.organizations.companies.apps.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Resource path of the parent: `organizations/{org}/companies/{company_name}`",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/companies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}/apps",
-                  "request": {
-                    "$ref": "GoogleCloudApigeeV1CompanyApp"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudApigeeV1CompanyApp"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "delete": {
-                  "description": "Deletes a company app.",
-                  "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}/apps/{appsId}",
-                  "httpMethod": "DELETE",
-                  "id": "apigee.organizations.companies.apps.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "name of the app resource:\n`organizations/{org}/companies/{company_name}/apps/{app_name}`",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/companies/[^/]+/apps/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "GoogleCloudApigeeV1CompanyApp"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "get": {
-                  "description": "Gets the profile of a specific company app.",
-                  "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}/apps/{appsId}",
-                  "httpMethod": "GET",
-                  "id": "apigee.organizations.companies.apps.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "name of the app resource:\n`organizations/{org}/companies/{company_name}/apps/{app_name}`",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/companies/[^/]+/apps/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "GoogleCloudApigeeV1CompanyApp"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "List company apps in an organization. You can optionally expand the\nresponse to include the profile for each app.",
-                  "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}/apps",
-                  "httpMethod": "GET",
-                  "id": "apigee.organizations.companies.apps.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "count": {
-                      "description": "Limits the list to the number you specify. The limit is 100.",
-                      "format": "int64",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "expand": {
-                      "description": "Set expand to true to return a full profile",
-                      "location": "query",
-                      "type": "boolean"
-                    },
-                    "parent": {
-                      "description": "The name of a company resource:\n`organizations/{org}/companies/{company_name}`",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/companies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "startKey": {
-                      "description": "Lets you return a list of app starting with a specific app name in the\nlist.",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}/apps",
-                  "response": {
-                    "$ref": "GoogleCloudApigeeV1ListCompanyAppsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "update": {
-                  "description": "Updates an existing company app.",
-                  "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}/apps/{appsId}",
-                  "httpMethod": "PUT",
-                  "id": "apigee.organizations.companies.apps.update",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Resource path of the app:\n`organizations/{org}/companies/{company_name}/apps/{app_name}`",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/companies/[^/]+/apps/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "request": {
-                    "$ref": "GoogleCloudApigeeV1CompanyApp"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudApigeeV1CompanyApp"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              },
-              "resources": {
-                "keys": {
-                  "methods": {
-                    "delete": {
-                      "description": "Deletes a key for a company app and removes all API products associated\nwith the app. The key can no longer be used to access any APIs.",
-                      "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}/apps/{appsId}/keys/{keysId}",
-                      "httpMethod": "DELETE",
-                      "id": "apigee.organizations.companies.apps.keys.delete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Resource name of a company app key\n`organizations/{org}/companies/{company}/apps/{app}/keys/{key}`",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/companies/[^/]+/apps/[^/]+/keys/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "GoogleCloudApigeeV1CompanyAppKey"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "description": "Gets information about the consumer key issued to a specific company app.",
-                      "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}/apps/{appsId}/keys/{keysId}",
-                      "httpMethod": "GET",
-                      "id": "apigee.organizations.companies.apps.keys.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Resource name of a company app key\n`organizations/{org}/companies/{company}/apps/{app}/keys/{key}`",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/companies/[^/]+/apps/[^/]+/keys/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "GoogleCloudApigeeV1CompanyAppKey"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "updateCompanyAppKey": {
-                      "description": "Updates an existing company app key to add additional API products or\nattributes. Note that only a single API product can be resolved per app\nkey at runtime. API products are resolved by name, in alphabetical order.\nThe first API product found in the list will be returned.",
-                      "flatPath": "v1/organizations/{organizationsId}/companies/{companiesId}/apps/{appsId}/keys/{keysId}",
-                      "httpMethod": "POST",
-                      "id": "apigee.organizations.companies.apps.keys.updateCompanyAppKey",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "action": {
-                          "description": "Set action to approve or revoke.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "name": {
-                          "description": "Resource name of a company app key\n`organizations/{org}/companies/{company}/apps/{app}/keys/{key}`",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/companies/[^/]+/apps/[^/]+/keys/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "request": {
-                        "$ref": "GoogleCloudApigeeV1CompanyAppKey"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudApigeeV1CompanyAppKey"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "deployments": {
           "methods": {
             "list": {
@@ -2468,51 +2065,6 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
-            "getDatalocation": {
-              "description": "Get Google Cloud Storage (GCS) signed url for specific organization and\nenvironment. Collection agent uses this signed url to upload data\nto GCS bucket.",
-              "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/datalocation",
-              "httpMethod": "GET",
-              "id": "apigee.organizations.environments.getDatalocation",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "contentType": {
-                  "description": "Content-Type for uploaded file.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "dataset": {
-                  "description": "Required. Dataset could be one of `api`, `mint`, `trace` and `event`",
-                  "location": "query",
-                  "type": "string"
-                },
-                "name": {
-                  "description": "Required. The parent organization and environment names. Must be of the\nform `organizations/{org}/environments/{env}/datalocation`.",
-                  "location": "path",
-                  "pattern": "^organizations/[^/]+/environments/[^/]+/datalocation$",
-                  "required": true,
-                  "type": "string"
-                },
-                "relativeFilePath": {
-                  "description": "Required. Relative path to the GCS bucket",
-                  "location": "query",
-                  "type": "string"
-                },
-                "repo": {
-                  "description": "Required. Repository name",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+name}",
-              "response": {
-                "$ref": "GoogleCloudApigeeV1DataLocation"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
             "getDebugmask": {
               "description": "Gets the debug mask singleton resource for an environment.",
               "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/debugmask",
@@ -2573,7 +2125,7 @@
               ],
               "parameters": {
                 "options.requestedPolicyVersion": {
-                  "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.",
+                  "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -2979,6 +2531,31 @@
                           "path": "v1/{+name}/data",
                           "response": {
                             "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Retrieves a debug session.",
+                          "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/debugsessions/{debugsessionsId}",
+                          "httpMethod": "GET",
+                          "id": "apigee.organizations.environments.apis.revisions.debugsessions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the debug session to retrieve.\nMust be of the form:\n `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{session}`.",
+                              "location": "path",
+                              "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+/debugsessions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudApigeeV1DebugSession"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -3711,31 +3288,6 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "GoogleApiHttpBody"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "getResultView": {
-                  "description": "",
-                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/queries/{queriesId}/resultView",
-                  "httpMethod": "GET",
-                  "id": "apigee.organizations.environments.queries.getResultView",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the asynchronous query result view to get. Must be of the\nform `organizations/{org}/environments/{env}/queries/{queryId}/resultView`.",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/environments/[^/]+/queries/[^/]+/resultView$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "GoogleCloudApigeeV1AsyncQueryResultView"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -4991,7 +4543,7 @@
       }
     }
   },
-  "revision": "20200502",
+  "revision": "20200507",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5525,36 +5077,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudApigeeV1AsyncQueryResultView": {
-      "id": "GoogleCloudApigeeV1AsyncQueryResultView",
-      "properties": {
-        "code": {
-          "description": "Error code when there is a failure.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "error": {
-          "description": "Error message when there is a failure.",
-          "type": "string"
-        },
-        "metadata": {
-          "$ref": "GoogleCloudApigeeV1QueryMetadata",
-          "description": "Metadata contains information like metrics, dimenstions etc\nof the AsyncQuery"
-        },
-        "rows": {
-          "description": "Rows of query result. Each row is a JSON object.\n\nExample: {sum(message_count): 1, developer_app: \"(not set)\",…}",
-          "items": {
-            "type": "any"
-          },
-          "type": "array"
-        },
-        "state": {
-          "description": "State of retrieving ResultView.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudApigeeV1Attribute": {
       "description": "Key-value pair to store extra metadata.",
       "id": "GoogleCloudApigeeV1Attribute",
@@ -5660,172 +5182,6 @@
           "type": "boolean"
         },
         "name": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1Company": {
-      "id": "GoogleCloudApigeeV1Company",
-      "properties": {
-        "apps": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "attributes": {
-          "description": "A list of attributes",
-          "items": {
-            "$ref": "GoogleCloudApigeeV1Attribute"
-          },
-          "type": "array"
-        },
-        "createdAt": {
-          "description": "Output only. Created time as milliseconds since epoch.\njson key: createdAt",
-          "format": "int64",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "company name displayed in the UI",
-          "type": "string"
-        },
-        "lastModifiedAt": {
-          "description": "Output only. Modified time as milliseconds since epoch.\njson key: lastModifiedAt",
-          "format": "int64",
-          "type": "string"
-        },
-        "name": {
-          "description": "Name of the company. Characters you can use in the name are restricted to:\nA-Z0-9._\\-$ %.",
-          "type": "string"
-        },
-        "organization": {
-          "description": "the org that the company is created",
-          "type": "string"
-        },
-        "status": {
-          "description": "The status of the company",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1CompanyApp": {
-      "id": "GoogleCloudApigeeV1CompanyApp",
-      "properties": {
-        "apiProducts": {
-          "description": "Any API Products the app consumes",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "appFamily": {
-          "type": "string"
-        },
-        "appId": {
-          "description": "The id of the app.",
-          "type": "string"
-        },
-        "attributes": {
-          "description": "A list of attributes.",
-          "items": {
-            "$ref": "GoogleCloudApigeeV1Attribute"
-          },
-          "type": "array"
-        },
-        "callbackUrl": {
-          "description": "The callbackUrl is used by OAuth 2.0 authorization servers to communicate\nauthorization codes back to apps.",
-          "type": "string"
-        },
-        "companyName": {
-          "description": "The name of the company owns the app",
-          "type": "string"
-        },
-        "createdAt": {
-          "description": "Output only. created time of this environment as milliseconds since epoch.\nJSON key: createdAt",
-          "format": "int64",
-          "type": "string"
-        },
-        "credentials": {
-          "description": "Output only. A set of credentials for the app\ncredentials are key/secret pairs",
-          "items": {
-            "$ref": "GoogleCloudApigeeV1Credential"
-          },
-          "type": "array"
-        },
-        "keyExpiresIn": {
-          "description": "A setting, in milliseconds, for the lifetime of the consumer key that will\nbe generated for the developer app. The default value, -1, indicates an\ninfinite validity period. Once set, the expiration can't be updated.\njson key: keyExpiresIn",
-          "format": "int64",
-          "type": "string"
-        },
-        "lastModifiedAt": {
-          "description": "Output only. Modified time as milliseconds since epoch.\njson key: lastModifiedAt",
-          "format": "int64",
-          "type": "string"
-        },
-        "name": {
-          "description": "The resoure id of the app.\nJSON key: name",
-          "type": "string"
-        },
-        "scopes": {
-          "description": "The scopes to apply to the app. The specified scope names must already\nexist on the API product that you associate with the app.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "status": {
-          "description": "The status of the credential.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1CompanyAppKey": {
-      "id": "GoogleCloudApigeeV1CompanyAppKey",
-      "properties": {
-        "apiProducts": {
-          "description": "A list of api products this credential can be used for.",
-          "items": {
-            "type": "any"
-          },
-          "type": "array"
-        },
-        "attributes": {
-          "description": "A list of attributes tied to the credential.",
-          "items": {
-            "$ref": "GoogleCloudApigeeV1Attribute"
-          },
-          "type": "array"
-        },
-        "consumerKey": {
-          "description": "The consumer key.",
-          "type": "string"
-        },
-        "consumerSecret": {
-          "description": "The secret key.",
-          "type": "string"
-        },
-        "expiresAt": {
-          "description": "Unix time when the app was created\njson key: expiresAt",
-          "format": "int64",
-          "type": "string"
-        },
-        "issuedAt": {
-          "description": "Unix time when the app was issued\njson key: issuedAt",
-          "format": "int64",
-          "type": "string"
-        },
-        "scopes": {
-          "description": "The scopes to apply to the app. The specified scope names must already\nexist on the API product that you associate with the app.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "status": {
-          "description": "The status of the credential.",
           "type": "string"
         }
       },
@@ -6022,16 +5378,6 @@
         },
         "name": {
           "description": "name of the metric",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1DataLocation": {
-      "id": "GoogleCloudApigeeV1DataLocation",
-      "properties": {
-        "url": {
-          "description": "GCS signed url. Signed URLs provide a way to give time-limited\nread or write access to anyone in possession of the URL, regardless of\nwhether they have a Google account.",
           "type": "string"
         }
       },
@@ -6732,32 +6078,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudApigeeV1ListCompaniesResponse": {
-      "id": "GoogleCloudApigeeV1ListCompaniesResponse",
-      "properties": {
-        "company": {
-          "description": "A list of company.",
-          "items": {
-            "$ref": "GoogleCloudApigeeV1Company"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ListCompanyAppsResponse": {
-      "id": "GoogleCloudApigeeV1ListCompanyAppsResponse",
-      "properties": {
-        "app": {
-          "description": "A list of apps for a company.",
-          "items": {
-            "$ref": "GoogleCloudApigeeV1CompanyApp"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudApigeeV1ListCustomReportsResponse": {
       "description": "This message encapsulates a list of custom report definitions",
       "id": "GoogleCloudApigeeV1ListCustomReportsResponse",
@@ -7045,7 +6365,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Name of the Apigee organization.",
+          "description": "Output only. Name of the Apigee organization.",
           "type": "string"
         },
         "properties": {
@@ -7958,7 +7278,7 @@
       "properties": {
         "condition": {
           "$ref": "GoogleTypeExpr",
-          "description": "The condition that is associated with this binding.\nNOTE: An unsatisfied condition will not allow user access via current\nbinding. Different bindings, including their conditions, are examined\nindependently."
+          "description": "The condition that is associated with this binding.\n\nIf the condition evaluates to `true`, then this binding applies to the\ncurrent request.\n\nIf the condition evaluates to `false`, then this binding does not apply to\nthe current request. However, a different role binding might grant the same\nrole to one or more of the members in this binding.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
           "description": "Specifies the identities requesting access for a Cloud Platform resource.\n`members` can have the following values:\n\n* `allUsers`: A special identifier that represents anyone who is\n   on the internet; with or without a Google account.\n\n* `allAuthenticatedUsers`: A special identifier that represents anyone\n   who is authenticated with a Google account or a service account.\n\n* `user:{emailid}`: An email address that represents a specific Google\n   account. For example, `alice@example.com` .\n\n\n* `serviceAccount:{emailid}`: An email address that represents a service\n   account. For example, `my-other-app@appspot.gserviceaccount.com`.\n\n* `group:{emailid}`: An email address that represents a Google group.\n   For example, `admins@example.com`.\n\n* `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a user that has been recently deleted. For\n   example, `alice@example.com?uid=123456789012345678901`. If the user is\n   recovered, this value reverts to `user:{emailid}` and the recovered user\n   retains the role in the binding.\n\n* `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus\n   unique identifier) representing a service account that has been recently\n   deleted. For example,\n   `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.\n   If the service account is undeleted, this value reverts to\n   `serviceAccount:{emailid}` and the undeleted service account retains the\n   role in the binding.\n\n* `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a Google group that has been recently\n   deleted. For example, `admins@example.com?uid=123456789012345678901`. If\n   the group is recovered, this value reverts to `group:{emailid}` and the\n   recovered group retains the role in the binding.\n\n\n* `domain:{domain}`: The G Suite domain (primary) that represents all the\n   users of that domain. For example, `google.com` or `example.com`.\n\n",
@@ -7975,7 +7295,7 @@
       "type": "object"
     },
     "GoogleIamV1Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nOptionally, a `binding` can specify a `condition`, which is a logical\nexpression that allows access to a resource only if the expression evaluates\nto `true`. A condition can add constraints based on attributes of the\nrequest, the resource, or both.\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\"user:eve@example.com\"],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nFor some types of Google Cloud resources, a `binding` can also specify a\n`condition`, which is a logical expression that allows access to a resource\nonly if the expression evaluates to `true`. A condition can add constraints\nbased on attributes of the request, the resource, or both. To learn which\nresources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\n            \"user:eve@example.com\"\n          ],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "GoogleIamV1Policy",
       "properties": {
         "auditConfigs": {
@@ -7998,7 +7318,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.",
+          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }

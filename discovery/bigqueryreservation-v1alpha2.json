@@ -614,7 +614,7 @@
       }
     }
   },
-  "revision": "20200410",
+  "revision": "20200509",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "CreateSlotPoolMetadata": {
@@ -830,12 +830,14 @@
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
+            "TRIAL",
             "MONTHLY",
             "ANNUAL"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Slot pool can be removed at any point, even after becoming ACTIVE.",
+            "Trial commitments have a committed period of 182 days after becoming\nACTIVE. After that, they are converted to a new commitment based on the\nrenewal_plan. Default renewal_plan for Trial commitment is Flex so that\nit can be deleted right after committed period ends.",
             "Slot pool cannot be removed for 30 days after becoming ACTIVE.",
             "Slot pool cannot be removed for 365 days after becoming ACTIVE.\nNote: annual commitments are automatically downgraded to monthly after\n365 days."
           ],

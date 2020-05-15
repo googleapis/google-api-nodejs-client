@@ -478,7 +478,7 @@ export namespace cloudsearch_v1 {
      */
     count?: number | null;
     /**
-     * Percent of results that match the bucket value. This value is between (0-100]. Percentages are returned for all searches, but are an estimate. Because percentages are always returned, you should render percentages instead of counts.
+     * Percent of results that match the bucket value. The returned value is between (0-100], and is rounded down to an integer if fractional. If the value is not explicitly returned, it represents a percentage value that rounds to 0. Percentages are returned for all searches, but are an estimate. Because percentages are always returned, you should render percentages instead of counts.
      */
     percentage?: number | null;
     value?: Schema$Value;
@@ -1070,7 +1070,7 @@ export namespace cloudsearch_v1 {
      */
     metalines?: Schema$Metaline[];
     /**
-     * The user friendly label to display in the search result to indicate the type of the item. This is OPTIONAL; if not provided, an object label isn&#39;t displayed on the context line of the search results. The maximum length is 32 characters.
+     * The user friendly label to display in the search result to indicate the type of the item. This is OPTIONAL; if not provided, an object label isn&#39;t displayed on the context line of the search results. The maximum length is 64 characters.
      */
     objectDisplayLabel?: string | null;
   }
@@ -1280,7 +1280,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$PropertyDisplayOptions {
     /**
-     * The user friendly label for the property that is used if the property is specified to be displayed in ObjectDisplayOptions. If provided, the display label is shown in front of the property values when the property is part of the object display options. For example, if the property value is &#39;1&#39;, the value by itself may not be useful context for the user. If the display name given was &#39;priority&#39;, then the user sees &#39;priority : 1&#39; in the search results which provides clear context to search users. This is OPTIONAL; if not given, only the property values are displayed. The maximum length is 32 characters.
+     * The user friendly label for the property that is used if the property is specified to be displayed in ObjectDisplayOptions. If provided, the display label is shown in front of the property values when the property is part of the object display options. For example, if the property value is &#39;1&#39;, the value by itself may not be useful context for the user. If the display name given was &#39;priority&#39;, then the user sees &#39;priority : 1&#39; in the search results which provides clear context to search users. This is OPTIONAL; if not given, only the property values are displayed. The maximum length is 64 characters.
      */
     displayLabel?: string | null;
   }
