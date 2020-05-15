@@ -23,7 +23,7 @@ import Q from 'p-queue';
 import * as prettier from 'prettier';
 import {downloadDiscoveryDocs} from './download';
 import * as filters from './filters';
-import {addFragments, generateSamples} from './samplegen';
+import {addFragments} from './samplegen';
 
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
