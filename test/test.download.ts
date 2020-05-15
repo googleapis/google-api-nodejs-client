@@ -22,7 +22,7 @@ import execa = require('execa');
 import * as fs from 'fs';
 import * as http from 'http';
 
-describe(__filename, () => {
+describe.only(__filename, () => {
   nock.disableNetConnect();
   const discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/';
   const fakeIndexPath = 'test/fixtures/index.json';
@@ -151,5 +151,53 @@ describe(__filename, () => {
     ]);
     assert.ok(fs.existsSync('build/test/temp'));
     server.close();
+  });
+
+  it('should flatten an object schema', () => {
+    const input = {
+      a: {
+        b: {
+          c: [1, 2, 3],
+        },
+        d: 'test',
+      },
+      e: 5,
+    };
+    const expected = {
+      'a.b.c': [1, 2, 3],
+      'a.d': 'test',
+      e: 5,
+    };
+    const result = dn.flattenObject(input);
+    assert.deepStrictEqual(result, expected);
+  });
+
+  it('should get the diff between two flattened lists', () => {
+    const oldDoc = {
+      a: 1,
+      b: 2,
+      c: [1, 2, 3],
+    };
+    const newDoc = {
+      a: 1,
+      c: [1, 2, 4],
+      d: 5,
+    };
+    const expected = [
+      {
+        action: 'DELETED',
+        keyName: 'b',
+      },
+      {
+        action: 'ADDED',
+        keyName: 'd',
+      },
+      {
+        action: 'CHANGED',
+        keyName: 'c',
+      },
+    ];
+    const result = dn.getDiffs(oldDoc, newDoc);
+    assert.deepStrictEqual(result, expected);
   });
 });

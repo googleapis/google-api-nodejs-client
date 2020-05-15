@@ -20,6 +20,13 @@ import {request, Headers} from 'gaxios';
 import {Schemas} from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 
+export type Schema = {[index: string]: {}};
+
+export interface Change {
+  action: 'ADDED' | 'DELETED' | 'CHANGED';
+  keyName: string;
+}
+
 export interface DownloadOptions {
   includePrivate?: boolean;
   discoveryUrl: string;
@@ -53,7 +60,7 @@ export async function downloadDiscoveryDocs(options: DownloadOptions) {
   gfs.writeFile(indexPath, res.data);
   const queue = new Q({concurrency: 25});
   console.log(`Downloading ${apis.length} APIs...`);
-  queue.addAll(
+  const changes = await queue.addAll(
     apis.map(api => {
       return async () => {
         console.log(`Downloading ${api.id}...`);
@@ -67,19 +74,23 @@ export async function downloadDiscoveryDocs(options: DownloadOptions) {
         // request to request. Sort them before storing.
         const newDoc = sortKeys(res.data);
         let updateFile = true;
+        let diffs = new Array<Change>();
         try {
           const oldDoc = JSON.parse(await gfs.readFile(apiPath));
           updateFile = shouldUpdate(newDoc, oldDoc);
+          diffs = getDiffs(oldDoc, newDoc);
         } catch {
           // If the file doesn't exist, that's fine it's just new
         }
         if (updateFile) {
           gfs.writeFile(apiPath, newDoc);
         }
+        return diffs;
       };
     })
   );
   await queue.onIdle();
+  return changes;
 }
 
 const ignoreLines = /^\s+"(?:etag|revision)": ".+"/;
@@ -114,8 +125,8 @@ export function shouldUpdate(newDoc: {}, oldDoc: {}) {
  * @param obj Object to be sorted
  * @returns object with sorted keys
  */
-export function sortKeys(obj: {[index: string]: {}}): {} {
-  const sorted: {[index: string]: {}} = {};
+export function sortKeys(obj: Schema): Schema {
+  const sorted: Schema = {};
   let keys = Object.keys(obj);
   keys = keys.sort();
   for (const key of keys) {
@@ -127,6 +138,85 @@ export function sortKeys(obj: {[index: string]: {}}): {} {
     }
   }
   return sorted;
+}
+
+/**
+ * Get a diff between the two
+ */
+export function getDiffs(oldDoc: Schema, newDoc: Schema) {
+  const changes = new Array<Change>();
+  const flatOld = flattenObject(oldDoc);
+  const flatNew = flattenObject(newDoc);
+
+  // find deleted nodes
+  Object.keys(flatOld).forEach(key => {
+    if (!Object.prototype.hasOwnProperty.call(flatNew, key)) {
+      changes.push({
+        action: 'DELETED',
+        keyName: key,
+      });
+    }
+  });
+
+  // find added nodes
+  Object.keys(flatNew).forEach(key => {
+    if (!Object.prototype.hasOwnProperty.call(flatOld, key)) {
+      changes.push({
+        action: 'ADDED',
+        keyName: key,
+      });
+    }
+  });
+
+  // find updated nodes
+  Object.keys(flatOld).forEach(key => {
+    let oldValue = flatOld[key];
+    if (Array.isArray(oldValue)) {
+      oldValue = oldValue.join(', ');
+    }
+    let newValue = flatNew[key];
+    if (newValue) {
+      if (Array.isArray(newValue)) {
+        newValue = newValue.join(', ');
+      }
+      if (newValue !== oldValue && key !== 'revision' && key !== 'etag') {
+        changes.push({
+          action: 'CHANGED',
+          keyName: key,
+        });
+      }
+    }
+  });
+  return changes;
+}
+
+/**
+ * Given a complex nested object, flatten the key paths so this:
+ * {
+ *   a: {
+ *     b: 2
+ *   },
+ *   c: 3
+ * }
+ * becomes ...
+ * {
+ *   'a.b': 2
+ *   c: 3
+ * }
+ */
+export function flattenObject(doc: Schema, flat: Schema = {}, prefix = '') {
+  const keys = Object.keys(doc);
+  const newPrefix = prefix ? `${prefix}.` : '';
+  for (const key of keys) {
+    const fullKey = newPrefix + key;
+    const value = doc[key];
+    if (!Array.isArray(value) && typeof value === 'object') {
+      flattenObject(value, flat, fullKey);
+    } else {
+      flat[fullKey] = value;
+    }
+  }
+  return flat;
 }
 
 /**
