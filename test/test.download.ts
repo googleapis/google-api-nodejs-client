@@ -22,7 +22,7 @@ import execa = require('execa');
 import * as fs from 'fs';
 import * as http from 'http';
 
-describe.only(__filename, () => {
+describe(__filename, () => {
   nock.disableNetConnect();
   const discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/';
   const fakeIndexPath = 'test/fixtures/index.json';
