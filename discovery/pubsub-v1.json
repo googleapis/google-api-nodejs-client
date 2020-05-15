@@ -1093,7 +1093,7 @@
       }
     }
   },
-  "revision": "20200427",
+  "revision": "20200505",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1496,7 +1496,7 @@
           "type": "string"
         },
         "deliveryAttempt": {
-          "description": "Delivery attempt counter is 1 + (the sum of number of NACKs and number of\nack_deadline exceeds) for this message.\n\nA NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline\nexceeds event is whenever a message is not acknowledged within\nack_deadline. Note that ack_deadline is initially\nSubscription.ackDeadlineSeconds, but may get extended automatically by\nthe client library.\n\nThe first delivery of a given message will have this value as 1. The value\nis calculated at best effort and is approximate.\n\nIf a DeadLetterPolicy is not set on the subscription, this will be 0.\n<b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This\nAPI might be changed in backward-incompatible ways and is not recommended\nfor production use. It is not subject to any SLA or deprecation policy.",
+          "description": "The approximate number of times that Cloud Pub/Sub has attempted to deliver\nthe associated message to a subscriber.\n\nMore precisely, this is 1 + (number of NACKs) +\n(number of ack_deadline exceeds) for this message.\n\nA NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline\nexceeds event is whenever a message is not acknowledged within\nack_deadline. Note that ack_deadline is initially\nSubscription.ackDeadlineSeconds, but may get extended automatically by\nthe client library.\n\nUpon the first delivery of a given message, `delivery_attempt` will have a\nvalue of 1. The value is calculated at best effort and is approximate.\n\nIf a DeadLetterPolicy is not set on the subscription, this will be 0.",
           "format": "int32",
           "type": "integer"
         },

@@ -3574,7 +3574,7 @@ export namespace people_v1 {
      *   // Do the magic
      *   const res = await people.people.connections.list({
      *     // Optional. The number of connections to include in the response. Valid values are
-     *     // between 1 and 2000, inclusive. Defaults to 100 if not set or set to 0.
+     *     // between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListConnections` call.
      *     // Provide this to retrieve the subsequent page.
@@ -3654,7 +3654,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The number of connections to include in the response. Valid values are between 1 and 2000, inclusive. Defaults to 100 if not set or set to 0.
+     * @param {integer=} params.pageSize Optional. The number of connections to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      * @param {string=} params.pageToken Optional. A page token, received from a previous `ListConnections` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListConnections` must match the call that provided the page token.
      * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
@@ -3739,7 +3739,7 @@ export namespace people_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The number of connections to include in the response. Valid values are between 1 and 2000, inclusive. Defaults to 100 if not set or set to 0.
+     * Optional. The number of connections to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      */
     pageSize?: number;
     /**

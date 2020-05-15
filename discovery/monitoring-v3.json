@@ -1262,7 +1262,7 @@
               ]
             },
             "query": {
-              "description": "Queries time series using the time series query language. This method does not require a Workspace.",
+              "description": "Queries time series using Monitoring Query Language. This method does not require a Workspace.",
               "flatPath": "v3/projects/{projectsId}/timeSeries:query",
               "httpMethod": "POST",
               "id": "monitoring.projects.timeSeries.query",
@@ -1848,7 +1848,7 @@
       }
     }
   },
-  "revision": "20200502",
+  "revision": "20200509",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {

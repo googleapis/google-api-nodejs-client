@@ -300,7 +300,7 @@ export namespace testing_v1 {
      */
     tags?: string[] | null;
     /**
-     * URL of a thumbnail image of the device.
+     * URL of a thumbnail image (photo) of the device. e.g. https://lh3.googleusercontent.com/90WcauuJiCYABEl8U0lcZeuS5STUbf2yW...
      */
     thumbnailUrl?: string | null;
   }
@@ -691,7 +691,7 @@ export namespace testing_v1 {
     iosDevices?: Schema$IosDevice[];
   }
   /**
-   * A description of an iOS device tests may be run on. Next tag: 12
+   * A description of an iOS device tests may be run on. Next tag: 13
    */
   export interface Schema$IosModel {
     /**

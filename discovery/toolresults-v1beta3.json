@@ -1446,7 +1446,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200513",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "ANR": {
@@ -1566,7 +1566,7 @@
       "type": "object"
     },
     "AndroidTestLoop": {
-      "description": "Test Loops are tests that can be launched by the app itself, determining\nwhen to run by listening for an intent. go/ftl-games-dd",
+      "description": "Test Loops are tests that can be launched by the app itself, determining\nwhen to run by listening for an intent.",
       "id": "AndroidTestLoop",
       "properties": {},
       "type": "object"
@@ -2084,6 +2084,20 @@
         "name": {
           "description": "A name to uniquely identify a history within a project.\nMaximum of 200 characters.\n\n- In response always set\n- In create request: always set",
           "type": "string"
+        },
+        "testPlatform": {
+          "description": "The platform of the test history.\n\n- In response: always set. Returns the platform of the last execution if\nunknown.",
+          "enum": [
+            "UNKNOWN_PLATFORM",
+            "ANDROID",
+            "IOS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2198,6 +2212,76 @@
         "stackTrace": {
           "$ref": "StackTrace",
           "description": "The stack trace, if one is available.\nOptional."
+        }
+      },
+      "type": "object"
+    },
+    "IosAppInfo": {
+      "description": "iOS app information",
+      "id": "IosAppInfo",
+      "properties": {
+        "name": {
+          "description": "The name of the app.\nRequired",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IosRoboTest": {
+      "description": "A Robo test for an iOS application.",
+      "id": "IosRoboTest",
+      "properties": {},
+      "type": "object"
+    },
+    "IosTest": {
+      "description": "A iOS mobile test specification",
+      "id": "IosTest",
+      "properties": {
+        "iosAppInfo": {
+          "$ref": "IosAppInfo",
+          "description": "Information about the application under test."
+        },
+        "iosRoboTest": {
+          "$ref": "IosRoboTest",
+          "description": "An iOS Robo test."
+        },
+        "iosTestLoop": {
+          "$ref": "IosTestLoop",
+          "description": "An iOS test loop."
+        },
+        "iosXcTest": {
+          "$ref": "IosXcTest",
+          "description": "An iOS XCTest."
+        },
+        "testTimeout": {
+          "$ref": "Duration",
+          "description": "Max time a test is allowed to run before it is\nautomatically cancelled."
+        }
+      },
+      "type": "object"
+    },
+    "IosTestLoop": {
+      "description": "A game loop test of an iOS application.",
+      "id": "IosTestLoop",
+      "properties": {
+        "bundleId": {
+          "description": "Bundle ID of the app.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IosXcTest": {
+      "description": "A test of an iOS application that uses the XCTest framework.",
+      "id": "IosXcTest",
+      "properties": {
+        "bundleId": {
+          "description": "Bundle ID of the app.",
+          "type": "string"
+        },
+        "xcodeVersion": {
+          "description": "Xcode version that the test was run with.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3030,6 +3114,10 @@
         "androidTest": {
           "$ref": "AndroidTest",
           "description": "An Android mobile test execution specification."
+        },
+        "iosTest": {
+          "$ref": "IosTest",
+          "description": "An iOS mobile test execution specification."
         }
       },
       "type": "object"
