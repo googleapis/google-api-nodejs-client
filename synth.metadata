@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/google-api-nodejs-client.git",
-        "sha": "dca679d1cf41154b093c5c2217892733ee8047dd"
+        "sha": "c12710ab45f65dc2533edb52b2e91e5cc328e677"
       }
     },
     {
