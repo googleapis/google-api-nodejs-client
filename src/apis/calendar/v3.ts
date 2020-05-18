@@ -603,7 +603,7 @@ export namespace calendar_v3 {
      */
     htmlLink?: string | null;
     /**
-     * Event unique identifier as defined in RFC5545. It is used to uniquely identify events accross calendaring systems and must be supplied when importing events via the import method. Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
+     * Event unique identifier as defined in RFC5545. It is used to uniquely identify events across calendaring systems and must be supplied when importing events via the import method. Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
      */
     iCalUID?: string | null;
     /**
