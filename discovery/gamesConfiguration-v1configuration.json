@@ -10,7 +10,7 @@
   },
   "basePath": "",
   "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch",
+  "batchPath": "batch/games/v1configuration",
   "canonicalName": "Games Configuration",
   "description": "The Google Play Game Services Publishing API allows developers to configure their games in Game Services.",
   "discoveryVersion": "v1",
@@ -434,7 +434,7 @@
       }
     }
   },
-  "revision": "20200504",
+  "revision": "20200514",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AchievementConfiguration": {
