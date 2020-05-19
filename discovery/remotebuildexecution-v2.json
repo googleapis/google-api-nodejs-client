@@ -447,7 +447,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200513",
   "rootUrl": "https://remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1564,7 +1564,8 @@
             "DOCKER_PREPARELAYER_ERROR",
             "DOCKER_INCOMPATIBLE_OS_ERROR",
             "DOCKER_CREATE_RUNTIME_FILE_NOT_FOUND",
-            "DOCKER_CREATE_RUNTIME_PERMISSION_DENIED"
+            "DOCKER_CREATE_RUNTIME_PERMISSION_DENIED",
+            "DOCKER_CREATE_PROCESS_FILE_NOT_FOUND"
           ],
           "enumDescriptions": [
             "The command succeeded.",
@@ -1601,7 +1602,8 @@
             "Docker failed to run containers with hcsshim::PrepareLayer error.",
             "Docker incompatible operating system error.",
             "Docker failed to create OCI runtime because of file not found.",
-            "Docker failed to create OCI runtime because of permission denied."
+            "Docker failed to create OCI runtime because of permission denied.",
+            "Docker failed to create process because of file not found."
           ],
           "type": "string"
         },
@@ -1927,6 +1929,10 @@
         "reserved": {
           "description": "Determines whether the worker is reserved (equivalent to a Compute Engine\non-demand VM and therefore won't be preempted).\nSee [Preemptible VMs](https://cloud.google.com/preemptible-vms/) for more\ndetails.",
           "type": "boolean"
+        },
+        "vmImage": {
+          "description": "Output only. The name of the image used by each VM.",
+          "type": "string"
         }
       },
       "type": "object"
