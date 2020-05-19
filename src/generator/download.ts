@@ -60,7 +60,11 @@ export async function downloadDiscoveryDocs(options: DownloadOptions) {
   gfs.writeFile(indexPath, res.data);
   const queue = new Q({concurrency: 25});
   console.log(`Downloading ${apis.length} APIs...`);
-  const changes = await queue.addAll(
+  // If you await the result of `queue.addAll`, the process mysteriously
+  // exits after downloading all the files. I have no earthly idea why.
+  // Software is terrible.
+  //const changes = await queue.addAll(
+  queue.addAll(
     apis.map(api => {
       return async () => {
         console.log(`Downloading ${api.id}...`);
@@ -90,7 +94,7 @@ export async function downloadDiscoveryDocs(options: DownloadOptions) {
     })
   );
   await queue.onIdle();
-  return changes;
+  //return changes;
 }
 
 const ignoreLines = /^\s+"(?:etag|revision)": ".+"/;
