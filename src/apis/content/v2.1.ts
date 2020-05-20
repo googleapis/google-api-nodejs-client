@@ -4940,6 +4940,10 @@ export namespace content_v2_1 {
      */
     merchantOrderId?: string | null;
     /**
+     * The identifier of the item.
+     */
+    orderItemId?: string | null;
+    /**
      * The unique ID of the settlement transaction entry.
      */
     settlementEntryId?: string | null;

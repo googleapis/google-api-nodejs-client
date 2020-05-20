@@ -888,6 +888,10 @@ export namespace remotebuildexecution_v1 {
      * Determines whether the worker is reserved (equivalent to a Compute Engine on-demand VM and therefore won&#39;t be preempted). See [Preemptible VMs](https://cloud.google.com/preemptible-vms/) for more details.
      */
     reserved?: boolean | null;
+    /**
+     * Output only. The name of the image used by each VM.
+     */
+    vmImage?: string | null;
   }
   /**
    * A worker pool resource in the Remote Build Execution API.

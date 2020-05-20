@@ -267,10 +267,6 @@ export namespace serviceusage_v1 {
      */
     protocol?: string | null;
     /**
-     * Unimplemented. Do not use.  The new name the selected proto elements should be renamed to.  The package, the service and the method can all be renamed. The backend server should implement the renamed proto. However, clients should call the original method, and ESF routes the traffic to the renamed method.  HTTP clients should call the URL mapped to the original method. gRPC and Stubby clients should call the original method with package name.  For legacy reasons, ESF allows Stubby clients to call with the short name (without the package name). However, for API Versioning(or multiple methods mapped to the same short name), all Stubby clients must call the method&#39;s full name with the package name, otherwise the first one (selector) wins.  If this `rename_to` is specified with a trailing `*`, the `selector` must be specified with a trailing `*` as well. The all element short names matched by the `*` in the selector will be kept in the `rename_to`.  For example,     rename_rules:     - selector: |-         google.example.library.v1.*       rename_to: google.example.library.*  The selector matches `google.example.library.v1.Library.CreateShelf` and `google.example.library.v1.Library.CreateBook`, they will be renamed to `google.example.library.Library.CreateShelf` and `google.example.library.Library.CreateBook`. It essentially renames the proto package name section of the matched proto service and methods.
-     */
-    renameTo?: string | null;
-    /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
     selector?: string | null;

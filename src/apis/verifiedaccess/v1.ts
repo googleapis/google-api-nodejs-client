@@ -85,7 +85,7 @@ export namespace verifiedaccess_v1 {
   }
 
   /**
-   * Verified Access API
+   * Chrome Verified Access API
    *
    * API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network
    *

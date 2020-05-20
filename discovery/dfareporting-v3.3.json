@@ -20,7 +20,7 @@
   "description": "Manages your DoubleClick Campaign Manager ad campaigns and reports.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/A0StowLCk6_YQOwCP1AS7g6Vp58\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/kUE5ERHBaKgFUVRbuUNbc2vvqsA\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/doubleclick-16.gif",
     "x32": "https://www.google.com/images/icons/product/doubleclick-32.gif"
@@ -7972,14 +7972,14 @@
                   "type": "string"
                 },
                 "profileId": {
-                  "description": "The DFA user profile ID.",
+                  "description": "The DFA profile ID.",
                   "format": "int64",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "reportId": {
-                  "description": "The ID of the report.",
+                  "description": "The ID of the parent report.",
                   "format": "int64",
                   "location": "path",
                   "required": true,
@@ -9399,7 +9399,7 @@
       }
     }
   },
-  "revision": "20200326",
+  "revision": "20200514",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -14291,7 +14291,8 @@
       "id": "File",
       "properties": {
         "dateRange": {
-          "$ref": "DateRange"
+          "$ref": "DateRange",
+          "description": "The date range for which the file has report data. The date range will always be the absolute date range for which the report is run."
         },
         "etag": {
           "description": "Etag of this resource.",
@@ -14303,6 +14304,14 @@
         },
         "format": {
           "description": "The output format of the report. Only available once the file is available.",
+          "enum": [
+            "CSV",
+            "EXCEL"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
           "type": "string"
         },
         "id": {
@@ -14327,6 +14336,18 @@
         },
         "status": {
           "description": "The status of the report file.",
+          "enum": [
+            "CANCELLED",
+            "FAILED",
+            "PROCESSING",
+            "REPORT_AVAILABLE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
           "type": "string"
         },
         "urls": {
@@ -14347,6 +14368,7 @@
       "type": "object"
     },
     "FileList": {
+      "description": "List of files for a report.",
       "id": "FileList",
       "properties": {
         "etag": {
@@ -14354,6 +14376,7 @@
           "type": "string"
         },
         "items": {
+          "description": "The files returned in this response.",
           "items": {
             "$ref": "File"
           },

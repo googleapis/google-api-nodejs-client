@@ -160,6 +160,10 @@ export namespace appengine_v1 {
      */
     codeBucket?: string | null;
     /**
+     * The type of the Cloud Firestore or Cloud Datastore database associated with this application.
+     */
+    databaseType?: string | null;
+    /**
      * Google Cloud Storage bucket that can be used by this application to store content.@OutputOnly
      */
     defaultBucket?: string | null;
@@ -1630,6 +1634,7 @@ export namespace appengine_v1 {
      *       // {
      *       //   "authDomain": "my_authDomain",
      *       //   "codeBucket": "my_codeBucket",
+     *       //   "databaseType": "my_databaseType",
      *       //   "defaultBucket": "my_defaultBucket",
      *       //   "defaultCookieExpiration": "my_defaultCookieExpiration",
      *       //   "defaultHostname": "my_defaultHostname",
@@ -1768,6 +1773,7 @@ export namespace appengine_v1 {
      *   // {
      *   //   "authDomain": "my_authDomain",
      *   //   "codeBucket": "my_codeBucket",
+     *   //   "databaseType": "my_databaseType",
      *   //   "defaultBucket": "my_defaultBucket",
      *   //   "defaultCookieExpiration": "my_defaultCookieExpiration",
      *   //   "defaultHostname": "my_defaultHostname",
@@ -1892,6 +1898,7 @@ export namespace appengine_v1 {
      *       // {
      *       //   "authDomain": "my_authDomain",
      *       //   "codeBucket": "my_codeBucket",
+     *       //   "databaseType": "my_databaseType",
      *       //   "defaultBucket": "my_defaultBucket",
      *       //   "defaultCookieExpiration": "my_defaultCookieExpiration",
      *       //   "defaultHostname": "my_defaultHostname",
