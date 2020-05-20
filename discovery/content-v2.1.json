@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/7c3KYKLrlwx3Kl7VS3SQ1eP9osM\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/Yryi_j1si0UYSDrVQgsmKlmNp7Q\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3608,7 +3608,7 @@
       }
     }
   },
-  "revision": "20200508",
+  "revision": "20200512",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10406,6 +10406,10 @@
         },
         "merchantOrderId": {
           "description": "The merchant provided order ID.",
+          "type": "string"
+        },
+        "orderItemId": {
+          "description": "The identifier of the item.",
           "type": "string"
         },
         "settlementEntryId": {

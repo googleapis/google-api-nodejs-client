@@ -14,7 +14,7 @@
   "canonicalName": "verifiedaccess",
   "description": "API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network",
   "discoveryVersion": "v1",
-  "documentationLink": "https://www.google.com/work/chrome/",
+  "documentationLink": "https://developers.google.com/chrome/verified-access",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -22,6 +22,7 @@
   },
   "id": "verifiedaccess:v1",
   "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://verifiedaccess.mtls.googleapis.com/",
   "name": "verifiedaccess",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -145,7 +146,7 @@
       }
     }
   },
-  "revision": "20190718",
+  "revision": "20200512",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
@@ -226,7 +227,7 @@
     }
   },
   "servicePath": "",
-  "title": "Verified Access API",
+  "title": "Chrome Verified Access API",
   "version": "v1",
   "version_module": true
 }

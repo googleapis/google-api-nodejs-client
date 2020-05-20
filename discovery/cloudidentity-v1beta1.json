@@ -550,7 +550,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200516",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -975,6 +975,11 @@
             "Device User Account is compromised.",
             "Device User Account is not compromised."
           ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "When the user first signed in to the device",
+          "format": "google-datetime",
           "type": "string"
         },
         "firstSyncTime": {

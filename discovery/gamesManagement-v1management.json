@@ -10,7 +10,7 @@
   },
   "basePath": "",
   "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch",
+  "batchPath": "batch/games/v1management",
   "canonicalName": "Games Management",
   "description": "The Google Play Game Management API allows developers to manage resources from the Google\n     Play Game service.",
   "discoveryVersion": "v1",
@@ -471,7 +471,7 @@
       }
     }
   },
-  "revision": "20200504",
+  "revision": "20200514",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AchievementResetAllResponse": {
