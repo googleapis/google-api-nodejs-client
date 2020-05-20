@@ -366,6 +366,10 @@ export namespace cloudidentity_v1beta1 {
      */
     compromisedState?: string | null;
     /**
+     * When the user first signed in to the device
+     */
+    createTime?: string | null;
+    /**
      * Output only. Most recent time when user registered with this service.
      */
     firstSyncTime?: string | null;
