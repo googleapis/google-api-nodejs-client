@@ -2625,7 +2625,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$CustomEvent {
     /**
-     * Annotate an impression. This field is mutually exclusive with insertEvent and annotateImpressionEvent. This or insertEvent and annotateImpressionEvent is a required field.
+     * Annotate a click event. This field is mutually exclusive with insertEvent and annotateImpressionEvent. This or insertEvent and annotateImpressionEvent is a required field.
      */
     annotateClickEvent?: Schema$CustomEventClickAnnotation;
     /**
@@ -2645,7 +2645,7 @@ export namespace dfareporting_v3_4 {
      */
     floodlightConfigurationId?: string | null;
     /**
-     * Annotate an impression. This field is mutually exclusive with annotateClickEvent and annotateImpressionEvent. This or annotateClickEvent and annotateImpressionEvent is a required field.
+     * Insert custom event. This field is mutually exclusive with annotateClickEvent and annotateImpressionEvent. This or annotateClickEvent and annotateImpressionEvent is a required field.
      */
     insertEvent?: Schema$CustomEventInsert;
     /**
@@ -3358,6 +3358,9 @@ export namespace dfareporting_v3_4 {
    * Represents a File resource. A file contains the metadata for a report run. It shows the status of the run and holds the URLs to the generated report data if the run is finished and the status is &quot;REPORT_AVAILABLE&quot;.
    */
   export interface Schema$File {
+    /**
+     * The date range for which the file has report data. The date range will always be the absolute date range for which the report is run.
+     */
     dateRange?: Schema$DateRange;
     /**
      * Etag of this resource.
@@ -3396,11 +3399,17 @@ export namespace dfareporting_v3_4 {
      */
     urls?: {apiUrl?: string; browserUrl?: string} | null;
   }
+  /**
+   * List of files for a report.
+   */
   export interface Schema$FileList {
     /**
      * Etag of this resource.
      */
     etag?: string | null;
+    /**
+     * The files returned in this response.
+     */
     items?: Schema$File[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#fileList&quot;.
@@ -35149,9 +35158,9 @@ export namespace dfareporting_v3_4 {
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous result page.
      *     pageToken: 'placeholder-value',
-     *     // The DFA user profile ID.
+     *     // The DFA profile ID.
      *     profileId: 'placeholder-value',
-     *     // The ID of the report.
+     *     // The ID of the parent report.
      *     reportId: 'placeholder-value',
      *     // The field by which to sort the list.
      *     sortField: 'placeholder-value',
@@ -35180,8 +35189,8 @@ export namespace dfareporting_v3_4 {
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {string} params.reportId The ID of the report.
+     * @param {string} params.profileId The DFA profile ID.
+     * @param {string} params.reportId The ID of the parent report.
      * @param {string=} params.sortField The field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35285,11 +35294,11 @@ export namespace dfareporting_v3_4 {
      */
     pageToken?: string;
     /**
-     * The DFA user profile ID.
+     * The DFA profile ID.
      */
     profileId?: string;
     /**
-     * The ID of the report.
+     * The ID of the parent report.
      */
     reportId?: string;
     /**
