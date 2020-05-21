@@ -14,7 +14,7 @@
   "canonicalName": "WebSecurityScanner",
   "description": "Scans your Compute and App Engine apps for common web vulnerabilities.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/security-scanner/",
+  "documentationLink": "https://cloud.google.com/security-command-center/docs/concepts-web-security-scanner-overview/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20200411",
+  "revision": "20200516",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -609,7 +609,7 @@
           "type": "string"
         },
         "findingType": {
-          "description": "Output only. The type of the Finding.\nDetailed and up-to-date information on findings can be found here:\nhttps://cloud.google.com/security-scanner/docs/scan-result-details",
+          "description": "Output only. The type of the Finding.\nDetailed and up-to-date information on findings can be found here:\nhttps://cloud.google.com/security-command-center/docs/how-to-remediate-web-security-scanner-findings",
           "type": "string"
         },
         "form": {
@@ -884,7 +884,7 @@
           "description": "The authentication configuration. If specified, service will use the\nauthentication configuration during scanning."
         },
         "blacklistPatterns": {
-          "description": "The blacklist URL patterns as described in\nhttps://cloud.google.com/security-scanner/docs/excluded-urls",
+          "description": "The excluded URL patterns as described in\nhttps://cloud.google.com/security-command-center/docs/how-to-use-web-security-scanner#excluding_urls",
           "items": {
             "type": "string"
           },
@@ -895,7 +895,7 @@
           "type": "string"
         },
         "exportToSecurityCommandCenter": {
-          "description": "Controls export of scan configurations and results to Cloud Security\nCommand Center.",
+          "description": "Controls export of scan configurations and results to Security\nCommand Center.",
           "enum": [
             "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED",
             "ENABLED",
@@ -903,13 +903,13 @@
           ],
           "enumDescriptions": [
             "Use default, which is ENABLED.",
-            "Export results of this scan to Cloud Security Command Center.",
-            "Do not export results of this scan to Cloud Security Command Center."
+            "Export results of this scan to Security Command Center.",
+            "Do not export results of this scan to Security Command Center."
           ],
           "type": "string"
         },
         "managedScan": {
-          "description": "Whether the scan config is managed by Cloud Web Security Scanner, output\nonly.",
+          "description": "Whether the scan config is managed by Web Security Scanner, output\nonly.",
           "type": "boolean"
         },
         "maxQps": {
@@ -1055,7 +1055,7 @@
             "One of the seed URLs is mapped to an IP address which is not reserved\nfor the current project.",
             "One of the seed URLs has on-routable IP address.",
             "One of the seed URLs has an IP address that is not reserved\nfor the current project.",
-            "The Cloud Security Scanner service account is not configured under the\nproject.",
+            "The Web Security Scanner service account is not configured under the\nproject.",
             "A project has reached the maximum number of scans.",
             "Resolving the details of the current project fails.",
             "One or more blacklist patterns were in the wrong format.",

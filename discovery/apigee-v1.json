@@ -2570,6 +2570,17 @@
                             "parent"
                           ],
                           "parameters": {
+                            "pageSize": {
+                              "description": "Maximum number of debug sessions to return. The page size defaults\nto 25.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Page token, returned from a previous ListDebugSessions call, that you\ncan use to retrieve the next page.",
+                              "location": "query",
+                              "type": "string"
+                            },
                             "parent": {
                               "description": "Required. The name of the API Proxy revision deployment for which\nto list debug sessions. Must be of the form:\n `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}`.",
                               "location": "path",
@@ -4543,7 +4554,7 @@
       }
     }
   },
-  "revision": "20200507",
+  "revision": "20200514",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6094,6 +6105,10 @@
     "GoogleCloudApigeeV1ListDebugSessionsResponse": {
       "id": "GoogleCloudApigeeV1ListDebugSessionsResponse",
       "properties": {
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListDebugSessionsRequest to\nretrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        },
         "sessions": {
           "description": "Session info that includes debug session ID and the first transaction\ncreation timestamp.",
           "items": {
