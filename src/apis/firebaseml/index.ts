@@ -14,19 +14,31 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {firebaseml_v1} from './v1';
 import {firebaseml_v1beta2} from './v1beta2';
 
 export const VERSIONS = {
+  v1: firebaseml_v1.Firebaseml,
   v1beta2: firebaseml_v1beta2.Firebaseml,
 };
 
+export function firebaseml(version: 'v1'): firebaseml_v1.Firebaseml;
+export function firebaseml(
+  options: firebaseml_v1.Options
+): firebaseml_v1.Firebaseml;
 export function firebaseml(version: 'v1beta2'): firebaseml_v1beta2.Firebaseml;
 export function firebaseml(
   options: firebaseml_v1beta2.Options
 ): firebaseml_v1beta2.Firebaseml;
-export function firebaseml<T = firebaseml_v1beta2.Firebaseml>(
+export function firebaseml<
+  T = firebaseml_v1.Firebaseml | firebaseml_v1beta2.Firebaseml
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta2' | firebaseml_v1beta2.Options
+  versionOrOptions:
+    | 'v1'
+    | firebaseml_v1.Options
+    | 'v1beta2'
+    | firebaseml_v1beta2.Options
 ) {
   return getAPI<T>('firebaseml', versionOrOptions, VERSIONS, this);
 }
