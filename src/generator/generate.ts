@@ -16,11 +16,10 @@ import * as minimist from 'yargs-parser';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 import * as util from 'util';
-
+import {DISCOVERY_URL} from './download';
 import {Generator} from './generator';
 
 const argv = minimist(process.argv.slice(2));
-const DEFAULT_DISCOVERY_URL = 'https://www.googleapis.com/discovery/v1/apis/';
 const discoveryUrl = argv['discovery-url'];
 const useCache = argv['use-cache'];
 
@@ -40,7 +39,7 @@ async function main() {
     const apiPath = path.join(__dirname, '../../../src/apis');
     await util.promisify(rimraf)(apiPath);
     console.log('Generating APIs...');
-    await gen.generateAllAPIs(discoveryUrl || DEFAULT_DISCOVERY_URL, useCache);
+    await gen.generateAllAPIs(discoveryUrl || DISCOVERY_URL, useCache);
     console.log('Finished generating APIs!');
   }
 }

@@ -21,10 +21,16 @@ import {Schemas} from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 
 export type Schema = {[index: string]: {}};
+export const DISCOVERY_URL = 'https://www.googleapis.com/discovery/v1/apis/';
 
 export interface Change {
   action: 'ADDED' | 'DELETED' | 'CHANGED';
   keyName: string;
+}
+
+export interface ChangeSet {
+  changes: Change[];
+  apiId: string;
 }
 
 export interface DownloadOptions {
@@ -48,7 +54,9 @@ export const gfs = {
  * Download all discovery documents into the /discovery directory.
  * @param options
  */
-export async function downloadDiscoveryDocs(options: DownloadOptions) {
+export async function downloadDiscoveryDocs(
+  options: DownloadOptions
+): Promise<ChangeSet[]> {
   await gfs.mkdir(options.downloadPath);
   const headers: Headers = options.includePrivate
     ? {}
@@ -60,41 +68,42 @@ export async function downloadDiscoveryDocs(options: DownloadOptions) {
   gfs.writeFile(indexPath, res.data);
   const queue = new Q({concurrency: 25});
   console.log(`Downloading ${apis.length} APIs...`);
-  // If you await the result of `queue.addAll`, the process mysteriously
-  // exits after downloading all the files. I have no earthly idea why.
-  // Software is terrible.
-  //const changes = await queue.addAll(
-  queue.addAll(
-    apis.map(api => {
-      return async () => {
-        console.log(`Downloading ${api.id}...`);
-        const apiPath = path.join(
-          options.downloadPath,
-          api.id.replace(':', '-') + '.json'
-        );
-        const url = api.discoveryRestUrl;
+  const changes = await queue.addAll(
+    apis.map(api => async () => {
+      console.log(`Downloading ${api.id}...`);
+      const apiPath = path.join(
+        options.downloadPath,
+        api.id.replace(':', '-') + '.json'
+      );
+      const url = api.discoveryRestUrl;
+      const changeSet: ChangeSet = {
+        apiId: api.id,
+        changes: [],
+      };
+      try {
         const res = await request<{}>({url});
         // The keys in the downloaded JSON come back in an arbitrary order from
         // request to request. Sort them before storing.
         const newDoc = sortKeys(res.data);
         let updateFile = true;
-        let diffs = new Array<Change>();
+
         try {
           const oldDoc = JSON.parse(await gfs.readFile(apiPath));
           updateFile = shouldUpdate(newDoc, oldDoc);
-          diffs = getDiffs(oldDoc, newDoc);
+          changeSet.changes = getDiffs(oldDoc, newDoc);
         } catch {
           // If the file doesn't exist, that's fine it's just new
         }
         if (updateFile) {
           gfs.writeFile(apiPath, newDoc);
         }
-        return diffs;
-      };
+      } catch (e) {
+        console.error(`Error downloading: ${url}`);
+      }
+      return changeSet;
     })
   );
-  await queue.onIdle();
-  //return changes;
+  return changes;
 }
 
 const ignoreLines = /^\s+"(?:etag|revision)": ".+"/;
@@ -229,8 +238,7 @@ export function flattenObject(doc: Schema, flat: Schema = {}, prefix = '') {
  */
 if (require.main === module) {
   const argv = minimist(process.argv.slice(2));
-  const discoveryUrl =
-    argv['discovery-url'] || 'https://www.googleapis.com/discovery/v1/apis/';
+  const discoveryUrl = argv['discovery-url'] || DISCOVERY_URL;
   const downloadPath =
     argv['download-path'] || path.join(__dirname, '../../../discovery');
   downloadDiscoveryDocs({discoveryUrl, downloadPath});

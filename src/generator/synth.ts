@@ -15,15 +15,24 @@ import * as execa from 'execa';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as gaxios from 'gaxios';
+import {Generator} from './generator';
+import {DISCOVERY_URL, ChangeSet} from './download';
 
-async function main() {
-  await execa('git', [
-    'config',
-    '--global',
-    'user.email',
-    '"yoshi-automation@google.com"',
-  ]);
-  await execa('git', ['config', '--global', 'user.name', '"Yoshi Automation"']);
+export enum Semverity {
+  PATCH = 1,
+  MINOR = 2,
+  MAJOR = 3,
+}
+
+export interface Changelog {
+  title: string;
+  description: string;
+  semverity: Semverity;
+}
+
+export async function synth() {
+  const gen = new Generator();
+  const changeSets = await gen.generateAllAPIs(DISCOVERY_URL, false);
   const statusResult = await execa('git', ['status']);
   const status = statusResult.stdout;
   const apiDir = path.resolve('./src/apis');
@@ -41,13 +50,35 @@ async function main() {
   console.log(`Changes found in ${dirs.length} APIs`);
   for (const dir of dirs) {
     try {
+      const apiChangeSets = changeSets.filter(x => x.apiId.startsWith(dir));
+      const {semverity, changelog} = createChangelog(apiChangeSets);
+      let prefix: string;
+      switch (semverity) {
+        case Semverity.PATCH:
+          prefix = 'fix';
+          break;
+        case Semverity.MINOR:
+          prefix = 'feat';
+          break;
+        case Semverity.MAJOR:
+          prefix = 'feat!';
+          break;
+      }
       console.log(`Submitting change for ${dir}...`);
       const branch = `api-${dir}`;
-      const title = `feat(${dir}): update the API`;
+      const title = `${prefix}(${dir}): update the API`;
       await execa('git', ['checkout', '-B', branch]);
       await execa('git', ['add', path.join('src/apis', dir)]);
       await execa('git', ['add', `discovery/${dir}-*`]);
-      await execa('git', ['commit', '-m', title]);
+      await execa('git', [
+        'commit',
+        '-m',
+        title,
+        '-m',
+        changelog,
+        '--author',
+        '"Yoshi Automation <yoshi-automation@google.com>"',
+      ]);
       await execa('git', ['push', 'origin', branch, '--force']);
       await gaxios.request({
         method: 'POST',
@@ -70,7 +101,68 @@ async function main() {
   }
 }
 
-main().catch(err => {
-  console.error(err);
-  throw err;
-});
+/**
+ * Given a set of changes, generate a changelog.
+ */
+export function createChangelog(changeSets: ChangeSet[]) {
+  const changelog: string[] = [];
+  const semverity = getSemverity(changeSets);
+  if (semverity === Semverity.MAJOR) {
+    changelog.push('BREAKING CHANGE: This release has breaking changes.');
+  }
+  for (const changeSet of changeSets) {
+    if (changeSet.changes.length > 0) {
+      changelog.push(`#### ${changeSet.apiId}`);
+      for (const action of ['DELETED', 'ADDED', 'CHANGED']) {
+        const inScope = changeSet.changes.filter(x => x.action === action);
+        if (inScope.length > 0) {
+          changelog.push(`The following keys were ${action.toLowerCase()}:`);
+          for (const r of inScope) {
+            changelog.push(`- ${r.keyName}`);
+          }
+          changelog.push('');
+        }
+      }
+    }
+    changelog.push('');
+  }
+  return {
+    semverity,
+    changelog: changelog.join('\n'),
+  };
+}
+
+/**
+ * Given a set of changes, figure out if the total
+ * changeset is semver patch, minor, or major.
+ */
+export function getSemverity(changeSets: ChangeSet[]) {
+  let semverity = Semverity.PATCH;
+  for (const changeSet of changeSets) {
+    for (const change of changeSet.changes) {
+      let changeSemverity: Semverity;
+      switch (change.action) {
+        case 'ADDED':
+          changeSemverity = Semverity.MINOR;
+          break;
+        case 'CHANGED':
+          changeSemverity = Semverity.PATCH;
+          break;
+        case 'DELETED':
+          changeSemverity = Semverity.MAJOR;
+          break;
+      }
+      if (changeSemverity > semverity) {
+        semverity = changeSemverity;
+      }
+    }
+  }
+  return semverity;
+}
+
+if (require.main === module) {
+  synth().catch(err => {
+    console.error(err);
+    throw err;
+  });
+}

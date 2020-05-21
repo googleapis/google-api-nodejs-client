@@ -21,7 +21,7 @@ import {URL} from 'url';
 import * as util from 'util';
 import Q from 'p-queue';
 import * as prettier from 'prettier';
-import {downloadDiscoveryDocs} from './download';
+import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
 import {addFragments} from './samplegen';
 
@@ -90,13 +90,17 @@ export class Generator {
   /**
    * Generate all APIs and write to files.
    */
-  async generateAllAPIs(discoveryUrl: string, useCache: boolean) {
+  async generateAllAPIs(
+    discoveryUrl: string,
+    useCache: boolean
+  ): Promise<ChangeSet[]> {
     const ignore = require('../../../ignore.json').ignore as string[];
     const discoveryPath = path.join(__dirname, '../../../discovery');
+    let changes = new Array<ChangeSet>();
     if (useCache) {
       console.log('Reading from cache...');
     } else {
-      await downloadDiscoveryDocs({
+      changes = await downloadDiscoveryDocs({
         includePrivate: this.options.includePrivate,
         discoveryUrl,
         downloadPath: discoveryPath,
@@ -109,42 +113,40 @@ export class Generator {
     const queue = new Q({concurrency: 25});
     console.log(`Generating ${apis.length} APIs...`);
     queue.addAll(
-      apis.map(api => {
-        return async () => {
-          // look at ignore.json to find a list of APIs to ignore
-          if (ignore.includes(api.id)) {
-            this.log(`Skipping API ${api.id}`);
-            return;
-          }
-          this.log(`Generating API for ${api.id}...`);
+      apis.map(api => async () => {
+        // look at ignore.json to find a list of APIs to ignore
+        if (ignore.includes(api.id)) {
+          this.log(`Skipping API ${api.id}`);
+          return;
+        }
+        this.log(`Generating API for ${api.id}...`);
+        this.logResult(
+          api.discoveryRestUrl,
+          'Attempting first generateAPI call...'
+        );
+        try {
+          const apiPath = path.join(
+            discoveryPath,
+            api.id.replace(':', '-') + '.json'
+          );
+          await this.generateAPI(apiPath);
+          this.logResult(api.discoveryRestUrl, 'GenerateAPI call success!');
+        } catch (e) {
           this.logResult(
             api.discoveryRestUrl,
-            'Attempting first generateAPI call...'
+            `GenerateAPI call failed with error: ${e}, moving on.`
           );
-          try {
-            const apiPath = path.join(
-              discoveryPath,
-              api.id.replace(':', '-') + '.json'
-            );
-            await this.generateAPI(apiPath);
-            this.logResult(api.discoveryRestUrl, 'GenerateAPI call success!');
-          } catch (e) {
-            this.logResult(
-              api.discoveryRestUrl,
-              `GenerateAPI call failed with error: ${e}, moving on.`
-            );
-            console.error(`Failed to generate API: ${api.id}`);
-            console.error(e);
-            console.log(
-              api.id +
-                '\n-----------\n' +
-                util.inspect(this.state.get(api.discoveryRestUrl), {
-                  maxArrayLength: null,
-                }) +
-                '\n'
-            );
-          }
-        };
+          console.error(`Failed to generate API: ${api.id}`);
+          console.error(e);
+          console.log(
+            api.id +
+              '\n-----------\n' +
+              util.inspect(this.state.get(api.discoveryRestUrl), {
+                maxArrayLength: null,
+              }) +
+              '\n'
+          );
+        }
       })
     );
     try {
@@ -154,6 +156,7 @@ export class Generator {
       console.error(e);
       console.log(util.inspect(this.state, {maxArrayLength: null}));
     }
+    return changes;
   }
 
   async generateIndex(metadata: Schema[]) {
