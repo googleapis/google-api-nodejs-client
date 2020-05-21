@@ -16,30 +16,65 @@ import * as assert from 'assert';
 import {describe, it, afterEach} from 'mocha';
 import * as nock from 'nock';
 import * as proxyquire from 'proxyquire';
-import * as synth from '../src/generator/synth';
+import * as Synth from '../src/generator/synth';
 import {ChangeSet} from '../src/generator/download';
 
 describe(__filename, () => {
   nock.disableNetConnect();
+  const cacheToken = process.env.GITHUB_TOKEN;
+  let changeSets: ChangeSet[] = [];
+  let stdout = '';
 
-  afterEach(() => nock.cleanAll());
+  const synth: typeof Synth = proxyquire('../src/generator/synth', {
+    './generator': {
+      Generator: class {
+        async generateAllAPIs() {
+          return changeSets;
+        }
+      },
+    },
+    execa: async (...params: {}[]) => {
+      console.log(...params);
+      return {stdout};
+    },
+  });
+
+  afterEach(() => {
+    changeSets = [];
+    nock.cleanAll();
+    process.env.GITHUB_TOKEN = cacheToken;
+  });
 
   it('should run synth', async () => {
-    const {synth} = proxyquire('../src/generator/synth', {
-      './generator': {
-        Generator: class {
-          async generateAllAPIs() {}
-        },
+    changeSets = [
+      {
+        apiId: 'blogger:v1',
+        changes: [
+          {
+            action: 'ADDED',
+            keyName: 'key1',
+          },
+        ],
       },
-      execa: async (...params: {}[]) => {
-        console.log(...params);
-        return {stdout: ''};
-      },
-    });
-    nock('https://api.github.com')
+    ];
+    stdout = `
+      On branch sub1
+      Changes not staged for commit:
+        (use "git add <file>..." to update what will be committed)
+        (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/apis/blogger/v1.ts
+    `;
+    process.env.GITHUB_TOKEN = '12345';
+    const scope = nock('https://api.github.com')
       .post('/repos/googleapis/google-api-nodejs-client/pulls')
       .reply(200);
-    await synth();
+    await synth.synth();
+    scope.done();
+  });
+
+  it('should throw if no token is provided', async () => {
+    process.env.GITHUB_TOKEN = '';
+    await assert.rejects(synth.synth, /please include a GITHUB_TOKEN/);
   });
 
   it('should create a changelog', () => {
