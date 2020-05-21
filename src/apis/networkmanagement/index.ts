@@ -14,12 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {networkmanagement_v1} from './v1';
 import {networkmanagement_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: networkmanagement_v1.Networkmanagement,
   v1beta1: networkmanagement_v1beta1.Networkmanagement,
 };
 
+export function networkmanagement(
+  version: 'v1'
+): networkmanagement_v1.Networkmanagement;
+export function networkmanagement(
+  options: networkmanagement_v1.Options
+): networkmanagement_v1.Networkmanagement;
 export function networkmanagement(
   version: 'v1beta1'
 ): networkmanagement_v1beta1.Networkmanagement;
@@ -27,10 +35,16 @@ export function networkmanagement(
   options: networkmanagement_v1beta1.Options
 ): networkmanagement_v1beta1.Networkmanagement;
 export function networkmanagement<
-  T = networkmanagement_v1beta1.Networkmanagement
+  T =
+    | networkmanagement_v1.Networkmanagement
+    | networkmanagement_v1beta1.Networkmanagement
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | networkmanagement_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | networkmanagement_v1.Options
+    | 'v1beta1'
+    | networkmanagement_v1beta1.Options
 ) {
   return getAPI<T>('networkmanagement', versionOrOptions, VERSIONS, this);
 }
