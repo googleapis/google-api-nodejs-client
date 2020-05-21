@@ -14,12 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {abusiveexperiencereport_index} from './index';
 import {abusiveexperiencereport_v1} from './v1';
 
 export const VERSIONS = {
+  index: abusiveexperiencereport_index.Abusiveexperiencereport,
   v1: abusiveexperiencereport_v1.Abusiveexperiencereport,
 };
 
+export function abusiveexperiencereport(
+  version: 'index'
+): abusiveexperiencereport_index.Abusiveexperiencereport;
+export function abusiveexperiencereport(
+  options: abusiveexperiencereport_index.Options
+): abusiveexperiencereport_index.Abusiveexperiencereport;
 export function abusiveexperiencereport(
   version: 'v1'
 ): abusiveexperiencereport_v1.Abusiveexperiencereport;
@@ -27,10 +35,16 @@ export function abusiveexperiencereport(
   options: abusiveexperiencereport_v1.Options
 ): abusiveexperiencereport_v1.Abusiveexperiencereport;
 export function abusiveexperiencereport<
-  T = abusiveexperiencereport_v1.Abusiveexperiencereport
+  T =
+    | abusiveexperiencereport_index.Abusiveexperiencereport
+    | abusiveexperiencereport_v1.Abusiveexperiencereport
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | abusiveexperiencereport_v1.Options
+  versionOrOptions:
+    | 'index'
+    | abusiveexperiencereport_index.Options
+    | 'v1'
+    | abusiveexperiencereport_v1.Options
 ) {
   return getAPI<T>('abusiveexperiencereport', versionOrOptions, VERSIONS, this);
 }
