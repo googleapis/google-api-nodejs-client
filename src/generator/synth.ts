@@ -61,7 +61,7 @@ export async function synth() {
           prefix = 'feat';
           break;
         case Semverity.MAJOR:
-          prefix = 'feat!:';
+          prefix = 'feat!';
           break;
       }
       console.log(`Submitting change for ${dir}...`);
