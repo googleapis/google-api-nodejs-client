@@ -14,14 +14,22 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {accesscontextmanager_index} from './index';
 import {accesscontextmanager_v1} from './v1';
 import {accesscontextmanager_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  index: accesscontextmanager_index.Accesscontextmanager,
   v1: accesscontextmanager_v1.Accesscontextmanager,
   v1beta: accesscontextmanager_v1beta.Accesscontextmanager,
 };
 
+export function accesscontextmanager(
+  version: 'index'
+): accesscontextmanager_index.Accesscontextmanager;
+export function accesscontextmanager(
+  options: accesscontextmanager_index.Options
+): accesscontextmanager_index.Accesscontextmanager;
 export function accesscontextmanager(
   version: 'v1'
 ): accesscontextmanager_v1.Accesscontextmanager;
@@ -36,11 +44,14 @@ export function accesscontextmanager(
 ): accesscontextmanager_v1beta.Accesscontextmanager;
 export function accesscontextmanager<
   T =
+    | accesscontextmanager_index.Accesscontextmanager
     | accesscontextmanager_v1.Accesscontextmanager
     | accesscontextmanager_v1beta.Accesscontextmanager
 >(
   this: GoogleConfigurable,
   versionOrOptions:
+    | 'index'
+    | accesscontextmanager_index.Options
     | 'v1'
     | accesscontextmanager_v1.Options
     | 'v1beta'
