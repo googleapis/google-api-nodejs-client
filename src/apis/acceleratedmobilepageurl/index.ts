@@ -14,12 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {acceleratedmobilepageurl_index} from './index';
 import {acceleratedmobilepageurl_v1} from './v1';
 
 export const VERSIONS = {
+  index: acceleratedmobilepageurl_index.Acceleratedmobilepageurl,
   v1: acceleratedmobilepageurl_v1.Acceleratedmobilepageurl,
 };
 
+export function acceleratedmobilepageurl(
+  version: 'index'
+): acceleratedmobilepageurl_index.Acceleratedmobilepageurl;
+export function acceleratedmobilepageurl(
+  options: acceleratedmobilepageurl_index.Options
+): acceleratedmobilepageurl_index.Acceleratedmobilepageurl;
 export function acceleratedmobilepageurl(
   version: 'v1'
 ): acceleratedmobilepageurl_v1.Acceleratedmobilepageurl;
@@ -27,10 +35,16 @@ export function acceleratedmobilepageurl(
   options: acceleratedmobilepageurl_v1.Options
 ): acceleratedmobilepageurl_v1.Acceleratedmobilepageurl;
 export function acceleratedmobilepageurl<
-  T = acceleratedmobilepageurl_v1.Acceleratedmobilepageurl
+  T =
+    | acceleratedmobilepageurl_index.Acceleratedmobilepageurl
+    | acceleratedmobilepageurl_v1.Acceleratedmobilepageurl
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | acceleratedmobilepageurl_v1.Options
+  versionOrOptions:
+    | 'index'
+    | acceleratedmobilepageurl_index.Options
+    | 'v1'
+    | acceleratedmobilepageurl_v1.Options
 ) {
   return getAPI<T>(
     'acceleratedmobilepageurl',
