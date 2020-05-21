@@ -13,13 +13,34 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, afterEach} from 'mocha';
 import * as nock from 'nock';
+import * as proxyquire from 'proxyquire';
 import * as synth from '../src/generator/synth';
 import {ChangeSet} from '../src/generator/download';
 
 describe(__filename, () => {
   nock.disableNetConnect();
+
+  afterEach(() => nock.cleanAll());
+
+  it('should run synth', async () => {
+    const {synth} = proxyquire('../src/generator/synth', {
+      './generator': {
+        Generator: class {
+          async generateAllAPIs() {}
+        },
+      },
+      execa: async (...params: {}[]) => {
+        console.log(...params);
+        return {stdout: ''};
+      },
+    });
+    nock('https://api.github.com')
+      .post('/repos/googleapis/google-api-nodejs-client/pulls')
+      .reply(200);
+    await synth();
+  });
 
   it('should create a changelog', () => {
     const changeSets: ChangeSet[] = [

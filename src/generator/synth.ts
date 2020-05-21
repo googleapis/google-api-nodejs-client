@@ -52,11 +52,21 @@ export async function synth() {
     try {
       const apiChangeSets = changeSets.filter(x => x.apiId.startsWith(dir));
       const {semverity, changelog} = createChangelog(apiChangeSets);
-      console.log(semverity);
-      console.log(changelog);
+      let prefix: string;
+      switch (semverity) {
+        case Semverity.PATCH:
+          prefix = 'fix';
+          break;
+        case Semverity.MINOR:
+          prefix = 'feat';
+          break;
+        case Semverity.MAJOR:
+          prefix = 'feat!:';
+          break;
+      }
       console.log(`Submitting change for ${dir}...`);
       const branch = `api-${dir}`;
-      const title = `feat(${dir}): update the API`;
+      const title = `${prefix}(${dir}): update the API`;
       await execa('git', ['checkout', '-B', branch]);
       await execa('git', ['add', path.join('src/apis', dir)]);
       await execa('git', ['add', `discovery/${dir}-*`]);
@@ -64,6 +74,8 @@ export async function synth() {
         'commit',
         '-m',
         title,
+        '-m',
+        changelog,
         '--author',
         '"Yoshi Automation <yoshi-automation@google.com>"',
       ]);
