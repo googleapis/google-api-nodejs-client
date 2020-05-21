@@ -31,6 +31,7 @@
     "generate": "node build/src/generator/generate.js",
     "docs-test": "linkinator docs",
     "predocs-test": "npm run docs",
+    "presubmit-prs": "npm run compile",
     "submit-prs": "node build/src/generator/synth.js",
     "prelint": "cd samples; npm link ../; npm i",
     "predownload": "npm run build-tools",
