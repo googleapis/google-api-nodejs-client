@@ -2,7 +2,7 @@
 
 # blogger
 
-> API for access to the data within Blogger.
+> The Blogger API provides access to posts, comments and pages of a Blogger blog.
 
 ## Installation
 
