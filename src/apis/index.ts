@@ -32,6 +32,7 @@ import * as androidmanagement from './androidmanagement';
 import * as androidpublisher from './androidpublisher';
 import * as appengine from './appengine';
 import * as appsactivity from './appsactivity';
+import * as artifactregistry from './artifactregistry';
 import * as bigquery from './bigquery';
 import * as bigqueryconnection from './bigqueryconnection';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
@@ -207,6 +208,7 @@ export const APIS: APIList = {
   androidpublisher: androidpublisher.VERSIONS,
   appengine: appengine.VERSIONS,
   appsactivity: appsactivity.VERSIONS,
+  artifactregistry: artifactregistry.VERSIONS,
   bigquery: bigquery.VERSIONS,
   bigqueryconnection: bigqueryconnection.VERSIONS,
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
@@ -379,6 +381,7 @@ export class GeneratedAPIs {
   androidpublisher = androidpublisher.androidpublisher;
   appengine = appengine.appengine;
   appsactivity = appsactivity.appsactivity;
+  artifactregistry = artifactregistry.artifactregistry;
   bigquery = bigquery.bigquery;
   bigqueryconnection = bigqueryconnection.bigqueryconnection;
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
