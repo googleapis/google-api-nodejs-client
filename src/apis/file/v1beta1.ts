@@ -344,10 +344,6 @@ export namespace file_v1beta1 {
       ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule;
     } | null;
     /**
-     * Optional. The MaintenanceSettings associated with instance.
-     */
-    maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
-    /**
      * Unique name of the resource. It uses the form:  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      */
     name?: string | null;
@@ -404,15 +400,6 @@ export namespace file_v1beta1 {
      * The scheduled start time for the maintenance.
      */
     startTime?: string | null;
-  }
-  /**
-   * Maintenance settings associated with instance. Allows service producers and end users to assign settings that controls maintenance on this instance.
-   */
-  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings {
-    /**
-     * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
-     */
-    exclude?: boolean | null;
   }
   /**
    * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
