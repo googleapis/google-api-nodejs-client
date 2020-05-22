@@ -430,7 +430,7 @@
       "name": "apigee",
       "version": "v1",
       "title": "Apigee API",
-      "description": "The Apigee API lets you programmatically manage Apigee hybrid with a set of RESTful operations, including: - Create, edit, and delete API proxies - Manage users - Deploy and undeploy proxy revisions - Configure environments For information on using the APIs described in this section, see Get started using the APIs </hybrid/api-get-started>. *Note:* This product is available as a free trial for a time period of 60 days.",
+      "description": "The Apigee API lets you programmatically manage Apigee hybrid with a set of RESTful operations, including: - Create, edit, and delete API proxies - Manage users - Deploy and undeploy proxy revisions - Configure environments For information on using the APIs described in this section, see Get started using the APIs <docs.apigee.com/hybrid/latest/api-get-started>. *Note:* This product is available as a free trial for a time period of 60 days.",
       "discoveryRestUrl": "https://apigee.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -528,6 +528,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/google-apps/activity/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "artifactregistry:v1beta1",
+      "name": "artifactregistry",
+      "version": "v1beta1",
+      "title": "Artifact Registry API",
+      "description": "Store and manage build artifacts in a scalable and integrated service built on Google infrastructure.",
+      "discoveryRestUrl": "https://artifactregistry.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/artifacts/docs/",
       "preferred": true
     },
     {
@@ -701,18 +716,14 @@
       "id": "blogger:v2",
       "name": "blogger",
       "version": "v2",
-      "title": "Blogger API",
-      "description": "API for access to the data within Blogger.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/blogger/v2/rest",
-      "discoveryLink": "./apis/blogger/v2/rest",
+      "title": "Blogger API v3",
+      "description": "The Blogger API provides access to posts, comments and pages of a Blogger blog.",
+      "discoveryRestUrl": "https://blogger.googleapis.com/$discovery/rest?version=v2",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/blogger-16.png",
-        "x32": "https://www.google.com/images/icons/product/blogger-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/blogger/docs/2.0/json/getting_started",
-      "labels": [
-        "limited_availability"
-      ],
+      "documentationLink": "https://developers.google.com/blogger/docs/3.0/getting_started",
       "preferred": false
     },
     {
@@ -720,18 +731,14 @@
       "id": "blogger:v3",
       "name": "blogger",
       "version": "v3",
-      "title": "Blogger API",
-      "description": "API for access to the data within Blogger.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/blogger/v3/rest",
-      "discoveryLink": "./apis/blogger/v3/rest",
+      "title": "Blogger API v3",
+      "description": "The Blogger API provides access to posts, comments and pages of a Blogger blog.",
+      "discoveryRestUrl": "https://blogger.googleapis.com/$discovery/rest?version=v3",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/blogger-16.png",
-        "x32": "https://www.google.com/images/icons/product/blogger-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/blogger/docs/3.0/getting_started",
-      "labels": [
-        "limited_availability"
-      ],
       "preferred": true
     },
     {
@@ -1695,6 +1702,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "dialogflow:v3alpha1",
+      "name": "dialogflow",
+      "version": "v3alpha1",
+      "title": "Dialogflow API",
+      "description": "Builds conversational interfaces (for example, chatbots, and voice-powered apps and devices).",
+      "discoveryRestUrl": "https://dialogflow.googleapis.com/$discovery/rest?version=v3alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/dialogflow/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "dialogflow:v2",
       "name": "dialogflow",
       "version": "v2",
@@ -2085,6 +2107,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "firebaseml:v1",
+      "name": "firebaseml",
+      "version": "v1",
+      "title": "Firebase ML API",
+      "description": "Access custom machine learning models hosted via Firebase ML.",
+      "discoveryRestUrl": "https://firebaseml.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://firebase.google.com",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "firebaseml:v1beta2",
       "name": "firebaseml",
       "version": "v1beta2",
@@ -2096,7 +2133,7 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://firebase.google.com",
-      "preferred": true
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -2768,6 +2805,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "networkmanagement:v1",
+      "name": "networkmanagement",
+      "version": "v1",
+      "title": "Network Management API",
+      "description": "The Network Management API provides a collection of network performance monitoring and diagnostic capabilities.",
+      "discoveryRestUrl": "https://networkmanagement.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "networkmanagement:v1beta1",
       "name": "networkmanagement",
       "version": "v1beta1",
@@ -2779,7 +2831,7 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/",
-      "preferred": true
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -2886,22 +2938,6 @@
       },
       "documentationLink": "https://cloud.google.com/compute/docs/oslogin/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "pagespeedonline:v1",
-      "name": "pagespeedonline",
-      "version": "v1",
-      "title": "PageSpeed Insights API",
-      "description": "Analyzes the performance of a web page and provides tailored suggestions to make that page faster.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/pagespeedonline/v1/rest",
-      "discoveryLink": "./apis/pagespeedonline/v1/rest",
-      "icons": {
-        "x16": "https://www.google.com/images/icons/product/pagespeed-16.png",
-        "x32": "https://www.google.com/images/icons/product/pagespeed-32.png"
-      },
-      "documentationLink": "https://developers.google.com/speed/docs/insights/v1/getting_started",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -3891,9 +3927,8 @@
       "name": "toolresults",
       "version": "v1beta3",
       "title": "Cloud Tool Results API",
-      "description": "Reads and publishes results from Firebase Test Lab.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/toolresults/v1beta3/rest",
-      "discoveryLink": "./apis/toolresults/v1beta3/rest",
+      "description": "API to publish and access results from developer tools.",
+      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v1beta3",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3929,6 +3964,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/tpu/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "trafficdirector:v2",
+      "name": "trafficdirector",
+      "version": "v2",
+      "title": "Traffic Director API",
+      "description": "",
+      "discoveryRestUrl": "https://trafficdirector.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/v2_overview#management-server",
       "preferred": true
     },
     {
@@ -4170,7 +4220,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/security-scanner/",
+      "documentationLink": "https://cloud.google.com/security-command-center/docs/concepts-web-security-scanner-overview/",
       "preferred": false
     },
     {
@@ -4185,7 +4235,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/security-scanner/",
+      "documentationLink": "https://cloud.google.com/security-command-center/docs/concepts-web-security-scanner-overview/",
       "preferred": false
     },
     {
@@ -4200,7 +4250,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/security-scanner/",
+      "documentationLink": "https://cloud.google.com/security-command-center/docs/concepts-web-security-scanner-overview/",
       "preferred": true
     },
     {
