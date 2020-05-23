@@ -254,7 +254,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoscalingPolicies/{autoscalingPoliciesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "dataproc.projects.locations.autoscalingPolicies.setIamPolicy",
@@ -557,7 +557,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflowTemplates/{workflowTemplatesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "dataproc.projects.locations.workflowTemplates.setIamPolicy",
@@ -791,7 +791,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/autoscalingPolicies/{autoscalingPoliciesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "dataproc.projects.regions.autoscalingPolicies.setIamPolicy",
@@ -1178,7 +1178,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/clusters/{clustersId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "dataproc.projects.regions.clusters.setIamPolicy",
@@ -1492,7 +1492,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/jobs/{jobsId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "dataproc.projects.regions.jobs.setIamPolicy",
@@ -1764,7 +1764,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/operations/{operationsId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "dataproc.projects.regions.operations.setIamPolicy",
@@ -2039,7 +2039,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/workflowTemplates/{workflowTemplatesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "dataproc.projects.regions.workflowTemplates.setIamPolicy",
@@ -2129,7 +2129,7 @@
       }
     }
   },
-  "revision": "20200409",
+  "revision": "20200511",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2239,7 +2239,7 @@
       "properties": {
         "condition": {
           "$ref": "Expr",
-          "description": "The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently."
+          "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
           "description": "Specifies the identities requesting access for a Cloud Platform resource. members can have the following values:\nallUsers: A special identifier that represents anyone who is  on the internet; with or without a Google account.\nallAuthenticatedUsers: A special identifier that represents anyone  who is authenticated with a Google account or a service account.\nuser:{emailid}: An email address that represents a specific Google  account. For example, alice@example.com .\nserviceAccount:{emailid}: An email address that represents a service  account. For example, my-other-app@appspot.gserviceaccount.com.\ngroup:{emailid}: An email address that represents a Google group.  For example, admins@example.com.\ndeleted:user:{emailid}?uid={uniqueid}: An email address (plus unique  identifier) representing a user that has been recently deleted. For  example, alice@example.com?uid=123456789012345678901. If the user is  recovered, this value reverts to user:{emailid} and the recovered user  retains the role in the binding.\ndeleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus  unique identifier) representing a service account that has been recently  deleted. For example,  my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901.  If the service account is undeleted, this value reverts to  serviceAccount:{emailid} and the undeleted service account retains the  role in the binding.\ndeleted:group:{emailid}?uid={uniqueid}: An email address (plus unique  identifier) representing a Google group that has been recently  deleted. For example, admins@example.com?uid=123456789012345678901. If  the group is recovered, this value reverts to group:{emailid} and the  recovered group retains the role in the binding.\ndomain:{domain}: The G Suite domain (primary) that represents all the  users of that domain. For example, google.com or example.com.",
@@ -2690,7 +2690,7 @@
       "properties": {
         "options": {
           "$ref": "GetPolicyOptions",
-          "description": "OPTIONAL: A GetPolicyOptions object for specifying options to GetIamPolicy. This field is only used by Cloud IAM."
+          "description": "OPTIONAL: A GetPolicyOptions object for specifying options to GetIamPolicy."
         }
       },
       "type": "object"
@@ -2700,7 +2700,7 @@
       "id": "GetPolicyOptions",
       "properties": {
         "requestedPolicyVersion": {
-          "description": "Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.",
+          "description": "Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -3547,7 +3547,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.Optionally, a binding can specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both.JSON example:\n{\n  \"bindings\": [\n    {\n      \"role\": \"roles/resourcemanager.organizationAdmin\",\n      \"members\": [\n        \"user:mike@example.com\",\n        \"group:admins@example.com\",\n        \"domain:google.com\",\n        \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n      ]\n    },\n    {\n      \"role\": \"roles/resourcemanager.organizationViewer\",\n      \"members\": [\"user:eve@example.com\"],\n      \"condition\": {\n        \"title\": \"expirable access\",\n        \"description\": \"Does not grant access after Sep 2020\",\n        \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n      }\n    }\n  ],\n  \"etag\": \"BwWWja0YfJA=\",\n  \"version\": 3\n}\nYAML example:\nbindings:\n- members:\n  - user:mike@example.com\n  - group:admins@example.com\n  - domain:google.com\n  - serviceAccount:my-project-id@appspot.gserviceaccount.com\n  role: roles/resourcemanager.organizationAdmin\n- members:\n  - user:eve@example.com\n  role: roles/resourcemanager.organizationViewer\n  condition:\n    title: expirable access\n    description: Does not grant access after Sep 2020\n    expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n- etag: BwWWja0YfJA=\n- version: 3\nFor a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example:\n{\n  \"bindings\": [\n    {\n      \"role\": \"roles/resourcemanager.organizationAdmin\",\n      \"members\": [\n        \"user:mike@example.com\",\n        \"group:admins@example.com\",\n        \"domain:google.com\",\n        \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n      ]\n    },\n    {\n      \"role\": \"roles/resourcemanager.organizationViewer\",\n      \"members\": [\n        \"user:eve@example.com\"\n      ],\n      \"condition\": {\n        \"title\": \"expirable access\",\n        \"description\": \"Does not grant access after Sep 2020\",\n        \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n      }\n    }\n  ],\n  \"etag\": \"BwWWja0YfJA=\",\n  \"version\": 3\n}\nYAML example:\nbindings:\n- members:\n  - user:mike@example.com\n  - group:admins@example.com\n  - domain:google.com\n  - serviceAccount:my-project-id@appspot.gserviceaccount.com\n  role: roles/resourcemanager.organizationAdmin\n- members:\n  - user:eve@example.com\n  role: roles/resourcemanager.organizationViewer\n  condition:\n    title: expirable access\n    description: Does not grant access after Sep 2020\n    expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n- etag: BwWWja0YfJA=\n- version: 3\nFor a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "bindings": {
@@ -3563,7 +3563,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations:\nGetting a policy that includes a conditional role binding\nAdding a conditional role binding to a policy\nChanging a conditional role binding in a policy\nRemoving any role binding, with or without a condition, from a policy  that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.",
+          "description": "Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations:\nGetting a policy that includes a conditional role binding\nAdding a conditional role binding to a policy\nChanging a conditional role binding in a policy\nRemoving any role binding, with or without a condition, from a policy  that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
