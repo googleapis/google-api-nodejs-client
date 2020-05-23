@@ -14,7 +14,7 @@
   "canonicalName": "WebSecurityScanner",
   "description": "Scans your Compute and App Engine apps for common web vulnerabilities.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/security-scanner/",
+  "documentationLink": "https://cloud.google.com/security-command-center/docs/concepts-web-security-scanner-overview/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20200411",
+  "revision": "20200516",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -874,7 +874,7 @@
           "description": "The authentication configuration. If specified, service will use the\nauthentication configuration during scanning."
         },
         "blacklistPatterns": {
-          "description": "The blacklist URL patterns as described in\nhttps://cloud.google.com/security-scanner/docs/excluded-urls",
+          "description": "The excluded URL patterns as described in\nhttps://cloud.google.com/security-command-center/docs/how-to-use-web-security-scanner#excluding_urls",
           "items": {
             "type": "string"
           },
@@ -909,7 +909,7 @@
           "type": "array"
         },
         "targetPlatforms": {
-          "description": "Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be\nused as a default.",
+          "description": "Set of Google Cloud platforms targeted by the scan. If empty, APP_ENGINE\nwill be used as a default.",
           "enumDescriptions": [
             "The target platform is unknown. Requests with this enum value will be\nrejected with INVALID_ARGUMENT error.",
             "Google App Engine service.",

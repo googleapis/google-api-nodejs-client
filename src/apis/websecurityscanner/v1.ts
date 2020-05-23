@@ -185,7 +185,7 @@ export namespace websecurityscanner_v1 {
      */
     finalUrl?: string | null;
     /**
-     * Output only. The type of the Finding. Detailed and up-to-date information on findings can be found here: https://cloud.google.com/security-scanner/docs/scan-result-details
+     * Output only. The type of the Finding. Detailed and up-to-date information on findings can be found here: https://cloud.google.com/security-command-center/docs/how-to-remediate-web-security-scanner-findings
      */
     findingType?: string | null;
     /**
@@ -398,7 +398,7 @@ export namespace websecurityscanner_v1 {
      */
     authentication?: Schema$Authentication;
     /**
-     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+     * The excluded URL patterns as described in https://cloud.google.com/security-command-center/docs/how-to-use-web-security-scanner#excluding_urls
      */
     blacklistPatterns?: string[] | null;
     /**
@@ -406,11 +406,11 @@ export namespace websecurityscanner_v1 {
      */
     displayName?: string | null;
     /**
-     * Controls export of scan configurations and results to Cloud Security Command Center.
+     * Controls export of scan configurations and results to Security Command Center.
      */
     exportToSecurityCommandCenter?: string | null;
     /**
-     * Whether the scan config is managed by Cloud Web Security Scanner, output only.
+     * Whether the scan config is managed by Web Security Scanner, output only.
      */
     managedScan?: boolean | null;
     /**
