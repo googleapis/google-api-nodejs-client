@@ -110,9 +110,9 @@ export class Generator {
     const indexPath = path.join(discoveryPath, 'index.json');
     const file = await readFile(indexPath, 'utf8');
     const apis = (JSON.parse(file) as Schemas).items;
-    const queue = new Q({concurrency: 25});
+    const queue = new Q({concurrency: 50});
     console.log(`Generating ${apis.length} APIs...`);
-    queue.addAll(
+    await queue.addAll(
       apis.map(api => async () => {
         // look at ignore.json to find a list of APIs to ignore
         if (ignore.includes(api.id)) {
@@ -149,13 +149,7 @@ export class Generator {
         }
       })
     );
-    try {
-      await queue.onIdle();
-      await this.generateIndex(apis);
-    } catch (e) {
-      console.error(e);
-      console.log(util.inspect(this.state, {maxArrayLength: null}));
-    }
+    await this.generateIndex(apis);
     return changes;
   }
 
