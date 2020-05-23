@@ -39,21 +39,9 @@ export namespace youtube_v3 {
 
   interface StandardParameters {
     /**
-     * V1 error format.
-     */
-    '$.xgafv'?: string;
-    /**
-     * OAuth access token.
-     */
-    access_token?: string;
-    /**
-     * Data format for response.
+     * Data format for the response.
      */
     alt?: string;
-    /**
-     * JSONP
-     */
-    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -71,23 +59,19 @@ export namespace youtube_v3 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Legacy upload protocol for media (e.g. "media", "multipart").
+     * Deprecated. Please use quotaUser instead.
      */
-    uploadType?: string;
-    /**
-     * Upload protocol for media (e.g. "raw", "multipart").
-     */
-    upload_protocol?: string;
+    userIp?: string;
   }
 
   /**
-   * YouTube Data API v3
+   * YouTube Data API
    *
-   * The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists, and channels.
+   * Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.
    *
    * @example
    * const {google} = require('googleapis');
@@ -174,7 +158,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$AccessPolicy {
     /**
-     * The value of &lt;code&gt;allowed&lt;/code&gt; indicates whether the access to the policy is allowed or denied by default.
+     * The value of allowed indicates whether the access to the policy is allowed or denied by default.
      */
     allowed?: boolean | null;
     /**
@@ -183,15 +167,15 @@ export namespace youtube_v3 {
     exception?: string[] | null;
   }
   /**
-   * An &lt;code&gt;&lt;strong&gt;activity&lt;/strong&gt;&lt;/code&gt; resource contains information about an action that a particular channel, or user, has taken on YouTube.The actions reported in activity feeds include rating a video, sharing a video, marking a video as a favorite, commenting on a video, uploading a video, and so forth. Each &lt;code&gt;activity&lt;/code&gt; resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded.
+   * An activity resource contains information about an action that a particular channel, or user, has taken on YouTube.The actions reported in activity feeds include rating a video, sharing a video, marking a video as a favorite, commenting on a video, uploading a video, and so forth. Each activity resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded.
    */
   export interface Schema$Activity {
     /**
-     * The &lt;code&gt;contentDetails&lt;/code&gt; object contains information about the content associated with the activity. For example, if the &lt;code&gt;snippet.type&lt;/code&gt; value is &lt;code&gt;videoRated&lt;/code&gt;, then the &lt;code&gt;contentDetails&lt;/code&gt; object&#39;s content identifies the rated video.
+     * The contentDetails object contains information about the content associated with the activity. For example, if the snippet.type value is videoRated, then the contentDetails object&#39;s content identifies the rated video.
      */
     contentDetails?: Schema$ActivityContentDetails;
     /**
-     * Etag of this resource
+     * Etag of this resource.
      */
     etag?: string | null;
     /**
@@ -199,11 +183,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#activity&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#activity&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the activity, including the activity&#39;s type and group ID.
+     * The snippet object contains basic details about the activity, including the activity&#39;s type and group ID.
      */
     snippet?: Schema$ActivitySnippet;
   }
@@ -212,47 +196,47 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetails {
     /**
-     * The &lt;code&gt;bulletin&lt;/code&gt; object contains details about a channel bulletin post. This object is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;bulletin&lt;/code&gt;.
+     * The bulletin object contains details about a channel bulletin post. This object is only present if the snippet.type is bulletin.
      */
     bulletin?: Schema$ActivityContentDetailsBulletin;
     /**
-     * The &lt;code&gt;channelItem&lt;/code&gt; object contains details about a resource which was added to a channel. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;channelItem&lt;/code&gt;.
+     * The channelItem object contains details about a resource which was added to a channel. This property is only present if the snippet.type is channelItem.
      */
     channelItem?: Schema$ActivityContentDetailsChannelItem;
     /**
-     * The &lt;code&gt;comment&lt;/code&gt; object contains information about a resource that received a comment. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;comment&lt;/code&gt;.
+     * The comment object contains information about a resource that received a comment. This property is only present if the snippet.type is comment.
      */
     comment?: Schema$ActivityContentDetailsComment;
     /**
-     * The &lt;code&gt;favorite&lt;/code&gt; object contains information about a video that was marked as a favorite video. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;favorite&lt;/code&gt;.
+     * The favorite object contains information about a video that was marked as a favorite video. This property is only present if the snippet.type is favorite.
      */
     favorite?: Schema$ActivityContentDetailsFavorite;
     /**
-     * The &lt;code&gt;like&lt;/code&gt; object contains information about a resource that received a positive (like) rating. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;like&lt;/code&gt;.
+     * The like object contains information about a resource that received a positive (like) rating. This property is only present if the snippet.type is like.
      */
     like?: Schema$ActivityContentDetailsLike;
     /**
-     * The &lt;code&gt;playlistItem&lt;/code&gt; object contains information about a new playlist item. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;playlistItem&lt;/code&gt;.
+     * The playlistItem object contains information about a new playlist item. This property is only present if the snippet.type is playlistItem.
      */
     playlistItem?: Schema$ActivityContentDetailsPlaylistItem;
     /**
-     * The &lt;code&gt;promotedItem&lt;/code&gt; object contains details about a resource which is being promoted. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;promotedItem&lt;/code&gt;.
+     * The promotedItem object contains details about a resource which is being promoted. This property is only present if the snippet.type is promotedItem.
      */
     promotedItem?: Schema$ActivityContentDetailsPromotedItem;
     /**
-     * The &lt;code&gt;recommendation&lt;/code&gt; object contains information about a recommended resource. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;recommendation&lt;/code&gt;.
+     * The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation.
      */
     recommendation?: Schema$ActivityContentDetailsRecommendation;
     /**
-     * The &lt;code&gt;social&lt;/code&gt; object contains details about a social network post. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;social&lt;/code&gt;.
+     * The social object contains details about a social network post. This property is only present if the snippet.type is social.
      */
     social?: Schema$ActivityContentDetailsSocial;
     /**
-     * The &lt;code&gt;subscription&lt;/code&gt; object contains information about a channel that a user subscribed to. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;subscription&lt;/code&gt;.
+     * The subscription object contains information about a channel that a user subscribed to. This property is only present if the snippet.type is subscription.
      */
     subscription?: Schema$ActivityContentDetailsSubscription;
     /**
-     * The &lt;code&gt;upload&lt;/code&gt; object contains information about the uploaded video. This property is only present if the &lt;code&gt;snippet.type&lt;/code&gt; is &lt;code&gt;upload&lt;/code&gt;.
+     * The upload object contains information about the uploaded video. This property is only present if the snippet.type is upload.
      */
     upload?: Schema$ActivityContentDetailsUpload;
   }
@@ -261,7 +245,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsBulletin {
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object contains information that identifies the resource associated with a bulletin post. @mutable youtube.activities.insert
+     * The resourceId object contains information that identifies the resource associated with a bulletin post.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -270,7 +254,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsChannelItem {
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object contains information that identifies the resource that was added to the channel.
+     * The resourceId object contains information that identifies the resource that was added to the channel.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -279,7 +263,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsComment {
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object contains information that identifies the resource associated with the comment.
+     * The resourceId object contains information that identifies the resource associated with the comment.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -288,7 +272,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsFavorite {
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object contains information that identifies the resource that was marked as a favorite.
+     * The resourceId object contains information that identifies the resource that was marked as a favorite.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -297,7 +281,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsLike {
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object contains information that identifies the rated resource.
+     * The resourceId object contains information that identifies the rated resource.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -314,7 +298,7 @@ export namespace youtube_v3 {
      */
     playlistItemId?: string | null;
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object contains information about the resource that was added to the playlist.
+     * The resourceId object contains information about the resource that was added to the playlist.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -372,11 +356,11 @@ export namespace youtube_v3 {
      */
     reason?: string | null;
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object contains information that identifies the recommended resource.
+     * The resourceId object contains information that identifies the recommended resource.
      */
     resourceId?: Schema$ResourceId;
     /**
-     * The &lt;code&gt;seedResourceId&lt;/code&gt; object contains information about the resource that caused the recommendation.
+     * The seedResourceId object contains information about the resource that caused the recommendation.
      */
     seedResourceId?: Schema$ResourceId;
   }
@@ -397,7 +381,7 @@ export namespace youtube_v3 {
      */
     referenceUrl?: string | null;
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object encapsulates information that identifies the resource associated with a social network post.
+     * The resourceId object encapsulates information that identifies the resource associated with a social network post.
      */
     resourceId?: Schema$ResourceId;
     /**
@@ -410,7 +394,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsSubscription {
     /**
-     * The &lt;code&gt;resourceId&lt;/code&gt; object contains information that identifies the resource that the user subscribed to.
+     * The resourceId object contains information that identifies the resource that the user subscribed to.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -432,31 +416,31 @@ export namespace youtube_v3 {
      * Serialized EventId of the request which produced this response.
      */
     eventId?: string | null;
+    /**
+     * A list of activities, or events, that match the request criteria.
+     */
     items?: Schema$Activity[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#activityListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#activityListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
   /**
-   * Basic details about an activity, including title, description, thumbnails, activity type and group. Next ID: 12
+   * Basic details about an activity, including title, description, thumbnails, activity type and group.
    */
   export interface Schema$ActivitySnippet {
     /**
@@ -468,15 +452,15 @@ export namespace youtube_v3 {
      */
     channelTitle?: string | null;
     /**
-     * The description of the resource primarily associated with the activity. @mutable youtube.activities.insert
+     * The description of the resource primarily associated with the activity.
      */
     description?: string | null;
     /**
-     * The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user rates a video and marks the same video as a favorite, the entries for those events would have the same group ID in the user&#39;s activity feed. In your user interface, you can avoid repetition by grouping events with the same &lt;code&gt;groupId&lt;/code&gt; value.
+     * The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user rates a video and marks the same video as a favorite, the entries for those events would have the same group ID in the user&#39;s activity feed. In your user interface, you can avoid repetition by grouping events with the same groupId value.
      */
     groupId?: string | null;
     /**
-     * The date and time that the video was uploaded. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
@@ -493,7 +477,7 @@ export namespace youtube_v3 {
     type?: string | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;caption&lt;/strong&gt;&lt;/code&gt; resource represents a YouTube caption track. A caption track is associated with exactly one YouTube video.
+   * A caption resource represents a YouTube caption track. A caption track is associated with exactly one YouTube video.
    */
   export interface Schema$Caption {
     /**
@@ -505,11 +489,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#caption&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#caption&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the caption.
+     * The snippet object contains basic details about the caption.
      */
     snippet?: Schema$CaptionSnippet;
   }
@@ -527,11 +511,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$Caption[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#captionListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#captionListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -544,35 +528,35 @@ export namespace youtube_v3 {
      */
     audioTrackType?: string | null;
     /**
-     * The reason that YouTube failed to process the caption track. This property is only present if the &lt;code&gt;&lt;a href=&quot;#state&quot;&gt;state&lt;/a&gt;&lt;/code&gt; property&#39;s value is &lt;code&gt;failed&lt;/code&gt;.
+     * The reason that YouTube failed to process the caption track. This property is only present if the state property&#39;s value is failed.
      */
     failureReason?: string | null;
     /**
-     * Indicates whether YouTube synchronized the caption track to the audio track in the video. The value will be &lt;code&gt;true&lt;/code&gt; if a sync was explicitly requested when the caption track was uploaded. For example, when calling the &lt;code&gt;captions.insert&lt;/code&gt; or &lt;code&gt;captions.update&lt;/code&gt; methods, you can set the &lt;code&gt;sync&lt;/code&gt; parameter to &lt;code&gt;true&lt;/code&gt; to instruct YouTube to sync the uploaded track to the video. If the value is &lt;code&gt;false&lt;/code&gt;, YouTube uses the time codes in the uploaded caption track to determine when to display captions.
+     * Indicates whether YouTube synchronized the caption track to the audio track in the video. The value will be true if a sync was explicitly requested when the caption track was uploaded. For example, when calling the captions.insert or captions.update methods, you can set the sync parameter to true to instruct YouTube to sync the uploaded track to the video. If the value is false, YouTube uses the time codes in the uploaded caption track to determine when to display captions.
      */
     isAutoSynced?: boolean | null;
     /**
-     * Indicates whether the track contains closed captions for the deaf and hard of hearing. The default value is &lt;code&gt;false&lt;/code&gt;.
+     * Indicates whether the track contains closed captions for the deaf and hard of hearing. The default value is false.
      */
     isCC?: boolean | null;
     /**
-     * Indicates whether the caption track is a draft. If the value is &lt;code&gt;true&lt;/code&gt;, then the track is not publicly visible. The default value is &lt;code&gt;false&lt;/code&gt;. @mutable youtube.captions.insert youtube.captions.update
+     * Indicates whether the caption track is a draft. If the value is true, then the track is not publicly visible. The default value is false.
      */
     isDraft?: boolean | null;
     /**
-     * Indicates whether caption track is formatted for &quot;easy reader,&quot; meaning it is at a third-grade level for language learners. The default value is &lt;code&gt;false&lt;/code&gt;.
+     * Indicates whether caption track is formatted for &quot;easy reader,&quot; meaning it is at a third-grade level for language learners. The default value is false.
      */
     isEasyReader?: boolean | null;
     /**
-     * Indicates whether the caption track uses large text for the vision-impaired. The default value is &lt;code&gt;false&lt;/code&gt;.
+     * Indicates whether the caption track uses large text for the vision-impaired. The default value is false.
      */
     isLarge?: boolean | null;
     /**
-     * The language of the caption track. The property value is a &lt;a href=&quot;http://www.rfc-editor.org/rfc/bcp/bcp47.txt&quot;&gt;BCP-47&lt;/a&gt;  language tag.
+     * The language of the caption track. The property value is a BCP-47 language tag.
      */
     language?: string | null;
     /**
-     * The date and time when the caption track was last updated. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time when the caption track was last updated. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     lastUpdated?: string | null;
     /**
@@ -588,7 +572,7 @@ export namespace youtube_v3 {
      */
     trackKind?: string | null;
     /**
-     * The ID that YouTube uses to uniquely identify the video associated with the caption track. @mutable youtube.captions.insert
+     * The ID that YouTube uses to uniquely identify the video associated with the caption track.
      */
     videoId?: string | null;
   }
@@ -597,7 +581,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$CdnSettings {
     /**
-     * The format of the video stream that you are sending to Youtube. &lt;br&gt;&lt;br&gt;
+     * The format of the video stream that you are sending to Youtube.
      */
     format?: string | null;
     /**
@@ -605,11 +589,11 @@ export namespace youtube_v3 {
      */
     frameRate?: string | null;
     /**
-     * The &lt;code&gt;ingestionInfo&lt;/code&gt; object contains information that YouTube provides that you need to transmit your RTMP or HTTP stream to YouTube.
+     * The ingestionInfo object contains information that YouTube provides that you need to transmit your RTMP or HTTP stream to YouTube.
      */
     ingestionInfo?: Schema$IngestionInfo;
     /**
-     *  The method or protocol used to transmit the video stream.
+     * The method or protocol used to transmit the video stream.
      */
     ingestionType?: string | null;
     /**
@@ -618,27 +602,27 @@ export namespace youtube_v3 {
     resolution?: string | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;channel&lt;/strong&gt;&lt;/code&gt; resource contains information about a YouTube channel.
+   * A channel resource contains information about a YouTube channel.
    */
   export interface Schema$Channel {
     /**
-     * The &lt;code&gt;auditionDetails&lt;/code&gt; object encapsulates channel data that is relevant for YouTube Partners during the audition process.
+     * The auditionDetails object encapsulates channel data that is relevant for YouTube Partners during the audition process.
      */
     auditDetails?: Schema$ChannelAuditDetails;
     /**
-     * The &lt;code&gt;brandingSettings&lt;/code&gt; object encapsulates information about the branding of the channel.
+     * The brandingSettings object encapsulates information about the branding of the channel.
      */
     brandingSettings?: Schema$ChannelBrandingSettings;
     /**
-     * The &lt;code&gt;contentDetails&lt;/code&gt; object encapsulates information about the channel&#39;s content.
+     * The contentDetails object encapsulates information about the channel&#39;s content.
      */
     contentDetails?: Schema$ChannelContentDetails;
     /**
-     * The &lt;code&gt;contentOwnerDetails&lt;/code&gt; object encapsulates channel data that is relevant for YouTube Partners linked with the channel.
+     * The contentOwnerDetails object encapsulates channel data that is relevant for YouTube Partners linked with the channel.
      */
     contentOwnerDetails?: Schema$ChannelContentOwnerDetails;
     /**
-     * The &lt;code&gt;conversionPings&lt;/code&gt; object encapsulates information about conversion pings that need to be respected by the channel.
+     * The conversionPings object encapsulates information about conversion pings that need to be respected by the channel.
      */
     conversionPings?: Schema$ChannelConversionPings;
     /**
@@ -650,11 +634,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * The &lt;code&gt;invideoPromotion&lt;/code&gt; object encapsulates information about promotion campaign associated with the channel.
+     * The invideoPromotion object encapsulates information about promotion campaign associated with the channel.
      */
     invideoPromotion?: Schema$InvideoPromotion;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#channel&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channel&quot;.
      */
     kind?: string | null;
     /**
@@ -662,24 +646,24 @@ export namespace youtube_v3 {
      */
     localizations?: {[key: string]: Schema$ChannelLocalization} | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the channel, such as its title, description, and thumbnail images.
+     * The snippet object contains basic details about the channel, such as its title, description, and thumbnail images.
      */
     snippet?: Schema$ChannelSnippet;
     /**
-     * The &lt;code&gt;statistics&lt;/code&gt; object encapsulates statistics for the channel.
+     * The statistics object encapsulates statistics for the channel.
      */
     statistics?: Schema$ChannelStatistics;
     /**
-     * The &lt;code&gt;status&lt;/code&gt; object encapsulates information about the privacy status of the channel.
+     * The status object encapsulates information about the privacy status of the channel.
      */
     status?: Schema$ChannelStatus;
     /**
-     * The &lt;code&gt;topicDetails&lt;/code&gt; object encapsulates information about &lt;a href=&quot;http://www.freebase.com&quot;&gt;Freebase&lt;/a&gt; topics associated with the channel.
+     * The topicDetails object encapsulates information about Freebase topics associated with the channel.
      */
     topicDetails?: Schema$ChannelTopicDetails;
   }
   /**
-   * The &lt;code&gt;auditDetails&lt;/code&gt; object encapsulates channel data that is relevant for YouTube Partners during the audit process.
+   * The auditDetails object encapsulates channel data that is relevant for YouTube Partners during the audit process.
    */
   export interface Schema$ChannelAuditDetails {
     /**
@@ -699,9 +683,12 @@ export namespace youtube_v3 {
    * A channel banner returned as the response to a channel_banner.insert call.
    */
   export interface Schema$ChannelBannerResource {
+    /**
+     * Etag of this resource.
+     */
     etag?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#channelBannerResource&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelBannerResource&quot;.
      */
     kind?: string | null;
     /**
@@ -743,7 +730,7 @@ export namespace youtube_v3 {
     } | null;
   }
   /**
-   * The &lt;code&gt;contentOwnerDetails&lt;/code&gt; object encapsulates channel data that is relevant for YouTube Partners linked with the channel.
+   * The contentOwnerDetails object encapsulates channel data that is relevant for YouTube Partners linked with the channel.
    */
   export interface Schema$ChannelContentOwnerDetails {
     /**
@@ -751,7 +738,7 @@ export namespace youtube_v3 {
      */
     contentOwner?: string | null;
     /**
-     * The date and time of when the channel was linked to the content owner. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time of when the channel was linked to the content owner. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     timeLinked?: string | null;
   }
@@ -769,7 +756,7 @@ export namespace youtube_v3 {
     conversionUrl?: string | null;
   }
   /**
-   * The &lt;code&gt;conversionPings&lt;/code&gt; object encapsulates information about conversion pings that need to be respected by the channel.
+   * The conversionPings object encapsulates information about conversion pings that need to be respected by the channel.
    */
   export interface Schema$ChannelConversionPings {
     /**
@@ -786,26 +773,26 @@ export namespace youtube_v3 {
      * Serialized EventId of the request which produced this response.
      */
     eventId?: string | null;
+    /**
+     * A list of channels that match the request criteria.
+     */
     items?: Schema$Channel[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#channelListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -842,7 +829,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$ChannelSection {
     /**
-     * The &lt;code&gt;contentDetails&lt;/code&gt; object contains details about the channel section content, such as a list of playlists or channels featured in the section.
+     * The contentDetails object contains details about the channel section content, such as a list of playlists or channels featured in the section.
      */
     contentDetails?: Schema$ChannelSectionContentDetails;
     /**
@@ -854,7 +841,7 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#channelSection&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelSection&quot;.
      */
     kind?: string | null;
     /**
@@ -862,11 +849,11 @@ export namespace youtube_v3 {
      */
     localizations?: {[key: string]: Schema$ChannelSectionLocalization} | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the channel section, such as its type, style and title.
+     * The snippet object contains basic details about the channel section, such as its type, style and title.
      */
     snippet?: Schema$ChannelSectionSnippet;
     /**
-     * The &lt;code&gt;targeting&lt;/code&gt; object contains basic targeting settings about the channel section.
+     * The targeting object contains basic targeting settings about the channel section.
      */
     targeting?: Schema$ChannelSectionTargeting;
   }
@@ -897,11 +884,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$ChannelSection[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#channelSectionListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelSectionListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -1047,11 +1034,11 @@ export namespace youtube_v3 {
      */
     localized?: Schema$ChannelLocalization;
     /**
-     * The date and time that the channel was created. The value is specified in &lt; a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the channel was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
-     * A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.&lt;br&gt;&lt;br&gt; When displaying thumbnails in your application, make sure that your code uses the image URLs exactly as they are returned in API responses. For example, your application should not use the &lt;code&gt;http&lt;/code&gt; domain instead of the &lt;code&gt;https&lt;/code&gt; domain in a URL returned in an API response.&lt;br&gt;&lt;br&gt; Beginning in July 2018, channel thumbnail URLs will only be available in the &lt;code&gt;https&lt;/code&gt; domain, which is how the URLs appear in API responses. After that time, you might see broken images in your application if it tries to load YouTube images from the &lt;code&gt;http&lt;/code&gt; domain.
+     * A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.  When displaying thumbnails in your application, make sure that your code uses the image URLs exactly as they are returned in API responses. For example, your application should not use the http domain instead of the https domain in a URL returned in an API response.  Beginning in July 2018, channel thumbnail URLs will only be available in the https domain, which is how the URLs appear in API responses. After that time, you might see broken images in your application if it tries to load YouTube images from the http domain.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -1093,7 +1080,7 @@ export namespace youtube_v3 {
      */
     isLinked?: boolean | null;
     /**
-     * The long uploads status of this channel. See https://support.google.com/youtube/answer/71673 for more information.
+     * The long uploads status of this channel. See
      */
     longUploadsStatus?: string | null;
     madeForKids?: boolean | null;
@@ -1112,12 +1099,12 @@ export namespace youtube_v3 {
      */
     topicCategories?: string[] | null;
     /**
-     * A list of Freebase topic IDs associated with the channel. You can retrieve information about each topic using the &lt;a href=&quot;http://wiki.freebase.com/wiki/Topic_API&quot;&gt;Freebase Topic API&lt;/a&gt;.
+     * A list of Freebase topic IDs associated with the channel. You can retrieve information about each topic using the Freebase Topic API.
      */
     topicIds?: string[] | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;comment&lt;/strong&gt;&lt;/code&gt; represents a single YouTube comment.
+   * A comment represents a single YouTube comment.
    */
   export interface Schema$Comment {
     /**
@@ -1129,11 +1116,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#comment&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#comment&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the comment.
+     * The snippet object contains basic details about the comment.
      */
     snippet?: Schema$CommentSnippet;
   }
@@ -1151,20 +1138,17 @@ export namespace youtube_v3 {
      */
     items?: Schema$Comment[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#commentListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#commentListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -1172,7 +1156,10 @@ export namespace youtube_v3 {
    * Basic details about a comment, such as its author and text.
    */
   export interface Schema$CommentSnippet {
-    authorChannelId?: Schema$CommentSnippetAuthorChannelId;
+    /**
+     * The id of the author&#39;s YouTube channel, if any.
+     */
+    authorChannelId?: any | null;
     /**
      * Link to the author&#39;s YouTube channel, if any.
      */
@@ -1206,7 +1193,7 @@ export namespace youtube_v3 {
      */
     parentId?: string | null;
     /**
-     * The date and time when the comment was orignally published. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time when the comment was orignally published. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
@@ -1218,7 +1205,7 @@ export namespace youtube_v3 {
      */
     textOriginal?: string | null;
     /**
-     * The date and time when was last updated . The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time when was last updated . The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     updatedAt?: string | null;
     /**
@@ -1231,13 +1218,7 @@ export namespace youtube_v3 {
     viewerRating?: string | null;
   }
   /**
-   * The id of the author&#39;s YouTube channel, if any.
-   */
-  export interface Schema$CommentSnippetAuthorChannelId {
-    value?: string | null;
-  }
-  /**
-   * A &lt;code&gt;&lt;strong&gt;comment thread&lt;/strong&gt;&lt;/code&gt; represents information that applies to a top level comment and all its replies. It can also include the top level comment itself and some of the replies.
+   * A comment thread represents information that applies to a top level comment and all its replies. It can also include the top level comment itself and some of the replies.
    */
   export interface Schema$CommentThread {
     /**
@@ -1249,15 +1230,15 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#commentThread&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#commentThread&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;replies&lt;/code&gt; object contains a limited number of replies (if any) to the top level comment found in the snippet.
+     * The replies object contains a limited number of replies (if any) to the top level comment found in the snippet.
      */
     replies?: Schema$CommentThreadReplies;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the comment thread and also the top level comment.
+     * The snippet object contains basic details about the comment thread and also the top level comment.
      */
     snippet?: Schema$CommentThreadSnippet;
   }
@@ -1275,20 +1256,17 @@ export namespace youtube_v3 {
      */
     items?: Schema$CommentThread[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#commentThreadListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#commentThreadListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -1331,7 +1309,7 @@ export namespace youtube_v3 {
     videoId?: string | null;
   }
   /**
-   * Ratings schemes. The country-specific ratings are mostly for movies and shows. LINT.IfChange
+   * Ratings schemes. The country-specific ratings are mostly for movies and shows. NEXT_ID: 72
    */
   export interface Schema$ContentRating {
     /**
@@ -1339,11 +1317,11 @@ export namespace youtube_v3 {
      */
     acbRating?: string | null;
     /**
-     * The video&#39;s rating from Italy&#39;s Autorit&amp;agrave; per le Garanzie nelle Comunicazioni (AGCOM).
+     * The video&#39;s rating from Italy&#39;s Autorità per le Garanzie nelle Comunicazioni (AGCOM).
      */
     agcomRating?: string | null;
     /**
-     * The video&#39;s Anatel (Asociaci&amp;oacute;n Nacional de Televisi&amp;oacute;n) rating for Chilean television.
+     * The video&#39;s Anatel (Asociación Nacional de Televisión) rating for Chilean television.
      */
     anatelRating?: string | null;
     /**
@@ -1355,15 +1333,15 @@ export namespace youtube_v3 {
      */
     bfvcRating?: string | null;
     /**
-     * The video&#39;s rating from the Austrian Board of Media Classification (Bundesministerium f&amp;uuml;r Unterricht, Kunst und Kultur).
+     * The video&#39;s rating from the Austrian Board of Media Classification (Bundesministerium für Unterricht, Kunst und Kultur).
      */
     bmukkRating?: string | null;
     /**
-     * The video&#39;s rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian French-language broadcasts. For more information, see the &lt;a href=&quot;http://www.cbsc.ca/english/agvot/frenchsystem.php&quot;&gt;Canadian Broadcast Standards Council&lt;/a&gt; website.
+     * The video&#39;s rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian French-language broadcasts. For more information, see the Canadian Broadcast Standards Council website.
      */
     catvfrRating?: string | null;
     /**
-     * Rating system for Canadian TV - Canadian TV Classification System The video&#39;s rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian English-language broadcasts. For more information, see the &lt;a href=&quot;http://www.cbsc.ca/english/agvot/englishsystem.php&quot;&gt;Canadian Broadcast Standards Council&lt;/a&gt; website.
+     * Rating system for Canadian TV - Canadian TV Classification System The video&#39;s rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian English-language broadcasts. For more information, see the Canadian Broadcast Standards Council website.
      */
     catvRating?: string | null;
     /**
@@ -1371,11 +1349,11 @@ export namespace youtube_v3 {
      */
     cbfcRating?: string | null;
     /**
-     * The video&#39;s Consejo de Calificaci&amp;oacute;n Cinematogr&amp;aacute;fica (Chile) rating.
+     * The video&#39;s Consejo de Calificación Cinematográfica (Chile) rating.
      */
     cccRating?: string | null;
     /**
-     * The video&#39;s rating from Portugal&#39;s Comiss&amp;atilde;o de Classifica&amp;ccedil;&amp;atilde;o de Espect&amp;acute;culos.
+     * The video&#39;s rating from Portugal&#39;s Comissão de Classificação de Espect´culos.
      */
     cceRating?: string | null;
     /**
@@ -1387,7 +1365,7 @@ export namespace youtube_v3 {
      */
     chvrsRating?: string | null;
     /**
-     * The video&#39;s rating from the Commission de Contr&amp;ocirc;le des Films (Belgium).
+     * The video&#39;s rating from the Commission de Contrôle des Films (Belgium).
      */
     cicfRating?: string | null;
     /**
@@ -1399,7 +1377,7 @@ export namespace youtube_v3 {
      */
     cncRating?: string | null;
     /**
-     * The video&#39;s rating from France&#39;s Conseil sup&amp;eacute;rieur de l’audiovisuel, which rates broadcast content.
+     * The video&#39;s rating from France&#39;s Conseil supérieur de l?audiovisuel, which rates broadcast content.
      */
     csaRating?: string | null;
     /**
@@ -1411,7 +1389,7 @@ export namespace youtube_v3 {
      */
     czfilmRating?: string | null;
     /**
-     * The video&#39;s Departamento de Justi&amp;ccedil;a, Classifica&amp;ccedil;&amp;atilde;o, Qualifica&amp;ccedil;&amp;atilde;o e T&amp;iacute;tulos (DJCQT - Brazil) rating.
+     * The video&#39;s Departamento de Justiça, Classificação, Qualificação e Títulos (DJCQT - Brazil) rating.
      */
     djctqRating?: string | null;
     /**
@@ -1431,7 +1409,7 @@ export namespace youtube_v3 {
      */
     egfilmRating?: string | null;
     /**
-     * The video&#39;s Eirin (&amp;#26144;&amp;#20523;) rating. Eirin is the Japanese rating system.
+     * The video&#39;s Eirin (映倫) rating. Eirin is the Japanese rating system.
      */
     eirinRating?: string | null;
     /**
@@ -1443,7 +1421,7 @@ export namespace youtube_v3 {
      */
     fcoRating?: string | null;
     /**
-     * &lt;span class=&quot;deprecated&quot;&gt;This property has been deprecated. Use the &lt;code&gt;&lt;a href=&quot;#contentDetails.contentRating.cncRating&quot;&gt;contentDetails.contentRating.cncRating&lt;/a&gt;&lt;/code&gt; instead.&lt;/span&gt;
+     * This property has been deprecated. Use the contentDetails.contentRating.cncRating instead.
      */
     fmocRating?: string | null;
     /**
@@ -1463,11 +1441,11 @@ export namespace youtube_v3 {
      */
     grfilmRating?: string | null;
     /**
-     * The video&#39;s Instituto de la Cinematograf&amp;iacute;a y de las Artes Audiovisuales (ICAA - Spain) rating.
+     * The video&#39;s Instituto de la Cinematografía y de las Artes Audiovisuales (ICAA - Spain) rating.
      */
     icaaRating?: string | null;
     /**
-     * The video&#39;s Irish Film Classification Office (IFCO - Ireland) rating. See the &lt;a href=&quot;http://www.ifco.ie/website/ifco/ifcoweb.nsf/web/classcatintro&quot;&gt;IFCO&lt;/a&gt; website for more information.
+     * The video&#39;s Irish Film Classification Office (IFCO - Ireland) rating. See the IFCO website for more information.
      */
     ifcoRating?: string | null;
     /**
@@ -1483,11 +1461,11 @@ export namespace youtube_v3 {
      */
     kfcbRating?: string | null;
     /**
-     * The video&#39;s NICAM/Kijkwijzer rating from the Nederlands Instituut voor de Classificatie van Audiovisuele Media (Netherlands).
+     * voor de Classificatie van Audiovisuele Media (Netherlands).
      */
     kijkwijzerRating?: string | null;
     /**
-     * The video&#39;s Korea Media Rating Board (&amp;#50689;&amp;#49345;&amp;#47932;&amp;#46321;&amp;#44553;&amp;#50948;&amp;#50896;&amp;#54924;) rating. The KMRB rates videos in South Korea.
+     * The video&#39;s Korea Media Rating Board (영상물등급위원회) rating. The KMRB rates videos in South Korea.
      */
     kmrbRating?: string | null;
     /**
@@ -1519,11 +1497,11 @@ export namespace youtube_v3 {
      */
     mekuRating?: string | null;
     /**
-     * The rating system for MENA countries, a clone of MPAA. It is needed to prevent titles go live w/o additional QC check, since some of them can be inappropriate for the countries at all. See b/33408548 for more details.
+     * The rating system for MENA countries, a clone of MPAA. It is needed to
      */
     menaMpaaRating?: string | null;
     /**
-     * The video&#39;s rating from the Ministero dei Beni e delle Attivit&amp;agrave; Culturali e del Turismo (Italy).
+     * The video&#39;s rating from the Ministero dei Beni e delle Attività Culturali e del Turismo (Italy).
      */
     mibacRating?: string | null;
     /**
@@ -1531,7 +1509,7 @@ export namespace youtube_v3 {
      */
     mocRating?: string | null;
     /**
-     * The video&#39;s rating from Taiwan&#39;s Ministry of Culture (&amp;#25991;&amp;#21270;&amp;#37096;).
+     * The video&#39;s rating from Taiwan&#39;s Ministry of Culture (文化部).
      */
     moctwRating?: string | null;
     /**
@@ -1539,7 +1517,7 @@ export namespace youtube_v3 {
      */
     mpaaRating?: string | null;
     /**
-     * The rating system for trailer, DVD, and Ad in the US.  See http://movielabs.com/md/ratings/v2.3/html/US_MPAAT_Ratings.html.
+     * The rating system for trailer, DVD, and Ad in the US. See http://movielabs.com/md/ratings/v2.3/html/US_MPAAT_Ratings.html.
      */
     mpaatRating?: string | null;
     /**
@@ -1555,7 +1533,7 @@ export namespace youtube_v3 {
      */
     nbcRating?: string | null;
     /**
-     * The video&#39;s rating from the &lt;a href=&quot;http://www.nfc.bg/&quot;&gt;Bulgarian National Film Center&lt;/a&gt;.
+     * The video&#39;s rating from the Bulgarian National Film Center.
      */
     nfrcRating?: string | null;
     /**
@@ -1563,12 +1541,9 @@ export namespace youtube_v3 {
      */
     nfvcbRating?: string | null;
     /**
-     * The video&#39;s rating from the Nacion&amp;atilde;lais Kino centrs (National Film Centre of Latvia).
+     * The video&#39;s rating from the Nacionãlais Kino centrs (National Film Centre of Latvia).
      */
     nkclvRating?: string | null;
-    /**
-     * The National Media Council ratings system for United Arab Emirates.
-     */
     nmcRating?: string | null;
     /**
      * The video&#39;s Office of Film and Literature Classification (OFLC - New Zealand) rating.
@@ -1591,7 +1566,7 @@ export namespace youtube_v3 {
      */
     rtcRating?: string | null;
     /**
-     * The video&#39;s rating from Ireland&#39;s Raidi&amp;oacute; Teilif&amp;iacute;s &amp;Eacute;ireann.
+     * The video&#39;s rating from Ireland&#39;s Raidió Teilifís Éireann.
      */
     rteRating?: string | null;
     /**
@@ -1607,7 +1582,7 @@ export namespace youtube_v3 {
      */
     smaisRating?: string | null;
     /**
-     * The video&#39;s rating from Statens medier&amp;aring;d (Sweden&#39;s National Media Council).
+     * The video&#39;s rating from Statens medieråd (Sweden&#39;s National Media Council).
      */
     smsaRating?: string | null;
     /**
@@ -1637,7 +1612,7 @@ export namespace youtube_v3 {
     longitude?: number | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;guideCategory&lt;/strong&gt;&lt;/code&gt; resource identifies a category that YouTube algorithmically assigns based on a channel&#39;s content or other indicators, such as the channel&#39;s popularity. The list is similar to &lt;a href=\&quot;/youtube/v3/docs/videocategory.html\&quot;&gt;video categories&lt;/a&gt;, with the difference being that a video&#39;s uploader can assign a video category but only YouTube can assign a channel category.
+   * A guideCategory resource identifies a category that YouTube algorithmically assigns based on a channel&#39;s content or other indicators, such as the channel&#39;s popularity. The list is similar to video categories, with the difference being that a video&#39;s uploader can assign a video category but only YouTube can assign a channel category.
    */
   export interface Schema$GuideCategory {
     /**
@@ -1649,11 +1624,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#guideCategory&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#guideCategory&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the category, such as its title.
+     * The snippet object contains basic details about the category, such as its title.
      */
     snippet?: Schema$GuideCategorySnippet;
   }
@@ -1667,25 +1642,25 @@ export namespace youtube_v3 {
      */
     eventId?: string | null;
     /**
-     * A list of categories that can be associated with YouTube channels. In this map, the category ID is the map key, and its value is the corresponding &lt;code&gt;guideCategory&lt;/code&gt; resource.
+     * A list of categories that can be associated with YouTube channels. In this map, the category ID is the map key, and its value is the corresponding guideCategory resource.
      */
     items?: Schema$GuideCategory[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#guideCategoryListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#guideCategoryListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -1700,7 +1675,7 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   /**
-   * An &lt;code&gt;&lt;strong&gt;i18nLanguage&lt;/strong&gt;&lt;/code&gt; resource identifies a UI language currently supported by YouTube.
+   * An i18nLanguage resource identifies a UI language currently supported by YouTube.
    */
   export interface Schema$I18nLanguage {
     /**
@@ -1712,11 +1687,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#i18nLanguage&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nLanguage&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the i18n language, such as language code and human-readable name.
+     * The snippet object contains basic details about the i18n language, such as language code and human-readable name.
      */
     snippet?: Schema$I18nLanguageSnippet;
   }
@@ -1730,15 +1705,15 @@ export namespace youtube_v3 {
      */
     eventId?: string | null;
     /**
-     * A list of supported i18n languages. In this map, the i18n language ID is the map key, and its value is the corresponding &lt;code&gt;i18nLanguage&lt;/code&gt; resource.
+     * A list of supported i18n languages. In this map, the i18n language ID is the map key, and its value is the corresponding i18nLanguage resource.
      */
     items?: Schema$I18nLanguage[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#i18nLanguageListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nLanguageListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -1756,7 +1731,7 @@ export namespace youtube_v3 {
     name?: string | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;i18nRegion&lt;/strong&gt;&lt;/code&gt; resource identifies a region where YouTube is available.
+   * A i18nRegion resource identifies a region where YouTube is available.
    */
   export interface Schema$I18nRegion {
     /**
@@ -1768,11 +1743,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#i18nRegion&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nRegion&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the i18n region, such as region code and human-readable name.
+     * The snippet object contains basic details about the i18n region, such as region code and human-readable name.
      */
     snippet?: Schema$I18nRegionSnippet;
   }
@@ -1786,15 +1761,15 @@ export namespace youtube_v3 {
      */
     eventId?: string | null;
     /**
-     * A list of regions where YouTube is available. In this map, the i18n region ID is the map key, and its value is the corresponding &lt;code&gt;i18nRegion&lt;/code&gt; resource.
+     * A list of regions where YouTube is available. In this map, the i18n region ID is the map key, and its value is the corresponding i18nRegion resource.
      */
     items?: Schema$I18nRegion[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#i18nRegionListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nRegionListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -1892,13 +1867,16 @@ export namespace youtube_v3 {
      */
     smallBrandedBannerImageImapScript?: Schema$LocalizedProperty;
     /**
-     * The URL for the 640px by 70px banner image that appears below the video player in the default view of the video watch page. The URL for the image that appears above the top-left corner of the video player. This is a 25-pixel-high image with a flexible width that cannot exceed 170 pixels.
+     * The URL for the 640px by 70px banner image that appears below the video player in the default view of the video watch page.
      */
     smallBrandedBannerImageUrl?: Schema$LocalizedProperty;
     /**
      * The URL for a 1px by 1px tracking pixel that can be used to collect statistics for views of the channel or video pages.
      */
     trackingImageUrl?: string | null;
+    /**
+     * The URL for the image that appears above the top-left corner of the video player. This is a 25-pixel-high image with a flexible width that cannot exceed 170 pixels.
+     */
     watchIconImageUrl?: string | null;
   }
   /**
@@ -1906,49 +1884,23 @@ export namespace youtube_v3 {
    */
   export interface Schema$IngestionInfo {
     /**
-     * The backup ingestion URL that you should use to stream video to YouTube. You have the option of simultaneously streaming the content that you are sending to the &lt;code&gt;ingestionAddress&lt;/code&gt; to this URL.
+     * The backup ingestion URL that you should use to stream video to YouTube. You have the option of simultaneously streaming the content that you are sending to the ingestionAddress to this URL.
      */
     backupIngestionAddress?: string | null;
     /**
-     * The primary ingestion URL that you should use to stream video to YouTube. You must stream video to this URL.&lt;br&gt;&lt;br&gt; Depending on which application or tool you use to encode your video stream, you may need to enter the stream URL and stream name separately or you may need to concatenate them in the following format:&lt;br&gt;&lt;pre&gt;&lt;strong&gt;STREAM_URL/STREAM_NAME&lt;/strong&gt;&lt;/pre&gt;
+     * The primary ingestion URL that you should use to stream video to YouTube. You must stream video to this URL.  Depending on which application or tool you use to encode your video stream, you may need to enter the stream URL and stream name separately or you may need to concatenate them in the following format:  STREAM_URL/STREAM_NAME
      */
     ingestionAddress?: string | null;
-    /**
-     * This ingestion url may be used instead of &lt;code&gt;backupIngestionAddress&lt;/code&gt; in order to stream via RTMPS. Not applicable to non-RTMP streams.
-     */
-    rtmpsBackupIngestionAddress?: string | null;
-    /**
-     * This ingestion url may be used instead of &lt;code&gt;ingestionAddress&lt;/code&gt; in order to stream via RTMPS. Not applicable to non-RTMP streams.
-     */
-    rtmpsIngestionAddress?: string | null;
     /**
      * The HTTP or RTMP stream name that YouTube assigns to the video stream.
      */
     streamName?: string | null;
   }
-  /**
-   * LINT.IfChange Describes an invideo branding.
-   */
   export interface Schema$InvideoBranding {
-    /**
-     * The bytes the uploaded image. Only used in api to youtube communication.
-     */
     imageBytes?: string | null;
-    /**
-     * The url of the uploaded image. Only used in apiary to api communication.
-     */
     imageUrl?: string | null;
-    /**
-     * The spatial position within the video where the branding watermark will be displayed.
-     */
     position?: Schema$InvideoPosition;
-    /**
-     * The channel to which this branding links. If not present it defaults to the current channel.
-     */
     targetChannelId?: string | null;
-    /**
-     * The temporal position within the video where watermark will be displayed.
-     */
     timing?: Schema$InvideoTiming;
   }
   /**
@@ -1969,7 +1921,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$InvideoPromotion {
     /**
-     * The default temporal position within the video where the promoted item will be displayed. Can be overridden by more specific timing in the item.
+     * The default temporal position within the video where the promoted item will be displayed. Can be overriden by more specific timing in the item.
      */
     defaultTiming?: Schema$InvideoTiming;
     /**
@@ -1994,11 +1946,11 @@ export namespace youtube_v3 {
      */
     durationMs?: string | null;
     /**
-     * Defines the time at which the promotion will appear. Depending on the value of &lt;code&gt;type&lt;/code&gt; the value of the &lt;code&gt;offsetMs&lt;/code&gt; field will represent a time offset from the start or from the end of the video, expressed in milliseconds.
+     * Defines the time at which the promotion will appear. Depending on the value of type the value of the offsetMs field will represent a time offset from the start or from the end of the video, expressed in milliseconds.
      */
     offsetMs?: string | null;
     /**
-     * Describes a timing type. If the value is &lt;code&gt;offsetFromStart&lt;/code&gt;, then the &lt;code&gt;offsetMs&lt;/code&gt; field represents an offset from the start of the video. If the value is &lt;code&gt;offsetFromEnd&lt;/code&gt;, then the &lt;code&gt;offsetMs&lt;/code&gt; field represents an offset from the end of the video.
+     * Describes a timing type. If the value is offsetFromStart, then the offsetMs field represents an offset from the start of the video. If the value is offsetFromEnd, then the offsetMs field represents an offset from the end of the video.
      */
     type?: string | null;
   }
@@ -2006,17 +1958,14 @@ export namespace youtube_v3 {
     value?: string | null;
   }
   export interface Schema$LevelDetails {
-    /**
-     * The name that should be used when referring to this level.
-     */
     displayName?: string | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;liveBroadcast&lt;/strong&gt;&lt;/code&gt; resource represents an event that will be streamed, via live video, on YouTube.
+   * A liveBroadcast resource represents an event that will be streamed, via live video, on YouTube.
    */
   export interface Schema$LiveBroadcast {
     /**
-     * The &lt;code&gt;contentDetails&lt;/code&gt; object contains information about the event&#39;s video content, such as whether the content can be shown in an embedded video player or if it will be archived and therefore available for viewing after the event has concluded.
+     * The contentDetails object contains information about the event&#39;s video content, such as whether the content can be shown in an embedded video player or if it will be archived and therefore available for viewing after the event has concluded.
      */
     contentDetails?: Schema$LiveBroadcastContentDetails;
     /**
@@ -2028,19 +1977,19 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#liveBroadcast&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveBroadcast&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the event, including its title, description, start time, and end time.
+     * The snippet object contains basic details about the event, including its title, description, start time, and end time.
      */
     snippet?: Schema$LiveBroadcastSnippet;
     /**
-     * The &lt;code&gt;statistics&lt;/code&gt; object contains info about the event&#39;s current stats. These include concurrent viewers and total chat count. Statistics can change (in either direction) during the lifetime of an event. Statistics are only returned while the event is live.
+     * The statistics object contains info about the event&#39;s current stats. These include concurrent viewers and total chat count. Statistics can change (in either direction) during the lifetime of an event. Statistics are only returned while the event is live.
      */
     statistics?: Schema$LiveBroadcastStatistics;
     /**
-     * The &lt;code&gt;status&lt;/code&gt; object contains information about the event&#39;s status.
+     * The status object contains information about the event&#39;s status.
      */
     status?: Schema$LiveBroadcastStatus;
   }
@@ -2049,24 +1998,21 @@ export namespace youtube_v3 {
    */
   export interface Schema$LiveBroadcastContentDetails {
     /**
-     * This value uniquely identifies the &lt;code&gt;&lt;a href=&quot;/youtube/v3/live/docs/liveStreams&quot;&gt;live stream&lt;/a&gt;&lt;/code&gt; bound to the broadcast.
+     * This value uniquely identifies the live stream bound to the broadcast.
      */
     boundStreamId?: string | null;
     /**
-     * The date and time that the live stream referenced by &lt;code&gt;boundStreamId&lt;/code&gt; was last updated.
+     * The date and time that the live stream referenced by boundStreamId was last updated.
      */
     boundStreamLastUpdateTimeMs?: string | null;
     closedCaptionsType?: string | null;
     /**
-     * This setting indicates whether auto start is enabled for this broadcast.  The default value for this property is &lt;code&gt;false&lt;/code&gt;.&lt;br&gt;&lt;br&gt;  This setting can only be used by Events.
+     * This setting indicates whether auto start is enabled for this broadcast.
      */
     enableAutoStart?: boolean | null;
-    /**
-     * This setting indicates whether auto stop is enabled for this broadcast. The default value for this property is &lt;code&gt;false&lt;/code&gt;.&lt;br&gt;&lt;br&gt; This setting can only be used by Events.
-     */
     enableAutoStop?: boolean | null;
     /**
-     * This setting indicates whether HTTP POST closed captioning is enabled for this broadcast. The ingestion URL of the closed captions is returned through the liveStreams API.  This is mutually exclusive with using the &lt;code&gt;closed_captions_type&lt;/code&gt; property, and is equivalent to setting &lt;code&gt;closed_captions_type&lt;/code&gt; to CLOSED_CAPTIONS_HTTP_POST.
+     * This setting indicates whether HTTP POST closed captioning is enabled for this broadcast. The ingestion URL of the closed captions is returned through the liveStreams API. This is mutually exclusive with using the closed_captions_type property, and is equivalent to setting closed_captions_type to CLOSED_CAPTIONS_HTTP_POST.
      */
     enableClosedCaptions?: boolean | null;
     /**
@@ -2074,11 +2020,11 @@ export namespace youtube_v3 {
      */
     enableContentEncryption?: boolean | null;
     /**
-     * This setting determines whether viewers can access DVR controls while watching the video. DVR controls enable the viewer to control the video playback experience by pausing, rewinding, or fast forwarding content. The default value for this property is &lt;code&gt;true&lt;/code&gt;.&lt;br&gt;&lt;br&gt;  &lt;strong&gt;Important:&lt;/strong&gt; You must set the value to &lt;code&gt;true&lt;/code&gt; and also set the &lt;code&gt;enableArchive&lt;/code&gt; property&#39;s value to &lt;code&gt;true&lt;/code&gt; if you want to make playback available immediately after the broadcast ends.
+     * This setting determines whether viewers can access DVR controls while watching the video. DVR controls enable the viewer to control the video playback experience by pausing, rewinding, or fast forwarding content. The default value for this property is true.    Important: You must set the value to true and also set the enableArchive property&#39;s value to true if you want to make playback available immediately after the broadcast ends.
      */
     enableDvr?: boolean | null;
     /**
-     * This setting indicates whether the broadcast video can be played in an embedded player. If you choose to archive the video (using the &lt;code&gt;enableArchive&lt;/code&gt; property), this setting will also apply to the archived video.
+     * This setting indicates whether the broadcast video can be played in an embedded player. If you choose to archive the video (using the enableArchive property), this setting will also apply to the archived video.
      */
     enableEmbed?: boolean | null;
     /**
@@ -2090,25 +2036,26 @@ export namespace youtube_v3 {
      */
     latencyPreference?: string | null;
     /**
-     * The mesh for projecting the video if &lt;code&gt;projection&lt;/code&gt; is &lt;code&gt;mesh&lt;/code&gt;. The mesh value must be a UTF-8 string containing the base-64 encoding of 3D mesh data that follows the &lt;a href=&quot;https://github.com/google/spatial-media/blob/master/docs/spherical-video-v2-rfc.md&quot;&gt; Spherical Video V2 RFC specification&lt;/a&gt; for an mshp box, excluding the box size and type but including the following four reserved zero bytes for the version and flags.
+     * The mesh for projecting the video if projection is mesh. The mesh value must be a UTF-8 string containing the base-64 encoding of 3D mesh data that follows the  Spherical Video V2 RFC specification for an mshp box, excluding the box size and type but including the following four reserved zero bytes for the version and flags.
      */
     mesh?: string | null;
     /**
-     * The &lt;code&gt;monitorStream&lt;/code&gt; object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly.
+     * The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly.
      */
     monitorStream?: Schema$MonitorStreamInfo;
     /**
-     * The projection format of this broadcast. This defaults to &lt;code&gt;rectangular&lt;/code&gt;.
+     * The projection format of this broadcast. This defaults to rectangular.
      */
     projection?: string | null;
     /**
-     * Automatically start recording after the event goes live. The default value for this property is &lt;code&gt;true&lt;/code&gt;.&lt;br&gt;&lt;br&gt;  &lt;strong&gt;Important:&lt;/strong&gt; You must also set the &lt;code&gt;enableDvr&lt;/code&gt; property&#39;s value to &lt;code&gt;true&lt;/code&gt; if you want the playback to be available immediately after the broadcast ends. If you set this property&#39;s value to &lt;code&gt;true&lt;/code&gt; but do not also set the &lt;code&gt;enableDvr&lt;/code&gt; property to &lt;code&gt;true&lt;/code&gt;, there may be a delay of around one day before the archived video will be available for playback.
+     * Automatically start recording after the event goes live. The default value for this property is true.    Important: You must also set the enableDvr property&#39;s value to true if you want the playback to be available immediately after the broadcast ends. If you set this property&#39;s value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback.
      */
     recordFromStart?: boolean | null;
     /**
-     * This setting indicates whether the broadcast should automatically begin with an &lt;a href=&quot;/youtube/v3/live/getting-started#Displaying_Slates&quot;&gt;in-stream slate&lt;/a&gt; when you update the broadcast&#39;s status to &lt;code&gt;live&lt;/code&gt;. After updating the status, you then need to send a &lt;code&gt;&lt;a href=&quot;/youtube/v3/live/docs/liveCuepoints/insert&quot;&gt;liveCuepoints.insert&lt;/a&gt;&lt;/code&gt; request that sets the cuepoint&#39;s &lt;code&gt;eventState&lt;/code&gt; to &lt;code&gt;end&lt;/code&gt; to remove the in-stream slate and make your broadcast stream visible to viewers.
+     * This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast&#39;s status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint&#39;s eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers.
      */
     startWithSlate?: boolean | null;
+    stereoLayout?: string | null;
   }
   export interface Schema$LiveBroadcastListResponse {
     /**
@@ -2124,65 +2071,57 @@ export namespace youtube_v3 {
      */
     items?: Schema$LiveBroadcast[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#liveBroadcastListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveBroadcastListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
-  /**
-   * Basic broadcast information.
-   */
   export interface Schema$LiveBroadcastSnippet {
     /**
-     * The date and time that the broadcast actually ended. This information is only available once the broadcast&#39;s state is &lt;code&gt;complete&lt;/code&gt;. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the broadcast actually ended. This information is only available once the broadcast&#39;s state is complete. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     actualEndTime?: string | null;
     /**
-     * The date and time that the broadcast actually started. This information is only available once the broadcast&#39;s state is &lt;code&gt;live&lt;/code&gt;. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the broadcast actually started. This information is only available once the broadcast&#39;s state is live. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     actualStartTime?: string | null;
+    broadcastType?: string | null;
     /**
      * The ID that YouTube uses to uniquely identify the channel that is publishing the broadcast.
      */
     channelId?: string | null;
     /**
-     * The broadcast&#39;s description. As with the &lt;code&gt;title&lt;/code&gt;, you can set this field by modifying the broadcast resource or by setting the &lt;code&gt;&lt;a href=&quot;/youtube/v3/docs/videos#snippet.description&quot;&gt;description&lt;/a&gt;&lt;/code&gt; field of the corresponding video resource.
+     * The broadcast&#39;s description. As with the title, you can set this field by modifying the broadcast resource or by setting the description field of the corresponding video resource.
      */
     description?: string | null;
-    /**
-     * Indicates whether this broadcast is the default broadcast. Internal only.
-     */
     isDefaultBroadcast?: boolean | null;
     /**
      * The id of the live chat for this broadcast.
      */
     liveChatId?: string | null;
     /**
-     * The date and time that the broadcast was added to YouTube&#39;s live broadcast schedule. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the broadcast was added to YouTube&#39;s live broadcast schedule. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
-     * The date and time that the broadcast is scheduled to end. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     scheduledEndTime?: string | null;
     /**
-     * The date and time that the broadcast is scheduled to start. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the broadcast is scheduled to start. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     scheduledStartTime?: string | null;
     /**
@@ -2190,7 +2129,7 @@ export namespace youtube_v3 {
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
-     * The broadcast&#39;s title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the &lt;code&gt;&lt;a href=&quot;/youtube/v3/docs/videos#snippet.title&quot;&gt;title&lt;/a&gt;&lt;/code&gt; field of the corresponding video resource.
+     * The broadcast&#39;s title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the title field of the corresponding video resource.
      */
     title?: string | null;
   }
@@ -2199,41 +2138,36 @@ export namespace youtube_v3 {
    */
   export interface Schema$LiveBroadcastStatistics {
     /**
+     * The number of viewers currently watching the broadcast. The property and its value will be present if the broadcast has current viewers and the broadcast owner has not hidden the viewcount for the video. Note that YouTube stops tracking the number of concurrent viewers for a broadcast when the broadcast ends. So, this property would not identify the number of viewers watching an archived video of a live broadcast that already ended.
+     */
+    concurrentViewers?: string | null;
+    /**
      * The total number of live chat messages currently on the broadcast. The property and its value will be present if the broadcast is public, has the live chat feature enabled, and has at least one message. Note that this field will not be filled after the broadcast ends. So this property would not identify the number of chat messages for an archived video of a completed live broadcast.
      */
     totalChatCount?: string | null;
   }
-  /**
-   * Live broadcast state.
-   */
   export interface Schema$LiveBroadcastStatus {
     /**
-     * The broadcast&#39;s status. The status can be updated using the API&#39;s &lt;code&gt;&lt;a href=&quot;/youtube/v3/live/docs/liveBroadcasts/transition&quot; &gt;liveBroadcasts.transition&lt;/a&gt;&lt;/code&gt; method.
+     * The broadcast&#39;s status. The status can be updated using the API&#39;s liveBroadcasts.transition method.
      */
     lifeCycleStatus?: string | null;
     /**
      * Priority of the live broadcast event (internal state).
      */
     liveBroadcastPriority?: string | null;
-    /**
-     * Whether the broadcast is made for kids or not, decided by YouTube instead of the creator. This field is read only.
-     */
     madeForKids?: boolean | null;
     /**
-     * The broadcast&#39;s privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the &lt;code&gt;&lt;a href=&quot;/youtube/v3/docs/videos#status.privacyStatus&quot; &gt;privacyStatus&lt;/a&gt;&lt;/code&gt; field of the corresponding video resource.
+     * The broadcast&#39;s privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource.
      */
     privacyStatus?: string | null;
     /**
      * The broadcast&#39;s recording status.
      */
     recordingStatus?: string | null;
-    /**
-     * This field will be set to True if the creator declares the broadcast to be kids only: go/live-cw-work.
-     */
     selfDeclaredMadeForKids?: boolean | null;
   }
   /**
-   * A `__liveChatBan__` resource represents a ban for a YouTube live chat.
+   * A liveChatBan resource represents a ban for a YouTube live chat.
    */
   export interface Schema$LiveChatBan {
     /**
@@ -2245,11 +2179,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string `&quot;youtube#liveChatBan&quot;`.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatBan&quot;.
      */
     kind?: string | null;
     /**
-     * The `snippet` object contains basic details about the ban.
+     * The snippet object contains basic details about the ban.
      */
     snippet?: Schema$LiveChatBanSnippet;
   }
@@ -2287,11 +2221,11 @@ export namespace youtube_v3 {
     userComment?: string | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;liveChatMessage&lt;/strong&gt;&lt;/code&gt; resource represents a chat message in a YouTube Live Chat.
+   * A liveChatMessage resource represents a chat message in a YouTube Live Chat.
    */
   export interface Schema$LiveChatMessage {
     /**
-     * The &lt;code&gt;authorDetails&lt;/code&gt; object contains basic details about the user that posted this message.
+     * The authorDetails object contains basic details about the user that posted this message.
      */
     authorDetails?: Schema$LiveChatMessageAuthorDetails;
     /**
@@ -2303,11 +2237,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#liveChatMessage&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatMessage&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the message.
+     * The snippet object contains basic details about the message.
      */
     snippet?: Schema$LiveChatMessageSnippet;
   }
@@ -2357,19 +2291,22 @@ export namespace youtube_v3 {
      * Serialized EventId of the request which produced this response.
      */
     eventId?: string | null;
+    /**
+     * A list of live chat messages.
+     */
     items?: Schema$LiveChatMessage[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#liveChatMessageListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatMessageListResponse&quot;.
      */
     kind?: string | null;
+    /**
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
+     */
     nextPageToken?: string | null;
     /**
-     * The date and time when the underlying stream went offline. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time when the underlying stream went offline. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     offlineAt?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
      * The amount of time the client should wait before polling again.
@@ -2377,7 +2314,7 @@ export namespace youtube_v3 {
     pollingIntervalMillis?: number | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -2404,8 +2341,12 @@ export namespace youtube_v3 {
     liveChatId?: string | null;
     messageDeletedDetails?: Schema$LiveChatMessageDeletedDetails;
     messageRetractedDetails?: Schema$LiveChatMessageRetractedDetails;
+    pollClosedDetails?: Schema$LiveChatPollClosedDetails;
+    pollEditedDetails?: Schema$LiveChatPollEditedDetails;
+    pollOpenedDetails?: Schema$LiveChatPollOpenedDetails;
+    pollVotedDetails?: Schema$LiveChatPollVotedDetails;
     /**
-     * The date and time when the message was orignally published. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time when the message was orignally published. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
@@ -2427,7 +2368,7 @@ export namespace youtube_v3 {
     userBannedDetails?: Schema$LiveChatUserBannedMessageDetails;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;liveChatModerator&lt;/strong&gt;&lt;/code&gt; resource represents a moderator for a YouTube live chat. A chat moderator has the ability to ban/unban users from a chat, remove message, etc.
+   * A liveChatModerator resource represents a moderator for a YouTube live chat. A chat moderator has the ability to ban/unban users from a chat, remove message, etc.
    */
   export interface Schema$LiveChatModerator {
     /**
@@ -2439,11 +2380,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#liveChatModerator&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatModerator&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the moderator.
+     * The snippet object contains basic details about the moderator.
      */
     snippet?: Schema$LiveChatModeratorSnippet;
   }
@@ -2461,24 +2402,21 @@ export namespace youtube_v3 {
      */
     items?: Schema$LiveChatModerator[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#liveChatModeratorListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatModeratorListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -2491,6 +2429,39 @@ export namespace youtube_v3 {
      * Details about the moderator.
      */
     moderatorDetails?: Schema$ChannelProfileDetails;
+  }
+  export interface Schema$LiveChatPollClosedDetails {
+    /**
+     * The id of the poll that was closed.
+     */
+    pollId?: string | null;
+  }
+  export interface Schema$LiveChatPollEditedDetails {
+    id?: string | null;
+    items?: Schema$LiveChatPollItem[];
+    prompt?: string | null;
+  }
+  export interface Schema$LiveChatPollItem {
+    /**
+     * Plain text description of the item.
+     */
+    description?: string | null;
+    itemId?: string | null;
+  }
+  export interface Schema$LiveChatPollOpenedDetails {
+    id?: string | null;
+    items?: Schema$LiveChatPollItem[];
+    prompt?: string | null;
+  }
+  export interface Schema$LiveChatPollVotedDetails {
+    /**
+     * The poll item the user chose.
+     */
+    itemId?: string | null;
+    /**
+     * The poll the user voted on.
+     */
+    pollId?: string | null;
   }
   export interface Schema$LiveChatSuperChatDetails {
     /**
@@ -2506,7 +2477,7 @@ export namespace youtube_v3 {
      */
     currency?: string | null;
     /**
-     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is &lt;code&gt;1&lt;/code&gt;.
+     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is 1.
      */
     tier?: number | null;
     /**
@@ -2532,7 +2503,7 @@ export namespace youtube_v3 {
      */
     superStickerMetadata?: Schema$SuperStickerMetadata;
     /**
-     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is &lt;code&gt;1&lt;/code&gt;.
+     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is 1.
      */
     tier?: number | null;
   }
@@ -2544,7 +2515,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$LiveChatUserBannedMessageDetails {
     /**
-     * The duration of the ban. This property is only present if the &lt;code&gt;banType&lt;/code&gt; is &lt;code&gt;temporary&lt;/code&gt;.
+     * The duration of the ban. This property is only present if the banType is temporary.
      */
     banDurationSeconds?: string | null;
     /**
@@ -2561,11 +2532,11 @@ export namespace youtube_v3 {
    */
   export interface Schema$LiveStream {
     /**
-     * The &lt;code&gt;cdn&lt;/code&gt; object defines the live stream&#39;s content delivery network (CDN) settings. These settings provide details about the manner in which you stream your content to YouTube.
+     * The cdn object defines the live stream&#39;s content delivery network (CDN) settings. These settings provide details about the manner in which you stream your content to YouTube.
      */
     cdn?: Schema$CdnSettings;
     /**
-     * The &lt;code&gt;content_details&lt;/code&gt; object contains information about the stream, including the closed captions ingestion URL.
+     * The content_details object contains information about the stream, including the closed captions ingestion URL.
      */
     contentDetails?: Schema$LiveStreamContentDetails;
     /**
@@ -2577,15 +2548,15 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#liveStream&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveStream&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the stream, including its channel, title, and description.
+     * The snippet object contains basic details about the stream, including its channel, title, and description.
      */
     snippet?: Schema$LiveStreamSnippet;
     /**
-     * The &lt;code&gt;status&lt;/code&gt; object contains information about live stream&#39;s status.
+     * The status object contains information about live stream&#39;s status.
      */
     status?: Schema$LiveStreamStatus;
   }
@@ -2616,7 +2587,7 @@ export namespace youtube_v3 {
      */
     closedCaptionsIngestionUrl?: string | null;
     /**
-     * Indicates whether the stream is reusable, which means that it can be bound to multiple broadcasts. It is common for broadcasters to reuse the same stream for many different broadcasts if those broadcasts occur at different times.&lt;br&gt;&lt;br&gt; If you set this value to &lt;code&gt;false&lt;/code&gt;, then the stream will not be reusable, which means that it can only be bound to one broadcast. Non-reusable streams differ from reusable streams in the following ways: &lt;ul&gt;   &lt;li&gt;A non-reusable stream can only be bound to one broadcast.&lt;/li&gt;   &lt;li&gt;A non-reusable stream might be deleted by an automated process     after the broadcast ends.&lt;/li&gt;   &lt;li&gt;The &lt;code&gt;&lt;a href=&quot;/youtube/v3/live/docs/liveStreams/list&quot;&gt;     liveStreams.list&lt;/a&gt;&lt;/code&gt; method does not list non-reusable streams     if you call the method and set the &lt;code&gt;mine&lt;/code&gt; parameter to     &lt;code&gt;true&lt;/code&gt;. The only way to use that method to retrieve the     resource for a non-reusable stream is to use the &lt;code&gt;id&lt;/code&gt;     parameter to identify the stream.&lt;/li&gt; &lt;/ul&gt;
+     * Indicates whether the stream is reusable, which means that it can be bound to multiple broadcasts. It is common for broadcasters to reuse the same stream for many different broadcasts if those broadcasts occur at different times.  If you set this value to false, then the stream will not be reusable, which means that it can only be bound to one broadcast. Non-reusable streams differ from reusable streams in the following ways:   - A non-reusable stream can only be bound to one broadcast.  - A non-reusable stream might be deleted by an automated process after the broadcast ends.  - The  liveStreams.list method does not list non-reusable streams if you call the method and set the mine parameter to true. The only way to use that method to retrieve the resource for a non-reusable stream is to use the id parameter to identify the stream.
      */
     isReusable?: boolean | null;
   }
@@ -2648,21 +2619,21 @@ export namespace youtube_v3 {
      */
     items?: Schema$LiveStream[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#liveStreamListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveStreamListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -2677,7 +2648,7 @@ export namespace youtube_v3 {
     description?: string | null;
     isDefaultStream?: boolean | null;
     /**
-     * The date and time that the stream was created. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the stream was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
@@ -2708,7 +2679,7 @@ export namespace youtube_v3 {
     value?: string | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;member&lt;/strong&gt;&lt;/code&gt; resource represents a member for a YouTube channel. A member provides recurring monetary support to a creator and receives special benefits.
+   * A member resource represents a member for a YouTube channel. A member provides recurring monetary support to a creator and receives special benefits.
    */
   export interface Schema$Member {
     /**
@@ -2716,11 +2687,11 @@ export namespace youtube_v3 {
      */
     etag?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#member&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#member&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the member.
+     * The snippet object contains basic details about the member.
      */
     snippet?: Schema$MemberSnippet;
   }
@@ -2738,17 +2709,17 @@ export namespace youtube_v3 {
      */
     items?: Schema$Member[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#memberListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#memberListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
     pageInfo?: Schema$PageInfo;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -2762,7 +2733,7 @@ export namespace youtube_v3 {
      */
     highestAccessibleLevel?: string | null;
     /**
-     * Display name for the highest level that the user has access to at the moment.
+     * Display name of the highest level that the user has access to at the moment.
      */
     highestAccessibleLevelDisplayName?: string | null;
     /**
@@ -2786,7 +2757,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$MembershipsDurationAtLevel {
     /**
-     * Pricing level ID.
+     * Pricing level id.
      */
     level?: string | null;
     /**
@@ -2799,7 +2770,7 @@ export namespace youtube_v3 {
     memberTotalDurationMonths?: number | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;membershipsLevel&lt;/strong&gt;&lt;/code&gt; resource represents an offer made by YouTube creators for their fans. Users can become members of the channel by joining one of the available levels. They will provide recurring monetary support and receives special benefits.
+   * A membershipsLevel resource represents an offer made by YouTube creators for their fans. Users can become members of the channel by joining one of the available levels. They will provide recurring monetary support and receives special benefits.
    */
   export interface Schema$MembershipsLevel {
     /**
@@ -2811,11 +2782,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#membershipsLevelListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#membershipsLevel&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the level.
+     * The snippet object contains basic details about the level.
      */
     snippet?: Schema$MembershipsLevelSnippet;
   }
@@ -2833,11 +2804,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$MembershipsLevel[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#membershipsLevelListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#membershipsLevelListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -2846,9 +2817,6 @@ export namespace youtube_v3 {
      * The id of the channel that&#39;s offering channel memberships.
      */
     creatorChannelId?: string | null;
-    /**
-     * Details about the pricing level.
-     */
     levelDetails?: Schema$LevelDetails;
   }
   export interface Schema$MemberSnippet {
@@ -2870,7 +2838,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$MonitorStreamInfo {
     /**
-     * If you have set the &lt;code&gt;&lt;a href=&quot;#enableMonitorStream&quot;&gt;enableMonitorStream&lt;/a&gt;&lt;/code&gt; property to &lt;code&gt;true&lt;/code&gt;, then this property determines the length of the live broadcast delay.
+     * If you have set the enableMonitorStream property to true, then this property determines the length of the live broadcast delay.
      */
     broadcastStreamDelayMs?: number | null;
     /**
@@ -2878,9 +2846,25 @@ export namespace youtube_v3 {
      */
     embedHtml?: string | null;
     /**
-     * This value determines whether the monitor stream is enabled for the broadcast. If the monitor stream is enabled, then YouTube will broadcast the event content on a special stream intended only for the broadcaster&#39;s consumption. The broadcaster can use the stream to review the event content and also to identify the optimal times to insert cuepoints.&lt;br&gt;&lt;br&gt; You need to set this value to &lt;code&gt;true&lt;/code&gt; if you intend to have a broadcast delay for your event.&lt;br&gt;&lt;br&gt; &lt;strong&gt;Note:&lt;/strong&gt; This property cannot be updated once the broadcast is in the &lt;code&gt;testing&lt;/code&gt; or &lt;code&gt;live&lt;/code&gt; state.
+     * This value determines whether the monitor stream is enabled for the broadcast. If the monitor stream is enabled, then YouTube will broadcast the event content on a special stream intended only for the broadcaster&#39;s consumption. The broadcaster can use the stream to review the event content and also to identify the optimal times to insert cuepoints.  You need to set this value to true if you intend to have a broadcast delay for your event.  Note: This property cannot be updated once the broadcast is in the testing or live state.
      */
     enableMonitorStream?: boolean | null;
+  }
+  /**
+   * Nonprofit information.
+   */
+  export interface Schema$Nonprofit {
+    /**
+     * Id of the nonprofit.
+     */
+    nonprofitId?: Schema$NonprofitId;
+    /**
+     * Legal name of the nonprofit.
+     */
+    nonprofitLegalName?: string | null;
+  }
+  export interface Schema$NonprofitId {
+    value?: string | null;
   }
   /**
    * Paging details for lists of resources, including total number of items available and number of resources returned in a single page.
@@ -2896,11 +2880,11 @@ export namespace youtube_v3 {
     totalResults?: number | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;playlist&lt;/strong&gt;&lt;/code&gt; resource represents a YouTube playlist. A playlist is a collection of videos that can be viewed sequentially and shared with other users. A playlist can contain up to 200 videos, and YouTube does not limit the number of playlists that each user creates. By default, playlists are publicly visible to other users, but playlists can be public or private.  &lt;br/&gt;&lt;br/&gt; YouTube also uses playlists to identify special collections of videos for a channel, such as:   &lt;ul&gt;     &lt;li&gt;uploaded videos&lt;/li&gt;     &lt;li&gt;favorite videos&lt;/li&gt;     &lt;li&gt;positively rated (liked) videos&lt;/li&gt;     &lt;li&gt;watch history&lt;/li&gt;     &lt;li&gt;watch later&lt;/li&gt;   &lt;/ul&gt; To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company&#39;s videos, playlists, and other YouTube information.  You can retrieve the playlist IDs for each of these lists from the &lt;code&gt;&lt;a href=\&quot;/youtube/v3/docs/channels\&quot;&gt; channel resource&lt;/a&gt;&lt;/code&gt; for a given channel.&lt;br/&gt;&lt;br/&gt; You can then use the &lt;code&gt; &lt;a href=\&quot;/youtube/v3/docs/playlistItems/list\&quot;&gt; playlistItems.list&lt;/a&gt;&lt;/code&gt; method to retrieve any of those lists. You can also add or remove items from those lists by calling the &lt;code&gt; &lt;a href=\&quot;/youtube/v3/docs/playlistItems/insert\&quot;&gt; playlistItems.insert&lt;/a&gt;&lt;/code&gt; and &lt;code&gt; &lt;a href=\&quot;/youtube/v3/docs/playlistItems/delete\&quot;&gt; playlistItems.delete&lt;/a&gt;&lt;/code&gt; methods.
+   * A playlist resource represents a YouTube playlist. A playlist is a collection of videos that can be viewed sequentially and shared with other users. A playlist can contain up to 200 videos, and YouTube does not limit the number of playlists that each user creates. By default, playlists are publicly visible to other users, but playlists can be public or private.  YouTube also uses playlists to identify special collections of videos for a channel, such as:   - uploaded videos  - favorite videos  - positively rated (liked) videos  - watch history  - watch later  To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company&#39;s videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the  channel resource for a given channel.  You can then use the   playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the   playlistItems.insert and   playlistItems.delete methods.
    */
   export interface Schema$Playlist {
     /**
-     * The &lt;code&gt;contentDetails&lt;/code&gt; object contains information like video count.
+     * The contentDetails object contains information like video count.
      */
     contentDetails?: Schema$PlaylistContentDetails;
     /**
@@ -2912,7 +2896,7 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#playlist&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#playlist&quot;.
      */
     kind?: string | null;
     /**
@@ -2920,15 +2904,15 @@ export namespace youtube_v3 {
      */
     localizations?: {[key: string]: Schema$PlaylistLocalization} | null;
     /**
-     * The &lt;code&gt;player&lt;/code&gt; object contains information that you would use to play the playlist in an embedded player.
+     * The player object contains information that you would use to play the playlist in an embedded player.
      */
     player?: Schema$PlaylistPlayer;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the playlist, such as its title and description.
+     * The snippet object contains basic details about the playlist, such as its title and description.
      */
     snippet?: Schema$PlaylistSnippet;
     /**
-     * The &lt;code&gt;status&lt;/code&gt; object contains status information for the playlist.
+     * The status object contains status information for the playlist.
      */
     status?: Schema$PlaylistStatus;
   }
@@ -2939,11 +2923,11 @@ export namespace youtube_v3 {
     itemCount?: number | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;playlistItem&lt;/strong&gt;&lt;/code&gt; resource identifies another resource, such as a video, that is included in a playlist. In addition, the &lt;code&gt;playlistItem &lt;/code&gt; resource contains details about the included resource that pertain specifically to how that resource is used in that playlist.&lt;br/&gt;&lt;br/&gt; YouTube uses playlists to identify special collections of videos for a channel, such as:   &lt;ul&gt;     &lt;li&gt;uploaded videos&lt;/li&gt;     &lt;li&gt;favorite videos&lt;/li&gt;     &lt;li&gt;positively rated (liked) videos&lt;/li&gt;     &lt;li&gt;watch history&lt;/li&gt;     &lt;li&gt;watch later&lt;/li&gt;   &lt;/ul&gt;  To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company&#39;s videos, playlists, and other YouTube information. &lt;br/&gt;&lt;br/&gt;  You can retrieve the playlist IDs for each of these lists from the &lt;code&gt; &lt;a href=\&quot;/youtube/v3/docs/channels\&quot;&gt;channel resource&lt;/a&gt; &lt;/code&gt; for a given channel. You can then use the &lt;code&gt; &lt;a href=\&quot;/youtube/v3/docs/playlistItems/list\&quot;&gt; playlistItems.list&lt;/a&gt;&lt;/code&gt; method to retrieve any of those lists. You can also add or remove items from those lists by calling the &lt;code&gt; &lt;a href=\&quot;/youtube/v3/docs/playlistItems/insert\&quot;&gt; playlistItems.insert&lt;/a&gt;&lt;/code&gt; and &lt;code&gt; &lt;a href=\&quot;/youtube/v3/docs/playlistItems/delete\&quot;&gt; playlistItems.delete&lt;/a&gt;&lt;/code&gt; methods. For example, if a user gives a positive rating to a video, you would insert that video into the liked videos playlist for that user&#39;s channel.
+   * A playlistItem resource identifies another resource, such as a video, that is included in a playlist. In addition, the playlistItem  resource contains details about the included resource that pertain specifically to how that resource is used in that playlist.  YouTube uses playlists to identify special collections of videos for a channel, such as:   - uploaded videos  - favorite videos  - positively rated (liked) videos  - watch history  - watch later  To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company&#39;s videos, playlists, and other YouTube information.  You can retrieve the playlist IDs for each of these lists from the  channel resource  for a given channel. You can then use the   playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the   playlistItems.insert and   playlistItems.delete methods. For example, if a user gives a positive rating to a video, you would insert that video into the liked videos playlist for that user&#39;s channel.
    */
   export interface Schema$PlaylistItem {
     /**
-     * The &lt;code&gt;contentDetails&lt;/code&gt; object is included in the resource if the included item is a YouTube video. The object contains additional information about the video.
+     * The contentDetails object is included in the resource if the included item is a YouTube video. The object contains additional information about the video.
      */
     contentDetails?: Schema$PlaylistItemContentDetails;
     /**
@@ -2955,21 +2939,21 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#playlistItem&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#playlistItem&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the playlist item, such as its title and position in the playlist.
+     * The snippet object contains basic details about the playlist item, such as its title and position in the playlist.
      */
     snippet?: Schema$PlaylistItemSnippet;
     /**
-     * The &lt;code&gt;status&lt;/code&gt; object contains information about the playlist item&#39;s privacy status.
+     * The status object contains information about the playlist item&#39;s privacy status.
      */
     status?: Schema$PlaylistItemStatus;
   }
   export interface Schema$PlaylistItemContentDetails {
     /**
-     * The time, measured in seconds from the start of the video, when the video should stop playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) By default, assume that the &lt;code&gt;video.endTime&lt;/code&gt; is the end of the video.
+     * The time, measured in seconds from the start of the video, when the video should stop playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) By default, assume that the video.endTime is the end of the video.
      */
     endAt?: string | null;
     /**
@@ -2977,19 +2961,22 @@ export namespace youtube_v3 {
      */
     note?: string | null;
     /**
-     * The time, measured in seconds from the start of the video, when the video should start playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) The default value is &lt;code&gt;0&lt;/code&gt;.
+     * The time, measured in seconds from the start of the video, when the video should start playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) The default value is 0.
      */
     startAt?: string | null;
     /**
-     * The ID that YouTube uses to uniquely identify a video. To &lt;a href=&quot;/youtube/v3/docs/video/list.html&quot;&gt;retrieve the &lt;code&gt;video&lt;/code&gt; resource&lt;/a&gt;, set the &lt;code&gt;id&lt;/code&gt; query parameter to this value in your API request.
+     * The ID that YouTube uses to uniquely identify a video. To retrieve the video resource, set the id query parameter to this value in your API request.
      */
     videoId?: string | null;
     /**
-     * The date and time that the video was published to YouTube. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the video was published to YouTube. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     videoPublishedAt?: string | null;
   }
   export interface Schema$PlaylistItemListResponse {
+    /**
+     * Etag of this resource.
+     */
     etag?: string | null;
     /**
      * Serialized EventId of the request which produced this response.
@@ -3000,29 +2987,26 @@ export namespace youtube_v3 {
      */
     items?: Schema$PlaylistItem[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#playlistItemListResponse&quot;&lt;/code&gt;. Etag of this resource.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#playlistItemListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
   /**
-   * Basic details about a playlist, including title, description and thumbnails. Basic details of a YouTube Playlist item provided by the author. Next ID: 13
+   * Basic details about a playlist, including title, description and thumbnails.
    */
   export interface Schema$PlaylistItemSnippet {
     /**
@@ -3038,19 +3022,19 @@ export namespace youtube_v3 {
      */
     description?: string | null;
     /**
-     * The ID that YouTube uses to uniquely identify thGe playlist that the playlist item is in.
+     * The ID that YouTube uses to uniquely identify the playlist that the playlist item is in.
      */
     playlistId?: string | null;
     /**
-     * The order in which the item appears in the playlist. The value uses a zero-based index, so the first item has a position of &lt;code&gt;0&lt;/code&gt;, the second item has a position of &lt;code&gt;1&lt;/code&gt;, and so forth.
+     * The order in which the item appears in the playlist. The value uses a zero-based index, so the first item has a position of 0, the second item has a position of 1, and so forth.
      */
     position?: number | null;
     /**
-     * The date and time that the item was added to the playlist. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the item was added to the playlist. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
-     * The &lt;code&gt;id&lt;/code&gt; object contains information that can be used to uniquely identify the resource that is included in the playlist as the playlist item.
+     * The id object contains information that can be used to uniquely identify the resource that is included in the playlist as the playlist item.
      */
     resourceId?: Schema$ResourceId;
     /**
@@ -3081,28 +3065,25 @@ export namespace youtube_v3 {
      */
     eventId?: string | null;
     /**
-     * A list of playlists that match the request criteria
+     * A list of playlists that match the request criteria.
      */
     items?: Schema$Playlist[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#playlistListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#playlistListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -3121,7 +3102,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$PlaylistPlayer {
     /**
-     * An &lt;code&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt; tag that embeds a player that will play the playlist.
+     * An &lt;iframe&gt; tag that embeds a player that will play the playlist.
      */
     embedHtml?: string | null;
   }
@@ -3150,7 +3131,7 @@ export namespace youtube_v3 {
      */
     localized?: Schema$PlaylistLocalization;
     /**
-     * The date and time that the playlist was created. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the playlist was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
@@ -3206,11 +3187,11 @@ export namespace youtube_v3 {
      */
     type?: string | null;
     /**
-     * If the promoted item represents a video, this field represents the unique YouTube ID identifying it. This field will be present only if &lt;code&gt;type&lt;/code&gt; has the value &lt;code&gt;video&lt;/code&gt;.
+     * If the promoted item represents a video, this field represents the unique YouTube ID identifying it. This field will be present only if type has the value video.
      */
     videoId?: string | null;
     /**
-     * If the promoted item represents a website, this field represents the url pointing to the website. This field will be present only if &lt;code&gt;type&lt;/code&gt; has the value &lt;code&gt;website&lt;/code&gt;.
+     * If the promoted item represents a website, this field represents the url pointing to the website. This field will be present only if type has the value website.
      */
     websiteUrl?: string | null;
   }
@@ -3232,7 +3213,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ResourceId {
     /**
-     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a channel. This property is only present if the &lt;code&gt;resourceId.kind&lt;/code&gt; value is &lt;code&gt;youtube#channel&lt;/code&gt;.
+     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a channel. This property is only present if the resourceId.kind value is youtube#channel.
      */
     channelId?: string | null;
     /**
@@ -3240,11 +3221,11 @@ export namespace youtube_v3 {
      */
     kind?: string | null;
     /**
-     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a playlist. This property is only present if the &lt;code&gt;resourceId.kind&lt;/code&gt; value is &lt;code&gt;youtube#playlist&lt;/code&gt;.
+     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a playlist. This property is only present if the resourceId.kind value is youtube#playlist.
      */
     playlistId?: string | null;
     /**
-     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a video. This property is only present if the &lt;code&gt;resourceId.kind&lt;/code&gt; value is &lt;code&gt;youtube#video&lt;/code&gt;.
+     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a video. This property is only present if the resourceId.kind value is youtube#video.
      */
     videoId?: string | null;
   }
@@ -3258,29 +3239,26 @@ export namespace youtube_v3 {
      */
     eventId?: string | null;
     /**
-     * Pagination information for token pagination.
+     * A list of results that match the search criteria.
      */
     items?: Schema$SearchResult[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#searchListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#searchListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     regionCode?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -3293,15 +3271,15 @@ export namespace youtube_v3 {
      */
     etag?: string | null;
     /**
-     * The &lt;code&gt;id&lt;/code&gt; object contains information that can be used to uniquely identify the resource that matches the search request.
+     * The id object contains information that can be used to uniquely identify the resource that matches the search request.
      */
     id?: Schema$ResourceId;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#searchResult&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#searchResult&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about a search result, such as its title or description. For example, if the search result is a video, then the title will be the video&#39;s title and the description will be the video&#39;s description.
+     * The snippet object contains basic details about a search result, such as its title or description. For example, if the search result is a video, then the title will be the video&#39;s title and the description will be the video&#39;s description.
      */
     snippet?: Schema$SearchResultSnippet;
   }
@@ -3326,7 +3304,7 @@ export namespace youtube_v3 {
      */
     liveBroadcastContent?: string | null;
     /**
-     * The creation date and time of the resource that the search result identifies. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The creation date and time of the resource that the search result identifies. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
@@ -3339,7 +3317,7 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   /**
-   * A `__sponsor__` resource represents a sponsor for a YouTube channel.  A sponsor provides recurring monetary support to a creator and receives special benefits.
+   * A sponsor resource represents a sponsor for a YouTube channel. A sponsor provides recurring monetary support to a creator and receives special benefits.
    */
   export interface Schema$Sponsor {
     /**
@@ -3347,11 +3325,11 @@ export namespace youtube_v3 {
      */
     etag?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string `&quot;youtube#sponsor&quot;`.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#sponsor&quot;.
      */
     kind?: string | null;
     /**
-     * The `snippet` object contains basic details about the sponsor.
+     * The snippet object contains basic details about the sponsor.
      */
     snippet?: Schema$SponsorSnippet;
   }
@@ -3369,17 +3347,17 @@ export namespace youtube_v3 {
      */
     items?: Schema$Sponsor[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string `&quot;youtube#sponsorListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#sponsorListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the `pageToken` parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
     pageInfo?: Schema$PageInfo;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The `visitorId` identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -3397,16 +3375,16 @@ export namespace youtube_v3 {
      */
     sponsorDetails?: Schema$ChannelProfileDetails;
     /**
-     * The date and time when the user became a sponsor. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (`YYYY-MM-DDThh:mm:ss.sZ`) format.
+     * The date and time when the user became a sponsor. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     sponsorSince?: string | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;subscription&lt;/strong&gt;&lt;/code&gt; resource contains information about a YouTube user subscription.  A subscription notifies a user when new videos are added to a channel or when another user takes one of several actions on YouTube, such as uploading a video, rating a video, or commenting on a video.
+   * A subscription resource contains information about a YouTube user subscription. A subscription notifies a user when new videos are added to a channel or when another user takes one of several actions on YouTube, such as uploading a video, rating a video, or commenting on a video.
    */
   export interface Schema$Subscription {
     /**
-     * The &lt;code&gt;contentDetails&lt;/code&gt; object contains basic statistics about the subscription.
+     * The contentDetails object contains basic statistics about the subscription.
      */
     contentDetails?: Schema$SubscriptionContentDetails;
     /**
@@ -3418,15 +3396,15 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#subscription&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#subscription&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the subscription, including its title and the channel that the user subscribed to.
+     * The snippet object contains basic details about the subscription, including its title and the channel that the user subscribed to.
      */
     snippet?: Schema$SubscriptionSnippet;
     /**
-     * The &lt;code&gt;subscriberSnippet&lt;/code&gt; object contains basic details about the subscriber.
+     * The subscriberSnippet object contains basic details about the sbuscriber.
      */
     subscriberSnippet?: Schema$SubscriptionSubscriberSnippet;
   }
@@ -3461,21 +3439,21 @@ export namespace youtube_v3 {
      */
     items?: Schema$Subscription[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#subscriptionListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#subscriptionListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -3496,11 +3474,11 @@ export namespace youtube_v3 {
      */
     description?: string | null;
     /**
-     * The date and time that the subscription was created. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the subscription was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
-     * The &lt;code&gt;id&lt;/code&gt; object contains information about the channel that the user subscribed to.
+     * The id object contains information about the channel that the user subscribed to.
      */
     resourceId?: Schema$ResourceId;
     /**
@@ -3534,7 +3512,7 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   /**
-   * A `__superChatEvent__` resource represents a Super Chat purchase on a YouTube channel.
+   * A superChatEvent resource represents a Super Chat purchase on a YouTube channel.
    */
   export interface Schema$SuperChatEvent {
     /**
@@ -3546,11 +3524,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string `&quot;youtube#superChatEvent&quot;`.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#superChatEvent&quot;.
      */
     kind?: string | null;
     /**
-     * The `snippet` object contains basic details about the Super Chat event.
+     * The snippet object contains basic details about the Super Chat event.
      */
     snippet?: Schema$SuperChatEventSnippet;
   }
@@ -3568,23 +3546,23 @@ export namespace youtube_v3 {
      */
     items?: Schema$SuperChatEvent[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#superChatEventListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#superChatEventListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
     pageInfo?: Schema$PageInfo;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
   export interface Schema$SuperChatEventSnippet {
     /**
-     * The purchase amount, in micros of the purchase currency.  e.g., 1 is represented as 1000000.
+     * The purchase amount, in micros of the purchase currency. e.g., 1 is represented as 1000000.
      */
     amountMicros?: string | null;
     /**
@@ -3596,17 +3574,21 @@ export namespace youtube_v3 {
      */
     commentText?: string | null;
     /**
-     * The date and time when the event occurred. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time when the event occurred. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     createdAt?: string | null;
     /**
-     * The currency in which the purchase was made.  ISO 4217.
+     * The currency in which the purchase was made. ISO 4217.
      */
     currency?: string | null;
     /**
-     * A rendered string that displays the purchase amount and currency (e.g., &quot;$1.00&quot;).  The string is rendered for the given language.
+     * A rendered string that displays the purchase amount and currency (e.g., &quot;$1.00&quot;). The string is rendered for the given language.
      */
     displayString?: string | null;
+    /**
+     * True if this event is a Super Chat for Good purchase.
+     */
+    isSuperChatForGood?: boolean | null;
     /**
      * True if this event is a Super Sticker event.
      */
@@ -3615,6 +3597,10 @@ export namespace youtube_v3 {
      * The tier for the paid message, which is based on the amount of money spent to purchase the message.
      */
     messageType?: number | null;
+    /**
+     * If this event is a Super Chat for Good purchase, this field will contain information about the charity the purchase is donated to.
+     */
+    nonprofit?: Schema$Nonprofit;
     /**
      * If this event is a Super Sticker event, this field will contain metadata about the Super Sticker.
      */
@@ -3694,11 +3680,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$ThumbnailDetails[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#thumbnailSetResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#thumbnailSetResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -3707,7 +3693,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$TokenPagination {}
   /**
-   * A &lt;code&gt;&lt;strong&gt;video&lt;/strong&gt;&lt;/code&gt; resource represents a YouTube video.
+   * A video resource represents a YouTube video.
    */
   export interface Schema$Video {
     /**
@@ -3715,7 +3701,7 @@ export namespace youtube_v3 {
      */
     ageGating?: Schema$VideoAgeGating;
     /**
-     * The &lt;code&gt;contentDetails&lt;/code&gt; object contains information about the video content, including the length of the video and its aspect ratio.
+     * The contentDetails object contains information about the video content, including the length of the video and its aspect ratio.
      */
     contentDetails?: Schema$VideoContentDetails;
     /**
@@ -3723,7 +3709,7 @@ export namespace youtube_v3 {
      */
     etag?: string | null;
     /**
-     * The &lt;code&gt;fileDetails&lt;/code&gt; object encapsulates information about the video file that was uploaded to YouTube, including the file&#39;s resolution, duration, audio and video codecs, stream bitrates, and more. This data can only be retrieved by the video owner.
+     * The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file&#39;s resolution, duration, audio and video codecs, stream bitrates, and more. This data can only be retrieved by the video owner.
      */
     fileDetails?: Schema$VideoFileDetails;
     /**
@@ -3731,55 +3717,55 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#video&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#video&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;liveStreamingDetails&lt;/code&gt; object contains metadata about a live video broadcast. The object will only be present in a &lt;code&gt;video&lt;/code&gt; resource if the video is an upcoming, live, or completed live broadcast.
+     * The liveStreamingDetails object contains metadata about a live video broadcast. The object will only be present in a video resource if the video is an upcoming, live, or completed live broadcast.
      */
     liveStreamingDetails?: Schema$VideoLiveStreamingDetails;
     /**
-     * The &lt;code&gt;localizations&lt;/code&gt; object contains localized versions of the basic details about the video, such as its title and description.
+     * List with all localizations.
      */
     localizations?: {[key: string]: Schema$VideoLocalization} | null;
     /**
-     * The &lt;code&gt;monetizationDetails&lt;/code&gt; object encapsulates information about the monetization status of the video.
+     * The monetizationDetails object encapsulates information about the monetization status of the video.
      */
     monetizationDetails?: Schema$VideoMonetizationDetails;
     /**
-     * The &lt;code&gt;player&lt;/code&gt; object contains information that you would use to play the video in an embedded player.
+     * The player object contains information that you would use to play the video in an embedded player.
      */
     player?: Schema$VideoPlayer;
     /**
-     * The &lt;code&gt;processingDetails&lt;/code&gt; object encapsulates information about YouTube&#39;s progress in processing the uploaded video file. The properties in the object identify the current processing status and an estimate of the time remaining until YouTube finishes processing the video. This part also indicates whether different types of data or content, such as file details or thumbnail images, are available for the video.&lt;br&gt;&lt;br&gt; The &lt;code&gt;processingProgress&lt;/code&gt; object is designed to be polled so that the video uploaded can track the progress that YouTube has made in processing the uploaded video file. This data can only be retrieved by the video owner.
+     * The processingDetails object encapsulates information about YouTube&#39;s progress in processing the uploaded video file. The properties in the object identify the current processing status and an estimate of the time remaining until YouTube finishes processing the video. This part also indicates whether different types of data or content, such as file details or thumbnail images, are available for the video.  The processingProgress object is designed to be polled so that the video uploaded can track the progress that YouTube has made in processing the uploaded video file. This data can only be retrieved by the video owner.
      */
     processingDetails?: Schema$VideoProcessingDetails;
     /**
-     * The &lt;code&gt;projectDetails&lt;/code&gt; object contains information about the project specific video metadata.
+     * The projectDetails object contains information about the project specific video metadata.
      */
     projectDetails?: Schema$VideoProjectDetails;
     /**
-     * The &lt;code&gt;recordingDetails&lt;/code&gt; object encapsulates information about the location, date and address where the video was recorded.
+     * The recordingDetails object encapsulates information about the location, date and address where the video was recorded.
      */
     recordingDetails?: Schema$VideoRecordingDetails;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the video, such as its title, description, and category.
+     * The snippet object contains basic details about the video, such as its title, description, and category.
      */
     snippet?: Schema$VideoSnippet;
     /**
-     * The &lt;code&gt;statistics&lt;/code&gt; object contains statistics about the video.
+     * The statistics object contains statistics about the video.
      */
     statistics?: Schema$VideoStatistics;
     /**
-     * The &lt;code&gt;status&lt;/code&gt; object contains information about the video&#39;s uploading, processing, and privacy statuses.
+     * The status object contains information about the video&#39;s uploading, processing, and privacy statuses.
      */
     status?: Schema$VideoStatus;
     /**
-     * The &lt;code&gt;suggestions&lt;/code&gt; object encapsulates suggestions that identify opportunities to improve the video quality or the metadata for the uploaded video. This data can only be retrieved by the video owner.
+     * The suggestions object encapsulates suggestions that identify opportunities to improve the video quality or the metadata for the uploaded video. This data can only be retrieved by the video owner.
      */
     suggestions?: Schema$VideoSuggestions;
     /**
-     * The &lt;code&gt;topicDetails&lt;/code&gt; object encapsulates information about &lt;a href=&quot;http://www.freebase.com&quot;&gt;Freebase&lt;/a&gt; topics associated with the video.
+     * The topicDetails object encapsulates information about Freebase topics associated with the video.
      */
     topicDetails?: Schema$VideoTopicDetails;
   }
@@ -3806,7 +3792,7 @@ export namespace youtube_v3 {
     videoId?: string | null;
   }
   /**
-   * A `__videoAbuseReportReason__` resource identifies a reason that a video could be reported as abusive. Video abuse report reasons are used with `video.ReportAbuse`.
+   * A videoAbuseReportReason resource identifies a reason that a video could be reported as abusive. Video abuse report reasons are used with video.ReportAbuse.
    */
   export interface Schema$VideoAbuseReportReason {
     /**
@@ -3818,11 +3804,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string `&quot;youtube#videoAbuseReportReason&quot;`.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoAbuseReportReason&quot;.
      */
     kind?: string | null;
     /**
-     * The `snippet` object contains basic details about the abuse report reason.
+     * The snippet object contains basic details about the abuse report reason.
      */
     snippet?: Schema$VideoAbuseReportReasonSnippet;
   }
@@ -3836,15 +3822,15 @@ export namespace youtube_v3 {
      */
     eventId?: string | null;
     /**
-     * A list of valid abuse reasons that are used with `video.ReportAbuse`.
+     * A list of valid abuse reasons that are used with video.ReportAbuse.
      */
     items?: Schema$VideoAbuseReportReason[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string `&quot;youtube#videoAbuseReportReasonListResponse&quot;`.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoAbuseReportReasonListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The `visitorId` identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -3877,7 +3863,7 @@ export namespace youtube_v3 {
      */
     alcoholContent?: boolean | null;
     /**
-     * Age-restricted trailers. For redband trailers and adult-rated video-games. Only users aged 18+ can view the content. The the field is &lt;code&gt;true&lt;/code&gt; the content is restricted to viewers aged 18+. Otherwise The field won&#39;t be present.
+     * Age-restricted trailers. For redband trailers and adult-rated video-games. Only users aged 18+ can view the content. The the field is true the content is restricted to viewers aged 18+. Otherwise The field won&#39;t be present.
      */
     restricted?: boolean | null;
     /**
@@ -3886,7 +3872,7 @@ export namespace youtube_v3 {
     videoGameRating?: string | null;
   }
   /**
-   * A &lt;code&gt;&lt;strong&gt;videoCategory&lt;/strong&gt;&lt;/code&gt; resource identifies a category that has been or could be associated with uploaded videos.
+   * A videoCategory resource identifies a category that has been or could be associated with uploaded videos.
    */
   export interface Schema$VideoCategory {
     /**
@@ -3898,11 +3884,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#videoCategory&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoCategory&quot;.
      */
     kind?: string | null;
     /**
-     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the video category, including its title.
+     * The snippet object contains basic details about the video category, including its title.
      */
     snippet?: Schema$VideoCategorySnippet;
   }
@@ -3916,28 +3902,25 @@ export namespace youtube_v3 {
      */
     eventId?: string | null;
     /**
-     * A list of video categories that can be associated with YouTube videos. In this map, the video category ID is the map key, and its value is the corresponding &lt;code&gt;videoCategory&lt;/code&gt; resource.
+     * A list of video categories that can be associated with YouTube videos. In this map, the video category ID is the map key, and its value is the corresponding videoCategory resource.
      */
     items?: Schema$VideoCategory[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#videoCategoryListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoCategoryListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -3960,7 +3943,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoContentDetails {
     /**
-     * The value of &lt;code&gt;captions&lt;/code&gt; indicates whether the video has captions or not.
+     * The value of captions indicates whether the video has captions or not.
      */
     caption?: string | null;
     /**
@@ -3968,19 +3951,19 @@ export namespace youtube_v3 {
      */
     contentRating?: Schema$ContentRating;
     /**
-     * The &lt;code&gt;countryRestriction&lt;/code&gt; object contains information about the countries where a video is (or is not) viewable.
+     * The countryRestriction object contains information about the countries where a video is (or is not) viewable.
      */
     countryRestriction?: Schema$AccessPolicy;
     /**
-     * The value of &lt;code&gt;definition&lt;/code&gt; indicates whether the video is available in high definition or only in standard definition.
+     * The value of definition indicates whether the video is available in high definition or only in standard definition.
      */
     definition?: string | null;
     /**
-     * The value of &lt;code&gt;dimension&lt;/code&gt; indicates whether the video is available in 3D or in 2D.
+     * The value of dimension indicates whether the video is available in 3D or in 2D.
      */
     dimension?: string | null;
     /**
-     * The length of the video. The tag value is an &lt;a href=&quot;//en.wikipedia.org/wiki/ISO_8601#Durations&quot;&gt;ISO 8601&lt;/a&gt; duration in the format &lt;code&gt;PT#M#S&lt;/code&gt;, in which the letters &lt;code&gt;PT&lt;/code&gt; indicate that the value specifies a period of time, and the letters &lt;code&gt;M&lt;/code&gt; and &lt;code&gt;S&lt;/code&gt; refer to length in minutes and seconds, respectively. The &lt;code&gt;#&lt;/code&gt; characters preceding the &lt;code&gt;M&lt;/code&gt; and &lt;code&gt;S&lt;/code&gt; letters are both integers that specify the number of minutes (or seconds) of the video. For example, a value of &lt;code&gt;PT15M51S&lt;/code&gt; indicates that the video is 15 minutes and 51 seconds long.
+     * The length of the video. The tag value is an ISO 8601 duration in the format PT#M#S, in which the letters PT indicate that the value specifies a period of time, and the letters M and S refer to length in minutes and seconds, respectively. The # characters preceding the M and S letters are both integers that specify the number of minutes (or seconds) of the video. For example, a value of PT15M51S indicates that the video is 15 minutes and 51 seconds long.
      */
     duration?: string | null;
     /**
@@ -3988,7 +3971,7 @@ export namespace youtube_v3 {
      */
     hasCustomThumbnail?: boolean | null;
     /**
-     * The value of &lt;code&gt;is_license_content&lt;/code&gt; indicates whether the video is licensed content.
+     * The value of is_license_content indicates whether the video is licensed content.
      */
     licensedContent?: boolean | null;
     /**
@@ -3996,7 +3979,7 @@ export namespace youtube_v3 {
      */
     projection?: string | null;
     /**
-     * The &lt;code&gt;regionRestriction&lt;/code&gt; object contains information about the countries where a video is (or is not) viewable. The object will contain either the &lt;code&gt;contentDetails.regionRestriction.allowed&lt;/code&gt; property or the &lt;code&gt;contentDetails.regionRestriction.blocked&lt;/code&gt; property.
+     * The regionRestriction object contains information about the countries where a video is (or is not) viewable. The object will contain either the contentDetails.regionRestriction.allowed property or the contentDetails.regionRestriction.blocked property.
      */
     regionRestriction?: Schema$VideoContentDetailsRegionRestriction;
   }
@@ -4030,7 +4013,7 @@ export namespace youtube_v3 {
      */
     container?: string | null;
     /**
-     * The date and time when the uploaded video file was created. The value is specified in &lt;a href=&quot;http://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; format. Currently, the following ISO 8601 formats are supported: &lt;ul&gt; &lt;li&gt;Date only: &lt;code&gt;YYYY-MM-DD&lt;/code&gt;&lt;/li&gt; &lt;li&gt;Naive time: &lt;code&gt;YYYY-MM-DDTHH:MM:SS&lt;/code&gt;&lt;/li&gt; &lt;li&gt;Time with timezone: &lt;code&gt;YYYY-MM-DDTHH:MM:SS+HH:MM&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt;
+     * The date and time when the uploaded video file was created. The value is specified in ISO 8601 format. Currently, the following ISO 8601 formats are supported:   - Date only: YYYY-MM-DD  - Naive time: YYYY-MM-DDTHH:MM:SS  - Time with timezone: YYYY-MM-DDTHH:MM:SS+HH:MM
      */
     creationTime?: string | null;
     /**
@@ -4108,9 +4091,31 @@ export namespace youtube_v3 {
      */
     vendor?: string | null;
     /**
-     * The encoded video content&#39;s width in pixels. You can calculate the video&#39;s encoding aspect ratio as &lt;code&gt;width_pixels&lt;/code&gt;&amp;nbsp;/&amp;nbsp;&lt;code&gt;height_pixels&lt;/code&gt;.
+     * The encoded video content&#39;s width in pixels. You can calculate the video&#39;s encoding aspect ratio as width_pixels / height_pixels.
      */
     widthPixels?: number | null;
+  }
+  export interface Schema$VideoGetRatingResponse {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Serialized EventId of the request which produced this response.
+     */
+    eventId?: string | null;
+    /**
+     * A list of ratings that match the request criteria.
+     */
+    items?: Schema$VideoRating[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoGetRatingResponse&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The visitorId identifies the visitor.
+     */
+    visitorId?: string | null;
   }
   export interface Schema$VideoListResponse {
     /**
@@ -4121,26 +4126,26 @@ export namespace youtube_v3 {
      * Serialized EventId of the request which produced this response.
      */
     eventId?: string | null;
+    /**
+     * A list of videos that match the request criteria.
+     */
     items?: Schema$Video[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#videoListResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoListResponse&quot;.
      */
     kind?: string | null;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string | null;
-    /**
-     * General pagination information.
-     */
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the &lt;code&gt;pageToken&lt;/code&gt; parameter to retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
+     * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -4153,11 +4158,11 @@ export namespace youtube_v3 {
      */
     activeLiveChatId?: string | null;
     /**
-     * The time that the broadcast actually ended. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format. This value will not be available until the broadcast is over.
+     * The time that the broadcast actually ended. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available until the broadcast is over.
      */
     actualEndTime?: string | null;
     /**
-     * The time that the broadcast actually started. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format. This value will not be available until the broadcast begins.
+     * The time that the broadcast actually started. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available until the broadcast begins.
      */
     actualStartTime?: string | null;
     /**
@@ -4165,11 +4170,11 @@ export namespace youtube_v3 {
      */
     concurrentViewers?: string | null;
     /**
-     * The time that the broadcast is scheduled to end. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.
+     * The time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.
      */
     scheduledEndTime?: string | null;
     /**
-     * The time that the broadcast is scheduled to begin. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The time that the broadcast is scheduled to begin. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     scheduledStartTime?: string | null;
   }
@@ -4191,7 +4196,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoMonetizationDetails {
     /**
-     * The value of &lt;code&gt;access&lt;/code&gt; indicates whether the video can be monetized or not.
+     * The value of access indicates whether the video can be monetized or not.
      */
     access?: Schema$AccessPolicy;
   }
@@ -4201,7 +4206,7 @@ export namespace youtube_v3 {
   export interface Schema$VideoPlayer {
     embedHeight?: string | null;
     /**
-     * An &lt;code&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt; tag that embeds a player that will play the video.
+     * An &lt;iframe&gt; tag that embeds a player that will play the video.
      */
     embedHtml?: string | null;
     /**
@@ -4214,23 +4219,23 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoProcessingDetails {
     /**
-     * This value indicates whether video editing suggestions, which might improve video quality or the playback experience, are available for the video. You can retrieve these suggestions by requesting the &lt;code&gt;suggestions&lt;/code&gt; part in your &lt;code&gt;videos.list()&lt;/code&gt; request.
+     * This value indicates whether video editing suggestions, which might improve video quality or the playback experience, are available for the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request.
      */
     editorSuggestionsAvailability?: string | null;
     /**
-     * This value indicates whether file details are available for the uploaded video. You can retrieve a video&#39;s file details by requesting the &lt;code&gt;fileDetails&lt;/code&gt; part in your &lt;code&gt;videos.list()&lt;/code&gt; request.
+     * This value indicates whether file details are available for the uploaded video. You can retrieve a video&#39;s file details by requesting the fileDetails part in your videos.list() request.
      */
     fileDetailsAvailability?: string | null;
     /**
-     * The reason that YouTube failed to process the video. This property will only have a value if the &lt;code&gt;processingStatus&lt;/code&gt; property&#39;s value is &lt;code&gt;failed&lt;/code&gt;.
+     * The reason that YouTube failed to process the video. This property will only have a value if the processingStatus property&#39;s value is failed.
      */
     processingFailureReason?: string | null;
     /**
-     * This value indicates whether the video processing engine has generated suggestions that might improve YouTube&#39;s ability to process the the video, warnings that explain video processing problems, or errors that cause video processing problems. You can retrieve these suggestions by requesting the &lt;code&gt;suggestions&lt;/code&gt; part in your &lt;code&gt;videos.list()&lt;/code&gt; request.
+     * This value indicates whether the video processing engine has generated suggestions that might improve YouTube&#39;s ability to process the the video, warnings that explain video processing problems, or errors that cause video processing problems. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request.
      */
     processingIssuesAvailability?: string | null;
     /**
-     * The &lt;code&gt;processingProgress&lt;/code&gt; object contains information about the progress YouTube has made in processing the video. The values are really only relevant if the video&#39;s processing status is &lt;code&gt;processing&lt;/code&gt;.
+     * The processingProgress object contains information about the progress YouTube has made in processing the video. The values are really only relevant if the video&#39;s processing status is processing.
      */
     processingProgress?: Schema$VideoProcessingDetailsProcessingProgress;
     /**
@@ -4238,7 +4243,7 @@ export namespace youtube_v3 {
      */
     processingStatus?: string | null;
     /**
-     * This value indicates whether keyword (tag) suggestions are available for the video. Tags can be added to a video&#39;s metadata to make it easier for other users to find the video. You can retrieve these suggestions by requesting the &lt;code&gt;suggestions&lt;/code&gt; part in your &lt;code&gt;videos.list()&lt;/code&gt; request.
+     * This value indicates whether keyword (tag) suggestions are available for the video. Tags can be added to a video&#39;s metadata to make it easier for other users to find the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request.
      */
     tagSuggestionsAvailability?: string | null;
     /**
@@ -4251,7 +4256,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoProcessingDetailsProcessingProgress {
     /**
-     * The number of parts of the video that YouTube has already processed. You can estimate the percentage of the video that YouTube has already processed by calculating:&lt;br&gt; &lt;code&gt;100 * parts_processed / parts_total&lt;/code&gt;&lt;br&gt;&lt;br&gt; Note that since the estimated number of parts could increase without a corresponding increase in the number of parts that have already been processed, it is possible that the calculated progress could periodically decrease while YouTube processes a video.
+     * The number of parts of the video that YouTube has already processed. You can estimate the percentage of the video that YouTube has already processed by calculating: 100 * parts_processed / parts_total  Note that since the estimated number of parts could increase without a corresponding increase in the number of parts that have already been processed, it is possible that the calculated progress could periodically decrease while YouTube processes a video.
      */
     partsProcessed?: string | null;
     /**
@@ -4272,40 +4277,9 @@ export namespace youtube_v3 {
      */
     tags?: string[] | null;
   }
-  /**
-   * Basic details about rating of a video.
-   */
   export interface Schema$VideoRating {
-    /**
-     * Rating of a video.
-     */
     rating?: string | null;
-    /**
-     * The ID that YouTube uses to uniquely identify the video.
-     */
     videoId?: string | null;
-  }
-  export interface Schema$VideoRatingListResponse {
-    /**
-     * Etag of this resource.
-     */
-    etag?: string | null;
-    /**
-     * Serialized EventId of the request which produced this response.
-     */
-    eventId?: string | null;
-    /**
-     * A list of ratings that match the request criteria.
-     */
-    items?: Schema$VideoRating[];
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#videoGetRatingResponse&quot;&lt;/code&gt;.
-     */
-    kind?: string | null;
-    /**
-     * The &lt;code&gt;visitorId&lt;/code&gt; identifies the visitor.
-     */
-    visitorId?: string | null;
   }
   /**
    * Recording information associated with the video.
@@ -4320,7 +4294,7 @@ export namespace youtube_v3 {
      */
     locationDescription?: string | null;
     /**
-     * The date and time when the video was recorded. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sssZ&lt;/code&gt;) format.
+     * The date and time when the video was recorded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
      */
     recordingDate?: string | null;
   }
@@ -4329,7 +4303,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoSnippet {
     /**
-     * The YouTube &lt;a href=&quot;/youtube/v3/docs/videoCategories/list&quot;&gt;video category&lt;/a&gt; associated with the video.
+     * The YouTube video category associated with the video.
      */
     categoryId?: string | null;
     /**
@@ -4341,7 +4315,7 @@ export namespace youtube_v3 {
      */
     channelTitle?: string | null;
     /**
-     * The &lt;code&gt;default_audio_language&lt;/code&gt; property specifies the language spoken in the video&#39;s default audio track.
+     * The default_audio_language property specifies the language spoken in the video&#39;s default audio track.
      */
     defaultAudioLanguage?: string | null;
     /**
@@ -4349,7 +4323,7 @@ export namespace youtube_v3 {
      */
     defaultLanguage?: string | null;
     /**
-     * The video&#39;s description. @mutable youtube.videos.insert youtube.videos.update
+     * The video&#39;s description.
      */
     description?: string | null;
     /**
@@ -4361,7 +4335,7 @@ export namespace youtube_v3 {
      */
     localized?: Schema$VideoLocalization;
     /**
-     * The date and time that the video was uploaded. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string | null;
     /**
@@ -4373,7 +4347,7 @@ export namespace youtube_v3 {
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
-     * The video&#39;s title. @mutable youtube.videos.insert youtube.videos.update
+     * The video&#39;s title.
      */
     title?: string | null;
   }
@@ -4403,19 +4377,19 @@ export namespace youtube_v3 {
     viewCount?: string | null;
   }
   /**
-   * Basic details about a video category, such as its localized title. Next Id: 16
+   * Basic details about a video category, such as its localized title.
    */
   export interface Schema$VideoStatus {
     /**
-     * This value indicates if the video can be embedded on another website. @mutable youtube.videos.insert youtube.videos.update
+     * This value indicates if the video can be embedded on another website.
      */
     embeddable?: boolean | null;
     /**
-     * This value explains why a video failed to upload. This property is only present if the &lt;code&gt;uploadStatus&lt;/code&gt; property indicates that the upload failed.
+     * This value explains why a video failed to upload. This property is only present if the uploadStatus property indicates that the upload failed.
      */
     failureReason?: string | null;
     /**
-     * The video&#39;s license. @mutable youtube.videos.insert youtube.videos.update
+     * The video&#39;s license.
      */
     license?: string | null;
     madeForKids?: boolean | null;
@@ -4424,15 +4398,15 @@ export namespace youtube_v3 {
      */
     privacyStatus?: string | null;
     /**
-     * This value indicates if the extended video statistics on the watch page can be viewed by everyone. Note that the view count, likes, etc will still be visible if this is disabled. @mutable youtube.videos.insert youtube.videos.update
+     * This value indicates if the extended video statistics on the watch page can be viewed by everyone. Note that the view count, likes, etc will still be visible if this is disabled.
      */
     publicStatsViewable?: boolean | null;
     /**
-     * The date and time when the video is scheduled to publish. It can be set only if the privacy status of the video is private. The value is specified in &lt;a href=&quot;//www.w3.org/TR/NOTE-datetime&quot;&gt;ISO 8601&lt;/a&gt; (&lt;code&gt;YYYY-MM-DDThh:mm:ss.sZ&lt;/code&gt;) format.
+     * The date and time when the video is scheduled to publish. It can be set only if the privacy status of the video is private. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishAt?: string | null;
     /**
-     * This value explains why YouTube rejected an uploaded video. This property is only present if the &lt;code&gt;uploadStatus&lt;/code&gt; property indicates that the upload was rejected.
+     * This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected.
      */
     rejectionReason?: string | null;
     selfDeclaredMadeForKids?: boolean | null;
@@ -4450,7 +4424,7 @@ export namespace youtube_v3 {
      */
     editorSuggestions?: string[] | null;
     /**
-     * A list of errors that will prevent YouTube from successfully processing the uploaded video video. These errors indicate that, regardless of the video&#39;s current &lt;a href=&quot;#processingProgress.processingStatus&quot;&gt;processing status&lt;/a&gt;, eventually, that status will almost certainly be &lt;code&gt;failed&lt;/code&gt;.
+     * A list of errors that will prevent YouTube from successfully processing the uploaded video video. These errors indicate that, regardless of the video&#39;s current processing status, eventually, that status will almost certainly be failed.
      */
     processingErrors?: string[] | null;
     /**
@@ -4484,7 +4458,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoTopicDetails {
     /**
-     * Similar to topic_id, except that these topics are merely relevant to the video. These are topics that may be mentioned in, or appear in the video. You can retrieve information about each topic using &lt;a href=&quot;http://wiki.freebase.com/wiki/Topic_API&quot;&gt;Freebase Topic API&lt;/a&gt;.
+     * Similar to topic_id, except that these topics are merely relevant to the video. These are topics that may be mentioned in, or appear in the video. You can retrieve information about each topic using Freebase Topic API.
      */
     relevantTopicIds?: string[] | null;
     /**
@@ -4492,7 +4466,7 @@ export namespace youtube_v3 {
      */
     topicCategories?: string[] | null;
     /**
-     * A list of Freebase topic IDs that are centrally associated with the video. These are topics that are centrally featured in the video, and it can be said that the video is mainly about each of these. You can retrieve information about each topic using the &lt; a href=&quot;http://wiki.freebase.com/wiki/Topic_API&quot;&gt;Freebase Topic API&lt;/a&gt;.
+     * A list of Freebase topic IDs that are centrally associated with the video. These are topics that are centrally featured in the video, and it can be said that the video is mainly about each of these. You can retrieve information about each topic using the Freebase Topic API.
      */
     topicIds?: string[] | null;
   }
@@ -4522,7 +4496,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.activities.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Posts a bulletin for a specific channel. (The user submitting the request must be authorized to act on the channel's behalf.)  Note: Even though an activity resource can contain information about actions like a user rating a video or marking a video as a favorite, you need to use other API methods to generate those activity resources. For example, you would use the API's videos.rate() method to rate a video and the playlistItems.insert() method to mark a video as a favorite.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4550,9 +4524,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.activities.insert({
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will include.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4588,7 +4560,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      * @param {().Activity} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4656,7 +4628,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.activities.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of channel activity events that match the request criteria. For example, you can retrieve events associated with a particular channel, events associated with the user's subscriptions and Google+ friends, or the YouTube home page feed, which is customized for each user.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4685,34 +4657,25 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.activities.list({
+     *     // The channelId parameter specifies a unique YouTube channel ID. The API will then return a list of that channel's activities.
      *     channelId: 'placeholder-value',
-     *
+     *     // Set this parameter's value to true to retrieve the activity feed that displays on the YouTube home page for the currently authenticated user.
      *     home: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *
+     *     // Set this parameter's value to true to retrieve a feed of the authenticated user's activities.
      *     mine: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>activity</code> resource
-     *     // properties that the API response will include.<br><br>If the parameter
-     *     // identifies a property that contains child properties, the child properties
-     *     // will be included in the response. For example, in an <code>activity</code>
-     *     // resource, the <code>snippet</code> property contains other properties that
-     *     // identify the type of activity, a display title for the activity, and so
-     *     // forth. If you set <code><strong>part=snippet</strong></code>, the API
-     *     // response will also contain all of those nested properties.
+     *     // The part parameter specifies a comma-separated list of one or more activity resource properties that the API response will include.
+     *     //
+     *     // If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an activity resource, the snippet property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set part=snippet, the API response will also contain all of those nested properties.
      *     part: 'placeholder-value',
-     *
+     *     // The publishedAfter parameter specifies the earliest date and time that an activity could have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be included in the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      *     publishedAfter: 'placeholder-value',
-     *
+     *     // The publishedBefore parameter specifies the date and time before which an activity must have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be excluded from the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      *     publishedBefore: 'placeholder-value',
-     *
+     *     // The regionCode parameter instructs the API to return results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code. YouTube uses this value when the authorized user's previous activity on YouTube does not provide enough information to generate the activity feed.
      *     regionCode: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4740,15 +4703,15 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.channelId
-     * @param {boolean=} params.home
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {boolean=} params.mine
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>activity</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an <code>activity</code> resource, the <code>snippet</code> property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set <code><strong>part=snippet</strong></code>, the API response will also contain all of those nested properties.
-     * @param {string=} params.publishedAfter
-     * @param {string=} params.publishedBefore
-     * @param {string=} params.regionCode
+     * @param {string=} params.channelId The channelId parameter specifies a unique YouTube channel ID. The API will then return a list of that channel's activities.
+     * @param {boolean=} params.home Set this parameter's value to true to retrieve the activity feed that displays on the YouTube home page for the currently authenticated user.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {boolean=} params.mine Set this parameter's value to true to retrieve a feed of the authenticated user's activities.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more activity resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an activity resource, the snippet property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set part=snippet, the API response will also contain all of those nested properties.
+     * @param {string=} params.publishedAfter The publishedAfter parameter specifies the earliest date and time that an activity could have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be included in the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * @param {string=} params.publishedBefore The publishedBefore parameter specifies the date and time before which an activity must have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be excluded from the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * @param {string=} params.regionCode The regionCode parameter instructs the API to return results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code. YouTube uses this value when the authorized user's previous activity on YouTube does not provide enough information to generate the activity feed.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4825,9 +4788,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -4841,39 +4804,39 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The channelId parameter specifies a unique YouTube channel ID. The API will then return a list of that channel's activities.
      */
     channelId?: string;
     /**
-     *
+     * Set this parameter's value to true to retrieve the activity feed that displays on the YouTube home page for the currently authenticated user.
      */
     home?: boolean;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     *
+     * Set this parameter's value to true to retrieve a feed of the authenticated user's activities.
      */
     mine?: boolean;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>activity</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an <code>activity</code> resource, the <code>snippet</code> property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set <code><strong>part=snippet</strong></code>, the API response will also contain all of those nested properties.
+     * The part parameter specifies a comma-separated list of one or more activity resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an activity resource, the snippet property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set part=snippet, the API response will also contain all of those nested properties.
      */
-    part?: string[];
+    part?: string;
     /**
-     *
+     * The publishedAfter parameter specifies the earliest date and time that an activity could have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be included in the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAfter?: string;
     /**
-     *
+     * The publishedBefore parameter specifies the date and time before which an activity must have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be excluded from the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedBefore?: string;
     /**
-     *
+     * The regionCode parameter instructs the API to return results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code. YouTube uses this value when the authorized user's previous activity on YouTube does not provide enough information to generate the activity feed.
      */
     regionCode?: string;
   }
@@ -4886,7 +4849,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.captions.delete
-     * @desc Deletes a resource.
+     * @desc Deletes a specified caption track.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4914,20 +4877,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.captions.delete({
+     *     // The id parameter identifies the caption track that is being deleted. The value is a caption track ID as identified by the id property in a caption resource.
      *     id: 'placeholder-value',
      *     // ID of the Google+ Page for the channel that the request is be on behalf of
      *     onBehalfOf: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the request's authorization credentials identify a YouTube CMS user
-     *     // who is acting on behalf of the content owner specified in the parameter
-     *     // value. This parameter is intended for YouTube content partners that own and
-     *     // manage many different YouTube channels. It allows content owners to
-     *     // authenticate once and get access to all their video and channel data,
-     *     // without having to provide authentication credentials for each individual
-     *     // channel. The actual CMS account that the user authenticates with must be
-     *     // linked to the specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4942,9 +4898,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
+     * @param {string} params.id The id parameter identifies the caption track that is being deleted. The value is a caption track ID as identified by the id property in a caption resource.
      * @param {string=} params.onBehalfOf ID of the Google+ Page for the channel that the request is be on behalf of
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5010,7 +4966,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.captions.download
-     * @desc Downloads a caption track.
+     * @desc Downloads a caption track. The caption track is returned in its original format unless the request specifies a value for the tfmt parameter and in its original language unless the request specifies a value for the tlang parameter.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5038,27 +4994,17 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.captions.download({
-     *     // The ID of the caption track to download, required for One Platform.
+     *     // The id parameter identifies the caption track that is being retrieved. The value is a caption track ID as identified by the id property in a caption resource.
      *     id: 'placeholder-value',
      *     // ID of the Google+ Page for the channel that the request is be on behalf of
      *     onBehalfOf: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the request's authorization credentials identify a YouTube CMS user
-     *     // who is acting on behalf of the content owner specified in the parameter
-     *     // value. This parameter is intended for YouTube content partners that own and
-     *     // manage many different YouTube channels. It allows content owners to
-     *     // authenticate once and get access to all their video and channel data,
-     *     // without having to provide authentication credentials for each individual
-     *     // channel. The actual CMS account that the user authenticates with must be
-     *     // linked to the specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Convert the captions into this format. Supported options are
-     *     // sbv, srt, and vtt.
+     *     // The tfmt parameter specifies that the caption track should be returned in a specific format. If the parameter is not included in the request, the track is returned in its original format.
      *     tfmt: 'placeholder-value',
-     *     // tlang is the language code; machine translate the captions into
-     *     // this language.
+     *     // The tlang parameter specifies that the API response should return a translation of the specified caption track. The parameter value is an ISO 639-1 two-letter language code that identifies the desired caption language. The translation is generated by using machine translation, such as Google Translate.
      *     tlang: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5073,11 +5019,11 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the caption track to download, required for One Platform.
+     * @param {string} params.id The id parameter identifies the caption track that is being retrieved. The value is a caption track ID as identified by the id property in a caption resource.
      * @param {string=} params.onBehalfOf ID of the Google+ Page for the channel that the request is be on behalf of
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.tfmt Convert the captions into this format. Supported options are sbv, srt, and vtt.
-     * @param {string=} params.tlang tlang is the language code; machine translate the captions into this language.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.tfmt The tfmt parameter specifies that the caption track should be returned in a specific format. If the parameter is not included in the request, the track is returned in its original format.
+     * @param {string=} params.tlang The tlang parameter specifies that the API response should return a translation of the specified caption track. The parameter value is an ISO 639-1 two-letter language code that identifies the desired caption language. The translation is generated by using machine translation, such as Google Translate.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5144,7 +5090,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.captions.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Uploads a caption track.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5174,24 +5120,15 @@ export namespace youtube_v3 {
      *   const res = await youtube.captions.insert({
      *     // ID of the Google+ Page for the channel that the request is be on behalf of
      *     onBehalfOf: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the request's authorization credentials identify a YouTube CMS user
-     *     // who is acting on behalf of the content owner specified in the parameter
-     *     // value. This parameter is intended for YouTube content partners that own and
-     *     // manage many different YouTube channels. It allows content owners to
-     *     // authenticate once and get access to all their video and channel data,
-     *     // without having to provide authentication credentials for each individual
-     *     // channel. The actual CMS account that the user authenticates with must be
-     *     // linked to the specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>caption</code> resource parts that the API response will include. Set
-     *     // the parameter value to <code>snippet</code>.
+     *     // The part parameter specifies the caption resource parts that the API response will include. Set the parameter value to snippet.
      *     part: 'placeholder-value',
-     *     // Extra parameter to allow automatically syncing the uploaded
-     *     // caption/transcript with the audio.
+     *     // The sync parameter indicates whether YouTube should automatically synchronize the caption file with the audio track of the video. If you set the value to true, YouTube will disregard any time codes that are in the uploaded caption file and generate new time codes for the captions.
+     *     //
+     *     // You should set the sync parameter to true if you are uploading a transcript, which has no time codes, or if you suspect the time codes in your file are incorrect and want YouTube to try to fix them.
      *     sync: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5230,9 +5167,9 @@ export namespace youtube_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOf ID of the Google+ Page for the channel that the request is be on behalf of
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>caption</code> resource parts that the API response will include. Set the parameter value to <code>snippet</code>.
-     * @param {boolean=} params.sync Extra parameter to allow automatically syncing the uploaded caption/transcript with the audio.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter specifies the caption resource parts that the API response will include. Set the parameter value to snippet.
+     * @param {boolean=} params.sync The sync parameter indicates whether YouTube should automatically synchronize the caption file with the audio track of the video. If you set the value to true, YouTube will disregard any time codes that are in the uploaded caption file and generate new time codes for the captions.  You should set the sync parameter to true if you are uploading a transcript, which has no time codes, or if you suspect the time codes in your file are incorrect and want YouTube to try to fix them.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -5306,7 +5243,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.captions.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of caption tracks that are associated with a specified video. Note that the API response does not contain the actual captions and that the captions.download method provides the ability to retrieve a caption track.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5334,29 +5271,17 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.captions.list({
-     *     // Returns the captions with the given IDs for Stubby or Apiary.
+     *     // The id parameter specifies a comma-separated list of IDs that identify the caption resources that should be retrieved. Each ID must identify a caption track associated with the specified video.
      *     id: 'placeholder-value',
      *     // ID of the Google+ Page for the channel that the request is on behalf of.
      *     onBehalfOf: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the request's authorization credentials identify a YouTube CMS user
-     *     // who is acting on behalf of the content owner specified in the parameter
-     *     // value. This parameter is intended for YouTube content partners that own and
-     *     // manage many different YouTube channels. It allows content owners to
-     *     // authenticate once and get access to all their video and channel data,
-     *     // without having to provide authentication credentials for each individual
-     *     // channel. The actual CMS account that the user authenticates with must be
-     *     // linked to the specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>caption</code> resource parts
-     *     // that the API response will include. The <code>part</code> names that you
-     *     // can include in the parameter value are <code>id</code> and
-     *     // <code>snippet</code>.
+     *     // The part parameter specifies a comma-separated list of one or more caption resource parts that the API response will include. The part names that you can include in the parameter value are id and snippet.
      *     part: 'placeholder-value',
-     *     // Returns the captions for the specified video.
+     *     // The videoId parameter specifies the YouTube video ID of the video for which the API should return caption tracks.
      *     videoId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5380,11 +5305,11 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Returns the captions with the given IDs for Stubby or Apiary.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of IDs that identify the caption resources that should be retrieved. Each ID must identify a caption track associated with the specified video.
      * @param {string=} params.onBehalfOf ID of the Google+ Page for the channel that the request is on behalf of.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>caption</code> resource parts that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code> and <code>snippet</code>.
-     * @param {string} params.videoId Returns the captions for the specified video.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more caption resource parts that the API response will include. The part names that you can include in the parameter value are id and snippet.
+     * @param {string} params.videoId The videoId parameter specifies the YouTube video ID of the video for which the API should return caption tracks.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5439,7 +5364,7 @@ export namespace youtube_v3 {
           options
         ),
         params,
-        requiredParams: ['videoId', 'part'],
+        requiredParams: ['part', 'videoId'],
         pathParams: [],
         context: this.context,
       };
@@ -5452,7 +5377,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.captions.update
-     * @desc Updates an existing resource.
+     * @desc Updates a caption track. When updating a caption track, you can change the track's draft status, upload a new caption file for the track, or both.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5480,28 +5405,17 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.captions.update({
-     *     // ID of the Google+ Page for the channel that the request is on behalf of.
+     *     // ID of the Google+ Page for the channel that the request is be on behalf of
      *     onBehalfOf: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the request's authorization credentials identify a YouTube CMS user
-     *     // who is acting on behalf of the content owner specified in the parameter
-     *     // value. This parameter is intended for YouTube content partners that own and
-     *     // manage many different YouTube channels. It allows content owners to
-     *     // authenticate once and get access to all their video and channel data,
-     *     // without having to provide authentication credentials for each individual
-     *     // channel. The actual CMS account that the user authenticates with must be
-     *     // linked to the specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>caption</code> resource parts
-     *     // that the API response will include. The <code>part</code> names that you
-     *     // can include in the parameter value are <code>id</code> and
-     *     // <code>snippet</code>.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the property value to snippet if you are updating the track's draft status. Otherwise, set the property value to id.
      *     part: 'placeholder-value',
-     *     // Extra parameter to allow automatically syncing the uploaded
-     *     // caption/transcript with the audio.
+     *     // Note: The API server only processes the parameter value if the request contains an updated caption file.
+     *     //
+     *     // The sync parameter indicates whether YouTube should automatically synchronize the caption file with the audio track of the video. If you set the value to true, YouTube will automatically synchronize the caption track with the audio track.
      *     sync: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5539,10 +5453,10 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOf ID of the Google+ Page for the channel that the request is on behalf of.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>caption</code> resource parts that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code> and <code>snippet</code>.
-     * @param {boolean=} params.sync Extra parameter to allow automatically syncing the uploaded caption/transcript with the audio.
+     * @param {string=} params.onBehalfOf ID of the Google+ Page for the channel that the request is be on behalf of
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the property value to snippet if you are updating the track's draft status. Otherwise, set the property value to id.
+     * @param {boolean=} params.sync Note: The API server only processes the parameter value if the request contains an updated caption file.  The sync parameter indicates whether YouTube should automatically synchronize the caption file with the audio track of the video. If you set the value to true, YouTube will automatically synchronize the caption track with the audio track.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -5622,7 +5536,7 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter identifies the caption track that is being deleted. The value is a caption track ID as identified by the id property in a caption resource.
      */
     id?: string;
     /**
@@ -5630,7 +5544,7 @@ export namespace youtube_v3 {
      */
     onBehalfOf?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -5642,7 +5556,7 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the caption track to download, required for One Platform.
+     * The id parameter identifies the caption track that is being retrieved. The value is a caption track ID as identified by the id property in a caption resource.
      */
     id?: string;
     /**
@@ -5650,15 +5564,15 @@ export namespace youtube_v3 {
      */
     onBehalfOf?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * Convert the captions into this format. Supported options are sbv, srt, and vtt.
+     * The tfmt parameter specifies that the caption track should be returned in a specific format. If the parameter is not included in the request, the track is returned in its original format.
      */
     tfmt?: string;
     /**
-     * tlang is the language code; machine translate the captions into this language.
+     * The tlang parameter specifies that the API response should return a translation of the specified caption track. The parameter value is an ISO 639-1 two-letter language code that identifies the desired caption language. The translation is generated by using machine translation, such as Google Translate.
      */
     tlang?: string;
   }
@@ -5673,15 +5587,15 @@ export namespace youtube_v3 {
      */
     onBehalfOf?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>caption</code> resource parts that the API response will include. Set the parameter value to <code>snippet</code>.
+     * The part parameter specifies the caption resource parts that the API response will include. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Extra parameter to allow automatically syncing the uploaded caption/transcript with the audio.
+     * The sync parameter indicates whether YouTube should automatically synchronize the caption file with the audio track of the video. If you set the value to true, YouTube will disregard any time codes that are in the uploaded caption file and generate new time codes for the captions.  You should set the sync parameter to true if you are uploading a transcript, which has no time codes, or if you suspect the time codes in your file are incorrect and want YouTube to try to fix them.
      */
     sync?: boolean;
 
@@ -5712,23 +5626,23 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Returns the captions with the given IDs for Stubby or Apiary.
+     * The id parameter specifies a comma-separated list of IDs that identify the caption resources that should be retrieved. Each ID must identify a caption track associated with the specified video.
      */
-    id?: string[];
+    id?: string;
     /**
      * ID of the Google+ Page for the channel that the request is on behalf of.
      */
     onBehalfOf?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>caption</code> resource parts that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code> and <code>snippet</code>.
+     * The part parameter specifies a comma-separated list of one or more caption resource parts that the API response will include. The part names that you can include in the parameter value are id and snippet.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Returns the captions for the specified video.
+     * The videoId parameter specifies the YouTube video ID of the video for which the API should return caption tracks.
      */
     videoId?: string;
   }
@@ -5739,19 +5653,19 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the Google+ Page for the channel that the request is on behalf of.
+     * ID of the Google+ Page for the channel that the request is be on behalf of
      */
     onBehalfOf?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>caption</code> resource parts that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code> and <code>snippet</code>.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the property value to snippet if you are updating the track's draft status. Otherwise, set the property value to id.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Extra parameter to allow automatically syncing the uploaded caption/transcript with the audio.
+     * Note: The API server only processes the parameter value if the request contains an updated caption file.  The sync parameter indicates whether YouTube should automatically synchronize the caption file with the audio track of the video. If you set the value to true, YouTube will automatically synchronize the caption track with the audio track.
      */
     sync?: boolean;
 
@@ -5784,7 +5698,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.channelBanners.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Uploads a channel banner image to YouTube. This method represents the first two steps in a three-step process to update the banner image for a channel:  - Call the channelBanners.insert method to upload the binary image data to YouTube. The image must have a 16:9 aspect ratio and be at least 2120x1192 pixels. - Extract the url property's value from the response that the API returns for step 1. - Call the channels.update method to update the channel's branding settings. Set the brandingSettings.image.bannerExternalUrl property's value to the URL obtained in step 2.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5813,41 +5727,12 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.channelBanners.insert({
-     *     // Unused, channel_id is currently derived from the security context of the
-     *     // requestor.
+     *     // The channelId parameter identifies the YouTube channel to which the banner is uploaded. The channelId parameter was introduced as a required parameter in May 2017. As this was a backward-incompatible change, channelBanners.insert requests that do not specify this parameter will not return an error until six months have passed from the time that the parameter was introduced. Please see the API Terms of Service for the official policy regarding backward incompatible changes and the API revision history for the exact date that the parameter was introduced.
      *     channelId: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the request's authorization credentials identify a YouTube CMS user
-     *     // who is acting on behalf of the content owner specified in the parameter
-     *     // value. This parameter is intended for YouTube content partners that own and
-     *     // manage many different YouTube channels. It allows content owners to
-     *     // authenticate once and get access to all their video and channel data,
-     *     // without having to provide authentication credentials for each individual
-     *     // channel. The actual CMS account that the user authenticates with must be
-     *     // linked to the specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5882,9 +5767,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.channelId Unused, channel_id is currently derived from the security context of the requestor.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string=} params.channelId The channelId parameter identifies the YouTube channel to which the banner is uploaded. The channelId parameter was introduced as a required parameter in May 2017. As this was a backward-incompatible change, channelBanners.insert requests that do not specify this parameter will not return an error until six months have passed from the time that the parameter was introduced. Please see the API Terms of Service for the official policy regarding backward incompatible changes and the API revision history for the exact date that the parameter was introduced.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -5969,17 +5853,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Unused, channel_id is currently derived from the security context of the requestor.
+     * The channelId parameter identifies the YouTube channel to which the banner is uploaded. The channelId parameter was introduced as a required parameter in May 2017. As this was a backward-incompatible change, channelBanners.insert requests that do not specify this parameter will not return an error until six months have passed from the time that the parameter was introduced. Please see the API Terms of Service for the official policy regarding backward incompatible changes and the API revision history for the exact date that the parameter was introduced.
      */
     channelId?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
-    /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     */
-    onBehalfOfContentOwnerChannel?: string;
 
     /**
      * Request body metadata
@@ -6010,7 +5890,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.channels.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a collection of zero or more channel resources that match the request criteria.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6041,54 +5921,33 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.channels.list({
-     *     // Return the channels within the specified guide category ID.
+     *     // The categoryId parameter specifies a YouTube guide category, thereby requesting YouTube channels associated with that category.
      *     categoryId: 'placeholder-value',
-     *     // Return the channel associated with a YouTube username.
+     *     // The forUsername parameter specifies a YouTube username, thereby requesting the channel associated with that username.
      *     forUsername: 'placeholder-value',
-     *     // Stands for "host language". Specifies the localization language of the
-     *     // metadata to be filled into snippet.localized. The field is filled with the
-     *     // default metadata if there is no localization in the specified language.
-     *     // The parameter value must be a language code included in the list returned
-     *     // by the i18nLanguages.list method (e.g. en_US, es_MX).
+     *     // The hl parameter should be used for filter out the properties that are not in the given language. Used for the brandingSettings part.
      *     hl: 'placeholder-value',
-     *     // Return the channels with the specified IDs.
+     *     // The id parameter specifies a comma-separated list of the YouTube channel ID(s) for the resource(s) that are being retrieved. In a channel resource, the id property specifies the channel's YouTube channel ID.
      *     id: 'placeholder-value',
-     *     // Return the channels managed by the authenticated user.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // Set this parameter's value to true to instruct the API to only return channels managed by the content owner that the onBehalfOfContentOwner parameter specifies. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
      *     managedByMe: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // Return the ids of channels owned by the authenticated user.
+     *     // Set this parameter's value to true to instruct the API to only return channels owned by the authenticated user.
      *     mine: 'placeholder-value',
-     *     // Return the channels subscribed to the authenticated user
+     *     // Use the subscriptions.list method and its mySubscribers parameter to retrieve a list of subscribers to the authenticated user's channel.
      *     mySubscribers: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>channel</code> resource
-     *     // properties that the API response will include.<br><br>If the parameter
-     *     // identifies a property that contains child properties, the child properties
-     *     // will be included in the response. For example, in a <code>channel</code>
-     *     // resource, the <code>contentDetails</code> property contains other
-     *     // properties, such as the <code>uploads</code> properties. As such, if you
-     *     // set <code><strong>part=contentDetails</strong></code>, the API response
-     *     // will also contain all of those nested properties.
+     *     // The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include.
+     *     //
+     *     // If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set part=contentDetails, the API response will also contain all of those nested properties.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6116,17 +5975,17 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.categoryId Return the channels within the specified guide category ID.
-     * @param {string=} params.forUsername Return the channel associated with a YouTube username.
-     * @param {string=} params.hl Stands for "host language". Specifies the localization language of the metadata to be filled into snippet.localized. The field is filled with the default metadata if there is no localization in the specified language. The parameter value must be a language code included in the list returned by the i18nLanguages.list method (e.g. en_US, es_MX).
-     * @param {string=} params.id Return the channels with the specified IDs.
-     * @param {boolean=} params.managedByMe Return the channels managed by the authenticated user.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {boolean=} params.mine Return the ids of channels owned by the authenticated user.
-     * @param {boolean=} params.mySubscribers Return the channels subscribed to the authenticated user
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>channel</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>channel</code> resource, the <code>contentDetails</code> property contains other properties, such as the <code>uploads</code> properties. As such, if you set <code><strong>part=contentDetails</strong></code>, the API response will also contain all of those nested properties.
+     * @param {string=} params.categoryId The categoryId parameter specifies a YouTube guide category, thereby requesting YouTube channels associated with that category.
+     * @param {string=} params.forUsername The forUsername parameter specifies a YouTube username, thereby requesting the channel associated with that username.
+     * @param {string=} params.hl The hl parameter should be used for filter out the properties that are not in the given language. Used for the brandingSettings part.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of the YouTube channel ID(s) for the resource(s) that are being retrieved. In a channel resource, the id property specifies the channel's YouTube channel ID.
+     * @param {boolean=} params.managedByMe Note: This parameter is intended exclusively for YouTube content partners.  Set this parameter's value to true to instruct the API to only return channels managed by the content owner that the onBehalfOfContentOwner parameter specifies. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {boolean=} params.mine Set this parameter's value to true to instruct the API to only return channels owned by the authenticated user.
+     * @param {boolean=} params.mySubscribers Use the subscriptions.list method and its mySubscribers parameter to retrieve a list of subscribers to the authenticated user's channel.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set part=contentDetails, the API response will also contain all of those nested properties.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6194,7 +6053,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.channels.update
-     * @desc Updates an existing resource.
+     * @desc Updates a channel's metadata. Note that this method currently only supports updates to the channel resource's brandingSettings and invideoPromotion objects and their child properties.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6223,25 +6082,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.channels.update({
-     *     // The <code><strong>onBehalfOfContentOwner</strong></code> parameter
-     *     // indicates that the authenticated user is acting on behalf of the content
-     *     // owner specified in the parameter value. This parameter is intended for
-     *     // YouTube content partners that own and manage many different YouTube
-     *     // channels. It allows content owners to authenticate once and get access to
-     *     // all their video and channel data, without having to provide authentication
-     *     // credentials for each individual channel. The actual CMS account that the
-     *     // user authenticates with needs to be linked to the specified YouTube content
-     *     // owner.
+     *     // The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br/><br/>The API currently only allows the parameter value to be
-     *     // set to either <code>brandingSettings</code> or
-     *     // <code>invideoPromotion</code>. (You cannot update both of those parts with
-     *     // a single request.)<br/><br/>Note that this method overrides the existing
-     *     // values for all of the mutable properties that are contained in any parts
-     *     // that the parameter value specifies.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // The API currently only allows the parameter value to be set to either brandingSettings or invideoPromotion. (You cannot update both of those parts with a single request.)
+     *     //
+     *     // Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6295,8 +6142,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>The API currently only allows the parameter value to be set to either <code>brandingSettings</code> or <code>invideoPromotion</code>. (You cannot update both of those parts with a single request.)<br/><br/>Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
+     * @param {string=} params.onBehalfOfContentOwner The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The API currently only allows the parameter value to be set to either brandingSettings or invideoPromotion. (You cannot update both of those parts with a single request.)  Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
      * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6369,49 +6216,49 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return the channels within the specified guide category ID.
+     * The categoryId parameter specifies a YouTube guide category, thereby requesting YouTube channels associated with that category.
      */
     categoryId?: string;
     /**
-     * Return the channel associated with a YouTube username.
+     * The forUsername parameter specifies a YouTube username, thereby requesting the channel associated with that username.
      */
     forUsername?: string;
     /**
-     * Stands for "host language". Specifies the localization language of the metadata to be filled into snippet.localized. The field is filled with the default metadata if there is no localization in the specified language. The parameter value must be a language code included in the list returned by the i18nLanguages.list method (e.g. en_US, es_MX).
+     * The hl parameter should be used for filter out the properties that are not in the given language. Used for the brandingSettings part.
      */
     hl?: string;
     /**
-     * Return the channels with the specified IDs.
+     * The id parameter specifies a comma-separated list of the YouTube channel ID(s) for the resource(s) that are being retrieved. In a channel resource, the id property specifies the channel's YouTube channel ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * Return the channels managed by the authenticated user.
+     * Note: This parameter is intended exclusively for YouTube content partners.  Set this parameter's value to true to instruct the API to only return channels managed by the content owner that the onBehalfOfContentOwner parameter specifies. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
      */
     managedByMe?: boolean;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Return the ids of channels owned by the authenticated user.
+     * Set this parameter's value to true to instruct the API to only return channels owned by the authenticated user.
      */
     mine?: boolean;
     /**
-     * Return the channels subscribed to the authenticated user
+     * Use the subscriptions.list method and its mySubscribers parameter to retrieve a list of subscribers to the authenticated user's channel.
      */
     mySubscribers?: boolean;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>channel</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>channel</code> resource, the <code>contentDetails</code> property contains other properties, such as the <code>uploads</code> properties. As such, if you set <code><strong>part=contentDetails</strong></code>, the API response will also contain all of those nested properties.
+     * The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set part=contentDetails, the API response will also contain all of those nested properties.
      */
-    part?: string[];
+    part?: string;
   }
   export interface Params$Resource$Channels$Update extends StandardParameters {
     /**
@@ -6420,13 +6267,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     * The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>The API currently only allows the parameter value to be set to either <code>brandingSettings</code> or <code>invideoPromotion</code>. (You cannot update both of those parts with a single request.)<br/><br/>Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The API currently only allows the parameter value to be set to either brandingSettings or invideoPromotion. (You cannot update both of those parts with a single request.)  Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -6442,7 +6289,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.channelSections.delete
-     * @desc Deletes a resource.
+     * @desc Deletes a channelSection.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6471,19 +6318,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.channelSections.delete({
+     *     // The id parameter specifies the YouTube channelSection ID for the resource that is being deleted. In a channelSection resource, the id property specifies the YouTube channelSection ID.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6498,8 +6337,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.id The id parameter specifies the YouTube channelSection ID for the resource that is being deleted. In a channelSection resource, the id property specifies the YouTube channelSection ID.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6566,7 +6405,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.channelSections.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Adds a channelSection for the authenticated user's channel.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6595,44 +6434,19 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.channelSections.insert({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br/><br/>The <code>part</code> names that you can include in the
-     *     // parameter value are <code>snippet</code> and <code>contentDetails</code>.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // The part names that you can include in the parameter value are snippet and contentDetails.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6672,9 +6486,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>The <code>part</code> names that you can include in the parameter value are <code>snippet</code> and <code>contentDetails</code>.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      * @param {().ChannelSection} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6744,7 +6558,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.channelSections.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns channelSection resources that match the API request criteria.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6774,38 +6588,21 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.channelSections.list({
-     *     // Return the ChannelSections owned by the specified channel ID.
+     *     // The channelId parameter specifies a YouTube channel ID. The API will only return that channel's channelSections.
      *     channelId: 'placeholder-value',
-     *     // Return content in specified language
+     *     // The hl parameter indicates that the snippet.localized property values in the returned channelSection resources should be in the specified language if localized values for that language are available. For example, if the API request specifies hl=de, the snippet.localized properties in the API response will contain German titles if German titles are available. Channel owners can provide localized channel section titles using either the channelSections.insert or channelSections.update method.
      *     hl: 'placeholder-value',
-     *     // Return the ChannelSections with the given IDs for Stubby or Apiary.
+     *     // The id parameter specifies a comma-separated list of the YouTube channelSection ID(s) for the resource(s) that are being retrieved. In a channelSection resource, the id property specifies the YouTube channelSection ID.
      *     id: 'placeholder-value',
-     *     // Return the ChannelSections owned by the authenticated user.
+     *     // Set this parameter's value to true to retrieve a feed of the authenticated user's channelSections.
      *     mine: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>channelSection</code> resource
-     *     // properties that the API response will include. The <code>part</code> names
-     *     // that you can include in the parameter value are <code>id</code>,
-     *     // <code>snippet</code>, and <code>contentDetails</code>.<br><br>If the
-     *     // parameter identifies a property that contains child properties, the child
-     *     // properties will be included in the response. For example, in a
-     *     // <code>channelSection</code> resource, the <code>snippet</code> property
-     *     // contains other properties, such as a display title for the channelSection.
-     *     // If you set <code><strong>part=snippet</strong></code>, the API response
-     *     // will also contain all of those nested properties.
+     *     // The part parameter specifies a comma-separated list of one or more channelSection resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails.
+     *     //
+     *     // If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channelSection resource, the snippet property contains other properties, such as a display title for the channelSection. If you set part=snippet, the API response will also contain all of those nested properties.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6829,12 +6626,12 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.channelId Return the ChannelSections owned by the specified channel ID.
-     * @param {string=} params.hl Return content in specified language
-     * @param {string=} params.id Return the ChannelSections with the given IDs for Stubby or Apiary.
-     * @param {boolean=} params.mine Return the ChannelSections owned by the authenticated user.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>channelSection</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, and <code>contentDetails</code>.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>channelSection</code> resource, the <code>snippet</code> property contains other properties, such as a display title for the channelSection. If you set <code><strong>part=snippet</strong></code>, the API response will also contain all of those nested properties.
+     * @param {string=} params.channelId The channelId parameter specifies a YouTube channel ID. The API will only return that channel's channelSections.
+     * @param {string=} params.hl The hl parameter indicates that the snippet.localized property values in the returned channelSection resources should be in the specified language if localized values for that language are available. For example, if the API request specifies hl=de, the snippet.localized properties in the API response will contain German titles if German titles are available. Channel owners can provide localized channel section titles using either the channelSections.insert or channelSections.update method.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of the YouTube channelSection ID(s) for the resource(s) that are being retrieved. In a channelSection resource, the id property specifies the YouTube channelSection ID.
+     * @param {boolean=} params.mine Set this parameter's value to true to retrieve a feed of the authenticated user's channelSections.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more channelSection resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channelSection resource, the snippet property contains other properties, such as a display title for the channelSection. If you set part=snippet, the API response will also contain all of those nested properties.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6910,7 +6707,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.channelSections.update
-     * @desc Updates an existing resource.
+     * @desc Update a channelSection.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6939,24 +6736,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.channelSections.update({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br/><br/>The <code>part</code> names that you can include in the
-     *     // parameter value are <code>snippet</code> and <code>contentDetails</code>.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // The part names that you can include in the parameter value are snippet and contentDetails.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6996,8 +6782,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>The <code>part</code> names that you can include in the parameter value are <code>snippet</code> and <code>contentDetails</code>.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      * @param {().ChannelSection} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7074,11 +6860,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube channelSection ID for the resource that is being deleted. In a channelSection resource, the id property specifies the YouTube channelSection ID.
      */
     id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -7090,17 +6876,17 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>The <code>part</code> names that you can include in the parameter value are <code>snippet</code> and <code>contentDetails</code>.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -7115,29 +6901,29 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return the ChannelSections owned by the specified channel ID.
+     * The channelId parameter specifies a YouTube channel ID. The API will only return that channel's channelSections.
      */
     channelId?: string;
     /**
-     * Return content in specified language
+     * The hl parameter indicates that the snippet.localized property values in the returned channelSection resources should be in the specified language if localized values for that language are available. For example, if the API request specifies hl=de, the snippet.localized properties in the API response will contain German titles if German titles are available. Channel owners can provide localized channel section titles using either the channelSections.insert or channelSections.update method.
      */
     hl?: string;
     /**
-     * Return the ChannelSections with the given IDs for Stubby or Apiary.
+     * The id parameter specifies a comma-separated list of the YouTube channelSection ID(s) for the resource(s) that are being retrieved. In a channelSection resource, the id property specifies the YouTube channelSection ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * Return the ChannelSections owned by the authenticated user.
+     * Set this parameter's value to true to retrieve a feed of the authenticated user's channelSections.
      */
     mine?: boolean;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>channelSection</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, and <code>contentDetails</code>.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>channelSection</code> resource, the <code>snippet</code> property contains other properties, such as a display title for the channelSection. If you set <code><strong>part=snippet</strong></code>, the API response will also contain all of those nested properties.
+     * The part parameter specifies a comma-separated list of one or more channelSection resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channelSection resource, the snippet property contains other properties, such as a display title for the channelSection. If you set part=snippet, the API response will also contain all of those nested properties.
      */
-    part?: string[];
+    part?: string;
   }
   export interface Params$Resource$Channelsections$Update
     extends StandardParameters {
@@ -7147,13 +6933,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>The <code>part</code> names that you can include in the parameter value are <code>snippet</code> and <code>contentDetails</code>.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -7169,7 +6955,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.comments.delete
-     * @desc Deletes a resource.
+     * @desc Deletes a comment.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7194,6 +6980,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.comments.delete({
+     *     // The id parameter specifies the comment ID for the resource that is being deleted.
      *     id: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7208,7 +6995,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
+     * @param {string} params.id The id parameter specifies the comment ID for the resource that is being deleted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7274,7 +7061,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.comments.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Creates a reply to an existing comment. Note: To create a top-level comment, use the commentThreads.insert method.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7299,10 +7086,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.comments.insert({
-     *     // The <code><strong>part</strong></code> parameter identifies the properties
-     *     // that the API response will include. Set the parameter value to
-     *     // <code>snippet</code>. The <code>snippet</code> part has a quota cost of 2
-     *     // units.
+     *     // The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7336,7 +7120,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. Set the parameter value to <code>snippet</code>. The <code>snippet</code> part has a quota cost of 2 units.
+     * @param {string} params.part The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      * @param {().Comment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7403,7 +7187,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.comments.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of comments that match the API request parameters.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7428,26 +7212,23 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.comments.list({
-     *     // Returns the comments with the given IDs for One Platform.
+     *     // The id parameter specifies a comma-separated list of comment IDs for the resources that are being retrieved. In a comment resource, the id property specifies the comment's ID.
      *     id: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     *     //
+     *     // Note: This parameter is not supported for use in conjunction with the id parameter.
      *     maxResults: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.
+     *     //
+     *     // Note: This parameter is not supported for use in conjunction with the id parameter.
      *     pageToken: 'placeholder-value',
-     *     // Returns replies to the specified comment.
-     *     // Note, currently YouTube features only one level of replies (ie replies
-     *     // to top level comments). However replies to replies may be supported in
-     *     // the future.
+     *     // The parentId parameter specifies the ID of the comment for which replies should be retrieved.
+     *     //
+     *     // Note: YouTube currently supports replies only for top-level comments. However, replies to replies may be supported in the future.
      *     parentId: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>comment</code> resource
-     *     // properties that the API response will include.
+     *     // The part parameter specifies a comma-separated list of one or more comment resource properties that the API response will include.
      *     part: 'placeholder-value',
-     *     // The requested text format for the returned comments.
+     *     // This parameter indicates whether the API should return comments formatted as HTML or as plain text.
      *     textFormat: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7474,12 +7255,12 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Returns the comments with the given IDs for One Platform.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string=} params.parentId Returns replies to the specified comment. Note, currently YouTube features only one level of replies (ie replies to top level comments). However replies to replies may be supported in the future.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>comment</code> resource properties that the API response will include.
-     * @param {string=} params.textFormat The requested text format for the returned comments.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of comment IDs for the resources that are being retrieved. In a comment resource, the id property specifies the comment's ID.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is not supported for use in conjunction with the id parameter.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.  Note: This parameter is not supported for use in conjunction with the id parameter.
+     * @param {string=} params.parentId The parentId parameter specifies the ID of the comment for which replies should be retrieved.  Note: YouTube currently supports replies only for top-level comments. However, replies to replies may be supported in the future.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more comment resource properties that the API response will include.
+     * @param {string=} params.textFormat This parameter indicates whether the API should return comments formatted as HTML or as plain text.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7572,7 +7353,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.comments.markAsSpam({
-     *     // Flags the comments with the given IDs as spam in the caller's opinion.
+     *     // The id parameter specifies a comma-separated list of IDs of comments that the caller believes should be classified as spam.
      *     id: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7587,7 +7368,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Flags the comments with the given IDs as spam in the caller's opinion.
+     * @param {string} params.id The id parameter specifies a comma-separated list of IDs of comments that the caller believes should be classified as spam.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7654,7 +7435,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.comments.setModerationStatus
-     * @desc Sets the moderation status of one or more comments.
+     * @desc Sets the moderation status of one or more comments. The API request must be authorized by the owner of the channel or video associated with the comments.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7679,18 +7460,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.comments.setModerationStatus({
-     *     // If set to true the author of the comment gets added to the ban list.
-     *     // This means all future comments of the author will autmomatically be
-     *     // rejected.
-     *     // Only valid in combination with STATUS_REJECTED.
+     *     // The banAuthor parameter lets you indicate that you want to automatically reject any additional comments written by the comment's author. Set the parameter value to true to ban the author.
+     *     //
+     *     // Note: This parameter is only valid if the moderationStatus parameter is also set to rejected.
      *     banAuthor: 'placeholder-value',
-     *     // Modifies the moderation status of the comments with the given IDs
+     *     // The id parameter specifies a comma-separated list of IDs that identify the comments for which you are updating the moderation status.
      *     id: 'placeholder-value',
-     *     // Specifies the requested moderation status. Note, comments can be in
-     *     // statuses, which are not available through this call. For example, this
-     *     // call does not allow to mark a comment as 'likely spam'.
-     *     // Valid values: MODERATION_STATUS_PUBLISHED,
-     *     // MODERATION_STATUS_HELD_FOR_REVIEW, MODERATION_STATUS_REJECTED.
+     *     // Identifies the new moderation status of the specified comments.
      *     moderationStatus: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7705,9 +7481,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.banAuthor If set to true the author of the comment gets added to the ban list. This means all future comments of the author will autmomatically be rejected. Only valid in combination with STATUS_REJECTED.
-     * @param {string} params.id Modifies the moderation status of the comments with the given IDs
-     * @param {string} params.moderationStatus Specifies the requested moderation status. Note, comments can be in statuses, which are not available through this call. For example, this call does not allow to mark a comment as 'likely spam'. Valid values: MODERATION_STATUS_PUBLISHED, MODERATION_STATUS_HELD_FOR_REVIEW, MODERATION_STATUS_REJECTED.
+     * @param {boolean=} params.banAuthor The banAuthor parameter lets you indicate that you want to automatically reject any additional comments written by the comment's author. Set the parameter value to true to ban the author.  Note: This parameter is only valid if the moderationStatus parameter is also set to rejected.
+     * @param {string} params.id The id parameter specifies a comma-separated list of IDs that identify the comments for which you are updating the moderation status.
+     * @param {string} params.moderationStatus Identifies the new moderation status of the specified comments.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7774,7 +7550,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.comments.update
-     * @desc Updates an existing resource.
+     * @desc Modifies a comment.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7799,10 +7575,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.comments.update({
-     *     // The <code><strong>part</strong></code> parameter identifies the properties
-     *     // that the API response will include. You must at least include the
-     *     // <code>snippet</code> part in the parameter value since that part contains
-     *     // all of the properties that the API request can update.
+     *     // The part parameter identifies the properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7836,7 +7609,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. You must at least include the <code>snippet</code> part in the parameter value since that part contains all of the properties that the API request can update.
+     * @param {string} params.part The part parameter identifies the properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      * @param {().Comment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7909,7 +7682,7 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the comment ID for the resource that is being deleted.
      */
     id?: string;
   }
@@ -7920,9 +7693,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. Set the parameter value to <code>snippet</code>. The <code>snippet</code> part has a quota cost of 2 units.
+     * The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -7936,27 +7709,27 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Returns the comments with the given IDs for One Platform.
+     * The id parameter specifies a comma-separated list of comment IDs for the resources that are being retrieved. In a comment resource, the id property specifies the comment's ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     maxResults?: number;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     pageToken?: string;
     /**
-     * Returns replies to the specified comment. Note, currently YouTube features only one level of replies (ie replies to top level comments). However replies to replies may be supported in the future.
+     * The parentId parameter specifies the ID of the comment for which replies should be retrieved.  Note: YouTube currently supports replies only for top-level comments. However, replies to replies may be supported in the future.
      */
     parentId?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>comment</code> resource properties that the API response will include.
+     * The part parameter specifies a comma-separated list of one or more comment resource properties that the API response will include.
      */
-    part?: string[];
+    part?: string;
     /**
-     * The requested text format for the returned comments.
+     * This parameter indicates whether the API should return comments formatted as HTML or as plain text.
      */
     textFormat?: string;
   }
@@ -7968,9 +7741,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Flags the comments with the given IDs as spam in the caller's opinion.
+     * The id parameter specifies a comma-separated list of IDs of comments that the caller believes should be classified as spam.
      */
-    id?: string[];
+    id?: string;
   }
   export interface Params$Resource$Comments$Setmoderationstatus
     extends StandardParameters {
@@ -7980,15 +7753,15 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If set to true the author of the comment gets added to the ban list. This means all future comments of the author will autmomatically be rejected. Only valid in combination with STATUS_REJECTED.
+     * The banAuthor parameter lets you indicate that you want to automatically reject any additional comments written by the comment's author. Set the parameter value to true to ban the author.  Note: This parameter is only valid if the moderationStatus parameter is also set to rejected.
      */
     banAuthor?: boolean;
     /**
-     * Modifies the moderation status of the comments with the given IDs
+     * The id parameter specifies a comma-separated list of IDs that identify the comments for which you are updating the moderation status.
      */
-    id?: string[];
+    id?: string;
     /**
-     * Specifies the requested moderation status. Note, comments can be in statuses, which are not available through this call. For example, this call does not allow to mark a comment as 'likely spam'. Valid values: MODERATION_STATUS_PUBLISHED, MODERATION_STATUS_HELD_FOR_REVIEW, MODERATION_STATUS_REJECTED.
+     * Identifies the new moderation status of the specified comments.
      */
     moderationStatus?: string;
   }
@@ -7999,9 +7772,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. You must at least include the <code>snippet</code> part in the parameter value since that part contains all of the properties that the API request can update.
+     * The part parameter identifies the properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -8017,7 +7790,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.commentThreads.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Creates a new top-level comment. To add a reply to an existing comment, use the comments.insert method instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8042,10 +7815,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.commentThreads.insert({
-     *     // The <code><strong>part</strong></code> parameter identifies the properties
-     *     // that the API response will include. Set the parameter value to
-     *     // <code>snippet</code>. The <code>snippet</code> part has a quota cost of 2
-     *     // units.
+     *     // The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8081,7 +7851,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. Set the parameter value to <code>snippet</code>. The <code>snippet</code> part has a quota cost of 2 units.
+     * @param {string} params.part The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      * @param {().CommentThread} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8151,7 +7921,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.commentThreads.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of comment threads that match the API request parameters.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8176,38 +7946,37 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.commentThreads.list({
-     *     // Returns the comment threads of all videos of the channel and the
-     *     // channel comments as well.
+     *     // The allThreadsRelatedToChannelId parameter instructs the API to return all comment threads associated with the specified channel. The response can include comments about the channel or about the channel's videos.
      *     allThreadsRelatedToChannelId: 'placeholder-value',
-     *     // Returns the comment threads for all the channel comments (ie does not
-     *     // include comments left on videos).
+     *     // The channelId parameter instructs the API to return comment threads containing comments about the specified channel. (The response will not include comments left on videos that the channel uploaded.)
      *     channelId: 'placeholder-value',
-     *     // Returns the comment threads with the given IDs for Stubby or Apiary.
+     *     // The id parameter specifies a comma-separated list of comment thread IDs for the resources that should be retrieved.
      *     id: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     *     //
+     *     // Note: This parameter is not supported for use in conjunction with the id parameter.
      *     maxResults: 'placeholder-value',
-     *     // Limits the returned comment threads to those with the specified
-     *     // moderation status. Not compatible with the 'id' filter.
-     *     // Valid values: published, heldForReview, likelySpam.
+     *     // Set this parameter to limit the returned comment threads to a particular moderation state.
+     *     //
+     *     // Note: This parameter is not supported for use in conjunction with the id parameter.
      *     moderationStatus: 'placeholder-value',
-     *
+     *     // The order parameter specifies the order in which the API response should list comment threads. Valid values are:
+     *     // - time - Comment threads are ordered by time. This is the default behavior.
+     *     // - relevance - Comment threads are ordered by relevance.Note: This parameter is not supported for use in conjunction with the id parameter.
      *     order: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.
+     *     //
+     *     // Note: This parameter is not supported for use in conjunction with the id parameter.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>commentThread</code> resource
-     *     // properties that the API response will include.
+     *     // The part parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
      *     part: 'placeholder-value',
-     *     // Limits the returned comment threads to those matching the specified
-     *     // key words. Not compatible with the 'id' filter.
+     *     // The searchTerms parameter instructs the API to limit the API response to only contain comments that contain the specified search terms.
+     *     //
+     *     // Note: This parameter is not supported for use in conjunction with the id parameter.
      *     searchTerms: 'placeholder-value',
-     *     // The requested text format for the returned comments.
+     *     // Set this parameter's value to html or plainText to instruct the API to return the comments left by users in html formatted or in plain text.
      *     textFormat: 'placeholder-value',
-     *     // Returns the comment threads of the specified video.
+     *     // The videoId parameter instructs the API to return comment threads associated with the specified video ID.
      *     videoId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8234,17 +8003,17 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.allThreadsRelatedToChannelId Returns the comment threads of all videos of the channel and the channel comments as well.
-     * @param {string=} params.channelId Returns the comment threads for all the channel comments (ie does not include comments left on videos).
-     * @param {string=} params.id Returns the comment threads with the given IDs for Stubby or Apiary.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.moderationStatus Limits the returned comment threads to those with the specified moderation status. Not compatible with the 'id' filter. Valid values: published, heldForReview, likelySpam.
-     * @param {string=} params.order
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>commentThread</code> resource properties that the API response will include.
-     * @param {string=} params.searchTerms Limits the returned comment threads to those matching the specified key words. Not compatible with the 'id' filter.
-     * @param {string=} params.textFormat The requested text format for the returned comments.
-     * @param {string=} params.videoId Returns the comment threads of the specified video.
+     * @param {string=} params.allThreadsRelatedToChannelId The allThreadsRelatedToChannelId parameter instructs the API to return all comment threads associated with the specified channel. The response can include comments about the channel or about the channel's videos.
+     * @param {string=} params.channelId The channelId parameter instructs the API to return comment threads containing comments about the specified channel. (The response will not include comments left on videos that the channel uploaded.)
+     * @param {string=} params.id The id parameter specifies a comma-separated list of comment thread IDs for the resources that should be retrieved.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is not supported for use in conjunction with the id parameter.
+     * @param {string=} params.moderationStatus Set this parameter to limit the returned comment threads to a particular moderation state.  Note: This parameter is not supported for use in conjunction with the id parameter.
+     * @param {string=} params.order The order parameter specifies the order in which the API response should list comment threads. Valid values are:  - time - Comment threads are ordered by time. This is the default behavior. - relevance - Comment threads are ordered by relevance.Note: This parameter is not supported for use in conjunction with the id parameter.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.  Note: This parameter is not supported for use in conjunction with the id parameter.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
+     * @param {string=} params.searchTerms The searchTerms parameter instructs the API to limit the API response to only contain comments that contain the specified search terms.  Note: This parameter is not supported for use in conjunction with the id parameter.
+     * @param {string=} params.textFormat Set this parameter's value to html or plainText to instruct the API to return the comments left by users in html formatted or in plain text.
+     * @param {string=} params.videoId The videoId parameter instructs the API to return comment threads associated with the specified video ID.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8320,7 +8089,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.commentThreads.update
-     * @desc Updates an existing resource.
+     * @desc Modifies the top-level comment in a comment thread.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8345,11 +8114,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.commentThreads.update({
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of <code>commentThread</code> resource properties that
-     *     // the API response will include. You must at least include the
-     *     // <code>snippet</code> part in the parameter value since that part contains
-     *     // all of the properties that the API request can update.
+     *     // The part parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8385,7 +8150,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of <code>commentThread</code> resource properties that the API response will include. You must at least include the <code>snippet</code> part in the parameter value since that part contains all of the properties that the API request can update.
+     * @param {string} params.part The part parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      * @param {().CommentThread} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8462,9 +8227,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. Set the parameter value to <code>snippet</code>. The <code>snippet</code> part has a quota cost of 2 units.
+     * The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -8479,47 +8244,47 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Returns the comment threads of all videos of the channel and the channel comments as well.
+     * The allThreadsRelatedToChannelId parameter instructs the API to return all comment threads associated with the specified channel. The response can include comments about the channel or about the channel's videos.
      */
     allThreadsRelatedToChannelId?: string;
     /**
-     * Returns the comment threads for all the channel comments (ie does not include comments left on videos).
+     * The channelId parameter instructs the API to return comment threads containing comments about the specified channel. (The response will not include comments left on videos that the channel uploaded.)
      */
     channelId?: string;
     /**
-     * Returns the comment threads with the given IDs for Stubby or Apiary.
+     * The id parameter specifies a comma-separated list of comment thread IDs for the resources that should be retrieved.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     maxResults?: number;
     /**
-     * Limits the returned comment threads to those with the specified moderation status. Not compatible with the 'id' filter. Valid values: published, heldForReview, likelySpam.
+     * Set this parameter to limit the returned comment threads to a particular moderation state.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     moderationStatus?: string;
     /**
-     *
+     * The order parameter specifies the order in which the API response should list comment threads. Valid values are:  - time - Comment threads are ordered by time. This is the default behavior. - relevance - Comment threads are ordered by relevance.Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     order?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>commentThread</code> resource properties that the API response will include.
+     * The part parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Limits the returned comment threads to those matching the specified key words. Not compatible with the 'id' filter.
+     * The searchTerms parameter instructs the API to limit the API response to only contain comments that contain the specified search terms.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     searchTerms?: string;
     /**
-     * The requested text format for the returned comments.
+     * Set this parameter's value to html or plainText to instruct the API to return the comments left by users in html formatted or in plain text.
      */
     textFormat?: string;
     /**
-     * Returns the comment threads of the specified video.
+     * The videoId parameter instructs the API to return comment threads associated with the specified video ID.
      */
     videoId?: string;
   }
@@ -8531,9 +8296,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of <code>commentThread</code> resource properties that the API response will include. You must at least include the <code>snippet</code> part in the parameter value since that part contains all of the properties that the API request can update.
+     * The part parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -8549,7 +8314,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.guideCategories.list
-     * @desc Retrieves a list of guide categories.
+     * @desc Returns a list of categories that can be associated with YouTube channels.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8579,14 +8344,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.guideCategories.list({
+     *     // The hl parameter specifies the language that will be used for text values in the API response.
      *     hl: 'placeholder-value',
-     *     // Return the guide categories with the given IDs.
+     *     // The id parameter specifies a comma-separated list of the YouTube channel category ID(s) for the resource(s) that are being retrieved. In a guideCategory resource, the id property specifies the YouTube channel category ID.
      *     id: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>guideCategory</code> resource properties that the API response will
-     *     // include. Set the parameter value to <code>snippet</code>.
+     *     // The part parameter specifies the guideCategory resource properties that the API response will include. Set the parameter value to snippet.
      *     part: 'placeholder-value',
-     *     // Return all categories in the given region code.
+     *     // The regionCode parameter instructs the API to return the list of guide categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      *     regionCode: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8614,10 +8378,10 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.hl
-     * @param {string=} params.id Return the guide categories with the given IDs.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>guideCategory</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
-     * @param {string=} params.regionCode Return all categories in the given region code.
+     * @param {string=} params.hl The hl parameter specifies the language that will be used for text values in the API response.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of the YouTube channel category ID(s) for the resource(s) that are being retrieved. In a guideCategory resource, the id property specifies the YouTube channel category ID.
+     * @param {string} params.part The part parameter specifies the guideCategory resource properties that the API response will include. Set the parameter value to snippet.
+     * @param {string=} params.regionCode The regionCode parameter instructs the API to return the list of guide categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8700,19 +8464,19 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The hl parameter specifies the language that will be used for text values in the API response.
      */
     hl?: string;
     /**
-     * Return the guide categories with the given IDs.
+     * The id parameter specifies a comma-separated list of the YouTube channel category ID(s) for the resource(s) that are being retrieved. In a guideCategory resource, the id property specifies the YouTube channel category ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>guideCategory</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * The part parameter specifies the guideCategory resource properties that the API response will include. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Return all categories in the given region code.
+     * The regionCode parameter instructs the API to return the list of guide categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      */
     regionCode?: string;
   }
@@ -8725,7 +8489,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.i18nLanguages.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of application languages that the YouTube website supports.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8755,10 +8519,9 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.i18nLanguages.list({
+     *     // The hl parameter specifies the language that should be used for text values in the API response.
      *     hl: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>i18nLanguage</code> resource properties that the API response will
-     *     // include. Set the parameter value to <code>snippet</code>.
+     *     // The part parameter specifies the i18nLanguage resource properties that the API response will include. Set the parameter value to snippet.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8782,8 +8545,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.hl
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>i18nLanguage</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * @param {string=} params.hl The hl parameter specifies the language that should be used for text values in the API response.
+     * @param {string} params.part The part parameter specifies the i18nLanguage resource properties that the API response will include. Set the parameter value to snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8861,13 +8624,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The hl parameter specifies the language that should be used for text values in the API response.
      */
     hl?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>i18nLanguage</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * The part parameter specifies the i18nLanguage resource properties that the API response will include. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$I18nregions {
@@ -8878,7 +8641,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.i18nRegions.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of content regions that the YouTube website supports.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8908,10 +8671,9 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.i18nRegions.list({
+     *     // The hl parameter specifies the language that should be used for text values in the API response.
      *     hl: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>i18nRegion</code> resource properties that the API response will
-     *     // include. Set the parameter value to <code>snippet</code>.
+     *     // The part parameter specifies the i18nRegion resource properties that the API response will include. Set the parameter value to snippet.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8935,8 +8697,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.hl
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>i18nRegion</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * @param {string=} params.hl The hl parameter specifies the language that should be used for text values in the API response.
+     * @param {string} params.part The part parameter specifies the i18nRegion resource properties that the API response will include. Set the parameter value to snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9012,13 +8774,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The hl parameter specifies the language that should be used for text values in the API response.
      */
     hl?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>i18nRegion</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * The part parameter specifies the i18nRegion resource properties that the API response will include. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$Livebroadcasts {
@@ -9029,7 +8791,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveBroadcasts.bind
-     * @desc Bind a broadcast to a stream.
+     * @desc Binds a YouTube broadcast to a stream or removes an existing binding between a broadcast and a stream. A broadcast can only be bound to one video stream, though a video stream may be bound to more than one broadcast.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9057,48 +8819,21 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveBroadcasts.bind({
-     *     // Broadcast to bind to the stream
+     *     // The id parameter specifies the unique ID of the broadcast that is being bound to a video stream.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>liveBroadcast</code> resource
-     *     // properties that the API response will include. The <code>part</code> names
-     *     // that you can include in the parameter value are <code>id</code>,
-     *     // <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     *     // The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      *     part: 'placeholder-value',
-     *     // Stream to bind, if not set unbind the current one.
+     *     // The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
      *     streamId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9124,11 +8859,11 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Broadcast to bind to the stream
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveBroadcast</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
-     * @param {string=} params.streamId Stream to bind, if not set unbind the current one.
+     * @param {string} params.id The id parameter specifies the unique ID of the broadcast that is being bound to a video stream.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
+     * @param {string=} params.streamId The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9197,7 +8932,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveBroadcasts.control
-     * @desc Slate and recording control of the live broadcast. Support actions: slate on/off, recording start/stop/pause/resume. Design doc: goto/yt-api-liveBroadcast-control
+     * @desc Controls the settings for a slate that can be displayed in the broadcast stream.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9225,57 +8960,29 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveBroadcasts.control({
-     *     // Whether display or hide slate.
+     *     // The displaySlate parameter specifies whether the slate is being enabled or disabled.
      *     displaySlate: 'placeholder-value',
-     *     // Broadcast to operate.
+     *     // The id parameter specifies the YouTube live broadcast ID that uniquely identifies the broadcast in which the slate is being updated.
      *     id: 'placeholder-value',
-     *     // The exact time when the actions (e.g. slate on) are executed.
-     *     // It is an offset from the first frame of the monitor stream.
-     *     // If not set, it means "now" or ASAP.
-     *     // This field should not be set if the monitor stream is disabled,
-     *     // otherwise an error will be returned.
+     *     // The offsetTimeMs parameter specifies a positive time offset when the specified slate change will occur. The value is measured in milliseconds from the beginning of the broadcast's monitor stream, which is the time that the testing phase for the broadcast began. Even though it is specified in milliseconds, the value is actually an approximation, and YouTube completes the requested action as closely as possible to that time.
+     *     //
+     *     // If you do not specify a value for this parameter, then YouTube performs the action as soon as possible. See the Getting started guide for more details.
+     *     //
+     *     // Important: You should only specify a value for this parameter if your broadcast stream is delayed.
      *     offsetTimeMs: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>liveBroadcast</code> resource
-     *     // properties that the API response will include. The <code>part</code> names
-     *     // that you can include in the parameter value are <code>id</code>,
-     *     // <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     *     // The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      *     part: 'placeholder-value',
-     *     // The wall clock time at which the action should be executed.
-     *     // Only one of offset_time_ms and walltime may be set at a time.
+     *     // The walltime parameter specifies the wall clock time at which the specified slate change will occur. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
      *     walltime: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9301,13 +9008,13 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.displaySlate Whether display or hide slate.
-     * @param {string} params.id Broadcast to operate.
-     * @param {string=} params.offsetTimeMs The exact time when the actions (e.g. slate on) are executed. It is an offset from the first frame of the monitor stream. If not set, it means "now" or ASAP. This field should not be set if the monitor stream is disabled, otherwise an error will be returned.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveBroadcast</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
-     * @param {string=} params.walltime The wall clock time at which the action should be executed. Only one of offset_time_ms and walltime may be set at a time.
+     * @param {boolean=} params.displaySlate The displaySlate parameter specifies whether the slate is being enabled or disabled.
+     * @param {string} params.id The id parameter specifies the YouTube live broadcast ID that uniquely identifies the broadcast in which the slate is being updated.
+     * @param {string=} params.offsetTimeMs The offsetTimeMs parameter specifies a positive time offset when the specified slate change will occur. The value is measured in milliseconds from the beginning of the broadcast's monitor stream, which is the time that the testing phase for the broadcast began. Even though it is specified in milliseconds, the value is actually an approximation, and YouTube completes the requested action as closely as possible to that time.  If you do not specify a value for this parameter, then YouTube performs the action as soon as possible. See the Getting started guide for more details.  Important: You should only specify a value for this parameter if your broadcast stream is delayed.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
+     * @param {string=} params.walltime The walltime parameter specifies the wall clock time at which the specified slate change will occur. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9376,7 +9083,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveBroadcasts.delete
-     * @desc Delete a given broadcast.
+     * @desc Deletes a broadcast.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9404,39 +9111,17 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveBroadcasts.delete({
+     *     // The id parameter specifies the YouTube live broadcast ID for the resource that is being deleted.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9451,9 +9136,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.id The id parameter specifies the YouTube live broadcast ID for the resource that is being deleted.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9520,7 +9205,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveBroadcasts.insert
-     * @desc Inserts a new stream for the authenticated user.
+     * @desc Creates a broadcast.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9548,45 +9233,19 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveBroadcasts.insert({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br><br>The <code>part</code> properties that you can include in
-     *     // the parameter value are <code>id</code>, <code>snippet</code>,
-     *     // <code>contentDetails</code>, and <code>status</code>.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9626,9 +9285,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br><br>The <code>part</code> properties that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
      * @param {().LiveBroadcast} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9698,7 +9357,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveBroadcasts.list
-     * @desc Retrieve the list of broadcasts associated with the given channel.
+     * @desc Returns a list of YouTube broadcasts that match the API request parameters.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9727,60 +9386,29 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveBroadcasts.list({
-     *     // Return broadcasts with a certain status, e.g. active broadcasts.
+     *     // The broadcastStatus parameter filters the API response to only include broadcasts with the specified status.
      *     broadcastStatus: 'placeholder-value',
-     *     // Return only broadcasts with the selected type.
+     *     // The broadcastType parameter filters the API response to only include broadcasts with the specified type. This is only compatible with the mine filter for now.
      *     broadcastType: 'placeholder-value',
-     *     // Return broadcasts with the given ids from Stubby or Apiary.
+     *     // The id parameter specifies a comma-separated list of YouTube broadcast IDs that identify the broadcasts being retrieved. In a liveBroadcast resource, the id property specifies the broadcast's ID.
      *     id: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *
+     *     // The mine parameter can be used to instruct the API to only return broadcasts owned by the authenticated user. Set the parameter value to true to only retrieve your own broadcasts.
      *     mine: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>liveBroadcast</code> resource
-     *     // properties that the API response will include. The <code>part</code> names
-     *     // that you can include in the parameter value are <code>id</code>,
-     *     // <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     *     // The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9808,15 +9436,15 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.broadcastStatus Return broadcasts with a certain status, e.g. active broadcasts.
-     * @param {string=} params.broadcastType Return only broadcasts with the selected type.
-     * @param {string=} params.id Return broadcasts with the given ids from Stubby or Apiary.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {boolean=} params.mine
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveBroadcast</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     * @param {string=} params.broadcastStatus The broadcastStatus parameter filters the API response to only include broadcasts with the specified status.
+     * @param {string=} params.broadcastType The broadcastType parameter filters the API response to only include broadcasts with the specified type. This is only compatible with the mine filter for now.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of YouTube broadcast IDs that identify the broadcasts being retrieved. In a liveBroadcast resource, the id property specifies the broadcast's ID.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {boolean=} params.mine The mine parameter can be used to instruct the API to only return broadcasts owned by the authenticated user. Set the parameter value to true to only retrieve your own broadcasts.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9892,7 +9520,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveBroadcasts.transition
-     * @desc Transition a broadcast to a given status.
+     * @desc Changes the status of a YouTube live broadcast and initiates any processes associated with the new status. For example, when you transition a broadcast's status to testing, YouTube starts to transmit video to that broadcast's monitor stream. Before calling this method, you should confirm that the value of the status.streamStatus property for the stream bound to your broadcast is active.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9920,48 +9548,21 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveBroadcasts.transition({
-     *     // The status to which the broadcast is going to transition.
+     *     // The broadcastStatus parameter identifies the state to which the broadcast is changing. Note that to transition a broadcast to either the testing or live state, the status.streamStatus must be active for the stream that the broadcast is bound to.
      *     broadcastStatus: 'placeholder-value',
-     *     // Broadcast to transition.
+     *     // The id parameter specifies the unique ID of the broadcast that is transitioning to another status.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>liveBroadcast</code> resource
-     *     // properties that the API response will include. The <code>part</code> names
-     *     // that you can include in the parameter value are <code>id</code>,
-     *     // <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     *     // The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9987,11 +9588,11 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.broadcastStatus The status to which the broadcast is going to transition.
-     * @param {string} params.id Broadcast to transition.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveBroadcast</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     * @param {string} params.broadcastStatus The broadcastStatus parameter identifies the state to which the broadcast is changing. Note that to transition a broadcast to either the testing or live state, the status.streamStatus must be active for the stream that the broadcast is bound to.
+     * @param {string} params.id The id parameter specifies the unique ID of the broadcast that is transitioning to another status.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10047,7 +9648,7 @@ export namespace youtube_v3 {
           options
         ),
         params,
-        requiredParams: ['id', 'broadcastStatus', 'part'],
+        requiredParams: ['broadcastStatus', 'id', 'part'],
         pathParams: [],
         context: this.context,
       };
@@ -10060,7 +9661,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveBroadcasts.update
-     * @desc Updates an existing broadcast for the authenticated user.
+     * @desc Updates a broadcast. For example, you could modify the broadcast settings defined in the liveBroadcast resource's contentDetails object.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10088,55 +9689,21 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveBroadcasts.update({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br><br>The <code>part</code> properties that you can include in
-     *     // the parameter value are <code>id</code>, <code>snippet</code>,
-     *     // <code>contentDetails</code>, and <code>status</code>.<br><br>Note that this
-     *     // method will override the existing values for all of the mutable properties
-     *     // that are contained in any parts that the parameter value specifies. For
-     *     // example, a
-     *     // broadcast's privacy status is defined in the <code>status</code> part. As
-     *     // such, if your request is updating a private or unlisted broadcast, and the
-     *     // request's <code>part</code> parameter value includes the
-     *     // <code>status</code> part, the broadcast's privacy setting will be updated
-     *     // to whatever value the request body specifies. If the request body does not
-     *     // specify a value, the existing privacy setting will be removed and the
-     *     // broadcast will revert to the default privacy setting.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
+     *     //
+     *     // Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -10176,9 +9743,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br><br>The <code>part</code> properties that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.<br><br>Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the <code>status</code> part. As such, if your request is updating a private or unlisted broadcast, and the request's <code>part</code> parameter value includes the <code>status</code> part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
      * @param {().LiveBroadcast} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10255,23 +9822,23 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Broadcast to bind to the stream
+     * The id parameter specifies the unique ID of the broadcast that is being bound to a video stream.
      */
     id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveBroadcast</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     * The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Stream to bind, if not set unbind the current one.
+     * The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
      */
     streamId?: string;
   }
@@ -10283,31 +9850,31 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether display or hide slate.
+     * The displaySlate parameter specifies whether the slate is being enabled or disabled.
      */
     displaySlate?: boolean;
     /**
-     * Broadcast to operate.
+     * The id parameter specifies the YouTube live broadcast ID that uniquely identifies the broadcast in which the slate is being updated.
      */
     id?: string;
     /**
-     * The exact time when the actions (e.g. slate on) are executed. It is an offset from the first frame of the monitor stream. If not set, it means "now" or ASAP. This field should not be set if the monitor stream is disabled, otherwise an error will be returned.
+     * The offsetTimeMs parameter specifies a positive time offset when the specified slate change will occur. The value is measured in milliseconds from the beginning of the broadcast's monitor stream, which is the time that the testing phase for the broadcast began. Even though it is specified in milliseconds, the value is actually an approximation, and YouTube completes the requested action as closely as possible to that time.  If you do not specify a value for this parameter, then YouTube performs the action as soon as possible. See the Getting started guide for more details.  Important: You should only specify a value for this parameter if your broadcast stream is delayed.
      */
     offsetTimeMs?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveBroadcast</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     * The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
-    part?: string[];
+    part?: string;
     /**
-     * The wall clock time at which the action should be executed. Only one of offset_time_ms and walltime may be set at a time.
+     * The walltime parameter specifies the wall clock time at which the specified slate change will occur. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
      */
     walltime?: string;
   }
@@ -10319,15 +9886,15 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube live broadcast ID for the resource that is being deleted.
      */
     id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
   }
@@ -10339,17 +9906,17 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br><br>The <code>part</code> properties that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -10364,41 +9931,41 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return broadcasts with a certain status, e.g. active broadcasts.
+     * The broadcastStatus parameter filters the API response to only include broadcasts with the specified status.
      */
     broadcastStatus?: string;
     /**
-     * Return only broadcasts with the selected type.
+     * The broadcastType parameter filters the API response to only include broadcasts with the specified type. This is only compatible with the mine filter for now.
      */
     broadcastType?: string;
     /**
-     * Return broadcasts with the given ids from Stubby or Apiary.
+     * The id parameter specifies a comma-separated list of YouTube broadcast IDs that identify the broadcasts being retrieved. In a liveBroadcast resource, the id property specifies the broadcast's ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     *
+     * The mine parameter can be used to instruct the API to only return broadcasts owned by the authenticated user. Set the parameter value to true to only retrieve your own broadcasts.
      */
     mine?: boolean;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveBroadcast</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     * The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
-    part?: string[];
+    part?: string;
   }
   export interface Params$Resource$Livebroadcasts$Transition
     extends StandardParameters {
@@ -10408,25 +9975,25 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The status to which the broadcast is going to transition.
+     * The broadcastStatus parameter identifies the state to which the broadcast is changing. Note that to transition a broadcast to either the testing or live state, the status.streamStatus must be active for the stream that the broadcast is bound to.
      */
     broadcastStatus?: string;
     /**
-     * Broadcast to transition.
+     * The id parameter specifies the unique ID of the broadcast that is transitioning to another status.
      */
     id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveBroadcast</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.
+     * The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
-    part?: string[];
+    part?: string;
   }
   export interface Params$Resource$Livebroadcasts$Update
     extends StandardParameters {
@@ -10436,17 +10003,17 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br><br>The <code>part</code> properties that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>contentDetails</code>, and <code>status</code>.<br><br>Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the <code>status</code> part. As such, if your request is updating a private or unlisted broadcast, and the request's <code>part</code> parameter value includes the <code>status</code> part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -10462,7 +10029,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveChatBans.delete
-     * @desc Deletes a chat ban.
+     * @desc Removes a chat ban.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10490,6 +10057,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatBans.delete({
+     *     // The id parameter identifies the chat ban to remove. The value uniquely identifies both the ban and the chat.
      *     id: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10504,7 +10072,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
+     * @param {string} params.id The id parameter identifies the chat ban to remove. The value uniquely identifies both the ban and the chat.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10571,7 +10139,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveChatBans.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Adds a new ban to the chat.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10599,10 +10167,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatBans.insert({
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response returns. Set the
-     *     // parameter value to <code>snippet</code>.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -10636,7 +10201,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to <code>snippet</code>.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      * @param {().LiveChatBan} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10713,7 +10278,7 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter identifies the chat ban to remove. The value uniquely identifies both the ban and the chat.
      */
     id?: string;
   }
@@ -10725,9 +10290,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to <code>snippet</code>.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -10771,6 +10336,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatMessages.delete({
+     *     // The id parameter specifies the YouTube chat message ID of the resource that is being deleted.
      *     id: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10785,7 +10351,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
+     * @param {string} params.id The id parameter specifies the YouTube chat message ID of the resource that is being deleted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10852,7 +10418,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveChatMessages.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Adds a message to a live chat.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10880,10 +10446,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatMessages.insert({
-     *     // The <code><strong>part</strong></code> parameter serves two purposes. It
-     *     // identifies the properties that the write operation will set as well as the
-     *     // properties that the API response will include. Set the parameter value to
-     *     // <code>snippet</code>.
+     *     // The part parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -10919,7 +10482,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * @param {string} params.part The part parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
      * @param {().LiveChatMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10989,7 +10552,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveChatMessages.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Lists live chat messages for a specific chat.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11018,25 +10581,19 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatMessages.list({
-     *     // Specifies the localization language in which the system messages
-     *     // should be returned.
+     *     // The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.
+     *     //
+     *     // If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      *     hl: 'placeholder-value',
-     *     // The id of the live chat for which comments should be returned.
+     *     // The liveChatId parameter specifies the ID of the chat whose messages will be returned.
      *     liveChatId: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of messages that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> property identify other pages that could be
-     *     // retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>liveChatComment</code> resource parts that the API response will
-     *     // include. Supported values are <code>id</code> and <code>snippet</code>.
+     *     // The part parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id and snippet.
      *     part: 'placeholder-value',
-     *     // Specifies the size of the profile image that should be
-     *     // returned for each user.
+     *     // The profileImageSize parameter specifies the size of the user profile pictures that should be returned in the result set. Default: 88.
      *     profileImageSize: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11065,12 +10622,12 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.hl Specifies the localization language in which the system messages should be returned.
-     * @param {string} params.liveChatId The id of the live chat for which comments should be returned.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> property identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>liveChatComment</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
-     * @param {integer=} params.profileImageSize Specifies the size of the profile image that should be returned for each user.
+     * @param {string=} params.hl The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
+     * @param {string} params.liveChatId The liveChatId parameter specifies the ID of the chat whose messages will be returned.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of messages that should be returned in the result set.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id and snippet.
+     * @param {integer=} params.profileImageSize The profileImageSize parameter specifies the size of the user profile pictures that should be returned in the result set. Default: 88.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11153,7 +10710,7 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube chat message ID of the resource that is being deleted.
      */
     id?: string;
   }
@@ -11165,9 +10722,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * The part parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -11182,27 +10739,27 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Specifies the localization language in which the system messages should be returned.
+     * The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      */
     hl?: string;
     /**
-     * The id of the live chat for which comments should be returned.
+     * The liveChatId parameter specifies the ID of the chat whose messages will be returned.
      */
     liveChatId?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of messages that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> property identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>liveChatComment</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * The part parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id and snippet.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Specifies the size of the profile image that should be returned for each user.
+     * The profileImageSize parameter specifies the size of the user profile pictures that should be returned in the result set. Default: 88.
      */
     profileImageSize?: number;
   }
@@ -11215,7 +10772,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveChatModerators.delete
-     * @desc Deletes a chat moderator.
+     * @desc Removes a chat moderator.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11243,6 +10800,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatModerators.delete({
+     *     // The id parameter identifies the chat moderator to remove. The value uniquely identifies both the moderator and the chat.
      *     id: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11257,7 +10815,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
+     * @param {string} params.id The id parameter identifies the chat moderator to remove. The value uniquely identifies both the moderator and the chat.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11324,7 +10882,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveChatModerators.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Adds a new moderator for the chat.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11352,10 +10910,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatModerators.insert({
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response returns. Set the
-     *     // parameter value to <code>snippet</code>.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11389,7 +10944,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to <code>snippet</code>.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      * @param {().LiveChatModerator} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11459,7 +11014,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveChatModerators.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Lists moderators for a live chat.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11488,19 +11043,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatModerators.list({
-     *     // The id of the live chat for which moderators should be returned.
+     *     // The liveChatId parameter specifies the YouTube live chat for which the API should return moderators.
      *     liveChatId: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>liveChatModerator</code> resource parts that the API response will
-     *     // include. Supported values are <code>id</code> and <code>snippet</code>.
+     *     // The part parameter specifies the liveChatModerator resource parts that the API response will include. Supported values are id and snippet.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11528,10 +11077,10 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.liveChatId The id of the live chat for which moderators should be returned.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>liveChatModerator</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * @param {string} params.liveChatId The liveChatId parameter specifies the YouTube live chat for which the API should return moderators.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies the liveChatModerator resource parts that the API response will include. Supported values are id and snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11616,7 +11165,7 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter identifies the chat moderator to remove. The value uniquely identifies both the moderator and the chat.
      */
     id?: string;
   }
@@ -11628,9 +11177,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to <code>snippet</code>.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -11645,21 +11194,21 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id of the live chat for which moderators should be returned.
+     * The liveChatId parameter specifies the YouTube live chat for which the API should return moderators.
      */
     liveChatId?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>liveChatModerator</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * The part parameter specifies the liveChatModerator resource parts that the API response will include. Supported values are id and snippet.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$Livestreams {
@@ -11670,7 +11219,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveStreams.delete
-     * @desc Deletes an existing stream for the authenticated user.
+     * @desc Deletes a video stream.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11698,39 +11247,17 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveStreams.delete({
+     *     // The id parameter specifies the YouTube live stream ID for the resource that is being deleted.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11745,9 +11272,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.id The id parameter specifies the YouTube live stream ID for the resource that is being deleted.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11814,7 +11341,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveStreams.insert
-     * @desc Inserts a new stream for the authenticated user.
+     * @desc Creates a video stream. The stream enables you to send your video to YouTube, which can then broadcast the video to your audience.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11842,45 +11369,19 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveStreams.insert({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br><br>The <code>part</code> properties that you can include in
-     *     // the parameter value are <code>id</code>, <code>snippet</code>,
-     *     // <code>cdn</code>, and <code>status</code>.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // The part properties that you can include in the parameter value are id, snippet, cdn, and status.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11920,9 +11421,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br><br>The <code>part</code> properties that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>cdn</code>, and <code>status</code>.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, cdn, and status.
      * @param {().LiveStream} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11992,7 +11493,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveStreams.list
-     * @desc Retrieve the list of streams associated with the given channel. --
+     * @desc Returns a list of video streams that match the API request parameters.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12021,56 +11522,25 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveStreams.list({
-     *     // Return LiveStreams with the given ids from Stubby or Apiary.
+     *     // The id parameter specifies a comma-separated list of YouTube stream IDs that identify the streams being retrieved. In a liveStream resource, the id property specifies the stream's ID.
      *     id: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *
+     *     // The mine parameter can be used to instruct the API to only return streams owned by the authenticated user. Set the parameter value to true to only retrieve your own streams.
      *     mine: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>liveStream</code> resource
-     *     // properties that the API response will include. The <code>part</code> names
-     *     // that you can include in the parameter value are <code>id</code>,
-     *     // <code>snippet</code>, <code>cdn</code>, and <code>status</code>.
+     *     // The part parameter specifies a comma-separated list of one or more liveStream resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, cdn, and status.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12098,13 +11568,13 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Return LiveStreams with the given ids from Stubby or Apiary.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {boolean=} params.mine
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveStream</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>cdn</code>, and <code>status</code>.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of YouTube stream IDs that identify the streams being retrieved. In a liveStream resource, the id property specifies the stream's ID.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {boolean=} params.mine The mine parameter can be used to instruct the API to only return streams owned by the authenticated user. Set the parameter value to true to only retrieve your own streams.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more liveStream resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, cdn, and status.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12174,7 +11644,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.liveStreams.update
-     * @desc Updates an existing stream for the authenticated user.
+     * @desc Updates a video stream. If the properties that you want to change cannot be updated, then you need to create a new stream with the proper settings.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12202,49 +11672,21 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveStreams.update({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br><br>The <code>part</code> properties that you can include in
-     *     // the parameter value are <code>id</code>, <code>snippet</code>,
-     *     // <code>cdn</code>, and <code>status</code>.<br><br>Note that this method
-     *     // will override the existing values for all of the mutable properties that
-     *     // are contained in any parts that the parameter value specifies. If the
-     *     // request body does not specify a value for a mutable property, the existing
-     *     // value for that property will be removed.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // The part properties that you can include in the parameter value are id, snippet, cdn, and status.
+     *     //
+     *     // Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12284,9 +11726,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br><br>The <code>part</code> properties that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>cdn</code>, and <code>status</code>.<br><br>Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, cdn, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
      * @param {().LiveStream} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -12363,15 +11805,15 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube live stream ID for the resource that is being deleted.
      */
     id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
   }
@@ -12383,17 +11825,17 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br><br>The <code>part</code> properties that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>cdn</code>, and <code>status</code>.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, cdn, and status.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -12407,33 +11849,33 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return LiveStreams with the given ids from Stubby or Apiary.
+     * The id parameter specifies a comma-separated list of YouTube stream IDs that identify the streams being retrieved. In a liveStream resource, the id property specifies the stream's ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     *
+     * The mine parameter can be used to instruct the API to only return streams owned by the authenticated user. Set the parameter value to true to only retrieve your own streams.
      */
     mine?: boolean;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>liveStream</code> resource properties that the API response will include. The <code>part</code> names that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>cdn</code>, and <code>status</code>.
+     * The part parameter specifies a comma-separated list of one or more liveStream resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, cdn, and status.
      */
-    part?: string[];
+    part?: string;
   }
   export interface Params$Resource$Livestreams$Update
     extends StandardParameters {
@@ -12443,17 +11885,17 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br><br>The <code>part</code> properties that you can include in the parameter value are <code>id</code>, <code>snippet</code>, <code>cdn</code>, and <code>status</code>.<br><br>Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, cdn, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -12469,7 +11911,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.members.list
-     * @desc Retrieves a list of members that match the request criteria for a channel.
+     * @desc Lists members for a channel.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12500,24 +11942,17 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.members.list({
-     *     // Comma separated list of channel IDs. Only data about members that are part
-     *     // of this list will be included in the response.
+     *     // The filterByMemberChannelId parameter represents a comma separated list of channel IDs. Only data about members that are part of this list will be included in the response. It can be used to efficiently check whether specific users are entitled to perks offered via third parties.
      *     filterByMemberChannelId: 'placeholder-value',
-     *     // Filter members in the results set to the ones that have access to a level.
+     *     // The hasAccessToLevel parameter specifies, when set, the ID of a pricing level that members from the results set should have access to. When not set, all members will be considered, regardless of their active pricing level.
      *     hasAccessToLevel: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // Parameter that specifies which channel members to return.
+     *     // The mode parameter specifies which channel members to return.
      *     mode: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>member</code> resource parts that the API response will include. Set
-     *     // the parameter value to <code>snippet</code>.
+     *     // The part parameter specifies the member resource parts that the API response will include. Set the parameter value to snippet.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12544,12 +11979,12 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filterByMemberChannelId Comma separated list of channel IDs. Only data about members that are part of this list will be included in the response.
-     * @param {string=} params.hasAccessToLevel Filter members in the results set to the ones that have access to a level.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.mode Parameter that specifies which channel members to return.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>member</code> resource parts that the API response will include. Set the parameter value to <code>snippet</code>.
+     * @param {string=} params.filterByMemberChannelId The filterByMemberChannelId parameter represents a comma separated list of channel IDs. Only data about members that are part of this list will be included in the response. It can be used to efficiently check whether specific users are entitled to perks offered via third parties.
+     * @param {string=} params.hasAccessToLevel The hasAccessToLevel parameter specifies, when set, the ID of a pricing level that members from the results set should have access to. When not set, all members will be considered, regardless of their active pricing level.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {string=} params.mode The mode parameter specifies which channel members to return.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies the member resource parts that the API response will include. Set the parameter value to snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12623,29 +12058,29 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Comma separated list of channel IDs. Only data about members that are part of this list will be included in the response.
+     * The filterByMemberChannelId parameter represents a comma separated list of channel IDs. Only data about members that are part of this list will be included in the response. It can be used to efficiently check whether specific users are entitled to perks offered via third parties.
      */
     filterByMemberChannelId?: string;
     /**
-     * Filter members in the results set to the ones that have access to a level.
+     * The hasAccessToLevel parameter specifies, when set, the ID of a pricing level that members from the results set should have access to. When not set, all members will be considered, regardless of their active pricing level.
      */
     hasAccessToLevel?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Parameter that specifies which channel members to return.
+     * The mode parameter specifies which channel members to return.
      */
     mode?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>member</code> resource parts that the API response will include. Set the parameter value to <code>snippet</code>.
+     * The part parameter specifies the member resource parts that the API response will include. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$Membershipslevels {
@@ -12656,7 +12091,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.membershipsLevels.list
-     * @desc Retrieves a list of all pricing levels offered by a creator to the fans.
+     * @desc Lists pricing levels for a channel.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12687,9 +12122,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.membershipsLevels.list({
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>membershipsLevel</code> resource parts that the API response will
-     *     // include. Supported values are <code>id</code> and <code>snippet</code>.
+     *     // The part parameter specifies the membershipsLevel resource parts that the API response will include. Supported values are id and snippet.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12713,7 +12146,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>membershipsLevel</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * @param {string} params.part The part parameter specifies the membershipsLevel resource parts that the API response will include. Supported values are id and snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12798,9 +12231,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>membershipsLevel</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * The part parameter specifies the membershipsLevel resource parts that the API response will include. Supported values are id and snippet.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$Playlistitems {
@@ -12811,7 +12244,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.playlistItems.delete
-     * @desc Deletes a resource.
+     * @desc Deletes a playlist item.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12840,19 +12273,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.playlistItems.delete({
+     *     // The id parameter specifies the YouTube playlist item ID for the playlist item that is being deleted. In a playlistItem resource, the id property specifies the playlist item's ID.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12867,8 +12292,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.id The id parameter specifies the YouTube playlist item ID for the playlist item that is being deleted. In a playlistItem resource, the id property specifies the playlist item's ID.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12935,7 +12360,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.playlistItems.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Adds a resource to a playlist.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12964,22 +12389,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.playlistItems.insert({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will include.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -13017,8 +12431,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      * @param {().PlaylistItem} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13088,7 +12502,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.playlistItems.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a collection of playlist items that match the API request parameters. You can retrieve all of the playlist items in a specified playlist or retrieve one or more playlist items by their unique IDs.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13118,43 +12532,23 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.playlistItems.list({
+     *     // The id parameter specifies a comma-separated list of one or more unique playlist item IDs.
      *     id: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>playlistItem</code> resource
-     *     // properties that the API response will include.<br><br>If the parameter
-     *     // identifies a property that contains child properties, the child properties
-     *     // will be included in the response. For example, in a
-     *     // <code>playlistItem</code> resource, the <code>snippet</code> property
-     *     // contains numerous fields, including the <code>title</code>,
-     *     // <code>description</code>, <code>position</code>, and
-     *     // <code>resourceId</code> properties. As such, if you set
-     *     // <code><strong>part=snippet</strong></code>, the API response will contain
-     *     // all of those properties.
+     *     // The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include.
+     *     //
+     *     // If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      *     part: 'placeholder-value',
-     *     // Return the playlist items within the given playlist.
+     *     // The playlistId parameter specifies the unique ID of the playlist for which you want to retrieve playlist items. Note that even though this is an optional parameter, every request to retrieve playlist items must specify a value for either the id parameter or the playlistId parameter.
      *     playlistId: 'placeholder-value',
-     *     // Return the playlist items associated with the given video ID.
+     *     // The videoId parameter specifies that the request should return only the playlist items that contain the specified video.
      *     videoId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -13182,13 +12576,13 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>playlistItem</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>playlistItem</code> resource, the <code>snippet</code> property contains numerous fields, including the <code>title</code>, <code>description</code>, <code>position</code>, and <code>resourceId</code> properties. As such, if you set <code><strong>part=snippet</strong></code>, the API response will contain all of those properties.
-     * @param {string=} params.playlistId Return the playlist items within the given playlist.
-     * @param {string=} params.videoId Return the playlist items associated with the given video ID.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of one or more unique playlist item IDs.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set part=snippet, the API response will contain all of those properties.
+     * @param {string=} params.playlistId The playlistId parameter specifies the unique ID of the playlist for which you want to retrieve playlist items. Note that even though this is an optional parameter, every request to retrieve playlist items must specify a value for either the id parameter or the playlistId parameter.
+     * @param {string=} params.videoId The videoId parameter specifies that the request should return only the playlist items that contain the specified video.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13259,7 +12653,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.playlistItems.update
-     * @desc Updates an existing resource.
+     * @desc Modifies a playlist item. For example, you could update the item's position in the playlist.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13288,33 +12682,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.playlistItems.update({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br/><br/>Note that this method will override the existing values
-     *     // for all of the mutable properties that are contained in any parts that the
-     *     // parameter value specifies. For example, a playlist item can specify a start
-     *     // time and end time, which identify the times portion of the video that
-     *     // should play when users watch the video in the playlist. If your request is
-     *     // updating a playlist item that sets these values, and the
-     *     // request's <code>part</code> parameter value includes the
-     *     // <code>contentDetails</code> part, the playlist item's start and end times
-     *     // will be updated to whatever value the request body specifies. If the
-     *     // request body does not specify values, the existing start and end times will
-     *     // be removed and replaced with the default settings.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -13352,8 +12726,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's <code>part</code> parameter value includes the <code>contentDetails</code> part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
      * @param {().PlaylistItem} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13430,11 +12804,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube playlist item ID for the playlist item that is being deleted. In a playlistItem resource, the id property specifies the playlist item's ID.
      */
     id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -13446,13 +12820,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -13467,31 +12841,31 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies a comma-separated list of one or more unique playlist item IDs.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>playlistItem</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>playlistItem</code> resource, the <code>snippet</code> property contains numerous fields, including the <code>title</code>, <code>description</code>, <code>position</code>, and <code>resourceId</code> properties. As such, if you set <code><strong>part=snippet</strong></code>, the API response will contain all of those properties.
+     * The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Return the playlist items within the given playlist.
+     * The playlistId parameter specifies the unique ID of the playlist for which you want to retrieve playlist items. Note that even though this is an optional parameter, every request to retrieve playlist items must specify a value for either the id parameter or the playlistId parameter.
      */
     playlistId?: string;
     /**
-     * Return the playlist items associated with the given video ID.
+     * The videoId parameter specifies that the request should return only the playlist items that contain the specified video.
      */
     videoId?: string;
   }
@@ -13503,13 +12877,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's <code>part</code> parameter value includes the <code>contentDetails</code> part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -13525,7 +12899,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.playlists.delete
-     * @desc Deletes a resource.
+     * @desc Deletes a playlist.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13554,19 +12928,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.playlists.delete({
+     *     // The id parameter specifies the YouTube playlist ID for the playlist that is being deleted. In a playlist resource, the id property specifies the playlist's ID.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -13581,8 +12947,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.id The id parameter specifies the YouTube playlist ID for the playlist that is being deleted. In a playlist resource, the id property specifies the playlist's ID.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13648,7 +13014,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.playlists.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Creates a playlist.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13677,42 +13043,17 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.playlists.insert({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will include.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -13754,9 +13095,9 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      * @param {().Playlist} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13823,7 +13164,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.playlists.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a collection of playlists that match the API request parameters. For example, you can retrieve all playlists that the authenticated user owns, or you can retrieve one or more playlists by their unique IDs.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13853,65 +13194,31 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.playlists.list({
-     *     // Return the playlists owned by the specified channel ID.
+     *     // This value indicates that the API should only return the specified channel's playlists.
      *     channelId: 'placeholder-value',
-     *     // Returen content in specified language
+     *     // The hl parameter should be used for filter out the properties that are not in the given language. Used for the snippet part.
      *     hl: 'placeholder-value',
-     *     // Return the playlists with the given IDs for Stubby or Apiary.
+     *     // The id parameter specifies a comma-separated list of the YouTube playlist ID(s) for the resource(s) that are being retrieved. In a playlist resource, the id property specifies the playlist's YouTube playlist ID.
      *     id: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // Return the playlists owned by the authenticated user.
+     *     // Set this parameter's value to true to instruct the API to only return playlists owned by the authenticated user.
      *     mine: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>playlist</code> resource
-     *     // properties that the API response will include.<br><br>If the parameter
-     *     // identifies a property that contains child properties, the child properties
-     *     // will be included in the response. For example, in a <code>playlist</code>
-     *     // resource, the <code>snippet</code> property contains properties like
-     *     // <code>author</code>, <code>title</code>, <code>description</code>,
-     *     // <code>tags</code>, and <code>timeCreated</code>. As such, if you set
-     *     // <code><strong>part=snippet</strong></code>, the API response will contain
-     *     // all of those properties.
+     *     // The part parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include.
+     *     //
+     *     // If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set part=snippet, the API response will contain all of those properties.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -13939,15 +13246,15 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.channelId Return the playlists owned by the specified channel ID.
-     * @param {string=} params.hl Returen content in specified language
-     * @param {string=} params.id Return the playlists with the given IDs for Stubby or Apiary.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {boolean=} params.mine Return the playlists owned by the authenticated user.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>playlist</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>playlist</code> resource, the <code>snippet</code> property contains properties like <code>author</code>, <code>title</code>, <code>description</code>, <code>tags</code>, and <code>timeCreated</code>. As such, if you set <code><strong>part=snippet</strong></code>, the API response will contain all of those properties.
+     * @param {string=} params.channelId This value indicates that the API should only return the specified channel's playlists.
+     * @param {string=} params.hl The hl parameter should be used for filter out the properties that are not in the given language. Used for the snippet part.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of the YouTube playlist ID(s) for the resource(s) that are being retrieved. In a playlist resource, the id property specifies the playlist's YouTube playlist ID.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {boolean=} params.mine Set this parameter's value to true to instruct the API to only return playlists owned by the authenticated user.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set part=snippet, the API response will contain all of those properties.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14017,7 +13324,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.playlists.update
-     * @desc Updates an existing resource.
+     * @desc Modifies a playlist. For example, you could change a playlist's title, description, or privacy status.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14046,29 +13353,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.playlists.update({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br/><br/>Note that this method will override the existing values
-     *     // for mutable properties that are contained in any parts that the request
-     *     // body specifies. For example, a
-     *     // playlist's description is contained in the <code>snippet</code> part, which
-     *     // must be included in the request body. If the request does not specify a
-     *     // value for the <code>snippet.description</code> property, the playlist's
-     *     // existing description will be deleted.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.description property, the playlist's existing description will be deleted.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -14110,8 +13401,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the <code>snippet</code> part, which must be included in the request body. If the request does not specify a value for the <code>snippet.description</code> property, the playlist's existing description will be deleted.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.description property, the playlist's existing description will be deleted.
      * @param {().Playlist} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14184,11 +13475,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube playlist ID for the playlist that is being deleted. In a playlist resource, the id property specifies the playlist's ID.
      */
     id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -14199,17 +13490,17 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -14223,41 +13514,41 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return the playlists owned by the specified channel ID.
+     * This value indicates that the API should only return the specified channel's playlists.
      */
     channelId?: string;
     /**
-     * Returen content in specified language
+     * The hl parameter should be used for filter out the properties that are not in the given language. Used for the snippet part.
      */
     hl?: string;
     /**
-     * Return the playlists with the given IDs for Stubby or Apiary.
+     * The id parameter specifies a comma-separated list of the YouTube playlist ID(s) for the resource(s) that are being retrieved. In a playlist resource, the id property specifies the playlist's YouTube playlist ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Return the playlists owned by the authenticated user.
+     * Set this parameter's value to true to instruct the API to only return playlists owned by the authenticated user.
      */
     mine?: boolean;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>playlist</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>playlist</code> resource, the <code>snippet</code> property contains properties like <code>author</code>, <code>title</code>, <code>description</code>, <code>tags</code>, and <code>timeCreated</code>. As such, if you set <code><strong>part=snippet</strong></code>, the API response will contain all of those properties.
+     * The part parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set part=snippet, the API response will contain all of those properties.
      */
-    part?: string[];
+    part?: string;
   }
   export interface Params$Resource$Playlists$Update extends StandardParameters {
     /**
@@ -14266,13 +13557,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the <code>snippet</code> part, which must be included in the request body. If the request does not specify a value for the <code>snippet.description</code> property, the playlist's existing description will be deleted.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.description property, the playlist's existing description will be deleted.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -14288,7 +13579,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.search.list
-     * @desc Retrieves a list of search resources
+     * @desc Returns a collection of search results that match the query parameters specified in the API request. By default, a search result set identifies matching video, channel, and playlist resources, but you can also configure queries to only retrieve a specific type of resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14318,87 +13609,81 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.search.list({
-     *     // Filter on resources belonging to this channelId.
+     *     // The channelId parameter indicates that the API response should only contain resources created by the channel
      *     channelId: 'placeholder-value',
-     *     // Add a filter on the channel search.
+     *     // The channelType parameter lets you restrict a search to a particular type of channel.
      *     channelType: 'placeholder-value',
-     *     // Filter on the livestream status of the videos.
+     *     // The eventType parameter restricts a search to broadcast events. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     eventType: 'placeholder-value',
-     *     // Search owned by a content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The forContentOwner parameter restricts the search to only retrieve resources owned by the content owner specified by the onBehalfOfContentOwner parameter. The user must be authenticated using a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
      *     forContentOwner: 'placeholder-value',
-     *     // Restrict the search to only retrieve videos uploaded using the project id
-     *     // of the authenticated user.
+     *     // The forDeveloper parameter restricts the search to only retrieve videos uploaded via the developer's application or website. The API server uses the request's authorization credentials to identify the developer. Therefore, a developer can restrict results to videos uploaded through the developer's own app or website but not to videos uploaded through other apps or sites.
      *     forDeveloper: 'placeholder-value',
-     *     // Search for the private videos of the authenticated user.
+     *     // The forMine parameter restricts the search to only retrieve videos owned by the authenticated user. If you set this parameter to true, then the type parameter's value must also be set to video.
      *     forMine: 'placeholder-value',
-     *     // Filter on location of the video
+     *     // The location parameter, in conjunction with the locationRadius parameter, defines a circular geographic area and also restricts a search to videos that specify, in their metadata, a geographic location that falls within that area. The parameter value is a string that specifies latitude/longitude coordinates e.g. (37.42307,-122.08427).
+     *     //
+     *     //
+     *     // - The location parameter value identifies the point at the center of the area.
+     *     // - The locationRadius parameter specifies the maximum distance that the location associated with a video can be from that point for the video to still be included in the search results.The API returns an error if your request specifies a value for the location parameter but does not also specify a value for the locationRadius parameter.
      *     location: 'placeholder-value',
-     *     // Filter on distance from the location (specified above).
+     *     // The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area.
+     *     //
+     *     // The parameter value must be a floating point number followed by a measurement unit. Valid measurement units are m, km, ft, and mi. For example, valid parameter values include 1500m, 5km, 10000ft, and 0.75mi. The API does not support locationRadius parameter values larger than 1000 kilometers.
+     *     //
+     *     // Note: See the definition of the location parameter for more information.
      *     locationRadius: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Sort order of the results.
+     *     // The order parameter specifies the method that will be used to order resources in the API response.
      *     order: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>search</code> resource properties
-     *     // that the API response will include. Set the parameter value to
-     *     // <code>snippet</code>.
+     *     // The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.
      *     part: 'placeholder-value',
-     *     // Filter on resources published after this date.
+     *     // The publishedAfter parameter indicates that the API response should only contain resources created after the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
      *     publishedAfter: 'placeholder-value',
-     *     // Filter on resources published before this date.
+     *     // The publishedBefore parameter indicates that the API response should only contain resources created before the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
      *     publishedBefore: 'placeholder-value',
-     *     // Textual search terms to match.
+     *     // The q parameter specifies the query term to search for.
+     *     //
+     *     // Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter value to boating|sailing. Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter value to boating|sailing -fishing. Note that the pipe character must be URL-escaped when it is sent in your API request. The URL-escaped value for the pipe character is %7C.
      *     q: 'placeholder-value',
-     *     // Display the content as seen by viewers in this country.
+     *     // The regionCode parameter instructs the API to return search results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      *     regionCode: 'placeholder-value',
-     *     // Search related to a resource.
+     *     // The relatedToVideoId parameter retrieves a list of videos that are related to the video that the parameter value identifies. The parameter value must be set to a YouTube video ID and, if you are using this parameter, the type parameter must be set to video.
      *     relatedToVideoId: 'placeholder-value',
-     *     // Return results relevant to this language.
+     *     // The relevanceLanguage parameter instructs the API to return search results that are most relevant to the specified language. The parameter value is typically an ISO 639-1 two-letter language code. However, you should use the values zh-Hans for simplified Chinese and zh-Hant for traditional Chinese. Please note that results in other languages will still be returned if they are highly relevant to the search query term.
      *     relevanceLanguage: 'placeholder-value',
-     *     // Indicates whether the search results should include restricted content as
-     *     // well as standard content.
+     *     // The safeSearch parameter indicates whether the search results should include restricted content as well as standard content.
      *     safeSearch: 'placeholder-value',
-     *     // Restrict results to a particular topic.
+     *     // The topicId parameter indicates that the API response should only contain resources associated with the specified topic. The value identifies a Freebase topic ID.
      *     topicId: 'placeholder-value',
-     *     // Restrict results to a particular set of resource types from One Platform.
+     *     // The type parameter restricts a search query to only retrieve a particular type of resource. The value is a comma-separated list of resource types.
      *     type: 'placeholder-value',
-     *     // Filter on the presence of captions on the videos.
+     *     // The videoCaption parameter indicates whether the API should filter video search results based on whether they have captions. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoCaption: 'placeholder-value',
-     *     // Filter on videos in a specific category.
+     *     // The videoCategoryId parameter filters video search results based on their category. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoCategoryId: 'placeholder-value',
-     *     // Filter on the definition of the videos.
+     *     // The videoDefinition parameter lets you restrict a search to only include either high definition (HD) or standard definition (SD) videos. HD videos are available for playback in at least 720p, though higher resolutions, like 1080p, might also be available. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoDefinition: 'placeholder-value',
-     *     // Filter on 3d videos.
+     *     // The videoDimension parameter lets you restrict a search to only retrieve 2D or 3D videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoDimension: 'placeholder-value',
-     *     // Filter on the duration of the videos.
+     *     // The videoDuration parameter filters video search results based on their duration. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoDuration: 'placeholder-value',
-     *     // Filter on embeddable videos.
+     *     // The videoEmbeddable parameter lets you to restrict a search to only videos that can be embedded into a webpage. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoEmbeddable: 'placeholder-value',
-     *     // Filter on the license of the videos.
+     *     // The videoLicense parameter filters search results to only include videos with a particular license. YouTube lets video uploaders choose to attach either the Creative Commons license or the standard YouTube license to each of their videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoLicense: 'placeholder-value',
-     *     // Filter on syndicated videos.
+     *     // The videoSyndicated parameter lets you to restrict a search to only videos that can be played outside youtube.com. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoSyndicated: 'placeholder-value',
-     *     // Filter on videos of a specific type.
+     *     // The videoType parameter lets you restrict a search to a particular type of videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      *     videoType: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -14427,37 +13712,37 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.channelId Filter on resources belonging to this channelId.
-     * @param {string=} params.channelType Add a filter on the channel search.
-     * @param {string=} params.eventType Filter on the livestream status of the videos.
-     * @param {boolean=} params.forContentOwner Search owned by a content owner.
-     * @param {boolean=} params.forDeveloper Restrict the search to only retrieve videos uploaded using the project id of the authenticated user.
-     * @param {boolean=} params.forMine Search for the private videos of the authenticated user.
-     * @param {string=} params.location Filter on location of the video
-     * @param {string=} params.locationRadius Filter on distance from the location (specified above).
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.order Sort order of the results.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>search</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
-     * @param {string=} params.publishedAfter Filter on resources published after this date.
-     * @param {string=} params.publishedBefore Filter on resources published before this date.
-     * @param {string=} params.q Textual search terms to match.
-     * @param {string=} params.regionCode Display the content as seen by viewers in this country.
-     * @param {string=} params.relatedToVideoId Search related to a resource.
-     * @param {string=} params.relevanceLanguage Return results relevant to this language.
-     * @param {string=} params.safeSearch Indicates whether the search results should include restricted content as well as standard content.
-     * @param {string=} params.topicId Restrict results to a particular topic.
-     * @param {string=} params.type Restrict results to a particular set of resource types from One Platform.
-     * @param {string=} params.videoCaption Filter on the presence of captions on the videos.
-     * @param {string=} params.videoCategoryId Filter on videos in a specific category.
-     * @param {string=} params.videoDefinition Filter on the definition of the videos.
-     * @param {string=} params.videoDimension Filter on 3d videos.
-     * @param {string=} params.videoDuration Filter on the duration of the videos.
-     * @param {string=} params.videoEmbeddable Filter on embeddable videos.
-     * @param {string=} params.videoLicense Filter on the license of the videos.
-     * @param {string=} params.videoSyndicated Filter on syndicated videos.
-     * @param {string=} params.videoType Filter on videos of a specific type.
+     * @param {string=} params.channelId The channelId parameter indicates that the API response should only contain resources created by the channel
+     * @param {string=} params.channelType The channelType parameter lets you restrict a search to a particular type of channel.
+     * @param {string=} params.eventType The eventType parameter restricts a search to broadcast events. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {boolean=} params.forContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The forContentOwner parameter restricts the search to only retrieve resources owned by the content owner specified by the onBehalfOfContentOwner parameter. The user must be authenticated using a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
+     * @param {boolean=} params.forDeveloper The forDeveloper parameter restricts the search to only retrieve videos uploaded via the developer's application or website. The API server uses the request's authorization credentials to identify the developer. Therefore, a developer can restrict results to videos uploaded through the developer's own app or website but not to videos uploaded through other apps or sites.
+     * @param {boolean=} params.forMine The forMine parameter restricts the search to only retrieve videos owned by the authenticated user. If you set this parameter to true, then the type parameter's value must also be set to video.
+     * @param {string=} params.location The location parameter, in conjunction with the locationRadius parameter, defines a circular geographic area and also restricts a search to videos that specify, in their metadata, a geographic location that falls within that area. The parameter value is a string that specifies latitude/longitude coordinates e.g. (37.42307,-122.08427).   - The location parameter value identifies the point at the center of the area. - The locationRadius parameter specifies the maximum distance that the location associated with a video can be from that point for the video to still be included in the search results.The API returns an error if your request specifies a value for the location parameter but does not also specify a value for the locationRadius parameter.
+     * @param {string=} params.locationRadius The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area.  The parameter value must be a floating point number followed by a measurement unit. Valid measurement units are m, km, ft, and mi. For example, valid parameter values include 1500m, 5km, 10000ft, and 0.75mi. The API does not support locationRadius parameter values larger than 1000 kilometers.  Note: See the definition of the location parameter for more information.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.order The order parameter specifies the method that will be used to order resources in the API response.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.
+     * @param {string=} params.publishedAfter The publishedAfter parameter indicates that the API response should only contain resources created after the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
+     * @param {string=} params.publishedBefore The publishedBefore parameter indicates that the API response should only contain resources created before the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
+     * @param {string=} params.q The q parameter specifies the query term to search for.  Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter value to boating|sailing. Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter value to boating|sailing -fishing. Note that the pipe character must be URL-escaped when it is sent in your API request. The URL-escaped value for the pipe character is %7C.
+     * @param {string=} params.regionCode The regionCode parameter instructs the API to return search results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
+     * @param {string=} params.relatedToVideoId The relatedToVideoId parameter retrieves a list of videos that are related to the video that the parameter value identifies. The parameter value must be set to a YouTube video ID and, if you are using this parameter, the type parameter must be set to video.
+     * @param {string=} params.relevanceLanguage The relevanceLanguage parameter instructs the API to return search results that are most relevant to the specified language. The parameter value is typically an ISO 639-1 two-letter language code. However, you should use the values zh-Hans for simplified Chinese and zh-Hant for traditional Chinese. Please note that results in other languages will still be returned if they are highly relevant to the search query term.
+     * @param {string=} params.safeSearch The safeSearch parameter indicates whether the search results should include restricted content as well as standard content.
+     * @param {string=} params.topicId The topicId parameter indicates that the API response should only contain resources associated with the specified topic. The value identifies a Freebase topic ID.
+     * @param {string=} params.type The type parameter restricts a search query to only retrieve a particular type of resource. The value is a comma-separated list of resource types.
+     * @param {string=} params.videoCaption The videoCaption parameter indicates whether the API should filter video search results based on whether they have captions. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {string=} params.videoCategoryId The videoCategoryId parameter filters video search results based on their category. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {string=} params.videoDefinition The videoDefinition parameter lets you restrict a search to only include either high definition (HD) or standard definition (SD) videos. HD videos are available for playback in at least 720p, though higher resolutions, like 1080p, might also be available. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {string=} params.videoDimension The videoDimension parameter lets you restrict a search to only retrieve 2D or 3D videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {string=} params.videoDuration The videoDuration parameter filters video search results based on their duration. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {string=} params.videoEmbeddable The videoEmbeddable parameter lets you to restrict a search to only videos that can be embedded into a webpage. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {string=} params.videoLicense The videoLicense parameter filters search results to only include videos with a particular license. YouTube lets video uploaders choose to attach either the Creative Commons license or the standard YouTube license to each of their videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {string=} params.videoSyndicated The videoSyndicated parameter lets you to restrict a search to only videos that can be played outside youtube.com. If you specify a value for this parameter, you must also set the type parameter's value to video.
+     * @param {string=} params.videoType The videoType parameter lets you restrict a search to a particular type of videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14528,127 +13813,127 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Filter on resources belonging to this channelId.
+     * The channelId parameter indicates that the API response should only contain resources created by the channel
      */
     channelId?: string;
     /**
-     * Add a filter on the channel search.
+     * The channelType parameter lets you restrict a search to a particular type of channel.
      */
     channelType?: string;
     /**
-     * Filter on the livestream status of the videos.
+     * The eventType parameter restricts a search to broadcast events. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     eventType?: string;
     /**
-     * Search owned by a content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The forContentOwner parameter restricts the search to only retrieve resources owned by the content owner specified by the onBehalfOfContentOwner parameter. The user must be authenticated using a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
      */
     forContentOwner?: boolean;
     /**
-     * Restrict the search to only retrieve videos uploaded using the project id of the authenticated user.
+     * The forDeveloper parameter restricts the search to only retrieve videos uploaded via the developer's application or website. The API server uses the request's authorization credentials to identify the developer. Therefore, a developer can restrict results to videos uploaded through the developer's own app or website but not to videos uploaded through other apps or sites.
      */
     forDeveloper?: boolean;
     /**
-     * Search for the private videos of the authenticated user.
+     * The forMine parameter restricts the search to only retrieve videos owned by the authenticated user. If you set this parameter to true, then the type parameter's value must also be set to video.
      */
     forMine?: boolean;
     /**
-     * Filter on location of the video
+     * The location parameter, in conjunction with the locationRadius parameter, defines a circular geographic area and also restricts a search to videos that specify, in their metadata, a geographic location that falls within that area. The parameter value is a string that specifies latitude/longitude coordinates e.g. (37.42307,-122.08427).   - The location parameter value identifies the point at the center of the area. - The locationRadius parameter specifies the maximum distance that the location associated with a video can be from that point for the video to still be included in the search results.The API returns an error if your request specifies a value for the location parameter but does not also specify a value for the locationRadius parameter.
      */
     location?: string;
     /**
-     * Filter on distance from the location (specified above).
+     * The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area.  The parameter value must be a floating point number followed by a measurement unit. Valid measurement units are m, km, ft, and mi. For example, valid parameter values include 1500m, 5km, 10000ft, and 0.75mi. The API does not support locationRadius parameter values larger than 1000 kilometers.  Note: See the definition of the location parameter for more information.
      */
     locationRadius?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * Sort order of the results.
+     * The order parameter specifies the method that will be used to order resources in the API response.
      */
     order?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>search</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Filter on resources published after this date.
+     * The publishedAfter parameter indicates that the API response should only contain resources created after the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
      */
     publishedAfter?: string;
     /**
-     * Filter on resources published before this date.
+     * The publishedBefore parameter indicates that the API response should only contain resources created before the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
      */
     publishedBefore?: string;
     /**
-     * Textual search terms to match.
+     * The q parameter specifies the query term to search for.  Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter value to boating|sailing. Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter value to boating|sailing -fishing. Note that the pipe character must be URL-escaped when it is sent in your API request. The URL-escaped value for the pipe character is %7C.
      */
     q?: string;
     /**
-     * Display the content as seen by viewers in this country.
+     * The regionCode parameter instructs the API to return search results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      */
     regionCode?: string;
     /**
-     * Search related to a resource.
+     * The relatedToVideoId parameter retrieves a list of videos that are related to the video that the parameter value identifies. The parameter value must be set to a YouTube video ID and, if you are using this parameter, the type parameter must be set to video.
      */
     relatedToVideoId?: string;
     /**
-     * Return results relevant to this language.
+     * The relevanceLanguage parameter instructs the API to return search results that are most relevant to the specified language. The parameter value is typically an ISO 639-1 two-letter language code. However, you should use the values zh-Hans for simplified Chinese and zh-Hant for traditional Chinese. Please note that results in other languages will still be returned if they are highly relevant to the search query term.
      */
     relevanceLanguage?: string;
     /**
-     * Indicates whether the search results should include restricted content as well as standard content.
+     * The safeSearch parameter indicates whether the search results should include restricted content as well as standard content.
      */
     safeSearch?: string;
     /**
-     * Restrict results to a particular topic.
+     * The topicId parameter indicates that the API response should only contain resources associated with the specified topic. The value identifies a Freebase topic ID.
      */
     topicId?: string;
     /**
-     * Restrict results to a particular set of resource types from One Platform.
+     * The type parameter restricts a search query to only retrieve a particular type of resource. The value is a comma-separated list of resource types.
      */
-    type?: string[];
+    type?: string;
     /**
-     * Filter on the presence of captions on the videos.
+     * The videoCaption parameter indicates whether the API should filter video search results based on whether they have captions. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoCaption?: string;
     /**
-     * Filter on videos in a specific category.
+     * The videoCategoryId parameter filters video search results based on their category. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoCategoryId?: string;
     /**
-     * Filter on the definition of the videos.
+     * The videoDefinition parameter lets you restrict a search to only include either high definition (HD) or standard definition (SD) videos. HD videos are available for playback in at least 720p, though higher resolutions, like 1080p, might also be available. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoDefinition?: string;
     /**
-     * Filter on 3d videos.
+     * The videoDimension parameter lets you restrict a search to only retrieve 2D or 3D videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoDimension?: string;
     /**
-     * Filter on the duration of the videos.
+     * The videoDuration parameter filters video search results based on their duration. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoDuration?: string;
     /**
-     * Filter on embeddable videos.
+     * The videoEmbeddable parameter lets you to restrict a search to only videos that can be embedded into a webpage. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoEmbeddable?: string;
     /**
-     * Filter on the license of the videos.
+     * The videoLicense parameter filters search results to only include videos with a particular license. YouTube lets video uploaders choose to attach either the Creative Commons license or the standard YouTube license to each of their videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoLicense?: string;
     /**
-     * Filter on syndicated videos.
+     * The videoSyndicated parameter lets you to restrict a search to only videos that can be played outside youtube.com. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoSyndicated?: string;
     /**
-     * Filter on videos of a specific type.
+     * The videoType parameter lets you restrict a search to a particular type of videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoType?: string;
   }
@@ -14661,7 +13946,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.sponsors.list
-     * @desc Retrieves a list of sponsors that match the request criteria for a channel.
+     * @desc Lists sponsors for a channel.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14690,19 +13975,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.sponsors.list({
-     *     // Parameter that specifies which channel sponsors to return.
+     *     // The filter parameter specifies which channel sponsors to return.
      *     filter: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>sponsor</code> resource parts that the API response will include.
-     *     // Supported values are <code>id</code> and <code>snippet</code>.
+     *     // The part parameter specifies the sponsor resource parts that the API response will include. Supported values are id and snippet.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -14729,10 +14008,10 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Parameter that specifies which channel sponsors to return.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>sponsor</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * @param {string=} params.filter The filter parameter specifies which channel sponsors to return.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies the sponsor resource parts that the API response will include. Supported values are id and snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14806,21 +14085,21 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Parameter that specifies which channel sponsors to return.
+     * The filter parameter specifies which channel sponsors to return.
      */
     filter?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>sponsor</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * The part parameter specifies the sponsor resource parts that the API response will include. Supported values are id and snippet.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$Subscriptions {
@@ -14831,7 +14110,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.subscriptions.delete
-     * @desc Deletes a resource.
+     * @desc Deletes a subscription.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14860,6 +14139,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.subscriptions.delete({
+     *     // The id parameter specifies the YouTube subscription ID for the resource that is being deleted. In a subscription resource, the id property specifies the YouTube subscription ID.
      *     id: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -14874,7 +14154,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
+     * @param {string} params.id The id parameter specifies the YouTube subscription ID for the resource that is being deleted. In a subscription resource, the id property specifies the YouTube subscription ID.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14941,7 +14221,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.subscriptions.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Adds a subscription for the authenticated user's channel.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14970,9 +14250,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.subscriptions.insert({
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will include.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -15010,7 +14288,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      * @param {().Subscription} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15080,7 +14358,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.subscriptions.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns subscription resources that match the API request criteria.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15110,71 +14388,37 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.subscriptions.list({
-     *     // Return the subscriptions of the given channel owner.
+     *     // The channelId parameter specifies a YouTube channel ID. The API will only return that channel's subscriptions.
      *     channelId: 'placeholder-value',
-     *     // Return the subscriptions to the subset of these channels that the
-     *     // authenticated user is subscribed to.
+     *     // The forChannelId parameter specifies a comma-separated list of channel IDs. The API response will then only contain subscriptions matching those channels.
      *     forChannelId: 'placeholder-value',
-     *     // Return the subscriptions with the given IDs for Stubby or Apiary.
+     *     // The id parameter specifies a comma-separated list of the YouTube subscription ID(s) for the resource(s) that are being retrieved. In a subscription resource, the id property specifies the YouTube subscription ID.
      *     id: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // Flag for returning the subscriptions of the authenticated user.
+     *     // Set this parameter's value to true to retrieve a feed of the authenticated user's subscriptions.
      *     mine: 'placeholder-value',
-     *
+     *     // Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user in reverse chronological order (newest first).
      *     myRecentSubscribers: 'placeholder-value',
-     *     // Return the subscribers of the given channel owner.
+     *     // Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user in no particular order.
      *     mySubscribers: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The order of the returned subscriptions
+     *     // The order parameter specifies the method that will be used to sort resources in the API response.
      *     order: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>subscription</code> resource
-     *     // properties that the API response will include.<br><br>If the parameter
-     *     // identifies a property that contains child properties, the child properties
-     *     // will be included in the response. For example, in a
-     *     // <code>subscription</code> resource, the <code>snippet</code> property
-     *     // contains other properties, such as a display title for the subscription. If
-     *     // you set <code><strong>part=snippet</strong></code>, the API response will
-     *     // also contain all of those nested properties.
+     *     // The part parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include.
+     *     //
+     *     // If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set part=snippet, the API response will also contain all of those nested properties.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15202,18 +14446,18 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.channelId Return the subscriptions of the given channel owner.
-     * @param {string=} params.forChannelId Return the subscriptions to the subset of these channels that the authenticated user is subscribed to.
-     * @param {string=} params.id Return the subscriptions with the given IDs for Stubby or Apiary.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {boolean=} params.mine Flag for returning the subscriptions of the authenticated user.
-     * @param {boolean=} params.myRecentSubscribers
-     * @param {boolean=} params.mySubscribers Return the subscribers of the given channel owner.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string=} params.order The order of the returned subscriptions
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>subscription</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>subscription</code> resource, the <code>snippet</code> property contains other properties, such as a display title for the subscription. If you set <code><strong>part=snippet</strong></code>, the API response will also contain all of those nested properties.
+     * @param {string=} params.channelId The channelId parameter specifies a YouTube channel ID. The API will only return that channel's subscriptions.
+     * @param {string=} params.forChannelId The forChannelId parameter specifies a comma-separated list of channel IDs. The API response will then only contain subscriptions matching those channels.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of the YouTube subscription ID(s) for the resource(s) that are being retrieved. In a subscription resource, the id property specifies the YouTube subscription ID.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {boolean=} params.mine Set this parameter's value to true to retrieve a feed of the authenticated user's subscriptions.
+     * @param {boolean=} params.myRecentSubscribers Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user in reverse chronological order (newest first).
+     * @param {boolean=} params.mySubscribers Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user in no particular order.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string=} params.order The order parameter specifies the method that will be used to sort resources in the API response.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set part=snippet, the API response will also contain all of those nested properties.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15291,7 +14535,7 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube subscription ID for the resource that is being deleted. In a subscription resource, the id property specifies the YouTube subscription ID.
      */
     id?: string;
   }
@@ -15303,9 +14547,9 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -15320,53 +14564,53 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return the subscriptions of the given channel owner.
+     * The channelId parameter specifies a YouTube channel ID. The API will only return that channel's subscriptions.
      */
     channelId?: string;
     /**
-     * Return the subscriptions to the subset of these channels that the authenticated user is subscribed to.
+     * The forChannelId parameter specifies a comma-separated list of channel IDs. The API response will then only contain subscriptions matching those channels.
      */
     forChannelId?: string;
     /**
-     * Return the subscriptions with the given IDs for Stubby or Apiary.
+     * The id parameter specifies a comma-separated list of the YouTube subscription ID(s) for the resource(s) that are being retrieved. In a subscription resource, the id property specifies the YouTube subscription ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Flag for returning the subscriptions of the authenticated user.
+     * Set this parameter's value to true to retrieve a feed of the authenticated user's subscriptions.
      */
     mine?: boolean;
     /**
-     *
+     * Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user in reverse chronological order (newest first).
      */
     myRecentSubscribers?: boolean;
     /**
-     * Return the subscribers of the given channel owner.
+     * Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user in no particular order.
      */
     mySubscribers?: boolean;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The order of the returned subscriptions
+     * The order parameter specifies the method that will be used to sort resources in the API response.
      */
     order?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>subscription</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>subscription</code> resource, the <code>snippet</code> property contains other properties, such as a display title for the subscription. If you set <code><strong>part=snippet</strong></code>, the API response will also contain all of those nested properties.
+     * The part parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set part=snippet, the API response will also contain all of those nested properties.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$Superchatevents {
@@ -15377,7 +14621,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.superChatEvents.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Lists Super Chat events for a channel.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15406,19 +14650,15 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.superChatEvents.list({
-     *     // Return rendered funding amounts in specified language.
+     *     // The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.
+     *     //
+     *     // If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      *     hl: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result set.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *     maxResults: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>superChatEvent</code> resource parts that the API response will
-     *     // include. Supported values are <code>id</code> and <code>snippet</code>.
+     *     // The part parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15445,10 +14685,10 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.hl Return rendered funding amounts in specified language.
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>superChatEvent</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * @param {string=} params.hl The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15531,21 +14771,21 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return rendered funding amounts in specified language.
+     * The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      */
     hl?: string;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>superChatEvent</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * The part parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$Thumbnails {
@@ -15556,7 +14796,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.thumbnails.set
-     * @desc As this is not an insert in a strict sense (it supports uploading/setting of a thumbnail for multiple videos, which doesn't result in creation of a single resource), I use a custom verb here.
+     * @desc Uploads a custom video thumbnail to YouTube and sets it for a video.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15586,20 +14826,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.thumbnails.set({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The actual
-     *     // CMS account that the user authenticates with must be linked to the
-     *     // specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Returns the Thumbnail with the given video IDs for Stubby or Apiary.
+     *     // The videoId parameter specifies a YouTube video ID for which the custom video thumbnail is being provided.
      *     videoId: 'placeholder-value',
      *
      *     requestBody: {
@@ -15631,8 +14862,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.videoId Returns the Thumbnail with the given video IDs for Stubby or Apiary.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.videoId The videoId parameter specifies a YouTube video ID for which the custom video thumbnail is being provided.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -15715,11 +14946,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * Returns the Thumbnail with the given video IDs for Stubby or Apiary.
+     * The videoId parameter specifies a YouTube video ID for which the custom video thumbnail is being provided.
      */
     videoId?: string;
 
@@ -15752,7 +14983,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.videoAbuseReportReasons.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of abuse reasons that can be used for reporting abusive videos.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15781,10 +15012,9 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videoAbuseReportReasons.list({
+     *     // The hl parameter specifies the language that should be used for text values in the API response.
      *     hl: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>videoCategory</code> resource parts that the API response will
-     *     // include. Supported values are <code>id</code> and <code>snippet</code>.
+     *     // The part parameter specifies the videoCategory resource parts that the API response will include. Supported values are id and snippet.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15808,8 +15038,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.hl
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>videoCategory</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * @param {string=} params.hl The hl parameter specifies the language that should be used for text values in the API response.
+     * @param {string} params.part The part parameter specifies the videoCategory resource parts that the API response will include. Supported values are id and snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15894,13 +15124,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The hl parameter specifies the language that should be used for text values in the API response.
      */
     hl?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>videoCategory</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
+     * The part parameter specifies the videoCategory resource parts that the API response will include. Supported values are id and snippet.
      */
-    part?: string[];
+    part?: string;
   }
 
   export class Resource$Videocategories {
@@ -15911,7 +15141,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.videoCategories.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of categories that can be associated with YouTube videos.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15941,14 +15171,13 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videoCategories.list({
+     *     // The hl parameter specifies the language that should be used for text values in the API response.
      *     hl: 'placeholder-value',
-     *     // Returns the video categories with the given IDs for Stubby or Apiary.
+     *     // The id parameter specifies a comma-separated list of video category IDs for the resources that you are retrieving.
      *     id: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies the
-     *     // <code>videoCategory</code> resource properties that the API response will
-     *     // include. Set the parameter value to <code>snippet</code>.
+     *     // The part parameter specifies the videoCategory resource properties that the API response will include. Set the parameter value to snippet.
      *     part: 'placeholder-value',
-     *
+     *     // The regionCode parameter instructs the API to return the list of video categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      *     regionCode: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15976,10 +15205,10 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.hl
-     * @param {string=} params.id Returns the video categories with the given IDs for Stubby or Apiary.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>videoCategory</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
-     * @param {string=} params.regionCode
+     * @param {string=} params.hl The hl parameter specifies the language that should be used for text values in the API response.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of video category IDs for the resources that you are retrieving.
+     * @param {string} params.part The part parameter specifies the videoCategory resource properties that the API response will include. Set the parameter value to snippet.
+     * @param {string=} params.regionCode The regionCode parameter instructs the API to return the list of video categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16062,19 +15291,19 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The hl parameter specifies the language that should be used for text values in the API response.
      */
     hl?: string;
     /**
-     * Returns the video categories with the given IDs for Stubby or Apiary.
+     * The id parameter specifies a comma-separated list of video category IDs for the resources that you are retrieving.
      */
-    id?: string[];
+    id?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies the <code>videoCategory</code> resource properties that the API response will include. Set the parameter value to <code>snippet</code>.
+     * The part parameter specifies the videoCategory resource properties that the API response will include. Set the parameter value to snippet.
      */
-    part?: string[];
+    part?: string;
     /**
-     *
+     * The regionCode parameter instructs the API to return the list of video categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      */
     regionCode?: string;
   }
@@ -16087,7 +15316,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.videos.delete
-     * @desc Deletes a resource.
+     * @desc Deletes a YouTube video.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16116,19 +15345,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videos.delete({
+     *     // The id parameter specifies the YouTube video ID for the resource that is being deleted. In a video resource, the id property specifies the video's ID.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The actual
-     *     // CMS account that the user authenticates with must be linked to the
-     *     // specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16143,8 +15364,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.id The id parameter specifies the YouTube video ID for the resource that is being deleted. In a video resource, the id property specifies the video's ID.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16236,19 +15457,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videos.getRating({
+     *     // The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) for which you are retrieving rating data. In a video resource, the id property specifies the video's ID.
      *     id: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16272,8 +15485,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.id The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) for which you are retrieving rating data. In a video resource, the id property specifies the video's ID.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16281,30 +15494,30 @@ export namespace youtube_v3 {
     getRating(
       params?: Params$Resource$Videos$Getrating,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoRatingListResponse>;
+    ): GaxiosPromise<Schema$VideoGetRatingResponse>;
     getRating(
       params: Params$Resource$Videos$Getrating,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$VideoRatingListResponse>,
-      callback: BodyResponseCallback<Schema$VideoRatingListResponse>
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
     ): void;
     getRating(
       params: Params$Resource$Videos$Getrating,
-      callback: BodyResponseCallback<Schema$VideoRatingListResponse>
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
     ): void;
     getRating(
-      callback: BodyResponseCallback<Schema$VideoRatingListResponse>
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
     ): void;
     getRating(
       paramsOrCallback?:
         | Params$Resource$Videos$Getrating
-        | BodyResponseCallback<Schema$VideoRatingListResponse>,
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VideoRatingListResponse>,
-      callback?: BodyResponseCallback<Schema$VideoRatingListResponse>
-    ): void | GaxiosPromise<Schema$VideoRatingListResponse> {
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void | GaxiosPromise<Schema$VideoGetRatingResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Getrating;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16337,15 +15550,15 @@ export namespace youtube_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$VideoRatingListResponse>(parameters, callback);
+        createAPIRequest<Schema$VideoGetRatingResponse>(parameters, callback);
       } else {
-        return createAPIRequest<Schema$VideoRatingListResponse>(parameters);
+        return createAPIRequest<Schema$VideoGetRatingResponse>(parameters);
       }
     }
 
     /**
      * youtube.videos.insert
-     * @desc Inserts a new resource into this collection.
+     * @desc Uploads a video to YouTube and optionally sets the video's metadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16375,56 +15588,25 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videos.insert({
-     *     // Should auto-levels be applied to the upload.
+     *     // The autoLevels parameter indicates whether YouTube should automatically enhance the video's lighting and color.
      *     autoLevels: 'placeholder-value',
-     *     // Notify the channel subscribers about the new video. As default, the
-     *     // notification is enabled.
+     *     // The notifySubscribers parameter indicates whether YouTube should send a notification about the new video to users who subscribe to the video's channel. A parameter value of True indicates that subscribers will be notified of newly uploaded videos. However, a channel owner who is uploading many videos might prefer to set the value to False to avoid sending a notification about each new video to the channel's subscribers.
      *     notifySubscribers: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly <a
-     *     // href="/youtube/v3/guides/authentication">authorized request</a>.
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter
-     *     // specifies the YouTube channel ID of the channel to which a video is being
-     *     // added. This parameter is required when a request specifies a value for the
-     *     // <code>onBehalfOfContentOwner</code> parameter, and it can only be used in
-     *     // conjunction with that parameter. In addition, the request must be
-     *     // authorized using a CMS account that is linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the
-     *     // channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value
-     *     // specifies must be linked to the content owner that the
-     *     // <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This
-     *     // parameter is intended for YouTube content partners that own and manage many
-     *     // different YouTube channels. It allows content owners to authenticate once
-     *     // and perform actions on behalf of the channel specified in the parameter
-     *     // value, without having to provide authentication credentials for each
-     *     // separate channel.
+     *     // This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+     *     //
+     *     // This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br/><br/>Note that not all parts contain properties that can be
-     *     // set when inserting or updating a video. For example, the
-     *     // <code>statistics</code> object encapsulates statistics that YouTube
-     *     // calculates for a video and does not contain values that you can set or
-     *     // modify. If the parameter value specifies a <code>part</code> that does not
-     *     // contain mutable values, that <code>part</code> will still be included in
-     *     // the API response.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // Note that not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      *     part: 'placeholder-value',
-     *     // Should stabilize be applied to the upload.
+     *     // The stabilize parameter indicates whether YouTube should adjust the video to remove shaky camera motions.
      *     stabilize: 'placeholder-value',
      *
      *     // Request body metadata
@@ -16490,12 +15672,12 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.autoLevels Should auto-levels be applied to the upload.
-     * @param {boolean=} params.notifySubscribers Notify the channel subscribers about the new video. As default, the notification is enabled.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>Note that not all parts contain properties that can be set when inserting or updating a video. For example, the <code>statistics</code> object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a <code>part</code> that does not contain mutable values, that <code>part</code> will still be included in the API response.
-     * @param {boolean=} params.stabilize Should stabilize be applied to the upload.
+     * @param {boolean=} params.autoLevels The autoLevels parameter indicates whether YouTube should automatically enhance the video's lighting and color.
+     * @param {boolean=} params.notifySubscribers The notifySubscribers parameter indicates whether YouTube should send a notification about the new video to users who subscribe to the video's channel. A parameter value of True indicates that subscribers will be notified of newly uploaded videos. However, a channel owner who is uploading many videos might prefer to set the value to False to avoid sending a notification about each new video to the channel's subscribers.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwnerChannel This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
+     * @param {boolean=} params.stabilize The stabilize parameter indicates whether YouTube should adjust the video to remove shaky camera motions.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -16566,7 +15748,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.videos.list
-     * @desc Retrieves a list of resources, possibly filtered.
+     * @desc Returns a list of videos that match the API request parameters.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16596,69 +15778,41 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videos.list({
-     *     // Return the videos that are in the specified chart.
+     *     // The chart parameter identifies the chart that you want to retrieve.
      *     chart: 'placeholder-value',
-     *     // Stands for "host language". Specifies the localization language of the
-     *     // metadata to be filled into snippet.localized. The field is filled with the
-     *     // default metadata if there is no localization in the specified language.
-     *     // The parameter value must be a language code included in the list returned
-     *     // by the i18nLanguages.list method (e.g. en_US, es_MX).
+     *     // The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.
+     *     //
+     *     // If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      *     hl: 'placeholder-value',
-     *     // Return videos with the given ids.
+     *     // The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
      *     id: 'placeholder-value',
-     *
+     *     // DEPRECATED
      *     locale: 'placeholder-value',
-     *
+     *     // The maxHeight parameter specifies a maximum height of the embedded player. If maxWidth is provided, maxHeight may not be reached in order to not violate the width request.
      *     maxHeight: 'placeholder-value',
-     *     // The <code><strong>maxResults</strong></code> parameter specifies the
-     *     // maximum number of items that should be returned in the result
-     *     // set.<br><br><strong>Note:</strong> This parameter is supported for use in
-     *     // conjunction with the <code><a href="#myRating">myRating</a></code> and
-     *     // <code><a href="#chart">chart</a></code> parameters, but it is not supported
-     *     // for use in conjunction with the <code><a href="#id">id</a></code>
-     *     // parameter.
+     *     // The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     *     //
+     *     // Note: This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
      *     maxResults: 'placeholder-value',
-     *     // Return the player with maximum height specified in
+     *     // The maxWidth parameter specifies a maximum width of the embedded player. If maxHeight is provided, maxWidth may not be reached in order to not violate the height request.
      *     maxWidth: 'placeholder-value',
-     *     // Return videos liked/disliked by the authenticated user.
-     *     // Does not support RateType.RATED_TYPE_NONE.
+     *     // Set this parameter's value to like or dislike to instruct the API to only return videos liked or disliked by the authenticated user.
      *     myRating: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>pageToken</strong></code> parameter identifies a specific
-     *     // page in the result set that should be returned. In an API response, the
-     *     // <code>nextPageToken</code> and <code>prevPageToken</code> properties
-     *     // identify other pages that could be retrieved.<br><br><strong>Note:</strong>
-     *     // This parameter is supported for use in conjunction with the <code><a
-     *     // href="#myRating">myRating</a></code> and <code><a
-     *     // href="#chart">chart</a></code> parameters, but it is not supported for use
-     *     // in conjunction with the <code><a href="#id">id</a></code> parameter.
+     *     // The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     //
+     *     // Note: This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
      *     pageToken: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter specifies a
-     *     // comma-separated list of one or more <code>video</code> resource properties
-     *     // that the API response will include.<br><br>If the parameter identifies a
-     *     // property that contains child properties, the child properties will be
-     *     // included in the response. For example, in a <code>video</code> resource,
-     *     // the <code>snippet</code> property contains the <code>channelId</code>,
-     *     // <code>title</code>, <code>description</code>, <code>tags</code>, and
-     *     // <code>categoryId</code> properties. As such, if you set
-     *     // <code><strong>part=snippet</strong></code>, the API response will contain
-     *     // all of those properties.
+     *     // The part parameter specifies a comma-separated list of one or more video resource properties that the API response will include.
+     *     //
+     *     // If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      *     part: 'placeholder-value',
-     *     // Use a chart that is specific to the specified region
+     *     // The regionCode parameter instructs the API to select a video chart available in the specified region. This parameter can only be used in conjunction with the chart parameter. The parameter value is an ISO 3166-1 alpha-2 country code.
      *     regionCode: 'placeholder-value',
-     *     // Use chart that is specific to the specified video category
+     *     // The videoCategoryId parameter identifies the video category for which the chart should be retrieved. This parameter can only be used in conjunction with the chart parameter. By default, charts are not restricted to a particular category.
      *     videoCategoryId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16686,19 +15840,19 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.chart Return the videos that are in the specified chart.
-     * @param {string=} params.hl Stands for "host language". Specifies the localization language of the metadata to be filled into snippet.localized. The field is filled with the default metadata if there is no localization in the specified language. The parameter value must be a language code included in the list returned by the i18nLanguages.list method (e.g. en_US, es_MX).
-     * @param {string=} params.id Return videos with the given ids.
-     * @param {string=} params.locale
-     * @param {integer=} params.maxHeight
-     * @param {integer=} params.maxResults The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.<br><br><strong>Note:</strong> This parameter is supported for use in conjunction with the <code><a href="#myRating">myRating</a></code> and <code><a href="#chart">chart</a></code> parameters, but it is not supported for use in conjunction with the <code><a href="#id">id</a></code> parameter.
-     * @param {integer=} params.maxWidth Return the player with maximum height specified in
-     * @param {string=} params.myRating Return videos liked/disliked by the authenticated user. Does not support RateType.RATED_TYPE_NONE.
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.pageToken The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.<br><br><strong>Note:</strong> This parameter is supported for use in conjunction with the <code><a href="#myRating">myRating</a></code> and <code><a href="#chart">chart</a></code> parameters, but it is not supported for use in conjunction with the <code><a href="#id">id</a></code> parameter.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>video</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>video</code> resource, the <code>snippet</code> property contains the <code>channelId</code>, <code>title</code>, <code>description</code>, <code>tags</code>, and <code>categoryId</code> properties. As such, if you set <code><strong>part=snippet</strong></code>, the API response will contain all of those properties.
-     * @param {string=} params.regionCode Use a chart that is specific to the specified region
-     * @param {string=} params.videoCategoryId Use chart that is specific to the specified video category
+     * @param {string=} params.chart The chart parameter identifies the chart that you want to retrieve.
+     * @param {string=} params.hl The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
+     * @param {string=} params.id The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
+     * @param {string=} params.locale DEPRECATED
+     * @param {integer=} params.maxHeight The maxHeight parameter specifies a maximum height of the embedded player. If maxWidth is provided, maxHeight may not be reached in order to not violate the width request.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
+     * @param {integer=} params.maxWidth The maxWidth parameter specifies a maximum width of the embedded player. If maxHeight is provided, maxWidth may not be reached in order to not violate the height request.
+     * @param {string=} params.myRating Set this parameter's value to like or dislike to instruct the API to only return videos liked or disliked by the authenticated user.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.  Note: This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more video resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
+     * @param {string=} params.regionCode The regionCode parameter instructs the API to select a video chart available in the specified region. This parameter can only be used in conjunction with the chart parameter. The parameter value is an ISO 3166-1 alpha-2 country code.
+     * @param {string=} params.videoCategoryId The videoCategoryId parameter identifies the video category for which the chart should be retrieved. This parameter can only be used in conjunction with the chart parameter. By default, charts are not restricted to a particular category.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16763,7 +15917,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.videos.rate
-     * @desc Adds a like or dislike rating to a video or removes a rating from a video.
+     * @desc Add a like or dislike rating to a video or remove a rating from a video.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16792,8 +15946,9 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videos.rate({
+     *     // The id parameter specifies the YouTube video ID of the video that is being rated or having its rating removed.
      *     id: 'placeholder-value',
-     *
+     *     // Specifies the rating to record.
      *     rating: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16808,8 +15963,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id
-     * @param {string} params.rating
+     * @param {string} params.id The id parameter specifies the YouTube video ID of the video that is being rated or having its rating removed.
+     * @param {string} params.rating Specifies the rating to record.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16904,18 +16059,9 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videos.reportAbuse({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *
      *     // Request body metadata
@@ -16942,7 +16088,7 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {().VideoAbuseReport} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17010,7 +16156,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.videos.update
-     * @desc Updates an existing resource.
+     * @desc Updates a video's metadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17039,39 +16185,15 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.videos.update({
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The actual
-     *     // CMS account that the user authenticates with must be linked to the
-     *     // specified YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The <code><strong>part</strong></code> parameter serves two purposes in
-     *     // this operation. It identifies the properties that the write operation will
-     *     // set as well as the properties that the API response will
-     *     // include.<br/><br/>Note that this method will override the existing values
-     *     // for all of the mutable properties that are contained in any parts that the
-     *     // parameter value specifies. For example, a
-     *     // video's privacy setting is contained in the <code>status</code> part. As
-     *     // such, if your request is updating a private video, and the request's
-     *     // <code>part</code> parameter value includes the <code>status</code> part,
-     *     // the
-     *     // video's privacy setting will be updated to whatever value the request body
-     *     // specifies. If the request body does not specify a value, the existing
-     *     // privacy setting will be removed and the video will revert to the default
-     *     // privacy setting.<br/><br/>In addition, not all parts contain properties
-     *     // that can be set when inserting or updating a video. For example, the
-     *     // <code>statistics</code> object encapsulates statistics that YouTube
-     *     // calculates for a video and does not contain values that you can set or
-     *     // modify. If the parameter value specifies a <code>part</code> that does not
-     *     // contain mutable values, that <code>part</code> will still be included in
-     *     // the API response.
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.
+     *     //
+     *     // In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -17133,8 +16255,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the <code>status</code> part. As such, if your request is updating a private video, and the request's <code>part</code> parameter value includes the <code>status</code> part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.<br/><br/>In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the <code>statistics</code> object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a <code>part</code> that does not contain mutable values, that <code>part</code> will still be included in the API response.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.  In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      * @param {().Video} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17204,11 +16326,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube video ID for the resource that is being deleted. In a video resource, the id property specifies the video's ID.
      */
     id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -17219,11 +16341,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) for which you are retrieving rating data. In a video resource, the id property specifies the video's ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -17234,27 +16356,27 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Should auto-levels be applied to the upload.
+     * The autoLevels parameter indicates whether YouTube should automatically enhance the video's lighting and color.
      */
     autoLevels?: boolean;
     /**
-     * Notify the channel subscribers about the new video. As default, the notification is enabled.
+     * The notifySubscribers parameter indicates whether YouTube should send a notification about the new video to users who subscribe to the video's channel. A parameter value of True indicates that subscribers will be notified of newly uploaded videos. However, a channel owner who is uploading many videos might prefer to set the value to False to avoid sending a notification about each new video to the channel's subscribers.
      */
     notifySubscribers?: boolean;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly <a href="/youtube/v3/guides/authentication">authorized request</a>. <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwnerChannel</strong></code> parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the <code>onBehalfOfContentOwner</code> parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies. Finally, the channel that the <code>onBehalfOfContentOwnerChannel</code> parameter value specifies must be linked to the content owner that the <code>onBehalfOfContentOwner</code> parameter specifies.<br><br>This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>Note that not all parts contain properties that can be set when inserting or updating a video. For example, the <code>statistics</code> object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a <code>part</code> that does not contain mutable values, that <code>part</code> will still be included in the API response.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Should stabilize be applied to the upload.
+     * The stabilize parameter indicates whether YouTube should adjust the video to remove shaky camera motions.
      */
     stabilize?: boolean;
 
@@ -17285,55 +16407,55 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return the videos that are in the specified chart.
+     * The chart parameter identifies the chart that you want to retrieve.
      */
     chart?: string;
     /**
-     * Stands for "host language". Specifies the localization language of the metadata to be filled into snippet.localized. The field is filled with the default metadata if there is no localization in the specified language. The parameter value must be a language code included in the list returned by the i18nLanguages.list method (e.g. en_US, es_MX).
+     * The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      */
     hl?: string;
     /**
-     * Return videos with the given ids.
+     * The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
      */
-    id?: string[];
+    id?: string;
     /**
-     *
+     * DEPRECATED
      */
     locale?: string;
     /**
-     *
+     * The maxHeight parameter specifies a maximum height of the embedded player. If maxWidth is provided, maxHeight may not be reached in order to not violate the width request.
      */
     maxHeight?: number;
     /**
-     * The <code><strong>maxResults</strong></code> parameter specifies the maximum number of items that should be returned in the result set.<br><br><strong>Note:</strong> This parameter is supported for use in conjunction with the <code><a href="#myRating">myRating</a></code> and <code><a href="#chart">chart</a></code> parameters, but it is not supported for use in conjunction with the <code><a href="#id">id</a></code> parameter.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
      */
     maxResults?: number;
     /**
-     * Return the player with maximum height specified in
+     * The maxWidth parameter specifies a maximum width of the embedded player. If maxHeight is provided, maxWidth may not be reached in order to not violate the height request.
      */
     maxWidth?: number;
     /**
-     * Return videos liked/disliked by the authenticated user. Does not support RateType.RATED_TYPE_NONE.
+     * Set this parameter's value to like or dislike to instruct the API to only return videos liked or disliked by the authenticated user.
      */
     myRating?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>pageToken</strong></code> parameter identifies a specific page in the result set that should be returned. In an API response, the <code>nextPageToken</code> and <code>prevPageToken</code> properties identify other pages that could be retrieved.<br><br><strong>Note:</strong> This parameter is supported for use in conjunction with the <code><a href="#myRating">myRating</a></code> and <code><a href="#chart">chart</a></code> parameters, but it is not supported for use in conjunction with the <code><a href="#id">id</a></code> parameter.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.  Note: This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
      */
     pageToken?: string;
     /**
-     * The <code><strong>part</strong></code> parameter specifies a comma-separated list of one or more <code>video</code> resource properties that the API response will include.<br><br>If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a <code>video</code> resource, the <code>snippet</code> property contains the <code>channelId</code>, <code>title</code>, <code>description</code>, <code>tags</code>, and <code>categoryId</code> properties. As such, if you set <code><strong>part=snippet</strong></code>, the API response will contain all of those properties.
+     * The part parameter specifies a comma-separated list of one or more video resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      */
-    part?: string[];
+    part?: string;
     /**
-     * Use a chart that is specific to the specified region
+     * The regionCode parameter instructs the API to select a video chart available in the specified region. This parameter can only be used in conjunction with the chart parameter. The parameter value is an ISO 3166-1 alpha-2 country code.
      */
     regionCode?: string;
     /**
-     * Use chart that is specific to the specified video category
+     * The videoCategoryId parameter identifies the video category for which the chart should be retrieved. This parameter can only be used in conjunction with the chart parameter. By default, charts are not restricted to a particular category.
      */
     videoCategoryId?: string;
   }
@@ -17344,11 +16466,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The id parameter specifies the YouTube video ID of the video that is being rated or having its rating removed.
      */
     id?: string;
     /**
-     *
+     * Specifies the rating to record.
      */
     rating?: string;
   }
@@ -17360,7 +16482,7 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
 
@@ -17376,13 +16498,13 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.<br/><br/>Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the <code>status</code> part. As such, if your request is updating a private video, and the request's <code>part</code> parameter value includes the <code>status</code> part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.<br/><br/>In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the <code>statistics</code> object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a <code>part</code> that does not contain mutable values, that <code>part</code> will still be included in the API response.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.  In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      */
-    part?: string[];
+    part?: string;
 
     /**
      * Request body metadata
@@ -17398,7 +16520,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.watermarks.set
-     * @desc Allows upload of watermark image and setting it for a channel.
+     * @desc Uploads a watermark image to YouTube and sets it for a channel.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17428,19 +16550,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.watermarks.set({
+     *     // The channelId parameter specifies the YouTube channel ID for which the watermark is being provided.
      *     channelId: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *
      *     // Request body metadata
@@ -17471,8 +16585,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.channelId
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.channelId The channelId parameter specifies the YouTube channel ID for which the watermark is being provided.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -17546,7 +16660,7 @@ export namespace youtube_v3 {
 
     /**
      * youtube.watermarks.unset
-     * @desc Allows removal of channel watermark.
+     * @desc Deletes a channel's watermark image.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17575,19 +16689,11 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.watermarks.unset({
+     *     // The channelId parameter specifies the YouTube channel ID for which the watermark is being unset.
      *     channelId: 'placeholder-value',
-     *     // <strong>Note:</strong> This parameter is intended exclusively for YouTube
-     *     // content partners.<br><br>The
-     *     // <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates
-     *     // that the
-     *     // request's authorization credentials identify a YouTube CMS user who is
-     *     // acting on behalf of the content owner specified in the parameter value.
-     *     // This parameter is intended for YouTube content partners that own and manage
-     *     // many different YouTube channels. It allows content owners to authenticate
-     *     // once and get access to all their video and channel data, without having to
-     *     // provide authentication credentials for each individual channel. The CMS
-     *     // account that the user authenticates with must be linked to the specified
-     *     // YouTube content owner.
+     *     // Note: This parameter is intended exclusively for YouTube content partners.
+     *     //
+     *     // The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -17602,8 +16708,8 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.channelId
-     * @param {string=} params.onBehalfOfContentOwner <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {string} params.channelId The channelId parameter specifies the YouTube channel ID for which the watermark is being unset.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17675,11 +16781,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The channelId parameter specifies the YouTube channel ID for which the watermark is being provided.
      */
     channelId?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
 
@@ -17710,11 +16816,11 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     *
+     * The channelId parameter specifies the YouTube channel ID for which the watermark is being unset.
      */
     channelId?: string;
     /**
-     * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
