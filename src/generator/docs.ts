@@ -19,17 +19,19 @@ import * as path from 'path';
 import {promisify} from 'util';
 import Q from 'p-queue';
 
-const readdir = promisify(fs.readdir);
-const writeFile = promisify(fs.writeFile);
 const srcPath = path.join(__dirname, '../../../src');
 const apiPath = path.join(srcPath, 'apis');
 const templatePath = path.join(srcPath, 'generator/templates/index.html.njk');
 const docsPath = path.join(__dirname, '../../../docs');
 const indexPath = path.join(docsPath, 'index.html');
 
-if (!fs.existsSync(docsPath)) {
-  fs.mkdirSync(docsPath);
-}
+export const gfs = {
+  mkdir: fs.mkdirSync,
+  exists: fs.existsSync,
+  writeFile: promisify(fs.writeFile),
+  readdir: promisify(fs.readdir),
+  execa,
+};
 
 /**
  * Iterate over each API directory, and use the `compodoc` tool to generate
@@ -38,20 +40,23 @@ if (!fs.existsSync(docsPath)) {
  *
  * To use this, run `npm run generate-docs`.
  */
-async function main() {
-  const children = await readdir(apiPath);
+export async function main() {
+  if (!gfs.exists(docsPath)) {
+    gfs.mkdir(docsPath);
+  }
+  const children = await gfs.readdir(apiPath);
   const dirs = children.filter(x => {
     return !x.endsWith('.ts') && !x.includes('compute');
   });
   const contents = nunjucks.render(templatePath, {apis: dirs});
-  await writeFile(indexPath, contents);
+  await gfs.writeFile(indexPath, contents);
   const q = new Q({concurrency: 50});
   console.log(`Generating docs for ${dirs.length} APIs...`);
   let i = 0;
   const promises = dirs.map(dir => {
     return q
       .add(() =>
-        execa(process.execPath, [
+        gfs.execa(process.execPath, [
           '--max-old-space-size=8192',
           './node_modules/.bin/compodoc',
           `src/apis/${dir}`,
@@ -66,4 +71,7 @@ async function main() {
   });
   await Promise.all(promises);
 }
-main().catch(console.error);
+
+if (require.main === module) {
+  main();
+}
