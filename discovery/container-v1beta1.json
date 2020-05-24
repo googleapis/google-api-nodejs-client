@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200501",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3064,10 +3064,6 @@
           "$ref": "DatabaseEncryption",
           "description": "Configuration of etcd encryption."
         },
-        "desiredDefaultSnatStatus": {
-          "$ref": "DefaultSnatStatus",
-          "description": "The desired status of whether to disable default sNAT for this cluster."
-        },
         "desiredImageType": {
           "description": "The desired image type for the node pool.\nNOTE: Set the \"desired_node_pool\" field as well.",
           "type": "string"
@@ -3277,17 +3273,6 @@
             "Secrets in etcd are stored in plain text (at etcd level) - this is\nunrelated to Compute Engine level full disk encryption."
           ],
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DefaultSnatStatus": {
-      "description": "DefaultSnatStatus contains the desired state of whether default sNAT should\nbe disabled on the cluster.",
-      "id": "DefaultSnatStatus",
-      "properties": {
-        "disabled": {
-          "description": "Disables cluster default sNAT rules.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -3854,10 +3839,6 @@
       "description": "NetworkConfig reports the relative names of network & subnetwork.",
       "id": "NetworkConfig",
       "properties": {
-        "defaultSnatStatus": {
-          "$ref": "DefaultSnatStatus",
-          "description": "Whether the cluster disables default in-node sNAT rules. In-node sNAT rules\nwill be disabled when default_snat_status is disabled. When disabled is set\nto false, default IP masquerade rules will be applied to the nodes to\nprevent sNAT on cluster internal traffic."
-        },
         "enableIntraNodeVisibility": {
           "description": "Whether Intra-node visibility is enabled for this cluster.\nThis makes same node pod to pod traffic visible for VPC network.",
           "type": "boolean"
