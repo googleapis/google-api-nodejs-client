@@ -687,7 +687,7 @@
       }
     }
   },
-  "revision": "20200508",
+  "revision": "20200515",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchTranslateTextRequest": {
@@ -874,7 +874,7 @@
       "properties": {
         "gcsSource": {
           "$ref": "GcsSource",
-          "description": "Required. Google Cloud Storage location of glossary data.\nFile format is determined based on the filename extension. API returns\n[google.rpc.Code.INVALID_ARGUMENT] for unsupported URI-s and file\nformats. Wildcards are not allowed. This must be a single file in one of\nthe following formats:\n\nFor unidirectional glossaries:\n\n- TSV/CSV (`.tsv`/`.csv`): 2 column file, tab- or comma-separated.\n  The first column is source text. The second column is target text.\n  The file must not contain headers. That is, the first row is data, not\n  column names.\n\n- TMX (`.tmx`): TMX file with parallel data defining source/target term\npairs.\n\nFor equivalent term sets glossaries:\n\n- CSV (`.csv`): Multi-column CSV file defining equivalent glossary terms\n  in multiple languages. The format is defined for Google Translation\n  Toolkit and documented in [Use a\n  glossary](https://support.google.com/translatortoolkit/answer/6306379?hl=en)."
+          "description": "Required. Google Cloud Storage location of glossary data.\nFile format is determined based on the filename extension. API returns\n[google.rpc.Code.INVALID_ARGUMENT] for unsupported URI-s and file\nformats. Wildcards are not allowed. This must be a single file in one of\nthe following formats:\n\nFor unidirectional glossaries:\n\n- TSV/CSV (`.tsv`/`.csv`): 2 column file, tab- or comma-separated.\n  The first column is source text. The second column is target text.\n  The file must not contain headers. That is, the first row is data, not\n  column names.\n\n- TMX (`.tmx`): TMX file with parallel data defining source/target term\npairs.\n\nFor equivalent term sets glossaries:\n\n- CSV (`.csv`): Multi-column CSV file defining equivalent glossary terms\n  in multiple languages. See documentation for more information -\n  [glossaries](https://cloud.google.com/translate/docs/advanced/glossary)."
         }
       },
       "type": "object"
