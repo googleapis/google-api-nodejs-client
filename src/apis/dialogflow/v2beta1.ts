@@ -410,7 +410,7 @@ export namespace dialogflow_v2beta1 {
      */
     alternativeQueryResults?: Schema$GoogleCloudDialogflowV2beta1QueryResult[];
     /**
-     * The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.fulfillment_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty.
+     * The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.fulfillment_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty.  In some scenarios, multiple output audio fields may be present in the response structure. In these cases, only the top-most-level audio output has content.
      */
     outputAudio?: string | null;
     /**
@@ -1918,7 +1918,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ReloadDocumentRequest {
     /**
-     * Optional. The path for a Cloud Storage source file for reloading document content. If not provided, the Document&#39;s existing source will be reloaded.
+     * The path for a Cloud Storage source file for reloading document content. If not provided, the Document&#39;s existing source will be reloaded.
      */
     gcsSource?: Schema$GoogleCloudDialogflowV2beta1GcsSource;
   }
@@ -10917,7 +10917,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.documents.create({
-     *     // The knoweldge base to create a document for.
+     *     // Required. The knoweldge base to create a document for.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      *     parent: 'projects/my-project/agent/knowledgeBases/my-knowledgeBase',
      *
@@ -10958,7 +10958,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param {string} params.parent Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      * @param {().GoogleCloudDialogflowV2beta1Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11753,7 +11753,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
 
@@ -14664,7 +14664,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.documents.create({
-     *     // The knoweldge base to create a document for.
+     *     // Required. The knoweldge base to create a document for.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      *     parent: 'projects/my-project/knowledgeBases/my-knowledgeBase',
      *
@@ -14705,7 +14705,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param {string} params.parent Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      * @param {().GoogleCloudDialogflowV2beta1Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15500,7 +15500,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
 
