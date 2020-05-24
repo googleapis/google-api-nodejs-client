@@ -1643,7 +1643,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "The knoweldge base to create a document for.\nFormat: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.",
+                          "description": "Required. The knoweldge base to create a document for.\nFormat: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/agent/knowledgeBases/[^/]+$",
                           "required": true,
@@ -2370,7 +2370,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The knoweldge base to create a document for.\nFormat: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.",
+                      "description": "Required. The knoweldge base to create a document for.\nFormat: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/knowledgeBases/[^/]+$",
                       "required": true,
@@ -4417,7 +4417,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200518",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowV2AnnotatedMessagePart": {
@@ -6219,7 +6219,7 @@
           "type": "array"
         },
         "outputAudio": {
-          "description": "The audio data bytes encoded as specified in the request.\nNote: The output audio is generated based on the values of default platform\ntext responses found in the `query_result.fulfillment_messages` field. If\nmultiple default text responses exist, they will be concatenated when\ngenerating audio. If no default platform text responses exist, the\ngenerated audio content will be empty.",
+          "description": "The audio data bytes encoded as specified in the request.\nNote: The output audio is generated based on the values of default platform\ntext responses found in the `query_result.fulfillment_messages` field. If\nmultiple default text responses exist, they will be concatenated when\ngenerating audio. If no default platform text responses exist, the\ngenerated audio content will be empty.\n\nIn some scenarios, multiple output audio fields may be present in the\nresponse structure. In these cases, only the top-most-level audio output\nhas content.",
           "format": "byte",
           "type": "string"
         },
@@ -8363,7 +8363,7 @@
       "properties": {
         "gcsSource": {
           "$ref": "GoogleCloudDialogflowV2beta1GcsSource",
-          "description": "Optional. The path for a Cloud Storage source file for reloading document content.\nIf not provided, the Document's existing source will be reloaded."
+          "description": "The path for a Cloud Storage source file for reloading document content.\nIf not provided, the Document's existing source will be reloaded."
         }
       },
       "type": "object"
