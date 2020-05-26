@@ -19,7 +19,6 @@ import * as path from 'path';
 import {URL} from 'url';
 
 import {drive_v2, gmail_v1, GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 const boundaryPrefix = 'multipart/related; boundary=';
@@ -91,7 +90,6 @@ describe('Media', () => {
   before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
-    nock.enableNetConnect();
     [remoteDrive, remoteGmail] = await Promise.all([
       Utils.loadApi<drive_v2.Drive>(google, 'drive', 'v2'),
       Utils.loadApi<gmail_v1.Gmail>(google, 'gmail', 'v1'),
@@ -483,6 +481,5 @@ describe('Media', () => {
 
   after(() => {
     nock.cleanAll();
-    nock.enableNetConnect();
   });
 });

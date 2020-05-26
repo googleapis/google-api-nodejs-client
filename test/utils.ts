@@ -15,7 +15,11 @@ import {GaxiosResponse} from 'gaxios';
 import {URL} from 'url';
 import {GoogleApis} from '../src';
 import {readFileSync} from 'fs';
-import {resolve} from 'path';
+import * as path from 'path';
+import * as nock from 'nock';
+
+export const rootHost = 'https://www.googleapis.com';
+export const rootPrefix = '/discovery/v1/apis';
 
 export abstract class Utils {
   static getQs(res: GaxiosResponse) {
@@ -31,36 +35,30 @@ export abstract class Utils {
   }
 
   static getDiscoveryUrl(name: string, version: string) {
-    return (
-      'https://www.googleapis.com/discovery/v1/apis/' +
-      name +
-      '/' +
-      version +
-      '/rest'
-    );
+    return `${rootHost}${rootPrefix}/${name}/${version}/rest`;
   }
 
   static getDiscoveryFixture(name: string): string {
     return JSON.parse(
       readFileSync(
-        resolve(process.cwd(), `./test/fixtures/discovery/${name}.json`),
+        path.resolve(process.cwd(), `./test/fixtures/discovery/${name}.json`),
         'utf8'
       )
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static loadApi<T = any>(
+  static loadApi<T>(
     google: GoogleApis,
     name: string,
     version: string,
     options = {}
   ) {
-    return (google.discoverAPI(
-      Utils.getDiscoveryUrl(name, version),
-      options
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ) as any) as T;
+    const url = Utils.getDiscoveryUrl(name, version);
+    const filePath = `./discovery/${name}-${version}.json`;
+    nock('https://www.googleapis.com')
+      .get(`${rootPrefix}/${name}/${version}/rest`)
+      .replyWithFile(200, filePath);
+    return google.discoverAPI<T>(url, options);
   }
 
   static readonly noop = () => undefined;

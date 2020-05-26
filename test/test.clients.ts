@@ -12,11 +12,11 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it, before, beforeEach, after} from 'mocha';
+import {describe, it, before, beforeEach, afterEach} from 'mocha';
 import {execSync} from 'child_process';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
-import {GoogleApis} from '../src';
+import {GoogleApis, blogger_v3, oauth2_v2} from '../src';
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
@@ -27,26 +27,28 @@ function createNock(qs?: string) {
 }
 
 describe('Clients', () => {
-  let localBlogger: APIEndpoint, remoteBlogger: APIEndpoint;
-  let localOauth2: APIEndpoint, remoteOauth2: APIEndpoint;
+  let localBlogger: blogger_v3.Blogger;
+  let remoteBlogger: blogger_v3.Blogger;
+  let localOauth2: oauth2_v2.Oauth2;
+  let remoteOauth2: oauth2_v2.Oauth2;
 
   before(async () => {
-    nock.cleanAll();
-    const google = new GoogleApis();
-    nock.enableNetConnect();
-    [remoteBlogger, remoteOauth2] = await Promise.all([
-      Utils.loadApi(google, 'blogger', 'v3'),
-      Utils.loadApi(google, 'oauth2', 'v2'),
-    ]);
     nock.disableNetConnect();
+    const google = new GoogleApis();
+    [remoteBlogger, remoteOauth2] = await Promise.all([
+      Utils.loadApi<blogger_v3.Blogger>(google, 'blogger', 'v3'),
+      Utils.loadApi<oauth2_v2.Oauth2>(google, 'oauth2', 'v2'),
+    ]);
   });
 
   beforeEach(() => {
-    nock.cleanAll();
-    nock.disableNetConnect();
     const google = new GoogleApis();
     localBlogger = google.blogger('v3');
     localOauth2 = google.oauth2('v2');
+  });
+
+  afterEach(() => {
+    nock.cleanAll();
   });
 
   it('should load API versions with a dot in the name', async () => {
@@ -106,7 +108,6 @@ describe('Clients', () => {
       -1,
       'Default param in query'
     );
-    nock.enableNetConnect();
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {myParam: '123'},
     });
@@ -146,7 +147,6 @@ describe('Clients', () => {
       -1,
       'Default param not found in query'
     );
-    nock.enableNetConnect();
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {myParam: '123'},
     });
@@ -192,8 +192,6 @@ describe('Clients', () => {
       -1,
       'Default param not found in query'
     );
-
-    nock.enableNetConnect();
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {
         projectId: 'test-project-id', // We must set this here - it is a
@@ -221,10 +219,5 @@ describe('Clients', () => {
 
   it('should pass eslint for a given client', () => {
     execSync('npx eslint --no-ignore src/apis/youtube/*.ts');
-  });
-
-  after(() => {
-    nock.cleanAll();
-    nock.enableNetConnect();
   });
 });

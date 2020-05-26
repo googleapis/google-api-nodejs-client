@@ -13,14 +13,17 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it, afterEach} from 'mocha';
+import {describe, it, afterEach, before} from 'mocha';
 import * as nock from 'nock';
 import * as proxyquire from 'proxyquire';
 import * as Synth from '../src/generator/synth';
 import {ChangeSet} from '../src/generator/download';
 
 describe(__filename, () => {
-  nock.disableNetConnect();
+  before(() => {
+    nock.disableNetConnect();
+  });
+
   const cacheToken = process.env.GITHUB_TOKEN;
   let changeSets: ChangeSet[] = [];
   let stdout = '';
