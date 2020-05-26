@@ -80,8 +80,9 @@ export async function synth(options: SynthOptions = {}) {
       totalSemverity = semverity;
     }
     const prefix = getPrefix(semverity);
+    const postfix = semverity === Semverity.MAJOR ? '!' : '';
     console.log(`Submitting change for ${dir}...`);
-    const title = `"${prefix}(${dir}): update the API"`;
+    const title = `"${prefix}(${dir})${postfix}: update the API"`;
 
     console.log(`git add ${path.join('src/apis', dir)}`);
     await execa('git', ['add', path.join('src/apis', dir)]);
@@ -159,9 +160,8 @@ export function getPrefix(semverity: Semverity) {
     case Semverity.PATCH:
       return 'fix';
     case Semverity.MINOR:
-      return 'feat';
     case Semverity.MAJOR:
-      return 'feat!';
+      return 'feat';
   }
 }
 
